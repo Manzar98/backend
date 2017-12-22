@@ -96,6 +96,9 @@ if (empty($_POST['tour_stayday'])) {
 
 	$is_check=false;
      echo "This Field is Required";
+}elseif (!is_numeric($_POST['tour_stayday'])) {
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
 }else{
 
 	$stayday          =$_POST['tour_stayday'];
@@ -104,7 +107,10 @@ if (empty($_POST['tour_stayni8'])) {
 	
  	$is_check=false;
       echo "This Field is Required";
- }else{
+ }elseif (!is_numeric($_POST['tour_stayni8'])) {
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
 
  	$stayni8     =$_POST['tour_stayni8'];
  }
@@ -139,6 +145,9 @@ if (empty($_POST['tour_pkgprice'])) {
 	
 	$is_check=false;
      echo "This Field is Required";
+}elseif (!is_numeric($_POST['tour_pkgprice'])) {
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
 }else{
 
 	$pkgprice         =$_POST['tour_pkgprice'];
@@ -148,6 +157,9 @@ if (empty($_POST['tour_capacitypeople'])) {
 	
 	$is_check=false;
      echo "This Field is Required";
+}elseif (!is_numeric($_POST['tour_capacitypeople'])) {
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
 }else{
 
 	$capcipeople      =$_POST['tour_capacitypeople'];
@@ -157,6 +169,9 @@ if (empty($_POST['tour_nosofbag'])) {
 	
 	$is_check=false;
      echo "This Field is Required";
+}elseif (!is_numeric($_POST['tour_nosofbag'])) {
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
 }else{
 
 	$nosbag           =$_POST['tour_nosofbag'];
@@ -180,7 +195,16 @@ if (empty($_POST['tour_undr5allow'])) {
 	$undr5allow       =$_POST['tour_undr5allow'];
 
 }
-$extrachrbag      =$_POST['tour_extrachrbag'];
+
+elseif (!is_numeric($_POST['tour_extrachrbag'])) {
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+
+	$extrachrbag      =$_POST['tour_extrachrbag'];
+
+}
+
 $halftikchild     =$_POST['tour_halftikchild'];
 if (isset($_POST['tour_undr5free'])) {
 
@@ -190,7 +214,18 @@ if (isset($_POST['tour_undr5free'])) {
 	$undr5free          ='off';
 
 }
-$undr5price       =$_POST['tour_undr5price'];
+
+if (!is_numeric($_POST['tour_undr5price'])) {
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+
+}else{
+
+	$undr5price       =$_POST['tour_undr5price'];
+}
+
+
+
 if (empty($_POST['tour_strtloc'])) {
 	
 	$is_check=false;
@@ -210,10 +245,36 @@ if (empty($_POST['tour_pikoffer'])) {
 
 }
 
+if (!is_numeric($_POST['tour_pikair'])) {
 
-$pikair           =$_POST['tour_pikair'];
-$pikbus           =$_POST['tour_pikbus'];
-$pikspecific      =$_POST['tour_pikspecific'];
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+	
+	$pikair           =$_POST['tour_pikair'];
+}
+
+if (!is_numeric($_POST['tour_pikbus'])) {
+
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+	
+	$pikbus           =$_POST['tour_pikbus'];
+}
+
+if (!is_numeric($_POST['tour_pikspecific'])) {
+
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+	
+	$pikspecific      =$_POST['tour_pikspecific'];
+}
+
+
+
+
 if (empty($_POST['tour_drpoffer'])) {
 	
 	$is_check=false;
@@ -223,11 +284,53 @@ if (empty($_POST['tour_drpoffer'])) {
 	$drpoffer         =$_POST['tour_drpoffer'];
 
 }
-$drpair           =$_POST['tour_drpair'];
-$drpbus           =$_POST['tour_drpbus'];
-$drpspecific      =$_POST['tour_drpspecific'];
-$noofpeople       =$_POST['common_nopeople'];
-$discountpeople   =$_POST['common_discount'];
+
+if (!is_numeric($_POST['tour_drpair'])) {
+
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+	
+	$drpair           =$_POST['tour_drpair'];
+}
+
+if (!is_numeric($_POST['tour_drpbus'])) {
+
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+	
+	$drpbus           =$_POST['tour_drpbus'];
+}
+
+if (!is_numeric($_POST['tour_drpspecific'])) {
+
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+	
+	$drpspecific      =$_POST['tour_drpspecific'];
+}
+
+
+if (!is_numeric($_POST['common_nopeople'])) {
+
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+
+	$noofpeople       =$_POST['common_nopeople'];
+}
+if (!is_numeric($_POST['common_discount'])) {
+
+	$is_check=false;
+	echo "This Field accept only Numeric"."<br>";
+}else{
+	
+	$discountpeople   =$_POST['common_discount'];
+}
+
+
 
 if (empty($_POST['common_image'])) {
 	

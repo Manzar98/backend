@@ -65,7 +65,15 @@ if (empty($_POST['event_undr5allow'])) {
 	$undr5allow   = $_POST['event_undr5allow'];
 
 }
-$entryfee     = $_POST['event_entryfee'];
+if (!is_numeric($_POST['event_entryfee'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+
+	$entryfee     = $_POST['event_entryfee'];
+}
+
 
 
 $halftikchild = $_POST['event_halftikchild'];
@@ -75,9 +83,34 @@ if (isset($_POST['event_undr5free'])) {
 	$undr5free    = 'off';
 }
  
-$undr5price   = $_POST['event_undr5price'];
-$nospeople     = $_POST['common_nopeople'];
-$discountx    = $_POST['common_discount'];
+if (!is_numeric($_POST['event_undr5price'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$undr5price   = $_POST['event_undr5price'];
+} 
+
+if (!is_numeric($_POST['common_nopeople'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$nospeople     = $_POST['common_nopeople'];
+} 
+
+if (!is_numeric($_POST['common_discount'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$discountx    = $_POST['common_discount'];
+}
+
+
 if (empty($_POST['event_pikoffer'])) {
 
 	$is_check=false;
@@ -88,9 +121,34 @@ if (empty($_POST['event_pikoffer'])) {
 
 }
 
-$pikair       = $_POST['event_pikair'];
-$pikbus       = $_POST['event_pikbus'];
-$pikspecific  = $_POST['event_pikspecific'];
+if (!is_numeric($_POST['event_pikair'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$pikair       = $_POST['event_pikair'];
+}
+
+if (!is_numeric($_POST['event_pikbus'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$pikbus       = $_POST['event_pikbus'];
+}
+
+if (!is_numeric($_POST['event_pikspecific'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$pikspecific  = $_POST['event_pikspecific'];
+
+}
+
 if (empty($_POST['event_drpoffer'])) {
 
 	$is_check=false;
@@ -100,9 +158,35 @@ if (empty($_POST['event_drpoffer'])) {
 	$drpofer      = $_POST['event_drpoffer'];
 }
 
-$drpair       = $_POST['event_drpair'];
-$drpbus       = $_POST['event_drpbus'];
-$drpspecific  = $_POST['event_drpspecific'];
+if (!is_numeric($_POST['event_drpair'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$drpair       = $_POST['event_drpair'];
+
+}
+
+if (!is_numeric($_POST['event_drpbus'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$drpbus       = $_POST['event_drpbus'];
+
+}
+
+if (!is_numeric($_POST['event_drpspecific'])) {
+	
+	$is_check=false;
+	echo "This Field is accept only numeric";
+}else{
+	
+	$drpspecific  = $_POST['event_drpspecific'];
+
+}
 
 if (empty($_POST['common_image'])) {
 	
