@@ -172,7 +172,7 @@ function gen_dates_input(event) {//
 
          onSelect: function(selected) {
            debugger;
-           $("#"+to_id).datepicker("option","minDate", manzar)
+           $("#"+to_id).datepicker("option","minDate", selected)
           
           }
  
@@ -192,7 +192,7 @@ function gen_dates_input(event) {//
              var to =from.datepicker("option", "minDate", getDate(this));
               
                manzar=$(this).val();
-               
+              
           });
 
   function getDate(element) {
@@ -748,6 +748,66 @@ $('.chips-package').on('chip.add', function(e, chip){
   }
  })
 
+/*=============Delete Image in Preveiw in all forms===============*/
+
+function deletIMG(event){
+  console.log(event.currentTarget.getAttribute("data-value"));
+
+  var file_ID=event.currentTarget.getAttribute("data-value");
+  var file_Name=event.currentTarget.getAttribute("data-img");
+  var removeDIV =event.currentTarget.parentElement;
+swal({
+  title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel plx!",
+  closeOnConfirm: false,
+  closeOnCancel: false
+},
+function(isConfirm){
+  console.log(isConfirm);
+  
+  if (isConfirm) {
+        
+        $.post("../delete_img.php",{
+                                         fileId   : file_ID,
+                                         fileName : file_Name
+                                             })
+                 .done(function(data){
+                   console.log(data);
+                   $(removeDIV).remove();
+                 });
+
+    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+
+  } else {
+    swal("Cancelled", "Your imaginary file is safe :)", "error");
+  }
+});
+
+
+}
+
+
+
+/*=======Hall independent in banquet,conference and events===========*/
+
+function hall_alone(that) {
+
+  if(that.value=="yes"){
+    $('#hall_alone').show();
+    $('#show_hotelName').hide();
+
+  }else{
+
+    $('#hall_alone').hide();
+    $('#show_hotelName').show();
+  }
+  // body...
+}
 
 
 

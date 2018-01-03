@@ -104,6 +104,10 @@
                         </div>
 					  </div> 
 
+            <div class="imgVeiwinline row" id="hotel_img_wrap">
+               
+            </div>
+
 					<div class="row common-top">
 							<div class="">
 								<!-- Modal Trigger -->

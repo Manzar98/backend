@@ -1010,17 +1010,17 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
     border-radius: 2px;
     border: 0px;
 }
-.select-wrapper {
+/*.select-wrapper {
     position: relative;
     border: 1px solid #dfdfdf;
-    /* padding: 8px; */
+     padding: 8px; 
     
     box-sizing: border-box;
-    /* height: 45px; */
+     height: 45px;
     
     border-radius: 2px;
     color: #7d7d7d;
-}
+} */
 
 /*-------------------------------------------------*/
 /* =  BLOG PAGE
@@ -4523,7 +4523,7 @@ form .stars label:before {
 
 
 /*------------------------------------------------------------*/
-#pick_select .select-wrapper{
+/*#pick_select .select-wrapper{
    
     margin-top: 16px;
 }
@@ -4533,7 +4533,7 @@ form .stars label:before {
 }
 .common-wrapper .select-wrapper{
     height: 45px;
-}
+}*/
 .common-top{
     margin-top: 15px;
 }
@@ -4559,14 +4559,14 @@ height: 9px !important;
 .mce-branding.mce-widget.mce-label.mce-flow-layout-item.mce-last{
     display: none;
 }
-#am_wrap .select-dropdown, .caret{
+/*#am_wrap .select-dropdown, .caret{
     display: none;
 }
 #am_wrap .select-wrapper{
     border: 0px !important;
-}
+}*/
 
-#am_wrap .form-control{
+/*#am_wrap .form-control{
    border-radius: 0px;
 -webkit-box-shadow: inherit !important;
 box-shadow: inset 0px !important;
@@ -4574,7 +4574,7 @@ box-shadow: inset 0px !important;
 o-transition: inherit !important;
 transition: inherit !important;
 border-radius:0px;
-}
+}*/
 
 /*.t-chckbox [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     position: inherit;
@@ -4592,7 +4592,7 @@ border-radius:0px;
 /*.events-checkbox p{
     padding-left: 13px;
 }*/
-.closediscount, .closedate, .closemenu {
+.closediscount, .closedate, .closemenu, .deletIMG {
     float: right;
     cursor: pointer;
 }
@@ -4603,12 +4603,15 @@ border-radius:0px;
     top:13px;
     color: #c2c4c6 !important;
 }
-.select-wrapper input.select-dropdown{
-    cursor: pointer;
+.select-wrapper {
+    padding-top: 15px;
 }
-.select-wrapper .caret{
+#pick_select label{
+    padding-left: 15px;
+}
+/*.select-wrapper .caret{
    display: block;
-}
+}*/
 
 /*#fdk-select .select-wrapper{
     position: inherit !important;
@@ -4746,4 +4749,13 @@ label{
 }
 .db-2-main-2 {
     max-height: 325px;
+}
+.hotelVeiw .row{
+    padding-left: 15px;
+}
+.imgVeiwinline{
+    display: inline-flex;
+}
+.pTAG{
+    padding-bottom: 50px;
 }

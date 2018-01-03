@@ -83,6 +83,22 @@
                                 <label>https://</label>
 								<input type="url"  class="validate " name="hotel_web"></div>
 						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<label>Check In Time</label>
+								<input type="text" class="timepicker" id="checkIn" name="hotel_checkin">
+							</div>
+							<div class="col-md-6">
+								<label>Check Out Time</label>
+								 <input type="text" class="timepicker" id="checkOut"    name="hotel_checkout"> 
+							</div>
+						</div>
+
+
+						<div class="imgVeiwinline row" id="hotel_img_wrap">
+							 
+						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<!-- Modal Trigger -->
@@ -118,20 +134,43 @@
 						</div><br><br>
 
 
+
+
+
+
                         <div class="row" >
-                        	<div class="col-md-6 common-wrapper comon_dropdown_botom_line is_validate_select " id="pick_select" >
-                        		<label>Hotel Pickup</label>
-                        		<select  onchange="yesCheck(this)" name="hotel_pickup" class="input-field validate" id="pik_select">
+                        	<div class="col-md-6  input-field" id="pick_select" >
+                        		
+                        		<select  onchange="yesCheck(this)" name="hotel_pickup" class=" " id="pik_select">
 							     <option value="" disabled selected>Choose your option</option>
 							     <option value="yes">Yes</option>
 								 <option value="no">No</option>
 							   </select> 
+							   <label>Pickup Offered?</label>
                         	</div>
-                        	<div class="col-md-6" style="display: none;" id="ifYes">
-                        		<label>Pickup Charges</label>
-                        		 <input type="number"  class="input-field validate is_validate" name="hotel_pikcharge" >
+                            <div class="col-md-6 " id="transport" style="padding-top: 10px;display: none;">
+                            	<select onchange="transportType(this)" >
+                            		<option value="" selected="" disabled="">Select One</option>
+                            		<option value="Airport">Airport</option>
+                            		<option value="Bus Station">Bus Station</option>
+                            	</select>
+                            	<label style="padding-top: 22px;">Airport/Bus Station</label>
                             </div>   
 					    </div>
+
+
+                        <div class="row">
+                          <div class="col-md-6" >
+                          	<div class="" style="display: none;" id="ifYes">
+                        		<label>Charges</label>
+                        		 <input type="number"  class="input-field validate is_validate" name="hotel_pikcharge" >
+                            </div>
+                            </div>
+                            <div class="col-md-6" id="busAddres" style="display: none;">
+                            	<label>Address</label>
+                        		 <input type="text"  class="input-field validate " name="" >
+                            </div>
+                        </div>
 
 					    <div id="bag-char"   style="display: none;">  
                            <label class="col s6">Luggage </label>
@@ -255,7 +294,7 @@
 
 				<div class="modal-content">
 						<div class="modal-header"><h2>Upload Cover Photo</h2></div>
-				<iframe src="up_load_cover.php"></iframe>
+				<iframe src="up_load_cover.php?name=hotel-cover"></iframe>
                    <div class="modal-footer">
 					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 				</div>
@@ -279,16 +318,20 @@
   function yesCheck(that) {
         if (that.value == "yes") {
             // alert("check");
-             document.getElementById("ifYes").style.display = "block";
+              document.getElementById("transport").style.display = "block";
              document.getElementById("bag-char").style.display = "block";
         } else {
-            document.getElementById("ifYes").style.display = "none";
+             document.getElementById("ifYes").style.display = "none";
             document.getElementById("bag-char").style.display = "none";
             document.getElementById("1bag").style.display = "none";
     		document.getElementById("2bags").style.display = "none";
     		document.getElementById("3bags").style.display = "none";
     		document.getElementById("4bags").style.display = "none";
     		document.getElementById('bag-inpt').style.display = "none";
+    		document.getElementById("transport").style.display = "none";
+    		$('#busAddres').hide();
+    		 $('#transport').prop('selectedIndex',0);
+
     		  
         }
     }
@@ -338,25 +381,23 @@
     }
 
 
+
+function transportType(that) {
+
+					    		  if (that.value== 'Airport') {
+
+					    		  	$('#ifYes').show();
+					    		  	$('#busAddres').hide();
+					    		  }else{
+					    		  	$('#busAddres').show();
+					    		  	$('#ifYes').show();
+					    		  }
+					    		// body...
+
+					    	}
+
 jQuery(document).ready(function(){
 
-$("#click_other").click(function() {                
-
-      $.ajax({    
-        type: "GET",
-        url: "amenity-post.php",             
-        dataType: "html",                  
-        success: function(response){                    
-           
-             console.log(JSON.parse(response));
-           // alert(response.split(",")) ;
-           // console.log(response.split(","));
-           var obj={};
-
-        }
-
-    });
-});
 
  $('.chips-autocomplete').material_chip({
     autocompleteOptions: {
@@ -374,53 +415,42 @@ $("#click_other").click(function() {
 
 
 
-
-
-
-     
- 	
-
-   
-   
-
-
-
 $('#modal-extimg').modal({dismissible: false});
 $('#modal-coverimg').modal({dismissible: false});
 
-$('#pro-sub-btn').click(function(){
-	// debugger;
-	var isFormValidated = true;
-	 $.each($('#hotel-form .is_validate'),function(key,val){
-	 		if(!val.value){
-	 			isFormValidated = false;
-	 			console.log(val);
-				$(val).addClass('error');	
-	 		}else{
-	 			// debugger;
-	 			$(val).removeClass('error');
-	 		}
-	 });
-	$.each($('#hotel-form .is_validate_select'),function(key,val){
-			if(!$(val).find('select').val()){
-				isFormValidated = false;
-				console.log(val);
-				$(val).find('.select-wrapper').addClass('error');
+// $('#pro-sub-btn').click(function(){
+// 	// debugger;
+// 	var isFormValidated = true;
+// 	 $.each($('#hotel-form .is_validate'),function(key,val){
+// 	 		if(!val.value){
+// 	 			isFormValidated = false;
+// 	 			console.log(val);
+// 				$(val).addClass('error');	
+// 	 		}else{
+// 	 			// debugger;
+// 	 			$(val).removeClass('error');
+// 	 		}
+// 	 });
+// 	$.each($('#hotel-form .is_validate_select'),function(key,val){
+// 			if(!$(val).find('select').val()){
+// 				isFormValidated = false;
+// 				console.log(val);
+// 				$(val).find('.select-wrapper').addClass('error');
 
-			}else{
-				// debugger;
-				$(val).find('.select-wrapper').removeClass('error');
-			}
-	});
+// 			}else{
+// 				// debugger;
+// 				$(val).find('.select-wrapper').removeClass('error');
+// 			}
+// 	});
 
 
-	if(isFormValidated){
-		console.log('TIme to submit form');
-		$("#hotel-form").submit();
-	}else{
-		console.log('There is an error');
-	}
-})
+// 	if(isFormValidated){
+// 		console.log('TIme to submit form');
+// 		$("#hotel-form").submit();
+// 	}else{
+// 		console.log('There is an error');
+// 	}
+// })
 
 
 
@@ -446,6 +476,10 @@ $("#hotel-form").validate({
 
 
 
+
+ $('#checkIn').pickatime();
+
+$('#checkOut').pickatime();
 
 
 });

@@ -4,7 +4,7 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
-	<title>Add a Banquet Hall</title>
+	<title>Add Tour Package</title>
 
 	  <?php include '../header.php'; ?>
 
@@ -16,226 +16,423 @@
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
-							<h3><img src="../images/icon/dbc5.png" alt=""/> Add Banquet Halls</h3>
+							<h3><img src="../images/icon/dbc5.png" alt=""/> Add Tour Package</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
 						 
                          <div class="db-profile-edit">
-					<form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="banquet-post.php" method="POST" enctype="multipart/form-data"> 
-
+					<form class="col s12"  data-toggle="validator" id="tour-form" role="form" action="tour-post.php" method="POST" enctype="multipart/form-data">
+						
+							
 						<div>
-						    <label class="col s12">Banquet Hall name </label>
-							   <div class="input-field col s12">
-								 <input type="text"   value="" name="banquet_name" class="validate is_validate_input" required> 
-							   </div>
+							<label class="col s4">Package Name</label>
+							<div class="input-field col s8">
+								<input type="text" value="" class="validate" name="tour_name" required> </div>
 						</div>
-
 						<div>
-							<label class="col s12">Capacity</label>
-							   <div class="input-field col s12">
-								<input type="number" name="banquet_space"   class="validate is_validate_input" required> 
-							</div>
+							<label class="col s4">Name of Desination</label>
+							<div class="input-field col s8">
+								<div class="chips chips-destination"  name="tour_destinationname[]"></div>
+								<input type="hidden" name="tour_destinationname[]" id="input_chips-desti" class="" required> </div>
 						</div>
 
-					    <div>
-                            <div class="">
-                        		<label >Hall Booking Charges :</label>
-                        	</div>
-                             <div class="row"> 
-                             <div class=" col-md-6">
-							    	<label>Without Aricon</label>
-								   <input type="number" value="" name="banquet_naricon" class="input-field validate is_validate_input" required> 
-							    </div>          
-                             	<div class="col-md-2 with_aricon" >
-                             		<p>
-									<input type="checkbox" class="filled-in" id="filled-in-aricon" />
-									<label for="filled-in-aricon">Aricon?</label>
+
+						<div class="row t-chckbox">
+							<div class="col-md-6 hotelFod common-wrapper comon_dropdown_botom_line">
+								<label>Food Included ?</label>
+								<select name="tour_foodinclude" onchange="selectFod(this)">
+									<option value="-1">Select One</option>
+									<option value="yes">Yes</option>
+									<option value="no">No</option>
+								</select>
+							</div>
+							 <div id="show-food">
+							<div  class="col-md-2 c-food">
+
+								<p>
+									<input type="checkbox" class="filled-in" id="filled-in-box"   name="tour_brkfast" />
+									<label for="filled-in-box">Breakfast</label>
 								</p>
-							    </div>
-							    <div class=" col-md-4" >
-							    	<div class="with_ari" style="display: none;">
-                             		<label >Aricon</label>
-								   <input type="number" value="" name="banquet_aricon" class="input-field validate "> 
-								   </div>
-							    </div>
-							    
-                             </div>                  
-                         </div>
-
-
-
-
-                      <div>
-                       	<div>
-                       	   <label>Hall Booking Charges :</label>
-                        </div>
-                       
-                          <div class="row">
-                         	 <div class="col-md-6">
-                         		<label>Without Generator Backup</label>
-                         		<input type="number" value="" name="banquet_ngenerator" class="input-field validate is_validate_input" required>
-                         	 </div>
-
-                         	 <div class="col-md-2 with_generator" >
-                             		<p>
-									<input type="checkbox" class="filled-in" id="filled-in-gen"  />
-									<label for="filled-in-gen">Generator?</label>
+								
+							</div>
+							<div class="col-md-2 c-food">
+								
+								<p>
+									<input type="checkbox" class="filled-in" id="filled-in-lunch"  name="tour_lunch" />
+									<label for="filled-in-lunch">Lunch</label>
 								</p>
-							    </div>
-							    <div class="col-md-4">
-                         	 	<div class="with_gent" style="display: none;">
-                         		<label>Generator Backup</label>
-                         		<input type="number" value="" name="banquet_generator" class="input-field validate ">
-                         	</div>
-                         	 </div>
-                             
-                         </div>
-                       </div>
-                       
-                        <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv"  >
-
-							<label class="col s12">Serve Food ?</label>
-							<select onchange="chk_food(this)"  class="" name="banquet_serve">
-								<option value="-1">Select One</option>
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-
-							</select>
-						</div>
-                      
-                      <div id="menupackage-wrap" style="display: none;" class="common-top">
-						
-                           <ul class="collapsible def-show-menu" data-collapsible="accordion">
-                       		<li>
-                       			<div class="collapsible-header  active">Menu</div>
-                       			<div class="collapsible-body"> 
-                       				<div class="row">
-                       					<div class="col-md-6">
-                       						<label >Menu Packages</label>
-                       						<input type="text" value="" class="input-field validate" name="foodpkg_menu[]">
-                       					</div>
-                       					<div class="col-md-6">
-                       						<label>Package Name</label>
-                       						<input type="text" value="" class="input-field validate" name="foodpkg_name[]">
-                       					</div>
-                       				</div>
-
-                       				<div class="row">
-                       					<div class="col-md-6">
-                       						<label>Package Price</label>
-                       						<input type="number" value="" class="input-field validate" name="foodpkg_price[]">
-                       					</div>	
-                       					<div class="col-md-6">
-                       						<label >Discount Percentage</label>
-                       						<input type="number" value="" class="input-field validate" name="foodpkg_discount[]">
-                       					</div>						
-                       				</div>
-                       				<div class="col s12">
-                       					<label>Package Items</label>
-                       					<div class="input-field col s3">
-                       						<div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
-                       						<input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
-                       					</div>
-
-                       				</div>
-                       			</li>
-                       		</ul>
-
-                       		 <div  class=" ">
-                            	<a class="waves-effect waves-light btn " onclick="gen_menupackage_input(event)">Add More Package</a>
-                        </div>
-					  </div> 
-					
-						
-
-						<div class="row common-top" >
-							<div class="col-md-6 common-wrapper comon_dropdown_botom_line" id="gathr_type">
-								<label> Gathering Type <strong>?</strong></label>
-								<select name="banquet_gathering">
-								  <option value="-1">Select One</option>
-								  <option value="mixed">Mixed</option>
-								  <option value="separate">Separate</option>
-							    </select>
+								
 							</div>
-							<div class="col-md-6">
-								<label>Additional Cost</label>
-								<input type="number" value="" name="banquet_adcost" class="input-field validate">
+							<div class="col-md-2 c-food">
+								<p>
+									<input type="checkbox" class="filled-in" id="filled-in-diner"   name="tour_dinner" />
+									<label for="filled-in-diner">Dinner</label>
+								</p>
+							</div>
+							</div>
+
+						</div>
+
+
+						<div class="row t-chckbox common-top">
+							<div class="col-md-6 common-wrapper comon_dropdown_botom_line">
+								<label>Drinks Included?</label>
+								<select name="tour_drink"  onchange="selctdrink(this)">
+									<option value="">Select One</option>
+									<option value="yes">Yes</option>
+									<option value="no">No</option>
+								</select>
+							</div>
+							<div id="drink-wrap">
+							<div class="col-md-2 c-drink">
+								<p>
+									<input type="checkbox" class="filled-in" id="filled-in-alcholic"   name="tour_dinner" />
+									<label for="filled-in-alcholic">Alcoholic</label>
+								</p>
+								<!-- <label style="padding-left: 20px;">Alcoholic</label>
+								<p>
+									<input type="checkbox" name="tour_aloholic" class="filled-in">
+								</p> -->
+							</div> 
+							<div class="col-md-4 c-drink">
+								<p>
+									<input type="checkbox" class="filled-in" id="filled-in-nonalc"   name="tour_nonaloholic" />
+									<label for="filled-in-nonalc">Non Alcoholic</label>
+								</p>
+								<!-- <label style="padding-left: 35px;">Non Alcoholic</label>
+								<p>
+									<input type="checkbox" name="tour_nonaloholic"  class="filled-in"
+									style="margin-left: 40px;">
+								</p> -->
+							</div>
 							</div>
 						</div>
 
-						<div class="row">
-                             	<div class="col-md-6">
-                             		<label>Offer Discount (%)</label>
-                             		<input type="number" name="banquet_offerdiscount" class="input-field validate">
-                             	</div>
-                             	<div class="col-md-6">
-                             		<label>Expires on</label>
-                             		<input type="text" id="expireDate" class="input-field from" name="banquet_expireoffer">
-                             	</div>
-                             </div> 
-                        						
-						
 
 						<div class="row common-top">
+							<div class="col-md-6"> 
+								<label>Number of Days</label>
+                                  <div class="input-field ">
+								    <input type="number" value="" id="bt1" class="validate" name="tour_stayday" required> 
+								  </div>
+							</div>
+							<div class="col-md-6">
+								<label>Number of Nights</label>
+                                  <div class="input-field ">
+								   <input type="number" value="" id="bt2" class="validate" name="tour_stayni8" required> 
+							      </div>
+							</div>
+
+						</div>
+
+
+						<div class="row t-chckbox common-top" id="t-chckbox" >
+							<div class="col-md-6">
+							<div class="hotelStr common-wrapper comon_dropdown_botom_line">
+								
+								  <label for="filled-in-box">Hotel Stay Stars</label>
+                                    <select class="" name="tour_hotelstr"  onchange="changeStr(this)">
+                                    	<option value="">Select One</option>
+                                    	<option value="1">1</option>
+                                    	<option value="2">2</option>
+                                    	<option value="3">3</option>
+                                    	<option value="4">4</option>
+                                    	<option value="5">5</option>
+                                    	<option value="6">6</option>
+                                    	<option value="7">7</option>
+                                    </select>								
+							</div>
+							</div>
+							<div class="col-md-6 camping ">
+								<p>
+									<input type="checkbox" class="filled-in" onclick="changecamp(this)" name="tour_camping" id="cmp"/>
+									<label for="cmp">Camping ?</label>
+								</p><br><br><br>
+								<!-- <label style="padding-left: 10px;">Camping ?</label>
+								<p>
+                                  <input type="checkbox" onclick="changecamp(this)" class="filled-in " name="tour_camping" id="cmp"  />
+                                  
+                                </p> -->
+							</div>							
+						</div>
+
+
+						<div class="col s12 common-wrapper common-top clearfix comon_dropdown_botom_line" id="bn-serv" >
+
+							<label class="col s12">Entry tickets included in the package price?</label>
+							   <select   name="tour_entrytik">
+								 <option value="">Select One</option>
+								 <option value="yes">Yes</option>
+								 <option value="no">No</option>
+
+							   </select>
+						</div>
+
+						<div class="common-top">
+							<label class="col s4">Whole travel plan of the package</label>
+							<div class="input-field col s8">
+								<textarea class="materialize-textarea textarea-t" name="tour_plan"></textarea required>  </div>
+						</div>
+
+						<div class="row common-top"  style="margin-top: 20px;">
+							<div class="col-md-6">
+								<label style="padding-bottom: 22px;">Package Price</label>
+                                  <div class="input-field ">
+								   <input type="number" value="" name="tour_pkgprice" class="validate" required> 
+							      </div>
+
+							</div>
+							<div class="col-md-6">   
+                                <label>Number of people<br> (capacity of the package)</label>
+                                  <div class="input-field ">
+								   <input type="number" value="" name="tour_capacitypeople" class="validate" required> 
+							      </div>
+							</div>
+						</div>
+
+
+						<div class="row common-top" >
+							<div class="col-md-6">
+								<label >Number of bags allowed per person</label>
+                                  <div class="input-field ">
+								   <input type="number" value="" name="tour_nosofbag" class="validate" required> 
+							      </div>
+
+							</div>
+							<div class="col-md-6">   
+                                <label>Charges for extra luggage per bag</label>
+                                  <div class="input-field ">
+								   <input type="number" value="" name="tour_extrachrbag" class="validate"> 
+							      </div>
+							</div>
+						</div>
+
+
+						<div class="row common-top">
+                        	<div class="col-md-6 common-wrapper comon_dropdown_botom_line" id="childallow">
+                        		<label >Children Allowed?</label>
+                        		<select name="tour_childallow" onchange="selectchild(this)">
+                        			<option value="">Select One</option>
+                        			<option value="yes">Yes</option>
+                        			<option value="no">No</option>
+                        		</select>
+                        	</div>
+                        	<div class="col-md-6 common-wrapper c-under5 comon_dropdown_botom_line" id="under5">
+                        		<label >Under 5 allowed?</label>
+                        		<select name="tour_undr5allow" onchange="selectunder5(this)">
+                        			<option value="">Select One</option>
+                        			<option value="yes">Yes</option>
+                        			<option value="no">No</option>
+                        		</select>
+                        	</div>
+                        </div>
+
+                        <div class="row common-top">
+                        	<div class="col-md-6 common-wrapper c-childTickt comon_dropdown_botom_line"  id="c-chilTickt">
+                        		<label style="padding-bottom:5px;">Half Ticket for children?</label>
+                        		<select name="tour_halftikchild" onchange="selecthalftik(this)">
+                        			<option value="">Select One</option>
+                        			<option value="yes">Yes</option>
+                        			<option value="no">No</option>
+                        		</select>
+                        	</div>
+                        	<div class="col-md-2 events-checkbox">
+                        		<div class="c-childfree">
+
+                        			<p>
+									<input type="checkbox" class="filled-in" onclick="childrnfree(this)" name="tour_undr5free" id="undr5free"/>
+									<label for="undr5free">Free?</label>
+								</p><br><br><br><br>
+                        			<!-- <label >Free?</label>
+                        			<p>
+                        				<input type="checkbox" onclick="childrnfree(this)"  class="filled-in "  name="tour_undr5free"   />
+
+                        			</p> -->
+                        		</div>
+                        	</div>
+                        	<div class="col-md-4">
+                        		<div class="c-childprice">
+                        			<label style="padding-left: 8px;">price</label>
+                        			<div class="input-field col s8" style="margin-top: 4px;">
+                        				<input type="number"  name="tour_undr5price" class="validate">
+                        			</div>
+                        		</div>
+                        	</div>
+                        </div>
+
+
+						<div class="common-top discount clearfix" id=discount_wrap>
+							<label>Discount for groups <b>:</b></label>
+							<div class="row">
+								<div class="col-md-6">
+									<label>Number of People</label>
+                                  <div class="input-field ">
+								   <input type="number" value=""  name="common_nopeople[]" id="uniq_people" class="tour-discount-per validate s hel"> 
+							      </div>
+								</div>
+								<div class="col-md-6">
+									<label>Discount (Percentage)</label>
+                                  <div class="input-field ">
+								   <input type="number" value="" name="common_discount[]" class="validate"> 
+							      </div>
+
+								</div>								
+							</div>
+							 
+						</div>
+                               
+						<div  class=" " style="margin-bottom: 20px;"> 
+                            	<a id="more_discount_id" class="waves-effect waves-light btn more_discount_id" onclick="gen_discount_input(event)">Add More Discounts</a>
+                        </div>
+
+						<div class="common-top">
+							<label class="col s4">Trip starts from (Location’s Name)</label>
+							<div class="input-field col s8">
+								<input type="text" value="" name="tour_strtloc" class="validate" required> </div>
+						</div>
+
+						<div class="row common-top" >
+							 
+							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
+								<label style="margin-bottom: 32px;">Pickup Offered ?</label>
+							      <select onchange="pickOffer(this)" name="tour_pikoffer">
+								     <option value="">Select One</option>
+								     <option value="yes">Yes</option>
+								     <option value="no">No</option>
+							     </select>
+
+							</div>
+							
+							<div class="col-md-6 pickService"  style="display: none;">
+								
+								 <label><b>Charges from : </b><br> Airport</label>
+								 <div class="input-field ">
+								   <input type="number" value="" name="tour_pikair" class="validate"> 
+							      </div>
+							</div>
+
+						</div>
+						<div class="row pickService common-top" style="display: none;">
+							
+							<div class="col-md-6">
+								<label> Bus Terminal</label>
+								 <div class="input-field ">
+								   <input type="number" value="" name="tour_pikbus" class="validate"> 
+							      </div>
+
+							</div>
+							<div class="col-md-6">
+								 <label>Specific Location</label>
+								 <div class="input-field ">
+								   <input type="number" value="" name="tour_pikspecific" class="validate"> 
+							      </div>
+							</div>
+
+						</div>
+                         
+
+                       <div class="row common-top" >
+							
+							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
+								<label style="margin-bottom: 32px;">Drop off Offered ?</label>
+							      <select onchange="dropOffer(this)" name="tour_drpoffer">
+								     <option value="">Select One</option>
+								     <option value="yes">Yes</option>
+								     <option value="no">No</option>
+							     </select>
+
+							</div>
+							<div class="col-md-6 dropService"  style="display: none;">
+								 <label>Charges From :<br> Airport</label>
+								 <div class="input-field ">
+								   <input type="number" value="" name="tour_drpair" class="validate"> 
+							      </div>
+							</div>
+
+						</div>
+						<div class="row dropService common-top" style=" display: none;">
+							
+							<div class="col-md-6">
+								<label>Bus Terminal</label>
+								 <div class="input-field ">
+								   <input type="number" value="" name="tour_drpbus" class="validate"> 
+							      </div>
+
+							</div>
+							<div class="col-md-6">
+								 <label>Specific Location</label>
+								 <div class="input-field ">
+								   <input type="number" value="" name="tour_drpspecific" class="validate"> 
+							      </div>
+							</div>
+
+						</div>
+			           <div class="imgVeiwinline row" id="hotel_img_wrap">
+			               
+			            </div>
+					   <div class="row common-top">
 							<div class="">
 								<!-- Modal Trigger -->
 								<div class="col s1"></div>
-							<a class="waves-effect waves-light btn modal-trigger spc-modal col s10" href="#modal-images" >Banquet Photos</a>
+							<a class="waves-effect waves-light btn modal-trigger spc-modal col s10" href="#modal-images" >Tour Photos</a>
 							<input type="text" name="common_image" id="img_ids">
 							</div>
 					   </div>
                            											
 							<div class="row  common-top clearfix">
 								 
-									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>HALL's PROMOTIONAL VIDEO</span></div>
-										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt is_validate_input" required>
+									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Tour's PROMOTIONAL VIDEO</span></div>
+										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required>
 							</div>
+
+						<div class="destination-wrap" id="destination-wrap">
+                        <div class="common-top">
+							<label>Destination Name</label>
+                            <div class="input-field col s8">
+                            	<input type="text" name="destination_name[]">
+
+                            </div>
+						   	 
+						</div>
+						<div >
+							<label>Destination Description</label>
+							<div class="input-field col s8">
+								<textarea class="materialize-textarea textarea-t" name="destination_descrp[]"></textarea> 
+							</div>
+						</div>
+                        <div id="attraction-wrap">
 						<div class="common-top">
-							<label class="col s4">Hall Description</label>
-							<textarea name="banquet_descrip " class="input-field validate is_validate_input" required></textarea>
+							<label>Attraction Name</label>
+                            <div class="input-field col s8">
+                            	<input type="text"  name="attraction_name[]">
+
+                            </div>
+						   	
+						</div>
+						<div >
+							<label>Attraction Description</label>
+							<div class="input-field col s8">
+								<textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]"></textarea> 
+							</div>
+						</div>
+					    </div>
+
+
+						<div class="row col s8 attr_btn clearfix common-top">
+                        	<a class="waves-effect waves-light btn " onclick="gen_attraction(event)">Add More Attractions</a>
+                        </div>
 						</div>
 
-						<div class="common-top">
-							<label class="col s4">Amenities:</label>
-
-							<div class="chips chips-autocomplete chips_amenities"></div>
-							<input type="hidden"  name="banquet_other[]" id="amenities-id">
-							</div><br><br>
-
-
-                        <div id="dates_wrap">
-                        	<div class="row">
-                        		<label class="col s6">Unavailable in these days</label>
-                  
-
-                          <ul class="collapsible def-show-date" data-collapsible="accordion">
-                          	<li>
-                          		<div class="collapsible-header  active">Date</div>
-                          		<div class="collapsible-body"> 
-                          		<div class="row">
-                          			<div class="col-md-6">
-                          				<label>From</label>
-                          				<input type="text" id="from" class="input-field from" name="book_fromdate[]">
-                          			</div>
-                          			<div class="col-md-6">
-                          				<label>To</label>
-                          				<input type="text" id="to" class="input-field to" name="book_todate[]"> 
-                          			 </div>
-                          		 </div>
-                          	  </div>
-                          	</li>
-                          </ul>
-        
-                        </div>
-                    </div>
-                        <div  class=" ">
-                            	<a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
+						<div class="col s8 common-top clearfix">
+                        	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destination</a>
                         </div>
 
-                           
+                 
+                       
+                       
 						<div>
 							<div class="input-field col s8">
-								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 						</div>
 					</form>
 				</div>
@@ -245,8 +442,8 @@
 				</div>
 			</div>
 
-
-             <!-- Modal Structure -->
+             
+			<!-- Modal Structure -->
 			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
@@ -256,99 +453,73 @@
 				</div>
 		   </div>
 		   </div>
-
      <?php include '../footer.php'; ?>
 
 
 
  
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
 jQuery(document).ready(function(){
+	 
+     tinymce.init({ selector:'.textarea-t' });
 
-		tinymce.init({ selector:'textarea' });
+     // $('#modal-images').modal();
+     
+     // alert('Hit');
+ 	// $("#chosenexample").chosen({ allow_single_deselect: true})
 
-		// $('#modal-images').modal();
 
 
-
-		 $('.chips-autocomplete').material_chip({
+ 	 $('.chips-destination').material_chip({
     autocompleteOptions: {
       data: {
-        'Wifi': null,
-        'Swimming Pool': null,
-        'Room service': null,
-        'Restaurant': null
+           
       },
       limit: Infinity,
       minLength: 1
     }
   });
 
-		 $('#chips-packageitem-1').material_chip({
-    autocompleteOptions: {
-      data: {
-        'Naan': null,
-        'Thai': null,
-        'Meat': null,
-        'drinks': null
-      },
-      limit: Infinity,
-      minLength: 1
-    }
-  });
-
-$('#pro-sub-btn').click(function(){
-	 debugger;
-	var isFormValidated = true;
-	 $.each($('#banquet-form .is_validate_input'),function(key,val){
-	 		if(!val.value){
-	 			isFormValidated = false;
-	 			console.log(val);
-				$(val).addClass('error');	
-	 		}else{
-	 			 debugger;
-	 			$(val).removeClass('error');
-	 		}
-	 });
-	// $.each($('#banquet-form .is_validate_select'),function(key,val){
-	// 		if(!$(val).find('select').val()){
-	// 			isFormValidated = false;
-	// 			console.log(val);
-	// 			$(val).find('.select-wrapper').addClass('error');
-
-	// 		}else{
-	// 			// debugger;
-	// 			$(val).find('.select-wrapper').removeClass('error');
-	// 		}
-	// });
-
-
-	if(isFormValidated){
-		console.log('TIme to submit form');
-		$("#room-form").submit();
-	}else{
-		console.log('There is an error');
-	}
-})
 
 
 
+$('.chips-destination').on('chip.add', function(e, chip){
+    
+     // you have the added chip here
+    var chip_desti_string= $('.chips-destination').material_chip('data')
+    var str = JSON.stringify(chip_desti_string);
+    var array_destination=[];
+
+ for (var i = 0; i < chip_desti_string.length; i++) {
+
+      array_destination.push(chip_desti_string[i].tag);
+
+ }
+ 
+  $('#input_chips-desti').val(array_destination.toString());
+   console.log($('#input_chips-desti').val(array_destination.toString()));
+});
+ 
 
 
 
-
-
-
-
-
-
-$("#banquet-form").validate({
+ $("#tour-form").validate({
 
          errorElement : 'div',
         errorPlacement: function(error, element) {
 
+        	if($('.select-wrapper').val()=="" && !$('.select-wrapper').hasClass('error')){
+                $('.select-wrapper').addClass('error');
+                // debugger;
+        		// alert('empty');
+
+        	}else if ($('.select-wrapper').val()!=""  &&  $('.select-wrapper').hasClass('error')){
+
+                 $('.select-wrapper').removeClass('error');
+                 debugger;
+        	}
+        	// debugger;
         	 console.log(element);
           var placement = $(element).data('error');
 
@@ -363,12 +534,10 @@ $("#banquet-form").validate({
    });
 
 
-
-
 		 
-		 
+
 });
-	</script>
+</script>
 
 </body>
 

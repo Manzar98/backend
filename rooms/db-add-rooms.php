@@ -122,7 +122,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							</div>
 						</div>  
 
-						
+						<div class="imgVeiwinline row" id="hotel_img_wrap">
+							 
+						</div>
 
 						<div class="row common-top">
 							<div class="">
@@ -153,8 +155,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
 						<div id="dates_wrap">
+							<label class="col s6">Unavailable in these days</label>
 							<div class="row">
-								<label class="col s6">Unavailable in these days</label>
+								
 
 
 								<ul class="collapsible def-show-date" data-collapsible="accordion">

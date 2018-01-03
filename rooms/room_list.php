@@ -1,3 +1,18 @@
+<?php 
+  
+   include '../common-apis/api.php';
+
+   $roomQuery=select("room",array("user_id"=>2));
+
+
+   
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,72 +38,46 @@
 						<table class="bordered responsive-table">
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>City</th>
-									<th>Arrival</th>
-									<th>Departure</th>
-									<th>Members</th>
-									<th>Payment</th>
+									<th>Hotel Name</th>
+									<th>Room Name</th>
+									<th>No of Rooms</th>
+									<th>Room Service</th>
+									<th>Charges</th>
+									<th>Description</th>
+									<th>Amenities</th>
+									
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
+							<tbody class="wrap-td">
+								<?php
+
+								if (mysqli_num_rows($roomQuery) > 0) { 
+
+								
+                                   while ($result=mysqli_fetch_assoc($roomQuery)) { ?>
+
+                                   <tr>
+									<td><?php echo $result['hotel_name'];   ?></td>
+									<td><?php echo $result['room_name'];   ?></td>
+									<td><?php echo $result['room_nosroom'];   ?></td>
+									<td><?php echo $result['room_service'];  ?></td>
+									<td><?php echo $result['room_perni8'];   ?></td>
+									<td><?php echo $result['room_descrip'];   ?></td>
+									<td><?php echo $result['room_other'];   ?></td>
+									
+									<!-- <td><a href="#" class="db-success">Success</a>
+									</td> -->
 								</tr>
-								<tr>
-									<td>02</td>
-									<td>Liam</td>
-									<td>+01 2484 6521</td>
-									<td><span class="db-tab-hi">Bangalore,</span>India</td>
-									<td>18apr</td>
-									<td>24apr</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Logan</td>
-									<td>+01 6524 6521</td>
-									<td><span class="db-tab-hi">Los Angeles,</span>USA</td>
-									<td>05dec</td>
-									<td>12dec</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Michael</td>
-									<td>+01 3652 1425</td>
-									<td><span class="db-tab-hi">Bristol,</span>UK</td>
-									<td>14jen</td>
-									<td>24jen</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
+
+
+
+            
+    <?php    
+ // print_r($result);
+       }
+        	}?>
+								
+						
 							</tbody>
 						</table>
 					</div>

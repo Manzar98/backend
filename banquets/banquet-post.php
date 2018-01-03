@@ -1,6 +1,6 @@
 <?php
 
- include 'common-sql.php';
+ include '../common-sql.php';
 
 print_r($_POST);
 
@@ -16,37 +16,27 @@ if (empty($_POST['banquet_name'])) {
 }
 if (empty($_POST['banquet_space'])) {
 	$is_check=false;
-	echo "Hall capacity is required";
+	echo "Hall capacity is required 6";
 }elseif (!is_numeric($_POST['banquet_space'])) {
 
 	$is_check=false;
-	echo "Hall capacity accept only numeric";
+	echo "Hall capacity accept only numeric 5";
 }else{
 
 	$space        = $_POST['banquet_space'];
 }
-if (empty($_POST['banquet_naricon'])) {
-	$is_check=false;
-	echo "This Field is required";
-}elseif (!is_numeric($_POST['banquet_naricon'])) {
+ if (empty($_POST['banquet_charges'])) {
+ 	$is_check=false;
+ 	echo "This Field is required 4";
+ }elseif (!is_numeric($_POST['banquet_charges'])) {
 
-	$is_check=false;
-	echo "This Field accept only numeric";
-}else{
+ 	$is_check=false;
+ 	echo "This Field accept only numeric 3";
+ }else{
 	
-  $nari         = $_POST['banquet_naricon'];
-}
-if (empty($_POST['banquet_ngenerator'])) {
-	$is_check=false;
-	echo "This Field is required";
-}elseif (!is_numeric($_POST['banquet_ngenerator'])) {
+     $charges         = $_POST['banquet_charges'];
+ }
 
-	$is_check=false;
-	echo "This Field accept only numeric";
-}else{
-	
-  $ngen         = $_POST['banquet_ngenerator'];
-}
 
 if (!is_numeric($_POST['banquet_aricon'])) {
 	$is_check=false;
@@ -54,7 +44,7 @@ if (!is_numeric($_POST['banquet_aricon'])) {
 
 }else{
 
-	$ari	      = $_POST['banquet_aricon'];
+	$aircon	      = $_POST['banquet_aricon'];
 }
 
 if (!is_numeric($_POST['banquet_generator'])) {
@@ -74,52 +64,18 @@ if (empty($_POST['banquet_serve'])) {
 	
   $serve        = $_POST['banquet_serve'];
 }
-if (empty($_POST['foodpkg_menu'])) {
 
-	$is_check=false;
-	echo "Package Menu is Required"."<br>";
-}else{
 
 	$pkgmenu      = $_POST['foodpkg_menu'];
-}
-if (empty($_POST['foodpkg_name'])) {
 
-	$is_check=false;
-	echo "Menu Name is Required"."<br>";
+	$pkgname      = $_POST['foodpkg_name'];
 
-}else{
-
-	$pkgname = $_POST['foodpkg_name'];
-}
-if (empty($_POST['foodpkg_price'])) {
-
-	$is_check=false;
-	echo "Menu Package Price is Required"."<br>";
-}elseif (!is_numeric($_POST['foodpkg_price'])) {
-
-	$is_check=false;
-	echo "Menu Package Price accept only numeric";
-}else{
-  
-  $pkgprice     = $_POST['foodpkg_price'];
-}
-if (empty($_POST['foodpkg_item'])) {
-
-	$is_check=false;
-	echo "Menu Package Price is Required"."<br>";
-}else{
+    $pkgprice     = $_POST['foodpkg_price'];
 
 	$pgkitem      = $_POST['foodpkg_item'];
 	
-}
+    $pkgdis	      = $_POST['foodpkg_discount'];
 
-if (!is_numeric($_POST['foodpkg_discount'])) {
-
-	$is_check=false;
-	echo "Menu Package Price is Required"."<br>";
-}else{
-$pkgdis	      = $_POST['foodpkg_discount'];
-}
 
 
 if (empty($_POST['banquet_gathering'])) {
@@ -148,37 +104,18 @@ if (empty($_POST['banquet_descrip'])) {
 	
   $descrip      = $_POST['banquet_descrip'];
 }
-if (empty($_POST['banquet_other'])) {
-	$is_check=false;
-	echo "Amenities is required";
-}else{
+
 	
   $other	      = $_POST['banquet_other'];
-}
-if (empty($_POST['common_image'])) {
-	$is_check=false;
-	echo "At Least one image is required";
-}else{
-	
+
   $img          = $_POST['common_image'];
   $imgarray= explode(",",$img);
-}
-if (empty($_POST['common_video'])) {
-	$is_check=false;
-	echo "Video is required";
-}else{
-	
+
   $provideo        = $_POST['common_video'];
-  
-}
 
+  $frmdate      = $_POST['book_fromdate'];
 
-
-
-
-
-$frmdate      = $_POST['book_fromdate'];
-$todate       = $_POST['book_todate'];
+  $todate       = $_POST['book_todate'];
 
 if (!is_numeric($_POST['banquet_offerdiscount'])) {
 
@@ -189,13 +126,58 @@ if (!is_numeric($_POST['banquet_offerdiscount'])) {
 	$discuntofer=$_POST['banquet_offerdiscount'];
 
 }
-$discountexpire=$_POST['banquet_expireoffer'];
+
+ $discountexpire=$_POST['banquet_expireoffer'];
 
 
 
-$userid       = 2;
-$formtype     = 'banquet';
-$hotelid      = 31;
+if (empty($_POST['banquet_independ'])) {
+	$is_check=false;
+	# code...
+}else{
+
+	$banquet_independ=$_POST['banquet_independ'];
+}
+if (isset($_POST['hotel_name'])) {
+
+	$banquet_hotelName=$_POST['hotel_name'];
+}else{
+
+	$banquet_hotelName="null";
+}
+	
+
+	$banquet_addres=$_POST['banquet_address'];
+
+	$banquet_city=$_POST['banquet_city'];
+
+	$banquet_province=$_POST['banquet_province'];
+
+
+if(!is_numeric($_POST['banquet_phone'])){
+
+$is_check=false;
+
+}else{
+
+	$banquet_phone=$_POST['banquet_phone'];
+}
+
+
+
+	$banquet_email=$_POST['banquet_email'];
+
+	$bnq_fcbok=$_POST['banquet_fcbok'];
+
+	$bnq_twter=$_POST['banquet_twiter'];
+
+	$bnq_utube=$_POST['banquet_utube'];
+
+	$userid       = 2;
+
+	$formtype     = 'banquet';
+
+	$hotelid      = 31;
 
 
 
@@ -204,17 +186,19 @@ if ($is_check==true) {
 	# code...
 
 
-     
-$query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_aricon,banquet_naricon,banquet_generator,banquet_ngenerator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$ari.'","'.$nari.'","'.$gen.'","'.$ngen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other[0].'","'.$discuntofer.'","'.$discountexpire.'")';
+
+ $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,	banquet_aricon,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other[0].'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'")';
+
+
 
 if ($conn->query($query)== TRUE) {
- 	# code...
- 	$banquet_id=$conn->insert_id;
+  	# code...
+  	$banquet_id =$conn->insert_id;
 
- 	
- }else{
- 	echo "Error: " . $query . "<br>" . $conn->error;
- }
+// echo $banquet_id;
+  }else{
+  	echo "Error: " . $query . "<br>" . $conn->error;
+  }
 
  echo $banquet_id;
   // print_r($query);
@@ -244,8 +228,9 @@ if (isset($_POST['common_video'])) {
 
 	$videoQuery='INSERT INTO common_imagevideo(banquet_id,common_video,img_video_type)VALUES("'.$banquet_id.'","'.$provideo.'","'.$formtype.'")';
 
+echo $videoQuery;
 	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
-	# code...
+	
 }
 
 

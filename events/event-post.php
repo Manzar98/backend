@@ -1,7 +1,7 @@
 
 <?php
-include 'common-sql.php';
-// print_r($_POST);
+include '../common-sql.php';
+print_r($_POST);
 
 $is_check=true;
 
@@ -82,33 +82,30 @@ if (isset($_POST['event_undr5free'])) {
 }else{
 	$undr5free    = 'off';
 }
- 
-if (!is_numeric($_POST['event_undr5price'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
-}else{
-	
-	$undr5price   = $_POST['event_undr5price'];
-} 
+ if (isset($_POST['event_undr5price'])) {
+ 	$undr5price   = $_POST['event_undr5price'];
+ }
 
-if (!is_numeric($_POST['common_nopeople'])) {
 	
-	$is_check=false;
-	echo "This Field is accept only numeric";
-}else{
+
+
+// if (!is_numeric($_POST['common_nopeople'])) {
+	
+// 	$is_check=false;
+// 	echo "This Field is accept only numeric";
+// }else{
 	
 	$nospeople     = $_POST['common_nopeople'];
-} 
+// } 
 
-if (!is_numeric($_POST['common_discount'])) {
+// if (!is_numeric($_POST['common_discount'])) {
 	
-	$is_check=false;
-	echo "This Field is accept only numeric";
-}else{
+// 	$is_check=false;
+// 	echo "This Field is accept only numeric";
+// }else{
 	
 	$discountx    = $_POST['common_discount'];
-}
+// }
 
 
 if (empty($_POST['event_pikoffer'])) {
@@ -188,28 +185,20 @@ if (!is_numeric($_POST['event_drpspecific'])) {
 
 }
 
-if (empty($_POST['common_image'])) {
-	
-	$is_check=false;
-     echo "This Field is Required";
-}else{
+
 
 	$img          = $_POST['common_image'];
 
 $imgarray= explode(",",$img);
 
-}
-if (empty($_POST['common_video'])) {
-	
-	$is_check=false;
-     echo "This Field is Required";
-}else{
+
+
 
 	
 $provideo        = $_POST['common_video'];
 
 
-}
+
 $userid       = 2;
 $hotelid      = 31;
 $formtype     = 'event';

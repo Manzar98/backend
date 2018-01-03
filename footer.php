@@ -304,3 +304,6 @@
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script> -->
 	<script src="../js/jquery-validation.js"></script>
 	<script src="../js/additional-methods.js"></script>
+	<script src="../js/sweetalert.min.js"></script>
+
+	

@@ -1,3 +1,17 @@
+<?php 
+   include '../common-sql.php';
+
+   $banquetQuery=select("banquet",array("user_id"=>2));
+
+
+  
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,72 +36,42 @@
 						<table class="bordered responsive-table">
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>City</th>
-									<th>Arrival</th>
-									<th>Departure</th>
-									<th>Members</th>
-									<th>Payment</th>
+									<th>Hall Name</th>
+									<th>Capacity</th>
+									<th>Gathering Type</th>
+									<th>Serve Food ?</th>
+									<th>Amenities</th>
+									
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
+							<tbody class="wrap-td">
+								<?php
+
+								if (mysqli_num_rows($banquetQuery) > 0) { 
+
+								
+                                   while ($result=mysqli_fetch_assoc($banquetQuery)) { ?>
+
+                                   <tr>
+									<td><?php echo $result['banquet_name'];   ?></td>
+									<td><?php echo $result['banquet_space'];   ?></td>
+									<td><?php echo $result['banquet_gathering'];   ?></td>
+									<td><?php echo $result['banquet_serve'];  ?></td>
+									<td><?php echo $result['banquet_other'];   ?></td>
+									
+									<!-- <td><a href="#" class="db-success">Success</a>
+									</td> -->
 								</tr>
-								<tr>
-									<td>02</td>
-									<td>Liam</td>
-									<td>+01 2484 6521</td>
-									<td><span class="db-tab-hi">Bangalore,</span>India</td>
-									<td>18apr</td>
-									<td>24apr</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Logan</td>
-									<td>+01 6524 6521</td>
-									<td><span class="db-tab-hi">Los Angeles,</span>USA</td>
-									<td>05dec</td>
-									<td>12dec</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Michael</td>
-									<td>+01 3652 1425</td>
-									<td><span class="db-tab-hi">Bristol,</span>UK</td>
-									<td>14jen</td>
-									<td>24jen</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
+
+
+
+            
+    <?php    
+ // print_r($result);
+       }
+        	}?>
+								
+						
 							</tbody>
 						</table>
 					</div>

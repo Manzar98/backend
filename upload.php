@@ -2,7 +2,7 @@
 
 include 'common-sql.php';
 
-$uploadDir = 'uploads';
+$uploadDir = 'images/uploads';
 
 
 
@@ -31,7 +31,13 @@ $tmpFile = $_FILES['file']['tmp_name'];
  	$imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type)Values("'.$filename.'","'.$_POST['photo_type'].'")';
  }
 
- 	}else {
+ 	}elseif(isset($_POST['cover_type'])){
+
+       $imgQuery='INSERT INTO common_imagevideo(hotel_coverimg)Values("'.$filename.'")';
+ 	}
+
+
+ 	else {
  	
  	$imgQuery='INSERT INTO common_imagevideo(common_image)Values("'.$filename.'")';
  }

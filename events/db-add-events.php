@@ -243,7 +243,11 @@
 							</div>
 
 						</div>
-  
+                         
+                       <div class="imgVeiwinline row" id="hotel_img_wrap">
+               
+                       </div>
+
 					    <div class="row common-top">
 							<div class="">
 								<!-- Modal Trigger -->
@@ -277,7 +281,7 @@
 			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="up_load_singleimg.php"></iframe>
+				<iframe src="../up_load_singleimg.php"></iframe>
                    <div class="modal-footer">
 					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 				</div>

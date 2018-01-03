@@ -1,5 +1,5 @@
 <?php
- include 'common-sql.php';
+ include '../common-sql.php';
 print_r($_POST);
 
 // return false;
@@ -26,7 +26,7 @@ if (empty($_POST['tour_destinationname'])) {
 if (empty($_POST['tour_foodinclude'])) {
 
      $is_check=false;
-     echo "This Field is Required010";
+     echo "This Field is Required";
 }else{
    
    $fodinclude       =$_POST['tour_foodinclude'];
@@ -71,6 +71,7 @@ if (empty($_POST['tour_drink'])) {
 
 
 
+
  if (isset($_POST['tour_aloholic'])) {
 
 $aloholic           =$_POST['tour_aloholic'];
@@ -98,7 +99,7 @@ if (empty($_POST['tour_stayday'])) {
      echo "This Field is Required";
 }elseif (!is_numeric($_POST['tour_stayday'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 12"."<br>";
 }else{
 
 	$stayday          =$_POST['tour_stayday'];
@@ -109,13 +110,15 @@ if (empty($_POST['tour_stayni8'])) {
       echo "This Field is Required";
  }elseif (!is_numeric($_POST['tour_stayni8'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 13"."<br>";
 }else{
 
  	$stayni8     =$_POST['tour_stayni8'];
  }
 
 $hotelstr         =$_POST['tour_hotelstr'];
+
+
 if (isset($_POST['tour_camping'])) {
 
 $camping          =$_POST['tour_camping'];
@@ -147,7 +150,7 @@ if (empty($_POST['tour_pkgprice'])) {
      echo "This Field is Required";
 }elseif (!is_numeric($_POST['tour_pkgprice'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 14"."<br>";
 }else{
 
 	$pkgprice         =$_POST['tour_pkgprice'];
@@ -159,7 +162,7 @@ if (empty($_POST['tour_capacitypeople'])) {
      echo "This Field is Required";
 }elseif (!is_numeric($_POST['tour_capacitypeople'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 15"."<br>";
 }else{
 
 	$capcipeople      =$_POST['tour_capacitypeople'];
@@ -171,7 +174,7 @@ if (empty($_POST['tour_nosofbag'])) {
      echo "This Field is Required";
 }elseif (!is_numeric($_POST['tour_nosofbag'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 16"."<br>";
 }else{
 
 	$nosbag           =$_POST['tour_nosofbag'];
@@ -196,9 +199,9 @@ if (empty($_POST['tour_undr5allow'])) {
 
 }
 
-elseif (!is_numeric($_POST['tour_extrachrbag'])) {
+if (!is_numeric($_POST['tour_extrachrbag'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 17"."<br>";
 }else{
 
 	$extrachrbag      =$_POST['tour_extrachrbag'];
@@ -217,7 +220,7 @@ if (isset($_POST['tour_undr5free'])) {
 
 if (!is_numeric($_POST['tour_undr5price'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 18"."<br>";
 
 }else{
 
@@ -248,7 +251,7 @@ if (empty($_POST['tour_pikoffer'])) {
 if (!is_numeric($_POST['tour_pikair'])) {
 
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 19"."<br>";
 }else{
 	
 	$pikair           =$_POST['tour_pikair'];
@@ -266,7 +269,7 @@ if (!is_numeric($_POST['tour_pikbus'])) {
 if (!is_numeric($_POST['tour_pikspecific'])) {
 
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 20"."<br>";
 }else{
 	
 	$pikspecific      =$_POST['tour_pikspecific'];
@@ -288,7 +291,7 @@ if (empty($_POST['tour_drpoffer'])) {
 if (!is_numeric($_POST['tour_drpair'])) {
 
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 21"."<br>";
 }else{
 	
 	$drpair           =$_POST['tour_drpair'];
@@ -297,7 +300,7 @@ if (!is_numeric($_POST['tour_drpair'])) {
 if (!is_numeric($_POST['tour_drpbus'])) {
 
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 22"."<br>";
 }else{
 	
 	$drpbus           =$_POST['tour_drpbus'];
@@ -306,54 +309,46 @@ if (!is_numeric($_POST['tour_drpbus'])) {
 if (!is_numeric($_POST['tour_drpspecific'])) {
 
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	echo "This Field accept only Numeric 23"."<br>";
 }else{
 	
 	$drpspecific      =$_POST['tour_drpspecific'];
 }
 
 
-if (!is_numeric($_POST['common_nopeople'])) {
+// if (!is_numeric($_POST['common_nopeople'])) {
 
-	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
-}else{
+// 	$is_check=false;
+// 	echo "This Field accept only Numeric 24"."<br>";
+// }else{
 
 	$noofpeople       =$_POST['common_nopeople'];
-}
-if (!is_numeric($_POST['common_discount'])) {
+// }
+// if (!is_numeric($_POST['common_discount'])) {
 
-	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
-}else{
+// 	$is_check=false;
+// 	echo "This Field accept only Numeric 25"."<br>";
+// }else{
 	
 	$discountpeople   =$_POST['common_discount'];
-}
+// }/
 
 
 
-if (empty($_POST['common_image'])) {
-	
-	$is_check=false;
-     echo "This Field is Required";
-}else{
 
-	$img          = $_POST['common_image'];
+
+$img          = $_POST['common_image'];
 
 $imgarray= explode(",",$img);
 
-}
-if (empty($_POST['common_video'])) {
-	
-	$is_check=false;
-     echo "This Field is Required";
-}else{
+
+
 
 	
 $provideo        = $_POST['common_video'];
 
 
-}
+
 
 $denation_name    =$_POST['destination_name'];
 $denation_desp    =$_POST['destination_descrp'];
@@ -367,7 +362,7 @@ if ($is_check==true) {
 	# code...
 
 
-$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti[0].'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
+$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti[0].'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
 
 if ($conn->query($query)== TRUE) {
  	# code...

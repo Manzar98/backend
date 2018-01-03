@@ -3,7 +3,13 @@
                <form action="../upload.php" enctype="multipart/form-data" class="dropzone" id="image-upload">
       
          <div class="image_drop_element"></div>
-       
+         <?php
+          
+            // $cover=$_GET['name']?>
+
+         <div class="image_drop_element"></div>
+        <!-- <input type="hidden" name="cover_type" id="cover_type" value="<?php  echo $cover;  ?>"> -->
+    
       </form>
               </div>
 
@@ -73,7 +79,7 @@
                           // debugger;
                     }
                 
-                $.post("delete_img.php",{fileName : deleteFile,
+                $.post("../delete_img.php",{fileName : deleteFile,
                                          fileId   : deleteId
                                              })
                  .done(function(data){

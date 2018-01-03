@@ -1,3 +1,24 @@
+<?php
+  
+  include '../common-apis/api.php';
+
+
+  $hotelQuery=select("hotel",array("user_id"=>2));
+
+
+        // $hotelQuery=mysqli_query($conn,$hotelSelect) or die(mysqli_error($conn));
+
+        
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,78 +38,52 @@
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
-							<h3><img src="images/icon/dbc5.png" alt=""/>My Hotels</h3>
+							<h3><img src="../images/icon/dbc5.png" alt=""/>My Hotels</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
-						<table class="bordered responsive-table">
+						<table class="bordered responsive-table" cellpadding="10" cellspacing="10">
 							<thead>
 								<tr>
-									<th>No</th>
 									<th>Name</th>
-									<th>Phone</th>
+									<th>Address</th>
 									<th>City</th>
-									<th>Arrival</th>
-									<th>Departure</th>
-									<th>Members</th>
-									<th>Payment</th>
+									<th>Province</th>
+									<th>Phone Number</th>
+									<th>Email Address</th>
+									<th>Amenities</th>
+									<th>Description</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
+							<tbody class="wrap-td">
+								<?php
+
+								if (mysqli_num_rows($hotelQuery) > 0) { 
+
+								
+                                   while ($result=mysqli_fetch_assoc($hotelQuery)) { ?>
+
+                                   <tr>
+									<td><?php echo $result['hotel_name'];   ?></td>
+									<td><?php echo $result['hotel_addres1'];   ?></td>
+									<td><?php echo $result['hotel_city'];  ?></td>
+									<td><?php echo $result['hotel_province'];   ?></td>
+									<td><?php echo $result['hotel_phone'];   ?></td>
+									<td><?php echo $result['hotel_email'];   ?></td>
+									<td><?php echo $result['hotel_other'];   ?></td>
+									<td><?php echo $result['hotel_descrp'];   ?></td>
+									<!-- <td><a href="#" class="db-success">Success</a>
+									</td> -->
 								</tr>
-								<tr>
-									<td>02</td>
-									<td>Liam</td>
-									<td>+01 2484 6521</td>
-									<td><span class="db-tab-hi">Bangalore,</span>India</td>
-									<td>18apr</td>
-									<td>24apr</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Logan</td>
-									<td>+01 6524 6521</td>
-									<td><span class="db-tab-hi">Los Angeles,</span>USA</td>
-									<td>05dec</td>
-									<td>12dec</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Michael</td>
-									<td>+01 3652 1425</td>
-									<td><span class="db-tab-hi">Bristol,</span>UK</td>
-									<td>14jen</td>
-									<td>24jen</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
+
+
+
+            
+    <?php    
+ // print_r($result);
+       }
+        	}?>
+								
+						
 							</tbody>
 						</table>
 					</div>
