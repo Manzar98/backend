@@ -218,102 +218,138 @@ if (isset($_POST['tour_undr5free'])) {
 
 }
 
-if (!is_numeric($_POST['tour_undr5price'])) {
-	$is_check=false;
-	echo "This Field accept only Numeric 18"."<br>";
+if(!empty($_POST['tour_undr5price']) && !is_numeric($_POST['tour_undr5price'])){
+	$is_check= false;
+    echo "half price Field accept only Numeric 18"."<br>";
 
+}elseif(!empty($_POST['tour_undr5price']) && is_numeric($_POST['tour_undr5price'])){
+	$undr5price      = $_POST['tour_undr5price'];
 }else{
+	$undr5price = null;
 
-	$undr5price       =$_POST['tour_undr5price'];
 }
-
-
 
 if (empty($_POST['tour_strtloc'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "Trip Start Location Field is Required";
 }else{
 
 	$strtloc          =$_POST['tour_strtloc'];
 
 }
+
 if (empty($_POST['tour_pikoffer'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "Pickup offered Field is Required ";
 }else{
 
 	$pikoffer         =$_POST['tour_pikoffer'];
 
 }
 
-if (!is_numeric($_POST['tour_pikair'])) {
+if(!empty($_POST['tour_pikair']) && !is_numeric($_POST['tour_pikair'])){
 
-	$is_check=false;
-	echo "This Field accept only Numeric 19"."<br>";
+	$is_check= false;
+    echo "From Airport Pickup Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['tour_pikair']) && is_numeric($_POST['tour_pikair'])){
+
+	$pikair      = $_POST['tour_pikair'];
+
 }else{
-	
-	$pikair           =$_POST['tour_pikair'];
+
+	$pikair = null;
+
 }
 
-if (!is_numeric($_POST['tour_pikbus'])) {
+if(!empty($_POST['tour_pikbus']) && !is_numeric($_POST['tour_pikbus'])){
 
-	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	$is_check= false;
+    echo "From Bus Pickup Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['tour_pikbus']) && is_numeric($_POST['tour_pikbus'])){
+
+	$pikbus      = $_POST['tour_pikbus'];
+
 }else{
-	
-	$pikbus           =$_POST['tour_pikbus'];
+
+	$pikbus = null;
+
 }
 
-if (!is_numeric($_POST['tour_pikspecific'])) {
+if(!empty($_POST['tour_pikspecific']) && !is_numeric($_POST['tour_pikspecific'])){
 
-	$is_check=false;
-	echo "This Field accept only Numeric 20"."<br>";
+	$is_check= false;
+    echo "From Specific Location Pickup Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['tour_pikspecific']) && is_numeric($_POST['tour_pikspecific'])){
+
+	$pikspecific      = $_POST['tour_pikspecific'];
+
 }else{
-	
-	$pikspecific      =$_POST['tour_pikspecific'];
+
+	$pikspecific = null;
+
 }
-
-
-
 
 if (empty($_POST['tour_drpoffer'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "Dropoff offered Field is Required";
 }else{
 
 	$drpoffer         =$_POST['tour_drpoffer'];
 
 }
 
-if (!is_numeric($_POST['tour_drpair'])) {
+if(!empty($_POST['tour_drpair']) && !is_numeric($_POST['tour_drpair'])){
 
-	$is_check=false;
-	echo "This Field accept only Numeric 21"."<br>";
+	$is_check= false;
+    echo "From  Air Dropoff Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['tour_drpair']) && is_numeric($_POST['tour_drpair'])){
+
+	$drpair      = $_POST['tour_drpair'];
+
 }else{
-	
-	$drpair           =$_POST['tour_drpair'];
+
+	$drpair = null;
+
 }
 
-if (!is_numeric($_POST['tour_drpbus'])) {
+if(!empty($_POST['tour_drpbus']) && !is_numeric($_POST['tour_drpbus'])){
 
-	$is_check=false;
-	echo "This Field accept only Numeric 22"."<br>";
+	$is_check= false;
+    echo "From  Bus Dropoff Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['tour_drpbus']) && is_numeric($_POST['tour_drpbus'])){
+
+	$drpbus      = $_POST['tour_drpbus'];
+
 }else{
-	
-	$drpbus           =$_POST['tour_drpbus'];
+
+	$drpbus = null;
+
 }
 
-if (!is_numeric($_POST['tour_drpspecific'])) {
+if(!empty($_POST['tour_drpspecific']) && !is_numeric($_POST['tour_drpspecific'])){
 
-	$is_check=false;
-	echo "This Field accept only Numeric 23"."<br>";
+	$is_check= false;
+    echo "From  Bus Dropoff Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['tour_drpspecific']) && is_numeric($_POST['tour_drpspecific'])){
+
+	$drpspecific      = $_POST['tour_drpspecific'];
+
 }else{
-	
-	$drpspecific      =$_POST['tour_drpspecific'];
+
+	$drpspecific = null;
+
 }
+
+
 
 
 // if (!is_numeric($_POST['common_nopeople'])) {
@@ -346,9 +382,6 @@ $imgarray= explode(",",$img);
 
 	
 $provideo        = $_POST['common_video'];
-
-
-
 
 $denation_name    =$_POST['destination_name'];
 $denation_desp    =$_POST['destination_descrp'];

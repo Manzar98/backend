@@ -1,39 +1,22 @@
 <?php
  include '../common-apis/api.php';
- // $emptyArray=array();
- // $editHotelQuery=select('room',array('hotel_id'=>46));
 
+   $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
+
+   $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+
+   $editroomQuery=select('room',array('hotel_id'=>47,'room_id'=>27));
+
+   
+  
+
+
+  
+
+   
  
 
 
-
- // $editHotelImgQuery=select('common_imagevideo',array('hotel_id'=>46));
-
- // while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {
- // 	// print_r($imgResult);
- // 	$emptyArray[] = $imgResult;
-
- 	
- 	
- // }
-
- // echo "<br>".$emptyArray[0]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[1]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[2]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[3]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[4]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[5]['common_imgvideo_id']."<br>" ;
-  // print_r($emptyArray);
-// print_r(array_column($emptyArray, 'common_imgvideo_id'));
-
-
-  // while ($emptyArray < 1) {
-
-  // 	print_r($emptyArray[0]) ;
-  	
-  // }
-
-// print_r($emptyArray);
 
 ?>
 
@@ -46,6 +29,13 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
+
+	<?php   while ($resultRoom=mysqli_fetch_assoc($editroomQuery)){    
+
+
+	   $editroomImgQuery=select('common_imagevideo',array('room_id'=>$resultRoom['room_id']));
+       $editroomDateQuery=select('common_bookdates', array('room_id'=>$resultRoom['room_id']));
+   ?>
 	<title>Edit Room</title>
 
 
@@ -59,7 +49,7 @@
 				<div class="db-cent-3">
 						<div class="db-cent-table db-com-table">
 							<div class="db-title">
-								<h3><img src="../images/icon/dbc5.png" alt=""/> Add Rooms</h3>
+								<h3><img src="../images/icon/dbc5.png" alt=""/> Edit Rooms</h3>
 								<p>There are many variations of passages of Lorem Ipsum available, but the majority have8suffered alteration in some form</p>
 							</div>
 
@@ -73,6 +63,7 @@
 										<label class="col s12">Select Hotel</label>
 										<select  class="" name="hotel_name" >
 											<option value="">Select One</option>
+											<option selected="" value="<?php echo $resultRoom['hotel_name'] ;   ?>"><?php echo $resultRoom['hotel_name'] ;   ?></option>
 											<?php
 
 											while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
@@ -94,12 +85,12 @@
 				<div class="common-top">
 					<label class="col s4">Room Name </label>
 					<div class="input-field col s12">
-						<input type="text" value="" class="validate" name="room_name" required> </div>
+						<input type="text" value="<?php echo $resultRoom['room_name'] ;   ?>" class="validate" name="room_name" required> </div>
 					</div>
 					<div>
 						<label class="col s4">Number of Rooms</label>
 						<div class="input-field col s12">
-							<input type="number"   class="validate" name="room_nosroom" required> </div>
+							<input type="number"   class="validate" name="room_nosroom" required value="<?php echo $resultRoom['room_nosroom'] ;   ?>"> </div>
 						</div>
 
 
@@ -107,9 +98,26 @@
 
 							<label class="col s12">Room service</label>
 							<select  class="" name="room_service" >
-								<option value="" disabled selected>Select One</option>
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
+								<?php if ($resultRoom['room_service']== "") { ?>
+
+									<option value="" disabled selected>Select One</option>
+								    <option value="yes">Yes</option>
+								    <option value="no">No</option>
+
+							<?php	}elseif ($resultRoom['room_service']== "yes") {?>
+								
+								    <option value="" disabled >Select One</option>
+								    <option value="yes" selected>Yes</option>
+								    <option value="no">No</option>
+
+							<?php }elseif ($resultRoom['room_service']== "no") { ?>
+								     
+								    <option value="" disabled >Select One</option>
+								    <option value="yes" >Yes</option>
+								    <option value="no" selected>No</option>
+
+					        <?php	}  ?>
+								
 
 							</select>
 							
@@ -118,42 +126,64 @@
 						<div class="row common-top">           
 							<div class=" col-md-6" >
 								<label>Maximum adults allowed in one room</label>
-								<input type="number" value="" class="input-field validate" name="room_maxadult" required>  
+								<input type="number"  class="input-field validate" name="room_maxadult" required value="<?php echo $resultRoom['room_maxadult'] ;   ?>">  
 							</div>
 							<div class=" col-md-6">
 								<label>Extra mattress charges for adults</label>
-								<input type="number" value="" class="input-field validate" name="room_matadult" required>  
+								<input type="number"  class="input-field validate" name="room_matadult" required value="<?php echo $resultRoom['room_matadult'] ;   ?>">  
 							</div>
 						</div>   
 
 						<div class="row">           
 							<div class=" col-md-6" >
 								<label>Maximum children allowed in one room</label>
-								<input type="number" value="" class="input-field validate" name="room_maxchild" required>  
+								<input type="number"  class="input-field validate" name="room_maxchild" required value="<?php echo $resultRoom['room_maxchild'] ;   ?>">  
 							</div>
 							<div class=" col-md-6">
 								<label>Extra mattress charges for Children</label>
-								<input type="number" value="" class="input-field validate" name="room_matchild" required>
+								<input type="number"  class="input-field validate" name="room_matchild" required value="<?php echo $resultRoom['room_matchild'] ;   ?>">
 							</div>
 						</div> 						
 
 						<div>
 							<label class="col s4">Room Charges per night</label>
 							<div class="input-field col s8">
-								<input type="number"  class="validate" name="room_perni8" required> 
+								<input type="number"  class="validate" name="room_perni8" required value="<?php echo $resultRoom['room_perni8'] ;   ?>"> 
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<label>Offer Discount (%)</label>
-								<input type="number" name="room_offerdiscount" class="input-field validate">
+								<input type="number" name="room_offerdiscount" class="input-field validate" value="<?php echo $resultRoom['room_offerdiscount'] ;   ?>">
 							</div>
 							<div class="col-md-6">
 								<label>Expires on</label>
-								<input type="text" id="expireDate" class="input-field from" name="room_expireoffer">
+								<input type="text" id="expireDate" class="input-field from" name="room_expireoffer" value="<?php echo $resultRoom['room_expireoffer'] ;   ?>">
 							</div>
 						</div>  
+                       
+                       	<div class="imgVeiwinline row" id="hotel_img_wrap">
+												<?php
 
+												while ($imgResult=mysqli_fetch_assoc($editroomImgQuery)) {
+
+
+													if (!empty($imgResult['common_image'])) {?>
+													<div class="imgeWrap">
+														<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
+														<img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
+													</div>&nbsp;&nbsp;
+
+
+													<?php } ?>
+
+
+
+
+													<?php	}
+
+													?>
+												</div>
 						
 
 						<div class="row common-top">
@@ -172,7 +202,7 @@
 						</div>
 						<div class="common-top">
 							<label class="col s4" style="margin-bottom: 10px;">Room Description</label>
-							<textarea name="room_descrip" required></textarea>
+							<textarea name="room_descrip" required><?php echo $resultRoom['room_descrip']  ?></textarea>
 						</div><br>
 
 
@@ -181,7 +211,22 @@
 
 							<div class="chips chips-autocomplete"></div>
 							<input type="hidden"  name="room_other[]" id="amenities-id">
-						</div><br><br>
+						</div>
+						<?php 
+
+													$lst = explode(",", $resultRoom['room_other']);
+
+
+													foreach($lst as $item) { ?>
+													<div class="chip">
+														<?php echo $item;   ?>
+														<i class="material-icons close">close</i>
+													</div>
+
+													<?php    	
+												}
+
+												?>
 
 
 						<div id="dates_wrap">
@@ -191,21 +236,23 @@
 
 
 								<ul class="collapsible def-show-date" data-collapsible="accordion">
+									<?php while ($resultRoomdate=mysqli_fetch_assoc($editroomDateQuery)){ ?>  
 									<li>
 										<div class="collapsible-header  active">Date</div>
 										<div class="collapsible-body"> 
 											<div class="row">
 												<div class="col-md-6">
 													<label>From</label>
-													<input type="text" id="from" class="input-field from" name="book_fromdate[]">
+													<input type="text" id="from" class="input-field from" name="book_fromdate[]" value="<?php echo $resultRoomdate['book_fromdate'] ;   ?>" >
 												</div>
 												<div class="col-md-6">
 													<label>To</label>
-													<input type="text" id="to" class="input-field to" name="book_todate[]"> 
+													<input type="text" id="to" class="input-field to" name="book_todate[]" value="<?php echo $resultRoomdate['book_todate'] ;   ?>"> 
 												</div>
 											</div>
 										</div>
 									</li>
+									<?php  } ?>
 								</ul>
 
 							</div>
@@ -214,7 +261,9 @@
 							<a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
 						</div>
 
-
+                       <?php   
+                       // print_r($resultRoom);
+   } ?>
 						<div>
 							<div class="input-field col s8">
 								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
@@ -227,40 +276,16 @@
 			</div>
 			</div>
 
-			<!-- Modal Structure -->
-			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
-				<div class="modal-content">
-					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="up_load_img.php?name=interior"></iframe>
-                   <div class="modal-footer">
+		<!-- Modal Structure -->
+		<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
+			<div class="modal-content">
+				<div class="modal-header"><h2>Upload  Photos</h2></div>
+				<iframe src="../up_load_singleimg.php"></iframe>
+				<div class="modal-footer">
 					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 				</div>
-		   </div>
-		   </div>
-
-		   <!-- Modal Structure -->
-			<div id="modal-extimg" class="modal modal-fixed-footer image_drop_down_modal_body">
-
-				<div class="modal-content">
-						<div class="modal-header"><h2>Upload Exterior Photos</h2></div>
-				<iframe src="up_load_img.php?name=exterior"></iframe>
-                   <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-				</div>
-		   </div>
-		   </div>
-
-		   <!-- Modal Structure -->
-			<div id="modal-coverimg" class="modal modal-fixed-footer image_drop_down_modal_body" style="width: 50%; margin: 0 auto; box-shadow:none;" >
-
-				<div class="modal-content">
-						<div class="modal-header"><h2>Upload Cover Photo</h2></div>
-				<iframe src="up_load_cover.php"></iframe>
-                   <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-				</div>
-		   </div>
-		   </div>
+			</div>
+		</div>
 
 
 
@@ -269,175 +294,92 @@
 
 
 
-		   <script>
-   tinymce.init({ selector:'textarea' });
+		   <script type="text/javascript">
+							tinymce.init({ selector:'textarea' });
+
+
+
+							$(document).ready(function(){
+
+								$('#pro-sub-btn').click(function(){
+// debugger;
+	var isFormValidated = true;
+	$.each($('#room-form .is_validate'),function(key,val){
+		if(!val.value){
+			isFormValidated = false;
+			console.log(val);
+			$(val).addClass('error');	
+		}else{
+	 			// debugger;
+	 			$(val).removeClass('error');
+	 		}
+	 	});
+	// $.each($('#room-form .is_validate_select'),function(key,val){
+	// 		if(!$(val).find('select').val()){
+	// 			isFormValidated = false;
+	// 			console.log(val);
+	// 			$(val).find('.select-wrapper').addClass('error');
+
+	// 		}else{
+	// 			// debugger;
+	// 			$(val).find('.select-wrapper').removeClass('error');
+	// 		}
+	// });
+
+
+	if(isFormValidated){
+		console.log('TIme to submit form');
+		$("#room-form").submit();
+	}else{
+		console.log('There is an error');
+	}
+})
 
 
 
 
 
-  function yesCheck(that) {
-        if (that.value == "yes") {
-            // alert("check");
-             document.getElementById("ifYes").style.display = "block";
-             document.getElementById("bag-char").style.display = "block";
-        } else {
-            document.getElementById("ifYes").style.display = "none";
-            document.getElementById("bag-char").style.display = "none";
-            document.getElementById("1bag").style.display = "none";
-    		document.getElementById("2bags").style.display = "none";
-    		document.getElementById("3bags").style.display = "none";
-    		document.getElementById("4bags").style.display = "none";
-    		document.getElementById('bag-inpt').style.display = "none";
-    		  
+																$('.chips-autocomplete').material_chip({
+																	autocompleteOptions: {
+																		data: {
+																			'Wifi': null,
+																			'Swimming Pool': null,
+																			'Room service': null,
+																			'Restaurant': null
+																		},
+																		limit: Infinity,
+																		minLength: 1
+																	}
+																});
+
+
+																$("#room-form").validate({
+
+
+
+																	errorElement : 'div',
+																	errorPlacement: function(error, element) {
+
+
+        	// debugger;
+        	console.log(element);
+        	var placement = $(element).data('error');
+
+        	console.log(placement);
+        	console.log(error);
+        	if (placement) {
+        		$(placement).append(error)
+        	} else {
+        		error.insertAfter(element);
+        	}
         }
-    }
+    });
 
 
-    function noofbags(that){
-
-    	if(that.value == "1"){
-
-    		document.getElementById("1bag").style.display = "block";
-    		document.getElementById('bag-inpt').style.display = "block";
-    		 document.getElementById("2bags").style.display = "none";
-    		  document.getElementById("3bags").style.display = "none";
-    		   document.getElementById("4bags").style.display = "none";
-    		
-    	} 
-
-    	else if (that.value == "2") {
-    		 document.getElementById("1bag").style.display = "none";
-    		 document.getElementById('bag-inpt').style.display = "block";
-    		 document.getElementById("2bags").style.display = "block";
-    		  document.getElementById("3bags").style.display = "none";
-    		   document.getElementById("4bags").style.display = "none";
-    	}
-    	else if (that.value == "3") {
-    		document.getElementById("1bag").style.display = "none";
-    		document.getElementById('bag-inpt').style.display = "block";
-    		document.getElementById("2bags").style.display = "none";
-    		document.getElementById("3bags").style.display = "block";
- 		    document.getElementById("4bags").style.display = "none";
-    	}
-    	else if(that.value == "4"){
-    		document.getElementById("1bag").style.display = "none";
-    		document.getElementById("2bags").style.display = "none";
-    		document.getElementById("3bags").style.display = "none";
-    		document.getElementById("4bags").style.display = "block";
-    		document.getElementById('bag-inpt').style.display = "block";
-
-    	}else{
-    		  document.getElementById("1bag").style.display = "none";
-    		  document.getElementById("2bags").style.display = "none";
-    		  document.getElementById("3bags").style.display = "none";
-    		  document.getElementById("4bags").style.display = "none";
-    		  document.getElementById('bag-inpt').style.display = "none";
-    	}
-
-    }
+															});
+														</script>
+													</body>
 
 
-jQuery(document).ready(function(){
-
-
- $('.chips-autocomplete').material_chip({
-    autocompleteOptions: {
-      data: {
-        'Wifi': null,
-        'Swimming Pool': null,
-        'Room service': null,
-        'Restaurant': null
-      },
-      limit: Infinity,
-      minLength: 1
-    }
-  });
-
-
-
-
-$('#modal-extimg').modal({dismissible: false});
-$('#modal-coverimg').modal({dismissible: false});
-
-// $('#pro-sub-btn').click(function(){
-// 	// debugger;
-// 	var isFormValidated = true;
-// 	 $.each($('#hotel-form .is_validate'),function(key,val){
-// 	 		if(!val.value){
-// 	 			isFormValidated = false;
-// 	 			console.log(val);
-// 				$(val).addClass('error');	
-// 	 		}else{
-// 	 			// debugger;
-// 	 			$(val).removeClass('error');
-// 	 		}
-// 	 });
-// 	$.each($('#hotel-form .is_validate_select'),function(key,val){
-// 			if(!$(val).find('select').val()){
-// 				isFormValidated = false;
-// 				console.log(val);
-// 				$(val).find('.select-wrapper').addClass('error');
-
-// 			}else{
-// 				// debugger;
-// 				$(val).find('.select-wrapper').removeClass('error');
-// 			}
-// 	});
-
-
-// 	if(isFormValidated){
-// 		console.log('TIme to submit form');
-// 		$("#hotel-form").submit();
-// 	}else{
-// 		console.log('There is an error');
-// 	}
-// })
-
-
-
-
-
-$("#hotel-form").validate({
-
-         errorElement : 'div',
-        errorPlacement: function(error, element) {
-
-        	 console.log(element);
-          var placement = $(element).data('error');
-
-             console.log(placement);
-             console.log(error);
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }
-   });
-
-
-
-
- $('#checkIn').pickatime();
-
-$('#checkOut').pickatime();
-
-
-});
-
-
-
-
-    
-
-</script>
-
-	
-</body>
-
-  
-  
-
-<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-</html>
+													<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+													</html>

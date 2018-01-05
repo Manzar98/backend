@@ -8,7 +8,7 @@ $is_check=true;
 if (empty($_POST['event_name'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 1"."<br>";
 }else{
 
 	$name         = $_POST['event_name'];
@@ -16,7 +16,7 @@ if (empty($_POST['event_name'])) {
 if (empty($_POST['event_venue'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 2"."<br>" ;
 }else{
 	
 	$venue        = $_POST['event_venue'];
@@ -24,7 +24,7 @@ if (empty($_POST['event_venue'])) {
 if (empty($_POST['event_recurrence'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 3"."<br>" ;
 }else{
 	
 	$recurrence   = $_POST['event_recurrence'];
@@ -32,7 +32,7 @@ if (empty($_POST['event_recurrence'])) {
 if (empty($_POST['event_descrip'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 4"."<br>";
 }else{
 	
 	$descrip      = $_POST['event_descrip'];
@@ -41,7 +41,7 @@ if (empty($_POST['event_descrip'])) {
 if (empty($_POST['event_entry'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 5"."<br>";
 }else{
 	
 	$evententry   = $_POST['event_entry'];
@@ -50,7 +50,7 @@ if (empty($_POST['event_entry'])) {
 if (empty($_POST['event_childallow'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 6"."<br>";
 }else{
 	
 	$childallow   = $_POST['event_childallow'];
@@ -59,129 +59,153 @@ if (empty($_POST['event_childallow'])) {
 if (empty($_POST['event_undr5allow'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 7"."<br>";
 }else{
 	
 	$undr5allow   = $_POST['event_undr5allow'];
 
 }
-if (!is_numeric($_POST['event_entryfee'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
+
+if(!empty($_POST['event_entryfee']) && !is_numeric($_POST['event_entryfee'])){
+
+	$is_check= false;
+    echo "Event Price Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_entryfee']) && is_numeric($_POST['event_entryfee'])){
+
+	$entryfee      = $_POST['event_entryfee'];
+
 }else{
 
-	$entryfee     = $_POST['event_entryfee'];
+	$entryfee = null;
+
 }
 
-
-
 $halftikchild = $_POST['event_halftikchild'];
+
 if (isset($_POST['event_undr5free'])) {
 	$undr5free    = $_POST['event_undr5free'];
 }else{
 	$undr5free    = 'off';
 }
+
  if (isset($_POST['event_undr5price'])) {
  	$undr5price   = $_POST['event_undr5price'];
  }
 
 	
-
-
-// if (!is_numeric($_POST['common_nopeople'])) {
-	
-// 	$is_check=false;
-// 	echo "This Field is accept only numeric";
-// }else{
-	
 	$nospeople     = $_POST['common_nopeople'];
-// } 
 
-// if (!is_numeric($_POST['common_discount'])) {
-	
-// 	$is_check=false;
-// 	echo "This Field is accept only numeric";
-// }else{
-	
 	$discountx    = $_POST['common_discount'];
-// }
+
 
 
 if (empty($_POST['event_pikoffer'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 9"."<br>";
 }else{
 	
 	$pikofer      = $_POST['event_pikoffer'];
 
 }
 
-if (!is_numeric($_POST['event_pikair'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
+if(!empty($_POST['event_pikair']) && !is_numeric($_POST['event_pikair'])){
+
+	$is_check= false;
+    echo "Airport Pickup Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_pikair']) && is_numeric($_POST['event_pikair'])){
+
+	$pikair      = $_POST['event_pikair'];
+
 }else{
-	
-	$pikair       = $_POST['event_pikair'];
+
+	$pikair = null;
+
 }
 
-if (!is_numeric($_POST['event_pikbus'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
+if(!empty($_POST['event_pikbus']) && !is_numeric($_POST['event_pikbus'])){
+
+	$is_check= false;
+    echo "Bus Pickup Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_pikbus']) && is_numeric($_POST['event_pikbus'])){
+
+	$pikbus      = $_POST['event_pikbus'];
+
 }else{
-	
-	$pikbus       = $_POST['event_pikbus'];
+
+	$pikbus = null;
+
 }
 
-if (!is_numeric($_POST['event_pikspecific'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
+if(!empty($_POST['event_pikspecific']) && !is_numeric($_POST['event_pikspecific'])){
+
+	$is_check= false;
+    echo "Specific Location Pickup Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_pikspecific']) && is_numeric($_POST['event_pikspecific'])){
+
+	$pikspecific      = $_POST['event_pikspecific'];
+
 }else{
-	
-	$pikspecific  = $_POST['event_pikspecific'];
+
+	$pikspecific = null;
 
 }
 
 if (empty($_POST['event_drpoffer'])) {
 
 	$is_check=false;
-	echo "This Field is required";
+	echo "This Field is required 13"."<br>";
 }else{
 	
 	$drpofer      = $_POST['event_drpoffer'];
 }
 
-if (!is_numeric($_POST['event_drpair'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
+if(!empty($_POST['event_drpair']) && !is_numeric($_POST['event_drpair'])){
+
+	$is_check= false;
+    echo "From  Air Dropoff Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_drpair']) && is_numeric($_POST['event_drpair'])){
+
+	$drpair      = $_POST['event_drpair'];
+
 }else{
-	
-	$drpair       = $_POST['event_drpair'];
+
+	$drpair = null;
 
 }
 
-if (!is_numeric($_POST['event_drpbus'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
+if(!empty($_POST['event_drpbus']) && !is_numeric($_POST['event_drpbus'])){
+
+	$is_check= false;
+    echo "From  Bus Dropoff Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_drpbus']) && is_numeric($_POST['event_drpbus'])){
+
+	$drpbus      = $_POST['event_drpbus'];
+
 }else{
-	
-	$drpbus       = $_POST['event_drpbus'];
+
+	$drpbus = null;
 
 }
 
-if (!is_numeric($_POST['event_drpspecific'])) {
-	
-	$is_check=false;
-	echo "This Field is accept only numeric";
+if(!empty($_POST['event_drpspecific']) && !is_numeric($_POST['event_drpspecific'])){
+
+	$is_check= false;
+    echo "From  Bus Dropoff Field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_drpspecific']) && is_numeric($_POST['event_drpspecific'])){
+
+	$drpspecific      = $_POST['event_drpspecific'];
+
 }else{
-	
-	$drpspecific  = $_POST['event_drpspecific'];
+
+	$drpspecific = null;
 
 }
 

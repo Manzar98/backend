@@ -1,8 +1,8 @@
 <?php
 
- include 'common-sql.php';
+ include '../common-sql.php';
 
-// print_r($_POST);
+  print_r($_POST);
 
 $is_check= true;
 
@@ -46,44 +46,128 @@ if (empty($_POST['conference_serve'])) {
     
 
 }
-if (empty($_POST['foodpkg_menu'])) {
 
-	$is_check=false;
-	echo "Package Menu is Required"."<br>";
-}else{
-
-	$pkgmenu      = $_POST['foodpkg_menu'];
-}
-if (empty($_POST['foodpkg_name'])) {
-
-	$is_check=false;
-	echo "Menu Name is Required"."<br>";
-
-}else{
-
-	$pkgname = $_POST['foodpkg_name'];
-}
-if (empty($_POST['foodpkg_price'])) {
-
-	$is_check=false;
-	echo "Menu Package Price is Required"."<br>";
-}elseif (!is_numeric($_POST['foodpkg_price'])) {
-	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
-}
-else{
-  
-  $pkgprice     = $_POST['foodpkg_price'];
-}
-if (empty($_POST['foodpkg_item'])) {
-
-	$is_check=false;
-	echo "Menu Package Price is Required"."<br>";
-}else{
-
-	$pgkitem      = $_POST['foodpkg_item'];
+foreach($_POST['foodpkg_menu'] as $foodpkgmenu) { 
 	
+                  // echo $menupkgprice."<br>";
+	if (!empty($foodpkgmenu) && !is_numeric($foodpkgmenu)) {
+
+		$is_check=false;
+		echo "Menu Package  accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($foodpkgmenu)){
+
+		$pkgmenu     = $_POST['foodpkg_menu'];
+	}else{
+		$pkgmenu=null;
+
+                  	// echo "array is empty";
+	}
 }
+
+
+foreach($_POST['foodpkg_name'] as $foodpkgname) { 
+	
+                  // echo $menupkgprice."<br>";
+	if (!empty($foodpkgname) && !is_numeric($foodpkgname)) {
+
+		$is_check=false;
+		echo "Menu Package name  accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($foodpkgname)){
+
+		$pkgname     = $_POST['foodpkg_name'];
+	}else{
+		$pkgname=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+
+foreach($_POST['foodpkg_price'] as $menupkgprice) { 
+	
+	
+	if (!empty($menupkgprice) && !is_numeric($menupkgprice)) {
+
+		$is_check=false;
+		echo "Menu Package Price accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($menupkgprice)){
+
+		$pkgprice     = $_POST['foodpkg_price'];
+	}else{
+		$pkgprice=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+foreach($_POST['foodpkg_discount'] as $menupkgdiscount) { 
+	
+	
+	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
+
+		$is_check=false;
+		echo "Menu Package Discount accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($menupkgdiscount)){
+
+		$pkgdis     = $_POST['foodpkg_discount'];
+	}else{
+		$pkgdis=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+
+foreach($_POST['foodpkg_discount'] as $menupkgdiscount) { 
+	
+	
+	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
+
+		$is_check=false;
+		echo "Menu Package Discount accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($menupkgdiscount)){
+
+		$pkgdis     = $_POST['foodpkg_discount'];
+	}else{
+		$pkgdis=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+
+
+
+foreach($_POST['foodpkg_item'] as $menupkgitems) { 
+	
+           // echo $menupkgitems;
+
+
+	$Itemresult = explode(",", $menupkgitems);
+
+
+	foreach($Itemresult as $item) { 
+
+		if (!empty($item)) {
+			
+			$pgkitem     = $_POST['foodpkg_item'];
+			
+		}else{
+
+			$pgkitem=null;
+
+			echo "array is empty";
+		}
+	}
+
+}
+
+
 
 
 $img          = $_POST['common_image'];
@@ -91,27 +175,25 @@ $imgarray= explode(",",$img);
 $provideo       = $_POST['common_video'];
 
 
-if (!is_numeric($_POST['foodpkg_discount'])) {
 
-	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
-}else{
 
-	$pkgdis	      = $_POST['foodpkg_discount'];
-}
+
 
 $other	      = $_POST['conference_other'];
 $frmdate      = $_POST['book_fromdate'];
 $todate       = $_POST['book_todate'];
 
-if (!is_numeric($_POST['conference_offerdiscount'])) {
 
-	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
-}else{
-	
+if (!empty($_POST['conference_offerdiscount']) && !is_numeric($_POST['conference_offerdiscount'])) {
+	$is_check= false;
+	echo"Offer discount accept only numeric";
+}elseif (!empty($_POST['conference_offerdiscount']) && is_numeric($_POST['conference_offerdiscount'])) {
 	$discuntofer=$_POST['conference_offerdiscount'];
+}else{
+
+	$discuntofer=null;
 }
+
 
 $discountexpire=$_POST['conference_expireoffer'];
 $userid       = 2;

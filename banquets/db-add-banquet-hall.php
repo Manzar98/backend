@@ -1,5 +1,5 @@
 <?php
-include '../common-sql.php';
+ include '../common-apis/api.php';
 
 
 $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
@@ -66,7 +66,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
           <div class="col-md-6 with_aricon" >
            <p class="pTAG">
-             <input type="checkbox" class="filled-in" id="filled-in-aricon" />
+             <input type="checkbox" class="filled-in" id="filled-in-aricon" name="banquet_isaircon" />
              <label for="filled-in-aricon">Aircon?</label>
            </p>
          </div>
@@ -89,7 +89,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
      <div class="col-md-6 with_generator clearfix" >
        <p class="pTAG">
-         <input type="checkbox" class="filled-in" id="filled-in-gen"  />
+         <input type="checkbox" class="filled-in" id="filled-in-gen"  name="banquet_isgen" />
          <label for="filled-in-gen">Generator?</label>
        </p>
      </div>

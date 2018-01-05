@@ -37,23 +37,26 @@ if (empty($_POST['banquet_space'])) {
      $charges         = $_POST['banquet_charges'];
  }
 
+if(!empty($_POST['banquet_aricon']) && !is_numeric($_POST['banquet_aricon'])){
+	$is_check= false;
 
-if (!is_numeric($_POST['banquet_aricon'])) {
-	$is_check=false;
-	echo "This Field accept only numeric";
-
-}else{
-
+}elseif(!empty($_POST['banquet_aricon']) && is_numeric($_POST['banquet_aricon'])){
 	$aircon	      = $_POST['banquet_aricon'];
+}else{
+	$aircon = null;
+
 }
 
-if (!is_numeric($_POST['banquet_generator'])) {
-	$is_check=false;
-	echo "This Field accept only numeric";
+if(!empty($_POST['banquet_generator']) && !is_numeric($_POST['banquet_generator'])){
+	$is_check= false;
 
-}else{
+}elseif(!empty($_POST['banquet_generator']) && is_numeric($_POST['banquet_generator'])){
 
 	$gen          = $_POST['banquet_generator'];
+
+}else{
+	$gen = null;
+	
 }
 
 
@@ -66,16 +69,119 @@ if (empty($_POST['banquet_serve'])) {
 }
 
 
-	$pkgmenu      = $_POST['foodpkg_menu'];
-
-	$pkgname      = $_POST['foodpkg_name'];
-
-    $pkgprice     = $_POST['foodpkg_price'];
-
-	$pgkitem      = $_POST['foodpkg_item'];
+foreach($_POST['foodpkg_menu'] as $foodpkgmenu) { 
 	
-    $pkgdis	      = $_POST['foodpkg_discount'];
+                  // echo $menupkgprice."<br>";
+	if (!empty($foodpkgmenu) && !is_numeric($foodpkgmenu)) {
 
+		$is_check=false;
+		echo "Menu Package  accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($foodpkgmenu)){
+
+		$pkgmenu     = $_POST['foodpkg_menu'];
+	}else{
+		$pkgmenu=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+foreach($_POST['foodpkg_name'] as $foodpkgname) { 
+	
+                  // echo $menupkgprice."<br>";
+	if (!empty($foodpkgname) && !is_numeric($foodpkgname)) {
+
+		$is_check=false;
+		echo "Menu Package name  accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($foodpkgname)){
+
+		$pkgname     = $_POST['foodpkg_name'];
+	}else{
+		$pkgname=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+foreach($_POST['foodpkg_price'] as $menupkgprice) { 
+	
+	
+	if (!empty($menupkgprice) && !is_numeric($menupkgprice)) {
+
+		$is_check=false;
+		echo "Menu Package Price accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($menupkgprice)){
+
+		$pkgprice     = $_POST['foodpkg_price'];
+	}else{
+		$pkgprice=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+foreach($_POST['foodpkg_discount'] as $menupkgdiscount) { 
+	
+	
+	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
+
+		$is_check=false;
+		echo "Menu Package Discount accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($menupkgdiscount)){
+
+		$pkgdis     = $_POST['foodpkg_discount'];
+	}else{
+		$pkgdis=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+foreach($_POST['foodpkg_discount'] as $menupkgdiscount) { 
+	
+	
+	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
+
+		$is_check=false;
+		echo "Menu Package Discount accept only Numeric"."<br>";
+                  	# code...
+	}elseif(is_numeric($menupkgdiscount)){
+
+		$pkgdis     = $_POST['foodpkg_discount'];
+	}else{
+		$pkgdis=null;
+
+                  	// echo "array is empty";
+	}
+}
+
+foreach($_POST['foodpkg_item'] as $menupkgitems) { 
+	
+           // echo $menupkgitems;
+
+
+	$Itemresult = explode(",", $menupkgitems);
+
+
+	foreach($Itemresult as $item) { 
+
+		if (!empty($item)) {
+			
+			$pgkitem     = $_POST['foodpkg_item'];
+			
+		}else{
+
+			$pgkitem=null;
+
+			// echo "array is empty";
+		}
+	}
+
+}
 
 
 if (empty($_POST['banquet_gathering'])) {
@@ -117,15 +223,16 @@ if (empty($_POST['banquet_descrip'])) {
 
   $todate       = $_POST['book_todate'];
 
-if (!is_numeric($_POST['banquet_offerdiscount'])) {
-
+if (!empty($_POST['banquet_offerdiscount']) && !is_numeric($_POST['banquet_offerdiscount'])) {
 	$is_check= false;
 	echo"Offer discount accept only numeric";
-}else{
-	
+}elseif (!empty($_POST['banquet_offerdiscount']) && is_numeric($_POST['banquet_offerdiscount'])) {
 	$discuntofer=$_POST['banquet_offerdiscount'];
+}else{
 
+	$discuntofer=null;
 }
+
 
  $discountexpire=$_POST['banquet_expireoffer'];
 
@@ -138,40 +245,107 @@ if (empty($_POST['banquet_independ'])) {
 
 	$banquet_independ=$_POST['banquet_independ'];
 }
-if (isset($_POST['hotel_name'])) {
+if (!empty($_POST['hotel_name'])) {
 
 	$banquet_hotelName=$_POST['hotel_name'];
 }else{
 
-	$banquet_hotelName="null";
+	$banquet_hotelName=null;
 }
 	
+if (!empty($_POST['banquet_address'])) {
 
 	$banquet_addres=$_POST['banquet_address'];
-
-	$banquet_city=$_POST['banquet_city'];
-
-	$banquet_province=$_POST['banquet_province'];
-
-
-if(!is_numeric($_POST['banquet_phone'])){
-
-$is_check=false;
-
 }else{
 
-	$banquet_phone=$_POST['banquet_phone'];
+	$banquet_addres=null;
+}
+
+if (!empty($_POST['banquet_city'])) {
+	
+	$banquet_city=$_POST['banquet_city'];
+
+}else{
+  
+  $banquet_city=null;
+
+}
+
+if (!empty($_POST['banquet_province'])) {
+
+	$banquet_province=$_POST['banquet_province'];
+}else{
+	$banquet_province=null;
+}
+
+
+if(!empty($_POST['banquet_phone']) && !is_numeric($_POST['banquet_phone'])){
+	$is_check= false;
+	echo "This field is accept only numeric";
+
+}elseif(!empty($_POST['banquet_phone']) && is_numeric($_POST['banquet_phone'])){
+
+	$banquet_phone     = $_POST['banquet_phone'];
+
+}else{
+	$banquet_phone = null;
+	
+}
+
+
+if (!empty($_POST['banquet_email'])) {
+
+	$banquet_email=$_POST['banquet_email'];
+}else{
+
+	$banquet_email=null;
+}
+
+if (!empty($_POST['banquet_fcbok'])) {
+	
+	$bnq_fcbok=$_POST['banquet_fcbok'];
+}else{
+
+	$bnq_fcbok=null;
+}
+
+if (!empty($_POST['banquet_twiter'])) {
+	
+	$bnq_twter=$_POST['banquet_twiter'];
+}else{
+
+	$bnq_twter=null;
+}
+
+if (!empty($_POST['banquet_utube'])) {
+	
+	$bnq_utube=$_POST['banquet_utube'];
+}else{
+
+	$bnq_utube=null;
+}
+
+
+if (isset($_POST['banquet_isaircon'])) {
+	
+	$is_aircon= $_POST['banquet_isaircon'];
+}else{
+
+ $is_aircon= 'off';
+}
+
+if (isset($_POST['banquet_isgen'])) {
+
+	$is_gen=$_POST['banquet_isgen'];
+	# code...
+}else{
+
+	$is_gen='off';
 }
 
 
 
-	$banquet_email=$_POST['banquet_email'];
-
-	$bnq_fcbok=$_POST['banquet_fcbok'];
-
-	$bnq_twter=$_POST['banquet_twiter'];
-
-	$bnq_utube=$_POST['banquet_utube'];
+	
 
 	$userid       = 2;
 
@@ -181,13 +355,16 @@ $is_check=false;
 
 
 
+
+
+
  
 if ($is_check==true) {
 	# code...
 
 
 
- $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,	banquet_aricon,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other[0].'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'")';
+ $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other[0].'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'")';
 
 
 

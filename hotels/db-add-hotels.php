@@ -150,7 +150,7 @@
                         	</div>
                             <div class="col-md-6 " id="transport" style="padding-top: 10px;display: none;">
                             	<select onchange="transportType(this)" >
-                            		<option value="" selected="" disabled="">Select One</option>
+                            		<option value="" name="hotel_transport" selected="" disabled="">Select One</option>
                             		<option value="Airport">Airport</option>
                             		<option value="Bus Station">Bus Station</option>
                             	</select>
@@ -168,7 +168,7 @@
                             </div>
                             <div class="col-md-6" id="busAddres" style="display: none;">
                             	<label>Address</label>
-                        		 <input type="text"  class="input-field validate " name="" >
+                        		 <input type="text"  class="input-field validate " name="hotel_busaddres" >
                             </div>
                         </div>
 

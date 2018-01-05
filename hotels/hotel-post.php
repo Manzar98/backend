@@ -58,13 +58,16 @@ $addres2=$_POST['hotel_addres2'];
 	$phone=$_POST['hotel_phone'];
 
  }
- if (!is_numeric($_POST['hotel_fax'])) {
+ if (!empty($_POST['hotel_fax']) && !is_numeric($_POST['hotel_fax'])) {
 	
  	$is_check=false;
  	 echo "Fax Number accept only numeric";
- }else{
+
+ }elseif(!empty($_POST['hotel_fax']) && is_numeric($_POST['hotel_fax'])){
 
 	$fax=$_POST['hotel_fax'];
+ }else{
+  $fax=null;
  }
 
 
@@ -117,17 +120,17 @@ $web=$_POST['hotel_web'];
 
 	$pickup=$_POST['hotel_pickup'];
  }
- if (empty($_POST['hotel_pikcharge'])) {
+ if (!empty($_POST['hotel_pikcharge']) && !is_numeric($_POST['hotel_pikcharge'])) {
 
  	$is_check=false;
- 	echo "Pickup Charges is required ";
- }elseif (!is_numeric($_POST['hotel_pikcharge'])) {
+ 	echo "Pickup charges accept only numeric";
+
+ }elseif (!empty($_POST['hotel_pikcharge']) && is_numeric($_POST['hotel_pikcharge'])) {
 	
- 	$is_check=false;
- 	 echo "Pickup charges accept only numeric";
+ 	$charges=$_POST['hotel_pikcharge'];
  }else{
 
-	$charges=$_POST['hotel_pikcharge'];
+	$charges=null;
 }
 
    
@@ -148,8 +151,13 @@ $web=$_POST['hotel_web'];
 
 $provideo=$_POST['common_video'];
 
+if (!empty($_POST['hotel_nobag'])) {
 
-$nobag=$_POST['hotel_nobag'];
+  $nobag=$_POST['hotel_nobag'];
+}else{
+  $nobag=null;
+}
+
 $bagprice=$_POST['hotel_bagprice'];
 $fburl=$_POST['hotel_fburl'];
 $twurl=$_POST['hotel_twurl'];
@@ -160,6 +168,22 @@ $yuturl=$_POST['hotel_yuturl'];
 
   $checkIn=$_POST['hotel_checkin'];
   $checkOut=$_POST['hotel_checkout'];
+if (!empty($_POST['hotel_transport'])) {
+
+  $transport=$_POST['hotel_transport'];
+}else{
+  $transport=null;
+}
+  
+
+  if (isset($_POST['hotel_busaddres'])) {
+
+  	$busaddres=$_POST['hotel_busaddres'];
+  }else{
+
+  	$busaddres="null";
+  }
+  
 
 
 $formtype='hotel';
@@ -175,7 +199,7 @@ $user_id= 2;
  if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other[0].'","'.$pickup.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
+$query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_transport,hotel_busaddres,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other[0].'","'.$pickup.'","'.$transport.'","'.$busaddres.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
 
 
 

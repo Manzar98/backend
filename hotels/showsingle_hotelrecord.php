@@ -10,15 +10,15 @@
  
 
 
- $editHotelImgQuery=select('common_imagevideo',array('hotel_id'=>46));
+ $showHotelImgQuery=select('common_imagevideo',array('hotel_id'=>46));
 
- while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {
- 	// print_r($imgResult);
- 	$emptyArray[] = $imgResult;
+ // while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {
+ // 	// print_r($imgResult);
+ // 	$emptyArray[] = $imgResult;
 
  	
- 	# code...
- }
+ // 	# code...
+ // }
 
 // echo "<br>".$emptyArray[0]['common_imgvideo_id']."<br>" ;
 // echo "<br>".$emptyArray[1]['common_imgvideo_id']."<br>" ;
@@ -61,10 +61,15 @@ print_r(array_column($emptyArray, 'common_imgvideo_id'));
 					<h4>Welcome to your dashboard</h4> </div>
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-						<div class="db-title">
+                      <div class="row">
+						<div class="db-title col-md-8">
 							<h3><img src="../images/icon/dbc5.png" alt=""/> Detail of <?php echo $hotelResult['hotel_name']; ?> </h3>
 							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
+                        <div class="pull-right">
+                            <a class="waves-effect waves-light btn" href="edit_hotel.php">Edit</a>
+                        </div>
+                      </div>
 						 
                          <div class="hotelVeiw">
                             
@@ -161,44 +166,37 @@ print_r(array_column($emptyArray, 'common_imgvideo_id'));
 				</div>
               
 					</div>
+                           <div class="row" style="padding-left: 15px;">
+                               <span><b>Hotel Images :</b></span>
+                           </div>
+                            <div class="imgVeiwinline row" id="hotel_img_wrap" style="padding-left: 15px;">
+
+                            <?php
+                            
+                            while ($imgResult=mysqli_fetch_assoc($showHotelImgQuery)) {
+
+                             
+                                if (!empty($imgResult['common_image'])) {?>
+                                    <div class="imgeWrap">
+                                    <a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    <img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
+                                    </div>&nbsp;&nbsp;
+                                    
+                                   
+                                <?php } ?>
+
+                               
+                              
+
+                        <?php   }
+
+                            ?>
+                        </div>
 					
 				</div>
 			</div>
 
-			<!-- Modal Structure -->
-			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
-				<div class="modal-content">
-					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="up_load_img.php?name=interior"></iframe>
-                   <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-				</div>
-		   </div>
-		   </div>
-
-		   <!-- Modal Structure -->
-			<div id="modal-extimg" class="modal modal-fixed-footer image_drop_down_modal_body">
-
-				<div class="modal-content">
-						<div class="modal-header"><h2>Upload Exterior Photos</h2></div>
-				<iframe src="up_load_img.php?name=exterior"></iframe>
-                   <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-				</div>
-		   </div>
-		   </div>
-
-		   <!-- Modal Structure -->
-			<div id="modal-coverimg" class="modal modal-fixed-footer image_drop_down_modal_body" style="width: 50%; margin: 0 auto; box-shadow:none;" >
-
-				<div class="modal-content">
-						<div class="modal-header"><h2>Upload Cover Photo</h2></div>
-				<iframe src="up_load_cover.php"></iframe>
-                   <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-				</div>
-		   </div>
-		   </div>
+		
 
 
 
@@ -207,169 +205,7 @@ print_r(array_column($emptyArray, 'common_imgvideo_id'));
 
 
 
-		   <script>
-   tinymce.init({ selector:'textarea' });
-
-
-
-
-
-  function yesCheck(that) {
-        if (that.value == "yes") {
-            // alert("check");
-             document.getElementById("ifYes").style.display = "block";
-             document.getElementById("bag-char").style.display = "block";
-        } else {
-            document.getElementById("ifYes").style.display = "none";
-            document.getElementById("bag-char").style.display = "none";
-            document.getElementById("1bag").style.display = "none";
-    		document.getElementById("2bags").style.display = "none";
-    		document.getElementById("3bags").style.display = "none";
-    		document.getElementById("4bags").style.display = "none";
-    		document.getElementById('bag-inpt').style.display = "none";
-    		  
-        }
-    }
-
-
-    function noofbags(that){
-
-    	if(that.value == "1"){
-
-    		document.getElementById("1bag").style.display = "block";
-    		document.getElementById('bag-inpt').style.display = "block";
-    		 document.getElementById("2bags").style.display = "none";
-    		  document.getElementById("3bags").style.display = "none";
-    		   document.getElementById("4bags").style.display = "none";
-    		
-    	} 
-
-    	else if (that.value == "2") {
-    		 document.getElementById("1bag").style.display = "none";
-    		 document.getElementById('bag-inpt').style.display = "block";
-    		 document.getElementById("2bags").style.display = "block";
-    		  document.getElementById("3bags").style.display = "none";
-    		   document.getElementById("4bags").style.display = "none";
-    	}
-    	else if (that.value == "3") {
-    		document.getElementById("1bag").style.display = "none";
-    		document.getElementById('bag-inpt').style.display = "block";
-    		document.getElementById("2bags").style.display = "none";
-    		document.getElementById("3bags").style.display = "block";
- 		    document.getElementById("4bags").style.display = "none";
-    	}
-    	else if(that.value == "4"){
-    		document.getElementById("1bag").style.display = "none";
-    		document.getElementById("2bags").style.display = "none";
-    		document.getElementById("3bags").style.display = "none";
-    		document.getElementById("4bags").style.display = "block";
-    		document.getElementById('bag-inpt').style.display = "block";
-
-    	}else{
-    		  document.getElementById("1bag").style.display = "none";
-    		  document.getElementById("2bags").style.display = "none";
-    		  document.getElementById("3bags").style.display = "none";
-    		  document.getElementById("4bags").style.display = "none";
-    		  document.getElementById('bag-inpt').style.display = "none";
-    	}
-
-    }
-
-
-jQuery(document).ready(function(){
-
-
- $('.chips-autocomplete').material_chip({
-    autocompleteOptions: {
-      data: {
-        'Wifi': null,
-        'Swimming Pool': null,
-        'Room service': null,
-        'Restaurant': null
-      },
-      limit: Infinity,
-      minLength: 1
-    }
-  });
-
-
-
-
-$('#modal-extimg').modal({dismissible: false});
-$('#modal-coverimg').modal({dismissible: false});
-
-// $('#pro-sub-btn').click(function(){
-// 	// debugger;
-// 	var isFormValidated = true;
-// 	 $.each($('#hotel-form .is_validate'),function(key,val){
-// 	 		if(!val.value){
-// 	 			isFormValidated = false;
-// 	 			console.log(val);
-// 				$(val).addClass('error');	
-// 	 		}else{
-// 	 			// debugger;
-// 	 			$(val).removeClass('error');
-// 	 		}
-// 	 });
-// 	$.each($('#hotel-form .is_validate_select'),function(key,val){
-// 			if(!$(val).find('select').val()){
-// 				isFormValidated = false;
-// 				console.log(val);
-// 				$(val).find('.select-wrapper').addClass('error');
-
-// 			}else{
-// 				// debugger;
-// 				$(val).find('.select-wrapper').removeClass('error');
-// 			}
-// 	});
-
-
-// 	if(isFormValidated){
-// 		console.log('TIme to submit form');
-// 		$("#hotel-form").submit();
-// 	}else{
-// 		console.log('There is an error');
-// 	}
-// })
-
-
-
-
-
-$("#hotel-form").validate({
-
-         errorElement : 'div',
-        errorPlacement: function(error, element) {
-
-        	 console.log(element);
-          var placement = $(element).data('error');
-
-             console.log(placement);
-             console.log(error);
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }
-   });
-
-
-
-
- $('#checkIn').pickatime();
-
-$('#checkOut').pickatime();
-
-
-});
-
-
-
-
-    
-
-</script>
+	
 
 	
 </body>

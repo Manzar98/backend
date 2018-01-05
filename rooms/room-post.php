@@ -1,6 +1,6 @@
 <?php
 
-include 'common-sql.php';
+include '../common-sql.php';
 
  print_r($_POST);
 
@@ -129,12 +129,17 @@ if (empty($_POST['hotel_name'])) {
 
 $from=$_POST['book_fromdate'];
 $to=$_POST['book_todate'];
-if (!is_numeric($_POST['room_offerdiscount'])) {
+
+if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
 	$is_check= false;
 	echo"Offer discount accept only numeric";
-}else{
+}elseif (!empty($_POST['room_offerdiscount']) && is_numeric($_POST['room_offerdiscount'])) {
 	$discuntofer=$_POST['room_offerdiscount'];
+}else{
+
+	$discuntofer=null;
 }
+
 
 $discountexpire=$_POST['room_expireoffer'];
 $formtype='room';
