@@ -204,24 +204,8 @@
 							<label class="col s4">Amenities:</label>
 
 							<div class="chips chips-autocomplete"></div>
-							<input type="hidden"  name="room_other" id="amenities-id">
+							<input type="hidden"  name="room_other" id="amenities-id"  value="<?php echo $resultRoom['room_other'] ?>">
 						</div>
-						<?php 
-
-													$lst = explode(",", $resultRoom['room_other']);
-
-
-													foreach($lst as $item) { ?>
-													<div class="chip">
-														<?php echo $item;   ?>
-														<i class="material-icons close">close</i>
-													</div>
-
-													<?php    	
-												}
-
-												?>
-
 
 						<div id="dates_wrap">
 							<label class="col s6">Unavailable in these days</label>
@@ -387,29 +371,37 @@
 })
 
 
+var ameinty_obj=[];
+var amenity= $('#amenities-id').val().split(",");
+
+for (var i = 0; i < amenity.length; i++) {
+	      // console.log(amenity[i]);
+	      ameinty_obj.push({"tag":amenity[i]});
+}
+
+
+$('.chips-autocomplete').material_chip({
+      data: ameinty_obj,
+
+	autocompleteOptions: {
+		data: {
+			'Wifi': null,
+			'Swimming Pool': null,
+			'Room service': null,
+			'Restaurant': null
+		},
+		limit: Infinity,
+		minLength: 1
+	}
+});
+
+
+	$("#room-form").validate({
 
 
 
-																$('.chips-autocomplete').material_chip({
-																	autocompleteOptions: {
-																		data: {
-																			'Wifi': null,
-																			'Swimming Pool': null,
-																			'Room service': null,
-																			'Restaurant': null
-																		},
-																		limit: Infinity,
-																		minLength: 1
-																	}
-																});
-
-
-																$("#room-form").validate({
-
-
-
-																	errorElement : 'div',
-																	errorPlacement: function(error, element) {
+		errorElement : 'div',
+		errorPlacement: function(error, element) {
 
 
         	// debugger;

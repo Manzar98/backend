@@ -592,14 +592,14 @@ function selectunder5(that) {
 
 /*================= Function for more Menu package create in (Banquet and conference hall)===========================================*/
 
-var banquet_packages_array=['chips-packageitem-1']
+var banquet_packages_array=[]
 function gen_menupackage_input(event) {
 
   var packagelength= $('.def-show-menu li').length;
 
   $('.def-show-menu').collapsible('close', packagelength-1);
 
-      var id = "chips-packageitem-"+(banquet_packages_array.length + 1);
+      var id = "chips-packageitem-"+($('.chips-packageitem').length+1);
       banquet_packages_array.push(id);
     
   
@@ -677,7 +677,6 @@ function gen_menupackage_input(event) {
 
  document.getElementById('amenities-id').value = array_amenity.toString();
   });
-
 
 /*============Add Chips For Menu Packages in (Banquet & Conference)============*/
 

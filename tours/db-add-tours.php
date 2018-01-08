@@ -32,8 +32,8 @@
 						<div>
 							<label class="col s4">Name of Desination</label>
 							<div class="input-field col s8">
-								<div class="chips chips-destination"  name="tour_destinationname[]"></div>
-								<input type="hidden" name="tour_destinationname[]" id="input_chips-desti" class="" > </div>
+								<div class="chips chips-destination"></div>
+								<input type="hidden" name="tour_destinationname" id="input_chips-desti" class="" > </div>
 						</div>
 
 
@@ -41,7 +41,7 @@
 							<div class="col-md-6 hotelFod common-wrapper comon_dropdown_botom_line">
 								<label>Food Included ?</label>
 								<select name="tour_foodinclude" onchange="selectFod(this)">
-									<option value="-1" disabled="">Select One</option>
+									<option value="-1" selected="">Select One</option>
 									<option value="yes">Yes</option>
 									<option value="no">No</option>
 								</select>
@@ -78,7 +78,7 @@
 							<div class="col-md-6 common-wrapper comon_dropdown_botom_line">
 								<label>Drinks Included?</label>
 								<select name="tour_drink"  onchange="selctdrink(this)">
-									<option value="" disabled="">Select One</option>
+									<option value="" disabled="" selected="">Select One</option>
 									<option value="yes">Yes</option>
 									<option value="no">No</option>
 								</select>

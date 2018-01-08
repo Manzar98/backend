@@ -129,7 +129,7 @@
 						<div class="common-top">
 							<label class="col s4">Amenities</label>
 							<div class="chips chips-autocomplete chips_amenities"></div>
-							<input type="hidden" name="conference_other[]" id="amenities-id">
+							<input type="hidden" name="conference_other" id="amenities-id">
 						</div>
                          
                           <div id="dates_wrap">

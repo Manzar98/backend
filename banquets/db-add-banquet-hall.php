@@ -209,7 +209,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <label class="col s4">Amenities:</label>
 
  <div class="chips chips-autocomplete chips_amenities"></div>
- <input type="hidden"  name="banquet_other[]" id="amenities-id">
+ <input type="hidden"  name="banquet_other" id="amenities-id">
 </div><br><br>
 
 

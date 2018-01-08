@@ -309,22 +309,10 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 				<div class="chips chips-autocomplete" id="click_other" >
 					
 			</div>
-			<input type="hidden"  name="hotel_other" id="amenities-id" >
-			<?php 
-
-			$lst = explode(",", $hotelResult['hotel_other']);
+			<input type="hidden"  name="hotel_other" id="amenities-id" value="<?php echo $hotelResult['hotel_other']; ?>" >
+			
 
 
-			foreach($lst as $item) { ?>
-			<div class="chip">
-				<?php echo $item;   ?>
-				<i class="material-icons close">close</i>
-			</div>
-
-			<?php    	
-		}
-
-		?>
 
 	</div>
 
@@ -596,10 +584,25 @@ function transportType(that) {
 					    	}
 
 
+
+
+
+
+
+
 jQuery(document).ready(function(){
 
+var ameinty_obj=[];
+var amenity= $('#amenities-id').val().split(",");
 
+for (var i = 0; i < amenity.length; i++) {
+	      // console.log(amenity[i]);
+	      ameinty_obj.push({"tag":amenity[i]});
+}
+
+// console.log(ameinty_obj);
 $('.chips-autocomplete').material_chip({
+	data : ameinty_obj,
 autocompleteOptions: {
 data: {
 'Wifi': null,
@@ -611,6 +614,17 @@ limit: Infinity,
 minLength: 1
 }
 });
+
+
+
+
+
+
+
+
+
+	
+
 
 
 

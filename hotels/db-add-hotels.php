@@ -204,7 +204,7 @@
 							<label class="col s4">Amenities:</label>
                              
                              <div class="chips chips-autocomplete" id="click_other" ></div>
-							<input type="hidden"  name="hotel_other[]" id="amenities-id" >
+							<input type="hidden"  name="hotel_other" id="amenities-id" >
                               
 		
 						</div>

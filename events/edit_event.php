@@ -575,17 +575,7 @@ jQuery(document).ready(function(){
 
 
 
- 	 $('.chips-autocomplete').material_chip({
-    autocompleteOptions: {
-      data: {
-       
 
-        
-      },
-      limit: Infinity,
-      minLength: 1
-    }
-  });
 
 
 

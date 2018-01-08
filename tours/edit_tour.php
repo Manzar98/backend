@@ -56,23 +56,9 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 						<div>
 							<label class="col s4">Name of Desination</label>
 							<div class="input-field col s8">
-								<div class="chips chips-destination"  name="tour_destinationname[]"></div>
-								  <?php 
-
-                          $nameOfDesti = explode(",", $resulttour['tour_destinationname']);
-
-
-                          foreach($nameOfDesti as $item) { ?>
-                          <div class="chip">
-                            <?php echo $item;   ?>
-                            <i class="material-icons close">close</i>
-                          </div>
-
-                          <?php     
-                        }
-
-                        ?>
-								<input type="hidden" name="tour_destinationname[]" id="input_chips-desti" class="" required> </div>
+								<div class="chips chips-destination"  name="tour_destinationname"></div>
+								 
+								<input type="hidden" name="tour_destinationname" id="input_chips-desti" class="" value="<?php echo $resulttour['tour_destinationname']; ?>"> </div>
 						</div>
 
 
@@ -861,10 +847,17 @@ jQuery(document).ready(function(){
      
      // alert('Hit');
  	// $("#chosenexample").chosen({ allow_single_deselect: true})
+var destination_obj=[];
+var destination= $('#input_chips-desti').val().split(",");
 
+for (var i = 0; i < destination.length; i++) {
+        // console.log(amenity[i]);
+        destination_obj.push({"tag":destination[i]});
+}
 
 
  	 $('.chips-destination').material_chip({
+ 	 	data: destination_obj,
     autocompleteOptions: {
       data: {
            

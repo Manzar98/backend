@@ -95,9 +95,6 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
      </div>                  
    </div>
 
-
-
-
    <div>
 
     <div class="row">
@@ -114,6 +111,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
        <input type="number" name="banquet_generator" class="input-field validate " value="<?php echo $resultbnq['banquet_generator']; ?>">
      </div>
    </div>
+
 
  </div>
 </div>
@@ -149,7 +147,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <div id="menupackage-wrap" style="display: none;" class="common-top">
 
  <ul class="collapsible def-show-menu" data-collapsible="accordion">
-   <?php  $i=1;
+   <?php  $i=0;
 
    while ($resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery)) { ?>
    	  
@@ -179,25 +177,10 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
      <label>Package Items</label>
   <div class="input-field ">
    <div class="chips-packageitem chips-package" id="chips-packageitem-<?php echo $i+1; ?>"  > </div>
-   <?php 
-
-                          $pkgItem = explode(",", $resultbnqMenu['foodpkg_item']);
-
-
-                          foreach($pkgItem as $item) { ?>
-                          <div class="chip">
-                            <?php echo $item;   ?>
-                            <i class="material-icons close">close</i>
-                          </div>
-
-                          <?php     
-                        }
-
-                        ?>
-   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-<?php echo $i+1; ?>" class="menupkg-id"> </div>
+    
+   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-<?php echo $i+1; ?>" class="menupkg-id" value="<?php echo $resultbnqMenu['foodpkg_item'];  ?>"> </div>
    </div>					
  </div>
-
 
 </div>
 </li>
@@ -284,34 +267,22 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <label class="col s4">Amenities:</label>
 
  <div class="chips chips-autocomplete chips_amenities"></div>
- <input type="hidden"  name="banquet_other[]" id="amenities-id">
+ <input type="hidden"  name="banquet_other" id="amenities-id" value="<?php echo $resultbnq['banquet_other'];  ?>">
 </div>
-<?php 
-
-													$lst = explode(",", $resultbnq['banquet_other']);
-
-
-													foreach($lst as $item) { ?>
-													<div class="chip">
-														<?php echo $item;   ?>
-														<i class="material-icons close">close</i>
-													</div>
-
-													<?php    	
-												}
-
-												?>
-
 
 <div id="dates_wrap">
- <div class="row">
   <label class="col s6">Unavailable in these days</label>
+ <div class="row">
+  
 
 
   <ul class="collapsible def-show-date" data-collapsible="accordion">
+   
   	<?php $i=0;
+ 
     while ($resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery)) {?>
-  		
+  		  
+
      <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultbnqDate['common_bokdate_id'] ?>">
    <li>
     <div class="collapsible-header  active">Date</div>
@@ -328,8 +299,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
     </div>
   </div>
 </li>
-<?php $i++;  	}   ?>
-</ul>
+<?php $i++;  	} 
+
+ ?>
+
+ </ul>
 
 </div>
 </div>
@@ -532,9 +506,17 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 		// $('#modal-images').modal();
 
+var ameinty_obj=[];
+var amenity= $('#amenities-id').val().split(",");
+
+for (var i = 0; i < amenity.length; i++) {
+        // console.log(amenity[i]);
+        ameinty_obj.push({"tag":amenity[i]});
+}
 
 
    $('.chips-autocomplete').material_chip({
+      data:ameinty_obj,
     autocompleteOptions: {
       data: {
         'Wifi': null,
@@ -547,7 +529,9 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     }
   });
 
-   $('#chips-packageitem-2').material_chip({
+
+
+   $('.chips-packageitem').material_chip({
     autocompleteOptions: {
       data: {
         'Naan': null,
@@ -559,6 +543,42 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
       minLength: 1
     }
   });
+
+
+
+   
+var packageitem= $('.menupkg-id');
+console.log(packageitem);
+
+$.each(packageitem,function(key,item){
+      var packageitem_obj=[];
+      var id= item.id.split('_')[1];
+      var packagesItems = $(item).val();
+      var menuItems = packagesItems.split(','); 
+      for (var i = 0; i < menuItems.length; i++) {
+        // console.log(amenity[i]);
+        packageitem_obj.push({"tag":menuItems[i]});
+      }
+
+      $('#'+id).material_chip({
+
+       data : packageitem_obj,
+        autocompleteOptions: {
+          data: {
+            'Naan': null,
+            'Thai': null,
+            'Meat': null,
+            'drinks': null
+          },
+          limit: Infinity,
+          minLength: 1
+        }
+      });
+
+})
+
+
+   
 
 //    $('#pro-sub-btn').click(function(){
 //     // debugger;
