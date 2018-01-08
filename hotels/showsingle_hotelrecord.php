@@ -1,39 +1,9 @@
 <?php
  include '../common-apis/api.php';
  
- $showHotelQuery=select('hotel',array('hotel_id'=>46));
-
- 
-
- 	// print_r($hotelResult);
- 	# code...
- 
+ $showHotelQuery=select('hotel',array('hotel_id'=>$_GET['id']));
 
 
- $showHotelImgQuery=select('common_imagevideo',array('hotel_id'=>46));
-
- // while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {
- // 	// print_r($imgResult);
- // 	$emptyArray[] = $imgResult;
-
- 	
- // 	# code...
- // }
-
-// echo "<br>".$emptyArray[0]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[1]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[2]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[3]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[4]['common_imgvideo_id']."<br>" ;
-// echo "<br>".$emptyArray[5]['common_imgvideo_id']."<br>" ;
-  // print_r($emptyArray);
-print_r(array_column($emptyArray, 'common_imgvideo_id'));
-
- // while ($emptyArray > 1) {
-
- // 	echo $emptyArray['common_imgvideo_id'];
- // 	# code...
- // }
 
 
 ?>
@@ -48,7 +18,15 @@ print_r(array_column($emptyArray, 'common_imgvideo_id'));
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
 
-     <?php  while ($hotelResult=mysqli_fetch_assoc($showHotelQuery)) {     ?>
+     <?php  while ($hotelResult=mysqli_fetch_assoc($showHotelQuery)) {    
+
+    $showHotelImgQuery=select('common_imagevideo',array('hotel_id'=>$hotelResult['hotel_id']));
+
+    echo $hotelResult['hotel_id'];
+
+        ?>
+
+
 	<title>Detail of <?php echo $hotelResult['hotel_name']; ?> </title>
 
 
@@ -67,7 +45,7 @@ print_r(array_column($emptyArray, 'common_imgvideo_id'));
 							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
                         <div class="pull-right">
-                            <a class="waves-effect waves-light btn" href="edit_hotel.php">Edit</a>
+                            <a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $hotelResult['hotel_id'];  ?>">Edit</a>
                         </div>
                       </div>
 						 

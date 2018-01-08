@@ -1,5 +1,5 @@
 <?php 
-   include '../common-sql.php';
+   include '../common-apis/api.php';
 
    $conferenceQuery=select("conference",array("user_id"=>2));
 
@@ -32,14 +32,14 @@
 							<h3><img src="images/icon/dbc5.png" alt=""/>My Conference Hall's</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
-						<table class="bordered responsive-table">
+						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
 									
 									<th>Hall Name</th>
-									<th>capacity</th>
-									<th>Serve Food?</th>
-									<th>Amenities</th>
+									<th>Capacity</th>
+									<th>City</th>
+									<th>Status (Active/Inactive)</th>
 								</tr>
 							</thead>
 							
@@ -54,11 +54,21 @@
                                    <tr>
 									<td><?php echo $result['conference_name'];   ?></td>
 									<td><?php echo $result['conference_space'];   ?></td>
-									<td><?php echo $result['conference_serve'];  ?></td>
-									<td><?php echo $result['conference_other'];   ?></td>
+									<td><?php echo "Lahore";  ?></td>
+									<td><?php echo "Active";   ?></td>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
+									<td class="tdwrap">
+									<div class="buttonsWrap">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+										
+									</div>
+									</td>
 								</tr>
 
 

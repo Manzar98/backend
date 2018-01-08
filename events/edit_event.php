@@ -1,7 +1,7 @@
 <?php 
 include '../common-apis/api.php';
 
-$editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
+$editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
 
 
 ?>
@@ -18,7 +18,7 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
 <?php
          while ($resultevent=mysqli_fetch_assoc($editeventQuery)) {
             
-       $editeventImgQuery=select('common_imagevideo',array('hotel_id'=>31,'event_id'=>$resultevent['event_id']));
+       $editeventImgQuery=select('common_imagevideo',array('hotel_id'=>$resultevent['hotel_id'],'event_id'=>$resultevent['event_id']));
 
        $editeventnoofpeopleQuery=select('common_nosofpeople', array('event_id'=>$resultevent['event_id'])); 
 
@@ -46,9 +46,10 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
 						</div>
 						 
                          <div class="db-profile-edit">
-					<form class="col s12"  data-toggle="validator" id="event-form" role="form" action="event-post.php" method="POST" enctype="multipart/form-data">
+					<form class="col s12"  data-toggle="validator" id="event-form" role="form" action="" method="POST" enctype="multipart/form-data">
 						
-							
+							<input type="hidden" name="event_id" value="<?php echo $resultevent['event_id']; ?>">
+							<input type="hidden" name="hotel_id" value="<?php echo $resultevent['hotel_id']; ?>">
 						<div>
 							<label class="col s4">Event Name</label>
 							<div class="input-field col s8">
@@ -155,7 +156,7 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
                         <div class="row common-top common-wrapper comon_dropdown_botom_line">
                         	<div class="col-md-6">
                         		<label style="margin-bottom: 10px;">Entry Fee ?</label>
-                        		<select name="event_entry" onchange="selectentryfee(this)">
+                        		<select name="event_entry" onchange="selectentryfee(this)" id="selectentryfee">
                         	<?php if ($resultevent['event_entry']== -1) { ?>
 
 									<option value="-1" disabled selected>Select One</option>
@@ -194,7 +195,7 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
                         <div class="row common-top">
                         	<div class="col-md-6 common-wrapper comon_dropdown_botom_line" id="" >
                         		<label >Children Allowed?</label>
-                        		<select name="event_childallow" onchange="selectchild(this)">
+                        		<select name="event_childallow" onchange="selectchild(this)" id="childallow">
                         	<?php if ($resultevent['event_childallow']== -1) { ?>
 
 									<option value="-1" disabled selected>Select One</option>
@@ -218,7 +219,7 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
                         	</div>
                         	<div class="col-md-6 common-wrapper c-under5 comon_dropdown_botom_line" id="">
                         		<label >Under 5 allowed?</label>
-                        		<select name="event_undr5allow" onchange="selectunder5(this)">
+                        		<select name="event_undr5allow" onchange="selectunder5(this)" id="undr5allow">
                         	<?php if ($resultevent['event_undr5allow']== -1) { ?>
 
 									<option value="-1" disabled selected>Select One</option>
@@ -302,12 +303,14 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
 						<div class="common-top discount clearfix" id="discount_wrap" style="display: none;">
 								<label>Discount for groups <b>:</b></label>
 								<?php  while ($resultDiscount=mysqli_fetch_assoc($editeventnoofpeopleQuery)) { ?>
+
+								<input type="hidden" name="common_people_id[]" value="<?php  echo $resultDiscount['common_people_id']; ?>">
 		
 							<div class="row">
 								<div class="col-md-6">
 									<label>Number of People</label>
                                   <div class="input-field ">
-								   <input type="number" name="common_nopeople[]" id="uniq_people" class="tour-discount-per validate s hel " value="<?php echo $resultDiscount['common_nopeople'];  ?>"> 
+								   <input type="number" name="common_nopeople[]"  class="tour-discount-per validate s hel " value="<?php echo $resultDiscount['common_nopeople'];  ?>"> 
 							      </div>
 								</div>
 								<div class="col-md-6">
@@ -330,7 +333,7 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
 							
 							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
 								<label style="margin-bottom: 32px;">Pickup Offered ?</label>
-							      <select onchange="pickOffer(this)" name="event_pikoffer">
+							      <select onchange="pickOffer(this)" name="event_pikoffer" id="pikoffer">
                         	<?php if ($resultevent['event_pikoffer']== -1) { ?>
 
 									<option value="-1" disabled selected>Select One</option>
@@ -387,7 +390,7 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
 							
 							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
 								<label style="margin-bottom: 32px;">Drop off Offered ?</label>
-							      <select onchange="dropOffer(this)" name="event_drpoffer">
+							      <select onchange="dropOffer(this)" name="event_drpoffer" id="drpoffer">
                         	<?php if ($resultevent['event_drpoffer']== -1) { ?>
 
 									<option value="-1" disabled selected>Select One</option>
@@ -472,12 +475,12 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
 							<div class="row  common-top clearfix">
 								 
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Tour's PROMOTIONAL VIDEO</span></div>
-										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required>
+										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
 <?php   } ?>
 						<div>
 							<div class="input-field col s8">
-								<input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 						</div>
 					</form>
 				</div>
@@ -502,11 +505,64 @@ $editeventQuery=select('event',array('hotel_id'=>31,'event_id'=>29));
 
 
 
+<!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+</div>
+
+
 		   <?php  include"../footer.php"; ?>
 
 
 
-
+<script src="../js/event-js/event.js"></script>
 		   <script type="text/javascript">
 jQuery(document).ready(function(){
 	tinymce.init({ selector:'textarea' });
@@ -530,6 +586,8 @@ jQuery(document).ready(function(){
       minLength: 1
     }
   });
+
+
 
 
 });
@@ -573,6 +631,9 @@ $('.c-free').show();
 }
 
 
+
+
+
 $("#event-form").validate({
 
          errorElement : 'div',
@@ -604,6 +665,71 @@ $("#event-form").validate({
         }
    });
 
+
+/*Reintialize Dropdown and hideinputs*/
+
+ 	 if ($('#childallow :selected').text() == "Yes") {
+
+        $('.c-childTickt').show();
+        $('.c-under5').show();
+      }else{
+        $('.c-childTickt').hide();
+        $('.c-under5').hide();
+         $('.c-childprice').hide();
+    $('.c-childfree').hide();
+      }
+
+
+if ($('#undr5allow :selected').text() == "Yes") {
+
+    $('.c-childfree').show();
+    $('.c-childprice').show();
+  }else{
+
+    $('.c-childfree').hide();
+    $('.c-childprice').hide();
+
+
+  }
+
+
+  if ($('#pikoffer :selected').text() == "Yes") {
+        $(".pickService").show();
+          
+         
+
+    }else{
+        $(".pickService").hide();
+        $(".pickService").find('input').val('');
+        $('.pickService').find('input').removeClass('valid');
+        $('.pickService').find('input').removeClass('invalid');
+    }
+
+
+    if ($('#drpoffer :selected').text() == "Yes") {
+        $(".dropService").show();
+    }else{
+        $(".dropService").hide();
+        $(".dropService").find('input').val('');
+        $('.dropService').find('input').removeClass('valid');
+        $('.dropService').find('input').removeClass('invalid');
+    }
+
+if ($('#selectentryfee :selected').text() == "Yes") {
+		$('.c-free').show();
+		$('.c-price').show();
+		$('#discount_wrap').show();
+		$('#discount_btn').show();
+
+		// console.log($(".c-free input:checkbox:checked").length);
+    
+		
+	}else{
+		$('.c-free').hide();
+		$('.c-price').hide();
+		$('#discount_wrap').hide();
+		$('#discount_btn').hide();
+	}
 
 
 

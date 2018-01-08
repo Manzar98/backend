@@ -8,7 +8,7 @@ $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
-  $editbnqQuery=select('banquet',array('hotel_id'=>31,'banquet_id'=>62));
+  $editbnqQuery=select('banquet',array('banquet_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
 
 ?>
 
@@ -26,7 +26,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 	<?php   while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){    
 
 
-	   $editbnqImgQuery=select('common_imagevideo',array('hotel_id'=>31,'banquet_id'=>$resultbnq['banquet_id']));
+	   $editbnqImgQuery=select('common_imagevideo',array('hotel_id'=>$resultbnq['hotel_id'],'banquet_id'=>$resultbnq['banquet_id']));
        $editbnqDateQuery=select('common_bookdates', array('banquet_id'=>$resultbnq['banquet_id']));
     $editbnqmenuQuery=select('common_menupackages', array('banquet_id'=>$resultbnq['banquet_id']));
 
@@ -47,8 +47,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
        </div>
 
        <div class="db-profile-edit">
-         <form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="banquet-post.php" method="POST" enctype="multipart/form-data"> 
+         <form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="" method="POST" enctype="multipart/form-data"> 
+              
 
+              <input type="hidden" name="banquet_id" value="<?php echo $resultbnq['banquet_id'];  ?>">
+              <input type="hidden" name="hotel_id" value="<?php echo $resultbnq['hotel_id']; ?>">
           <div>
             <label class="col s12">Banquet Hall name </label>
             <div class="input-field col s12">
@@ -118,7 +121,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
  <label class="col s12">Serve Food ?</label>
- <select onchange="chk_food(this)"  class="" name="banquet_serve">
+ <select onchange="chk_food(this)"  class="" name="banquet_serve" id="bnqFood">
          <?php if ($resultbnq['banquet_serve']== -1) { ?>
 
  		       <option value="-1" selected="" disabled="">Select One</option>
@@ -146,57 +149,59 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <div id="menupackage-wrap" style="display: none;" class="common-top">
 
  <ul class="collapsible def-show-menu" data-collapsible="accordion">
-   <?php  while ($resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery)) { ?>
-   	         
+   <?php  $i=1;
+
+   while ($resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery)) { ?>
+   	  
+   <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultbnqMenu['common_menupkg_id']; ?>">    
    <li>
     <div class="collapsible-header  active">Menu</div>
     <div class="collapsible-body"> 
      <div class="row">
-      <div class="col-md-6">
-       <label >Menu Packages</label>
-       <input type="text"  class="input-field validate" name="foodpkg_menu[]" value="<?php echo $resultbnqMenu['foodpkg_menu'] ?>">
-     </div>
+      
      <div class="col-md-6">
        <label>Package Name</label>
        <input type="text"  class="input-field validate" name="foodpkg_name[]" value="<?php echo $resultbnqMenu['foodpkg_name'] ?>">
      </div>
+      <div class="col-md-6">
+     <label>Package Price</label>
+     <input type="number"  class="input-field validate" name="foodpkg_price[]" value="<?php echo $resultbnqMenu['foodpkg_price'] ?>">
+   </div> 
    </div>
 
    <div class="row">
-    <div class="col-md-6">
-     <label>Package Price</label>
-     <input type="number"  class="input-field validate" name="foodpkg_price[]" value="<?php echo $resultbnqMenu['foodpkg_price'] ?>">
-   </div>	
+  
    <div class="col-md-6">
      <label >Discount Percentage</label>
-     <input type="number"  class="input-field validate" name="foodpkg_discount[]" value="<?php echo $resultbnqMenu['foodpkg_discount'] ?>">
-   </div>						
- </div>
- <div class="col s12">
-  <label>Package Items</label>
-  <div class="input-field col s3">
-   <div class="chips-packageitem chips-package" id="chips-packageitem-1"  > </div>
+     <input type="number"  class="input-field validate" name="foodpkg_discount[]" value="<?php echo $resultbnqMenu['foodpkg_discount'] ?>" style="padding-top: 18px;">
+   </div>	
+   <div class="col-md-6">
+     <label>Package Items</label>
+  <div class="input-field ">
+   <div class="chips-packageitem chips-package" id="chips-packageitem-<?php echo $i+1; ?>"  > </div>
    <?php 
 
-													$pkgItem = explode(",", $resultbnqMenu['foodpkg_item']);
+                          $pkgItem = explode(",", $resultbnqMenu['foodpkg_item']);
 
 
-													foreach($pkgItem as $item) { ?>
-													<div class="chip">
-														<?php echo $item;   ?>
-														<i class="material-icons close">close</i>
-													</div>
+                          foreach($pkgItem as $item) { ?>
+                          <div class="chip">
+                            <?php echo $item;   ?>
+                            <i class="material-icons close">close</i>
+                          </div>
 
-													<?php    	
-												}
+                          <?php     
+                        }
 
-												?>
-   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+                        ?>
+   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-<?php echo $i+1; ?>" class="menupkg-id"> </div>
+   </div>					
  </div>
+
 
 </div>
 </li>
- <?php  }   ?>
+ <?php $i++; }   ?>
 </ul>
 
 <div  class=" ">
@@ -304,25 +309,26 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
   <ul class="collapsible def-show-date" data-collapsible="accordion">
-  	<?php while ($resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery)) {?>
+  	<?php $i=0;
+    while ($resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery)) {?>
   		
-
+     <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultbnqDate['common_bokdate_id'] ?>">
    <li>
     <div class="collapsible-header  active">Date</div>
     <div class="collapsible-body"> 
       <div class="row">
        <div class="col-md-6">
         <label>From</label>
-        <input type="text" id="from" class="input-field from" name="book_fromdate[]" value="<?php echo $resultbnqDate['book_fromdate'] ;   ?>">
+        <input type="text" id="from-<?php echo $i+1 ?>" class="input-field from" name="book_fromdate[]" value="<?php echo $resultbnqDate['book_fromdate'] ;   ?>">
       </div>
       <div class="col-md-6">
         <label>To</label>
-        <input type="text" id="to" class="input-field to" name="book_todate[]" value="<?php echo $resultbnqDate['book_todate'] ;   ?>"> 
+        <input type="text" id="to-<?php echo $i+1 ?>" class="input-field to" name="book_todate[]" value="<?php echo $resultbnqDate['book_todate'] ;   ?>"> 
       </div>
     </div>
   </div>
 </li>
-<?php  	}   ?>
+<?php $i++;  	}   ?>
 </ul>
 
 </div>
@@ -334,7 +340,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
  <label class="col s12">Independent Hall?</label>
- <select onchange="hall_alone(this)"  class="" name="banquet_independ">
+ <select onchange="hall_alone(this)"  class="" name="banquet_independ" id="independ-select">
 
  	<?php if ($resultbnq['banquet_independ']== -1) { ?>
 
@@ -382,7 +388,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 
 
-
+          
 
           <div id="hall_alone" style="display: none;">
             <div class="row common-top">
@@ -436,7 +442,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
    <?php   } ?>
   <div>
    <div class="input-field col s8">
-    <input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+    <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
   </div>
 </form>
 </div>
@@ -459,12 +465,66 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 </div>
 
 
+  <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+    
+  </div>
+
 
 
 <?php include '../footer.php';?>
 
 
 
+<script src="../js/banquet-js/banquet.js"></script>
 <script type="text/javascript">
   jQuery(document).ready(function(){
 
@@ -487,7 +547,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     }
   });
 
-   $('#chips-packageitem-1').material_chip({
+   $('#chips-packageitem-2').material_chip({
     autocompleteOptions: {
       data: {
         'Naan': null,
@@ -500,39 +560,39 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     }
   });
 
-   $('#pro-sub-btn').click(function(){
-    debugger;
-    var isFormValidated = true;
-    $.each($('#banquet-form .is_validate_input'),function(key,val){
-      if(!val.value){
-       isFormValidated = false;
-       console.log(val);
-       $(val).addClass('error');	
-     }else{
-      debugger;
-      $(val).removeClass('error');
-    }
-  });
-	// $.each($('#banquet-form .is_validate_select'),function(key,val){
-	// 		if(!$(val).find('select').val()){
-	// 			isFormValidated = false;
-	// 			console.log(val);
-	// 			$(val).find('.select-wrapper').addClass('error');
+//    $('#pro-sub-btn').click(function(){
+//     // debugger;
+//     var isFormValidated = true;
+//     $.each($('#banquet-form .is_validate_input'),function(key,val){
+//       if(!val.value){
+//        isFormValidated = false;
+//        console.log(val);
+//        $(val).addClass('error');	
+//      }else{
+//       // debugger;
+//       $(val).removeClass('error');
+//     }
+//   });
+// 	// $.each($('#banquet-form .is_validate_select'),function(key,val){
+// 	// 		if(!$(val).find('select').val()){
+// 	// 			isFormValidated = false;
+// 	// 			console.log(val);
+// 	// 			$(val).find('.select-wrapper').addClass('error');
 
-	// 		}else{
-	// 			// debugger;
-	// 			$(val).find('.select-wrapper').removeClass('error');
-	// 		}
-	// });
+// 	// 		}else{
+// 	// 			// debugger;
+// 	// 			$(val).find('.select-wrapper').removeClass('error');
+// 	// 		}
+// 	// });
 
 
-	if(isFormValidated){
-		console.log('TIme to submit form');
-		$("#room-form").submit();
-	}else{
-		console.log('There is an error');
-	}
-})
+// 	if(isFormValidated){
+// 		console.log('TIme to submit form');
+// 		$("#room-form").submit();
+// 	}else{
+// 		console.log('There is an error');
+// 	}
+// })
 
 
 
@@ -563,6 +623,50 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     }
   });
 
+
+/*Reintialize Dropdown and hide inputs*/
+
+   if ($('#bnqFood :selected').text()=="Yes") {
+   
+
+     document.getElementById('menupackage-wrap').style.display = "block";
+    }else{
+         document.getElementById('menupackage-wrap').style.display = "none";
+         $('#menupackage-wrap').find('input').val('');
+         
+          $('#menupackage-wrap').find('input').removeClass('valid');
+           $('#menupackage-wrap').find('input').removeClass('invalid');
+    }
+
+
+// debugger;
+    if($(".with_aricon input:checkbox:checked").length > 0){
+ // debugger;
+  $('.with_ari').show();
+
+  }else{
+    $('.with_ari').hide();
+  }
+
+
+  if($(".with_generator input:checkbox:checked").length > 0){
+// debugger;
+  $('.with_gent').show();
+
+  }else{
+    $('.with_gent').hide();
+  }
+
+
+if($('#independ-select :selected').text()=="Yes"){
+    $('#hall_alone').show();
+    $('#show_hotelName').hide();
+
+  }else{
+
+    $('#hall_alone').hide();
+    $('#show_hotelName').show();
+  }
 
 
 

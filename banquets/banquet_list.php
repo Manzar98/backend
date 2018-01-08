@@ -1,7 +1,9 @@
 <?php 
-   include '../common-sql.php';
+   include '../common-apis/api.php';
 
    $banquetQuery=select("banquet",array("user_id"=>2));
+
+   //
 
 
   
@@ -33,14 +35,14 @@
 							<h3><img src="images/icon/dbc5.png" alt=""/>My Banquet Hall's</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
-						<table class="bordered responsive-table">
+						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
-									<th>Hall Name</th>
+									<th>Name</th>
 									<th>Capacity</th>
-									<th>Gathering Type</th>
-									<th>Serve Food ?</th>
-									<th>Amenities</th>
+									<th>City</th>
+									<th>Status (Active/Inactive)</th>
+									
 									
 								</tr>
 							</thead>
@@ -50,14 +52,43 @@
 								if (mysqli_num_rows($banquetQuery) > 0) { 
 
 								
-                                   while ($result=mysqli_fetch_assoc($banquetQuery)) { ?>
+                                   while ($result=mysqli_fetch_assoc($banquetQuery)) { 
+
+                                    $hotelQuery=select("hotel",array('hotel_id'=>$result['hotel_id']));
+                                     // print_r($hotelQuery);
+                                      ?>
 
                                    <tr>
 									<td><?php echo $result['banquet_name'];   ?></td>
 									<td><?php echo $result['banquet_space'];   ?></td>
-									<td><?php echo $result['banquet_gathering'];   ?></td>
-									<td><?php echo $result['banquet_serve'];  ?></td>
-									<td><?php echo $result['banquet_other'];   ?></td>
+									<?php 
+									  if ($result['banquet_independ']=='yes') {?>
+									  	
+									  	<td><?php echo $result['banquet_city'];   ?></td>
+									<?php   }else{ 
+
+									while ($hotelCity=mysqli_fetch_assoc($hotelQuery)) { ?>
+
+									     <td><?php echo $hotelCity['hotel_city'];   ?></td> 
+
+										
+								 <?php 
+									  }  
+									  
+									  } ?>
+									<td><?php echo "Active";  ?></td>
+
+									<td class="tdwrap">
+									<div class="buttonsWrap">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+										
+									</div>
+									</td>
+									
 									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->

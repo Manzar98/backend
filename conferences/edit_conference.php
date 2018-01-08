@@ -1,7 +1,7 @@
 <?php
 include '../common-apis/api.php';
 
-   $editconferenceQuery=select('conference',array('hotel_id'=>31,'conference_id'=>20));
+   $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
 
 ?>
 
@@ -15,7 +15,7 @@ include '../common-apis/api.php';
   <?php
          while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
             
-       $editconImgQuery=select('common_imagevideo',array('hotel_id'=>31,'conference_id'=>$resultConference['conference_id']));
+       $editconImgQuery=select('common_imagevideo',array('hotel_id'=>$resultConference['hotel_id'],'conference_id'=>$resultConference['conference_id']));
 
        $editconDateQuery=select('common_bookdates', array('conference_id'=>$resultConference['conference_id']));
 
@@ -38,14 +38,15 @@ include '../common-apis/api.php';
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
-							<h3><img src="../images/icon/dbc5.png" alt=""/> Add Conference Hall</h3>
+							<h3><img src="../images/icon/dbc5.png" alt=""/> Edit Conference Hall</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
 						 
                          <div class="db-profile-edit">
-					<form class="col s12"  data-toggle="validator" id="conference-form" role="form" action="conference-post.php" method="POST" enctype="multipart/form-data">
+					<form class="col s12"  data-toggle="validator" id="conference-form" role="form" action="" method="POST" enctype="multipart/form-data">
 						
-								
+							<input type="hidden" name="hotel_id" value="<?php echo $resultConference['hotel_id'] ?>">	
+              <input type="hidden" name="conference_id" value="<?php echo $resultConference['conference_id'] ?>"> 
 							
 						<div>
 							<label class="col s4">Name of Hall </label>
@@ -57,6 +58,12 @@ include '../common-apis/api.php';
 							<div class="input-field col s8">
 								<input type="number"   class="validate" name="conference_space" required="" aria-required="true" value="<?php echo $resultConference['conference_space']  ?>"> </div>
 						</div>
+
+            <div>
+              <label class="col s4">Hall Charges</label>
+              <div class="input-field col s8">
+                <input type="number"   class="validate" name="conference_charges" required="" aria-required="true" value="<?php echo $resultConference['conference_charges']  ?>"> </div>
+            </div>
 
 						<div class="row">
                              	<div class="col-md-6">
@@ -74,7 +81,7 @@ include '../common-apis/api.php';
 					   <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="bn-serv"  >
 
 							<label class="col s12">Serve Food ?</label>
-							<select onchange="chk_food(this)"  class="" name="conference_serve" required="" aria-required="true">
+							<select  class="" name="conference_serve" required="" aria-required="true" id="conferenceFood">
                 <?php if ($resultConference['conference_serve']== -1) { ?>
 
                        <option value="" selected="" disabled="">Select One</option>
@@ -102,39 +109,36 @@ include '../common-apis/api.php';
                       <div id="menupackage-wrap" style="display: none;" class="common-top">
 						
                            <ul class="collapsible def-show-menu" data-collapsible="accordion">
-                            <?php  while ($resultconmenu=mysqli_fetch_assoc($editconmenuQuery)) { 
+                            <?php $i=1;
+                            while ($resultconmenu=mysqli_fetch_assoc($editconmenuQuery)) { 
 
                               ?>
                                    
-                        
+                         <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultconmenu['common_menupkg_id']; ?>">
                        		<li>
                        			<div class="collapsible-header  active">Menu</div>
                        			<div class="collapsible-body"> 
                        				<div class="row">
                        					<div class="col-md-6">
-                       						<label >Menu Packages</label>
-                       						<input type="text" class="input-field validate" name="foodpkg_menu[]" value="<?php echo $resultconmenu['foodpkg_menu'] ?>">
-                       					</div>
-                       					<div class="col-md-6">
                        						<label>Package Name</label>
                        						<input type="text" class="input-field validate" name="foodpkg_name[]" value="<?php echo $resultconmenu['foodpkg_name'] ?>">
                        					</div>
+                                <div class="col-md-6">
+                                  <label>Package Price</label>
+                                  <input type="number" class="input-field validate" name="foodpkg_price[]" value="<?php echo $resultconmenu['foodpkg_price'] ?>">
+                                </div>  
                        				</div>
 
                        				<div class="row">
-                       					<div class="col-md-6">
-                       						<label>Package Price</label>
-                       						<input type="number" class="input-field validate" name="foodpkg_price[]" value="<?php echo $resultconmenu['foodpkg_price'] ?>">
-                       					</div>	
+
                        					<div class="col-md-6">
                        						<label >Discount Percentage</label>
-                       						<input type="number" class="input-field validate" name="foodpkg_discount[]" value="<?php echo $resultconmenu['foodpkg_discount'] ?>">
-                       					</div>						
-                       				</div>
-                       				<div class="col s12">
-                       					<label>Package Items</label>
-                       					<div class="input-field col s3">
-                       						<div class="chips-packageitem chips-package" id="chips-packageitem-1"  > </div>
+                       						<input type="number" class="input-field validate" name="foodpkg_discount[]" value="<?php echo $resultconmenu['foodpkg_discount'] ?>" style="padding-top: 18px;">
+                       					</div>	
+                                <div class="col-md-6">
+                                      <label>Package Items</label>
+                                <div class="input-field ">
+                                  <div class="chips-packageitem chips-package" id="chips-packageitem-<?php echo $i+1; ?>""  > </div>
                                   <?php 
 
                           $pkgItem = explode(",", $resultconmenu['foodpkg_item']);
@@ -150,12 +154,16 @@ include '../common-apis/api.php';
                         }
 
                         ?>
-                       						<input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+                                  <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-<?php echo $i+1 ?>" class="menupkg-id"> </div>
+                                </div>  					
+                       				</div>
+                       				<div class="col s12">
+                       			
                        					</div>
 
                        				</div>
                        			</li>
-                             <?php  }      ?>
+                             <?php $i++; }      ?>
                        		</ul>
 
                        		 <div  class=" ">
@@ -197,7 +205,7 @@ include '../common-apis/api.php';
 							<div class="row  common-top clearfix">
 								 
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>HALL's PROMOTIONAL VIDEO</span></div>
-										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required="" aria-required="true">
+										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" >
 							</div>
 
 						<div class="common-top">
@@ -228,8 +236,11 @@ include '../common-apis/api.php';
                   
 
                           <ul class="collapsible def-show-date" data-collapsible="accordion">
-                          	<?php while ($resultconDate=mysqli_fetch_assoc($editconDateQuery)) { ?>
-                              
+                          	<?php  $i=0;
+
+                            while ($resultconDate=mysqli_fetch_assoc($editconDateQuery)) { ?>
+
+                              <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultconDate['common_bokdate_id'] ?>">
                          
                             <li>
                           		<div class="collapsible-header  active">Date</div>
@@ -237,16 +248,16 @@ include '../common-apis/api.php';
                           		<div class="row">
                           			<div class="col-md-6">
                           				<label>From</label>
-                          				<input type="text" id="from" class="input-field from" name="book_fromdate[]" value="<?php echo $resultconDate['book_fromdate'] ?>">
+                          				<input type="text" id="from-<?php echo $i+1 ?>" class="input-field from" name="book_fromdate[]" value="<?php echo $resultconDate['book_fromdate'] ?>">
                           			</div>
                           			<div class="col-md-6">
                           				<label>To</label>
-                          				<input type="text" id="to" class="input-field to" name="book_todate[]" value="<?php echo $resultconDate['book_todate'] ?>"> 
+                          				<input type="text" id="to-<?php echo $i+1 ?>" class="input-field to" name="book_todate[]" value="<?php echo $resultconDate['book_todate'] ?>"> 
                           			 </div>
                           		 </div>
                           	  </div>
                           	</li>
-                            <?php   }   ?>
+                            <?php $i++;  }   ?>
                           </ul>
         
                         </div>
@@ -258,7 +269,7 @@ include '../common-apis/api.php';
   <?php   } ?>
 						<div>
 							<div class="input-field col s8">
-								<input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 						</div>
 					</form>
 				</div>
@@ -280,10 +291,69 @@ include '../common-apis/api.php';
 		   </div>
 
 
+
+<!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+    
+  </div>
+
+
+
+       
+
+
 <?php include '../footer.php';  ?>
 
 
-
+<script src="../js/conference-js/conference.js"></script>
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
@@ -310,7 +380,7 @@ jQuery(document).ready(function(){
   });
 
 
-    $('#chips-packageitem-1').material_chip({
+    $('#chips-packageitem-2').material_chip({
     autocompleteOptions: {
       data: {
         'Naan': null,
@@ -451,6 +521,23 @@ jQuery(document).ready(function(){
     //        }
     //      }
     // });
+    
+
+  if ($('#conferenceFood :selected').text()=="Yes") {
+   
+
+     document.getElementById('menupackage-wrap').style.display = "block";
+    }else{
+         document.getElementById('menupackage-wrap').style.display = "none";
+         $('#menupackage-wrap').find('input').val('');
+         
+          $('#menupackage-wrap').find('input').removeClass('valid');
+           $('#menupackage-wrap').find('input').removeClass('invalid');
+    }
+
+  
+
+   
 
 });
 </script>

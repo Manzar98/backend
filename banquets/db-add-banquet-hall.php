@@ -121,31 +121,27 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
     <div class="collapsible-header  active">Menu</div>
     <div class="collapsible-body"> 
      <div class="row">
-      <div class="col-md-6">
-       <label >Menu Packages</label>
-       <input type="text" value="" class="input-field validate" name="foodpkg_menu[]">
-     </div>
      <div class="col-md-6">
        <label>Package Name</label>
        <input type="text" value="" class="input-field validate" name="foodpkg_name[]">
      </div>
+     <div class="col-md-6">
+     <label>Package Price</label>
+     <input type="number" value="" class="input-field validate" name="foodpkg_price[]">
+   </div> 
    </div>
 
    <div class="row">
     <div class="col-md-6">
-     <label>Package Price</label>
-     <input type="number" value="" class="input-field validate" name="foodpkg_price[]">
-   </div>	
-   <div class="col-md-6">
      <label >Discount Percentage</label>
-     <input type="number" value="" class="input-field validate" name="foodpkg_discount[]">
-   </div>						
- </div>
- <div class="col s12">
-  <label>Package Items</label>
-  <div class="input-field col s3">
+     <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
+   </div>   
+   <div class="col-md-6">
+     <label>Package Items</label>
+  <div class="input-field ">
    <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
    <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+   </div>						
  </div>
 
 </div>

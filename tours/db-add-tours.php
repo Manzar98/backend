@@ -33,7 +33,7 @@
 							<label class="col s4">Name of Desination</label>
 							<div class="input-field col s8">
 								<div class="chips chips-destination"  name="tour_destinationname[]"></div>
-								<input type="hidden" name="tour_destinationname[]" id="input_chips-desti" class="" required> </div>
+								<input type="hidden" name="tour_destinationname[]" id="input_chips-desti" class="" > </div>
 						</div>
 
 
@@ -41,7 +41,7 @@
 							<div class="col-md-6 hotelFod common-wrapper comon_dropdown_botom_line">
 								<label>Food Included ?</label>
 								<select name="tour_foodinclude" onchange="selectFod(this)">
-									<option value="-1">Select One</option>
+									<option value="-1" disabled="">Select One</option>
 									<option value="yes">Yes</option>
 									<option value="no">No</option>
 								</select>
@@ -78,7 +78,7 @@
 							<div class="col-md-6 common-wrapper comon_dropdown_botom_line">
 								<label>Drinks Included?</label>
 								<select name="tour_drink"  onchange="selctdrink(this)">
-									<option value="">Select One</option>
+									<option value="" disabled="">Select One</option>
 									<option value="yes">Yes</option>
 									<option value="no">No</option>
 								</select>
@@ -89,21 +89,14 @@
 									<input type="checkbox" class="filled-in" id="filled-in-alcholic"   name="tour_dinner" />
 									<label for="filled-in-alcholic">Alcoholic</label>
 								</p>
-								<!-- <label style="padding-left: 20px;">Alcoholic</label>
-								<p>
-									<input type="checkbox" name="tour_aloholic" class="filled-in">
-								</p> -->
+								
 							</div> 
 							<div class="col-md-4 c-drink">
 								<p>
 									<input type="checkbox" class="filled-in" id="filled-in-nonalc"   name="tour_nonaloholic" />
 									<label for="filled-in-nonalc">Non Alcoholic</label>
 								</p>
-								<!-- <label style="padding-left: 35px;">Non Alcoholic</label>
-								<p>
-									<input type="checkbox" name="tour_nonaloholic"  class="filled-in"
-									style="margin-left: 40px;">
-								</p> -->
+								
 							</div>
 							</div>
 						</div>
@@ -126,8 +119,8 @@
 						</div>
 
 
-						<div class="row t-chckbox common-top" id="t-chckbox" >
-							<div class="col-md-6">
+						<div class="row t-chckbox common-top" id="t-chckbox"  style="margin-bottom: 30px;">
+							<div class="col-md-6" >
 							<div class="hotelStr common-wrapper comon_dropdown_botom_line">
 								
 								  <label for="filled-in-box">Hotel Stay Stars</label>
@@ -143,16 +136,14 @@
                                     </select>								
 							</div>
 							</div>
-							<div class="col-md-6 camping ">
-								<p>
+							<div class="col-md-6  " >
+								<div class="camping">
+								<p class="checkbox-bottom">
 									<input type="checkbox" class="filled-in" onclick="changecamp(this)" name="tour_camping" id="cmp"/>
 									<label for="cmp">Camping ?</label>
-								</p><br><br><br>
-								<!-- <label style="padding-left: 10px;">Camping ?</label>
-								<p>
-                                  <input type="checkbox" onclick="changecamp(this)" class="filled-in " name="tour_camping" id="cmp"  />
-                                  
-                                </p> -->
+								</p>
+								</div>
+								
 							</div>							
 						</div>
 

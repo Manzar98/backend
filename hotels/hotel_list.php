@@ -41,17 +41,14 @@
 							<h3><img src="../images/icon/dbc5.png" alt=""/>My Hotels</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
-						<table class="bordered responsive-table" cellpadding="10" cellspacing="10">
+						<table class="bordered responsive-table" cellpadding="10" cellspacing="10" id="h_table">
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Address</th>
 									<th>City</th>
-									<th>Province</th>
-									<th>Phone Number</th>
-									<th>Email Address</th>
-									<th>Amenities</th>
-									<th>Description</th>
+									<th>Active/Inactive Rooms</th>
+									<th>Booked/Free Rooms</th>
+									<th>Status (Active/Inactive)</th>
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
@@ -64,15 +61,23 @@
 
                                    <tr>
 									<td><?php echo $result['hotel_name'];   ?></td>
-									<td><?php echo $result['hotel_addres1'];   ?></td>
 									<td><?php echo $result['hotel_city'];  ?></td>
-									<td><?php echo $result['hotel_province'];   ?></td>
-									<td><?php echo $result['hotel_phone'];   ?></td>
-									<td><?php echo $result['hotel_email'];   ?></td>
-									<td><?php echo $result['hotel_other'];   ?></td>
-									<td><?php echo $result['hotel_descrp'];   ?></td>
+									<td><?php echo "5/2";   ?></td>
+									<td><?php echo "1/9";   ?></td>
+									<td><?php echo "Active";   ?></td>
+									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
+									<td class="tdwrap">
+									<div class="buttonsWrap">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $result['hotel_id'];  ?>">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+										
+									</div>
+									</td>
 								</tr>
 
 

@@ -1,7 +1,7 @@
 <?php
 include '../common-apis/api.php';
 
-$edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
+$edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
 
 ?>
 
@@ -17,7 +17,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 <?php
          while ($resulttour=mysqli_fetch_assoc($edittourQuery)) {
             
-       $edittourImgQuery=select('common_imagevideo',array('hotel_id'=>31,'tour_id'=>$resulttour['tour_id']));
+       $edittourImgQuery=select('common_imagevideo',array('tour_id'=>$resulttour['tour_id'],'hotel_id'=>$resulttour['hotel_id']));
 
        $edittournoofpeopleQuery=select('common_nosofpeople', array('tour_id'=>$resulttour['tour_id'])); 
 
@@ -43,8 +43,10 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 						</div>
 						 
                          <div class="db-profile-edit">
-					<form class="col s12"  data-toggle="validator" id="tour-form" role="form" action="tour-post.php" method="POST" enctype="multipart/form-data">
-						
+					<form class="col s12"  data-toggle="validator" id="tour-form" role="form" action="" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="tour_id" value="<?php echo $resulttour['tour_id'] ?>">
+						<input type="hidden" name="hotel_id" value="<?php echo $resulttour['hotel_id'] ?>">
+
 							
 						<div>
 							<label class="col s4">Package Name</label>
@@ -77,23 +79,23 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 						<div class="row t-chckbox">
 							<div class="col-md-6 hotelFod common-wrapper comon_dropdown_botom_line">
 								<label>Food Included ?</label>
-								<select name="tour_foodinclude" onchange="selectFod(this)">
+								<select name="tour_foodinclude" onchange="selectFod(this)" id="tour-food">
 
                         	<?php if ($resulttour['tour_foodinclude']== "yes") { ?>
 
-									<option value="" disabled >Select One</option>
+									<option value="" disabled="" >Select One</option>
 								    <option value="yes" selected>Yes</option>
 								    <option value="no">No</option>
 
 							<?php	}elseif ($resulttour['tour_foodinclude']== "no") {?>
 								
-								    <option value="" disabled >Select One</option>
+								    <option value="" disabled="" >Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" selected>No</option>
 
 							<?php }else{ ?>
 								     
-								    <option value="" disabled selected>Select One</option>
+								    <option value="" disabled="" selected>Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" >No</option>
 
@@ -161,7 +163,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 						<div class="row t-chckbox common-top">
 							<div class="col-md-6 common-wrapper comon_dropdown_botom_line">
 								<label>Drinks Included?</label>
-								<select name="tour_drink"  onchange="selctdrink(this)">
+								<select name="tour_drink"  onchange="selctdrink(this)" id="tour-drink">
 
                         	<?php if ($resulttour['tour_drink']== "yes") { ?>
 
@@ -242,15 +244,15 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 						</div>
 
 
-						<div class="row t-chckbox common-top" id="t-chckbox" >
-							<div class="col-md-6">
+						<div class="row t-chckbox common-top" id="t-chckbox" style="margin-bottom: 30px;">
+							<div class="col-md-6" >
 							<div class="hotelStr common-wrapper comon_dropdown_botom_line">
 								
 								  <label for="filled-in-box">Hotel Stay Stars</label>
                                     <select class="" name="tour_hotelstr"  onchange="changeStr(this)">
                         	<?php if ($resulttour['tour_hotelstr']== "1") { ?>
 
-                                    	<option value="" disabled>Select One</option>
+                                    	<option value="">Select One</option>
                                     	<option value="1" selected>1</option>
                                     	<option value="2">2</option>
                                     	<option value="3">3</option>
@@ -261,7 +263,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
             
 							<?php	}elseif ($resulttour['tour_hotelstr']== "2") {?>
 								
-                                    	<option value="" disabled>Select One</option>
+                                    	<option value="" >Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2" selected>2</option>
                                     	<option value="3">3</option>
@@ -272,7 +274,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
             
 							<?php }elseif ($resulttour['tour_hotelstr']== "3") {?>
 								
-                                    	<option value="" disabled>Select One</option>
+                                    	<option value="" >Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2">2</option>
                                     	<option value="3" selected>3</option>
@@ -283,7 +285,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
             
 							<?php }elseif ($resulttour['tour_hotelstr']== "4") {?>
 								
-                                    	<option value="" disabled>Select One</option>
+                                    	<option value="" >Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2">2</option>
                                     	<option value="3">3</option>
@@ -294,7 +296,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
             
 							<?php }elseif ($resulttour['tour_hotelstr']== "5") {?>
 								
-                                    	<option value="" disabled>Select One</option>
+                                    	<option value="" >Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2">2</option>
                                     	<option value="3">3</option>
@@ -305,7 +307,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
             
 							<?php }elseif ($resulttour['tour_hotelstr']== "6") {?>
 								
-                                    	<option value="" disabled>Select One</option>
+                                    	<option value="" >Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2">2</option>
                                     	<option value="3">3</option>
@@ -316,7 +318,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
             
 							<?php }elseif ($resulttour['tour_hotelstr']== "7") {?>
 								
-                                    	<option value="" disabled>Select One</option>
+                                    	<option value="" >Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2">2</option>
                                     	<option value="3">3</option>
@@ -327,7 +329,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
             
 							<?php }else{ ?>
 								     
-                                    	<option value="" selected="" disabled="">Select One</option>
+                                    	<option value="" selected="" >Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2">2</option>
                                     	<option value="3">3</option>
@@ -342,8 +344,9 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
                                     </select>								
 							</div>
 							</div>
-							<div class="col-md-6 camping ">
-								<p>
+							<div class="col-md-6  " >
+								<div class="camping">
+								<p class="checkbox-bottom">
 									<?php if ($resulttour['tour_camping']=='on') { ?>
 
 									<input type="checkbox" class="filled-in" onclick="changecamp(this)" name="tour_camping" id="cmp" checked="" />
@@ -355,8 +358,8 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 									<label for="cmp">Camping ?</label>
 
 								<?php  } ?>
-								</p><br><br><br>
-								
+								</p>
+								</div>
 
 							</div>							
 						</div>
@@ -434,7 +437,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 						<div class="row common-top">
                         	<div class="col-md-6 common-wrapper comon_dropdown_botom_line" id="childallow">
                         		<label >Children Allowed?</label>
-                        		<select name="tour_childallow" onchange="selectchild(this)">
+                        		<select name="tour_childallow" onchange="selectchild(this)" id="childallow">
                         	<?php if ($resulttour['tour_childallow']== "yes") { ?>
 
 									<option value="" disabled >Select One</option>
@@ -458,7 +461,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
                         	</div>
                         	<div class="col-md-6 common-wrapper c-under5 comon_dropdown_botom_line" id="under5">
                         		<label >Under 5 allowed?</label>
-                        		<select name="tour_undr5allow" onchange="selectunder5(this)">
+                        		<select name="tour_undr5allow" onchange="selectunder5(this)" id="undr5allow">
                         	<?php if ($resulttour['tour_undr5allow']== "yes") { ?>
 
 									<option value="" disabled >Select One</option>
@@ -541,12 +544,15 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 						<div class="common-top discount clearfix" id=discount_wrap>
 							<label>Discount for groups <b>:</b></label>
 
-							<?php  while ($resultDiscount=mysqli_fetch_assoc($edittournoofpeopleQuery)) { ?>
+							<?php 
+							while ($resultDiscount=mysqli_fetch_assoc($edittournoofpeopleQuery)) { ?>
+
+							<input type="hidden" name="common_people_id[]" value="<?php echo $resultDiscount['common_people_id'] ?>">
 							<div class="row">
 								<div class="col-md-6">
 									<label>Number of People</label>
                                   <div class="input-field ">
-								   <input type="number"  name="common_nopeople[]" id="uniq_people" class="tour-discount-per validate s hel" value="<?php echo $resultDiscount['common_nopeople'];  ?>"> 
+								   <input type="number"  name="common_nopeople[]"  class="tour-discount-per validate s hel" value="<?php echo $resultDiscount['common_nopeople'];  ?>"> 
 							      </div>
 								</div>
 								<div class="col-md-6">
@@ -574,7 +580,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 							 
 							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
 								<label style="margin-bottom: 32px;">Pickup Offered ?</label>
-							      <select onchange="pickOffer(this)" name="tour_pikoffer">
+							      <select onchange="pickOffer(this)" name="tour_pikoffer" id="pikoffer">
                         	<?php if ($resulttour['tour_pikoffer']== "yes") { ?>
 
 									<option value="" disabled >Select One</option>
@@ -630,7 +636,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 							
 							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
 								<label style="margin-bottom: 32px;">Drop off Offered ?</label>
-							      <select onchange="dropOffer(this)" name="tour_drpoffer">
+							      <select onchange="dropOffer(this)" name="tour_drpoffer" id="drpoffer">
                         	<?php if ($resulttour['tour_drpoffer']== "yes") { ?>
 
 									<option value="" disabled >Select One</option>
@@ -762,7 +768,7 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
                        
 						<div>
 							<div class="input-field col s8">
-								<input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 						</div>
 					</form>
 				</div>
@@ -783,10 +789,67 @@ $edittourQuery=select('tour',array('hotel_id'=>31,'tour_id'=>13));
 				</div>
 		   </div>
 		   </div>
+
+
+
+
+<!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+</div>
+
+
      <?php include '../footer.php'; ?>
 
 
-
+<script src="../js/tour-js/tour.js"></script>
  
 
 <script type="text/javascript">
@@ -862,6 +925,121 @@ $('.chips-destination').on('chip.add', function(e, chip){
           }
         }
    });
+
+
+
+
+
+ /*Reintialize Dropdown and hideinputs*/
+
+
+
+if ($('#tour-food :selected').text() == "Yes") {
+        
+    $('.c-food').show();
+
+
+    $("#bt1").click(function(){
+
+         
+      if ($("#show-food input:checkbox:checked").length > 0 || $('#show-food').find('input').is(":checked") ) {
+          
+            // alert('sucess');
+          $('#show-food').find('input').removeClass('checkbox-error');
+
+      }else{
+           $('#show-food').find('input').addClass('checkbox-error');
+         
+          // alert('Kindly checked aleast one');
+          return false;
+      }
+
+    });
+      
+
+  }else{
+    $('.c-food').hide();
+    $('#show-food').find('input').removeClass('checkbox-error');
+  }
+
+
+
+  
+
+    if ($('#tour-food :selected').text() == "Yes") {
+     $('.c-drink').show();
+
+     $("#bt2").click(function(){
+
+         
+      if ($("#drink-wrap input:checkbox:checked").length > 0 || $('#drink-wrap').find('input').is(":checked")) {
+          
+           // alert('sucess');
+          $('#drink-wrap').find('input').removeClass('checkbox-error');
+
+      }else{
+           $('#drink-wrap').find('input').addClass('checkbox-error');
+           // alert('Kindly checked aleast one');
+          return false;
+      }
+
+      
+      });
+
+  }else{
+    $('.c-drink').hide();
+    $('#drink-wrap').find('input').removeClass('checkbox-error');
+
+  }
+
+
+if ($('#childallow :selected').text() == "Yes") {
+
+        $('.c-childTickt').show();
+        $('.c-under5').show();
+      }else{
+        $('.c-childTickt').hide();
+        $('.c-under5').hide();
+         $('.c-childprice').hide();
+    $('.c-childfree').hide();
+      }
+
+
+if ($('#undr5allow :selected').text() == "Yes") {
+
+    $('.c-childfree').show();
+    $('.c-childprice').show();
+  }else{
+
+    $('.c-childfree').hide();
+    $('.c-childprice').hide();
+
+
+  }
+
+
+  if ($('#pikoffer :selected').text() == "Yes") {
+        $(".pickService").show();
+          
+         
+
+    }else{
+        $(".pickService").hide();
+        $(".pickService").find('input').val('');
+        $('.pickService').find('input').removeClass('valid');
+        $('.pickService').find('input').removeClass('invalid');
+    }
+
+
+    if ($('#drpoffer :selected').text() == "Yes") {
+        $(".dropService").show();
+    }else{
+        $(".dropService").hide();
+        $(".dropService").find('input').val('');
+        $('.dropService').find('input').removeClass('valid');
+        $('.dropService').find('input').removeClass('invalid');
+    }
+
 
 
 		 

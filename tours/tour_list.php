@@ -33,17 +33,15 @@
 							<h3><img src="images/icon/dbc5.png" alt=""/>My Tour Pacakages</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
-						<table class="bordered responsive-table">
+						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
 									<th>Package Name</th>
 									<th>Destination</th>
-									<th>No of Days</th>
-									<th>No of Night</th>
-									<th>Whole Paln</th>
-									<th>Charges per Person</th>
-									<th>Capacity</th>
-									<th>Trip starts from</th>
+									<th>Days/Nights</th>
+									<th>Price</th>
+									<th>Number of people</th>
+									<th>Active/Inactive</th>
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
@@ -57,15 +55,21 @@
                                    <tr>
 									<td><?php echo $result['tour_name'];   ?></td>
 									<td><?php echo $result['tour_destinationname'];   ?></td>
-									<td><?php echo $result['tour_stayday'];  ?></td>
-									<td><?php echo $result['tour_stayni8'];   ?></td>
-									<td><?php echo $result['tour_plan'];   ?></td>
+									<td><?php echo $result['tour_stayday']."/".$result['tour_stayni8'];  ?></td>
 									<td><?php echo $result['tour_pkgprice'];   ?></td>
 									<td><?php echo $result['tour_capacitypeople'];   ?></td>
-									<td><?php echo $result['tour_strtloc'];   ?></td>
+									<td><?php echo "Active";   ?></td>
 									
-									<!-- <td><a href="#" class="db-success">Success</a>
-									</td> -->
+									<td class="tdwrap">
+									<div class="buttonsWrap">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+										
+									</div>
+									</td>
 								</tr>
 
 

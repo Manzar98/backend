@@ -35,6 +35,22 @@ if (empty($_POST['conference_space'])) {
 	$space        = $_POST['conference_space'];
 	
 }
+
+if (!empty($_POST['conference_charges']) && is_numeric($_POST['conference_charges']))
+{
+	
+	$charges= $_POST['conference_charges'];
+}elseif (!empty($_POST['conference_charges']) && !is_numeric($_POST['conference_charges'])) {
+	$is_check=false;
+	echo "Hall Charges accept Only Numeric";
+}else{
+     
+     $is_check=false;
+	echo "Hall Charges is required";
+}
+
+
+
 if (empty($_POST['conference_serve'])) {
 
 	 $is_check= false;
@@ -47,36 +63,16 @@ if (empty($_POST['conference_serve'])) {
 
 }
 
-foreach($_POST['foodpkg_menu'] as $foodpkgmenu) { 
-	
-                  // echo $menupkgprice."<br>";
-	if (!empty($foodpkgmenu) && !is_numeric($foodpkgmenu)) {
 
-		$is_check=false;
-		echo "Menu Package  accept only Numeric"."<br>";
-                  	# code...
-	}elseif(is_numeric($foodpkgmenu)){
-
-		$pkgmenu     = $_POST['foodpkg_menu'];
-	}else{
-		$pkgmenu=null;
-
-                  	// echo "array is empty";
-	}
-}
 
 
 foreach($_POST['foodpkg_name'] as $foodpkgname) { 
 	
                   // echo $menupkgprice."<br>";
-	if (!empty($foodpkgname) && !is_numeric($foodpkgname)) {
-
-		$is_check=false;
-		echo "Menu Package name  accept only Numeric"."<br>";
-                  	# code...
-	}elseif(is_numeric($foodpkgname)){
+	if (!empty($foodpkgname)) {
 
 		$pkgname     = $_POST['foodpkg_name'];
+                  	# code...
 	}else{
 		$pkgname=null;
 
@@ -121,28 +117,6 @@ foreach($_POST['foodpkg_discount'] as $menupkgdiscount) {
 	}
 }
 
-
-foreach($_POST['foodpkg_discount'] as $menupkgdiscount) { 
-	
-	
-	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
-
-		$is_check=false;
-		echo "Menu Package Discount accept only Numeric"."<br>";
-                  	# code...
-	}elseif(is_numeric($menupkgdiscount)){
-
-		$pkgdis     = $_POST['foodpkg_discount'];
-	}else{
-		$pkgdis=null;
-
-                  	// echo "array is empty";
-	}
-}
-
-
-
-
 foreach($_POST['foodpkg_item'] as $menupkgitems) { 
 	
            // echo $menupkgitems;
@@ -161,7 +135,7 @@ foreach($_POST['foodpkg_item'] as $menupkgitems) {
 
 			$pgkitem=null;
 
-			echo "array is empty";
+			// echo "array is empty";
 		}
 	}
 
@@ -208,7 +182,7 @@ if ($is_check==true) {
 
 
      
-$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other[0].'","'.$discuntofer.'","'.$discountexpire.'")';
+$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other[0].'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'")';
 
 if ($conn->query($query)== TRUE) {
  	# code...
@@ -231,10 +205,10 @@ $datesQuery='INSERT INTO common_bookdates(conference_id,book_fromdate,book_todat
  // print_r($datesQuery);
 }
 
-for ($i=0; $i<count($_POST['foodpkg_menu']); $i++) {
+for ($i=0; $i<count($_POST['foodpkg_name']); $i++) {
 
 
-	$pkgQuery='INSERT INTO common_menupackages(conference_id,foodpkg_menu,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$conference_id.'","'.$pkgmenu[$i].'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
+	$pkgQuery='INSERT INTO common_menupackages(conference_id,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$conference_id.'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
 
  mysqli_query($conn,$pkgQuery) or die(mysqli_error($conn));
 

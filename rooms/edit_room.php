@@ -1,23 +1,16 @@
 <?php
  include '../common-apis/api.php';
 
+     $RoomID=  $_GET['id'];
+
+     $HotelID= $_GET['h_id'];
+
    $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
 
    $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
-   $editroomQuery=select('room',array('hotel_id'=>47,'room_id'=>27));
-
+   $editroomQuery=select('room',array('hotel_id'=>$HotelID,'room_id'=>$RoomID));
    
-  
-
-
-  
-
-   
- 
-
-
-
 ?>
 
 
@@ -54,7 +47,7 @@
 							</div>
 
 							<div class="db-profile-edit">
-								<form class="col s12"  data-toggle="validator" id="room-form" role="form" action="room-post.php" method="POST" enctype="multipart/form-data">
+								<form class="col s12"  data-toggle="validator" id="room-form" role="form" action="" method="POST" enctype="multipart/form-data">
 
 									<?php
 
@@ -81,7 +74,8 @@
 
 
 
-
+                 <input type="hidden" name="hotel_id" value="<?php echo $resultRoom['hotel_id']  ?>">
+                 <input type="hidden" name="room_id" value="<?php echo $resultRoom['room_id'] ?>"> 
 				<div class="common-top">
 					<label class="col s4">Room Name </label>
 					<div class="input-field col s12">
@@ -210,7 +204,7 @@
 							<label class="col s4">Amenities:</label>
 
 							<div class="chips chips-autocomplete"></div>
-							<input type="hidden"  name="room_other[]" id="amenities-id">
+							<input type="hidden"  name="room_other" id="amenities-id">
 						</div>
 						<?php 
 
@@ -236,23 +230,25 @@
 
 
 								<ul class="collapsible def-show-date" data-collapsible="accordion">
-									<?php while ($resultRoomdate=mysqli_fetch_assoc($editroomDateQuery)){ ?>  
+									<?php  $i=0;
+									while ($resultRoomdate=mysqli_fetch_assoc($editroomDateQuery)){ ?>  
 									<li>
 										<div class="collapsible-header  active">Date</div>
 										<div class="collapsible-body"> 
 											<div class="row">
+												<input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultRoomdate['common_bokdate_id'] ?>">
 												<div class="col-md-6">
 													<label>From</label>
-													<input type="text" id="from" class="input-field from" name="book_fromdate[]" value="<?php echo $resultRoomdate['book_fromdate'] ;   ?>" >
+													<input type="text" id="from-<?php echo $i+1; ?>" class="input-field from" name="book_fromdate[]" value="<?php echo $resultRoomdate['book_fromdate'] ;   ?>" >
 												</div>
 												<div class="col-md-6">
 													<label>To</label>
-													<input type="text" id="to" class="input-field to" name="book_todate[]" value="<?php echo $resultRoomdate['book_todate'] ;   ?>"> 
+													<input type="text" id="to-<?php echo $i+1; ?>" class="input-field to" name="book_todate[]" value="<?php echo $resultRoomdate['book_todate'] ;   ?>"> 
 												</div>
 											</div>
 										</div>
 									</li>
-									<?php  } ?>
+									<?php $i++; } ?>
 								</ul>
 
 							</div>
@@ -289,11 +285,66 @@
 
 
 
+  <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+    	<div class="col-md-5"></div>
+    	   <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+		</div>
+    
+  </div>
+
+
+
 		   <?php  include"../footer.php";  ?>
 
 
 
-
+<script src="../js/room-js/room.js"></script>
 		   <script type="text/javascript">
 							tinymce.init({ selector:'textarea' });
 
@@ -329,7 +380,7 @@
 
 	if(isFormValidated){
 		console.log('TIme to submit form');
-		$("#room-form").submit();
+		// $("#room-form").submit();
 	}else{
 		console.log('There is an error');
 	}

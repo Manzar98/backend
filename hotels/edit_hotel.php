@@ -1,7 +1,7 @@
 <?php
 include '../common-apis/api.php';
 
-$editHotelQuery=select('hotel',array('hotel_id'=>47));
+$editHotelQuery=select('hotel',array('hotel_id'=>$_GET['id']));
 
 
 
@@ -45,7 +45,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 </div>
 
 <div class="db-profile-edit">
-<form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
+<form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="" method="POST" enctype="multipart/form-data">
 
 
 <div>
@@ -197,7 +197,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			</div>
 
 			<div class="col-md-6 " id="transport" style="padding-top: 10px;display: none;">
-				<select onchange="transportType(this)" name="hotel_transport">
+				<select onchange="transportType(this)" name="hotel_transport" id="transport_select">
 					<?php if ($hotelResult['hotel_transport']=='airport') { ?>
 					<option value="" disabled>Select One</option>
 					<option value="airport" selected>Airport</option>
@@ -296,7 +296,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<label class="col s4" id="3bags" style="display: none;">3 bags charges</label>
 			<label class="col s4" id="4bags" style="display: none;">4 bags charges</label>
 			<div class="input-field col s8">
-				<input type="text"  class="validate"  id="bag-inpt" name="hotel_bagprice" style="display: none;"> </div>
+				<input type="text"  class="validate"  id="bag-inpt" name="hotel_bagprice" style="display: none;" value="<?php echo $hotelResult['hotel_bagprice'] ?>"> </div>
 
 			</div>
 
@@ -309,7 +309,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 				<div class="chips chips-autocomplete" id="click_other" >
 					
 			</div>
-			<input type="hidden"  name="hotel_other[]" id="amenities-id" >
+			<input type="hidden"  name="hotel_other" id="amenities-id" >
 			<?php 
 
 			$lst = explode(",", $hotelResult['hotel_other']);
@@ -367,6 +367,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<div class="col-md-6">
 				<label>Hotel’s Youtube</label>
 				<input type="text"  class="validate input-field" name="hotel_yuturl" value="<?php echo $hotelResult['hotel_yuturl']; ?>">
+				<input type='hidden' value='<?php echo $_GET['id']; ?>' name="hotel_id" />
 			</div>
 
 		</div>
@@ -374,13 +375,29 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 	<div>
 		<div class="input-field col s8">
-			<input type="submit"  value="Add" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+			<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 		</div>
 
 		<?php
 	}
 	?>
 </form>
+
+<div class="col s8" id="btn-loader" style="display: none;">
+						 <div class="preloader-wrapper big active">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+					</div>
+
+
 
 </div>
 
@@ -426,12 +443,68 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 
 
+
+  <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+    	<div class="col-md-5"></div>
+    	   <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+		</div>
+    
+  </div>
+
+
 <?php  include"../footer.php";  ?>
 
 
 
-
+<script src="../js/hotel-js/hotel.js"></script>
 <script>
+
 tinymce.init({ selector:'textarea' });
 
 
@@ -609,10 +682,77 @@ $('#checkIn').pickatime();
 $('#checkOut').pickatime();
 
 
+/* Reintialize dropdowns hide Inputs,dropdown */
+
+if($('#qun-lags :selected').text() == "1"){
+
+ 
+document.getElementById("1bag").style.display = "block";
+document.getElementById('bag-inpt').style.display = "block";
+document.getElementById("2bags").style.display = "none";
+document.getElementById("3bags").style.display = "none";
+document.getElementById("4bags").style.display = "none";
+
+} 
+
+else if ($('#qun-lags :selected').text() == "2") {
+document.getElementById("1bag").style.display = "none";
+document.getElementById('bag-inpt').style.display = "block";
+document.getElementById("2bags").style.display = "block";
+document.getElementById("3bags").style.display = "none";
+document.getElementById("4bags").style.display = "none";
+}
+else if ($('#qun-lags :selected').text() == "3") {
+document.getElementById("1bag").style.display = "none";
+document.getElementById('bag-inpt').style.display = "block";
+document.getElementById("2bags").style.display = "none";
+document.getElementById("3bags").style.display = "block";
+document.getElementById("4bags").style.display = "none";
+}
+else if($('#qun-lags :selected').text() == "4"){
+document.getElementById("1bag").style.display = "none";
+document.getElementById("2bags").style.display = "none";
+document.getElementById("3bags").style.display = "none";
+document.getElementById("4bags").style.display = "block";
+document.getElementById('bag-inpt').style.display = "block";
+
+}else{
+document.getElementById("1bag").style.display = "none";
+document.getElementById("2bags").style.display = "none";
+document.getElementById("3bags").style.display = "none";
+document.getElementById("4bags").style.display = "none";
+document.getElementById('bag-inpt').style.display = "none";
+}
 
 
+// debugger;
+if ($('#pik_select :selected').text() == "Yes") {
+            // alert("check");
+              document.getElementById("transport").style.display = "block";
+             document.getElementById("bag-char").style.display = "block";
+        } else {
+             document.getElementById("ifYes").style.display = "none";
+            document.getElementById("bag-char").style.display = "none";
+            document.getElementById("1bag").style.display = "none";
+    		document.getElementById("2bags").style.display = "none";
+    		document.getElementById("3bags").style.display = "none";
+    		document.getElementById("4bags").style.display = "none";
+    		document.getElementById('bag-inpt').style.display = "none";
+    		document.getElementById("transport").style.display = "none";
+    		$('#busAddres').hide();
+    		 $('#transport').prop('selectedIndex',0);
 
+    		  
+        }
 
+if ($('#transport_select :selected').text()== 'Airport') {
+
+					    		  	$('#ifYes').show();
+					    		  	$('#busAddres').hide();
+					    		  }else{
+					    		  	$('#busAddres').show();
+					    		  	$('#ifYes').show();
+					    		  }
 
 
 });

@@ -31,13 +31,14 @@
 							<h3><img src="../images/icon/dbc5.png" alt=""/>My Events</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
-						<table class="bordered responsive-table">
+						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
 									<th>Event Name</th>
+									<th>Venue</th>
 									<th>Recurrence</th>
-									<th>Event's Description</th>
 									<th>Entry Fee</th>
+									<th>Active/Inactive</th>
 									
 								</tr>
 							</thead>
@@ -51,13 +52,22 @@
 
                                    <tr>
 									<td><?php echo $result['event_name'];   ?></td>
+									<td><?php echo $result['event_venue']; ?></td>
 									<td><?php echo $result['event_recurrence'];   ?></td>
-									<td><?php echo $result['event_descrip'];  ?></td>
-									<td><?php echo $result['event_entryfee'];   ?></td>
+									<td><?php echo $result['event_entry'];   ?></td>
+									<td><?php echo "Active";   ?></td>
 									
 									
-									<!-- <td><a href="#" class="db-success">Success</a>
-									</td> -->
+									<td class="tdwrap">
+									<div class="buttonsWrap">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+										
+									</div>
+									</td>
 								</tr>
 
 

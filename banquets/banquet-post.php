@@ -69,33 +69,12 @@ if (empty($_POST['banquet_serve'])) {
 }
 
 
-foreach($_POST['foodpkg_menu'] as $foodpkgmenu) { 
-	
-                  // echo $menupkgprice."<br>";
-	if (!empty($foodpkgmenu) && !is_numeric($foodpkgmenu)) {
 
-		$is_check=false;
-		echo "Menu Package  accept only Numeric"."<br>";
-                  	# code...
-	}elseif(is_numeric($foodpkgmenu)){
-
-		$pkgmenu     = $_POST['foodpkg_menu'];
-	}else{
-		$pkgmenu=null;
-
-                  	// echo "array is empty";
-	}
-}
 
 foreach($_POST['foodpkg_name'] as $foodpkgname) { 
 	
                   // echo $menupkgprice."<br>";
-	if (!empty($foodpkgname) && !is_numeric($foodpkgname)) {
-
-		$is_check=false;
-		echo "Menu Package name  accept only Numeric"."<br>";
-                  	# code...
-	}elseif(is_numeric($foodpkgname)){
+	if (!empty($foodpkgname)) {
 
 		$pkgname     = $_POST['foodpkg_name'];
 	}else{
@@ -118,24 +97,6 @@ foreach($_POST['foodpkg_price'] as $menupkgprice) {
 		$pkgprice     = $_POST['foodpkg_price'];
 	}else{
 		$pkgprice=null;
-
-                  	// echo "array is empty";
-	}
-}
-
-foreach($_POST['foodpkg_discount'] as $menupkgdiscount) { 
-	
-	
-	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
-
-		$is_check=false;
-		echo "Menu Package Discount accept only Numeric"."<br>";
-                  	# code...
-	}elseif(is_numeric($menupkgdiscount)){
-
-		$pkgdis     = $_POST['foodpkg_discount'];
-	}else{
-		$pkgdis=null;
 
                   	// echo "array is empty";
 	}
@@ -389,10 +350,10 @@ $datesQuery='INSERT INTO common_bookdates(banquet_id,book_fromdate,book_todate,f
  // print_r($datesQuery);
 }
 
-for ($i=0; $i<count($_POST['foodpkg_menu']); $i++) {
+for ($i=0; $i<count($_POST['foodpkg_price']); $i++) {
 
 
-	$pkgQuery='INSERT INTO common_menupackages(banquet_id,foodpkg_menu,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$banquet_id.'","'.$pkgmenu[$i].'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
+	$pkgQuery='INSERT INTO common_menupackages(banquet_id,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$banquet_id.'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
 
  mysqli_query($conn,$pkgQuery) or die(mysqli_error($conn));
 

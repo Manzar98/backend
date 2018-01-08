@@ -4760,5 +4760,46 @@ label{
     padding-bottom: 50px;
 }
 
+#loader.modal{
+
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    background: transparent;
+    max-height: 50%;
+    width: 476px;
 
 
+}
+#loader .modal-content{
+    border: 0px ; 
+        background-color: #FFF;
+        box-shadow:unset;
+        -webkit-box-shadow: unset;
+         height: 326px; 
+
+    
+}
+.checkbox-bottom{
+    margin-bottom: 50px !important;
+}
+.tdwrap{
+
+    position: absolute;
+    left: 0;
+    background: rgba(255,255,255,0.8);
+    width: 100%;
+    display: none;
+    border: 1px solid #a7a4a4;
+    box-shadow: 1px 0px 1px 1px;
+
+}
+.buttonsWrap{
+        width: 170px;
+    margin: 0 auto;
+}
+.buttonsWrap .row{
+    margin-bottom: 0px;
+}
+table#h_table tr:hover td.tdwrap {
+    display: block;
+}
