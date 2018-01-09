@@ -199,7 +199,7 @@ $user_id= 2;
  if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_transport,hotel_busaddres,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other[0].'","'.$pickup.'","'.$transport.'","'.$busaddres.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
+$query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_transport,hotel_busaddres,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other.'","'.$pickup.'","'.$transport.'","'.$busaddres.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
 
 
 

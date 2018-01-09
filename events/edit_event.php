@@ -326,7 +326,7 @@ $editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['
 							</div>	
 							<?php	}   
 						}else{ ?>
-						<div class="row">
+						<div class="row newLI">
 								<div class="col-md-6">
 									<label>Number of People</label>
                                   <div class="input-field ">

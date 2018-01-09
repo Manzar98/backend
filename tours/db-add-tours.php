@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -221,7 +222,7 @@
                         <div class="row common-top">
                         	<div class="col-md-6 common-wrapper c-childTickt comon_dropdown_botom_line"  id="c-chilTickt">
                         		<label style="padding-bottom:5px;">Half Ticket for children?</label>
-                        		<select name="tour_halftikchild" onchange="selecthalftik(this)">
+                        		<select name="tour_halftikchild" >
                         			<option value="">Select One</option>
                         			<option value="yes">Yes</option>
                         			<option value="no">No</option>

@@ -462,7 +462,7 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 
 							<?php }else{ ?>
 								     
-								    <option value="" disabled selected>Select One</option>
+								    <option value="-1" disabled selected>Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" >No</option>
 
@@ -474,7 +474,7 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
                         <div class="row common-top">
                         	<div class="col-md-6 common-wrapper c-childTickt comon_dropdown_botom_line"  id="c-chilTickt">
                         		<label style="padding-bottom:5px;">Half Ticket for children?</label>
-                        		<select name="tour_halftikchild" onchange="selecthalftik(this)">
+                        		<select name="tour_halftikchild" >
                         	<?php if ($resulttour['tour_halftikchild']== "yes") { ?>
 
 									<option value="" disabled >Select One</option>
@@ -489,7 +489,7 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 
 							<?php }else{ ?>
 								     
-								    <option value="" disabled selected>Select One</option>
+								    <option value="-1" disabled selected>Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" >No</option>
 
@@ -557,7 +557,7 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 
 						}else{ ?>
 
-						<div class="row">
+						<div class="row newLI">
 								<div class="col-md-6">
 									<label>Number of People</label>
                                   <div class="input-field ">

@@ -213,7 +213,7 @@
 		
 
 
-		<ul class="collapsible def-show-date" data-collapsible="accordion">
+		<ul class="collapsible def-show-date editroom" data-collapsible="accordion">
 			<?php  $i=0;
 			$resultRoomdate=mysqli_fetch_assoc($editroomDateQuery);
 
@@ -239,7 +239,7 @@
 			</li>
 			<?php $i++; } 
 		}else{ ?>
-		<li>
+		<li class="newLI">
 			<div class="collapsible-header  active">Date</div>
 			<div class="collapsible-body"> 
 				<div class="row">
@@ -359,9 +359,46 @@
 
 
 
-							$(document).ready(function(){
+$(document).ready(function(){
 
-								$('#pro-sub-btn').click(function(){
+	console.log();
+
+	
+
+
+				$("").click(function(){
+
+
+$.ajax({
+                             type:"POST",
+                             url:"../rooms/insert_room.php",
+                             data: $("form").serialize(),
+                                       success:function(data) {
+
+                             // console.log(data);
+
+                             if (data=='sucess') {
+                             
+
+                             }
+
+                            
+                           
+                            }
+                          })
+
+
+
+
+
+
+})
+
+
+
+
+
+$('#pro-sub-btn').click(function(){
 // debugger;
 	var isFormValidated = true;
 	$.each($('#room-form .is_validate'),function(key,val){

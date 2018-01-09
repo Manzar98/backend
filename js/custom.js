@@ -78,34 +78,47 @@ $(function() {
             // defaultDate: "+1w",
             // changeMonth: false,
             minDate: 0,
-        //      onSelect: function(selected) {
-        //   $("#to").datepicker("option","minDate", selected)
-        // }
+             onSelect: function(selected) {
+              debugger;
+           $("#to").datepicker("option","minDate", selected)
+           if($("#from").parents('.def-show-date').hasClass('editroom')){
+                if($("#to").val() && $('#from').val()){
+                  alert('Time to send ajax call for insertion')
+                }
+            }
+         }
             // numberOfMonths: 1
            
             
         })
         
-          // debugger;
-         //  .on("change", function() {
-         //      var from = to.datepicker("option", "maxDate", getDate(this));
-         //      console.log($(this).val());
+           
+           .on("change", function() {
+               var from = to.datepicker("option", "maxDate", getDate(this));
+               console.log($(this).val());
 
              
-         // }),
+          }),
         to = $(".to").datepicker({
              // defaultDate: "+1w",
             // changeMonth: false,
             minDate: 0,
             // numberOfMonths: 1
            onSelect: function(selected,element) {
+            debugger;
             console.log(element);
             $("#from").datepicker("option","maxDate", selected)
+            if($("#to").parents('.def-show-date').hasClass('editroom')){
+                if($("#to").val() && $('#from').val()){
+                  alert('Time to send ajax call for insertion')
+                }
+            }
          }
 
            
         })
           .on("change", function() {
+            
              var to =from.datepicker("option", "maxDate", getDate(this));
                 // console.log(Object.values(to));
               // alert('2.trigger')
@@ -173,6 +186,13 @@ function gen_dates_input(event) {//
          onSelect: function(selected) {
            debugger;
            $("#"+to_id).datepicker("option","minDate", selected)
+            if($("#"+from_id).parents('.def-show-date').hasClass('editroom')){
+                if($("#"+to_id).val() && $('#'+from_id).val()){
+                  alert('Time to send ajax call for insertion')
+                }
+            }
+
+
           
           }
  
@@ -184,6 +204,11 @@ function gen_dates_input(event) {//
             onSelect: function(selected) {
               debugger;
             $("#"+from_id).datepicker("option","maxDate", selected)
+            if($("#"+to_id).parents('.def-show-date').hasClass('editroom')){
+                if($("#"+to_id).val() && $('#'+from_id).val()){
+                  alert('Time to send ajax call for insertion')
+                }
+            }
             
          }
 
@@ -336,7 +361,7 @@ function gen_discount_input(event) {
 
   
     var new_discount=document.createElement('div');
-    new_discount.innerHTML='<div class="row"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique"></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate"></div></div></div></div>';
+    new_discount.innerHTML='<div class="row newLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique"></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate"></div></div></div></div>';
     dis_div.appendChild(new_discount.firstChild);
 
 

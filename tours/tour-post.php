@@ -1,6 +1,6 @@
 <?php
  include '../common-sql.php';
-print_r($_POST);
+  print_r($_POST);
 
 // return false;
 $is_check=true;
@@ -139,7 +139,7 @@ if (empty($_POST['tour_entrytik'])) {
 if (empty($_POST['tour_plan'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "This Field is Required ";
 }else{
 
 	$plan             =$_POST['tour_plan'];
@@ -171,7 +171,7 @@ if (empty($_POST['tour_capacitypeople'])) {
 if (empty($_POST['tour_nosofbag'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "This Field is Required ";
 }elseif (!is_numeric($_POST['tour_nosofbag'])) {
 	$is_check=false;
 	echo "This Field accept only Numeric 16"."<br>";
@@ -183,30 +183,36 @@ if (empty($_POST['tour_nosofbag'])) {
 if (empty($_POST['tour_childallow'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "This Field is Required srh";
 }else{
 
 	$childallow       =$_POST['tour_childallow'];
 
 }
-if (empty($_POST['tour_undr5allow'])) {
-	
-	$is_check=false;
-     echo "This Field is Required";
-}else{
 
 	$undr5allow       =$_POST['tour_undr5allow'];
 
-}
 
-if (!is_numeric($_POST['tour_extrachrbag'])) {
-	$is_check=false;
-	echo "This Field accept only Numeric 17"."<br>";
-}else{
 
-	$extrachrbag      =$_POST['tour_extrachrbag'];
 
-}
+// if (isset($_POST['tour_extrachrbag'])) {
+
+// 	if (!is_numeric($_POST['tour_extrachrbag'])) {
+
+// 	    $is_check=false;
+//  	    echo "This Field accept only Numeric 17"."<br>";
+		
+// 	}else{
+
+		$extrachrbag      =$_POST['tour_extrachrbag'];
+	// }
+
+
+// }
+
+	
+
+// }
 
 $halftikchild     =$_POST['tour_halftikchild'];
 if (isset($_POST['tour_undr5free'])) {
@@ -395,8 +401,10 @@ if ($is_check==true) {
 	# code...
 
 
-$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti[0].'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
+$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
 
+
+echo $query;
 if ($conn->query($query)== TRUE) {
  	# code...
  	$tour_id=$conn->insert_id;

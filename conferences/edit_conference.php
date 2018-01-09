@@ -156,7 +156,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
              <?php $i++; }      
 
                }else{ ?>
-               <li>
+               <li class="newLI">
     <div class="collapsible-header  active">Menu</div>
     <div class="collapsible-body"> 
      <div class="row">
@@ -271,7 +271,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
         <?php $i++;  }
 
          }else{ ?>
-         <li>
+         <li class="newLI">
     <div class="collapsible-header  active">Date</div>
     <div class="collapsible-body"> 
       <div class="row">

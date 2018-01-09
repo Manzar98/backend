@@ -31,7 +31,7 @@ global $conn;
 
 				    $updatequerydates= "UPDATE common_nosofpeople SET "."common_nopeople='".$updateObject['common_nopeople'][$k]."',common_discount='".$updateObject['common_discount'][$k]."' WHERE common_people_id=".$updateObject['common_people_id'][$k];
 
-
+              // echo $updatequerydates;
 				    mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
 
 				    
@@ -57,7 +57,7 @@ global $conn;
      	if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
        			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
-       			 echo $updatequery;
+       			 // echo $updatequery;
         }else if(count($whereClauseArray) > 1) {
         		$condString='';
 				for ($i=0; $i < count($whereClauseArray); $i++) { 
