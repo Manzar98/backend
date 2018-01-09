@@ -531,8 +531,12 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 							<label>Discount for groups <b>:</b></label>
 
 							<?php 
-							while ($resultDiscount=mysqli_fetch_assoc($edittournoofpeopleQuery)) { ?>
+							$resultDiscount=mysqli_fetch_assoc($edittournoofpeopleQuery);
 
+							if (count($resultDiscount) > 0) {
+
+								for ($i=0; $i < count($resultDiscount['common_nopeople']) ; $i++) { ?>
+								
 							<input type="hidden" name="common_people_id[]" value="<?php echo $resultDiscount['common_people_id'] ?>">
 							<div class="row">
 								<div class="col-md-6">
@@ -549,7 +553,30 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 
 								</div>								
 							</div>
-							<?php   } ?> 
+							<?php   } 
+
+						}else{ ?>
+
+						<div class="row">
+								<div class="col-md-6">
+									<label>Number of People</label>
+                                  <div class="input-field ">
+								   <input type="number"  name="common_nopeople[]"  class="tour-discount-per validate s hel" > 
+							      </div>
+								</div>
+								<div class="col-md-6">
+									<label>Discount (Percentage)</label>
+                                  <div class="input-field ">
+								   <input type="number" name="common_discount[]" class="validate" > 
+							      </div>
+
+								</div>								
+							</div>
+
+
+
+						<?php }
+?> 
 						</div>
                                
 						<div  class=" " style="margin-bottom: 20px;"> 

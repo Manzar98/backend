@@ -149,8 +149,13 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <ul class="collapsible def-show-menu" data-collapsible="accordion">
    <?php  $i=0;
 
-   while ($resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery)) { ?>
-   	  
+   $resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery);
+
+   if (count($resultbnqMenu) > 0) {
+
+for ($j=0; $j < count($resultbnqMenu['foodpkg_name']) ; $j++) {  ?>
+     
+  
    <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultbnqMenu['common_menupkg_id']; ?>">    
    <li>
     <div class="collapsible-header  active">Menu</div>
@@ -182,9 +187,44 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
    </div>					
  </div>
 
+   <?php echo $resultbnqMenu['foodpkg_item'];  ?>
 </div>
 </li>
- <?php $i++; }   ?>
+ <?php $i++; }  
+   }else{ ?>
+<li class="newLI">
+    <div class="collapsible-header  active">Menu</div>
+    <div class="collapsible-body"> 
+     <div class="row">
+     <div class="col-md-6">
+       <label>Package Name</label>
+       <input type="text" value="" class="input-field validate" name="foodpkg_name[]">
+     </div>
+     <div class="col-md-6">
+     <label>Package Price</label>
+     <input type="number" value="" class="input-field validate" name="foodpkg_price[]">
+   </div> 
+   </div>
+
+   <div class="row">
+    <div class="col-md-6">
+     <label >Discount Percentage</label>
+     <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
+   </div>   
+   <div class="col-md-6">
+     <label>Package Items</label>
+  <div class="input-field ">
+   <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
+   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+   </div>           
+ </div>
+
+</div>
+</li>
+
+     
+<?php }
+  ?>
 </ul>
 
 <div  class=" ">
@@ -277,10 +317,16 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
   <ul class="collapsible def-show-date" data-collapsible="accordion">
-   
+  
   	<?php $i=0;
- 
-    while ($resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery)) {?>
+    $resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery);
+  
+ if (count($resultbnqDate) > 0) {
+   # code...
+     //print_r($resultbnqDates);
+    //while ($resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery)) {
+     for($j=0; $j < count($resultbnqDate['book_fromdate']); $j++ ){
+    ?>
   		  
 
      <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultbnqDate['common_bokdate_id'] ?>">
@@ -301,9 +347,26 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 </li>
 <?php $i++;  	} 
 
- ?>
+}else{ ?>
 
- </ul>
+ <li class="newLI">
+    <div class="collapsible-header  active">Date</div>
+    <div class="collapsible-body"> 
+      <div class="row">
+       <div class="col-md-6">
+        <label>From</label>
+        <input type="text" id="from" class="input-field from" name="book_fromdate[]">
+      </div>
+      <div class="col-md-6">
+        <label>To</label>
+        <input type="text" id="to" class="input-field to" name="book_todate[]" > 
+      </div>
+    </div>
+  </div>
+</li>
+
+<?php }  ?>
+</ul>
 
 </div>
 </div>

@@ -207,36 +207,61 @@
 							<input type="hidden"  name="room_other" id="amenities-id"  value="<?php echo $resultRoom['room_other'] ?>">
 						</div>
 
-						<div id="dates_wrap">
-							<label class="col s6">Unavailable in these days</label>
-							<div class="row">
-								
+<div id="dates_wrap">
+	<label class="col s6">Unavailable in these days</label>
+	<div class="row">
+		
 
 
-								<ul class="collapsible def-show-date" data-collapsible="accordion">
-									<?php  $i=0;
-									while ($resultRoomdate=mysqli_fetch_assoc($editroomDateQuery)){ ?>  
-									<li>
-										<div class="collapsible-header  active">Date</div>
-										<div class="collapsible-body"> 
-											<div class="row">
-												<input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultRoomdate['common_bokdate_id'] ?>">
-												<div class="col-md-6">
-													<label>From</label>
-													<input type="text" id="from-<?php echo $i+1; ?>" class="input-field from" name="book_fromdate[]" value="<?php echo $resultRoomdate['book_fromdate'] ;   ?>" >
-												</div>
-												<div class="col-md-6">
-													<label>To</label>
-													<input type="text" id="to-<?php echo $i+1; ?>" class="input-field to" name="book_todate[]" value="<?php echo $resultRoomdate['book_todate'] ;   ?>"> 
-												</div>
-											</div>
-										</div>
-									</li>
-									<?php $i++; } ?>
-								</ul>
+		<ul class="collapsible def-show-date" data-collapsible="accordion">
+			<?php  $i=0;
+			$resultRoomdate=mysqli_fetch_assoc($editroomDateQuery);
 
-							</div>
+	if (count($resultRoomdate) > 0) { 
+
+	  for ($j=0; $j < count($resultRoomdate['book_fromdate']) ; $j++) {?> 
+
+			<li>
+				<div class="collapsible-header  active">Date</div>
+				<div class="collapsible-body"> 
+					<div class="row">
+						<input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultRoomdate['common_bokdate_id'] ?>">
+						<div class="col-md-6">
+							<label>From</label>
+							<input type="text" id="from-<?php echo $i+1; ?>" class="input-field from" name="book_fromdate[]" value="<?php echo $resultRoomdate['book_fromdate'] ;   ?>" >
 						</div>
+						<div class="col-md-6">
+							<label>To</label>
+							<input type="text" id="to-<?php echo $i+1; ?>" class="input-field to" name="book_todate[]" value="<?php echo $resultRoomdate['book_todate'] ;   ?>"> 
+						</div>
+					</div>
+				</div>
+			</li>
+			<?php $i++; } 
+		}else{ ?>
+		<li>
+			<div class="collapsible-header  active">Date</div>
+			<div class="collapsible-body"> 
+				<div class="row">
+					<div class="col-md-6">
+						<label>From</label>
+						<input type="text" id="from" class="input-field from" name="book_fromdate[]">
+					</div>
+					<div class="col-md-6">
+						<label>To</label>
+						<input type="text" id="to" class="input-field to" name="book_todate[]"> 
+					</div>
+				</div>
+			</div>
+		</li>
+
+<?php
+}
+?>
+		</ul>
+
+	</div>
+</div>
 						<div  class=" ">
 							<a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
 						</div>

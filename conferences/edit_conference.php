@@ -110,8 +110,11 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
              <ul class="collapsible def-show-menu" data-collapsible="accordion">
               <?php $i=0;
-              while ($resultconmenu=mysqli_fetch_assoc($editconmenuQuery)) { 
+              $resultconmenu=mysqli_fetch_assoc($editconmenuQuery);
+  if (count($resultconmenu) > 0) {
 
+      for ($j=0; $j < count($resultconmenu['foodpkg_name']) ; $j++) { 
+       
                 ?>
 
                 <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultconmenu['common_menupkg_id']; ?>">
@@ -150,7 +153,40 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
                </div>
              </li>
-             <?php $i++; }      ?>
+             <?php $i++; }      
+
+               }else{ ?>
+               <li>
+    <div class="collapsible-header  active">Menu</div>
+    <div class="collapsible-body"> 
+     <div class="row">
+     <div class="col-md-6">
+       <label>Package Name</label>
+       <input type="text" value="" class="input-field validate" name="foodpkg_name[]">
+     </div>
+     <div class="col-md-6">
+     <label>Package Price</label>
+     <input type="number" value="" class="input-field validate" name="foodpkg_price[]">
+   </div> 
+   </div>
+
+   <div class="row">
+    <div class="col-md-6">
+     <label >Discount Percentage</label>
+     <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
+   </div>   
+   <div class="col-md-6">
+     <label>Package Items</label>
+  <div class="input-field ">
+   <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
+   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+   </div>           
+ </div>
+
+</div>
+</li>
+ <?php  }
+?>
            </ul>
 
            <div  class=" ">
@@ -210,9 +246,11 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
           <ul class="collapsible def-show-date" data-collapsible="accordion">
            <?php  $i=0;
+              $resultconDate=mysqli_fetch_assoc($editconDateQuery);
+ if (count($resultconDate) > 0) { 
 
-           while ($resultconDate=mysqli_fetch_assoc($editconDateQuery)) { ?>
-
+       for ($j=0; $j < count($resultconDate['book_fromdate']) ; $j++) { ?>
+       
            <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultconDate['common_bokdate_id'] ?>">
 
            <li>
@@ -230,7 +268,27 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
             </div>
           </div>
         </li>
-        <?php $i++;  }   ?>
+        <?php $i++;  }
+
+         }else{ ?>
+         <li>
+    <div class="collapsible-header  active">Date</div>
+    <div class="collapsible-body"> 
+      <div class="row">
+       <div class="col-md-6">
+        <label>From</label>
+        <input type="text" id="from" class="input-field from" name="book_fromdate[]">
+      </div>
+      <div class="col-md-6">
+        <label>To</label>
+        <input type="text" id="to" class="input-field to" name="book_todate[]" > 
+      </div>
+    </div>
+  </div>
+</li>
+
+
+    <?php      }   ?>
       </ul>
 
     </div>

@@ -158,7 +158,7 @@ function gen_dates_input(event) {//
     // console.log(showlength);
      $('.def-show-date').collapsible('close', showlength-1);
      
-   var new_obj='<li id="gen-date-wrap"><div class="collapsible-header">Date <a class="closedate" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row"><div class="col-md-6"><label>From</label><input type="text" class="input-field from" id="'+from_id+'" name="book_fromdate[]"></div><div class="col-md-6"><label>To  </label><input type="text"  class="input-field to" id="'+to_id+'" name="book_todate[]"></div></div></div></li>';
+   var new_obj='<li id="gen-date-wrap" class="newLI"><div class="collapsible-header">Date <a class="closedate" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row"><div class="col-md-6"><label>From</label><input type="text" class="input-field from" id="'+from_id+'" name="book_fromdate[]"></div><div class="col-md-6"><label>To  </label><input type="text"  class="input-field to" id="'+to_id+'" name="book_todate[]"></div></div></div></li>';
      
       $('.def-show-date').append(new_obj);
     
@@ -604,7 +604,7 @@ function gen_menupackage_input(event) {
     
   
      
-  var new_package= '<li id="gen_menupackage_input"><div class="collapsible-header ">Menu   <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row"><div class="col-md-6"><label>Package Name</label><input type="text" name="foodpkg_name[]" value="" class="input-field validate"></div><div class="col-md-6"><label>Package Price</label><input type="number" value="" name="foodpkg_price[]" class="input-field validate"></div></div><div class="row"><div class="col-md-6"><label >Discount Percentage</label><input type="number" name="foodpkg_discount[]" value="" class="input-field validate" style="padding-top:18px;"></div><div class="col-md-6"><label>Package Items</label><div class="input-field "><div class="chips chips-packageitem" id="'+id+'"> </div><input type="hidden"  name="foodpkg_item[]" id="input_'+id+'" class="menupkg-id"></div></div></div></div></li>';
+  var new_package= '<li id="gen_menupackage_input" class="newLI"><div class="collapsible-header ">Menu   <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row"><div class="col-md-6"><label>Package Name</label><input type="text" name="foodpkg_name[]" value="" class="input-field validate"></div><div class="col-md-6"><label>Package Price</label><input type="number" value="" name="foodpkg_price[]" class="input-field validate"></div></div><div class="row"><div class="col-md-6"><label >Discount Percentage</label><input type="number" name="foodpkg_discount[]" value="" class="input-field validate" style="padding-top:18px;"></div><div class="col-md-6"><label>Package Items</label><div class="input-field "><div class="chips chips-packageitem" id="'+id+'"> </div><input type="hidden"  name="foodpkg_item[]" id="input_'+id+'" class="menupkg-id"></div></div></div></div></li>';
    
    $('.def-show-menu').append(new_package);
 
