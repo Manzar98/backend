@@ -376,12 +376,12 @@
 
 $(document).ready(function(){
 
-	
+	/*==============Ajax Function Defination (For Dates)==============*/
 $('#ajaxbtn').click(function(){
 
 	
 
-    // alert('jgjg');
+     alert('jgjg');
   
     var dataObj = {};
 
@@ -417,7 +417,7 @@ $('#ajaxbtn').click(function(){
                     })
 
 	});
-
+/*==============End Ajax Function Defination==============*/
 
 				
 

@@ -1,6 +1,13 @@
                  <div class="col s12">
 
                <form action="../upload.php" enctype="multipart/form-data" class="dropzone" id="image-upload">
+                <?php if (isset($_GET['c']) && $_GET['c']=="edit") {
+                  if ($_GET['t'] == "cover") { ?>
+                      <input type="hidden" value="<?php echo $_GET['cov_id'];?>" name="hotel_id" />
+                        <input type="hidden" value="hotel_c" name="hotelCover" />
+                 <?php  }
+                  # code...
+                } ?>
       
          <div class="image_drop_element"></div>
          <?php

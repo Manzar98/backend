@@ -692,7 +692,7 @@ function gen_menupackage_input(event) {
 
    $('.def-show-menu').collapsible('open', packagelengthupdated-1);
 
-   // debugger;
+    debugger;
    $('#'+id).material_chip({
     autocompleteOptions: {
       data: {
@@ -714,12 +714,13 @@ function gen_menupackage_input(event) {
 
    $('#'+id).on('chip.add', function(e, chip){
      
-
+    debugger;
      // you have the added chip here
       var chip_string= $('#'+id).material_chip('data');
       var str = JSON.stringify(chip_string);   
       var array_amenity=[];
-      // console.log(id);
+      //
+     console.log(id);
  for (var i = 0; i < chip_string.length; i++) {
 
       array_amenity.push(chip_string[i].tag);

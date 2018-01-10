@@ -2,7 +2,7 @@
 include '../common-apis/api.php';
 
 $editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
-
+$global_event_id="";
 
 ?>
 
@@ -18,7 +18,7 @@ $editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['
 <?php
          while ($resultevent=mysqli_fetch_assoc($editeventQuery)) {
             
-       $editeventImgQuery=select('common_imagevideo',array('hotel_id'=>$resultevent['hotel_id'],'event_id'=>$resultevent['event_id']));
+       $editeventImgQuery=select('common_imagevideo',array('event_id'=>$resultevent['event_id']));
 
        $editeventnoofpeopleQuery=select('common_nosofpeople', array('event_id'=>$resultevent['event_id'])); 
 
@@ -50,6 +50,7 @@ $editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['
 						
 							<input type="hidden" name="event_id" value="<?php echo $resultevent['event_id']; ?>">
 							<input type="hidden" name="hotel_id" value="<?php echo $resultevent['hotel_id']; ?>">
+							<?php $global_event_id=$resultevent['event_id']; ?>
 						<div>
 							<label class="col s4">Event Name</label>
 							<div class="input-field col s8">
@@ -303,9 +304,9 @@ $editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['
 						<div class="common-top discount clearfix" id="discount_wrap" style="display: none;">
 								<label>Discount for groups <b>:</b></label>
 								<?php  
-								$resultDiscount=mysqli_fetch_assoc($editeventnoofpeopleQuery);
-								if (count($resultDiscount) > 0) { 
-									for ($i=0; $i < count($resultDiscount['common_nopeople']) ; $i++) {  ?>
+								
+								if (mysqli_num_rows($editeventnoofpeopleQuery) > 0) { 
+									while($resultDiscount=mysqli_fetch_assoc($editeventnoofpeopleQuery)) {  ?>
 								
 								<input type="hidden" name="common_people_id[]" value="<?php  echo $resultDiscount['common_people_id']; ?>">
 		
@@ -491,14 +492,14 @@ $editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['
 							<div class="">
 								<!-- Modal Trigger -->
 								<div class="col s1"></div>
-							<a class="waves-effect waves-light btn modal-trigger spc-modal col s10" href="#modal-images" >Tour Photos</a>
+							<a class="waves-effect waves-light btn modal-trigger spc-modal col s10" href="#modal-images" >Event Photos</a>
 							<input type="hidden" name="common_image" id="img_ids">
 							</div>
 					   </div>
                            											
 							<div class="row  common-top clearfix">
 								 
-									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Tour's PROMOTIONAL VIDEO</span></div>
+									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Event's PROMOTIONAL VIDEO</span></div>
 										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
 <?php   } ?>
@@ -520,7 +521,7 @@ $editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['
 			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="../up_load_singleimg.php"></iframe>
+				<iframe src="../up_load_singleimg.php?p=edit&t=event&e_id=<?php echo $global_event_id; ?>"></iframe>
                    <div class="modal-footer">
 					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 				</div>

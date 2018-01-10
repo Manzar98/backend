@@ -4,7 +4,7 @@ include '../common-apis/api.php';
 $editHotelQuery=select('hotel',array('hotel_id'=>$_GET['id']));
 
 
-
+$global_hotel_id="";
 
 
 ?>
@@ -47,6 +47,8 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <div class="db-profile-edit">
 <form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="" method="POST" enctype="multipart/form-data">
 
+<input type='hidden' value='<?php $hotelResult['hotel_id']; ?>' name="hotel_id" />
+<?php $global_hotel_id= $hotelResult['hotel_id']; ?>
 
 <div>
 <label class="col s4">Hotel Name</label>
@@ -355,7 +357,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<div class="col-md-6">
 				<label>Hotel’s Youtube</label>
 				<input type="text"  class="validate input-field" name="hotel_yuturl" value="<?php echo $hotelResult['hotel_yuturl']; ?>">
-				<input type='hidden' value='<?php echo $_GET['id']; ?>' name="hotel_id" />
+				
 			</div>
 
 		</div>
@@ -398,7 +400,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
 <div class="modal-content">
 <div class="modal-header"><h2>Upload  Photos</h2></div>
-<iframe src="up_load_img.php?name=interior"></iframe>
+<iframe src="up_load_img.php?p=edit&t=int-hotel&h_id=<?php echo $global_hotel_id; ?>"></iframe>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 </div>
@@ -410,7 +412,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 <div class="modal-content">
 <div class="modal-header"><h2>Upload Exterior Photos</h2></div>
-<iframe src="up_load_img.php?name=exterior"></iframe>
+<iframe src="up_load_img.php?p=edit&t=ext-hotel&h_id=<?php echo $global_hotel_id; ?>"></iframe>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 </div>
@@ -422,7 +424,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 <div class="modal-content">
 <div class="modal-header"><h2>Upload Cover Photo</h2></div>
-<iframe src="up_load_cover.php"></iframe>
+<iframe src="up_load_cover.php?c=edit&t=cover&cov_id=<?php echo $global_hotel_id; ?>"></iframe>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 </div>

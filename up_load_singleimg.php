@@ -4,14 +4,25 @@
                       <?php if(isset($_GET['p']) && $_GET['p']=="edit"){
                     if($_GET['t'] == "room"){
                       ?>
-                        <input value="<?php echo $_GET['r_id'];?>" name="room_id" />
-                        <input value="room" name="img_video_type" />
+                        <input type="hidden" value="<?php echo $_GET['r_id'];?>" name="room_id" />
+                        <input type="hidden" value="room" name="img_video_type" />
                      <?php 
                      }elseif ($_GET['t'] == "banquet") { ?>
 
-                        <input value="<?php echo $_GET['b_id'];?>" name="banquet_id" />
-                        <input value="banquet" name="img_video_type" />
-              <?php  }  ?>
+                        <input  type="hidden" value="<?php echo $_GET['b_id'];?>" name="banquet_id" />
+                        <input type="hidden" value="banquet" name="img_video_type" />
+              <?php  }elseif ($_GET['t'] == "conference") { ?>
+                        <input type="hidden" value="<?php echo $_GET['c_id'];?>" name="conference_id" />
+                        <input value="conference" type="hidden" name="img_video_type" />
+             <?php   }elseif ($_GET['t']=="tour") { ?>
+
+                        <input type="hidden" value="<?php echo $_GET['t_id'];?>" name="tour_id" />
+                        <input value="tour" type="hidden" name="img_video_type" />
+             <?php  }elseif ($_GET['t']=="event") { ?>
+
+                        <input type="hidden" value="<?php echo $_GET['e_id'];?>" name="event_id" />
+                        <input value="event" type="hidden" name="img_video_type" />  
+             <?php  } ?>
                           
                        
                        <?php 

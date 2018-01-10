@@ -576,7 +576,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <script type="text/javascript">
   jQuery(document).ready(function(){
 
-
+        /*==============Ajax Function Defination (For Dates)==============*/
 $('#ajaxbtn').click(function(){
 
    
@@ -615,7 +615,7 @@ $('#ajaxbtn').click(function(){
                     })
 
   });
-
+/*==============End Ajax Function Defination==============*/
 
 
 

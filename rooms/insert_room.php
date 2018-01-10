@@ -40,28 +40,7 @@ if ($conn->query($query)== TRUE) {
 
   echo json_encode($responseArray);
 
-
-     // $resultint = mysqli_query($conn,$query) or die(mysqli_error($conn)); 
-    // return  $resultint;
-
-
-
-
-
-
-  //   if ($resultint==1) {
-
-  //         // return $resultup;
-  //         echo "sucess";
-  //        }
-
-
-  //    }else{
-
-  //   echo 'you have an error';
-  // }
-
-          
+     
  };
 
 getInsertQuery('common_bookdates',$_POST);

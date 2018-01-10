@@ -7,10 +7,23 @@
 
                        <form action="../upload.php" enctype="multipart/form-data" class="dropzone" id="image-upload">
                         <?php
-                        if (isset($_GET['name'])) {?>
+                       if (isset($_GET['name'])) {?>
                         <div class="image_drop_element"></div>
                         <input type="hidden" name="photo_type" id="photo_type" value="<?php  echo $type;  ?>">
-                        <?php    } ?>
+
+                <?php  }elseif (isset($_GET['p']) && $_GET['p']=="edit") {
+
+                         if ($_GET['t']== "ext-hotel") { ?>
+
+                                <input type="hidden" value="exterior" name="photo_int_ext_type" />
+                                 <input type="hidden" value="<?php echo $_GET['h_id'];?>" name="hotel_id" />
+                  <?php   }elseif ($_GET['t'] == 'int-hotel') { ?>
+                         
+                                 <input type="hidden" value="interior" name="photo_int_ext_type" />
+                                 <input type="hidden" value="<?php echo $_GET['h_id'];?>" name="hotel_id" />
+                  <?php   }
+                           # code...
+                       } ?>
                       </form>
                     </div>
 
@@ -78,7 +91,7 @@
 
                                            //To access the parent directory
                                            parent.document.getElementById('img_extids').value=updatedResponse.id;
-                                           parent.document.getElementById('img_name').value=updatedResponse.filename;
+                                           // parent.document.getElementById('img_name').value=updatedResponse.filename;
 
                                          }else{
 

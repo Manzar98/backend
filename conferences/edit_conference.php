@@ -15,13 +15,13 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
   <?php
   while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
 
-   $editconImgQuery=select('common_imagevideo',array('hotel_id'=>$resultConference['hotel_id'],'conference_id'=>$resultConference['conference_id']));
+   $editconImgQuery=select('common_imagevideo',array('conference_id'=>$resultConference['conference_id']));
 
    $editconDateQuery=select('common_bookdates', array('conference_id'=>$resultConference['conference_id']));
 
    $editconmenuQuery=select('common_menupackages', array('conference_id'=>$resultConference['conference_id'])); 
 
-
+    $global_conference_id="";
 
    ?>
 
@@ -47,6 +47,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
            <input type="hidden" name="hotel_id" value="<?php echo $resultConference['hotel_id'] ?>">	
            <input type="hidden" name="conference_id" value="<?php echo $resultConference['conference_id'] ?>"> 
+           <?php $global_conference_id=$resultConference['conference_id'];  ?>
 
            <div>
              <label class="col s4">Name of Hall </label>
@@ -112,6 +113,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
               <?php $i=0;
               
   if (mysqli_num_rows($editconmenuQuery) > 0) {
+
        while ($resultconmenu=mysqli_fetch_assoc($editconmenuQuery)){ 
        
                 ?>
@@ -146,10 +148,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
                      <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-<?php echo $i+1; ?>" class="menupkg-id" value="<?php echo $resultconmenu['foodpkg_item'];  ?>"> </div>
                    </div> 					
                  </div>
-                 <div class="col s12">
-
-                 </div>
-
+               
                </div>
              </li>
              <?php $i++; }      
@@ -177,8 +176,8 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
    <div class="col-md-6">
      <label>Package Items</label>
   <div class="input-field ">
-   <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
-   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+   <div class="chips-packageitem chips-package" id="chips-packageitem"  name=""> </div>
+   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem" class="menupkg-id"> </div>
    </div>           
  </div>
 
@@ -243,7 +242,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
 
 
-          <ul class="collapsible def-show-date" data-collapsible="accordion">
+          <ul class="collapsible def-show-date editroom" data-collapsible="accordion">
            <?php  $i=0;
              
  if (mysqli_num_rows($editconDateQuery) > 0) { 
@@ -274,6 +273,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
     <div class="collapsible-header  active">Date</div>
     <div class="collapsible-body"> 
       <div class="row">
+        <input type="hidden" name="common_bokdate_id[]" id="date_id">
        <div class="col-md-6">
         <label>From</label>
         <input type="text" id="from" class="input-field from" name="book_fromdate[]">
@@ -297,6 +297,10 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
  </div>
 
  <?php   } ?>
+
+  <div  class=" ">
+              <a class="waves-effect waves-light btn " id="ajaxbtn" >Ajax</a>
+            </div>
  <div>
    <div class="input-field col s8">
     <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
@@ -313,7 +317,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
   <div class="modal-content">
    <div class="modal-header"><h2>Upload  Photos</h2></div>
-   <iframe src="../up_load_singleimg.php"></iframe>
+   <iframe src="../up_load_singleimg.php?p=edit&t=conference&c_id=<?php echo $global_conference_id; ?>"></iframe>
    <div class="modal-footer">
      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
    </div>
@@ -387,6 +391,47 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
 <script type="text/javascript">
   jQuery(document).ready(function(){
+     /*==============Ajax Function Defination (For Dates)==============*/
+$('#ajaxbtn').click(function(){
+
+   
+
+    alert('jgjg');
+   // console.log(dates_obj);
+    var dataObj = {};
+
+    $('.newLI input').each(function(key,value){
+      if(value.id.indexOf("from") > -1){
+        dataObj['book_fromdate'] = $(value).val();
+      }
+      if(value.id.indexOf("to") > -1){
+        dataObj['book_todate'] = $(value).val();
+      }
+    });
+    dataObj['conference_id'] = $('input[name=conference_id]').val();
+    dataObj['form_date_type'] = "conference";
+
+    console.log(dataObj);
+    debugger;
+        $.ajax({
+                              type:"POST",
+                              url:"../conferences/insert_conference.php",
+                              data: dataObj,
+                              success:function(data) {
+                var response = JSON.parse(data);
+                              console.log(response);
+                              if(response.message == "success"){
+                                $('.newLI #date_id').val(response.id);
+                                $('.newLI').removeClass('newLI');
+                              }
+                   }
+
+
+                    })
+
+  });
+
+/*==============End Ajax Function Defination==============*/
     tinymce.init({ selector:'textarea' });
 
 
@@ -447,6 +492,15 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
          minLength: 1
        }
      });
+
+
+
+
+
+
+
+
+
 
      })
 

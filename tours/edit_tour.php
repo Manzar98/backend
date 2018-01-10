@@ -2,6 +2,7 @@
 include '../common-apis/api.php';
 
 $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
+$global_tour_id="";
 
 ?>
 
@@ -17,7 +18,7 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 <?php
          while ($resulttour=mysqli_fetch_assoc($edittourQuery)) {
             
-       $edittourImgQuery=select('common_imagevideo',array('tour_id'=>$resulttour['tour_id'],'hotel_id'=>$resulttour['hotel_id']));
+       $edittourImgQuery=select('common_imagevideo',array('tour_id'=>$resulttour['tour_id']));
 
        $edittournoofpeopleQuery=select('common_nosofpeople', array('tour_id'=>$resulttour['tour_id'])); 
 
@@ -46,6 +47,8 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 					<form class="col s12"  data-toggle="validator" id="tour-form" role="form" action="" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="tour_id" value="<?php echo $resulttour['tour_id'] ?>">
 						<input type="hidden" name="hotel_id" value="<?php echo $resulttour['hotel_id'] ?>">
+
+						<?php $global_tour_id=$resulttour['tour_id']; ?>
 
 							
 						<div>
@@ -531,11 +534,10 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 							<label>Discount for groups <b>:</b></label>
 
 							<?php 
-							$resultDiscount=mysqli_fetch_assoc($edittournoofpeopleQuery);
+							
 
-							if (count($resultDiscount) > 0) {
-
-								for ($i=0; $i < count($resultDiscount['common_nopeople']) ; $i++) { ?>
+							if (mysqli_num_rows($edittournoofpeopleQuery) > 0) {
+								while ($resultDiscount=mysqli_fetch_assoc($edittournoofpeopleQuery)) { ?>
 								
 							<input type="hidden" name="common_people_id[]" value="<?php echo $resultDiscount['common_people_id'] ?>">
 							<div class="row">
@@ -796,7 +798,7 @@ $edittourQuery=select('tour',array('tour_id'=>$_GET['id'],'hotel_id'=>$_GET['h_i
 			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="../up_load_singleimg.php"></iframe>
+				<iframe src="../up_load_singleimg.php?p=edit&t=tour&t_id=<?php echo  $global_tour_id; ?>"></iframe>
                    <div class="modal-footer">
 					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 				</div>
