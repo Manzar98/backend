@@ -10,6 +10,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
   $editbnqQuery=select('banquet',array('banquet_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
 
+
+   $global_banquet_id="";
+
 ?>
 
 
@@ -26,7 +29,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 	<?php   while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){    
 
 
-	   $editbnqImgQuery=select('common_imagevideo',array('hotel_id'=>$resultbnq['hotel_id'],'banquet_id'=>$resultbnq['banquet_id']));
+	   $editbnqImgQuery=select('common_imagevideo',array('banquet_id'=>$resultbnq['banquet_id']));
        $editbnqDateQuery=select('common_bookdates', array('banquet_id'=>$resultbnq['banquet_id']));
     $editbnqmenuQuery=select('common_menupackages', array('banquet_id'=>$resultbnq['banquet_id']));
 
@@ -52,6 +55,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
               <input type="hidden" name="banquet_id" value="<?php echo $resultbnq['banquet_id'];  ?>">
               <input type="hidden" name="hotel_id" value="<?php echo $resultbnq['hotel_id']; ?>">
+              <?php   $global_banquet_id= $resultbnq['banquet_id']; ?>
           <div>
             <label class="col s12">Banquet Hall name </label>
             <div class="input-field col s12">
@@ -149,11 +153,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <ul class="collapsible def-show-menu" data-collapsible="accordion">
    <?php  $i=0;
 
-   $resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery);
+   
 
-   if (count($resultbnqMenu) > 0) {
+   if (mysqli_num_rows($editbnqmenuQuery) > 0) {
 
-for ($j=0; $j < count($resultbnqMenu['foodpkg_name']) ; $j++) {  ?>
+    while ($resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery)) { ?>
      
   
    <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultbnqMenu['common_menupkg_id']; ?>">    
@@ -261,8 +265,9 @@ for ($j=0; $j < count($resultbnqMenu['foodpkg_name']) ; $j++) {  ?>
 </div> 
 
 <div class="imgVeiwinline row" id="hotel_img_wrap">
+   
        <?php
-
+         
                         while ($imgResult=mysqli_fetch_assoc($editbnqImgQuery)) {
 
                         
@@ -316,16 +321,16 @@ for ($j=0; $j < count($resultbnqMenu['foodpkg_name']) ; $j++) {  ?>
   
 
 
-  <ul class="collapsible def-show-date" data-collapsible="accordion">
+  <ul class="collapsible def-show-date editroom" data-collapsible="accordion">
   
   	<?php $i=0;
-    $resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery);
+   
   
- if (count($resultbnqDate) > 0) {
+ if (mysqli_num_rows($editbnqDateQuery) > 0) {
    # code...
      //print_r($resultbnqDates);
-    //while ($resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery)) {
-     for($j=0; $j < count($resultbnqDate['book_fromdate']); $j++ ){
+    while ($resultbnqDate=mysqli_fetch_assoc($editbnqDateQuery)) {
+     // for($j=0; $j < count($resultbnqDate['book_fromdate']); $j++ ){
     ?>
   		  
 
@@ -353,6 +358,7 @@ for ($j=0; $j < count($resultbnqMenu['foodpkg_name']) ; $j++) {  ?>
     <div class="collapsible-header  active">Date</div>
     <div class="collapsible-body"> 
       <div class="row">
+         <input type="hidden" name="common_bokdate_id[]" id="date_id">
        <div class="col-md-6">
         <label>From</label>
         <input type="text" id="from" class="input-field from" name="book_fromdate[]">
@@ -477,6 +483,11 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     </div>
   </div>
    <?php   } ?>
+
+
+       <div  class=" ">
+              <a class="waves-effect waves-light btn " id="ajaxbtn" >Ajax</a>
+            </div>
   <div>
    <div class="input-field col s8">
     <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
@@ -494,7 +505,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
   <div class="modal-content">
    <div class="modal-header"><h2>Upload  Photos</h2></div>
-   <iframe src="../up_load_singleimg.php"></iframe>
+   <iframe src="../up_load_singleimg.php?p=edit&t=banquet&b_id=<?php echo $global_banquet_id; ?>"></iframe>
    <div class="modal-footer">
      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
    </div>
@@ -564,6 +575,62 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <script src="../js/banquet-js/banquet.js"></script>
 <script type="text/javascript">
   jQuery(document).ready(function(){
+
+
+$('#ajaxbtn').click(function(){
+
+   
+
+    alert('jgjg');
+   // console.log(dates_obj);
+    var dataObj = {};
+
+    $('.newLI input').each(function(key,value){
+      if(value.id.indexOf("from") > -1){
+        dataObj['book_fromdate'] = $(value).val();
+      }
+      if(value.id.indexOf("to") > -1){
+        dataObj['book_todate'] = $(value).val();
+      }
+    });
+    dataObj['banquet_id'] = $('input[name=banquet_id]').val();
+    dataObj['form_date_type'] = "banquet";
+
+    console.log(dataObj);
+    debugger;
+        $.ajax({
+                              type:"POST",
+                              url:"../banquets/insert_banquet.php",
+                              data: dataObj,
+                              success:function(data) {
+                var response = JSON.parse(data);
+                              console.log(response);
+                              if(response.message == "success"){
+                                $('.newLI #date_id').val(response.id);
+                                $('.newLI').removeClass('newLI');
+                              }
+                   }
+
+
+                    })
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     tinymce.init({ selector:'textarea' });
 

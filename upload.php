@@ -35,10 +35,17 @@ $tmpFile = $_FILES['file']['tmp_name'];
 
        $imgQuery='INSERT INTO common_imagevideo(hotel_coverimg)Values("'.$filename.'")';
  	}
-
+ 	elseif(isset($_POST['room_id'])){
+ 		  
+ 	$imgQuery= 'INSERT INTO common_imagevideo(common_image,room_id,img_video_type)Values("'.$filename.'","'.$_POST['room_id'].'","room")';
+ 	}elseif (isset($_POST['banquet_id'])) {
+ 		$imgQuery= 'INSERT INTO common_imagevideo(common_image,banquet_id,img_video_type)Values("'.$filename.'","'.$_POST['banquet_id'].'","banquet")';
+		
+ 	}
 
  	else {
- 	
+      
+     
  	$imgQuery='INSERT INTO common_imagevideo(common_image)Values("'.$filename.'")';
  }
 

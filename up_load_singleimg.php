@@ -1,7 +1,22 @@
                  <div class="col s12">
 
                    <form action="upload.php" enctype="multipart/form-data" class="dropzone" id="image-upload">
-                    
+                      <?php if(isset($_GET['p']) && $_GET['p']=="edit"){
+                    if($_GET['t'] == "room"){
+                      ?>
+                        <input value="<?php echo $_GET['r_id'];?>" name="room_id" />
+                        <input value="room" name="img_video_type" />
+                     <?php 
+                     }elseif ($_GET['t'] == "banquet") { ?>
+
+                        <input value="<?php echo $_GET['b_id'];?>" name="banquet_id" />
+                        <input value="banquet" name="img_video_type" />
+              <?php  }  ?>
+                          
+                       
+                       <?php 
+                      } 
+                    ?> 
                      <div class="image_drop_element"></div>
                      
                    </form>

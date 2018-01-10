@@ -11,6 +11,7 @@
 
    $editroomQuery=select('room',array('hotel_id'=>$HotelID,'room_id'=>$RoomID));
    
+   $global_room_id="";
 ?>
 
 
@@ -28,6 +29,8 @@
 
 	   $editroomImgQuery=select('common_imagevideo',array('room_id'=>$resultRoom['room_id']));
        $editroomDateQuery=select('common_bookdates', array('room_id'=>$resultRoom['room_id']));
+
+       // print_r($editroomDateQuery);
    ?>
 	<title>Edit Room</title>
 
@@ -75,6 +78,7 @@
 
 
                  <input type="hidden" name="hotel_id" value="<?php echo $resultRoom['hotel_id']  ?>">
+                 <?php $global_room_id = $resultRoom['room_id']; ?>
                  <input type="hidden" name="room_id" value="<?php echo $resultRoom['room_id'] ?>"> 
 				<div class="common-top">
 					<label class="col s4">Room Name </label>
@@ -157,8 +161,9 @@
 						</div>  
                        
                        	<div class="imgVeiwinline row" id="hotel_img_wrap">
-												<?php
 
+												<?php
+                                                     
 												while ($imgResult=mysqli_fetch_assoc($editroomImgQuery)) {
 
 
@@ -215,11 +220,13 @@
 
 		<ul class="collapsible def-show-date editroom" data-collapsible="accordion">
 			<?php  $i=0;
-			$resultRoomdate=mysqli_fetch_assoc($editroomDateQuery);
+			
+	if (mysqli_num_rows($editroomDateQuery) > 0) { 
+		
+	 
 
-	if (count($resultRoomdate) > 0) { 
-
-	  for ($j=0; $j < count($resultRoomdate['book_fromdate']) ; $j++) {?> 
+		while ($resultRoomdate=mysqli_fetch_assoc($editroomDateQuery)) {
+	  	?> 
 
 			<li>
 				<div class="collapsible-header  active">Date</div>
@@ -243,6 +250,7 @@
 			<div class="collapsible-header  active">Date</div>
 			<div class="collapsible-body"> 
 				<div class="row">
+					<input type="hidden" name="common_bokdate_id[]" id="date_id">
 					<div class="col-md-6">
 						<label>From</label>
 						<input type="text" id="from" class="input-field from" name="book_fromdate[]">
@@ -262,13 +270,20 @@
 
 	</div>
 </div>
+
+
 						<div  class=" ">
-							<a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
+							<a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
 						</div>
 
                        <?php   
                        // print_r($resultRoom);
    } ?>
+
+                        <div  class=" ">
+							<a class="waves-effect waves-light btn " id="ajaxbtn" >Ajax</a>
+						</div>
+
 						<div>
 							<div class="input-field col s8">
 								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
@@ -285,7 +300,7 @@
 		<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
 			<div class="modal-content">
 				<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="../up_load_singleimg.php"></iframe>
+				<iframe src="../up_load_singleimg.php?p=edit&t=room&r_id=<?php echo $global_room_id; ?>"></iframe>
 				<div class="modal-footer">
 					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
 				</div>
@@ -361,38 +376,50 @@
 
 $(document).ready(function(){
 
-	console.log();
+	
+$('#ajaxbtn').click(function(){
 
 	
 
+    // alert('jgjg');
+  
+    var dataObj = {};
 
-				$("").click(function(){
+    $('.newLI input').each(function(key,value){
+    	if(value.id.indexOf("from") > -1){
+    		dataObj['book_fromdate'] = $(value).val();
+    	}
+    	if(value.id.indexOf("to") > -1){
+    		dataObj['book_todate'] = $(value).val();
+    	}
+    });
+    dataObj['room_id'] = $('input[name=room_id]').val();
+    dataObj['form_date_type'] = "room";
 
-
-$.ajax({
-                             type:"POST",
-                             url:"../rooms/insert_room.php",
-                             data: $("form").serialize(),
-                                       success:function(data) {
-
-                             // console.log(data);
-
-                             if (data=='sucess') {
-                             
-
-                             }
-
-                            
-                           
-                            }
-                          })
+    console.log(dataObj);
+    debugger;
+        $.ajax({
 
 
+                              type:"POST",
+                              url:"../rooms/insert_room.php",
+                              data: dataObj,
+                              success:function(data) {
+								var response = JSON.parse(data);
+                            	console.log(response);
+                           		if(response.message == "success"){
+                           			$('.newLI #date_id').val(response.id);
+                           			$('.newLI').removeClass('newLI');
+                           		}
+   							   }
 
 
+                    })
+
+	});
 
 
-})
+				
 
 
 

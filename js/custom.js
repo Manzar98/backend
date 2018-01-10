@@ -79,11 +79,15 @@ $(function() {
             // changeMonth: false,
             minDate: 0,
              onSelect: function(selected) {
-              debugger;
+              // debugger;
            $("#to").datepicker("option","minDate", selected)
+           debugger;
            if($("#from").parents('.def-show-date').hasClass('editroom')){
-                if($("#to").val() && $('#from').val()){
-                  alert('Time to send ajax call for insertion')
+                if($("#to").val() && $('#from').val() && !$('#from').parents('.collapsible-body').find('#date_id').val()){
+                 alert('Time to send ajax call for insertion')
+                 $('#ajaxbtn').trigger('click');
+                  
+
                 }
             }
          }
@@ -94,6 +98,7 @@ $(function() {
         
            
            .on("change", function() {
+
                var from = to.datepicker("option", "maxDate", getDate(this));
                console.log($(this).val());
 
@@ -105,12 +110,26 @@ $(function() {
             minDate: 0,
             // numberOfMonths: 1
            onSelect: function(selected,element) {
-            debugger;
+            // debugger;
             console.log(element);
             $("#from").datepicker("option","maxDate", selected)
+            debugger;
             if($("#to").parents('.def-show-date').hasClass('editroom')){
-                if($("#to").val() && $('#from').val()){
-                  alert('Time to send ajax call for insertion')
+                if($("#to").val() && $('#from').val() && !$('#from').parents('.collapsible-body').find('#date_id').val()){
+                 alert('Time to send ajax call for insertion')
+
+
+                   
+            $('#ajaxbtn').trigger('click');
+                    
+                    // function dateInsert() {
+
+
+
+                    //   // body...
+                    // }
+                
+
                 }
             }
          }
@@ -150,19 +169,19 @@ $(function() {
 var auto_gen_to_id=['to-1'];
 var auto_gen_from_id=['from-1'];
 
-function gen_dates_input(event) {//
+function gen_dates_input(event,editFlag) {//
     // body...
    event.preventDefault();
    // console.log(type);
     
-    var to_id = "to-"+(auto_gen_to_id.length + 1);
+    var to_id = "to-"+($('.def-show-date li').length + 1);
     auto_gen_to_id.push(to_id)
        console.log(auto_gen_to_id);
 
-       var from_id="from-"+(auto_gen_from_id.length + 1);
+       var from_id="from-"+($('.def-show-date li').length + 1);
        auto_gen_from_id.push(from_id);
        console.log(auto_gen_from_id);
-
+       var dataInput = (editFlag == "edit") ? '<input type="hidden" name="common_bokdate_id[]" id="date_id">' : '';
    // var checkdate=document.getElementById('to').value;
    // console.log(checkdate);
 
@@ -171,7 +190,7 @@ function gen_dates_input(event) {//
     // console.log(showlength);
      $('.def-show-date').collapsible('close', showlength-1);
      
-   var new_obj='<li id="gen-date-wrap" class="newLI"><div class="collapsible-header">Date <a class="closedate" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row"><div class="col-md-6"><label>From</label><input type="text" class="input-field from" id="'+from_id+'" name="book_fromdate[]"></div><div class="col-md-6"><label>To  </label><input type="text"  class="input-field to" id="'+to_id+'" name="book_todate[]"></div></div></div></li>';
+   var new_obj='<li id="gen-date-wrap" class="newLI"><div class="collapsible-header">Date <a class="closedate" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row">'+dataInput+'<div class="col-md-6"><label>From</label><input type="text" class="input-field from" id="'+from_id+'" name="book_fromdate[]"></div><div class="col-md-6"><label>To  </label><input type="text"  class="input-field to" id="'+to_id+'" name="book_todate[]"></div></div></div></li>';
      
       $('.def-show-date').append(new_obj);
     
@@ -187,7 +206,9 @@ function gen_dates_input(event) {//
            debugger;
            $("#"+to_id).datepicker("option","minDate", selected)
             if($("#"+from_id).parents('.def-show-date').hasClass('editroom')){
-                if($("#"+to_id).val() && $('#'+from_id).val()){
+                if($("#"+to_id).val() && $('#'+from_id).val() && !$('#'+from_id).parents('.collapsible-body').find('#date_id').val()){
+
+                  $('#ajaxbtn').trigger('click');
                   alert('Time to send ajax call for insertion')
                 }
             }
@@ -202,11 +223,16 @@ function gen_dates_input(event) {//
             // minDate: manzar,
 
             onSelect: function(selected) {
-              debugger;
+             
             $("#"+from_id).datepicker("option","maxDate", selected)
             if($("#"+to_id).parents('.def-show-date').hasClass('editroom')){
-                if($("#"+to_id).val() && $('#'+from_id).val()){
+
+                if($("#"+to_id).val() && $('#'+from_id).val() && !$('#'+from_id).parents('.collapsible-body').find('#date_id').val() ){
                   alert('Time to send ajax call for insertion')
+                   debugger;
+                  $('#ajaxbtn').trigger('click');
+
+
                 }
             }
             
@@ -235,6 +261,35 @@ function gen_dates_input(event) {//
 
     event.stopPropagation();
 }
+
+/*===================Ajax call for date Insertion==========================*/
+ 
+
+
+
+
+
+function insertDtate() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // body...
+}
+
+
+
+
 
 
 /*=============Date For Expire discount  ================*/

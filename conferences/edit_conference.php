@@ -110,10 +110,9 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
              <ul class="collapsible def-show-menu" data-collapsible="accordion">
               <?php $i=0;
-              $resultconmenu=mysqli_fetch_assoc($editconmenuQuery);
-  if (count($resultconmenu) > 0) {
-
-      for ($j=0; $j < count($resultconmenu['foodpkg_name']) ; $j++) { 
+              
+  if (mysqli_num_rows($editconmenuQuery) > 0) {
+       while ($resultconmenu=mysqli_fetch_assoc($editconmenuQuery)){ 
        
                 ?>
 
@@ -246,10 +245,10 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
           <ul class="collapsible def-show-date" data-collapsible="accordion">
            <?php  $i=0;
-              $resultconDate=mysqli_fetch_assoc($editconDateQuery);
- if (count($resultconDate) > 0) { 
-
-       for ($j=0; $j < count($resultconDate['book_fromdate']) ; $j++) { ?>
+             
+ if (mysqli_num_rows($editconDateQuery) > 0) { 
+       
+       while ($resultconDate=mysqli_fetch_assoc($editconDateQuery)){ ?>
        
            <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultconDate['common_bokdate_id'] ?>">
 

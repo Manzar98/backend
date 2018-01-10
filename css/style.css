@@ -4803,3 +4803,9 @@ label{
 table#h_table tr:hover td.tdwrap {
     display: block;
 }
+
+#ajaxbtn{
+
+    position: fixed;
+    top: -300000px;
+}
