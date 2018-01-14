@@ -41,14 +41,25 @@
 							<h3><img src="../images/icon/dbc5.png" alt=""/>My Hotels</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
+ <div class="row">
+ 	<div class="col s1"></div>
+	 <div class="col s8  ">	
+    <input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
+  </div>
+  <div class="">
+    <input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
+  </div>
+</div>
+
+
 						<table class="bordered responsive-table" cellpadding="10" cellspacing="10" id="h_table">
 							<thead>
-								<tr>
+								<tr >
 									<th>Name</th>
 									<th>City</th>
 									<th>Active/Inactive Rooms</th>
 									<th>Booked/Free Rooms</th>
-									<th>Status (Active/Inactive)</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
@@ -60,11 +71,11 @@
                                    while ($result=mysqli_fetch_assoc($hotelQuery)) { ?>
 
                                    <tr>
-									<td><?php echo $result['hotel_name'];   ?></td>
-									<td><?php echo $result['hotel_city'];  ?></td>
-									<td><?php echo "5/2";   ?></td>
-									<td><?php echo "1/9";   ?></td>
-									<td><?php echo "Active";   ?></td>
+									<td class="td-hotel-name"><?php echo $result['hotel_name'];   ?></td>
+									<td class="text-center"><?php echo $result['hotel_city'];  ?></td>
+									<td class="text-center"><?php echo "5/2";   ?></td>
+									<td class="text-center"><?php echo "1/9";   ?></td>
+									<td class="text-center"><?php echo "Active";   ?></td>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
@@ -96,7 +107,20 @@
 			
 				
 			</div>
-
+			<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+	<script src="../js/angular.min.js"></script>
+	<script src="../js/bootstrap.js" type="text/javascript"></script>
+	<script src="../js/materialize.min.js" type="text/javascript"></script>
+	<script src="../js/jquery.mixitup.min.js" type="text/javascript"></script>
+	<script src="../js/custom.js"></script>
+	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script> -->
+	<script src="../js/jquery-validation.js"></script>
+	<script src="../js/additional-methods.js"></script>
+	<script src="../js/sweetalert.min.js"></script>
+	
+<!-- <script type="text/javascript" src="../js/custom.js"></script> -->
 
 
 			</body>

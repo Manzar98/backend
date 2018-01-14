@@ -50,7 +50,7 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
 							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
                         <div class="pull-right">
-                            <a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $TourResult['tour_id'];  ?>&h_id=<?php echo  $TourResult['hotel_id']  ?>">Edit</a>
+                            <a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $TourResult['tour_id'];  ?>&h_id=<?php echo  $TourResult['hotel_id'] ; ?>">Edit</a>
                         </div>
                       </div>
 						 
@@ -68,7 +68,8 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                                 <span><b>Food Included ? :</b></span>
                                 <span><?php echo $TourResult['tour_foodinclude']."."; ?></span>
                              </div>
-
+                             <?php if ($TourResult['tour_foodinclude']=='yes') { ?>
+                                 
                              <div class="row">
                                  <div class="col-md-2">
                                     <span><b>Breakfast :</b></span>
@@ -117,13 +118,15 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                             <?php    }    ?>
                                  </div>
                              </div>
+                           <?php } ?>
+
 
                               <div class="row">
                                 <span><b>Drink Included ? :</b></span>
                                 <span><?php echo $TourResult['tour_drink']."."; ?></span>
                              </div>
-
-                             <div class="row">
+                             <?php if ($TourResult['tour_drink']=='yes') { ?>
+                                 <div class="row">
                                  <div class="col-md-2">
                                     <span><b>Alcoholic :</b></span>
                                      
@@ -159,6 +162,9 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                                  </div>
                                  
                              </div>
+                          <?php    }  ?>
+
+                             
                             
                              <div class="row">
                              	<span><b>Number of Days :</b></span>
@@ -212,7 +218,9 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
 
                                 <span><?php echo $TourResult['tour_childallow']."."; ?></span>
                              </div>
-                             <div class="row">
+                             <?php if ($TourResult['tour_childallow']=='yes') { ?>
+
+                                 <div class="row">
                                 <span><b>Under 5 allowed? :</b></span>
                                 <span><?php echo $TourResult['tour_undr5allow']."."; ?></span>
                              </div>
@@ -226,9 +234,11 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                              <?php   }   ?>
                              </div>
                              <div class="row">
-                                <span><b>Half Ticket for children? :</b></span>
+                                <span><b>Charges for children :</b></span>
                                 <span><?php echo $TourResult['tour_halftikchild']."."; ?></span>
                              </div>
+                            <?php  }  ?>
+                             
                             
                              <div class="row">
                                  <span><b>Discount for groups : :</b></span>
@@ -266,7 +276,8 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                                 <span><b>Pickup Offered ? :</b></span>
                                 <span><?php echo $TourResult['tour_pikoffer'].".";  ?></span>
                             </div>
-                            <div class="row">
+                            <?php if ($TourResult['tour_pikoffer']=='yes') { ?>
+                                  <div class="row">
                                 <span><b>Charges From:</b></span>
                             </div>
                             <div class="row">
@@ -283,21 +294,25 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                             <div class="row">
                                 <div class="col-md-3">
 
-                                    <span><?php echo $TourResult['tour_pikair']  ?></span>
+                                    <span><?php echo $TourResult['tour_pikair'] ; ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $TourResult['tour_pikbus']  ?></span>
+                                    <span><?php echo $TourResult['tour_pikbus'];  ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $TourResult['tour_pikspecific']  ?></span>
+                                    <span><?php echo $TourResult['tour_pikspecific'];  ?></span>
                                 </div>
                             </div>
+                          <?php  } ?>
+                          
 
                             <div class="row">
                                 <span><b>Drop off Offered ? :</b></span>
                                 <span><?php echo $TourResult['tour_drpoffer'].".";  ?></span>
                             </div>
-                            <div class="row">
+
+                            <?php if ($TourResult['tour_drpoffer']=='yes') { ?>
+                                  <div class="row">
                                 <span><b>Charges From:</b></span>
                             </div>
                             <div class="row">
@@ -314,15 +329,17 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                             <div class="row">
                                 <div class="col-md-3">
 
-                                    <span><?php echo $TourResult['tour_drpair']  ?></span>
+                                    <span><?php echo $TourResult['tour_drpair'];  ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $TourResult['tour_drpbus']  ?></span>
+                                    <span><?php echo $TourResult['tour_drpbus'];  ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $TourResult['tour_drpspecific']  ?></span>
+                                    <span><?php echo $TourResult['tour_drpspecific'];  ?></span>
                                 </div>
                             </div>
+                          <?php  } ?>
+                            
 
 
    

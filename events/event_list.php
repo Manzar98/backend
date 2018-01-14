@@ -51,11 +51,11 @@
                                    while ($result=mysqli_fetch_assoc($eventQuery)) { ?>
 
                                    <tr>
-									<td><?php echo $result['event_name'];   ?></td>
-									<td><?php echo $result['event_venue']; ?></td>
-									<td><?php echo $result['event_recurrence'];   ?></td>
-									<td><?php echo $result['event_entry'];   ?></td>
-									<td><?php echo "Active";   ?></td>
+									<td class="text-center"><?php echo $result['event_name'];   ?></td>
+									<td class="text-center"><?php echo $result['event_venue']; ?></td>
+									<td class="text-center"><?php echo $result['event_recurrence'];   ?></td>
+									<td class="text-center"><?php echo $result['event_entry'];   ?></td>
+									<td class="text-center"><?php echo "Active";   ?></td>
 									
 									
 									<td class="tdwrap">

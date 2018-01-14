@@ -139,7 +139,7 @@
 
 
                         <div class="row" >
-                        	<div class="col-md-6  input-field" id="pick_select" >
+                        	<div class="input-field" id="pick_select" >
                         		
                         		<select  onchange="yesCheck(this)" name="hotel_pickup" class=" " id="pik_select">
 							     <option value="" disabled selected>Choose your option</option>
@@ -148,15 +148,22 @@
 							   </select> 
 							   <label>Pickup Offered?</label>
                         	</div>
-                            <div class="col-md-6 " id="transport" style="padding-top: 10px;display: none;">
-                            	<select onchange="transportType(this)" >
-                            		<option value="" name="hotel_transport" selected="" disabled="">Select One</option>
-                            		<option value="Airport">Airport</option>
-                            		<option value="Bus Station">Bus Station</option>
-                            	</select>
-                            	<label style="padding-top: 22px;">Airport/Bus Station</label>
-                            </div>   
+                            
 					    </div>
+					    <div class="row" id="transport" style="display: none;">
+                            	<div class="col-md-6" id="fil_air" >
+						            <p class="pTAG">
+						             <input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair"  />
+						             <label for="filled-in-airport" id="air">Airport</label>
+						            </p>
+         						</div>
+         						<div class="col-md-6 " id="fil_bus">
+						            <p class="pTAG">
+						             <input type="checkbox" class="filled-in" id="filled-in-bus" name="hotel_isbus" />
+						             <label for="filled-in-bus">Bus station</label>
+						            </p>
+         						</div>
+                            </div>   
 
 
                         <div class="row">
@@ -166,9 +173,9 @@
                         		 <input type="number"  class="input-field validate is_validate" name="hotel_pikcharge" >
                             </div>
                             </div>
-                            <div class="col-md-6" id="busAddres" style="display: none;">
-                            	<label>Address</label>
-                        		 <input type="text"  class="input-field validate " name="hotel_busaddres" >
+                            <div class="col-md-6" id="buschgr" style="display: none;">
+                            	<label>Charges</label>
+                        		 <input type="text"  class="input-field validate " name="hotel_buscharge" >
                             </div>
                         </div>
 
@@ -255,7 +262,7 @@
 
 						<div>
 							<div class="input-field col s8">
-								<input type="submit"  value="Add" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_hotel"> </div>
 						</div>
 					</form>
 
@@ -303,17 +310,68 @@
 
 
 
+		   <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+    	<div class="col-md-5"></div>
+    	   <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+		</div>
+    
+  </div>
+
+
+
 		   <?php  include"../footer.php";  ?>
+           <script src="../js/hotel-js/hotel.js"></script>
 
 
+<script>
 
-
-		   <script>
    tinymce.init({ selector:'textarea' });
-
-
-
-
 
   function yesCheck(that) {
         if (that.value == "yes") {
@@ -329,8 +387,8 @@
     		document.getElementById("4bags").style.display = "none";
     		document.getElementById('bag-inpt').style.display = "none";
     		document.getElementById("transport").style.display = "none";
-    		$('#busAddres').hide();
-    		 $('#transport').prop('selectedIndex',0);
+    		$('#buschgr').hide();
+    		 
 
     		  
         }
@@ -381,20 +439,29 @@
     }
 
 
+	// body...
+ $('#filled-in-airport').click(function () {
+    if ($("#fil_air input:checkbox:checked").length > 0) {
+           
+           
+           $('#ifYes').show();
+    }else{
 
-function transportType(that) {
+    	$('#ifYes').hide();
+    }
+});
 
-					    		  if (that.value== 'Airport') {
+ $('#filled-in-bus').click(function () {
+    if ($("#fil_bus input:checkbox:checked").length > 0) {
+           
+           
+           $('#buschgr').show();
+    }else{
 
-					    		  	$('#ifYes').show();
-					    		  	$('#busAddres').hide();
-					    		  }else{
-					    		  	$('#busAddres').show();
-					    		  	$('#ifYes').show();
-					    		  }
-					    		// body...
+    	$('#buschgr').hide();
+    }
+});
 
-					    	}
 
 jQuery(document).ready(function(){
 

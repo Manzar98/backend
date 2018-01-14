@@ -55,8 +55,51 @@
 							</div>
 						</div>
 
+						<div class="t-chckbox">
+							<div class="common-wrapper comon_dropdown_botom_line"></div>
+							<label>Serve Food?</label>
+							<select name="event_serve" onchange="showEvent_Eat(this)">
+								<option value="" disabled="" selected="">Select One</option>
+								<option value="yes">Yes</option>
+								<option value="no"> No</option>
+							</select>
 
-						  <div class="common-top">
+						</div>
+
+						<div class="row common-top EatFoodWrap"  >
+							<div class="col-md-1"></div>
+							<div class="col-md-3 " >
+								<div class="eatFree">
+							       <p class="pTAG">
+							         <input type="checkbox" class="filled-in freeLbl" id="filled-in-all_free"  name="event_eatFree" />
+							         <label for="filled-in-all_free" class="freeLbl">Free?</label>
+							       </p>
+							    </div>
+							</div>
+							<div class="col-md-4" >
+								<div class="eatAll">
+							       <p class="pTAG">
+							         <input type="checkbox" class="filled-in allLbl" id="filled-in-all_u_can"  name="event_eatAll" />
+							         <label for="filled-in-all_u_can" >All you can eat</label>
+							       </p>
+							    </div>
+							</div>
+							<div class="col-md-4" style="display: none;" id="eatallChrges">
+								<label>Charges</label>
+                        		<input type="number" name="event_eatAllChrges" class="validate" >
+							</div>
+							<div class="col-md-4 eatNeed" >
+								<div class="">
+							       <p class="pTAG">
+							         <input type="checkbox" class="filled-in needLbl" id="filled-in-as_u_need"  name="event_eatNeed" />
+							         <label for="filled-in-as_u_need">As you need</label>
+							       </p>
+							    </div>
+							</div>
+						</div>
+
+
+						<div class="common-top">
 							<label class="col s4">Event Description</label>
 							  <div class="input-field col s8">
 								 <textarea class="materialize-textarea" name="event_descrip" 
@@ -109,27 +152,17 @@
 
                         <div class="row common-top">
                         	<div class="col-md-6 common-wrapper c-childTickt comon_dropdown_botom_line">
-                        		<label style="padding-bottom:5px;">Half Ticket for children?</label>
-                        		<select name="event_halftikchild">
-                        			<option value="-1">Select One</option>
-                        			<option value="yes">Yes</option>
-                        			<option value="no">No</option>
-                        		</select>
+                        		<label style="padding-bottom:5px;">Charges for children</label>
+                        		<input type="number" name="event_halftikchild" class="validate" >
+                        		
                         	</div>
                         	<div class="col-md-2 events-checkbox">
                         		<div class="c-childfree">
                         			<p>
 									<input type="checkbox" class="filled-in" onclick="childrnfree(this)" name="event_undr5free" id="undr5free"/>
 									<label for="undr5free">Free?</label>
-								</p><br><br><br><br>
-                        			<!--<label for="filled-in-box">Free</label>
-                        			 <p >
-                        				
-                        				<input type="checkbox" class="filled-in" id="filled-in-box"   name="event_undr5free" />
-      
-                        				
-
-                        			</p> -->
+								    </p><br><br><br><br>
+                        			
                         		</div>
                         	</div>
                         	<div class="col-md-4">
@@ -169,8 +202,8 @@
 
 						<div class="row common-top" >
 							
-							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
-								<label style="margin-bottom: 32px;">Pickup Offered ?</label>
+							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
+								<label>Pickup Offered ?</label>
 							      <select onchange="pickOffer(this)" name="event_pikoffer">
 								     <option value="-1">Select One</option>
 								     <option value="yes">Yes</option>
@@ -178,39 +211,42 @@
 							     </select>
 
 							</div>
-							
-							<div class="col-md-6 pickService"  style="display: none;">
-								
-								 <label><b>Charges from : </b><br> Airport</label>
+						</div>
+
+						<div class="row pickService common-top" style="display: none;">
+							<label style="padding-left: 13px;"><b>Charges from : </b></label>
+							<div class="col-md-6">
+								<label>Airport</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="event_pikair" class="validate"> 
-							      </div>
+							     </div>
 							</div>
-
-						</div>
-						<div class="row pickService common-top" style="display: none;">
-							
 							<div class="col-md-6">
 								<label> Bus Terminal</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="event_pikbus" class="validate"> 
 							      </div>
-
+								 
 							</div>
-							<div class="col-md-6">
+
+						</div>
+
+                     <div class="row">
+						<div class="col-md-6 pickService"  style="display: none;">
+								
 								 <label>Specific Location</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="event_pikspecific" class="validate"> 
 							      </div>
 							</div>
+					 </div>
 
-						</div>
 
 
                        <div class="row common-top" >
 							
-							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
-								<label style="margin-bottom: 32px;">Drop off Offered ?</label>
+							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
+								<label>Drop off Offered ?</label>
 							      <select onchange="dropOffer(this)" name="event_drpoffer">
 								     <option value="-1">Select One</option>
 								     <option value="yes">Yes</option>
@@ -218,32 +254,34 @@
 							     </select>
 
 							</div>
-							<div class="col-md-6 dropService"  style="display: none;">
-								 <label>Charges From :<br> Airport</label>
+						</div>
+						<div class="row dropService common-top" style=" display: none;">
+							<label style="padding-left: 13px;"><b>Charges from : </b></label>
+							<div class="col-md-6">
+								<label>Airport</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="event_drpair" class="validate"> 
 							      </div>
+								
 							</div>
-
-						</div>
-						<div class="row dropService common-top" style=" display: none;">
-							
 							<div class="col-md-6">
 								<label>Bus Terminal</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="event_drpbus" class="validate"> 
 							      </div>
-
+								 
 							</div>
-							<div class="col-md-6">
-								 <label>Specific Location</label>
+						</div>
+                          
+                          <div class="row">
+						    <div class="col-md-6 dropService"  style="display: none;">   <label>Specific Location</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="event_drpspecific" class="validate"> 
 							      </div>
+								 
 							</div>
+                         </div>
 
-						</div>
-                         
                        <div class="imgVeiwinline row" id="hotel_img_wrap">
                
                        </div>
@@ -310,6 +348,71 @@ jQuery(document).ready(function(){
 
 });
 
+function showEvent_Eat(that) {
+	
+	if (that.value== 'yes') {
+		$('.EatFoodWrap').show();
+		
+
+	}else{
+        $('.EatFoodWrap').hide();
+
+	}
+}
+
+$(".freeLbl").click(function () {
+
+     // $('input:checkbox:not(:disabled)').not(this).prop('checked', this.checked);
+     
+   if($(".eatFree input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatAll').hide();
+  $('.eatNeed').hide();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+  }
+   
+ });
+
+$(".allLbl").click(function () {
+
+     // $('input:checkbox:not(:disabled)').not(this).prop('checked', this.checked);
+     
+      if($(".eatAll input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatFree').hide();
+  $('.eatNeed').hide();
+  $('#eatallChrges').show();
+  
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+    $('#eatallChrges').hide();
+  }
+   
+ });
+
+$(".needLbl").click(function () {
+
+     // $('input:checkbox:not(:disabled)').not(this).prop('checked', this.checked);
+     
+      if($(".eatNeed input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatFree').hide();
+  $('.eatAll').hide();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+  }
+   
+ });
 
 function selectentryfee(that) {
 

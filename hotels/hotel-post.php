@@ -1,7 +1,7 @@
 <?php
 
   include '../common-sql.php';
-   // print_r($_POST);
+ // print_r($_POST);
 
 $is_check= true;
 
@@ -81,17 +81,17 @@ $addres2=$_POST['hotel_addres2'];
 
   }
 $web=$_POST['hotel_web'];
-
- if (empty($_POST['hotel_descrp'])) {
+   
+ // if (empty($_POST['hotel_descrp'])) {
 	
- 	$is_check=false;
- 	echo "Description is required ";
+ // 	$is_check=false;
+ // 	echo "Description is required ";
 
- }else{
+ // }else{
 
 	$descrp=$_POST['hotel_descrp'];
 
- }
+ // }/
  if (empty($_POST['hotel_other'])) {
 	
  	$is_check=false;
@@ -102,14 +102,14 @@ $web=$_POST['hotel_web'];
 	$other=$_POST['hotel_other'];
 
  }
- if (empty($_POST['hotel_policy'])) {
+ // if (empty($_POST['hotel_policy'])) {
 
- 	$is_check=false;
- 	echo "Canellation Policy is required ";
- }else{
+ // 	$is_check=false;
+ // 	echo "Canellation Policy is required ";
+ // }else{
 
 	$policy=$_POST['hotel_policy'];
- }
+ // }
  if (empty($_POST['hotel_pickup'])) {
 
 	
@@ -168,21 +168,37 @@ $yuturl=$_POST['hotel_yuturl'];
 
   $checkIn=$_POST['hotel_checkin'];
   $checkOut=$_POST['hotel_checkout'];
-if (!empty($_POST['hotel_transport'])) {
 
-  $transport=$_POST['hotel_transport'];
+if (isset($_POST['hotel_isair'])) {
+  
+  $is_air= $_POST['hotel_isair'];
 }else{
-  $transport=null;
+
+ $is_air= 'off';
+}
+
+if (isset($_POST['hotel_isbus'])) {
+  
+  $is_bus= $_POST['hotel_isbus'];
+}else{
+
+ $is_bus= 'off';
+}
+
+if (!empty($_POST['hotel_buscharge']) && !is_numeric($_POST['hotel_buscharge'])) {
+
+  $is_check=false;
+  echo "Pickup charges accept only numeric";
+
+ }elseif (!empty($_POST['hotel_buscharge']) && is_numeric($_POST['hotel_buscharge'])) {
+  
+  $buscharge=$_POST['hotel_buscharge'];
+ }else{
+
+  $buscharge=null;
 }
   
 
-  if (isset($_POST['hotel_busaddres'])) {
-
-  	$busaddres=$_POST['hotel_busaddres'];
-  }else{
-
-  	$busaddres="null";
-  }
   
 
 
@@ -199,7 +215,7 @@ $user_id= 2;
  if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_transport,hotel_busaddres,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other.'","'.$pickup.'","'.$transport.'","'.$busaddres.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
+$query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_isair,hotel_isbus,hotel_buscharge,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other.'","'.$pickup.'","'.$is_air.'","'.$is_bus.'","'.$buscharge.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
 
 
 
@@ -209,11 +225,11 @@ $query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_c
   	# code...
   	$hotel_id=$conn->insert_id;
 
-echo $hotel_id;
+// echo $hotel_id;
   }else{
   	echo "Error: " . $query . "<br>" . $conn->error;
   }
- // echo $hotel_id;
+  // echo $hotel_id;
 
 
  if (isset($_POST['common_video'])) {
@@ -254,6 +270,7 @@ echo $hotel_id;
 
 
   }
+
   echo "<br>"."Your Form Submitted Sucessfully !"."<br>";
  }else{
  	return false;

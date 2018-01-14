@@ -52,10 +52,10 @@
                                    while ($result=mysqli_fetch_assoc($conferenceQuery)) { ?>
 
                                    <tr>
-									<td><?php echo $result['conference_name'];   ?></td>
-									<td><?php echo $result['conference_space'];   ?></td>
-									<td><?php echo "Lahore";  ?></td>
-									<td><?php echo "Active";   ?></td>
+									<td class="text-center"><?php echo $result['conference_name'];   ?></td>
+									<td class="text-center"><?php echo $result['conference_space'];   ?></td>
+									<td class="text-center"><?php echo "Lahore";  ?></td>
+									<td class="text-center"><?php echo "Active";   ?></td>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->

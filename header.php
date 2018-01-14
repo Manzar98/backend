@@ -376,13 +376,13 @@
 				<div class="db-left-2">
 					<ul>
 						<li>
-							<a href="../dashboard.html"><img src="../images/icon/db1.png" alt="" /> Add Listing</a>
+							<a href="../dashboard.html"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
-							<a href="../db-booking.html"><img src="../images/icon/db2.png" alt="" /> My Bookings</a>
+							<a href="../add-listing.html"><img src="../images/icon/db2.png" alt="" />Add Listing</a>
 						</li>
 						<li>
-							<a href="../db-new-booking.html"><img src="../images/icon/db3.png" alt="" /> New Booking</a>
+							<a href="../manage-listing.html"><img src="../images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
 							<a href="../db-event.html"><img src="../images/icon/db4.png" alt="" /> Event</a>

@@ -4608,6 +4608,17 @@ border-radius:0px;
 }
 #pick_select label{
     padding-left: 15px;
+    padding-top: 5px;
+}
+#pick_select{
+    padding-top: 11px;
+
+}
+.edit_pick_select .select-wrapper span.caret{
+   padding-top: 10px;
+}
+.edit_pick_select .select-wrapper{
+    padding-top: 27px;
 }
 /*.select-wrapper .caret{
    display: block;
@@ -4808,4 +4819,56 @@ table#h_table tr:hover td.tdwrap {
 
     position: fixed;
     top: -300000px;
+}
+#pro-sub-btn_hotel, #pro-sub-btn_room{
+   background: #f4364f;
+    padding: 7px 25px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 2px;
+    font-size: 14px;
+    width: 100%;
+    display: block;
+}
+.wrap-td .td-hotel-name{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 150px; 
+}
+[type="checkbox"].allLbl.filled-in:not(:checked) + label::after{
+    left: 40px;
+}
+[type="checkbox"].allLbl.filled-in:checked + label::before {
+    
+    left: 40px;
+}
+[type="checkbox"].allLbl.filled-in:checked + label::after {
+    
+    left: 40px;
+}
+[type="checkbox"].needLbl.filled-in:not(:checked) + label::after{
+    left: 40px;
+}
+[type="checkbox"].needLbl.filled-in:checked + label::before {
+    
+    left: 40px;
+}
+[type="checkbox"].needLbl.filled-in:checked + label::after {
+    
+    left: 40px;
+}
+label.freeLbl {
+    padding-left: 12px;
+}
+.EatFoodWrap{
+    display: none;
+}
+.common-center {
+    text-align: center;
+}
+#h_table th{
+    text-align: center;
 }

@@ -144,8 +144,84 @@ $global_event_id="";
 							</div>
 						</div>
 
+						<div class="t-chckbox">
+							<div class="common-wrapper comon_dropdown_botom_line"></div>
+							<label>Serve Food?</label>
+							<select onchange="showEvent_Eat(this)" name="event_serve"    id="show_Eat">
+								<?php if ($resultevent['event_serve']=="yes") { ?>
+									<option value="" disabled="" >Select One</option>
+								    <option value="yes" selected="">Yes</option>
+								    <option value="no"> No</option>
 
-						  <div class="common-top">
+								<?php }elseif ($resultevent['event_serve']=="no") { ?> 
+									<option value="" disabled="" >Select One</option>
+									<option value="yes">Yes</option>
+									<option value="no" selected=""> No</option>
+								<?php }else{?>
+									  
+									<option value="" disabled="" selected="">Select One</option>
+									<option value="yes">Yes</option>
+									<option value="no"> No</option>
+								<?php }   ?>
+								
+							</select>
+						</div>
+
+						<div class="row common-top EatFoodWrap"  >
+							<div class="col-md-1"></div>
+							<div class="col-md-3 " >
+								<div class="eatFree">
+							       <p class="pTAG">
+
+							       <?php if ($resultevent['event_eatFree']=="on") {?>
+							               <input type="checkbox" class="filled-in freeLbl" id="filled-in-all_free"  name="event_eatFree" checked="" />
+							               <label for="filled-in-all_free" class="freeLbl">Free?</label>
+							      <?php  }else{ ?>
+							                <input type="checkbox" class="filled-in freeLbl" id="filled-in-all_free"  name="event_eatFree" />
+							               <label for="filled-in-all_free" class="freeLbl">Free?</label>
+
+
+							      <?php }  ?>
+							         
+							       </p>
+							    </div>
+							</div>
+							<div class="col-md-4 " >
+								<div class="eatAll">
+							       <p class="pTAG">
+							       <?php if ($resultevent['event_eatAll']=="on") { ?>
+							       		   <input type="checkbox" class="filled-in allLbl" id="filled-in-all_u_can"  name="event_eatAll" checked="" />
+							               <label for="filled-in-all_u_can" >All you can eat</label>
+							       <?php }else { ?>
+							       	       <input type="checkbox" class="filled-in allLbl" id="filled-in-all_u_can"  name="event_eatAll" />
+							              <label for="filled-in-all_u_can" >All you can eat</label>
+							       <?php }  ?>
+							         
+							       </p>
+							    </div>
+							</div>
+							<div class="col-md-4" style="display: none;" id="eatallChrges">
+								<label>Charges</label>
+                        		<input type="number" name="event_eatAllChrges" class="validate" value="<?php echo $resultevent['event_eatAllChrges'] ?>" >
+							</div>
+							<div class="col-md-4 " >
+								<div class="eatNeed">
+							       <p class="pTAG">
+							      <?php if ($resultevent['event_eatNeed']=="on") { ?>
+							       		   <input type="checkbox" class="filled-in needLbl" id="filled-in-as_u_need"  name="event_eatNeed" checked="" />
+							               <label for="filled-in-as_u_need">As you need</label>
+							      <?php }else{ ?>
+							               <input type="checkbox" class="filled-in needLbl" id="filled-in-as_u_need"  name="event_eatNeed" />
+							               <label for="filled-in-as_u_need">As you need</label>
+							      <?php } ?>
+							         
+							       </p>
+							    </div>
+							</div>
+						</div>
+
+
+                        <div class="common-top">
 							<label class="col s4">Event Description</label>
 							  <div class="input-field col s8">
 								 <textarea class="materialize-textarea" name="event_descrip" 
@@ -247,29 +323,8 @@ $global_event_id="";
 
                         <div class="row common-top">
                         	<div class="col-md-6 common-wrapper c-childTickt comon_dropdown_botom_line">
-                        		<label style="padding-bottom:5px;">Half Ticket for children?</label>
-                        		<select name="event_halftikchild">
-                        	<?php if ($resultevent['event_halftikchild']== -1) { ?>
-
-									<option value="-1" disabled selected>Select One</option>
-								    <option value="yes">Yes</option>
-								    <option value="no">No</option>
-
-							<?php	}elseif ($resultevent['event_halftikchild']== "yes") {?>
-								
-								    <option value="-1" disabled >Select One</option>
-								    <option value="yes" selected>Yes</option>
-								    <option value="no">No</option>
-
-							<?php }elseif ($resultevent['event_halftikchild']== "no") { ?>
-								     
-								    <option value="-1" disabled >Select One</option>
-								    <option value="yes" >Yes</option>
-								    <option value="no" selected>No</option>
-
-					        <?php	}  ?>
-
-                        		</select>
+                        		<label style="padding-bottom:5px;">Charges for children</label>
+                        		<input type="number" name="event_halftikchild" class="validate" value="<?php echo $resultevent['event_halftikchild']; ?>">
                         	</div>
                         	<div class="col-md-2 events-checkbox">
                         		<div class="c-childfree">
@@ -356,8 +411,8 @@ $global_event_id="";
 
 						<div class="row common-top" >
 							
-							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
-								<label style="margin-bottom: 32px;">Pickup Offered ?</label>
+							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
+								<label>Pickup Offered ?</label>
 							      <select onchange="pickOffer(this)" name="event_pikoffer" id="pikoffer">
                         	<?php if ($resultevent['event_pikoffer']== -1) { ?>
 
@@ -382,39 +437,42 @@ $global_event_id="";
     							     </select>
 
 							</div>
-							
-							<div class="col-md-6 pickService"  style="display: none;">
-								
-								 <label><b>Charges from : </b><br> Airport</label>
+						</div>
+
+						<div class="row pickService common-top" style="display: none;">
+							<label style="padding-left: 13px;"><b>Charges from : </b></label>
+							<div class="col-md-6">
+								 <label>Airport</label>
 								 <div class="input-field ">
 								   <input type="number"  name="event_pikair" class="validate"  value="<?php echo $resultevent['event_pikair']; ?>"> 
 							      </div>
-							</div>
+								
 
-						</div>
-						<div class="row pickService common-top" style="display: none;">
-							
+							</div>
 							<div class="col-md-6">
 								<label> Bus Terminal</label>
 								 <div class="input-field ">
 								   <input type="number" name="event_pikbus" class="validate" value="<?php echo $resultevent['event_pikbus']; ?>"> 
 							      </div>
-
+								 
 							</div>
-							<div class="col-md-6">
-								 <label>Specific Location</label>
+
+						</div>
+					    <div class="row">
+						   <div class="col-md-6 pickService"  style="display: none;">
+								<label>Specific Location</label>
 								 <div class="input-field ">
 								   <input type="number" name="event_pikspecific" class="validate" value="<?php echo $resultevent['event_pikspecific']; ?>"> 
 							      </div>
+								
 							</div>
-
 						</div>
 
 
                        <div class="row common-top" >
 							
-							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
-								<label style="margin-bottom: 32px;">Drop off Offered ?</label>
+							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
+								<label>Drop off Offered ?</label>
 							      <select onchange="dropOffer(this)" name="event_drpoffer" id="drpoffer">
                         	<?php if ($resultevent['event_drpoffer']== -1) { ?>
 
@@ -439,32 +497,37 @@ $global_event_id="";
  							     </select>
 
 							</div>
-							<div class="col-md-6 dropService"  style="display: none;">
-								 <label>Charges From :<br> Airport</label>
-								 <div class="input-field ">
-								   <input type="number" name="event_drpair" class="validate" value="<?php echo $resultevent['event_drpair']; ?>"> 
-							      </div>
-							</div>
+							
 
 						</div>
 						<div class="row dropService common-top" style=" display: none;">
-							
+							<label style="padding-left: 13px;"><b>Charges from : </b></label>
+							<div class="col-md-6">
+								<label>Airport</label>
+								 <div class="input-field ">
+								   <input type="number" name="event_drpair" class="validate" value="<?php echo $resultevent['event_drpair']; ?>"> 
+							      </div>
+								
+
+							</div>
 							<div class="col-md-6">
 								<label>Bus Terminal</label>
 								 <div class="input-field ">
 								   <input type="number" name="event_drpbus" class="validate" value="<?php echo $resultevent['event_drpbus']; ?>"> 
 							      </div>
-
+								 
 							</div>
-							<div class="col-md-6">
+
+						</div>
+                         
+                         <div class="row">
+						     <div class="col-md-6 dropService"  style="display: none;">
 								 <label>Specific Location</label>
 								 <div class="input-field ">
 								   <input type="number" name="event_drpspecific" class="validate" value="<?php echo $resultevent['event_drpspecific']; ?>"> 
 							      </div>
 							</div>
-
-						</div>
-                         
+                         </div>
                    <div class="imgVeiwinline row" id="hotel_img_wrap">
 												<?php
 
@@ -505,7 +568,7 @@ $global_event_id="";
 <?php   } ?>
 						<div>
 							<div class="input-field col s8">
-								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 						</div>
 					</form>
 				</div>
@@ -597,15 +660,83 @@ jQuery(document).ready(function(){
      
      // alert('Hit');
  	// $("#chosenexample").chosen({ allow_single_deselect: true})
-
-
-
-
-
-
-
-
 });
+function showEvent_Eat(that) {
+	 // debugger;
+	if (that.value== 'yes') {
+		$('.EatFoodWrap').show();
+		
+
+	}else{
+        $('.EatFoodWrap').hide();
+
+	}
+}
+
+
+
+
+
+
+
+
+
+$(".freeLbl").click(function () {
+
+     // $('input:checkbox:not(:disabled)').not(this).prop('checked', this.checked);
+     
+   if($(".eatFree input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatAll').hide();
+  $('.eatNeed').hide();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+  }
+   
+ });
+
+$(".allLbl").click(function () {
+
+     // $('input:checkbox:not(:disabled)').not(this).prop('checked', this.checked);
+     
+      if($(".eatAll input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatFree').hide();
+  $('.eatNeed').hide();
+  $('#eatallChrges').show();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+    $('#eatallChrges').hide();
+  }
+   
+ });
+
+$(".needLbl").click(function () {
+
+     // $('input:checkbox:not(:disabled)').not(this).prop('checked', this.checked);
+     
+      if($(".eatNeed input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatFree').hide();
+  $('.eatAll').hide();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+  }
+   
+ });
+
+
+
+
 
 
 function selectentryfee(that) {
@@ -745,6 +876,53 @@ if ($('#selectentryfee :selected').text() == "Yes") {
 		$('#discount_wrap').hide();
 		$('#discount_btn').hide();
 	}
+
+if($('#show_Eat :selected').text()=="Yes"){
+       debugger;
+        $('.EatFoodWrap').show();
+		$('.eatFree').show();
+        $('.eatAll').show();
+        $('.eatNeed').show(); 
+  }else{
+
+    $('.EatFoodWrap').hide();
+  }
+
+if($(".eatFree input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatAll').hide();
+  $('.eatNeed').hide();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+  }
+
+if($(".eatAll input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatFree').hide();
+  $('.eatNeed').hide();
+  $('#eatallChrges').show();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show(); 
+    $('#eatallChrges').hide(); 
+  }
+
+if($(".eatNeed input:checkbox:checked").length > 0){
+ // debugger;
+  $('.eatFree').hide();
+  $('.eatAll').hide();
+
+  }else{
+  	$('.eatFree').show();
+    $('.eatAll').show();
+    $('.eatNeed').show();  
+  }
+
 
 
 

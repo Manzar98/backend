@@ -31,10 +31,10 @@
 								<input type="text" value="" class="validate" name="tour_name" required> </div>
 						</div>
 						<div>
-							<label class="col s4">Name of Desination</label>
+							<label class="col s4">Final Destination</label>
 							<div class="input-field col s8">
-								<div class="chips chips-destination"></div>
-								<input type="hidden" name="tour_destinationname" id="input_chips-desti" class="" > </div>
+								
+								<input type="text" name="tour_destinationname" id="input_chips-desti" class="validate"  required=""> </div>
 						</div>
 
 
@@ -221,12 +221,8 @@
 
                         <div class="row common-top">
                         	<div class="col-md-6 common-wrapper c-childTickt comon_dropdown_botom_line"  id="c-chilTickt">
-                        		<label style="padding-bottom:5px;">Half Ticket for children?</label>
-                        		<select name="tour_halftikchild" >
-                        			<option value="">Select One</option>
-                        			<option value="yes">Yes</option>
-                        			<option value="no">No</option>
-                        		</select>
+                        		<label style="padding-bottom:5px;">Charges for children</label> 
+                        		 <input type="number" name="tour_halftikchild" class="validate">
                         	</div>
                         	<div class="col-md-2 events-checkbox">
                         		<div class="c-childfree">
@@ -285,8 +281,8 @@
 
 						<div class="row common-top" >
 							 
-							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
-								<label style="margin-bottom: 32px;">Pickup Offered ?</label>
+							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
+								<label>Pickup Offered ?</label>
 							      <select onchange="pickOffer(this)" name="tour_pikoffer">
 								     <option value="">Select One</option>
 								     <option value="yes">Yes</option>
@@ -294,39 +290,42 @@
 							     </select>
 
 							</div>
-							
-							<div class="col-md-6 pickService"  style="display: none;">
-								
-								 <label><b>Charges from : </b><br> Airport</label>
+						</div>
+
+						
+						<div class="row pickService common-top" style="display: none;">
+							<label style="padding-left: 13px;"><b>Charges from : </b></label>
+							<div class="col-md-6">
+								<label>Airport</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="tour_pikair" class="validate"> 
 							      </div>
-							</div>
 
-						</div>
-						<div class="row pickService common-top" style="display: none;">
-							
+							</div>
 							<div class="col-md-6">
 								<label> Bus Terminal</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="tour_pikbus" class="validate"> 
 							      </div>
-
+								
 							</div>
-							<div class="col-md-6">
-								 <label>Specific Location</label>
+
+						</div>
+						<div class="row">
+							<div class="col-md-6 pickService"  style="display: none;">
+								
+								  <label>Specific Location</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="tour_pikspecific" class="validate"> 
 							      </div>
 							</div>
-
 						</div>
                          
 
                        <div class="row common-top" >
 							
-							<div class="col-md-6 pickup-select common-wrapper comon_dropdown_botom_line">
-								<label style="margin-bottom: 32px;">Drop off Offered ?</label>
+							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
+								<label>Drop off Offered ?</label>
 							      <select onchange="dropOffer(this)" name="tour_drpoffer">
 								     <option value="">Select One</option>
 								     <option value="yes">Yes</option>
@@ -334,30 +333,35 @@
 							     </select>
 
 							</div>
-							<div class="col-md-6 dropService"  style="display: none;">
-								 <label>Charges From :<br> Airport</label>
-								 <div class="input-field ">
-								   <input type="number" value="" name="tour_drpair" class="validate"> 
-							      </div>
-							</div>
+							
 
 						</div>
 						<div class="row dropService common-top" style=" display: none;">
-							
+							<label style="padding-left: 13px;"><b>Charges from : </b></label>
+							<div class="col-md-6">
+								<label>Airport</label>
+								 <div class="input-field ">
+								   <input type="number" value="" name="tour_drpair" class="validate"> 
+							      </div>
+								
+
+							</div>
 							<div class="col-md-6">
 								<label>Bus Terminal</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="tour_drpbus" class="validate"> 
 							      </div>
-
+								 
 							</div>
-							<div class="col-md-6">
-								 <label>Specific Location</label>
+
+						</div>
+						<div class="row">
+							<div class="col-md-6 dropService"  style="display: none;">
+								<label>Specific Location</label>
 								 <div class="input-field ">
 								   <input type="number" value="" name="tour_drpspecific" class="validate"> 
 							      </div>
 							</div>
-
 						</div>
 			           <div class="imgVeiwinline row" id="hotel_img_wrap">
 			               
@@ -463,35 +467,11 @@ jQuery(document).ready(function(){
 
 
 
- 	 $('.chips-destination').material_chip({
-    autocompleteOptions: {
-      data: {
-           
-      },
-      limit: Infinity,
-      minLength: 1
-    }
-  });
 
 
 
 
-$('.chips-destination').on('chip.add', function(e, chip){
-    
-     // you have the added chip here
-    var chip_desti_string= $('.chips-destination').material_chip('data')
-    var str = JSON.stringify(chip_desti_string);
-    var array_destination=[];
 
- for (var i = 0; i < chip_desti_string.length; i++) {
-
-      array_destination.push(chip_desti_string[i].tag);
-
- }
- 
-  $('#input_chips-desti').val(array_destination.toString());
-   console.log($('#input_chips-desti').val(array_destination.toString()));
-});
  
 
 

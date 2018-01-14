@@ -85,8 +85,15 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
           <div class="col-md-6 with_aricon" >
            <p class="pTAG">
-             <input type="checkbox" class="filled-in" id="filled-in-aricon" />
+            <?php if ($resultbnq['banquet_isaircon'] == "on") { ?>
+          <input type="checkbox" class="filled-in" id="filled-in-aricon" name="banquet_isaircon"  checked="" />
              <label for="filled-in-aricon">Aircon?</label>
+       <?php  }else{ ?>
+
+        <input type="checkbox" class="filled-in" id="filled-in-aricon" name="banquet_isaircon" />
+             <label for="filled-in-aricon">Aircon?</label>
+        <?php      }  ?>
+            
            </p>
          </div>
          <div class=" col-md-6" >
@@ -105,8 +112,16 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
      <div class="col-md-6 with_generator clearfix" >
        <p class="pTAG">
-         <input type="checkbox" class="filled-in" id="filled-in-gen"  />
+
+     <?php if ($resultbnq['banquet_isgen'] == "on") { ?>
+          <input type="checkbox" class="filled-in" id="filled-in-gen"  name="banquet_isgen"  checked="" />
          <label for="filled-in-gen">Generator?</label>
+       <?php  }else{ ?>
+
+        <input type="checkbox" class="filled-in" id="filled-in-gen"  name="banquet_isgen" />
+         <label for="filled-in-gen">Generator?</label>
+        <?php      }  ?>
+         
        </p>
      </div>
      <div class="col-md-6">
@@ -161,8 +176,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
      
   
    <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultbnqMenu['common_menupkg_id']; ?>">    
-   <li>
-    <div class="collapsible-header  active">Menu</div>
+   <li id="gen_menupackage_input">
+    <div class="collapsible-header  active"><?php echo $resultbnqMenu['foodpkg_name'] ?> <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div>
     <div class="collapsible-body"> 
      <div class="row">
       
@@ -197,7 +212,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <?php $i++; }  
    }else{ ?>
 <li class="newLI">
-    <div class="collapsible-header  active">Menu</div>
+    <div class="collapsible-header  active">Menu </div>
     <div class="collapsible-body"> 
      <div class="row">
      <div class="col-md-6">
@@ -490,7 +505,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
             </div>
   <div>
    <div class="input-field col s8">
-    <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+    <input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
   </div>
 </form>
 </div>
@@ -574,6 +589,15 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 <script src="../js/banquet-js/banquet.js"></script>
 <script type="text/javascript">
+
+$("body").on("click",".closemenu",function(){ 
+
+          $(this).parents("#gen_menupackage_input").remove();
+
+      });
+
+
+
   jQuery(document).ready(function(){
 
         /*==============Ajax Function Defination (For Dates)==============*/
@@ -616,20 +640,6 @@ $('#ajaxbtn').click(function(){
 
   });
 /*==============End Ajax Function Defination==============*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     tinymce.init({ selector:'textarea' });

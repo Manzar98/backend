@@ -209,7 +209,50 @@ if(!empty($_POST['event_drpspecific']) && !is_numeric($_POST['event_drpspecific'
 
 }
 
+if (empty($_POST['event_serve'])) {
 
+	$is_check=false;
+	echo "Serve Food Field is required.";
+}else{
+	$serveFood=$_POST['event_serve'];
+}
+
+
+if (isset($_POST['event_eatFree'])) {
+	$eatFree    = $_POST['event_eatFree'];
+}else{
+	$eatFree    = 'off';
+}
+
+if (isset($_POST['event_eatAll'])) {
+	$eatAll    = $_POST['event_eatAll'];
+}else{
+	$eatAll    = 'off';
+}
+
+if(!empty($_POST['event_eatAllChrges']) && !is_numeric($_POST['event_eatAllChrges'])){
+
+	$is_check= false;
+    echo "All you can eat charges  field accept only Numeric "."<br>";
+
+}elseif(!empty($_POST['event_eatAllChrges']) && is_numeric($_POST['event_eatAllChrges'])){
+
+	$eatAllChrges      = $_POST['event_eatAllChrges'];
+
+}else{
+
+	$eatAllChrges = null;
+
+}
+
+
+
+
+if (isset($_POST['event_eatNeed'])) {
+	$eatNeed    = $_POST['event_eatNeed'];
+}else{
+	$eatNeed    = 'off';
+}
 
 	$img          = $_POST['common_image'];
 
@@ -230,7 +273,7 @@ $formtype     = 'event';
 if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikofer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpofer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
+$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikofer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpofer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
 
 if ($conn->query($query)== TRUE) {
  	# code...

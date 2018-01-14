@@ -50,7 +50,7 @@ $showdiscountQuery=select('common_nosofpeople',array('event_id'=>$EventResult['e
 							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
                         <div class="pull-right">
-                            <a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $EventResult['event_id'];  ?>&h_id=<?php echo  $EventResult['hotel_id']  ?>">Edit</a>
+                            <a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $EventResult['event_id'];  ?>&h_id=<?php echo  $EventResult['hotel_id'];  ?>">Edit</a>
                         </div>
                       </div>
 						 
@@ -76,7 +76,8 @@ $showdiscountQuery=select('common_nosofpeople',array('event_id'=>$EventResult['e
                                 <span><b>Entry Fee ? :</b></span>
                                 <span><?php echo $EventResult['event_entry']."."; ?></span>
                              </div>
-                             <div class="row">
+                             <?php if ($EventResult['event_entry']=='yes') { ?>
+                                   <div class="row">
                                 <span><b>Price/Free :</b></span>
                                 <?php if ($EventResult['event_entryfee']=="no") { ?>
                                        <span><?php echo "Free"  ?></span>
@@ -86,13 +87,16 @@ $showdiscountQuery=select('common_nosofpeople',array('event_id'=>$EventResult['e
                                 <?php }  ?>
                                 
                              </div>
+                            <?php  } ?>
+                             
                         
-                             <div class="row">
+                             <div class="row child-allow">
                                 <span><b>Children Allowed? :</b></span>
 
                                 <span><?php echo $EventResult['event_childallow']."."; ?></span>
                              </div>
-                             <div class="row">
+                             <?php if ($EventResult['event_childallow']=='yes') { ?>
+                                <div class="row">
                                 <span><b>Under 5 allowed? :</b></span>
                                 <span><?php echo $EventResult['event_undr5allow']."."; ?></span>
                              </div>
@@ -106,9 +110,12 @@ $showdiscountQuery=select('common_nosofpeople',array('event_id'=>$EventResult['e
                              <?php   }   ?>
                              </div>
                              <div class="row">
-                                <span><b>Half Ticket for children? :</b></span>
+                                <span><b>Charges for children? :</b></span>
                                 <span><?php echo $EventResult['event_halftikchild']."."; ?></span>
                              </div>
+
+                            <?php } ?>
+                            
                             
                              <div class="row">
                                  <span><b>Discount for groups :</b></span>
@@ -142,7 +149,8 @@ $showdiscountQuery=select('common_nosofpeople',array('event_id'=>$EventResult['e
                                 <span><b>Pickup Offered ? :</b></span>
                                 <span><?php echo $EventResult['event_pikoffer'].".";  ?></span>
                             </div>
-                            <div class="row">
+                            <?php if ($EventResult['event_pikoffer']=="yes") { ?>
+                                 <div class="row">
                                 <span><b>Charges From :</b></span>
                             </div>
                             <div class="row">
@@ -159,21 +167,25 @@ $showdiscountQuery=select('common_nosofpeople',array('event_id'=>$EventResult['e
                             <div class="row">
                                 <div class="col-md-3">
 
-                                    <span><?php echo $EventResult['event_pikair']  ?></span>
+                                    <span><?php echo $EventResult['event_pikair'];  ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $EventResult['event_pikbus']  ?></span>
+                                    <span><?php echo $EventResult['event_pikbus'] ; ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $EventResult['event_pikspecific']  ?></span>
+                                    <span><?php echo $EventResult['event_pikspecific'];  ?></span>
                                 </div>
                             </div>
+                            <?php  } ?>
+                          
 
                             <div class="row">
                                 <span><b>Drop off Offered ? :</b></span>
                                 <span><?php echo $EventResult['event_drpoffer'].".";  ?></span>
                             </div>
-                            <div class="row">
+
+                            <?php if ($EventResult['event_drpoffer']=='yes') { ?>
+                                 <div class="row">
                                 <span><b>Charges From:</b></span>
                             </div>
                             <div class="row">
@@ -190,15 +202,17 @@ $showdiscountQuery=select('common_nosofpeople',array('event_id'=>$EventResult['e
                             <div class="row">
                                 <div class="col-md-3">
 
-                                    <span><?php echo $EventResult['event_drpair']  ?></span>
+                                    <span><?php echo $EventResult['event_drpair'];  ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $EventResult['event_drpbus']  ?></span>
+                                    <span><?php echo $EventResult['event_drpbus'];  ?></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <span><?php echo $EventResult['event_drpspecific']  ?></span>
+                                    <span><?php echo $EventResult['event_drpspecific'];  ?></span>
                                 </div>
                             </div>
+                           <?php } ?>
+                           
 
 
    

@@ -286,7 +286,7 @@
 
 						<div>
 							<div class="input-field col s8">
-								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 							</div>
 						</form>
 					</div>

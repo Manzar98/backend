@@ -82,7 +82,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
              <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="bn-serv"  >
 
                <label class="col s12">Serve Food ?</label>
-               <select  class="" name="conference_serve" required="" aria-required="true" id="conferenceFood">
+               <select onchange="chk_food(this)"  class="" name="conference_serve" required="" aria-required="true" id="conferenceFood" >
                 <?php if ($resultConference['conference_serve']== -1) { ?>
 
                 <option value="" selected="" disabled="">Select One</option>
@@ -119,8 +119,8 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
                 ?>
 
                 <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultconmenu['common_menupkg_id']; ?>">
-                <li>
-                  <div class="collapsible-header  active">Menu</div>
+                <li id="gen_menupackage_input">
+                  <div class="collapsible-header  active"><?php echo $resultconmenu['foodpkg_name']; ?> <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div>
                   <div class="collapsible-body"> 
                    <div class="row">
                     <div class="col-md-6">
@@ -303,7 +303,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
             </div>
  <div>
    <div class="input-field col s8">
-    <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+    <input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
   </div>
 </form>
 </div>
@@ -646,19 +646,17 @@ $('#ajaxbtn').click(function(){
     //          error.insertAfter(element);
     //        }
     //      }
-    // });
-    
-
+      
+  // debugger;
     if ($('#conferenceFood :selected').text()=="Yes") {
-
-
+      // debugger;
      document.getElementById('menupackage-wrap').style.display = "block";
-   }else{
-     document.getElementById('menupackage-wrap').style.display = "none";
-     $('#menupackage-wrap').find('input').val('');
-
-     $('#menupackage-wrap').find('input').removeClass('valid');
-     $('#menupackage-wrap').find('input').removeClass('invalid');
+    }else{
+         document.getElementById('menupackage-wrap').style.display = "none";
+         $('#menupackage-wrap').find('input').val('');
+         
+          $('#menupackage-wrap').find('input').removeClass('valid');
+           $('#menupackage-wrap').find('input').removeClass('invalid');
    }
 
 

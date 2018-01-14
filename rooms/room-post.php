@@ -2,7 +2,7 @@
 
 include '../common-sql.php';
 
- print_r($_POST);
+ // print_r($_POST);
 
 $is_check=true;
 
@@ -91,14 +91,14 @@ if (empty($_POST['room_perni8'])) {
 	$ni8=$_POST['room_perni8'];
 
 }
-if (empty($_POST['room_descrip'])) {
-	$is_check=false;
-	echo "Room Description is required";
-}else{
+// if (empty($_POST['room_descrip'])) {
+// 	$is_check=false;
+// 	echo "Room Description is required";
+// }else{
 
 	$descrip=$_POST['room_descrip'];
 
-}
+// }
 if (empty($_POST['room_other'])) {
 	$is_check=false;
 	echo "Amenities is required";
@@ -162,7 +162,7 @@ if ($conn->query($query)== TRUE) {
  	echo "Error: " . $query . "<br>" . $conn->error;
  }
 
-echo $room_id;
+// echo $room_id;
 
 
 for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
@@ -186,7 +186,7 @@ if (isset($_POST['common_video'])) {
 
  for ($i=0; $i<count($imgarray); $i++) {
 
-             print_r($imgarray) ;
+             // print_r($imgarray) ;
 
 	  $img_UpdateQuery='UPDATE common_imagevideo SET
  	  room_id="'.$room_id.'",
@@ -198,8 +198,10 @@ if (isset($_POST['common_video'])) {
  }
 
 
-  echo "<br>"."Your Form Submitted Sucessfully !"."<br>";
+  echo "sucess";
+
 }else{
+	echo "you have an error";
 	return false;
 }
 

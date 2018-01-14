@@ -47,7 +47,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <div class="db-profile-edit">
 <form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="" method="POST" enctype="multipart/form-data">
 
-<input type='hidden' value='<?php $hotelResult['hotel_id']; ?>' name="hotel_id" />
+<input type='hidden' value='<?php echo $hotelResult['hotel_id']; ?>' name="hotel_id" />
 <?php $global_hotel_id= $hotelResult['hotel_id']; ?>
 
 <div>
@@ -132,8 +132,13 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			</div>&nbsp;&nbsp;
 
 
-			<?php } ?>
-
+			<?php }elseif (!empty($imgResult['hotel_coverimg'])) { ?>
+				<div class="imgeWrap">
+				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['hotel_coverimg'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
+				<img src="../<?php echo $imgResult['hotel_coverimg']  ?>" width="150" class="materialboxed">
+			</div>&nbsp;&nbsp;
+		<?php	} ?>
+          
 
 
 
@@ -182,7 +187,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 
 		<div class="row" >
-			<div class="col-md-6  input-field" id="pick_select" >
+			<div class="col-md-  input-field edit_pick_select" id="pick_select" >
 
 				<select  onchange="yesCheck(this)" name="hotel_pickup" class=" " id="pik_select" data-value="<?php echo $hotelResult['hotel_pickup'];  ?>">
 					<option>Choose your option</option>
@@ -195,32 +200,44 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 					<?php  }   ?>
 
 				</select> 
-				<label>Hotel Pickup</label>
+				<label style="padding-top: 17px;">Pickup Offered?</label>
 			</div>
 
-			<div class="col-md-6 " id="transport" style="padding-top: 10px;display: none;">
-				<select onchange="transportType(this)" name="hotel_transport" id="transport_select">
-					<?php if ($hotelResult['hotel_transport']=='airport') { ?>
-					<option value="" disabled>Select One</option>
-					<option value="airport" selected>Airport</option>
-					<option value="bus station">Bus Station</option>
+			
 
-					<?php }elseif ($hotelResult['hotel_transport']=='bus station') { ?>
-					<option value="" disabled>Select One</option>
-					<option value="airport">Airport</option>
-					<option value="bus station" selected>Bus Station</option>
-					<?php }else{ ?>
+		</div>
+		<div class="row">
+			<div class="" id="transport" style="padding-top: 10px;display: none;">
+				
+				<div class="col-md-6" id="fil_air" >
+						            <p class="pTAG">
+						            	<?php if ($hotelResult['hotel_isair']=='on') { ?>
 
-					<option value="" selected disabled="">Select One</option>
-					<option value="airport">Airport</option>
-					<option value="bus station">Bus Station</option>
+						            	<input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair" checked="" />
+						             <label for="filled-in-airport" id="air">Airport</label>	
+						            <?php 	}else{ ?>
 
-					<?php	}   ?>
+						            <input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair"  />
+						             <label for="filled-in-airport" id="air">Airport</label>
+						           <?php  }  ?>
+						             
+						            </p>
+         						</div>
+         						<div class="col-md-6" id="fil_bus">
+						            <p class="pTAG">
+						            	<?php if ($hotelResult['hotel_isbus']=='on') { ?>
 
-				</select>
-				<label style="padding-top: 22px;">Airport/Bus Station</label>
+						            	 <input type="checkbox" class="filled-in" id="filled-in-bus" name="hotel_isbus" checked="" />
+						             <label for="filled-in-bus">Bus station</label>
+						            <?php 	}else{ ?>
+
+						             <input type="checkbox" class="filled-in" id="filled-in-bus" name="hotel_isbus" />
+						             <label for="filled-in-bus">Bus station</label>
+						          <?php  }  ?>
+						             
+						            </p>
+         						</div>
 			</div>  
-
 		</div>
 
 
@@ -232,9 +249,10 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 					<input type="number"  class="input-field validate is_validate" name="hotel_pikcharge" value="<?php  echo $hotelResult['hotel_pikcharge'];  ?>">
 				</div>
 			</div>
-			<div class="col-md-6" id="busAddres" style="display: none;">
-				<label>Address</label>
-				<input type="text"  class="input-field validate " name="hotel_busaddres" value="<?php  echo $hotelResult['hotel_busaddres'];  ?>">
+			<div class="col-md-6" id="buschgr" style="display: none;">
+				
+				<label>Charges</label>
+                <input type="text"  class="input-field validate " name="hotel_buscharge" value="<?php  echo $hotelResult['hotel_buscharge'];  ?>">
 			</div>
 		</div>
 
@@ -365,7 +383,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 	<div>
 		<div class="input-field col s8">
-			<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+			<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
 		</div>
 
 		<?php
@@ -515,8 +533,8 @@ if (that.value == "yes") {
     		document.getElementById("4bags").style.display = "none";
     		document.getElementById('bag-inpt').style.display = "none";
     		document.getElementById("transport").style.display = "none";
-    		$('#busAddres').hide();
-    		 $('#transport').prop('selectedIndex',0);
+    		$('#buschgr').hide();
+    		 
 
     		  
         }
@@ -571,21 +589,27 @@ document.getElementById('bag-inpt').style.display = "none";
 }
 
 
-function transportType(that) {
+$('#filled-in-airport').click(function () {
+    if ($("#fil_air input:checkbox:checked").length > 0) {
+           
+           
+           $('#ifYes').show();
+    }else{
 
-					    		  if (that.value== 'airport') {
+    	$('#ifYes').hide();
+    }
+});
 
-					    		  	$('#ifYes').show();
-					    		  	$('#busAddres').hide();
-					    		  }else{
-					    		  	$('#busAddres').show();
-					    		  	$('#ifYes').show();
-					    		  }
-					    		// body...
+ $('#filled-in-bus').click(function () {
+    if ($("#fil_bus input:checkbox:checked").length > 0) {
+           
+           
+           $('#buschgr').show();
+    }else{
 
-					    	}
-
-
+    	$('#buschgr').hide();
+    }
+});
 
 
 
@@ -698,7 +722,9 @@ $('#checkIn').pickatime();
 $('#checkOut').pickatime();
 
 
-/* Reintialize dropdowns hide Inputs,dropdown */
+/*==============================
+   Reintialize dropdowns hide Inputs,dropdown
+============================== */
 
 if($('#qun-lags :selected').text() == "1"){
 
@@ -741,9 +767,8 @@ document.getElementById('bag-inpt').style.display = "none";
 }
 
 
-// debugger;
 if ($('#pik_select :selected').text() == "Yes") {
-            // alert("check");
+           
               document.getElementById("transport").style.display = "block";
              document.getElementById("bag-char").style.display = "block";
         } else {
@@ -755,24 +780,31 @@ if ($('#pik_select :selected').text() == "Yes") {
     		document.getElementById("4bags").style.display = "none";
     		document.getElementById('bag-inpt').style.display = "none";
     		document.getElementById("transport").style.display = "none";
-    		$('#busAddres').hide();
-    		 $('#transport').prop('selectedIndex',0);
+    		$('#buschgr').hide();
+    		
 
     		  
         }
+    
+    if ($('#fil_air input').prop('checked')==true){
 
-if ($('#transport_select :selected').text()== 'Airport') {
+       $('#ifYes').show();
+    }else{
 
-					    		  	$('#ifYes').show();
-					    		  	$('#busAddres').hide();
-					    		  }else{
-					    		  	$('#busAddres').show();
-					    		  	$('#ifYes').show();
-					    		  }
+    	$('#ifYes').hide();
+    }
+
+
+ if ($('#fil_bus input').prop('checked')==true) {
+
+        $('#buschgr').show();
+ }else{
+
+ 	   $('#buschgr').hide();
+ }
 
 
 });
-
 
 
 

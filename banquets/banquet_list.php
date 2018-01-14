@@ -59,24 +59,24 @@
                                       ?>
 
                                    <tr>
-									<td><?php echo $result['banquet_name'];   ?></td>
-									<td><?php echo $result['banquet_space'];   ?></td>
+									<td class="text-center"><?php echo $result['banquet_name'];   ?></td>
+									<td class="text-center"><?php echo $result['banquet_space'];   ?></td>
 									<?php 
 									  if ($result['banquet_independ']=='yes') {?>
 									  	
-									  	<td><?php echo $result['banquet_city'];   ?></td>
+									  	<td class="text-center"><?php echo $result['banquet_city'];   ?></td>
 									<?php   }else{ 
 
 									while ($hotelCity=mysqli_fetch_assoc($hotelQuery)) { ?>
 
-									     <td><?php echo $hotelCity['hotel_city'];   ?></td> 
+									     <td class="text-center"><?php echo $hotelCity['hotel_city'];   ?></td> 
 
 										
 								 <?php 
 									  }  
 									  
 									  } ?>
-									<td><?php echo "Active";  ?></td>
+									<td class="text-center"><?php echo "Active";  ?></td>
 
 									<td class="tdwrap">
 									<div class="buttonsWrap">

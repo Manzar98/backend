@@ -1,6 +1,6 @@
 <?php 
 include '../common-sql.php';
-// print_r($_POST);
+  // print_r($_POST);
 $h_id = $_POST['hotel_id'];
 
   // echo gettype($_POST['hotel_other'][0]);

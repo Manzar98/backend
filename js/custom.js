@@ -873,7 +873,7 @@ function(isConfirm){
 
 
 
-/*=======Hall independent in banquet,conference and events===========*/
+/*=======Hall independent in banquet ===========*/
 
 function hall_alone(that) {
 
@@ -889,7 +889,41 @@ function hall_alone(that) {
   // body...
 }
 
+/*============== Search feilds in records ================*/
 
+function myFunction(event) {
+
+  var input=document.getElementById("mysearch");
+
+ var filter=input.value;
+ // console.log(filter);
+var table=document.getElementById("h_table");
+var tr=table.getElementsByTagName("tr");
+// console.log(tr);
+  
+  for (var i = 0; i < tr.length; i++) {
+        // console.log(tr[i]);
+      var td=tr[i].getElementsByTagName("td");
+      // console.log(event.which);
+// debugger;
+      if (filter=='') {
+        // debugger;
+       tr[i].style.display="";
+       console.log(tr[i].style.display);
+     }else if (event.which==13 || event.type=="click") {
+      // debugger;
+      var TDLength=td.length;
+        console.log(TDLength);
+
+        if (tr[$i]) {}
+
+  
+
+     }
+
+  }
+
+}
 
 
 
