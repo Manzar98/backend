@@ -1,3 +1,18 @@
+<?php
+ include '../common-apis/api.php';
+
+
+$selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
+
+
+$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -160,6 +175,95 @@
                         <div  class=" ">
                             	<a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
                         </div>
+
+
+                        <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
+
+ <label class="col s12">Independent Hall?</label>
+ <select onchange="hall_alone(this)"  class="" name="conference_independ">
+  <option value="-1">Select One</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+
+</select>
+</div>
+
+<?php
+
+if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
+<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
+  <label class="col s12">Select Hotel</label>
+  <select  class="" name="hotel_name" >
+   <option value="null" selected="" disabled="">Select One</option>
+   <?php
+
+   while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
+
+
+   <option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+
+
+                <?php # code...
+              }  ?>
+            </select>
+          </div>
+          <?php  }  ?>
+
+
+
+
+
+
+          <div id="hall_alone" style="display: none;">
+            <div class="row common-top">
+             <div class="col-md-6">
+              <label>Address</label>
+              <input  type="text" name="conference_address" class="input-field validate"  >
+            </div>
+            <div class="col-md-6">
+              <label>City</label>
+              <input  type="text" name="conference_city" class="input-field validate"  >
+            </div>
+
+          </div>
+
+          <div class="row">
+           <div class="col-md-6">
+            <label>Province</label>
+            <input  type="text" name="conference_province" class="input-field validate"  >
+          </div>
+          <div class="col-md-6">
+            <label>Phone Number</label>
+            <input  type="number" name="conference_phone" class="input-field validate"  >
+          </div>
+
+        </div>
+
+        <div class="row">
+         <div class="col-md-6">
+          <label>Email Address</label>
+          <input  type="email" name="conference_email" class="input-field validate"  >
+        </div>
+        <div class="col-md-6">
+          <label>Facebook</label>
+          <input  type="text" name="conference_fcbok" class="input-field validate"  >
+        </div>
+
+      </div>
+
+      <div class="row">
+       <div class="col-md-6">
+        <label>Twitter</label>
+        <input  type="text" name="conference_twiter" class="input-field validate"  >
+      </div>
+      <div class="col-md-6">
+        <label>Youtube</label>
+        <input  type="text" name="conference_utube" class="input-field validate"  >
+      </div>
+
+    </div>
+  </div>
+  
                        
 
 						<div>

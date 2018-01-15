@@ -49,12 +49,40 @@
 								if (mysqli_num_rows($conferenceQuery) > 0) { 
 
 								
-                                   while ($result=mysqli_fetch_assoc($conferenceQuery)) { ?>
+                                   while ($result=mysqli_fetch_assoc($conferenceQuery)) { 
+
+
+                                         $hotelQuery=select("hotel",array('hotel_id'=>$result['hotel_id']));
+
+                                   	?>
 
                                    <tr>
 									<td class="text-center"><?php echo $result['conference_name'];   ?></td>
 									<td class="text-center"><?php echo $result['conference_space'];   ?></td>
-									<td class="text-center"><?php echo "Lahore";  ?></td>
+
+									<?php 
+									  if ($result['conference_independ']=='yes') {?>
+									  	
+									  	<td class="text-center"><?php echo $result['conference_city'];   ?></td>
+									<?php   }else{ 
+
+									while ($hotelCity=mysqli_fetch_assoc($hotelQuery)) { ?>
+
+									     <td class="text-center"><?php echo $hotelCity['hotel_city'];   ?></td> 
+
+										
+								 <?php 
+									  }  
+									  
+									  } ?>
+
+
+
+
+
+
+
+									
 									<td class="text-center"><?php echo "Active";   ?></td>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>

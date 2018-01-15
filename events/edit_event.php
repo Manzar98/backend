@@ -202,7 +202,7 @@ $global_event_id="";
 							</div>
 							<div class="col-md-4" style="display: none;" id="eatallChrges">
 								<label>Charges</label>
-                        		<input type="number" name="event_eatAllChrges" class="validate" value="<?php echo $resultevent['event_eatAllChrges'] ?>" >
+                        		<input type="number" name="event_eatAllChrges" class="validate" value="<?php echo $resultevent['event_eatAllChrges'] ?>"  id="eatChrges">
 							</div>
 							<div class="col-md-4 " >
 								<div class="eatNeed">
@@ -349,7 +349,7 @@ $global_event_id="";
                         		<div class="c-childprice">
                         			<label style="padding-left: 8px;">price</label>
                         			<div class="input-field col" style="margin-top: 4px;">
-                        				<input type="number"  name="event_undr5price" class="validate"  value="<?php echo $resultevent['event_undr5price']; ?>">
+                        				<input type="number"  name="event_undr5price" class="validate"  value="<?php echo $resultevent['event_undr5price']; ?>" id="undr5price">
                         			</div>
                         		</div>
                         	</div>
@@ -689,6 +689,7 @@ $(".freeLbl").click(function () {
  // debugger;
   $('.eatAll').hide();
   $('.eatNeed').hide();
+  $('#eatChrges').val('');
 
   }else{
   	$('.eatFree').show();
@@ -725,6 +726,7 @@ $(".needLbl").click(function () {
  // debugger;
   $('.eatFree').hide();
   $('.eatAll').hide();
+  $('#eatChrges').val('');
 
   }else{
   	$('.eatFree').show();
@@ -812,7 +814,9 @@ $("#event-form").validate({
    });
 
 
-/*Reintialize Dropdown and hideinputs*/
+/*=================================
+Reintialize Dropdown and hideinputs
+===================================*/
 
  	 if ($('#childallow :selected').text() == "Yes") {
 
@@ -878,7 +882,7 @@ if ($('#selectentryfee :selected').text() == "Yes") {
 	}
 
 if($('#show_Eat :selected').text()=="Yes"){
-       debugger;
+      
         $('.EatFoodWrap').show();
 		$('.eatFree').show();
         $('.eatAll').show();
@@ -892,6 +896,7 @@ if($(".eatFree input:checkbox:checked").length > 0){
  // debugger;
   $('.eatAll').hide();
   $('.eatNeed').hide();
+  $('#eatChrges').val('');
 
   }else{
   	$('.eatFree').show();
@@ -916,12 +921,30 @@ if($(".eatNeed input:checkbox:checked").length > 0){
  // debugger;
   $('.eatFree').hide();
   $('.eatAll').hide();
+  $('#eatChrges').val('');
 
   }else{
   	$('.eatFree').show();
     $('.eatAll').show();
     $('.eatNeed').show();  
   }
+
+
+
+  if ($(".c-childfree input:checkbox:checked").length > 0) {
+      
+       $('.c-childprice').hide();
+       $('#undr5price').val('');
+
+   }else if($('.c-childprice').find('input').val().length < 0){
+      // debugger;
+      $('.c-childfree').hide();
+      $('.c-childprice').show();
+
+   }else{
+
+     $('.c-childprice').show();
+   }
 
 
 

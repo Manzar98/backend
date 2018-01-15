@@ -123,7 +123,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
      <div class="row">
      <div class="col-md-6">
        <label>Package Name</label>
-       <input type="text" value="" class="input-field validate" name="foodpkg_name[]">
+       <input type="text" value="" id="foodpkg_name" class="input-field validate" name="foodpkg_name[]">
      </div>
      <div class="col-md-6">
      <label>Package Price</label>

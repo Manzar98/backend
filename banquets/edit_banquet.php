@@ -400,23 +400,23 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <label class="col s12">Independent Hall?</label>
  <select onchange="hall_alone(this)"  class="" name="banquet_independ" id="independ-select">
 
- 	<?php if ($resultbnq['banquet_independ']== -1) { ?>
+ 	<?php if ($resultbnq['banquet_independ']== "yes") { ?>
 
- 		       <option value="-1" selected="" disabled="">Select One</option>
-			   <option value="yes">Yes</option>
-			   <option value="no">No</option>
+ 		         <option value="-1"  disabled="">Select One</option>
+			       <option value="yes" selected="">Yes</option>
+			       <option value="no">No</option>
 
- <?php	}elseif ($resultbnq['banquet_independ']== "yes") {?>
+ <?php	}elseif ($resultbnq['banquet_independ']== "no") {?>
 
- 	           <option value="-1">Select One</option>
-			   <option value="yes" selected="">Yes</option>
-			   <option value="no">No</option>
+ 	           <option value="-1" disabled="">Select One</option>
+			       <option value="yes" >Yes</option>
+			       <option value="no" selected="">No</option>
 
- <?php }elseif ($resultbnq['banquet_independ']== "no") {?>
+ <?php }else {?>
 
- 	           <option value="-1">Select One</option>
-			   <option value="yes">Yes</option>
-			   <option value="no" selected="">No</option>
+ 	           <option value="-1" disabled="" selected="">Select One</option>
+			       <option value="yes">Yes</option>
+			       <option value="no" >No</option>
  <?php }  ?>
   
 </select>
@@ -428,7 +428,8 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
   <label class="col s12">Select Hotel</label>
   <select  class="" name="hotel_name" >
-   <option value="null" selected="" disabled="">Select One</option>
+   <option value="null" disabled="">Select One</option>
+   <option name="" selected="" value="<?php echo $resultbnq['hotel_name'] ?>"><?php echo $resultbnq['hotel_name'] ?></option>
    <?php
 
    while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
@@ -784,7 +785,9 @@ $.each(packageitem,function(key,item){
   });
 
 
-/*Reintialize Dropdown and hide inputs*/
+/*=======================
+Reintialize Dropdown and hide inputs
+============================*/
 
    if ($('#bnqFood :selected').text()=="Yes") {
    

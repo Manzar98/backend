@@ -501,7 +501,7 @@ $global_tour_id="";
                         		<div class="c-childprice">
                         			<label style="padding-left: 8px;">price</label>
                         			<div class="input-field col s8" style="margin-top: 4px;">
-                        				<input type="number"  name="tour_undr5price" class="validate"  value="<?php echo $resulttour['tour_undr5price']; ?>">
+                        				<input type="number"  name="tour_undr5price" class="validate"  value="<?php echo $resulttour['tour_undr5price']; ?>" id="undr5price">
                         			</div>
                         		</div>
                         	</div>
@@ -895,9 +895,9 @@ jQuery(document).ready(function(){
 
 
 
- /*Reintialize Dropdown and hideinputs*/
-
-
+ /*=================================
+ Reintialize Dropdown and hideinputs
+ =================================*/
 
 if ($('#tour-food :selected').text() == "Yes") {
         
@@ -960,24 +960,24 @@ if ($('#tour-food :selected').text() == "Yes") {
 
 if ($('#childallow :selected').text() == "Yes") {
 
-        $('.c-childTickt').show();
-        $('.c-under5').show();
+         $('.c-childTickt').show();
+         $('.c-under5').show();
       }else{
-        $('.c-childTickt').hide();
-        $('.c-under5').hide();
+         $('.c-childTickt').hide();
+         $('.c-under5').hide();
          $('.c-childprice').hide();
-    $('.c-childfree').hide();
+         $('.c-childfree').hide();
       }
 
 
 if ($('#undr5allow :selected').text() == "Yes") {
 
-    $('.c-childfree').show();
-    $('.c-childprice').show();
+     $('.c-childfree').show();
+     $('.c-childprice').show();
   }else{
 
-    $('.c-childfree').hide();
-    $('.c-childprice').hide();
+     $('.c-childfree').hide();
+     $('.c-childprice').hide();
 
 
   }
@@ -1004,6 +1004,22 @@ if ($('#undr5allow :selected').text() == "Yes") {
         $('.dropService').find('input').removeClass('valid');
         $('.dropService').find('input').removeClass('invalid');
     }
+
+ if ($(".c-childfree input:checkbox:checked").length > 0) {
+      
+       $('.c-childprice').hide();
+       $('#undr5price').val('');
+
+   }else if($('.c-childprice').find('input').val().length < 0){
+      // debugger;
+      $('.c-childfree').hide();
+      $('.c-childprice').show();
+
+   }else{
+
+     $('.c-childprice').show();
+   }
+
 
 
 

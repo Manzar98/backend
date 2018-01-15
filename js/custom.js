@@ -655,9 +655,10 @@ function selectunder5(that) {
    if ($(".c-childfree input:checkbox:checked").length > 0) {
       
        $('.c-childprice').hide();
+       $('#undr5price').val('');
 
    }else if($('.c-childprice').find('input').val().length < 0){
-      debugger;
+      // debugger;
       $('.c-childfree').hide();
       $('.c-childprice').show();
 
@@ -873,7 +874,7 @@ function(isConfirm){
 
 
 
-/*=======Hall independent in banquet ===========*/
+/*=======Hall independent in banquet & conference ===========*/
 
 function hall_alone(that) {
 

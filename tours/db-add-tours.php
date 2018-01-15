@@ -231,18 +231,13 @@
 									<input type="checkbox" class="filled-in" onclick="childrnfree(this)" name="tour_undr5free" id="undr5free"/>
 									<label for="undr5free">Free?</label>
 								</p><br><br><br><br>
-                        			<!-- <label >Free?</label>
-                        			<p>
-                        				<input type="checkbox" onclick="childrnfree(this)"  class="filled-in "  name="tour_undr5free"   />
-
-                        			</p> -->
                         		</div>
                         	</div>
                         	<div class="col-md-4">
                         		<div class="c-childprice">
                         			<label style="padding-left: 8px;">price</label>
                         			<div class="input-field col s8" style="margin-top: 4px;">
-                        				<input type="number"  name="tour_undr5price" class="validate">
+                        				<input type="number"  name="tour_undr5price" class="validate" id="undr5price">
                         			</div>
                         		</div>
                         	</div>

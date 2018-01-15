@@ -34,9 +34,9 @@ global $conn;
 
 				 mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
 
-				     $updatequerymenu= "UPDATE common_menupackages SET "."foodpkg_name='".$updateObject['foodpkg_name'][$k]."',foodpkg_price='".$updateObject['foodpkg_price'][$k]."',foodpkg_discount='".$updateObject['foodpkg_discount'][$k]."',foodpkg_item='".$updateObject['foodpkg_item'][$k]."' WHERE common_menupkg_id=".$updateObject['common_menupkg_id'][$k];
+				   //   $updatequerymenu= "UPDATE common_menupackages SET "."foodpkg_name='".$updateObject['foodpkg_name'][$k]."',foodpkg_price='".$updateObject['foodpkg_price'][$k]."',foodpkg_discount='".$updateObject['foodpkg_discount'][$k]."',foodpkg_item='".$updateObject['foodpkg_item'][$k]."' WHERE common_menupkg_id=".$updateObject['common_menupkg_id'][$k];
 
-				   mysqli_query($conn,$updatequerymenu) or die(mysqli_error($conn));
+				   // mysqli_query($conn,$updatequerymenu) or die(mysqli_error($conn));
 				  // echo $updatequerymenu;
         		 // echo 'Book value : '.$updateObject['book_fromdate'][$k];
 

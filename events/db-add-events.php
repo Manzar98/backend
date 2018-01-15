@@ -86,7 +86,7 @@
 							</div>
 							<div class="col-md-4" style="display: none;" id="eatallChrges">
 								<label>Charges</label>
-                        		<input type="number" name="event_eatAllChrges" class="validate" >
+                        		<input type="number" name="event_eatAllChrges" class="validate" id="eatChrges" >
 							</div>
 							<div class="col-md-4 eatNeed" >
 								<div class="">
@@ -169,7 +169,7 @@
                         		<div class="c-childprice">
                         			<label style="padding-left: 8px;">price</label>
                         			<div class="input-field col" style="margin-top: 4px;">
-                        				<input type="number"  name="event_undr5price" class="validate">
+                        				<input type="number"  name="event_undr5price" class="validate" id="undr5price">
                         			</div>
                         		</div>
                         	</div>
@@ -368,6 +368,7 @@ $(".freeLbl").click(function () {
  // debugger;
   $('.eatAll').hide();
   $('.eatNeed').hide();
+  $('#eatChrges').val('');
 
   }else{
   	$('.eatFree').show();
@@ -405,6 +406,7 @@ $(".needLbl").click(function () {
  // debugger;
   $('.eatFree').hide();
   $('.eatAll').hide();
+  $('#eatChrges').val('');
 
   }else{
   	$('.eatFree').show();

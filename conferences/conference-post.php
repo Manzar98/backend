@@ -141,6 +141,94 @@ foreach($_POST['foodpkg_item'] as $menupkgitems) {
 
 }
 
+if (empty($_POST['conference_independ'])) {
+	$is_check=false;
+	# code...
+}else{
+
+	$con_independ=$_POST['conference_independ'];
+}
+if (!empty($_POST['hotel_name'])) {
+
+	$con_hotelName=$_POST['hotel_name'];
+}else{
+
+	$con_hotelName=null;
+}
+	
+if (!empty($_POST['conference_address'])) {
+
+	$con_addres=$_POST['conference_address'];
+}else{
+
+	$con_addres=null;
+}
+
+if (!empty($_POST['conference_city'])) {
+	
+	$con_city=$_POST['conference_city'];
+
+}else{
+  
+  $con_city=null;
+
+}
+
+if (!empty($_POST['conference_province'])) {
+
+	$con_province=$_POST['conference_province'];
+}else{
+	$con_province=null;
+}
+
+
+if(!empty($_POST['conference_phone']) && !is_numeric($_POST['conference_phone'])){
+	$is_check= false;
+	echo "This field is accept only numeric";
+
+}elseif(!empty($_POST['conference_phone']) && is_numeric($_POST['conference_phone'])){
+
+	$con_phone     = $_POST['conference_phone'];
+
+}else{
+	$con_phone = null;
+	
+}
+
+
+if (!empty($_POST['conference_email'])) {
+
+	$con_email=$_POST['conference_email'];
+}else{
+
+	$con_email=null;
+}
+
+if (!empty($_POST['conference_fcbok'])) {
+	
+	$con_fcbok=$_POST['conference_fcbok'];
+}else{
+
+	$con_fcbok=null;
+}
+
+if (!empty($_POST['conference_twiter'])) {
+	
+	$con_twter=$_POST['conference_twiter'];
+}else{
+
+	$con_twter=null;
+}
+
+if (!empty($_POST['conference_utube'])) {
+	
+	$con_utube=$_POST['conference_utube'];
+}else{
+
+	$con_utube=null;
+}
+
+
 
 
 
@@ -182,7 +270,7 @@ if ($is_check==true) {
 
 
      
-$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'")';
+$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'")';
 
 if ($conn->query($query)== TRUE) {
  	# code...
