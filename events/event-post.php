@@ -1,14 +1,14 @@
 
 <?php
 include '../common-sql.php';
-print_r($_POST);
+// print_r($_POST);
 
 $is_check=true;
 
 if (empty($_POST['event_name'])) {
 
 	$is_check=false;
-	echo "This Field is required 1"."<br>";
+	echo "Event Name Field is required "."<br>";
 }else{
 
 	$name         = $_POST['event_name'];
@@ -16,7 +16,7 @@ if (empty($_POST['event_name'])) {
 if (empty($_POST['event_venue'])) {
 
 	$is_check=false;
-	echo "This Field is required 2"."<br>" ;
+	echo "Venue Field is required "."<br>" ;
 }else{
 	
 	$venue        = $_POST['event_venue'];
@@ -24,24 +24,24 @@ if (empty($_POST['event_venue'])) {
 if (empty($_POST['event_recurrence'])) {
 
 	$is_check=false;
-	echo "This Field is required 3"."<br>" ;
+	echo "Recurrence Field is required"."<br>" ;
 }else{
 	
 	$recurrence   = $_POST['event_recurrence'];
 }
-if (empty($_POST['event_descrip'])) {
+// if (empty($_POST['event_descrip'])) {
 
-	$is_check=false;
-	echo "This Field is required 4"."<br>";
-}else{
+// 	$is_check=false;
+// 	echo "Event Description Field is required 4"."<br>";
+// }else{
 	
 	$descrip      = $_POST['event_descrip'];
 
-}
+// }
 if (empty($_POST['event_entry'])) {
 
 	$is_check=false;
-	echo "This Field is required 5"."<br>";
+	echo "Entry Fee Field is required"."<br>";
 }else{
 	
 	$evententry   = $_POST['event_entry'];
@@ -50,21 +50,16 @@ if (empty($_POST['event_entry'])) {
 if (empty($_POST['event_childallow'])) {
 
 	$is_check=false;
-	echo "This Field is required 6"."<br>";
+	echo "Children allow Field is required"."<br>";
 }else{
 	
 	$childallow   = $_POST['event_childallow'];
 
 }
-if (empty($_POST['event_undr5allow'])) {
 
-	$is_check=false;
-	echo "This Field is required 7"."<br>";
-}else{
 	
 	$undr5allow   = $_POST['event_undr5allow'];
 
-}
 
 if(!empty($_POST['event_entryfee']) && !is_numeric($_POST['event_entryfee'])){
 
@@ -92,18 +87,14 @@ if (isset($_POST['event_undr5free'])) {
  if (isset($_POST['event_undr5price'])) {
  	$undr5price   = $_POST['event_undr5price'];
  }
-
 	
 	$nospeople     = $_POST['common_nopeople'];
-
 	$discountx    = $_POST['common_discount'];
-
-
 
 if (empty($_POST['event_pikoffer'])) {
 
 	$is_check=false;
-	echo "This Field is required 9"."<br>";
+	echo "Pickup offered Field is required 9"."<br>";
 }else{
 	
 	$pikofer      = $_POST['event_pikoffer'];
@@ -158,7 +149,7 @@ if(!empty($_POST['event_pikspecific']) && !is_numeric($_POST['event_pikspecific'
 if (empty($_POST['event_drpoffer'])) {
 
 	$is_check=false;
-	echo "This Field is required 13"."<br>";
+	echo "Dropoff offered Field is required 13"."<br>";
 }else{
 	
 	$drpofer      = $_POST['event_drpoffer'];
@@ -245,9 +236,6 @@ if(!empty($_POST['event_eatAllChrges']) && !is_numeric($_POST['event_eatAllChrge
 
 }
 
-
-
-
 if (isset($_POST['event_eatNeed'])) {
 	$eatNeed    = $_POST['event_eatNeed'];
 }else{
@@ -256,16 +244,8 @@ if (isset($_POST['event_eatNeed'])) {
 
 	$img          = $_POST['common_image'];
 
-$imgarray= explode(",",$img);
-
-
-
-
-	
+$imgarray= explode(",",$img);	
 $provideo        = $_POST['common_video'];
-
-
-
 $userid       = 2;
 $hotelid      = 31;
 $formtype     = 'event';
@@ -283,7 +263,7 @@ if ($conn->query($query)== TRUE) {
  	echo "Error: " . $query . "<br>" . $conn->error;
  }
 
-echo $event_id;
+// echo $event_id;
 
 
 if (isset($_POST['common_video'])) {
@@ -292,14 +272,14 @@ if (isset($_POST['common_video'])) {
 
 	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
 	# code...
-  echo 	$videoQuery;
+  // echo 	$videoQuery;
 }
 
 
 
  for ($i=0; $i<count($imgarray); $i++) {
 
-             print_r($imgarray) ;
+             // print_r($imgarray) ;
 
 	  $img_UpdateQuery='UPDATE common_imagevideo SET
  	 event_id="'.$event_id.'",
@@ -319,7 +299,9 @@ if (isset($_POST['common_video'])) {
  	# code...
  }
 
-  echo "<br>"."Your Form Submitted Sucessfully !"."<br>";
+
+  echo "sucess";
+
 }else{
 
 	return false;

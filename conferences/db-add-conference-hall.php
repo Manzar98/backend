@@ -138,7 +138,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<div class="row  common-top clearfix">
 								 
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>HALL's PROMOTIONAL VIDEO</span></div>
-										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required="" aria-required="true">
+										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" >
 							</div>
 
 						<div class="common-top">
@@ -148,10 +148,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						</div>
                          
                           <div id="dates_wrap">
-                        	<div class="row">
-                        		<label class="col s6">Unavailable in these days</label>
-                  
-
+                            <label class="col s6">Unavailable in these days</label>  
+                     	<div class="row">
                           <ul class="collapsible def-show-date" data-collapsible="accordion">
                           	<li>
                           		<div class="collapsible-header  active">Date</div>
@@ -268,7 +266,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 						<div>
 							<div class="input-field col s8">
-								<input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_conference"> </div>
 						</div>
 					</form>
 				</div>
@@ -289,9 +287,64 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 		   </div>
 		   </div>
 
+  <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+    
+  </div>
+
+
+
 
 <?php include '../footer.php';  ?>
-
+<script src="../js/conference-js/conference.js"></script>
 
 
 

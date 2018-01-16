@@ -150,7 +150,7 @@ $hotelid=31;
 if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other[0].'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'")';
+$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'")';
 
 
 if ($conn->query($query)== TRUE) {

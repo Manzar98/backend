@@ -4661,7 +4661,7 @@ font-weight: inherit;
      width: 455px;
 
 }
-.error.validate{
+.error.invalid{
     border-bottom: 1px solid #F44336;
 box-shadow: 0 1px 0 0 #F44336;
 
@@ -4820,8 +4820,10 @@ table#h_table tr:hover td.tdwrap {
     position: fixed;
     top: -300000px;
 }
-#pro-sub-btn_hotel, #pro-sub-btn_room{
-   background: #f4364f;
+#pro-sub-btn_hotel, #pro-sub-btn_room, #pro-sub-btn_banquet, 
+#pro-sub-btn_conference, #pro-sub-btn_tour, #pro-sub-btn_event{
+    
+    background: #f4364f;
     padding: 7px 25px;
     color: #fff;
     text-transform: uppercase;

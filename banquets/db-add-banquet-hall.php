@@ -198,7 +198,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <div class="row  common-top clearfix">
 
  <div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>HALL's PROMOTIONAL VIDEO</span></div>
- <input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt is_validate_input" required>
+ <input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt is_validate_input">
 </div>
 <div class="common-top">
  <label class="col s4">Hall Description</label>
@@ -214,10 +214,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
 <div id="dates_wrap">
- <div class="row">
   <label class="col s6">Unavailable in these days</label>
-
-
+ <div class="row">
   <ul class="collapsible def-show-date" data-collapsible="accordion">
    <li>
     <div class="collapsible-header  active">Date</div>
@@ -331,7 +329,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
   
   <div>
    <div class="input-field col s8">
-    <input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+    <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_banquet"> </div>
   </div>
 </form>
 </div>
@@ -353,11 +351,64 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
  </div>
 </div>
 
+  <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+    
+  </div>
+
 
 
 
 <?php include '../footer.php';?>
-
+<script src="../js/banquet-js/banquet.js"></script>
 
 
 <script type="text/javascript">
@@ -395,75 +446,8 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     }
   });
 
-   $('#pro-sub-btn').click(function(){
-    debugger;
-    var isFormValidated = true;
-    $.each($('#banquet-form .is_validate_input'),function(key,val){
-      if(!val.value){
-       isFormValidated = false;
-       console.log(val);
-       $(val).addClass('error');	
-     }else{
-      debugger;
-      $(val).removeClass('error');
-    }
-  });
-	// $.each($('#banquet-form .is_validate_select'),function(key,val){
-	// 		if(!$(val).find('select').val()){
-	// 			isFormValidated = false;
-	// 			console.log(val);
-	// 			$(val).find('.select-wrapper').addClass('error');
-
-	// 		}else{
-	// 			// debugger;
-	// 			$(val).find('.select-wrapper').removeClass('error');
-	// 		}
-	// });
-
-
-	if(isFormValidated){
-		console.log('TIme to submit form');
-		$("#room-form").submit();
-	}else{
-		console.log('There is an error');
-	}
 })
 
-
-
-
-
-
-
-
-
-
-
-
-   $("#banquet-form").validate({
-
-     errorElement : 'div',
-     errorPlacement: function(error, element) {
-
-      console.log(element);
-      var placement = $(element).data('error');
-
-      console.log(placement);
-      console.log(error);
-      if (placement) {
-        $(placement).append(error)
-      } else {
-        error.insertAfter(element);
-      }
-    }
-  });
-
-
-
-
-
-
- });
 </script>
 
 </body>

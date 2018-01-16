@@ -373,7 +373,7 @@
 							<div class="row  common-top clearfix">
 								 
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Tour's PROMOTIONAL VIDEO</span></div>
-										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required>
+										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
 
 						<div class="destination-wrap" id="destination-wrap">
@@ -423,7 +423,7 @@
                        
 						<div>
 							<div class="input-field col s8">
-								<input type="submit" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
+								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_tour"> </div>
 						</div>
 					</form>
 				</div>
@@ -444,8 +444,65 @@
 				</div>
 		   </div>
 		   </div>
-     <?php include '../footer.php'; ?>
 
+  <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+    
+  </div>
+
+
+
+
+     <?php include '../footer.php'; ?>
+<script src="../js/tour-js/tour.js"></script>
 
 
  
@@ -455,53 +512,7 @@ jQuery(document).ready(function(){
 	 
      tinymce.init({ selector:'.textarea-t' });
 
-     // $('#modal-images').modal();
-     
-     // alert('Hit');
- 	// $("#chosenexample").chosen({ allow_single_deselect: true})
-
-
-
-
-
-
-
-
- 
-
-
-
- $("#tour-form").validate({
-
-         errorElement : 'div',
-        errorPlacement: function(error, element) {
-
-        	if($('.select-wrapper').val()=="" && !$('.select-wrapper').hasClass('error')){
-                $('.select-wrapper').addClass('error');
-                // debugger;
-        		// alert('empty');
-
-        	}else if ($('.select-wrapper').val()!=""  &&  $('.select-wrapper').hasClass('error')){
-
-                 $('.select-wrapper').removeClass('error');
-                 debugger;
-        	}
-        	// debugger;
-        	 console.log(element);
-          var placement = $(element).data('error');
-
-             console.log(placement);
-             console.log(error);
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }
-   });
-
-
-		 
+  
 
 });
 </script>

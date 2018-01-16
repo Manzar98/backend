@@ -58,11 +58,47 @@ $.ajax({
 
 
 
-/*===============Ajax call for romm insertion (create new record)=================*/
+/*===============Ajax call for room insertion (create new record)=================*/
 
 $("#pro-sub-btn_room").click(function(){
-  
-$.ajax({
+
+
+var validator= $("#room-form").validate({
+
+       errorElement : 'div',
+        errorPlacement: function(error, element) {
+
+           console.log(element);
+          var placement = $(element).data('error');
+
+             console.log(placement);
+             console.log(error);
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+});
+
+
+  validator.form();
+
+if (validator.form()== false) {
+
+     // console.log($('#hotel-form').find(".error").eq(0).offset().top);
+     var body = $("html, body");
+
+      $.each($('#room-form').find(".error"),function(key,value){
+        if($(value).css('display')!="none"){
+           body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+         return false; 
+        }
+
+       //alert("Finished animating");
+    });
+         //.scrollTop(300);
+   }else{ $.ajax({
                              type:"POST",
                              url:"../rooms/room-post.php",
                              data: $("form").serialize(),
@@ -88,7 +124,7 @@ $.ajax({
                       closeOnConfirm: true,
                       html: false
                       }, function(){
-                      // window.location = "../rooms/showsingle_roomrecord.php";
+                       window.location = "../rooms/room_list.php";
                     });
                               },3000)
 
@@ -117,9 +153,7 @@ $.ajax({
                               
                            
                           })
-
-
-
+ }
 
 
 })

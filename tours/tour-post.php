@@ -1,6 +1,6 @@
 <?php
  include '../common-sql.php';
-  print_r($_POST);
+  // print_r($_POST);
 
 // return false;
 $is_check=true;
@@ -26,7 +26,7 @@ if (empty($_POST['tour_destinationname'])) {
 if (empty($_POST['tour_foodinclude'])) {
 
      $is_check=false;
-     echo "This Field is Required";
+     echo "Food Include Field is Required";
 }else{
    
    $fodinclude       =$_POST['tour_foodinclude'];
@@ -63,7 +63,7 @@ if (isset($_POST['tour_dinner'])) {
 if (empty($_POST['tour_drink'])) {
 
 	$is_check=false;
-     echo "This Field is Required";
+     echo "Drink Include Field is Required";
 }else{
 
 	$drnkinclude      =$_POST['tour_drink'];
@@ -131,19 +131,19 @@ $camping          =$_POST['tour_camping'];
 if (empty($_POST['tour_entrytik'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "Entry tickets included in the package price Field is Required";
 }else{
 
 	$entrytik         =$_POST['tour_entrytik'];
 }
-if (empty($_POST['tour_plan'])) {
+// if (empty($_POST['tour_plan'])) {
 	
-	$is_check=false;
-     echo "This Field is Required ";
-}else{
+// 	$is_check=false;
+//      echo "This Field is Required ";
+// }else{
 
 	$plan             =$_POST['tour_plan'];
-}
+// }
 if (empty($_POST['tour_pkgprice'])) {
 	
 	$is_check=false;
@@ -159,7 +159,7 @@ if (empty($_POST['tour_pkgprice'])) {
 if (empty($_POST['tour_capacitypeople'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     echo "This Field is Required899";
 }elseif (!is_numeric($_POST['tour_capacitypeople'])) {
 	$is_check=false;
 	echo "This Field accept only Numeric 15"."<br>";
@@ -171,7 +171,7 @@ if (empty($_POST['tour_capacitypeople'])) {
 if (empty($_POST['tour_nosofbag'])) {
 	
 	$is_check=false;
-     echo "This Field is Required ";
+     echo "This Field is Required 435345";
 }elseif (!is_numeric($_POST['tour_nosofbag'])) {
 	$is_check=false;
 	echo "This Field accept only Numeric 16"."<br>";
@@ -183,7 +183,7 @@ if (empty($_POST['tour_nosofbag'])) {
 if (empty($_POST['tour_childallow'])) {
 	
 	$is_check=false;
-     echo "This Field is Required srh";
+     echo "Children allow Field is Required srh";
 }else{
 
 	$childallow       =$_POST['tour_childallow'];
@@ -404,7 +404,7 @@ if ($is_check==true) {
 $query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
 
 
-echo $query;
+// echo $query;
 if ($conn->query($query)== TRUE) {
  	# code...
  	$tour_id=$conn->insert_id;
@@ -413,7 +413,7 @@ if ($conn->query($query)== TRUE) {
  	echo "Error: " . $query . "<br>" . $conn->error;
  }
 
-echo $tour_id;
+// echo $tour_id;
  
  if (isset($_POST['common_video'])) {
 
@@ -427,7 +427,7 @@ echo $tour_id;
 
  for ($i=0; $i<count($imgarray); $i++) {
 
-             print_r($imgarray) ;
+             // print_r($imgarray) ;
 
 	  $img_UpdateQuery='UPDATE common_imagevideo SET
  	 tour_id="'.$tour_id.'",
@@ -463,7 +463,7 @@ for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) {
  	echo "Error: " . $destinationQuery . "<br>" . $conn->error;
  }
 
-echo $destination_id;
+// echo $destination_id;
 
      // echo $discountQuery;
  	
@@ -479,7 +479,7 @@ for ($i=0; $i < count($_POST['attraction_name']) ; $i++) {
 }
 
 
-   echo "<br>"."Your Form Submitted Sucessfully !"."<br>";
+   echo "sucess";
 }else{
 	return false;
 }

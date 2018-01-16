@@ -1,6 +1,6 @@
 <?php  
 include '../common-sql.php';
- // print_r($_POST);
+  // print_r($_POST);
 
 /*----------------------------
     Function for dynamic Update Query for Hotels
@@ -29,14 +29,14 @@ global $conn;
         	foreach ($value as $k => $v) {
 				   // echo $v;
 
-				    $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
+				 //    $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
 
 
-				 mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
+				 // mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
 
-				   //   $updatequerymenu= "UPDATE common_menupackages SET "."foodpkg_name='".$updateObject['foodpkg_name'][$k]."',foodpkg_price='".$updateObject['foodpkg_price'][$k]."',foodpkg_discount='".$updateObject['foodpkg_discount'][$k]."',foodpkg_item='".$updateObject['foodpkg_item'][$k]."' WHERE common_menupkg_id=".$updateObject['common_menupkg_id'][$k];
+				  // $updatequerymenu= "UPDATE common_menupackages SET "."foodpkg_name='".$updateObject['foodpkg_name'][$k]."',foodpkg_price='".$updateObject['foodpkg_price'][$k]."',foodpkg_discount='".$updateObject['foodpkg_discount'][$k]."',foodpkg_item='".$updateObject['foodpkg_item'][$k]."' WHERE common_menupkg_id=".$updateObject['common_menupkg_id'][$k];
 
-				   // mysqli_query($conn,$updatequerymenu) or die(mysqli_error($conn));
+				  //   mysqli_query($conn,$updatequerymenu) or die(mysqli_error($conn));
 				  // echo $updatequerymenu;
         		 // echo 'Book value : '.$updateObject['book_fromdate'][$k];
 

@@ -74,7 +74,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="rom-ser" >
 
 							<label class="col s12">Room service</label>
-							<select  class="" name="room_service" >
+							<select  class="" name="room_service" required="">
 								<option value="" disabled selected>Select One</option>
 								<option value="yes">Yes</option>
 								<option value="no">No</option>
@@ -138,7 +138,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div class="row  common-top clearfix">
 
 							<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>ROOM's PROMOTIONAL VIDEO</span></div>
-							<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required>
+							<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 						</div>
 						<div class="common-top">
 							<label class="col s4" style="margin-bottom: 10px;">Room Description</label>
@@ -268,92 +268,31 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
    <?php include '../footer.php'; ?>
 	<script src="../js/room-js/room.js"></script>	
 
-      <script type="text/javascript">
-							tinymce.init({ selector:'textarea' });
+<script type="text/javascript">
 
 
-
-							$(document).ready(function(){
-
-								$('#pro-sub-btn').click(function(){
-// debugger;
-	var isFormValidated = true;
-	$.each($('#room-form .is_validate'),function(key,val){
-		if(!val.value){
-			isFormValidated = false;
-			console.log(val);
-			$(val).addClass('error');	
-		}else{
-	 			// debugger;
-	 			$(val).removeClass('error');
-	 		}
-	 	});
-	// $.each($('#room-form .is_validate_select'),function(key,val){
-	// 		if(!$(val).find('select').val()){
-	// 			isFormValidated = false;
-	// 			console.log(val);
-	// 			$(val).find('.select-wrapper').addClass('error');
-
-	// 		}else{
-	// 			// debugger;
-	// 			$(val).find('.select-wrapper').removeClass('error');
-	// 		}
-	// });
+tinymce.init({ selector:'textarea' });
 
 
-	if(isFormValidated){
-		console.log('TIme to submit form');
-		$("#room-form").submit();
-	}else{
-		console.log('There is an error');
+$('.chips-autocomplete').material_chip({
+	autocompleteOptions: {
+		data: {
+			'Wifi': null,
+			'Swimming Pool': null,
+			'Room service': null,
+			'Restaurant': null
+		},
+		limit: Infinity,
+		minLength: 1
 	}
-})
+});
 
 
 
 
-
-																$('.chips-autocomplete').material_chip({
-																	autocompleteOptions: {
-																		data: {
-																			'Wifi': null,
-																			'Swimming Pool': null,
-																			'Room service': null,
-																			'Restaurant': null
-																		},
-																		limit: Infinity,
-																		minLength: 1
-																	}
-																});
+</script>
+</body>
 
 
-																$("#room-form").validate({
-
-
-
-																	errorElement : 'div',
-																	errorPlacement: function(error, element) {
-
-
-        	// debugger;
-        	console.log(element);
-        	var placement = $(element).data('error');
-
-        	console.log(placement);
-        	console.log(error);
-        	if (placement) {
-        		$(placement).append(error)
-        	} else {
-        		error.insertAfter(element);
-        	}
-        }
-    });
-
-
-															});
-														</script>
-													</body>
-
-
-													<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-													</html>
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+</html>

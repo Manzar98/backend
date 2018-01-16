@@ -2,7 +2,7 @@
 
  include '../common-sql.php';
 
-print_r($_POST);
+// print_r($_POST);
 
 $is_check=true;
 
@@ -164,16 +164,22 @@ if (!is_numeric($_POST['banquet_adcost'])) {
 
 
 
-if (empty($_POST['banquet_descrip'])) {
-	$is_check=false;
-	echo "Banquet Description  is required";
-}else{
+// if (empty($_POST['banquet_descrip'])) {
+// 	$is_check=false;
+// 	echo "Banquet Description  is required";
+// }else{
 	
   $descrip      = $_POST['banquet_descrip'];
-}
+// }
 
+if (empty($_POST['banquet_other'])) {
+	$is_check=false;
+	echo"Amenities is required";	
+}else{
+	$other = $_POST['banquet_other'];
+}
 	
-  $other	      = $_POST['banquet_other'];
+  
 
   $img          = $_POST['common_image'];
   $imgarray= explode(",",$img);
@@ -201,11 +207,12 @@ if (!empty($_POST['banquet_offerdiscount']) && !is_numeric($_POST['banquet_offer
 
 if (empty($_POST['banquet_independ'])) {
 	$is_check=false;
-	# code...
+	echo "Hall independent field is required";
 }else{
 
 	$banquet_independ=$_POST['banquet_independ'];
 }
+
 if (!empty($_POST['hotel_name'])) {
 
 	$banquet_hotelName=$_POST['hotel_name'];
@@ -338,7 +345,7 @@ if ($conn->query($query)== TRUE) {
   	echo "Error: " . $query . "<br>" . $conn->error;
   }
 
- echo $banquet_id;
+ // echo $banquet_id;
   // print_r($query);
 
 for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
@@ -366,7 +373,7 @@ if (isset($_POST['common_video'])) {
 
 	$videoQuery='INSERT INTO common_imagevideo(banquet_id,common_video,img_video_type)VALUES("'.$banquet_id.'","'.$provideo.'","'.$formtype.'")';
 
-echo $videoQuery;
+// echo $videoQuery;
 	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
 	
 }
@@ -375,7 +382,7 @@ echo $videoQuery;
 
  for ($i=0; $i<count($imgarray); $i++) {
 
-             print_r($imgarray) ;
+             // print_r($imgarray) ;
 
 	  $img_UpdateQuery='UPDATE common_imagevideo SET
  	  banquet_id="'.$banquet_id.'",
@@ -387,7 +394,7 @@ echo $videoQuery;
  }
 
 
-  echo "<br>"."Your Form Submitted Sucessfully !"."<br>";
+  echo "sucess";
 }
 else{
 	return false;

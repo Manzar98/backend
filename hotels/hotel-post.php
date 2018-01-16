@@ -95,7 +95,7 @@ $web=$_POST['hotel_web'];
  if (empty($_POST['hotel_other'])) {
 	
  	$is_check=false;
- 	echo "Amenities is required ";
+ 	echo "Amenities is required "."<br>";
 
  }else{
 
@@ -166,8 +166,20 @@ $insurl=$_POST['hotel_insurl'];
 $pinurl=$_POST['hotel_pinurl'];
 $yuturl=$_POST['hotel_yuturl'];
 
-  $checkIn=$_POST['hotel_checkin'];
+if (empty($_POST['hotel_checkin'])) {
+  $is_check=false;
+  echo "CheckIn field is required";
+}else{
+   $checkIn=$_POST['hotel_checkin'];
+}
+
+if (empty($_POST['hotel_checkout'])) {
+  $is_check=false;
+  echo "CheckOut field is required";
+}else{
+
   $checkOut=$_POST['hotel_checkout'];
+}
 
 if (isset($_POST['hotel_isair'])) {
   
@@ -271,7 +283,7 @@ $query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_c
 
   }
 
-  echo "<br>"."Your Form Submitted Sucessfully !"."<br>";
+  echo "sucess";
  }else{
  	return false;
  	 echo "<br>"."Your Form Can't Submit Kindly Check again "."<br>";

@@ -65,19 +65,63 @@ $.ajax({
 
 /*===============Ajax call for hotel insertion (create new record)=================*/
 
+
+
+
 $("#pro-sub-btn_hotel").click(function(){
+ 
+
+ var validator= $("#hotel-form").validate({
+
   
-$.ajax({
+
+       errorElement : 'div',
+        errorPlacement: function(error, element) {
+
+           console.log(element);
+          var placement = $(element).data('error');
+
+             console.log(placement);
+             console.log(error);
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+});
+
+
+  validator.form();
+
+   if (validator.form()== false) {
+
+     // console.log($('#hotel-form').find(".error").eq(0).offset().top);
+     var body = $("html, body");
+
+      $.each($('#hotel-form').find(".error"),function(key,value){
+        if($(value).css('display')!="none"){
+           body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+         return false; 
+        }
+
+       //alert("Finished animating");
+    });
+         //.scrollTop(300);
+   }else{
+
+     $.ajax({
                              type:"POST",
                              url:"../hotels/hotel-post.php",
                              data: $("form").serialize(),
+
                              success:function(data) {
 
 
                              console.log(data);
 
                              if (data=='sucess') {
-                              $("#pro-sub-btn").hide();
+                              $("#pro-sub-btn_hotel").hide();
                               $('#loader').modal({dismissible: false});
                               $('#loader').modal('open');
 
@@ -93,7 +137,7 @@ $.ajax({
                       closeOnConfirm: true,
                       html: false
                       }, function(){
-                      window.location = "../hotels/showsingle_hotelrecord.php";
+                       window.location = "../hotels/hotel_list.php";
                     });
                               },3000)
 
@@ -122,6 +166,9 @@ $.ajax({
                               
                            
                           })
+   }
+  
+
 
 
 

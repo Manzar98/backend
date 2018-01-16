@@ -2,7 +2,7 @@
 
  include '../common-sql.php';
 
-  print_r($_POST);
+  // print_r($_POST);
 
 $is_check= true;
 
@@ -143,7 +143,7 @@ foreach($_POST['foodpkg_item'] as $menupkgitems) {
 
 if (empty($_POST['conference_independ'])) {
 	$is_check=false;
-	# code...
+	echo "Hall independent field is required";
 }else{
 
 	$con_independ=$_POST['conference_independ'];
@@ -238,10 +238,15 @@ $provideo       = $_POST['common_video'];
 
 
 
+if (empty($_POST['conference_other'])) {
+	$is_check=false;
+	echo "Amenities is required";
+}else{
+	$other	      = $_POST['conference_other'];
+}
 
 
 
-$other	      = $_POST['conference_other'];
 $frmdate      = $_POST['book_fromdate'];
 $todate       = $_POST['book_todate'];
 
@@ -281,7 +286,7 @@ if ($conn->query($query)== TRUE) {
  	echo "Error: " . $query . "<br>" . $conn->error;
  }
 
- echo $conference_id;
+ // echo $conference_id;
   // print_r($query);
 
 for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
@@ -327,7 +332,7 @@ if (isset($_POST['common_video'])) {
 
 
  }
- echo "<br>"."Your Form Submitted Sucessfully !"."<br>";
+ echo "sucess";
 }else{
 
 	 return false;

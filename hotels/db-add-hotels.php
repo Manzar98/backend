@@ -28,8 +28,8 @@
 						<div>
 							<label class="col s4">Hotel Name</label>
 							<div class="input-field col s8">
-								<input type="text"  class="validate is_validate" id="hotel_name" name="hotel_name" data-error=".errorTxt5"  required>
-								<div class="errorTxt5"></div>
+								<input type="text"  class="validate is_validate" id="hotel_name" name="hotel_name" data-error=".errorTxt1"  required>
+								<div class="errorTxt1"></div>
 								
 							</div>
 						</div>
@@ -37,30 +37,37 @@
 						<div>
 							<label class="col s4">Address Line 1</label>
 							<div class="input-field col s8">
-								<input type="text"  class="validate is_validate" name="hotel_addres1" required> </div>
+								<input type="text"  class="validate is_validate" name="hotel_addres1" data-error=".errorTxt2"  required>
+								<div class="errorTxt2"></div>
+							</div>
 						</div>
 						<div>
 							<label class="col s4">Address Line 2</label>
 							<div class="input-field col s12">
-								<input type="text" class="validate " name="hotel_addres2"> </div>
+								<input type="text" class="validate" name="hotel_addres2" >
+								
+								 </div>
 						</div>
 
 						<div class="row">
 							<div  class="col-md-6">
 								<label>City</label>
-								<input id="first_name" type="text" name="hotel_city" class="input-field validate is_validate" required>
+								<input id="first_name" type="text" name="hotel_city" class="input-field validate is_validate" data-error=".errorTxt3" required>
+								<div class="errorTxt3"></div>
 							</div>
 
 							<div  class="col-md-6">
 								<label>Province</label>
-								<input id="last_name" type="text" name="hotel_province" class="input-field validate is_validate" required>
+								<input id="last_name" type="text" name="hotel_province" class="input-field validate is_validate" data-error=".errorTxt4" required>
+								<div class="errorTxt4"></div>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-6">
 								<label >Phone Number</label>
-								<input type="number"  class="input-field validate is_validate" name="hotel_phone" required>
+								<input type="number"  class="input-field validate is_validate" name="hotel_phone" data-error=".errorTxt5" required>
+								<div class="errorTxt5"></div>
 							</div>
 							<div class="col-md-6">
 								<label >Fax Number</label>
@@ -72,7 +79,7 @@
       					<div>
 							<label class="col s4">Email Address</label>
 							<div class="input-field col s8">
-								<input type="email"  class="validate is_validate" name="hotel_email"  required> </div>
+								<input type="email"  class="validate is_validate" name="hotel_email" data-error=".errorTxt6"  required><div class="errorTxt6"></div> </div>
 						</div>
 
 
@@ -87,11 +94,12 @@
 						<div class="row">
 							<div class="col-md-6">
 								<label>Check In Time</label>
-								<input type="text" class="timepicker" id="checkIn" name="hotel_checkin">
+								<input type="text" class="timepicker" id="checkIn" name="hotel_checkin" data-error=".errorTxt7" required=""><div class="errorTxt7"></div>
 							</div>
 							<div class="col-md-6">
 								<label>Check Out Time</label>
-								 <input type="text" class="timepicker" id="checkOut"    name="hotel_checkout"> 
+								 <input type="text" class="timepicker" id="checkOut"    name="hotel_checkout" data-error=".errorTxt8" required="">  
+								 <div class="errorTxt8"></div>
 							</div>
 						</div>
 
@@ -130,7 +138,9 @@
 						
 						<div class="common-top">
 							<label class="col s4">Hotel Description</label>
-							<textarea id="hotel-desp" name="hotel_descrp" class="materialize-textarea is_validate" ></textarea>
+							<textarea id="hotel-desp" name="hotel_descrp" class="materialize-textarea is_validate" data-error=".errorTxt9" required=""></textarea>
+							<div class="errorTxt9"></div>
+							 
 						</div><br><br>
 
 
@@ -139,14 +149,17 @@
 
 
                         <div class="row" >
-                        	<div class="input-field" id="pick_select" >
-                        		
-                        		<select  onchange="yesCheck(this)" name="hotel_pickup" class=" " id="pik_select">
+                        	<div class="col s12" id="pick_select" >
+                        		 <label>Pickup Offered?</label>
+                        		<select  onchange="yesCheck(this)" required="" name="hotel_pickup" class=" " id="pik_select" data-error=".errorTxt10" >
 							     <option value="" disabled selected>Choose your option</option>
 							     <option value="yes">Yes</option>
 								 <option value="no">No</option>
 							   </select> 
-							   <label>Pickup Offered?</label>
+							  
+                        	</div>
+                        	<div class="input-field">
+                        		<div class="errorTxt10"></div>
                         	</div>
                             
 					    </div>
@@ -218,7 +231,9 @@
 
 						 <div class="common-top">
                              <label class="col s4">Hotel booking cancellation Policy</label>
-                            <textarea  name="hotel_policy" class="materialize-textarea is_validate" > </textarea>
+                            <textarea  name="hotel_policy" class="materialize-textarea is_validate" data-error=".errorTxt11"> </textarea>
+
+                            <div class="errorTxt11"></div>
 
                          </div>
 
@@ -521,25 +536,29 @@ $('#modal-coverimg').modal({dismissible: false});
 
 
 
+// $("#hotel-form").validate({
+//   submitHandler: function(form) {
+//     $(form).ajaxSubmit();
+//   }
+// });
 
+// $("#hotel-form").validate({
 
-$("#hotel-form").validate({
+//          errorElement : 'div',
+//         errorPlacement: function(error, element) {
 
-         errorElement : 'div',
-        errorPlacement: function(error, element) {
+//         	 console.log(element);
+//           var placement = $(element).data('error');
 
-        	 console.log(element);
-          var placement = $(element).data('error');
-
-             console.log(placement);
-             console.log(error);
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }
-   });
+//              console.log(placement);
+//              console.log(error);
+//           if (placement) {
+//             $(placement).append(error)
+//           } else {
+//             error.insertAfter(element);
+//           }
+//         }
+//    });
 
 
 
