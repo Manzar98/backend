@@ -1,6 +1,6 @@
 $("#pro-sub-btn").click(function(){
 
-
+   
 $.ajax({
                              type:"POST",
                              url:"../conferences/update_conference.php",
@@ -93,7 +93,7 @@ if (validator.form()== false) {
     });
          //.scrollTop(300);
    }else{
-
+       
     $.ajax({
                              type:"POST",
                              url:"../conferences/conference-post.php",

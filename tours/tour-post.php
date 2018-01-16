@@ -136,14 +136,14 @@ if (empty($_POST['tour_entrytik'])) {
 
 	$entrytik         =$_POST['tour_entrytik'];
 }
-// if (empty($_POST['tour_plan'])) {
+ if (empty($_POST['tour_plan'])) {
 	
-// 	$is_check=false;
-//      echo "This Field is Required ";
-// }else{
+ 	$is_check=false;
+      echo "Whole Plan Field is Required ";
+ }else{
 
 	$plan             =$_POST['tour_plan'];
-// }
+ }
 if (empty($_POST['tour_pkgprice'])) {
 	
 	$is_check=false;

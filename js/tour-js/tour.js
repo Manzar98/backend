@@ -1,6 +1,6 @@
 $("#pro-sub-btn").click(function(){
 
-
+    tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
                              url:"../tours/update_tour.php",
@@ -93,7 +93,7 @@ if (validator.form()== false) {
     });
          //.scrollTop(300);
    }else{
-
+       tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
                              url:"../tours/tour-post.php",

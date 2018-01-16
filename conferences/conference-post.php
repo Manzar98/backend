@@ -6,10 +6,6 @@
 
 $is_check= true;
 
-// ['hotel_name' : 'Hotel Name is required',]
-
-
-// print_r($error_array);
 
 if (empty($_POST['conference_name'])) {
  

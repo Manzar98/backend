@@ -1,5 +1,5 @@
 $("#pro-sub-btn").click(function(){
-
+   tinyMCE.triggerSave();
 
 $.ajax({
                              type:"POST",
@@ -94,7 +94,7 @@ if (validator.form()== false) {
     });
          //.scrollTop(300);
    }else{
-  
+    tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
                              url:"../events/event-post.php",

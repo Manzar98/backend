@@ -366,7 +366,7 @@
 								<!-- Modal Trigger -->
 								<div class="col s1"></div>
 							<a class="waves-effect waves-light btn modal-trigger spc-modal col s10" href="#modal-images" >Tour Photos</a>
-							<input type="text" name="common_image" id="img_ids">
+							<input type="hidden" name="common_image" id="img_ids">
 							</div>
 					   </div>
                            											

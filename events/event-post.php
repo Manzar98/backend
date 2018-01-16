@@ -29,15 +29,15 @@ if (empty($_POST['event_recurrence'])) {
 	
 	$recurrence   = $_POST['event_recurrence'];
 }
-// if (empty($_POST['event_descrip'])) {
+ if (empty($_POST['event_descrip'])) {
 
-// 	$is_check=false;
-// 	echo "Event Description Field is required 4"."<br>";
-// }else{
+ 	$is_check=false;
+ 	echo "Event Description Field is required "."<br>";
+ }else{
 	
 	$descrip      = $_POST['event_descrip'];
 
-// }
+ }
 if (empty($_POST['event_entry'])) {
 
 	$is_check=false;

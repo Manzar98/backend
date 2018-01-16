@@ -1,6 +1,6 @@
 $("#pro-sub-btn").click(function(){
 
-
+     tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
                              url:"../banquets/update_banquet.php",
@@ -60,6 +60,7 @@ $.ajax({
 
 $("#pro-sub-btn_banquet").click(function(){
 
+
 var validator= $("#banquet-form").validate({
 
        errorElement : 'div',
@@ -96,14 +97,14 @@ if (validator.form()== false) {
          //.scrollTop(300);
    }else{
 
-  
+     tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
                              url:"../banquets/banquet-post.php",
                              data: $("form").serialize(),
                              success:function(data) {
 
-
+       
                              console.log(data);
 
                              if (data=='sucess') {

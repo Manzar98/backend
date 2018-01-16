@@ -82,16 +82,16 @@ $addres2=$_POST['hotel_addres2'];
   }
 $web=$_POST['hotel_web'];
    
- // if (empty($_POST['hotel_descrp'])) {
+  if (empty($_POST['hotel_descrp'])) {
 	
- // 	$is_check=false;
- // 	echo "Description is required ";
+  	$is_check=false;
+  	echo "Description is required ";
 
- // }else{
+  }else{
 
 	$descrp=$_POST['hotel_descrp'];
 
- // }/
+  }
  if (empty($_POST['hotel_other'])) {
 	
  	$is_check=false;
@@ -102,14 +102,14 @@ $web=$_POST['hotel_web'];
 	$other=$_POST['hotel_other'];
 
  }
- // if (empty($_POST['hotel_policy'])) {
+ if (empty($_POST['hotel_policy'])) {
 
- // 	$is_check=false;
- // 	echo "Canellation Policy is required ";
- // }else{
+  	$is_check=false;
+ 	echo "Canellation Policy is required ";
+  }else{
 
 	$policy=$_POST['hotel_policy'];
- // }
+  }
  if (empty($_POST['hotel_pickup'])) {
 
 	

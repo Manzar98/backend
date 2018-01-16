@@ -91,14 +91,14 @@ if (empty($_POST['room_perni8'])) {
 	$ni8=$_POST['room_perni8'];
 
 }
-// if (empty($_POST['room_descrip'])) {
-// 	$is_check=false;
-// 	echo "Room Description is required";
-// }else{
+ if (empty($_POST['room_descrip'])) {
+ 	$is_check=false;
+ 	echo "Room Description is required";
+ }else{
 
 	$descrip=$_POST['room_descrip'];
 
-// }
+ }
 if (empty($_POST['room_other'])) {
 	$is_check=false;
 	echo "Amenities is required";

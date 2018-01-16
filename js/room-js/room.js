@@ -2,7 +2,7 @@ $("#pro-sub-btn").click(function(){
 
   // $('#loader').modal({dismissible: false});
   
-
+tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
                              url:"../rooms/update_room.php",
@@ -98,7 +98,9 @@ if (validator.form()== false) {
        //alert("Finished animating");
     });
          //.scrollTop(300);
-   }else{ $.ajax({
+   }else{ 
+        tinyMCE.triggerSave();
+    $.ajax({
                              type:"POST",
                              url:"../rooms/room-post.php",
                              data: $("form").serialize(),

@@ -164,13 +164,13 @@ if (!is_numeric($_POST['banquet_adcost'])) {
 
 
 
-// if (empty($_POST['banquet_descrip'])) {
-// 	$is_check=false;
-// 	echo "Banquet Description  is required";
-// }else{
+ if (empty($_POST['banquet_descrip'])) {
+ 	$is_check=false;
+ 	echo "Banquet Description  is required";
+ }else{
 	
   $descrip      = $_POST['banquet_descrip'];
-// }
+ }
 
 if (empty($_POST['banquet_other'])) {
 	$is_check=false;
