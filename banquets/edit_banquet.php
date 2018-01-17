@@ -175,9 +175,12 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
     while ($resultbnqMenu=mysqli_fetch_assoc($editbnqmenuQuery)) { ?>
      
   
-   <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultbnqMenu['common_menupkg_id']; ?>">    
+      
    <li id="gen_menupackage_input">
-    <div class="collapsible-header  active"><?php echo $resultbnqMenu['foodpkg_name'] ?> <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div>
+    <div class="collapsible-header  active"><?php echo $resultbnqMenu['foodpkg_name'] ?> <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a>
+    <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultbnqMenu['common_menupkg_id']; ?>" class="menuwrap-id"> 
+
+    </div>
     <div class="collapsible-body"> 
      <div class="row">
       
@@ -195,7 +198,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
   
    <div class="col-md-6">
      <label >Discount Percentage</label>
-     <input type="number"  class="input-field validate" name="foodpkg_discount[]" value="<?php echo $resultbnqMenu['foodpkg_discount'] ?>" style="padding-top: 18px;">
+     <input type="number"  class="input-field validate pkg_percent" name="foodpkg_discount[]" value="<?php echo $resultbnqMenu['foodpkg_discount'] ?>" style="padding-top: 18px;">
    </div>	
    <div class="col-md-6">
      <label>Package Items</label>
@@ -205,8 +208,6 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
    <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-<?php echo $i+1; ?>" class="menupkg-id" value="<?php echo $resultbnqMenu['foodpkg_item'];  ?>"> </div>
    </div>					
  </div>
-
-   <?php echo $resultbnqMenu['foodpkg_item'];  ?>
 </div>
 </li>
  <?php $i++; }  
@@ -349,9 +350,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
     ?>
   		  
 
-     <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultbnqDate['common_bokdate_id'] ?>">
-   <li>
-    <div class="collapsible-header  active">Date</div>
+    
+   <li id="gen-date-wrap">
+    <div class="collapsible-header  active">Date <a class="closedate" ><i class="fa fa-times" aria-hidden="true"></i></a>
+ <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultbnqDate['common_bokdate_id'] ?>"  class="dateWrap_id">
+    </div>
     <div class="collapsible-body"> 
       <div class="row">
        <div class="col-md-6">
@@ -591,11 +594,11 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <script src="../js/banquet-js/banquet.js"></script>
 <script type="text/javascript">
 
-$("body").on("click",".closemenu",function(){ 
+// $("body").on("click",".closemenu",function(){ 
 
-          $(this).parents("#gen_menupackage_input").remove();
+//           $(this).parents("#gen_menupackage_input").remove();
 
-      });
+//       });
 
 
 
@@ -643,6 +646,21 @@ $('#ajaxbtn').click(function(){
 /*==============End Ajax Function Defination==============*/
 
 
+
+/*==========================================
+ Delte call for Menu pacakge li through ajax
+===========================================*/
+
+
+
+
+
+
+
+
+
+
+/*==============End Ajax Function Defination==============*/
     tinymce.init({ selector:'textarea' });
 
 		// $('#modal-images').modal();

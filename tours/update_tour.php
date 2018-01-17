@@ -28,13 +28,14 @@ global $conn;
                  // print_r($value) ;
         	foreach ($value as $k => $v) {
 				   // echo $v;
+      if (isset($updateObject['common_people_id'][$k])) {
+           # code...
+         
+            $updatequerydates= "UPDATE common_nosofpeople SET "."common_nopeople='".$updateObject['common_nopeople'][$k]."',common_discount='".$updateObject['common_discount'][$k]."' WHERE common_people_id=".$updateObject['common_people_id'][$k];
 
-				    $updatequerydates= "UPDATE common_nosofpeople SET "."common_nopeople='".$updateObject['common_nopeople'][$k]."',common_discount='".$updateObject['common_discount'][$k]."' WHERE common_people_id=".$updateObject['common_people_id'][$k];
 
-              // echo $updatequerydates;
-				    mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
-
-				    
+            mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
+         }
 				  //echo $updatequery;
         		 // echo 'Book value : '.$updateObject['book_fromdate'][$k];
 

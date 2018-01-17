@@ -123,9 +123,11 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
        
                 ?>
 
-                <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultconmenu['common_menupkg_id']; ?>">
+                
                 <li id="gen_menupackage_input">
-                  <div class="collapsible-header  active"><?php echo $resultconmenu['foodpkg_name']; ?> <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div>
+                  <div class="collapsible-header  active"><?php echo $resultconmenu['foodpkg_name']; ?> <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a>
+                  <input type="hidden" name="common_menupkg_id[]" value="<?php echo $resultconmenu['common_menupkg_id']; ?>" class="menuwrap-id">
+                  </div>
                   <div class="collapsible-body"> 
                    <div class="row">
                     <div class="col-md-6">
@@ -254,10 +256,13 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
        
        while ($resultconDate=mysqli_fetch_assoc($editconDateQuery)){ ?>
        
-           <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultconDate['common_bokdate_id'] ?>">
+          
 
-           <li>
-            <div class="collapsible-header  active">Date</div>
+           <li id="gen-date-wrap">
+            <div class="collapsible-header  active">Date
+              <a class="closedate" ><i class="fa fa-times" aria-hidden="true"></i></a>
+             <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultconDate['common_bokdate_id'] ?>" class="dateWrap_id">
+            </div>
             <div class="collapsible-body"> 
               <div class="row">
                <div class="col-md-6">

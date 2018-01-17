@@ -517,8 +517,9 @@ $global_tour_id="";
 							if (mysqli_num_rows($edittournoofpeopleQuery) > 0) {
 								while ($resultDiscount=mysqli_fetch_assoc($edittournoofpeopleQuery)) { ?>
 								
-							<input type="hidden" name="common_people_id[]" value="<?php echo $resultDiscount['common_people_id'] ?>">
-							<div class="row">
+							
+							<div class="row" id="gen-discount-wrap">
+								<input type="hidden" name="common_people_id[]" value="<?php echo $resultDiscount['common_people_id'] ?>" class="discountWrap-id">
 								<div class="col-md-6">
 									<label>Number of People</label>
                                   <div class="input-field ">
@@ -526,7 +527,7 @@ $global_tour_id="";
 							      </div>
 								</div>
 								<div class="col-md-6">
-									<label>Discount (Percentage)</label>
+									<label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
                                   <div class="input-field ">
 								   <input type="number" name="common_discount[]" class="validate" value="<?php echo $resultDiscount['common_discount'];  ?>"> 
 							      </div>
@@ -715,7 +716,7 @@ $global_tour_id="";
 							<div class="row  common-top clearfix">
 								 
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Tour's PROMOTIONAL VIDEO</span></div>
-										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required>
+										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
 
 						<div class="destination-wrap" id="destination-wrap">
@@ -1013,13 +1014,9 @@ if ($('#undr5allow :selected').text() == "Yes") {
    }else if($('.c-childprice').find('input').val().length < 0){
       // debugger;
       $('.c-childfree').hide();
-      $('.c-childprice').show();
+       $('.c-childprice').show();
 
-   }else{
-
-     $('.c-childprice').show();
    }
-
 
 
 

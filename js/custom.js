@@ -465,7 +465,44 @@ function compareInputs(event) {
 /*=======Function for closing (Extra Discount & No of People Inputs)=======*/
   $("body").on("click",".closediscount",function(){ 
 
-          $(this).parents("#gen-discount-wrap").remove();
+    // debugger;
+    var discountwrap_id=$(this).parents("#gen-discount-wrap").find('.discountWrap-id').val();
+
+   console.log(discountwrap_id);
+
+    if (discountwrap_id) {
+      // debugger;
+          var colIdName= $(this).parents("#gen-discount-wrap").find('.discountWrap-id').attr('name');
+          var col_name = colIdName.slice(0,-2);
+          var row_wrap=$(this).parents("#gen-discount-wrap");
+         row_wrap.css('background','tomato');
+                    row_wrap.fadeOut(800, function(){ 
+                      // debugger;
+                    row_wrap.remove();
+        });
+                    $.ajax({
+
+                      type: "POST",
+                      url : "../delete_multipleinputsrecord.php",
+                      data: {tableName : 'common_nosofpeople',id : discountwrap_id ,col_id_name : col_name},
+                      success:function(data) {
+                                  var response = JSON.parse(data);
+                                  console.log(response);
+                                  if(response.message == "success"){
+                                 
+                                  }
+                      }
+
+
+
+                    })
+
+    }else{
+
+      $(this).parents("#gen-discount-wrap").remove();
+    }
+
+          
 
       });
 
@@ -477,7 +514,46 @@ function compareInputs(event) {
 /*======Function for closing (Extra Dates Inputs)=======*/
   $("body").on("click",".closedate",function(){ 
 
-          $(this).parents("#gen-date-wrap").remove();
+/*Delete dates wrap from frontend and backend using ajax*/
+    var datewrap_id=$(this).parents("#gen-date-wrap").find('.dateWrap_id').val();
+    if (datewrap_id) {
+        
+         var colIdName= $(this).parents("#gen-date-wrap").find('.dateWrap_id').attr('name');
+                          var col_name = colIdName.slice(0,-2);
+                  // console.log(col_name);
+        
+        var wrap_li=$(this).parents("#gen-date-wrap");
+         wrap_li.css('background','tomato');
+                    wrap_li.fadeOut(800, function(){ 
+                     // debugger;
+                    wrap_li.remove();
+        });
+                    $.ajax({ 
+
+                                type:"POST",
+                                url:"../delete_multipleinputsrecord.php",
+                                data: {tableName : 'common_bookdates',id : datewrap_id ,col_id_name : col_name},
+                                success:function(data) {
+                                  var response = JSON.parse(data);
+                                  console.log(response);
+                                  if(response.message == "success"){
+                                 
+                                  }
+                      }
+
+  
+
+
+
+                    })
+                /*---End Ajax---*/
+
+    }else{
+
+       $(this).parents("#gen-date-wrap").remove();
+    }
+  
+         
 
       });
 
@@ -486,8 +562,41 @@ function compareInputs(event) {
 
  /*======Function for closing (Extra Menu Package Inputs)=======*/
 $("body").on("click",".closemenu",function(){ 
+ 
+ /*Delete Menupkg wrap from frontend and backend using ajax*/  
+  var menuwrap_id=$(this).parents("#gen_menupackage_input").find('.menuwrap-id').val();
+      if (menuwrap_id) {
+                      var colIdName= $(this).parents("#gen_menupackage_input").find('.menuwrap-id').attr('name');
+                          var col_name = colIdName.slice(0,-2);
+                   // console.log($(this).parents("#gen_menupackage_input"));
+                   var wrap_li=$(this).parents("#gen_menupackage_input");
+                   wrap_li.css('background','tomato');
+                   wrap_li.fadeOut("slow", function(){ 
+                    // debugger;
+                    wrap_li.remove();
+       });
+            $.ajax({
+                                type:"POST",
+                               url:"../delete_multipleinputsrecord.php",
+                                data: {tableName : 'common_menupackages',id : menuwrap_id ,col_id_name : col_name},
+                                success:function(data) {
+                   var response = JSON.parse(data);
+                                 console.log(response);
+                                 if(response.message == "success"){
+                                 
+                                 }
+                     }
 
+
+                     })
+            /*---End Ajax---*/
+
+      }else{
           $(this).parents("#gen_menupackage_input").remove();
+      }
+
+
+        
 
       });
 

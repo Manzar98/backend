@@ -228,11 +228,12 @@
 		while ($resultRoomdate=mysqli_fetch_assoc($editroomDateQuery)) {
 	  	?> 
 
-			<li>
-				<div class="collapsible-header  active">Date</div>
+			<li id="gen-date-wrap">
+				<div class="collapsible-header  active">Date<a class="closedate" ><i class="fa fa-times" aria-hidden="true"></i></a>
+                <input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultRoomdate['common_bokdate_id'] ?>" class="dateWrap_id">
+				</div>
 				<div class="collapsible-body"> 
 					<div class="row">
-						<input type="hidden" name="common_bokdate_id[]" value="<?php echo $resultRoomdate['common_bokdate_id'] ?>">
 						<div class="col-md-6">
 							<label>From</label>
 							<input type="text" id="from-<?php echo $i+1; ?>" class="input-field from" name="book_fromdate[]" value="<?php echo $resultRoomdate['book_fromdate'] ;   ?>" >

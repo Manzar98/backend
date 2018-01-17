@@ -363,9 +363,10 @@ $global_event_id="";
 								if (mysqli_num_rows($editeventnoofpeopleQuery) > 0) { 
 									while($resultDiscount=mysqli_fetch_assoc($editeventnoofpeopleQuery)) {  ?>
 								
-								<input type="hidden" name="common_people_id[]" value="<?php  echo $resultDiscount['common_people_id']; ?>">
+								
 		
-							<div class="row">
+							<div class="row" id="gen-discount-wrap">
+								<input type="hidden" name="common_people_id[]" value="<?php  echo $resultDiscount['common_people_id']; ?>" class="discountWrap-id">
 								<div class="col-md-6">
 									<label>Number of People</label>
                                   <div class="input-field ">
@@ -373,7 +374,7 @@ $global_event_id="";
 							      </div>
 								</div>
 								<div class="col-md-6">
-									<label>Discount (Percentage)</label>
+									<label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
                                   <div class="input-field ">
 								   <input type="number" name="common_discount[]" class="validate" value="<?php echo $resultDiscount['common_discount'];  ?>"> 
 							      </div>
@@ -941,9 +942,6 @@ if($(".eatNeed input:checkbox:checked").length > 0){
       $('.c-childfree').hide();
       $('.c-childprice').show();
 
-   }else{
-
-     $('.c-childprice').show();
    }
 
 
