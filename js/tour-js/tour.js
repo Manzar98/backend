@@ -1,5 +1,40 @@
 $("#pro-sub-btn").click(function(){
+  $("#pro-sub-btn").hide();
+  var validator= $("#tour-form").validate({
 
+       errorElement : 'div',
+        errorPlacement: function(error, element) {
+
+           console.log(element);
+          var placement = $(element).data('error');
+
+             console.log(placement);
+             console.log(error);
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+});
+
+ validator.form();
+
+if (validator.form()== false) {
+
+     // console.log($('#hotel-form').find(".error").eq(0).offset().top);
+     var body = $("html, body");
+
+      $.each($('#tour-form').find(".error"),function(key,value){
+        if($(value).css('display')!="none"){
+           body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+         return false; 
+        }
+
+       //alert("Finished animating");
+    });
+         $("#pro-sub-btn").show();
+   }else{
     tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
@@ -10,7 +45,6 @@ $.ajax({
                              console.log(data);
 
                              if (data=='sucess') {
-                              $("#pro-sub-btn").hide();
                               $('#loader').modal({dismissible: false});
                               $('#loader').modal('open');
 
@@ -50,6 +84,8 @@ $.ajax({
                            
                             }
                           })
+}
+
 })
 
 
@@ -57,7 +93,7 @@ $.ajax({
 /*===============Ajax call for Tour insertion (create new record)=================*/
 
 $("#pro-sub-btn_tour").click(function(){
-
+    $("#pro-sub-btn_tour").hide();
 var validator= $("#tour-form").validate({
 
        errorElement : 'div',
@@ -91,7 +127,7 @@ if (validator.form()== false) {
 
        //alert("Finished animating");
     });
-         //.scrollTop(300);
+         $("#pro-sub-btn_tour").show();
    }else{
        tinyMCE.triggerSave();
 $.ajax({
@@ -104,7 +140,6 @@ $.ajax({
                              console.log(data);
 
                              if (data=='sucess') {
-                              $("#pro-sub-btn_tour").hide();
                               $('#loader').modal({dismissible: false});
                               $('#loader').modal('open');
 

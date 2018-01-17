@@ -602,16 +602,7 @@ $('#ajaxbtn').click(function(){
        }
      });
 
-
-
-
-
-
-
-
-
-
-     })
+})
 
 
 
@@ -644,118 +635,6 @@ $('#ajaxbtn').click(function(){
 //       pointerEvents: 'none'
 //     });
 
-
-// $.validator.setDefaults({
-//   highlight: function(element, errorClass, validClass) {
-//     if (element.tagName === 'SELECT')
-//      $(element).closest('.select-wrapper').addClass('invalid');
-//     else
-//      $(element).removeClass(validClass).addClass(errorClass);
-//   },
-//   unhighlight: function(element, errorClass, validClass) {
-//     if (element.tagName === 'SELECT')
-//      $(element).closest('.select-wrapper').removeClass('invalid');
-//     else
-//      $(element).removeClass(errorClass).addClass(validClass);
-//   },
-//   errorClass: 'invalid',
-//   validClass: "valid",
-//   errorPlacement: function(error, element) {
-//     if (element.prop('tagName')  === 'SELECT') {
-//       // alternate placement for select error
-//       error.appendTo( element.parent() );
-//       error.addClass('active');
-//     }
-//     else {
-//       $(element)
-//         .closest("form")
-//         .find("label[for='" + element.attr("id") + "']")
-//         .attr('data-error', error.text());
-//     }
-//   },
-//   submitHandler: function(form) {
-//     console.log('form ok');
-//   }
-// });
-
-// $("#conference-form").validate({
-//   rules: {
-//     dateField: {
-//       date: true
-//     }
-//   }
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $('#pro-sub-btn').click(function(){
-//   debugger;
-//  var isFormValidated = true;
-//   $.each($('#conference-form .is_validate_input'),function(key,val){
-//      if(!val.value){
-//        isFormValidated = false;
-//        console.log(val);
-//        $(val).addClass('error'); 
-//      }else{
-//         debugger;
-//        $(val).removeClass('error');
-//      }
-//   });
-//   // $.each($('#conference-form .is_validate_select'),function(key,val){
-//   //     if(!$(val).find('select').val()){
-//   //       isFormValidated = false;
-//   //       console.log(val);
-//   //       $(val).find('.select-wrapper').addClass('error');
-
-//   //     }else{
-//   //       // debugger;
-//   //       $(val).find('.select-wrapper').removeClass('error');
-//   //     }
-//   // });
-
-
-//  if(isFormValidated){
-//    console.log('TIme to submit form');
-//    $("#room-form").submit();
-//  }else{
-//    console.log('There is an error');
-//  }
-// })
-
-
-
-
-    //  $("#conference-form").validate({
-
-    //       errorElement : 'div',
-    //      errorPlacement: function(error, element) {
-
-    //         console.log(element);
-    //        var placement = $(element).data('error');
-
-    //           console.log(placement);
-    //           console.log(error);
-    //        if (placement) {
-    //          $(placement).append(error)
-    //        } else {
-    //          error.insertAfter(element);
-    //        }
-    //      }
-      
 /*=======================
 Reintialize Dropdown and hide inputs
 ============================*/

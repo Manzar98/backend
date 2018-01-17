@@ -39,7 +39,7 @@
 							<thead>
 								<tr>
 									<th>Room Name</th>
-									<th>Hotel (Under which hotel)</th>
+									<th>Hotel</th>
 									<th>Number of Rooms</th>
 									<th>Charges per Night</th>
 									<th>Status</th>
@@ -55,11 +55,11 @@
                                    while ($result=mysqli_fetch_assoc($roomQuery)) { ?>
 
                                    <tr>
-                                   	<td ><?php echo $result['room_name'];   ?></td>
-									<td class="text-center"><?php echo $result['hotel_name'];   ?></td>
-									<td class="text-center"><?php echo $result['room_nosroom'];   ?></td>
+                                   	<td class="td-name"><?php echo $result['room_name'];   ?></td>
+									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>
+									<td class="text-center "><?php echo $result['room_nosroom'];   ?></td>
 									<td class="text-center"><?php echo $result['room_perni8'];   ?></td>
-									<td class="text-center"><?php echo "Active";   ?></td>
+									<td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
 									<td  class="tdwrap">
 									<div class="buttonsWrap">
 										<div class="row">

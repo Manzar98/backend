@@ -1,5 +1,44 @@
 
 $("#pro-sub-btn").click(function(){
+   $("#pro-sub-btn").hide();
+   var validator= $("#hotel-form").validate({
+
+  
+
+       errorElement : 'div',
+        errorPlacement: function(error, element) {
+
+           console.log(element);
+          var placement = $(element).data('error');
+
+             console.log(placement);
+             console.log(error);
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+});
+
+
+  validator.form();
+
+   if (validator.form()== false) {
+
+     // console.log($('#hotel-form').find(".error").eq(0).offset().top);
+     var body = $("html, body");
+
+      $.each($('#hotel-form').find(".error"),function(key,value){
+        if($(value).css('display')!="none"){
+           body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+         return false; 
+        }
+
+       //alert("Finished animating");
+    });
+        $("#pro-sub-btn").show();
+   }else{
 
    tinyMCE.triggerSave();
 	
@@ -13,10 +52,8 @@ $.ajax({
                              console.log(data);
 
                              if (data=='sucess') {
-                              $("#pro-sub-btn").hide();
                               $('#loader').modal({dismissible: false});
                               $('#loader').modal('open');
-
                                $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
@@ -60,7 +97,7 @@ $.ajax({
                           })
 
 
-
+}
 
 
 })
@@ -71,7 +108,7 @@ $.ajax({
 
 
 $("#pro-sub-btn_hotel").click(function(){
- 
+  $("#pro-sub-btn_hotel").hide();
 
  var validator= $("#hotel-form").validate({
 
@@ -109,7 +146,7 @@ $("#pro-sub-btn_hotel").click(function(){
 
        //alert("Finished animating");
     });
-         //.scrollTop(300);
+         $("#pro-sub-btn_hotel").show();
    }else{
 
     tinyMCE.triggerSave();
@@ -125,7 +162,6 @@ $("#pro-sub-btn_hotel").click(function(){
                              console.log(data);
 
                              if (data=='sucess') {
-                              $("#pro-sub-btn_hotel").hide();
                               $('#loader').modal({dismissible: false});
                               $('#loader').modal('open');
 

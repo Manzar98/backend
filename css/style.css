@@ -4834,7 +4834,7 @@ table#h_table tr:hover td.tdwrap {
     width: 100%;
     display: block;
 }
-.wrap-td .td-hotel-name{
+.wrap-td .td-name{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

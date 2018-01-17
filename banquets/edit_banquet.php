@@ -316,7 +316,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <div class="row  common-top clearfix">
 
  <div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>HALL's PROMOTIONAL VIDEO</span></div>
- <input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt is_validate_input" required>
+ <input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt is_validate_input">
 </div>
 <div class="common-top">
  <label class="col s4">Hall Description</label>
@@ -622,7 +622,7 @@ $('#ajaxbtn').click(function(){
     dataObj['form_date_type'] = "banquet";
 
     console.log(dataObj);
-    debugger;
+    // debugger;
         $.ajax({
                               type:"POST",
                               url:"../banquets/insert_banquet.php",
@@ -690,8 +690,9 @@ for (var i = 0; i < amenity.length; i++) {
    
 var packageitem= $('.menupkg-id');
 console.log(packageitem);
-
+ 
 $.each(packageitem,function(key,item){
+  // debugger;
       var packageitem_obj=[];
       var id= item.id.split('_')[1];
       var packagesItems = $(item).val();
@@ -717,73 +718,6 @@ $.each(packageitem,function(key,item){
       });
 
 })
-
-
-   
-
-//    $('#pro-sub-btn').click(function(){
-//     // debugger;
-//     var isFormValidated = true;
-//     $.each($('#banquet-form .is_validate_input'),function(key,val){
-//       if(!val.value){
-//        isFormValidated = false;
-//        console.log(val);
-//        $(val).addClass('error');	
-//      }else{
-//       // debugger;
-//       $(val).removeClass('error');
-//     }
-//   });
-// 	// $.each($('#banquet-form .is_validate_select'),function(key,val){
-// 	// 		if(!$(val).find('select').val()){
-// 	// 			isFormValidated = false;
-// 	// 			console.log(val);
-// 	// 			$(val).find('.select-wrapper').addClass('error');
-
-// 	// 		}else{
-// 	// 			// debugger;
-// 	// 			$(val).find('.select-wrapper').removeClass('error');
-// 	// 		}
-// 	// });
-
-
-// 	if(isFormValidated){
-// 		console.log('TIme to submit form');
-// 		$("#room-form").submit();
-// 	}else{
-// 		console.log('There is an error');
-// 	}
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-   $("#banquet-form").validate({
-
-     errorElement : 'div',
-     errorPlacement: function(error, element) {
-
-      console.log(element);
-      var placement = $(element).data('error');
-
-      console.log(placement);
-      console.log(error);
-      if (placement) {
-        $(placement).append(error)
-      } else {
-        error.insertAfter(element);
-      }
-    }
-  });
-
 
 /*=======================
 Reintialize Dropdown and hide inputs

@@ -41,7 +41,7 @@
 									<th>Days/Nights</th>
 									<th>Price</th>
 									<th>Number of people</th>
-									<th>Active/Inactive</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
@@ -53,12 +53,12 @@
                                    while ($result=mysqli_fetch_assoc($tourQuery)) { ?>
 
                                    <tr>
-									<td class="text-center"><?php echo $result['tour_name'];   ?></td>
-									<td class="text-center"><?php echo $result['tour_destinationname'];   ?></td>
+									<td class="td-name"><?php echo $result['tour_name'];   ?></td>
+									<td class="text-center td-name"><?php echo $result['tour_destinationname'];   ?></td>
 									<td class="text-center"><?php echo $result['tour_stayday']."/".$result['tour_stayni8'];  ?></td>
 									<td class="text-center"><?php echo $result['tour_pkgprice'];   ?></td>
 									<td class="text-center"><?php echo $result['tour_capacitypeople'];   ?></td>
-									<td class="text-center"><?php echo "Active";   ?></td>
+									<td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
 									
 									<td class="tdwrap">
 									<div class="buttonsWrap">

@@ -166,9 +166,12 @@
 					    <div class="row" id="transport" style="display: none;">
                             	<div class="col-md-6" id="fil_air" >
 						            <p class="pTAG">
-						             <input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair"  />
+						             <input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair" data-error=".errorTxt12"  required="" />
 						             <label for="filled-in-airport" id="air">Airport</label>
 						            </p>
+						            <div class="input-field">
+                                                <div class="errorTxt12"></div>
+                                            </div>
          						</div>
          						<div class="col-md-6 " id="fil_bus">
 						            <p class="pTAG">
@@ -389,10 +392,11 @@
    tinymce.init({ selector:'textarea' });
 
   function yesCheck(that) {
-        if (that.value == "yes") {
             // alert("check");
               document.getElementById("transport").style.display = "block";
+        if (that.value == "yes") {
              document.getElementById("bag-char").style.display = "block";
+             $('#filled-in-airport').attr('required');
         } else {
              document.getElementById("ifYes").style.display = "none";
             document.getElementById("bag-char").style.display = "none";
@@ -403,6 +407,7 @@
     		document.getElementById('bag-inpt').style.display = "none";
     		document.getElementById("transport").style.display = "none";
     		$('#buschgr').hide();
+    		$('#filled-in-airport').removeAttr('required');
     		 
 
     		  

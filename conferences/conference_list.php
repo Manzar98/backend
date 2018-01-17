@@ -39,7 +39,7 @@
 									<th>Hall Name</th>
 									<th>Capacity</th>
 									<th>City</th>
-									<th>Status (Active/Inactive)</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 							
@@ -57,18 +57,18 @@
                                    	?>
 
                                    <tr>
-									<td class="text-center"><?php echo $result['conference_name'];   ?></td>
+									<td class="td-name"><?php echo $result['conference_name'];   ?></td>
 									<td class="text-center"><?php echo $result['conference_space'];   ?></td>
 
 									<?php 
 									  if ($result['conference_independ']=='yes') {?>
 									  	
-									  	<td class="text-center"><?php echo $result['conference_city'];   ?></td>
+									  	<td class="text-center td-name"><?php echo $result['conference_city'];   ?></td>
 									<?php   }else{ 
 
 									while ($hotelCity=mysqli_fetch_assoc($hotelQuery)) { ?>
 
-									     <td class="text-center"><?php echo $hotelCity['hotel_city'];   ?></td> 
+									     <td class="text-center td-name"><?php echo $hotelCity['hotel_city'];   ?></td> 
 
 										
 								 <?php 
@@ -83,7 +83,7 @@
 
 
 									
-									<td class="text-center"><?php echo "Active";   ?></td>
+									<td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->

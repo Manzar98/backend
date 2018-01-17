@@ -139,8 +139,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
    <div class="col-md-6">
      <label>Package Items</label>
   <div class="input-field ">
-   <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
-   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+   <div class="chips-packageitem chips-package" id="chips-packageitem"  name=""> </div>
+   <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem" class="menupkg-id"> </div>
    </div>						
  </div>
 
@@ -433,7 +433,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     }
   });
 
-   $('#chips-packageitem-1').material_chip({
+   $('#chips-packageitem').material_chip({
     autocompleteOptions: {
       data: {
         'Naan': null,

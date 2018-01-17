@@ -71,11 +71,11 @@
                                    while ($result=mysqli_fetch_assoc($hotelQuery)) { ?>
 
                                    <tr>
-									<td class="td-hotel-name"><?php echo $result['hotel_name'];   ?></td>
-									<td class="text-center"><?php echo $result['hotel_city'];  ?></td>
+									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>
+									<td class="text-center td-name"><?php echo $result['hotel_city'];  ?></td>
 									<td class="text-center"><?php echo "5/2";   ?></td>
 									<td class="text-center"><?php echo "1/9";   ?></td>
-									<td class="text-center"><?php echo "Active";   ?></td>
+									<td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->

@@ -693,7 +693,7 @@ function gen_menupackage_input(event) {
 
    $('.def-show-menu').collapsible('open', packagelengthupdated-1);
 
-    debugger;
+    // debugger;
    $('#'+id).material_chip({
     autocompleteOptions: {
       data: {
@@ -715,7 +715,7 @@ function gen_menupackage_input(event) {
 
    $('#'+id).on('chip.add', function(e, chip){
      
-    debugger;
+    // debugger;
      // you have the added chip here
       var chip_string= $('#'+id).material_chip('data');
       var str = JSON.stringify(chip_string);   
@@ -727,7 +727,7 @@ function gen_menupackage_input(event) {
       array_amenity.push(chip_string[i].tag);
      
 }
-
+ // debugger;
      $('#input_'+id).val(array_amenity.toString())
     console.log($('#'+id).val(array_amenity.toString()));
     e.stopPropagation();
@@ -763,9 +763,10 @@ function gen_menupackage_input(event) {
 /*============Add Chips For Menu Packages in (Banquet & Conference)============*/
 
 $('.chips-package').on('chip.add', function(e, chip){
-    
+     // debugger;
+     // console.log(e.currentTarget.id);
      // you have the added chip here
-    var chip_string= $('.chips-packageitem').material_chip('data')
+    var chip_string= $('#'+e.currentTarget.id).material_chip('data')
     var str = JSON.stringify(chip_string);
     var array_amenity=[];
 
@@ -774,9 +775,9 @@ $('.chips-package').on('chip.add', function(e, chip){
       array_amenity.push(chip_string[i].tag);
 
  }
- 
-  $('#input_chips-packageitem-1').val(array_amenity.toString());
-   console.log($('#input_chips-packageitem-1').val(array_amenity.toString()));
+  // debugger;
+  $('#input_'+e.currentTarget.id).val(array_amenity.toString());
+   console.log($('#input_'+e.currentTarget.id).val(array_amenity.toString()));
 });
 
 /*=============File Uploading================*/

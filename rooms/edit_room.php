@@ -197,7 +197,7 @@
 						<div class="row  common-top clearfix">
 
 							<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>ROOM's PROMOTIONAL VIDEO</span></div>
-							<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt" required>
+							<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 						</div>
 						<div class="common-top">
 							<label class="col s4" style="margin-bottom: 10px;">Room Description</label>
@@ -419,47 +419,6 @@ $('#ajaxbtn').click(function(){
 	});
 /*==============End Ajax Function Defination==============*/
 
-				
-
-
-
-
-
-$('#pro-sub-btn').click(function(){
-// debugger;
-	var isFormValidated = true;
-	$.each($('#room-form .is_validate'),function(key,val){
-		if(!val.value){
-			isFormValidated = false;
-			console.log(val);
-			$(val).addClass('error');	
-		}else{
-	 			// debugger;
-	 			$(val).removeClass('error');
-	 		}
-	 	});
-	// $.each($('#room-form .is_validate_select'),function(key,val){
-	// 		if(!$(val).find('select').val()){
-	// 			isFormValidated = false;
-	// 			console.log(val);
-	// 			$(val).find('.select-wrapper').addClass('error');
-
-	// 		}else{
-	// 			// debugger;
-	// 			$(val).find('.select-wrapper').removeClass('error');
-	// 		}
-	// });
-
-
-	if(isFormValidated){
-		console.log('TIme to submit form');
-		// $("#room-form").submit();
-	}else{
-		console.log('There is an error');
-	}
-})
-
-
 var ameinty_obj=[];
 var amenity= $('#amenities-id').val().split(",");
 
@@ -485,33 +444,11 @@ $('.chips-autocomplete').material_chip({
 });
 
 
-	$("#room-form").validate({
+
+});
+</script>
+</body>
 
 
-
-		errorElement : 'div',
-		errorPlacement: function(error, element) {
-
-
-        	// debugger;
-        	console.log(element);
-        	var placement = $(element).data('error');
-
-        	console.log(placement);
-        	console.log(error);
-        	if (placement) {
-        		$(placement).append(error)
-        	} else {
-        		error.insertAfter(element);
-        	}
-        }
-    });
-
-
-															});
-														</script>
-													</body>
-
-
-													<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-													</html>
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+</html>

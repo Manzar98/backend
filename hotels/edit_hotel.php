@@ -112,11 +112,11 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 	<div class="row">
 		<div class="col-md-6">
 			<label>Check In Time</label>
-			<input type="text" class="timepicker" id="checkIn" name="hotel_checkin" value="<?php  echo $hotelResult['hotel_checkin'];  ?>">
+			<input type="text" class="timepicker" id="checkIn" required="" name="hotel_checkin" value="<?php  echo $hotelResult['hotel_checkin'];  ?>">
 		</div>
 		<div class="col-md-6">
 			<label>Check Out Time</label>
-			<input type="text" class="timepicker" id="checkOut" name="hotel_checkout" value="<?php  echo $hotelResult['hotel_checkout'];  ?>"> 
+			<input type="text" class="timepicker" id="checkOut" required=""> name="hotel_checkout" value="<?php  echo $hotelResult['hotel_checkout'];  ?>"> 
 		</div>
 	</div>
 	<div class="imgVeiwinline row" id="hotel_img_wrap">
@@ -642,83 +642,9 @@ minLength: 1
 });
 
 
-
-
-
-
-
-
-
-	
-
-
-
-
-
 $('#modal-extimg').modal({dismissible: false});
 $('#modal-coverimg').modal({dismissible: false});
-
-// $('#pro-sub-btn').click(function(){
-// 	// debugger;
-// 	var isFormValidated = true;
-// 	 $.each($('#hotel-form .is_validate'),function(key,val){
-// 	 		if(!val.value){
-// 	 			isFormValidated = false;
-// 	 			console.log(val);
-// 				$(val).addClass('error');	
-// 	 		}else{
-// 	 			// debugger;
-// 	 			$(val).removeClass('error');
-// 	 		}
-// 	 });
-// 	$.each($('#hotel-form .is_validate_select'),function(key,val){
-// 			if(!$(val).find('select').val()){
-// 				isFormValidated = false;
-// 				console.log(val);
-// 				$(val).find('.select-wrapper').addClass('error');
-
-// 			}else{
-// 				// debugger;
-// 				$(val).find('.select-wrapper').removeClass('error');
-// 			}
-// 	});
-
-
-// 	if(isFormValidated){
-// 		console.log('TIme to submit form');
-// 		$("#hotel-form").submit();
-// 	}else{
-// 		console.log('There is an error');
-// 	}
-// })
-
-
-
-
-
-$("#hotel-form").validate({
-
-errorElement : 'div',
-errorPlacement: function(error, element) {
-
-console.log(element);
-var placement = $(element).data('error');
-
-console.log(placement);
-console.log(error);
-if (placement) {
-$(placement).append(error)
-} else {
-error.insertAfter(element);
-}
-}
-});
-
-
-
-
 $('#checkIn').pickatime();
-
 $('#checkOut').pickatime();
 
 

@@ -38,7 +38,7 @@
 									<th>Venue</th>
 									<th>Recurrence</th>
 									<th>Entry Fee</th>
-									<th>Active/Inactive</th>
+									<th>Status</th>
 									
 								</tr>
 							</thead>
@@ -51,11 +51,11 @@
                                    while ($result=mysqli_fetch_assoc($eventQuery)) { ?>
 
                                    <tr>
-									<td class="text-center"><?php echo $result['event_name'];   ?></td>
+									<td class="td-name"><?php echo $result['event_name'];   ?></td>
 									<td class="text-center"><?php echo $result['event_venue']; ?></td>
 									<td class="text-center"><?php echo $result['event_recurrence'];   ?></td>
 									<td class="text-center"><?php echo $result['event_entry'];   ?></td>
-									<td class="text-center"><?php echo "Active";   ?></td>
+									<td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
 									
 									
 									<td class="tdwrap">
