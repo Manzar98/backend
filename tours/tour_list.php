@@ -1,8 +1,11 @@
 <?php 
    
-   include '../common-apis/api.php';
+   include '../common-sql.php';
 
-   $tourQuery=select("tour",array("user_id"=>2));
+   // $tourQuery=select("tour",array("user_id"=>2));
+
+   $tourQuery=    'SELECT * FROM tour where user_id=2 ORDER BY tour_id DESC ';
+          $tour_resp =mysqli_query($conn,$tourQuery)  or die(mysqli_error($conn));
 
 
    
@@ -47,10 +50,10 @@
 							<tbody class="wrap-td">
 								<?php
 
-								if (mysqli_num_rows($tourQuery) > 0) { 
+								if (mysqli_num_rows($tour_resp) > 0) { 
 
 								
-                                   while ($result=mysqli_fetch_assoc($tourQuery)) { ?>
+                                   while ($result=mysqli_fetch_assoc($tour_resp)) { ?>
 
                                    <tr>
 									<td class="td-name"><?php echo $result['tour_name'];   ?></td>

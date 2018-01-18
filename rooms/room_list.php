@@ -1,8 +1,11 @@
 <?php 
   
-   include '../common-apis/api.php';
+   include '../common-sql.php';
 
-   $roomQuery=select("room",array("user_id"=>2));
+   // $roomQuery=select("room",array("user_id"=>2));
+
+    $roomQuery=    'SELECT * FROM room where user_id=2 ORDER BY room_id DESC ';
+          $room_resp =mysqli_query($conn,$roomQuery)  or die(mysqli_error($conn));
 
 
    
@@ -49,10 +52,10 @@
 							<tbody class="wrap-td">
 								<?php
 
-								if (mysqli_num_rows($roomQuery) > 0) { 
+								if (mysqli_num_rows($room_resp) > 0) { 
 
 								
-                                   while ($result=mysqli_fetch_assoc($roomQuery)) { ?>
+                                   while ($result=mysqli_fetch_assoc($room_resp)) { ?>
 
                                    <tr>
                                    	<td class="td-name"><?php echo $result['room_name'];   ?></td>

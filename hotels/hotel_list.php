@@ -1,9 +1,12 @@
 <?php
   
-  include '../common-apis/api.php';
+  include '../common-sql.php';
 
 
-  $hotelQuery=select("hotel",array("user_id"=>2));
+  // select("hotel",array("user_id"=>2));
+      $hotelQuery=    'SELECT * FROM hotel where user_id=2 ORDER BY hotel_id DESC ';
+          $hotel_resp =mysqli_query($conn,$hotelQuery)  or die(mysqli_error($conn));
+
 
 
         // $hotelQuery=mysqli_query($conn,$hotelSelect) or die(mysqli_error($conn));
@@ -65,10 +68,10 @@
 							<tbody class="wrap-td">
 								<?php
 
-								if (mysqli_num_rows($hotelQuery) > 0) { 
+								if (mysqli_num_rows($hotel_resp) > 0) { 
 
 								
-                                   while ($result=mysqli_fetch_assoc($hotelQuery)) { ?>
+                                   while ($result=mysqli_fetch_assoc($hotel_resp)) { ?>
 
                                    <tr>
 									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>

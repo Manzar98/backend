@@ -1,7 +1,10 @@
 <?php 
+   include '../common-sql.php';
    include '../common-apis/api.php';
 
-   $conferenceQuery=select("conference",array("user_id"=>2));
+   // $conferenceQuery=select("conference",array("user_id"=>2));
+   $conferenceQuery='SELECT * FROM conference where user_id=2 ORDER BY conference_id DESC ';
+          $conference_resp =mysqli_query($conn,$conferenceQuery)  or die(mysqli_error($conn));
 
 
 
@@ -46,10 +49,10 @@
 								<tbody class="wrap-td">
 								<?php
 
-								if (mysqli_num_rows($conferenceQuery) > 0) { 
+								if (mysqli_num_rows($conference_resp) > 0) { 
 
 								
-                                   while ($result=mysqli_fetch_assoc($conferenceQuery)) { 
+                                   while ($result=mysqli_fetch_assoc($conference_resp)) { 
 
 
                                          $hotelQuery=select("hotel",array('hotel_id'=>$result['hotel_id']));

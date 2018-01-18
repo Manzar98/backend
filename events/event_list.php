@@ -1,7 +1,10 @@
 <?php 
    include '../common-apis/api.php';
 
-   $eventQuery=select("event",array("user_id"=>2))
+   $eventQuery=select("event",array("user_id"=>2));
+
+   $eventQuery=    'SELECT * FROM event where user_id=2 ORDER BY event_id DESC ';
+          $event_resp =mysqli_query($conn,$eventQuery)  or die(mysqli_error($conn));
 
 
   
@@ -45,10 +48,10 @@
 							<tbody class="wrap-td">
 								<?php
 
-								if (mysqli_num_rows($eventQuery) > 0) { 
+								if (mysqli_num_rows($event_resp) > 0) { 
 
 								
-                                   while ($result=mysqli_fetch_assoc($eventQuery)) { ?>
+                                   while ($result=mysqli_fetch_assoc($event_resp)) { ?>
 
                                    <tr>
 									<td class="td-name"><?php echo $result['event_name'];   ?></td>

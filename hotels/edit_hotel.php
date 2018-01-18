@@ -116,7 +116,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 		</div>
 		<div class="col-md-6">
 			<label>Check Out Time</label>
-			<input type="text" class="timepicker" id="checkOut" required=""> name="hotel_checkout" value="<?php  echo $hotelResult['hotel_checkout'];  ?>"> 
+			<input type="text" class="timepicker" id="checkOut" required="" name="hotel_checkout" value="<?php  echo $hotelResult['hotel_checkout'];  ?>">  
 		</div>
 	</div>
 	<div class="imgVeiwinline row" id="hotel_img_wrap">
