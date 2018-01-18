@@ -231,6 +231,32 @@ $global_tour_id="";
 						</div>
 
 
+						<div class="row">
+							
+							<div class="col-md-6">
+								<label>Departure Date</label>
+								<input type="text" id="departureDate" class="input-field " name="tour_depdate" value="<?php echo $resulttour['tour_depdate'];  ?>" required>
+							</div>
+							<div class="col-md-6">
+								<label>Departure Time</label>
+								<input type="text" class="timepicker" id="departureTime" name="tour_deptime" data-error=".errorTxt7" required="" value="<?php echo $resulttour['tour_deptime'];  ?>">
+							</div>
+						</div>
+
+						<div class="row">
+							
+							<div class="col-md-6">
+								<label>Arrival Date</label>
+								<input type="text" id="arrivalDate" class="input-field " name="tour_arrdate" value="<?php echo $resulttour['tour_arrdate'];  ?>" required="">
+							</div>
+							<div class="col-md-6">
+								<label>Arrival Time</label>
+								<input type="text" class="timepicker" id="arrivalTime" name="tour_arrtime" required="" value="<?php echo $resulttour['tour_arrtime'];  ?>" required="">
+							</div>
+						</div>
+
+
+
 						<div class="row t-chckbox common-top" id="t-chckbox" style="margin-bottom: 30px;">
 							<div class="col-md-6" >
 							<div class="hotelStr common-wrapper comon_dropdown_botom_line">
@@ -1018,7 +1044,12 @@ if ($('#undr5allow :selected').text() == "Yes") {
 
    }
 
-
+if ($(".camping input:checkbox:checked").length > 0) {
+    $('.hotelStr').hide();
+}else{
+   
+   $('.hotelStr').show();
+}
 
 		 
 

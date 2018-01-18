@@ -381,18 +381,44 @@ if(!empty($_POST['tour_drpspecific']) && !is_numeric($_POST['tour_drpspecific'])
 
 $img          = $_POST['common_image'];
 
-$imgarray= explode(",",$img);
-
-
-
-
-	
+$imgarray= explode(",",$img);	
 $provideo        = $_POST['common_video'];
-
 $denation_name    =$_POST['destination_name'];
 $denation_desp    =$_POST['destination_descrp'];
 $attraction_name  =$_POST['attraction_name'];
 $attraction_desp  =$_POST['attraction_descrp'];
+
+if (empty($_POST['tour_depdate'])) {
+  $is_check=false;
+  echo "Departure Date field is required";
+}else{
+  $depDate= $_POST['tour_depdate'];
+}
+
+if (empty($_POST['tour_deptime'])) {
+  $is_check=false;
+  echo "Departure Time filed is requird";
+}else{
+  $depTime=$_POST['tour_deptime'];
+}
+
+if (empty($_POST['tour_arrdate'])) {
+  $is_check=false;
+  echo "Arrival Date field is required";
+}else{
+  $arrDate=$_POST['tour_arrdate'];
+}
+
+if (empty($_POST['tour_arrtime'])) {
+  $is_check=false;
+  echo "Arrival Time field is required";
+}else{
+  $arrTime=$_POST['tour_arrtime'];
+}
+
+
+
+
 $user_id          =2;
 $hotelid          =31;
 $formtype         ='tour';
@@ -401,7 +427,7 @@ if ($is_check==true) {
 	# code...
 
 
-$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
+$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
 
 
 // echo $query;

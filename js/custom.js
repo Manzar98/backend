@@ -360,7 +360,7 @@ function changeStr(that) {
 /*======= Checkbox For camping in Tours  (if camping than hide hotel star dropdown)======= */
 function changecamp(that){
   // body...
-  console.log(that.value);
+  // console.log(that.value);
 if ($(".camping input:checkbox:checked").length > 0) {
     $('.hotelStr').hide();
 }else{
@@ -1036,5 +1036,17 @@ var tr=table.getElementsByTagName("tr");
 
 }
 
+/*=============Departure & Arrival Date in tour================*/
 
+ $('#departureDate').datepicker({
+       minDate: 0
+ });
 
+ $('#arrivalDate').datepicker({
+       minDate: 0
+ });
+/*=============Departure & Arrival Time in tour================*/
+
+ $('#departureTime').pickatime();
+
+$('#arrivalTime').pickatime();

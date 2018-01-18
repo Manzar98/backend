@@ -119,6 +119,30 @@
 
 						</div>
 
+						<div class="row">
+							
+							<div class="col-md-6">
+								<label>Departure Date</label>
+								<input type="text" id="departureDate" class="input-field " name="tour_depdate">
+							</div>
+							<div class="col-md-6">
+								<label>Departure Time</label>
+								<input type="text" class="timepicker" id="departureTime" name="tour_deptime" data-error=".errorTxt7" required="">
+							</div>
+						</div>
+
+						<div class="row">
+							
+							<div class="col-md-6">
+								<label>Arrival Date</label>
+								<input type="text" id="arrivalDate" class="input-field " name="tour_arrdate">
+							</div>
+							<div class="col-md-6">
+								<label>Arrival Time</label>
+								<input type="text" class="timepicker" id="arrivalTime" name="tour_arrtime" required="">
+							</div>
+						</div>
+
 
 						<div class="row t-chckbox common-top" id="t-chckbox"  style="margin-bottom: 30px;">
 							<div class="col-md-6" >

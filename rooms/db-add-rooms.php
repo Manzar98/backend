@@ -118,7 +118,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							</div>
 							<div class="col-md-6">
 								<label>Expires on</label>
-								<input type="text" id="expireDate" class="input-field from" name="room_expireoffer">
+								<input type="text" id="expireDate" class="input-field" name="room_expireoffer">
 							</div>
 						</div>  
 
