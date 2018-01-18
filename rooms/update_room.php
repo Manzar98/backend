@@ -32,7 +32,9 @@ global $conn;
                  // print_r($value) ;
         	foreach ($value as $k => $v) {
 				 
-
+      if (isset($updateObject['common_bokdate_id'][$k])) {
+        # code...
+     
 				  $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
 				  mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
 				  //echo $updatequery;
@@ -40,7 +42,8 @@ global $conn;
         		 // echo 'Book Key : '.$k;
 
         	}
-        	# code...
+        }
+        
         }
         
       }

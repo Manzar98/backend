@@ -26,24 +26,26 @@ global $conn;
         }elseif (gettype($value)=="array") {
                 
                  // print_r($value) ;
-        	     foreach ($value as $k => $v) {
-           // echo $v;
+          foreach ($value as $k => $v) {
+           
 
-            $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
+              if (isset($updateObject['common_bokdate_id'][$k]) || isset($updateObject['common_menupkg_id'][$k])) {
+
+                  $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
 
           // echo $updatequerydates;
-            mysqli_query($conn,$updatequerydates);
-            error_reporting(E_ALL ^ E_NOTICE);
+                    mysqli_query($conn,$updatequerydates);
+                    error_reporting(E_ALL ^ E_NOTICE);
 
-            $updatequerymenu= "UPDATE common_menupackages SET "."foodpkg_name='".$updateObject['foodpkg_name'][$k]."',foodpkg_price='".$updateObject['foodpkg_price'][$k]."',foodpkg_discount='".$updateObject['foodpkg_discount'][$k]."',foodpkg_item='".$updateObject['foodpkg_item'][$k]."' WHERE common_menupkg_id=".$updateObject['common_menupkg_id'][$k];
- 
-            mysqli_query($conn,$updatequerymenu);
-            error_reporting(E_ALL ^ E_NOTICE);
+                  $updatequerymenu= "UPDATE common_menupackages SET "."foodpkg_name='".$updateObject['foodpkg_name'][$k]."',foodpkg_price='".$updateObject['foodpkg_price'][$k]."',foodpkg_discount='".$updateObject['foodpkg_discount'][$k]."',foodpkg_item='".$updateObject['foodpkg_item'][$k]."' WHERE common_menupkg_id=".$updateObject['common_menupkg_id'][$k];
+         
+                    mysqli_query($conn,$updatequerymenu);
+                    error_reporting(E_ALL ^ E_NOTICE);
           // echo $updatequerymenu;
              // echo 'Book value : '.$updateObject['book_fromdate'][$k];
 
               // echo 'Menu Value : '.$updateObject['common_menupkg_id'][$k];
-            
+            }
           }
         	# code...
         }

@@ -28,7 +28,9 @@ global $conn;
                  // print_r($value) ;
         	foreach ($value as $k => $v) {
 				   // echo $v;
-
+      if (isset($updateObject['common_bokdate_id'][$k]) || isset($updateObject['common_menupkg_id'][$k])) {
+        # code...
+      
 				    $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
 
           // echo $updatequerydates;
@@ -43,7 +45,7 @@ global $conn;
         		 // echo 'Book value : '.$updateObject['book_fromdate'][$k];
 
         		  // echo 'Menu Value : '.$updateObject['common_menupkg_id'][$k];
-            
+            }
         	}
         	# code...
         }
