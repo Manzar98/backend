@@ -161,7 +161,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
              <?php $i++; }      
 
                }else{ ?>
-               <li class="newLI">
+               <li class="newMenuLI">
     <div class="collapsible-header  active">Menu</div>
     <div class="collapsible-body"> 
      <div class="row">
@@ -303,7 +303,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
     </div>
   </div>
   <div  class=" ">
-   <a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
+   <a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
  </div>
 
  <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >

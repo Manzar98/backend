@@ -123,11 +123,11 @@
 							
 							<div class="col-md-6">
 								<label>Departure Date</label>
-								<input type="text" id="departureDate" class="input-field " name="tour_depdate">
+								<input type="text" id="departureDate" class="input-field " name="tour_depdate" required="">
 							</div>
 							<div class="col-md-6">
 								<label>Departure Time</label>
-								<input type="text" class="timepicker" id="departureTime" name="tour_deptime" data-error=".errorTxt7" required="">
+								<input type="text" class="timepicker" id="departureTime" name="tour_deptime"  required="">
 							</div>
 						</div>
 
@@ -135,7 +135,7 @@
 							
 							<div class="col-md-6">
 								<label>Arrival Date</label>
-								<input type="text" id="arrivalDate" class="input-field " name="tour_arrdate">
+								<input type="text" id="arrivalDate" class="input-field " name="tour_arrdate" required="">
 							</div>
 							<div class="col-md-6">
 								<label>Arrival Time</label>
@@ -439,7 +439,7 @@
 						</div>
 
 						<div class="col s8 common-top clearfix">
-                        	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destination</a>
+                        	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destinations</a>
                         </div>
 
                  
@@ -534,7 +534,7 @@
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	 
-     tinymce.init({ selector:'.textarea-t' });
+     // tinymce.init({ selector:'.textarea-t' });
 
   
 

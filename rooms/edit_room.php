@@ -381,7 +381,7 @@ $(document).ready(function(){
 $('#ajaxbtn').click(function(){
 
 	
-
+      debugger;
      alert('jgjg');
   
     var dataObj = {};

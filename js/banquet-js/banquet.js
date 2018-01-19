@@ -37,57 +37,18 @@ if (validator.form()== false) {
       $("#pro-sub-btn").show();
 
    }else{
+        
+      if ($('.newMenuLI input').length > 0) {
+        // alert('manzar');
+        insertMultiInput();
 
-     tinyMCE.triggerSave();
-$.ajax({
-                             type:"POST",
-                             url:"../banquets/update_banquet.php",
-                             data: $("form").serialize(),
-                                       success:function(data) {
+      }else{
+      
+          updateBanquet();
+      }
 
-                             console.log(data);
-                          
-                             if (data=='sucess') {
-                              
-                              $('#loader').modal({dismissible: false});
-                              $('#loader').modal('open');
-
-                                $("#btn-loader").hide();
-                              setTimeout(function(){
-                                 $('#loader').modal('close');
-                                 swal({
-                                       title: "Successfully Updated",
-                    text: "Your banquet record has been updated.",
-                    type: "success",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: false
-                      }, function(){
-                      window.location = "../banquets/banquet_list.php";
-                    });
-                              },3000)
-
-                             }else{
-
-                               swal({
-                                       title: "Error in updation",
-                    text: "Record can not be updated.",
-                    type: "error",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: false
-                      }, function(){
-                      // window.location = "../rooms/room_list.php";
-                    });
-
-                             }
-
-                            
-                           
-                            }
-                          })
+    
+  
 }
 
 })
@@ -198,3 +159,85 @@ $.ajax({
 })
 
 
+
+
+
+function updateBanquet() {
+ 
+    tinyMCE.triggerSave();
+   $.ajax({
+                             type:"POST",
+                             url:"../banquets/update_banquet.php",
+                             data: $("form").serialize(),
+                                       success:function(data) {
+
+                             console.log(data);
+                          
+                             if (data=='sucess') {
+                              
+                              $('#loader').modal({dismissible: false});
+                              $('#loader').modal('open');
+
+                                $("#btn-loader").hide();
+                              setTimeout(function(){
+                                 $('#loader').modal('close');
+                                 swal({
+                                       title: "Successfully Updated",
+                    text: "Your banquet record has been updated.",
+                    type: "success",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: false
+                      }, function(){
+                      window.location = "../banquets/banquet_list.php";
+                    });
+                              },3000)
+
+                             }else{
+
+                               swal({
+                                       title: "Error in updation",
+                    text: "Record can not be updated.",
+                    type: "error",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: false
+                      }, function(){
+                      // window.location = "../rooms/room_list.php";
+                    });
+
+                             }
+
+                            
+                           
+                            }
+                          })
+}
+
+
+function insertMultiInput() {
+
+  
+
+
+           $.ajax({
+                              type:"POST",
+                              url:"../banquets/insert_banquet.php?act=common_menupackages",
+                              data: $('.newMenuLI input').serialize(),
+                              success:function(data) {
+                var response = JSON.parse(data);
+                              console.log(response);
+                              if(response.message == "success"){
+                                
+                                $('.newMenuLI').removeClass('newMenuLI');
+                                updateBanquet();
+                              }
+                   }
+
+
+                    })
+   
+  
+}

@@ -166,7 +166,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 </div>
 <div class="col-md-6">
   <label>Additional Cost</label>
-  <input type="number" value="" name="banquet_adcost" class="input-field validate" style="padding-top: 15px;">
+  <input type="number" value="" name="banquet_adcost" class="input-field validate" style="padding-top: 15px;" required="">
 </div>
 </div>
 

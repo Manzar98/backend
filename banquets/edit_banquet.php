@@ -212,24 +212,24 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 </li>
  <?php $i++; }  
    }else{ ?>
-<li class="newLI">
+<li class="newMenuLI">
     <div class="collapsible-header  active">Menu </div>
     <div class="collapsible-body"> 
      <div class="row">
      <div class="col-md-6">
        <label>Package Name</label>
-       <input type="text" value="" class="input-field validate" name="foodpkg_name[]">
+       <input type="text" value="" class="input-field validate pkgname" name="foodpkg_name[]">
      </div>
      <div class="col-md-6">
      <label>Package Price</label>
-     <input type="number" value="" class="input-field validate" name="foodpkg_price[]">
+     <input type="number" value="" class="input-field validate pkgprice" name="foodpkg_price[]">
    </div> 
    </div>
 
    <div class="row">
     <div class="col-md-6">
      <label >Discount Percentage</label>
-     <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
+     <input type="number" value="" class="input-field validate discountprcent" name="foodpkg_discount[]" style="padding-top: 18px;">
    </div>   
    <div class="col-md-6">
      <label>Package Items</label>
@@ -395,7 +395,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 </div>
 </div>
 <div  class=" ">
- <a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
+ <a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
 </div>
 
 <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
@@ -607,14 +607,17 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
         /*==============Ajax Function Defination (For Dates)==============*/
 $('#ajaxbtn').click(function(){
 
-   
+    debugger;
 
     alert('jgjg');
    // console.log(dates_obj);
     var dataObj = {};
 
     $('.newLI input').each(function(key,value){
+
+          console.log(value);
       if(value.id.indexOf("from") > -1){
+        debugger;
         dataObj['book_fromdate'] = $(value).val();
       }
       if(value.id.indexOf("to") > -1){
@@ -645,13 +648,9 @@ $('#ajaxbtn').click(function(){
   });
 /*==============End Ajax Function Defination==============*/
 
-
-
 /*==========================================
- Delte call for Menu pacakge li through ajax
+ Insertion call for Menu pacakge through ajax
 ===========================================*/
-
-
 
 
 

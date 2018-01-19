@@ -757,7 +757,7 @@ $global_tour_id="";
 						<div >
 							<label>Destination Description</label>
 							<div class="input-field col s8">
-								<textarea class="materialize-textarea textarea-t" name="destination_descrp[]"></textarea> 
+								<textarea class="materialize-textarea " name="destination_descrp[]"></textarea> 
 							</div>
 						</div>
                         <div id="attraction-wrap">
@@ -784,7 +784,7 @@ $global_tour_id="";
 						</div>
 
 						<div class="col s8 common-top clearfix">
-                        	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destination</a>
+                        	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destinations</a>
                         </div>
 
                  

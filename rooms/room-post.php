@@ -120,28 +120,102 @@ if (empty($_POST['room_other'])) {
 
 if (empty($_POST['hotel_name'])) {
 	$is_check=false;
-	echo "Hotel Name is required";
+	echo "Select hotel is required";
 }else{
 
 	$hotelName=$_POST['hotel_name'];
    
 }
 
-$from=$_POST['book_fromdate'];
-$to=$_POST['book_todate'];
+
+// foreach($_POST['book_fromdate'] as $bokFROM) { 
+	
+//                  
+// 	if (!empty($bokFROM)) {
+
+// 		$from=$_POST['book_fromdate'];
+// 	}else{
+// 		$is_check=false;
+// 		echo "From Date field is required";
+//                   	// echo "array is empty";
+// 	}
+// }
+
+ foreach($_POST['book_todate'] as $bokTO) { 
+	
+                  
+ 	// if (!empty($bokTO)) {
+
+ 	// 	$to=$_POST['book_todate'];
+ 	// }else{
+ 	// 	$is_check=false;
+ 	// 	echo "To Date field is required";
+  //                  	// echo "array is empty";
+ 	// }
+ }
+
+// echo  "From :".count($_POST['book_fromdate']);
+// echo  "To :".count($_POST['book_todate']);
+if (count((array) $_POST['book_fromdate'] ) == 0 && count((array) $_POST['book_todate']) > 1) {
+     $is_check=false;
+ 	 echo "Both TO and FROM dates is required";
+     
+}elseif (count((array) $_POST['book_fromdate'] ) > 1 && count((array) $_POST['book_todate']) == 0) {
+	  $is_check=false;
+ 	 echo "Both TO and FROM dates is required";
+	
+}else{
+      $from=$_POST['book_fromdate'];
+       $to=$_POST['book_todate'];
+	  
+}
+
+// if (empty($_POST['book_fromdate']) && empty($_POST['book_todate'])) {
+    
+//    
+	
+// }else{
+
+// 	  
+// }  
+
 
 if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
 	$is_check= false;
 	echo"Offer discount accept only numeric";
-}elseif (!empty($_POST['room_offerdiscount']) && is_numeric($_POST['room_offerdiscount'])) {
+}elseif (!empty($_POST['room_offerdiscount']) && empty($_POST['room_expireoffer'])) {
+	$is_check= false;
+	echo"Expire offer date field is required";
+}
+elseif (!empty($_POST['room_offerdiscount']) && is_numeric($_POST['room_offerdiscount'])) {
 	$discuntofer=$_POST['room_offerdiscount'];
 }else{
 
 	$discuntofer=null;
 }
 
+if (!empty($_POST['room_expireoffer']) && empty($_POST['room_offerdiscount'])) {
+	$is_check=false;
+	echo "Offer discount field is required";
 
-$discountexpire=$_POST['room_expireoffer'];
+}else{
+	$discountexpire=$_POST['room_expireoffer'];
+}
+// if (isset($_POST['room_expireoffer'])) {
+	
+// list($y, $m, $d) = explode('/', $_POST['room_expireoffer']);
+//   error_reporting(E_ALL ^ E_NOTICE);
+// if(checkdate($m, $d, $y)){
+//   $is_check=false;
+//   echo "Expire offer date is invalid";
+// }else{
+
+	
+// }
+
+// }
+
+
 $formtype='room';
 $user_id= 2;
 $hotelid=31;

@@ -4,12 +4,13 @@
 
 // return false;
 $is_check=true;
-
+ $responseArray=[];
 
 if (empty($_POST['tour_name'])) {
 
      $is_check=false;
-     echo "Tour Name is Required";
+     array_push($responseArray,"Tour name is required");
+     
 }else{
    
    $tourname      =$_POST['tour_name'];
@@ -17,89 +18,92 @@ if (empty($_POST['tour_name'])) {
 if (empty($_POST['tour_destinationname'])) {
 
      $is_check=false;
-     echo "Name of Destination is Required";
+     array_push($responseArray,"Name of Destination is required");
 }else{
    
    $nameofdesti      =$_POST['tour_destinationname'];
 }
 
+
+
 if (empty($_POST['tour_foodinclude'])) {
 
      $is_check=false;
-     echo "Food Include Field is Required";
+     array_push($responseArray,"Food include field is required");
+}elseif ($_POST['tour_foodinclude']=='yes') {
+	$fodinclude       =$_POST['tour_foodinclude'];
+	if (empty($_POST['tour_brkfast']) && empty($_POST['tour_lunch']) && empty($_POST['tour_dinner'])) {
+		$is_check=false;
+		array_push($responseArray,"Check at least one from Food included");
+	}else{
+		if (isset($_POST['tour_brkfast'])) {
+			$brkfast      =$_POST['tour_brkfast'];
+		}else{
+               $brkfast      ='off';
+		}
+		if (isset($_POST['tour_lunch'])) {
+			$lunch        =$_POST['tour_lunch'];
+		}else{
+
+              $lunch        ='off';
+		}
+		if (isset($_POST['tour_dinner'])) {
+			$dinner         =$_POST['tour_dinner'];
+		}else{
+            $dinner        ='off';
+		}		
+	}
+	# code...
 }else{
    
    $fodinclude       =$_POST['tour_foodinclude'];
-}
-
-   
-  if (isset($_POST['tour_brkfast'])) {
-
-	$brkfast      =$_POST['tour_brkfast'];
-}else{
-	$brkfast      ='off';
+   $brkfast      ='off';
+   $lunch        ='off';
+   $dinner        ='off';
 }
 
 
-   
- if (isset($_POST['tour_lunch'])) {
-
-	$lunch        =$_POST['tour_lunch'];
-}else{
-	$lunch        ='off';
-}
-
-
-
-if (isset($_POST['tour_dinner'])) {
-
-    $dinner         =$_POST['tour_dinner'];
-
-}else{
-	$dinner        ='off';
-}
 
 
 if (empty($_POST['tour_drink'])) {
 
 	$is_check=false;
-     echo "Drink Include Field is Required";
+     array_push($responseArray,"Drink include field is required");
+
+}elseif ($_POST['tour_drink']=='yes') {
+	$drnkinclude      =$_POST['tour_drink'];
+     if (empty($_POST['tour_aloholic']) && empty($_POST['tour_nonaloholic'])) {
+     	 $is_check=false;
+     	 array_push($responseArray,"Check at least one from Drink included");
+     }else{
+
+     	if (isset($_POST['tour_aloholic'])) {
+     		$aloholic           =$_POST['tour_aloholic'];
+     	}else{
+     		$aloholic        ='off';
+     	}
+     	if (isset($_POST['tour_nonaloholic'])) {
+     		$nonalohlic         =$_POST['tour_nonaloholic'];
+     	}else{
+     		$nonalohlic      ='off';
+     	}
+     }
+
 }else{
 
 	$drnkinclude      =$_POST['tour_drink'];
-}
-
-
-
-
- if (isset($_POST['tour_aloholic'])) {
-
-$aloholic           =$_POST['tour_aloholic'];
-
-}else{
 	$aloholic        ='off';
-
+	$nonalohlic      ='off';
 }
-
-
-
- if (isset($_POST['tour_nonaloholic'])) {
-
- $nonalohlic             =$_POST['tour_nonaloholic'];
-
-}else{
-	$nonalohlic         ='off';
-}
-
 
 
 if (empty($_POST['tour_stayday'])) {
 
 	$is_check=false;
-     echo "This Field is Required";
+     array_push($responseArray,"Number of days field is required");
 }elseif (!is_numeric($_POST['tour_stayday'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric 12"."<br>";
+	array_push($responseArray,"Number of days field is accept only numeric");
 }else{
 
 	$stayday          =$_POST['tour_stayday'];
@@ -107,10 +111,12 @@ if (empty($_POST['tour_stayday'])) {
 if (empty($_POST['tour_stayni8'])) {
 	
  	$is_check=false;
-      echo "This Field is Required";
+    array_push($responseArray,"Number of nights field is required");
+
  }elseif (!is_numeric($_POST['tour_stayni8'])) {
+
 	$is_check=false;
-	echo "This Field accept only Numeric 13"."<br>";
+	array_push($responseArray,"Number of nights field is accept only numeric");
 }else{
 
  	$stayni8     =$_POST['tour_stayni8'];
@@ -131,7 +137,7 @@ $camping          =$_POST['tour_camping'];
 if (empty($_POST['tour_entrytik'])) {
 	
 	$is_check=false;
-     echo "Entry tickets included in the package price Field is Required";
+    array_push($responseArray,"Entry tickets included in the package price field is required");
 }else{
 
 	$entrytik         =$_POST['tour_entrytik'];
@@ -139,7 +145,7 @@ if (empty($_POST['tour_entrytik'])) {
  if (empty($_POST['tour_plan'])) {
 	
  	$is_check=false;
-      echo "Whole Plan Field is Required ";
+    array_push($responseArray,"Whole Plan field is required");
  }else{
 
 	$plan             =$_POST['tour_plan'];
@@ -147,10 +153,10 @@ if (empty($_POST['tour_entrytik'])) {
 if (empty($_POST['tour_pkgprice'])) {
 	
 	$is_check=false;
-     echo "This Field is Required";
+     array_push($responseArray,"Package price field is required");
 }elseif (!is_numeric($_POST['tour_pkgprice'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric 14"."<br>";
+	array_push($responseArray,"Package price accept only numeric");
 }else{
 
 	$pkgprice         =$_POST['tour_pkgprice'];
@@ -159,10 +165,10 @@ if (empty($_POST['tour_pkgprice'])) {
 if (empty($_POST['tour_capacitypeople'])) {
 	
 	$is_check=false;
-     echo "This Field is Required899";
+   array_push($responseArray,"Number of people field is required");
 }elseif (!is_numeric($_POST['tour_capacitypeople'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric 15"."<br>";
+	array_push($responseArray,"Number of people accept only numeric");
 }else{
 
 	$capcipeople      =$_POST['tour_capacitypeople'];
@@ -171,10 +177,12 @@ if (empty($_POST['tour_capacitypeople'])) {
 if (empty($_POST['tour_nosofbag'])) {
 	
 	$is_check=false;
-     echo "This Field is Required 435345";
+	array_push($responseArray,"Number of bags allowed field is required");
+
 }elseif (!is_numeric($_POST['tour_nosofbag'])) {
 	$is_check=false;
-	echo "This Field accept only Numeric 16"."<br>";
+	array_push($responseArray,"Number of bags allowed accept only numeric");
+	
 }else{
 
 	$nosbag           =$_POST['tour_nosofbag'];
@@ -183,62 +191,77 @@ if (empty($_POST['tour_nosofbag'])) {
 if (empty($_POST['tour_childallow'])) {
 	
 	$is_check=false;
-     echo "Children allow Field is Required srh";
-}else{
+	array_push($responseArray,"Children allow field is required");
+     
+}elseif ($_POST['tour_childallow']=='yes') {
+				$childallow       =$_POST['tour_childallow'];
+				if (empty($_POST['tour_undr5allow'])) {
+					$is_check=false;
+	                array_push($responseArray,"Under 5 allowed field is required");	
+				}else{
+					$undr5allow       =$_POST['tour_undr5allow'];
+				}
+				if (empty($_POST['tour_undr5free']) && empty($_POST['tour_undr5price'])) {
+					$is_check=false;
+	                array_push($responseArray,"Filled atleast one field in Under 5 allowed");	
+				}else{
 
-	$childallow       =$_POST['tour_childallow'];
+					if(!empty($_POST['tour_undr5price']) && !is_numeric($_POST['tour_undr5price'])){
+						$is_check= false;
+					   
+					    array_push($responseArray,"Half price field accept only numeric");
+					}elseif(!empty($_POST['tour_undr5price']) && is_numeric($_POST['tour_undr5price'])){
+						$undr5price      = $_POST['tour_undr5price'];
+					}else{
+						$undr5price = null;
 
-}
+					}
 
-	$undr5allow       =$_POST['tour_undr5allow'];
+					if (isset($_POST['tour_undr5free'])) {
 
+					  $undr5free          =$_POST['tour_undr5free'];
 
+					}else{
+						$undr5free          ='off';
 
+					}
 
-// if (isset($_POST['tour_extrachrbag'])) {
+				}
 
-// 	if (!is_numeric($_POST['tour_extrachrbag'])) {
-
-// 	    $is_check=false;
-//  	    echo "This Field accept only Numeric 17"."<br>";
-		
-// 	}else{
-
-		$extrachrbag      =$_POST['tour_extrachrbag'];
-	// }
-
-
-// }
-
+				if (empty($_POST['tour_halftikchild'])) {
+					   $is_check= false;
+					   array_push($responseArray,"Children price field is required");
+				}elseif (!empty($_POST['tour_halftikchild'] && !is_numeric($_POST['tour_halftikchild']))) {
+					 $is_check= false;
+					 array_push($responseArray,"Children price field accept only numeric");
+				}else{
+					 $halftikchild     =$_POST['tour_halftikchild'];
+				}
 	
+}
 
-// }
+else{
 
-$halftikchild     =$_POST['tour_halftikchild'];
-if (isset($_POST['tour_undr5free'])) {
-
-  $undr5free          =$_POST['tour_undr5free'];
-
-}else{
-	$undr5free          ='off';
+	$childallow  =$_POST['tour_childallow'];
+	$undr5price  = null;
+    $undr5allow  = null;
+	$undr5free   ='off';
+	$halftikchild= null;
 
 }
 
-if(!empty($_POST['tour_undr5price']) && !is_numeric($_POST['tour_undr5price'])){
-	$is_check= false;
-    echo "half price Field accept only Numeric 18"."<br>";
+$extrachrbag      =$_POST['tour_extrachrbag'];
 
-}elseif(!empty($_POST['tour_undr5price']) && is_numeric($_POST['tour_undr5price'])){
-	$undr5price      = $_POST['tour_undr5price'];
-}else{
-	$undr5price = null;
 
-}
+
+
+
+
 
 if (empty($_POST['tour_strtloc'])) {
 	
 	$is_check=false;
-     echo "Trip Start Location Field is Required";
+     array_push($responseArray,"Trip start location field is required");
 }else{
 
 	$strtloc          =$_POST['tour_strtloc'];
@@ -248,112 +271,144 @@ if (empty($_POST['tour_strtloc'])) {
 if (empty($_POST['tour_pikoffer'])) {
 	
 	$is_check=false;
-     echo "Pickup offered Field is Required ";
-}else{
+      array_push($responseArray,"Pickup offered field is required");
+}elseif ($_POST['tour_pikoffer']=='yes') {
+	$pikoffer         =$_POST['tour_pikoffer'];
+	if (empty($_POST['tour_pikair']) && empty($_POST['tour_pikbus']) && empty($_POST['tour_pikspecific'])) {
+		$is_check=false;
+		array_push($responseArray,"Filled atleast one field from pickup offered ");
+	}else{
+         
+         if(!empty($_POST['tour_pikair']) && !is_numeric($_POST['tour_pikair'])){
+
+			$is_check= false;
+		     array_push($responseArray,"From airport pickup field accept only numeric");
+		}elseif(!empty($_POST['tour_pikair']) && is_numeric($_POST['tour_pikair'])){
+
+			$pikair      = $_POST['tour_pikair'];
+
+		}else{
+
+			$pikair = null;
+
+        }
+
+        if(!empty($_POST['tour_pikbus']) && !is_numeric($_POST['tour_pikbus'])){
+
+			$is_check= false;
+		    array_push($responseArray,"From bus pickup field accept only numeric");
+		}elseif(!empty($_POST['tour_pikbus']) && is_numeric($_POST['tour_pikbus'])){
+
+			$pikbus      = $_POST['tour_pikbus'];
+
+		}else{
+
+			$pikbus = null;
+
+		}
+
+		if(!empty($_POST['tour_pikspecific']) && !is_numeric($_POST['tour_pikspecific'])){
+
+			$is_check= false;
+		    array_push($responseArray,"From specific location pickup field accept only numeric");
+		}elseif(!empty($_POST['tour_pikspecific']) && is_numeric($_POST['tour_pikspecific'])){
+
+			$pikspecific      = $_POST['tour_pikspecific'];
+
+		}else{
+
+			$pikspecific = null;
+
+		}
+
+
+
+	}
+}
+
+
+else{
 
 	$pikoffer         =$_POST['tour_pikoffer'];
-
-}
-
-if(!empty($_POST['tour_pikair']) && !is_numeric($_POST['tour_pikair'])){
-
-	$is_check= false;
-    echo "From Airport Pickup Field accept only Numeric "."<br>";
-
-}elseif(!empty($_POST['tour_pikair']) && is_numeric($_POST['tour_pikair'])){
-
-	$pikair      = $_POST['tour_pikair'];
-
-}else{
-
 	$pikair = null;
-
-}
-
-if(!empty($_POST['tour_pikbus']) && !is_numeric($_POST['tour_pikbus'])){
-
-	$is_check= false;
-    echo "From Bus Pickup Field accept only Numeric "."<br>";
-
-}elseif(!empty($_POST['tour_pikbus']) && is_numeric($_POST['tour_pikbus'])){
-
-	$pikbus      = $_POST['tour_pikbus'];
-
-}else{
-
 	$pikbus = null;
-
-}
-
-if(!empty($_POST['tour_pikspecific']) && !is_numeric($_POST['tour_pikspecific'])){
-
-	$is_check= false;
-    echo "From Specific Location Pickup Field accept only Numeric "."<br>";
-
-}elseif(!empty($_POST['tour_pikspecific']) && is_numeric($_POST['tour_pikspecific'])){
-
-	$pikspecific      = $_POST['tour_pikspecific'];
-
-}else{
-
 	$pikspecific = null;
 
 }
 
+
 if (empty($_POST['tour_drpoffer'])) {
 	
 	$is_check=false;
-     echo "Dropoff offered Field is Required";
+     array_push($responseArray,"Dropoff offered field is required");
+}elseif ($_POST['tour_drpoffer']=='yes') {
+     $drpoffer         =$_POST['tour_drpoffer'];
+	if (empty($_POST['tour_drpair']) && empty($_POST['tour_drpbus']) && empty($_POST['tour_drpspecific'])) {
+         
+		 $is_check=false;
+		 array_push($responseArray,"Filled atleast one field from pickup offered ");
+	 }else{
+
+				if(!empty($_POST['tour_drpair']) && !is_numeric($_POST['tour_drpair'])){
+
+					$is_check= false;
+				    array_push($responseArray,"From  air dropoff field accept only numeric");
+				}elseif(!empty($_POST['tour_drpair']) && is_numeric($_POST['tour_drpair'])){
+
+					$drpair      = $_POST['tour_drpair'];
+
+				}else{
+
+					$drpair = null;
+
+				}
+
+				if(!empty($_POST['tour_drpbus']) && !is_numeric($_POST['tour_drpbus'])){
+
+					$is_check= false;
+				     array_push($responseArray,"From bus dropoff field accept only numeric");
+				}elseif(!empty($_POST['tour_drpbus']) && is_numeric($_POST['tour_drpbus'])){
+
+					$drpbus      = $_POST['tour_drpbus'];
+
+				}else{
+
+					$drpbus = null;
+
+				}
+
+				if(!empty($_POST['tour_drpspecific']) && !is_numeric($_POST['tour_drpspecific'])){
+
+					$is_check= false;
+				    array_push($responseArray,"From specific location dropoff field accept only numeric");
+				}elseif(!empty($_POST['tour_drpspecific']) && is_numeric($_POST['tour_drpspecific'])){
+
+					$drpspecific      = $_POST['tour_drpspecific'];
+
+				}else{
+
+					$drpspecific = null;
+
+				}
+
+
+	 }
+	
 }else{
 
 	$drpoffer         =$_POST['tour_drpoffer'];
-
-}
-
-if(!empty($_POST['tour_drpair']) && !is_numeric($_POST['tour_drpair'])){
-
-	$is_check= false;
-    echo "From  Air Dropoff Field accept only Numeric "."<br>";
-
-}elseif(!empty($_POST['tour_drpair']) && is_numeric($_POST['tour_drpair'])){
-
-	$drpair      = $_POST['tour_drpair'];
-
-}else{
-
 	$drpair = null;
-
-}
-
-if(!empty($_POST['tour_drpbus']) && !is_numeric($_POST['tour_drpbus'])){
-
-	$is_check= false;
-    echo "From  Bus Dropoff Field accept only Numeric "."<br>";
-
-}elseif(!empty($_POST['tour_drpbus']) && is_numeric($_POST['tour_drpbus'])){
-
-	$drpbus      = $_POST['tour_drpbus'];
-
-}else{
-
 	$drpbus = null;
-
-}
-
-if(!empty($_POST['tour_drpspecific']) && !is_numeric($_POST['tour_drpspecific'])){
-
-	$is_check= false;
-    echo "From  Bus Dropoff Field accept only Numeric "."<br>";
-
-}elseif(!empty($_POST['tour_drpspecific']) && is_numeric($_POST['tour_drpspecific'])){
-
-	$drpspecific      = $_POST['tour_drpspecific'];
-
-}else{
-
 	$drpspecific = null;
 
 }
+
+
+
+
+
+
+
 
 
 
@@ -390,28 +445,36 @@ $attraction_desp  =$_POST['attraction_descrp'];
 
 if (empty($_POST['tour_depdate'])) {
   $is_check=false;
-  echo "Departure Date field is required";
+  array_push($responseArray,"Departure date field is required");
 }else{
   $depDate= $_POST['tour_depdate'];
 }
 
 if (empty($_POST['tour_deptime'])) {
   $is_check=false;
-  echo "Departure Time filed is requird";
-}else{
+  array_push($responseArray,"Departure Time filed is requird");
+}elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['tour_deptime'])) {
+	$is_check=false;
+	array_push($responseArray,"Departure time format is invalid");
+}
+else{
   $depTime=$_POST['tour_deptime'];
 }
 
 if (empty($_POST['tour_arrdate'])) {
   $is_check=false;
-  echo "Arrival Date field is required";
+  array_push($responseArray,"Arrival Date field is required");
 }else{
   $arrDate=$_POST['tour_arrdate'];
 }
 
 if (empty($_POST['tour_arrtime'])) {
   $is_check=false;
-  echo "Arrival Time field is required";
+  array_push($responseArray,"Arrival Time field is required");
+
+}elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['tour_arrtime'])) {
+	$is_check=false;
+	array_push($responseArray,"Arrival time format is invalid");
 }else{
   $arrTime=$_POST['tour_arrtime'];
 }
@@ -422,6 +485,15 @@ if (empty($_POST['tour_arrtime'])) {
 $user_id          =2;
 $hotelid          =31;
 $formtype         ='tour';
+
+
+$errorMsgs=implode(",",$responseArray);
+
+$newErrorMsgArr=array(
+    "status"=> "error",
+    "message"=> $errorMsgs
+);
+
 
 if ($is_check==true) {
 	# code...
@@ -507,6 +579,8 @@ for ($i=0; $i < count($_POST['attraction_name']) ; $i++) {
 
    echo "sucess";
 }else{
+	echo json_encode($newErrorMsgArr);
 	return false;
+
 }
 ?>

@@ -70,17 +70,30 @@ $addres2=$_POST['hotel_addres2'];
   $fax=null;
  }
 
-
   if (empty($_POST['hotel_email'])) {
 	 
   	 $is_check=false;
   	 echo "Email Address is required ";
+  }elseif(!filter_var($_POST['hotel_email'], FILTER_VALIDATE_EMAIL)){
+
+    $is_check=false;
+     echo "Email Address is invalid ";
+
   }else{
 	
  	$email=$_POST['hotel_email'];
 
   }
-$web=$_POST['hotel_web'];
+
+if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['hotel_web'])) {
+      $is_check=false;
+      echo  "Invalid URL"; 
+    }else{
+
+       $web=$_POST['hotel_web'];
+    }
+
+
    
   if (empty($_POST['hotel_descrp'])) {
 	
@@ -110,54 +123,80 @@ $web=$_POST['hotel_web'];
 
 	$policy=$_POST['hotel_policy'];
   }
+
  if (empty($_POST['hotel_pickup'])) {
 
-	
  	$is_check=false;
  	echo "Hotel Pickup is required ";
 
- }else{
+ }elseif ($_POST['hotel_pickup'] == 'yes') {
+    $pickup=$_POST['hotel_pickup'];
+    if (empty($_POST['hotel_isair']) && empty($_POST['hotel_isbus'])) {
+          $is_check=false;
+          echo "Check atleast one from pickup offered";
+    }else{
+          
+                  if (isset($_POST['hotel_isair'])) {
+          
+                          $is_air= $_POST['hotel_isair'];
+                          if (empty($_POST['hotel_pikcharge'])) {
 
-	$pickup=$_POST['hotel_pickup'];
+                               $is_check=false;
+                               echo "Airport charges field is required";
+                          }elseif (!empty($_POST['hotel_pikcharge']) && !is_numeric($_POST['hotel_pikcharge'])) {
+                              $is_check=false;
+                              echo "Airport charges field accept only numeric";
+                          }else{
+                               $charges=$_POST['hotel_pikcharge'];
+                          }
+                  }else{
+
+                   $is_air= 'off';
+                  }
+
+                  if (isset($_POST['hotel_isbus'])) {
+                    
+                        $is_bus= $_POST['hotel_isbus'];
+                        if (empty($_POST['hotel_buscharge'])) {
+                           $is_check=false;
+                           echo "Bus charges field is required";
+                        }elseif (!empty($_POST['hotel_buscharge']) && !is_numeric($_POST['hotel_buscharge'])) {
+                          $is_check=false;
+                          echo "Bus charges field accept only numeric";
+                        }else{
+                            $buscharge=$_POST['hotel_buscharge'];
+                        }
+
+                  }else{
+
+                   $is_bus= 'off';
+                  }
+       }
+
+ }else{
+	  $pickup=$_POST['hotel_pickup'];
+    $charges=null;
+    $buscharge=null;
+    $is_bus= 'off';
+    $is_air= 'off';
+
  }
- if (!empty($_POST['hotel_pikcharge']) && !is_numeric($_POST['hotel_pikcharge'])) {
 
- 	$is_check=false;
- 	echo "Pickup charges accept only numeric";
-
- }elseif (!empty($_POST['hotel_pikcharge']) && is_numeric($_POST['hotel_pikcharge'])) {
-	
- 	$charges=$_POST['hotel_pikcharge'];
- }else{
-
-	$charges=null;
-}
-
-   
    $intimg=$_POST['common_image'];
    $intarray= explode(",",$intimg);
-   
-  
    $extimg=$_POST['common_extimage'];
+if (isset($extimg)) {
 
-   if (isset($extimg)) {
- 	
  	 $extarray= explode(",",$extimg);
-
-    
-
  }
-
-
-$provideo=$_POST['common_video'];
-
 if (!empty($_POST['hotel_nobag'])) {
 
-  $nobag=$_POST['hotel_nobag'];
+    $nobag=$_POST['hotel_nobag'];
 }else{
-  $nobag=null;
+    $nobag=null;
 }
 
+$provideo=$_POST['common_video'];
 $bagprice=$_POST['hotel_bagprice'];
 $fburl=$_POST['hotel_fburl'];
 $twurl=$_POST['hotel_twurl'];
@@ -166,62 +205,33 @@ $insurl=$_POST['hotel_insurl'];
 $pinurl=$_POST['hotel_pinurl'];
 $yuturl=$_POST['hotel_yuturl'];
 
+
+
 if (empty($_POST['hotel_checkin'])) {
   $is_check=false;
-  echo "CheckIn field is required";
+  echo "Checkin field is required";
+}elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['hotel_checkin'])) {
+     $is_check=false;
+     echo "Checkin time format is invalid";
 }else{
    $checkIn=$_POST['hotel_checkin'];
 }
 
+
 if (empty($_POST['hotel_checkout'])) {
   $is_check=false;
-  echo "CheckOut field is required";
-}else{
+  echo "Checkout field is required";
+
+}elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['hotel_checkout'])) {
+     $is_check=false;
+     echo "Checkout time format is invalid";
+}
+else{
 
   $checkOut=$_POST['hotel_checkout'];
 }
-
-if (isset($_POST['hotel_isair'])) {
-  
-  $is_air= $_POST['hotel_isair'];
-}else{
-
- $is_air= 'off';
-}
-
-if (isset($_POST['hotel_isbus'])) {
-  
-  $is_bus= $_POST['hotel_isbus'];
-}else{
-
- $is_bus= 'off';
-}
-
-if (!empty($_POST['hotel_buscharge']) && !is_numeric($_POST['hotel_buscharge'])) {
-
-  $is_check=false;
-  echo "Pickup charges accept only numeric";
-
- }elseif (!empty($_POST['hotel_buscharge']) && is_numeric($_POST['hotel_buscharge'])) {
-  
-  $buscharge=$_POST['hotel_buscharge'];
- }else{
-
-  $buscharge=null;
-}
-  
-
-  
-
-
 $formtype='hotel';
 $user_id= 2;
-
-
-
- 
-
- 
 
 
  if ($is_check==true) {

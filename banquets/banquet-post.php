@@ -37,6 +37,31 @@ if (empty($_POST['banquet_space'])) {
      $charges         = $_POST['banquet_charges'];
  }
 
+if (isset($_POST['banquet_isaircon']) && empty($_POST['banquet_aricon'])) {
+	  $is_check=false;
+	  echo "Aircon charges field is required"; 	
+}elseif (isset($_POST['banquet_isaircon']) && !empty($_POST['banquet_aricon'])) {
+
+	$is_aircon= $_POST['banquet_isaircon'];
+}else{
+
+   $is_aircon="off";
+}
+
+if (isset($_POST['banquet_isgen']) && empty($_POST['banquet_generator'])) {
+
+	$is_check=false;
+	echo "Generator charges field is required";
+	
+}elseif (isset($_POST['banquet_isgen']) && !empty($_POST['banquet_generator'])) {
+
+	$is_gen=$_POST['banquet_isgen'];
+}else{
+
+	$is_gen='off';
+}
+
+
 if(!empty($_POST['banquet_aricon']) && !is_numeric($_POST['banquet_aricon'])){
 	$is_check= false;
 
@@ -156,7 +181,10 @@ if (empty($_POST['banquet_gathering'])) {
 if (!is_numeric($_POST['banquet_adcost'])) {
 
 	$is_check=false;
-	echo "Additional cost accept only numeric"."<br>";
+	echo "Only numeric data is allowed in Additional Cost";
+}elseif (empty($_POST['banquet_adcost'])) {
+	  $is_check=false;
+	  echo "Additional Cost cannot be left empty";
 }else{
 
   $adcost	      = $_POST['banquet_adcost'];
@@ -193,81 +221,99 @@ if (empty($_POST['banquet_other'])) {
 if (!empty($_POST['banquet_offerdiscount']) && !is_numeric($_POST['banquet_offerdiscount'])) {
 	$is_check= false;
 	echo"Offer discount accept only numeric";
-}elseif (!empty($_POST['banquet_offerdiscount']) && is_numeric($_POST['banquet_offerdiscount'])) {
+}elseif (!empty($_POST['banquet_offerdiscount']) && empty($_POST['banquet_expireoffer'])) {
+	$is_check= false;
+	echo"Expire offer date field is required";
+}
+elseif (!empty($_POST['banquet_offerdiscount']) && is_numeric($_POST['banquet_offerdiscount'])) {
 	$discuntofer=$_POST['banquet_offerdiscount'];
 }else{
 
 	$discuntofer=null;
 }
 
+if (!empty($_POST['banquet_expireoffer']) && empty($_POST['banquet_offerdiscount'])) {
+	$is_check=false;
+	echo "Offer discount field is required";
 
- $discountexpire=$_POST['banquet_expireoffer'];
-
+}else{
+	$discountexpire=$_POST['banquet_expireoffer'];
+}
 
 
 if (empty($_POST['banquet_independ'])) {
 	$is_check=false;
 	echo "Hall independent field is required";
-}else{
+}elseif ($_POST['banquet_independ']=='yes') {
+    $banquet_hotelName=null;
+   $banquet_independ=$_POST['banquet_independ'];
 
-	$banquet_independ=$_POST['banquet_independ'];
+     if (empty($_POST['banquet_address'])) {
+     	$is_check=false;
+     	echo "Address field is required";
+     }else{
+
+     	$banquet_addres=$_POST['banquet_address'];
+     }
+     if (empty($_POST['banquet_city'])) {
+
+     	$is_check=false;
+     	echo "City field is required";
+
+     }else{
+
+     	$banquet_city=$_POST['banquet_city'];
+     }
+
+     if (empty($_POST['banquet_province'])) {
+
+     	$is_check=false;
+     	echo "Province field is required";
+     }else{
+
+     	 $banquet_province=$_POST['banquet_province'];
+     }
+
+     if (empty($_POST['banquet_phone'])) {
+     	$is_check=false;
+     	echo "Phone number field is required";
+     }elseif (!empty($_POST['banquet_phone']) && !is_numeric($_POST['banquet_phone'])) {
+     	$is_check=false;
+     	echo "Phone number field accept only numeric";
+     }else{
+     	$banquet_phone     = $_POST['banquet_phone'];
+     }
+
+     if (empty($_POST['banquet_email'])) {
+     	$is_check=false;
+     	echo "Email address field is required";
+     }elseif (!filter_var($_POST['banquet_email'], FILTER_VALIDATE_EMAIL)) {
+     	$is_check=false;
+     	echo "Email address field is invalid";
+     }else{
+     	$banquet_email=$_POST['banquet_email'];
+     }
+
 }
+else{
+       $banquet_independ=$_POST['banquet_independ'];
+       $banquet_addres=null;
+       $banquet_city=null;
+       $banquet_province=null;
+       $banquet_phone = null;
+       $banquet_email=null;
+    if (empty($_POST['hotel_name'])) {
+    	$is_check=false;
+    	echo "Name of hotel is required";
+    	
+    }else{
 
-if (!empty($_POST['hotel_name'])) {
-
-	$banquet_hotelName=$_POST['hotel_name'];
-}else{
-
-	$banquet_hotelName=null;
-}
+    	$banquet_hotelName=$_POST['hotel_name'];
+    }
 	
-if (!empty($_POST['banquet_address'])) {
-
-	$banquet_addres=$_POST['banquet_address'];
-}else{
-
-	$banquet_addres=null;
-}
-
-if (!empty($_POST['banquet_city'])) {
-	
-	$banquet_city=$_POST['banquet_city'];
-
-}else{
-  
-  $banquet_city=null;
-
-}
-
-if (!empty($_POST['banquet_province'])) {
-
-	$banquet_province=$_POST['banquet_province'];
-}else{
-	$banquet_province=null;
 }
 
 
-if(!empty($_POST['banquet_phone']) && !is_numeric($_POST['banquet_phone'])){
-	$is_check= false;
-	echo "This field is accept only numeric";
-
-}elseif(!empty($_POST['banquet_phone']) && is_numeric($_POST['banquet_phone'])){
-
-	$banquet_phone     = $_POST['banquet_phone'];
-
-}else{
-	$banquet_phone = null;
-	
-}
-
-
-if (!empty($_POST['banquet_email'])) {
-
-	$banquet_email=$_POST['banquet_email'];
-}else{
-
-	$banquet_email=null;
-}
 
 if (!empty($_POST['banquet_fcbok'])) {
 	
@@ -294,22 +340,7 @@ if (!empty($_POST['banquet_utube'])) {
 }
 
 
-if (isset($_POST['banquet_isaircon'])) {
-	
-	$is_aircon= $_POST['banquet_isaircon'];
-}else{
 
- $is_aircon= 'off';
-}
-
-if (isset($_POST['banquet_isgen'])) {
-
-	$is_gen=$_POST['banquet_isgen'];
-	# code...
-}else{
-
-	$is_gen='off';
-}
 
 
 

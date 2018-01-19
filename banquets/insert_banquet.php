@@ -3,7 +3,7 @@
 /*----------------------------
     Function for dynamic Insert Query
  ------------------------------*/
-// print_r( $_POST);
+ print_r( $_POST);
 
 
  
@@ -64,5 +64,13 @@ if ($conn->query($query)== TRUE) {
           
  };
 
-getInsertQuery('common_bookdates',$_POST);
+ if (isset($_GET['act'])) {
+
+   getInsertQuery($_GET['act'],$_POST);
+ }else{
+
+  getInsertQuery('common_bookdates',$_POST);
+ }
+
+
 ?>
