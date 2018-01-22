@@ -114,11 +114,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div class="row">
 							<div class="col-md-6">
 								<label>Offer Discount (%)</label>
-								<input type="number" name="room_offerdiscount" class="input-field validate">
+								<input type="number" name="room_offerdiscount" class="input-field validate offerDiscnt" >
 							</div>
 							<div class="col-md-6">
 								<label>Expires on</label>
-								<input type="text" id="expireDate" class="input-field" name="room_expireoffer">
+								<input type="text" id="expireDate" class="input-field expireDate" name="room_expireoffer">
 							</div>
 						</div>  
 
@@ -275,6 +275,7 @@ tinymce.init({ selector:'textarea' });
 
 
 $('.chips-autocomplete').material_chip({
+
 	autocompleteOptions: {
 		data: {
 			'Wifi': null,
@@ -285,8 +286,8 @@ $('.chips-autocomplete').material_chip({
 		limit: Infinity,
 		minLength: 1
 	}
+	
 });
-
 
 
 

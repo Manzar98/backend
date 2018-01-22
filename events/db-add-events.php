@@ -112,7 +112,7 @@
                         	<div class="col-md-6">
                         		<label style="margin-bottom: 10px;">Entry Fee ?</label>
                         		<select name="event_entry" onchange="selectentryfee(this)">
-                        			<option value="">Select One</option>
+                        			<option value="" selected="" disabled="">Select One</option>
                         			<option value="yes">Yes</option>
                         			<option value="no">No</option>
                         		</select>
@@ -135,7 +135,7 @@
                         	<div class="col-md-6 common-wrapper comon_dropdown_botom_line" id="" >
                         		<label >Children Allowed?</label>
                         		<select name="event_childallow" onchange="selectchild(this)">
-                        			<option value="">Select One</option>
+                        			<option value="" selected=""  disabled="">Select One</option>
                         			<option value="yes">Yes</option>
                         			<option value="no">No</option>
                         		</select>
@@ -205,7 +205,7 @@
 							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
 								<label>Pickup Offered ?</label>
 							      <select onchange="pickOffer(this)" name="event_pikoffer">
-								     <option value="">Select One</option>
+								     <option value="" selected="" disabled="">Select One</option>
 								     <option value="yes">Yes</option>
 								     <option value="no">No</option>
 							     </select>
@@ -248,7 +248,7 @@
 							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
 								<label>Drop off Offered ?</label>
 							      <select onchange="dropOffer(this)" name="event_drpoffer">
-								     <option value="">Select One</option>
+								     <option value="" selected="" disabled="">Select One</option>
 								     <option value="yes">Yes</option>
 								     <option value="no">No</option>
 							     </select>

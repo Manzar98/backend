@@ -340,7 +340,8 @@ else{
 if (empty($_POST['tour_drpoffer'])) {
 	
 	$is_check=false;
-     array_push($responseArray,"Dropoff offered field is required");
+    array_push($responseArray,"Dropoff offered field is required");
+    
 }elseif ($_POST['tour_drpoffer']=='yes') {
      $drpoffer         =$_POST['tour_drpoffer'];
 	if (empty($_POST['tour_drpair']) && empty($_POST['tour_drpbus']) && empty($_POST['tour_drpspecific'])) {
@@ -402,37 +403,8 @@ if (empty($_POST['tour_drpoffer'])) {
 	$drpspecific = null;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-// if (!is_numeric($_POST['common_nopeople'])) {
-
-// 	$is_check=false;
-// 	echo "This Field accept only Numeric 24"."<br>";
-// }else{
-
-	$noofpeople       =$_POST['common_nopeople'];
-// }
-// if (!is_numeric($_POST['common_discount'])) {
-
-// 	$is_check=false;
-// 	echo "This Field accept only Numeric 25"."<br>";
-// }else{
-	
-	$discountpeople   =$_POST['common_discount'];
-// }/
-
-
-
-
+$noofpeople       =$_POST['common_nopeople'];	
+$discountpeople   =$_POST['common_discount'];
 
 $img          = $_POST['common_image'];
 
@@ -447,7 +419,21 @@ if (empty($_POST['tour_depdate'])) {
   $is_check=false;
   array_push($responseArray,"Departure date field is required");
 }else{
-  $depDate= $_POST['tour_depdate'];
+
+    $datedepr = date_create($_POST['tour_depdate']);
+	      $resultdepr = date_format($datedepr,"m/d/Y");
+		  if ($resultdepr) {
+
+			     $depDate= $_POST['tour_depdate'];
+
+			}else{
+				 $is_check=false;
+				 array_push($responseArray,"Departure date field is invalid");
+				 
+			}
+
+
+  
 }
 
 if (empty($_POST['tour_deptime'])) {
@@ -465,7 +451,19 @@ if (empty($_POST['tour_arrdate'])) {
   $is_check=false;
   array_push($responseArray,"Arrival Date field is required");
 }else{
-  $arrDate=$_POST['tour_arrdate'];
+
+	   $datearr = date_create($_POST['tour_arrdate']);
+	      $resultarr = date_format($datearr,"m/d/Y");
+		  if ($resultarr) {
+
+			     $arrDate=$_POST['tour_arrdate'];
+
+			}else{
+				 $is_check=false;
+				 array_push($responseArray,"Arrival date field is invalid");
+				 
+			}
+  
 }
 
 if (empty($_POST['tour_arrtime'])) {

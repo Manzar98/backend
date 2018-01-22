@@ -166,7 +166,7 @@
 					    <div class="row" id="transport" style="display: none;">
                             	<div class="col-md-6" id="fil_air" >
 						            <p class="pTAG">
-						             <input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair" data-error=".errorTxt12"  required="" />
+						             <input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair" data-error=".errorTxt12"  />
 						             <label for="filled-in-airport" id="air">Airport</label>
 						            </p>
 						            <div class="input-field">
@@ -175,9 +175,12 @@
          						</div>
          						<div class="col-md-6 " id="fil_bus">
 						            <p class="pTAG">
-						             <input type="checkbox" class="filled-in" id="filled-in-bus" name="hotel_isbus" />
+						             <input type="checkbox" class="filled-in" id="filled-in-bus" name="hotel_isbus" data-error=".errorTxt20"/>
 						             <label for="filled-in-bus">Bus station</label>
 						            </p>
+						             <div class="input-field" >
+                                                <div class="errorTxt20"></div>
+                                            </div>
          						</div>
                             </div>   
 
@@ -186,12 +189,12 @@
                           <div class="col-md-6" >
                           	<div class="" style="display: none;" id="ifYes">
                         		<label>Charges</label>
-                        		 <input type="number"  class="input-field validate is_validate" name="hotel_pikcharge" >
+                        		 <input type="number"  class="input-field validate is_validate" name="hotel_pikcharge" id="aircharges">
                             </div>
                             </div>
                             <div class="col-md-6" id="buschgr" style="display: none;">
                             	<label>Charges</label>
-                        		 <input type="text"  class="input-field validate " name="hotel_buscharge" >
+                        		 <input type="text"  class="input-field validate " name="hotel_buscharge" id="buscharges">
                             </div>
                         </div>
 
@@ -396,7 +399,37 @@
               document.getElementById("transport").style.display = "block";
         if (that.value == "yes") {
              document.getElementById("bag-char").style.display = "block";
-             $('#filled-in-airport').attr('required');
+             // if ($('#filled-in-airport').prop('checked') == false && $('#filled-in-bus').prop('checked') == false) {
+             // 	 // console.log('both values is empty');
+             	 
+             // 	 // $("#filled-in-airport").prop('required',true);
+             // 	 // $("#filled-in-bus").prop('required',true);
+     
+             	
+             // }else if($('#filled-in-airport').prop('checked') == true && $('#filled-in-bus').prop('checked') == false){
+             //       $("#filled-in-bus").prop('required',false);
+             //       debugger;
+             //       if ($('#filled-in-airport').prop('checked') == true) {
+             //             $('#aircharges').attr('required');
+             //             debugger;
+             //       }else{
+             //       	    $('#aircharges').removeAttr('required');
+             //       }
+             // }else if ($('#filled-in-airport').prop('checked') == false && $('#filled-in-bus').prop('checked') == true) {
+             //          $('#filled-in-air').removeAttr('required');
+             // 	 if ($('#filled-in-bus').prop('checked') == true) {
+             //             $('#buscharges').attr('required');
+             // 	 }else{
+             //       	    $('#buscharges').removeAttr('required');
+             //       }
+
+
+             // }else{
+
+             // 	  $('#buscharges').attr('required');
+             // 	   $('#aircharges').attr('required');
+             // }
+             // $('#filled-in-airport').attr('required');
         } else {
              document.getElementById("ifYes").style.display = "none";
             document.getElementById("bag-char").style.display = "none";

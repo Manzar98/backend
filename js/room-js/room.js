@@ -1,5 +1,5 @@
 $("#pro-sub-btn").click(function(){
-         $("#pro-sub-btn").hide();
+         // $("#pro-sub-btn").hide();
 var validator= $("#room-form").validate({
 
        errorElement : 'div',
@@ -36,7 +36,9 @@ if (validator.form()== false) {
     });
          $("#pro-sub-btn").show();
    }else{ 
-  
+
+    $('#loader').modal({dismissible: false});
+    $('#loader').modal('open');
 tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
@@ -47,8 +49,7 @@ $.ajax({
                              console.log(data);
 
                              if (data=='sucess') { 
-                              $('#loader').modal({dismissible: false});
-                              $('#loader').modal('open');
+                              
 
                                 $("#btn-loader").hide();
                               setTimeout(function(){
@@ -64,7 +65,7 @@ $.ajax({
                       }, function(){
                       window.location = "../rooms/room_list.php";
                     });
-                              },3000)
+                              },2000)
 
                              }else{
 
@@ -133,20 +134,22 @@ if (validator.form()== false) {
     });
          $("#pro-sub-btn_room").show();
    }else{ 
+
+        $('#loader').modal({dismissible: false});
+        $('#loader').modal('open');
+
         tinyMCE.triggerSave();
     $.ajax({
                              type:"POST",
                              url:"../rooms/room-post.php",
                              data: $("form").serialize(),
-                             success:function(data) {
+                             success:function(res) {
 
-
+                            var data =JSON.parse(res);
                              console.log(data);
 
-                             if (data=='sucess') {
-                              $('#loader').modal({dismissible: false});
-                              $('#loader').modal('open');
-
+                             if (data.status=='success') {
+                              
                                $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
@@ -167,18 +170,24 @@ if (validator.form()== false) {
 
                              }else{
 
+                               var responseArray = "";
+                                $.each(data.message.split(','),function(k,val){
+                                      responseArray += "<li style='color:red;'>"+val+"</li>";
+                                })
+
+                                $('#loader').modal('close');
                                swal({
                                        title: "Error in insertion",
-                    text: "Record can not be inserted.",
+                    text: "<ul>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
                       closeOnConfirm: true,
-                      html: false
+                      html: true
                       }, function(){
                       // window.location = "../rooms/room_list.php";
                     });
-
+                           $("#pro-sub-btn_room").show();
                              }
                              
                               

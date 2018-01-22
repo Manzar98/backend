@@ -1,38 +1,46 @@
 
 <?php
 include '../common-sql.php';
- print_r($_POST);
+ // print_r($_POST);
 
 $is_check=true;
+$responseArray=[];
 
 if (empty($_POST['event_name'])) {
 
 	$is_check=false;
-	echo "Event Name Field is required "."<br>";
+	array_push($responseArray,"Event name is required");
+
 }else{
 
 	$name         = $_POST['event_name'];
 }
+
 if (empty($_POST['event_venue'])) {
 
 	$is_check=false;
-	echo "Venue Field is required "."<br>" ;
+	array_push($responseArray,"Venue field is required");
+
 }else{
 	
 	$venue        = $_POST['event_venue'];
 }
+
 if (empty($_POST['event_recurrence'])) {
 
 	$is_check=false;
-	echo "Recurrence Field is required"."<br>" ;
+	array_push($responseArray,"Recurrence field is required");
+
 }else{
 	
 	$recurrence   = $_POST['event_recurrence'];
 }
+
  if (empty($_POST['event_descrip'])) {
 
  	$is_check=false;
- 	echo "Event Description Field is required "."<br>";
+ 	array_push($responseArray,"Event description field is required");
+
  }else{
 	
 	$descrip      = $_POST['event_descrip'];
@@ -41,61 +49,70 @@ if (empty($_POST['event_recurrence'])) {
 if (empty($_POST['event_entry'])) {
 
 	$is_check=false;
-	echo "Entry Fee Field is required"."<br>";
+	array_push($responseArray,"Entry fee field is required");
+
 }elseif ($_POST['event_entry']=='yes') {
+
 			   $evententry   = $_POST['event_entry'];
 			   
 			   if(empty($_POST['event_entryfee'])){
 
 				$is_check= false;
-			    echo "Event Price Field is required";
+				array_push($responseArray,"Event price field is required");
 
 				}elseif(!empty($_POST['event_entryfee']) && !is_numeric($_POST['event_entryfee'])){
+
                      $is_check=false;
-                     echo "Event price field accept only numeric";
-					
+                     array_push($responseArray,"Event price field accept only numeric");				
 
 				}else{
+
                     $entryfee      = $_POST['event_entryfee'];
-					$entryfee = null;
-
-				}
-
-	
-}
-else{
+				}	
+}else{
 	
 	$evententry   = $_POST['event_entry'];
+	$entryfee = null;
 
 }
 
 if (empty($_POST['event_childallow'])) {
 	
 	$is_check=false;
-	echo "Children allow field is required";
+	array_push($responseArray,"Children allow field is required");
      
 }elseif ($_POST['event_childallow']=='yes') {
+
 				$childallow       =$_POST['event_childallow'];
 				if (empty($_POST['event_undr5allow'])) {
+
 					$is_check=false;
-	                echo "Under 5 allowed field is required";	
+					array_push($responseArray,"Under 5 allowed field is required");
+
 				}else{
+
 					$undr5allow       =$_POST['event_undr5allow'];
 				}
+
 				if (empty($_POST['event_undr5free']) && empty($_POST['event_undr5price'])) {
+
 					$is_check=false;
-	                echo "Filled atleast one field in Under 5 allowed";	
+					array_push($responseArray,"Filled atleast one field in Under 5 allowed");
+
 				}else{
 
 					if(!empty($_POST['event_undr5price']) && !is_numeric($_POST['event_undr5price'])){
-						$is_check= false;
-					   
-					    echo "Half price field accept only numeric";
-					}elseif(!empty($_POST['event_undr5price']) && is_numeric($_POST['event_undr5price'])){
-						$undr5price      = $_POST['event_undr5price'];
-					}else{
-						$undr5price = null;
 
+						$is_check= false;
+					    array_push($responseArray,"Half price field accept only numeric");
+
+					}elseif(!empty($_POST['event_undr5price']) && is_numeric($_POST['event_undr5price'])){
+
+						$undr5price      = $_POST['event_undr5price'];
+
+					}else{
+
+						$undr5price = null;
 					}
 
 					if (isset($_POST['event_undr5free'])) {
@@ -103,19 +120,24 @@ if (empty($_POST['event_childallow'])) {
 					  $undr5free          =$_POST['event_undr5free'];
 
 					}else{
-						$undr5free          ='off';
 
+						$undr5free          ='off';
 					}
 
 				}
 
 				if (empty($_POST['event_halftikchild'])) {
+
 					   $is_check= false;
-					   echo "Children price field is required";
+					   array_push($responseArray,"Children price field is required");
+	
 				}elseif (!empty($_POST['event_halftikchild'] && !is_numeric($_POST['event_halftikchild']))) {
+
 					 $is_check= false;
-					 echo "Children price field accept only numeric";
+					 array_push($responseArray,"Children price field accept only numeric");
+
 				}else{
+
 					 $halftikchild     =$_POST['event_halftikchild'];
 				}
 	
@@ -138,18 +160,24 @@ else{
 if (empty($_POST['event_pikoffer'])) {
 	
 	$is_check=false;
-      echo "Pickup offered field is required";
+	array_push($responseArray,"Pickup offered field is required");
+
 }elseif ($_POST['event_pikoffer']=='yes') {
+
 	$pikoffer         =$_POST['event_pikoffer'];
+
 	if (empty($_POST['event_pikair']) && empty($_POST['event_pikbus']) && empty($_POST['event_pikspecific'])) {
+
 		$is_check=false;
-		echo "Filled atleast one field from pickup offered ";
+		array_push($responseArray,"Filled atleast one field from pickup offered");
+
 	}else{
          
          if(!empty($_POST['event_pikair']) && !is_numeric($_POST['event_pikair'])){
 
 			$is_check= false;
-		     echo "From airport pickup field accept only numeric";
+			array_push($responseArray,"From airport pickup field accept only numeric");
+		    
 		}elseif(!empty($_POST['event_pikair']) && is_numeric($_POST['event_pikair'])){
 
 			$pikair      = $_POST['event_pikair'];
@@ -157,13 +185,13 @@ if (empty($_POST['event_pikoffer'])) {
 		}else{
 
 			$pikair = null;
-
         }
 
         if(!empty($_POST['event_pikbus']) && !is_numeric($_POST['event_pikbus'])){
 
 			$is_check= false;
-		   echo "From bus pickup field accept only numeric";
+			array_push($responseArray,"From bus pickup field accept only numeric");
+
 		}elseif(!empty($_POST['event_pikbus']) && is_numeric($_POST['event_pikbus'])){
 
 			$pikbus      = $_POST['event_pikbus'];
@@ -177,7 +205,8 @@ if (empty($_POST['event_pikoffer'])) {
 		if(!empty($_POST['event_pikspecific']) && !is_numeric($_POST['event_pikspecific'])){
 
 			$is_check= false;
-		    echo "From specific location pickup field accept only numeric";
+			array_push($responseArray,"From specific location pickup field accept only numeric");
+
 		}elseif(!empty($_POST['event_pikspecific']) && is_numeric($_POST['event_pikspecific'])){
 
 			$pikspecific      = $_POST['event_pikspecific'];
@@ -207,19 +236,22 @@ else{
 if (empty($_POST['event_drpoffer'])) {
 	
 	$is_check=false;
-     echo "Dropoff offered field is required";
+	array_push($responseArray,"Dropoff offered field is required");
+
 }elseif ($_POST['event_drpoffer']=='yes') {
      $drpoffer         =$_POST['event_drpoffer'];
 	if (empty($_POST['event_drpair']) && empty($_POST['event_drpbus']) && empty($_POST['event_drpspecific'])) {
          
 		 $is_check=false;
-		 echo "Filled atleast one field from pickup offered ";
+		 array_push($responseArray,"Filled atleast one field from pickup offered");
+
 	 }else{
 
 				if(!empty($_POST['event_drpair']) && !is_numeric($_POST['event_drpair'])){
 
 					$is_check= false;
-				    echo "From  air dropoff field accept only numeric";
+					array_push($responseArray,"From  air dropoff field accept only numeric");
+
 				}elseif(!empty($_POST['event_drpair']) && is_numeric($_POST['event_drpair'])){
 
 					$drpair      = $_POST['event_drpair'];
@@ -227,13 +259,13 @@ if (empty($_POST['event_drpoffer'])) {
 				}else{
 
 					$drpair = null;
-
 				}
 
 				if(!empty($_POST['event_drpbus']) && !is_numeric($_POST['event_drpbus'])){
 
 					$is_check= false;
-				     echo "From bus dropoff field accept only numeric";
+					array_push($responseArray,"From bus dropoff field accept only numeric");
+
 				}elseif(!empty($_POST['event_drpbus']) && is_numeric($_POST['event_drpbus'])){
 
 					$drpbus      = $_POST['event_drpbus'];
@@ -241,13 +273,13 @@ if (empty($_POST['event_drpoffer'])) {
 				}else{
 
 					$drpbus = null;
-
 				}
 
 				if(!empty($_POST['event_drpspecific']) && !is_numeric($_POST['event_drpspecific'])){
 
 					$is_check= false;
-				    echo "From specific location dropoff field accept only numeric";
+					array_push($responseArray,"From specific location dropoff field accept only numeric");
+
 				}elseif(!empty($_POST['event_drpspecific']) && is_numeric($_POST['event_drpspecific'])){
 
 					$drpspecific      = $_POST['event_drpspecific'];
@@ -255,7 +287,6 @@ if (empty($_POST['event_drpoffer'])) {
 				}else{
 
 					$drpspecific = null;
-
 				}
 
 
@@ -276,13 +307,15 @@ if (empty($_POST['event_drpoffer'])) {
 if (empty($_POST['event_serve'])) {
 
 	$is_check=false;
-	echo "Serve Food Field is required.";
+	array_push($responseArray,"Serve Food Field is required.");
+
 }elseif ($_POST['event_serve']=="yes") {
 
        $serveFood=$_POST['event_serve'];
 	   if(empty($_POST['event_eatFree']) && empty($_POST['event_eatAll']) && empty('$event_eatNeed')){
+
            $is_check=false;
-           echo "checked the one field from serve food";
+           array_push($responseArray,"checked the one field from serve food");
 
 	   }else{
              
@@ -294,12 +327,17 @@ if (empty($_POST['event_serve'])) {
 			if (isset($_POST['event_eatAll'])) {
 				 $eatAll    = $_POST['event_eatAll'];
 				 if (empty($_POST['event_eatAllChrges'])) {
+
 				 	$is_check=false;
-				 	echo "All you can eat charges  field is required";
+				 	array_push($responseArray,"All you can eat charges  field is required");
+				 	
 				 }elseif (!empty($_POST['event_eatAllChrges']) && !is_numeric($_POST['event_eatAllChrges'])) {
+
 				 	$is_check= false;
-                    echo "All you can eat charges  field accept only Numeric ";
+				 	array_push($responseArray,"All you can eat charges  field accept only numeric");
+
 				 }else{
+
 				 	$eatAllChrges      = $_POST['event_eatAllChrges'];
 				 }
 
@@ -331,10 +369,22 @@ $userid       = 2;
 $hotelid      = 31;
 $formtype     = 'event';
 
+$errorMsgs=implode(",",$responseArray);
+
+$newErrorMsgArr=array(
+    "status"=> "error",
+    "message"=> $errorMsgs
+);
+
+$newSuccessMsgArr=array(
+    "status"=> "success"
+    
+);
+
 if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikofer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpofer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
+$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
 
 if ($conn->query($query)== TRUE) {
  	# code...
@@ -370,24 +420,25 @@ if (isset($_POST['common_video'])) {
 
 
  }
-
+ //
  for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
 
-
+ // echo  count($_POST['common_nopeople']);
  	$discountQuery='INSERT INTO common_nosofpeople(event_id,common_nopeople,common_discount,discount_type)VALUES("'.$event_id.'","'.$nospeople[$i].'","'.$discountx[$i].'","'.$formtype.'")';
      // echo $discountQuery;
  	$disQuery=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
- 	# code...
+ 	
  }
 
 
-  echo "sucess";
-
-}else{
-
-	return false;
+    echo json_encode($newSuccessMsgArr);
+  
 }
-
+else{
+	 echo json_encode($newErrorMsgArr);
+     return false;
+	
+}
 ?>
 
 

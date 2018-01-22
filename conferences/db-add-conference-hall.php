@@ -61,11 +61,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div class="row">
                              	<div class="col-md-6">
                              		<label>Offer Discount (%)</label>
-                             		<input type="number" name="conference_offerdiscount" class="input-field validate">
+                             		<input type="number" name="conference_offerdiscount" class="input-field validate offer_discount">
                              	</div>
                              	<div class="col-md-6">
                              		<label>Expires on</label>
-                             		<input type="text" id="expireDate" class="input-field from" name="conference_expireoffer">
+                             		<input type="text" id="expireDate" class="input-field from offer_expire" name="conference_expireoffer">
                              	</div>
                              </div> 
 
@@ -91,11 +91,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
                        				<div class="row">
                        					<div class="col-md-6">
                        						<label>Package Name</label>
-                       						<input type="text" value="" class="input-field validate" name="foodpkg_name[]">
+                       						<input type="text" value="" class="input-field validate pkg_name" name="foodpkg_name[]">
                        					</div>
                                 <div class="col-md-6">
                                   <label>Package Price</label>
-                                  <input type="number" value="" class="input-field validate" name="foodpkg_price[]">
+                                  <input type="number" value="" class="input-field validate pkg_price" name="foodpkg_price[]">
                                 </div>  
                        				</div>
 
@@ -216,11 +216,11 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
             <div class="row common-top">
              <div class="col-md-6">
               <label>Address</label>
-              <input  type="text" name="conference_address" class="input-field validate"  >
+              <input  type="text" name="conference_address" class="input-field validate ind_address"  >
             </div>
             <div class="col-md-6">
               <label>City</label>
-              <input  type="text" name="conference_city" class="input-field validate"  >
+              <input  type="text" name="conference_city" class="input-field validate ind_city"  >
             </div>
 
           </div>
@@ -228,11 +228,11 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
           <div class="row">
            <div class="col-md-6">
             <label>Province</label>
-            <input  type="text" name="conference_province" class="input-field validate"  >
+            <input  type="text" name="conference_province" class="input-field validate ind_province"  >
           </div>
           <div class="col-md-6">
             <label>Phone Number</label>
-            <input  type="number" name="conference_phone" class="input-field validate"  >
+            <input  type="number" name="conference_phone" class="input-field validate ind_phone"  >
           </div>
 
         </div>
@@ -240,7 +240,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
         <div class="row">
          <div class="col-md-6">
           <label>Email Address</label>
-          <input  type="email" name="conference_email" class="input-field validate"  >
+          <input  type="email" name="conference_email" class="input-field validate ind_email"  >
         </div>
         <div class="col-md-6">
           <label>Facebook</label>

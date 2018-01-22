@@ -233,22 +233,22 @@ $global_event_id="";
                         <div class="row common-top common-wrapper comon_dropdown_botom_line">
                         	<div class="col-md-6">
                         		<label style="margin-bottom: 10px;">Entry Fee ?</label>
-                        		<select name="event_entry" onchange="selectentryfee(this)" id="selectentryfee">
-                        	<?php if ($resultevent['event_entry']== -1) { ?>
+                        		<select name="event_entry" onchange="selectentryfee(this)" id="selectprice">
+                        	<?php if ($resultevent['event_entry']== "") { ?>
 
-									<option value="-1" disabled selected>Select One</option>
+									<option value="" disabled selected>Select One</option>
 								    <option value="yes">Yes</option>
 								    <option value="no">No</option>
 
 							<?php	}elseif ($resultevent['event_entry']== "yes") {?>
 								
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" selected>Yes</option>
 								    <option value="no">No</option>
 
 							<?php }elseif ($resultevent['event_entry']== "no") { ?>
 								     
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" selected>No</option>
 
@@ -273,21 +273,21 @@ $global_event_id="";
                         	<div class="col-md-6 common-wrapper comon_dropdown_botom_line" id="" >
                         		<label >Children Allowed?</label>
                         		<select name="event_childallow" onchange="selectchild(this)" id="childallow">
-                        	<?php if ($resultevent['event_childallow']== -1) { ?>
+                        	<?php if ($resultevent['event_childallow']== "") { ?>
 
-									<option value="-1" disabled selected>Select One</option>
+									<option value="" disabled selected>Select One</option>
 								    <option value="yes">Yes</option>
 								    <option value="no">No</option>
 
 							<?php	}elseif ($resultevent['event_childallow']== "yes") {?>
 								
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" selected>Yes</option>
 								    <option value="no">No</option>
 
 							<?php }elseif ($resultevent['event_childallow']== "no") { ?>
 								     
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" selected>No</option>
 
@@ -297,21 +297,21 @@ $global_event_id="";
                         	<div class="col-md-6 common-wrapper c-under5 comon_dropdown_botom_line" id="">
                         		<label >Under 5 allowed?</label>
                         		<select name="event_undr5allow" onchange="selectunder5(this)" id="undr5allow">
-                        	<?php if ($resultevent['event_undr5allow']== -1) { ?>
+                        	<?php if ($resultevent['event_undr5allow']== "") { ?>
 
-									<option value="-1" disabled selected>Select One</option>
+									<option value="" disabled selected>Select One</option>
 								    <option value="yes">Yes</option>
 								    <option value="no">No</option>
 
 							<?php	}elseif ($resultevent['event_undr5allow']== "yes") {?>
 								
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" selected>Yes</option>
 								    <option value="no">No</option>
 
 							<?php }elseif ($resultevent['event_undr5allow']== "no") { ?>
 								     
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" selected>No</option>
 
@@ -415,21 +415,21 @@ $global_event_id="";
 							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
 								<label>Pickup Offered ?</label>
 							      <select onchange="pickOffer(this)" name="event_pikoffer" id="pikoffer">
-                        	<?php if ($resultevent['event_pikoffer']== -1) { ?>
+                        	<?php if ($resultevent['event_pikoffer']== "") { ?>
 
-									<option value="-1" disabled selected>Select One</option>
+									<option value="" disabled selected>Select One</option>
 								    <option value="yes">Yes</option>
 								    <option value="no">No</option>
 
 							<?php	}elseif ($resultevent['event_pikoffer']== "yes") {?>
 								
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" selected>Yes</option>
 								    <option value="no">No</option>
 
 							<?php }elseif ($resultevent['event_pikoffer']== "no") { ?>
 								     
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" selected>No</option>
 
@@ -475,21 +475,21 @@ $global_event_id="";
 							<div class="pickup-select common-wrapper comon_dropdown_botom_line">
 								<label>Drop off Offered ?</label>
 							      <select onchange="dropOffer(this)" name="event_drpoffer" id="drpoffer">
-                        	<?php if ($resultevent['event_drpoffer']== -1) { ?>
+                        	<?php if ($resultevent['event_drpoffer']== "") { ?>
 
-									<option value="-1" disabled selected>Select One</option>
+									<option value="" disabled selected>Select One</option>
 								    <option value="yes">Yes</option>
 								    <option value="no">No</option>
 
 							<?php	}elseif ($resultevent['event_drpoffer']== "yes") {?>
 								
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" selected>Yes</option>
 								    <option value="no">No</option>
 
 							<?php }elseif ($resultevent['event_drpoffer']== "no") { ?>
 								     
-								    <option value="-1" disabled >Select One</option>
+								    <option value="" disabled >Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" selected>No</option>
 
@@ -866,7 +866,7 @@ if ($('#undr5allow :selected').text() == "Yes") {
         $('.dropService').find('input').removeClass('invalid');
     }
 
-if ($('#selectentryfee :selected').text() == "Yes") {
+if ($('#selectprice :selected').text() == "Yes") {
 		$('.c-free').show();
 		$('.c-price').show();
 		$('#discount_wrap').show();

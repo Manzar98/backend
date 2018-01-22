@@ -1,6 +1,6 @@
 
 $("#pro-sub-btn").click(function(){
-   $("#pro-sub-btn").hide();
+   // $("#pro-sub-btn").hide();
    var validator= $("#hotel-form").validate({
 
   
@@ -156,9 +156,9 @@ $("#pro-sub-btn_hotel").click(function(){
                              url:"../hotels/hotel-post.php",
                              data: $("form").serialize(),
 
-                             success:function(data) {
+                             success:function(res) {
 
-
+                            var data =JSON.parse(res);
                              console.log(data);
 
                              if (data=='sucess') {
@@ -185,14 +185,19 @@ $("#pro-sub-btn_hotel").click(function(){
 
                              }else{
 
+                                var responseArray = "";
+                                $.each(data.message.split(','),function(k,val){
+                                      responseArray += "<li style='color:red;'>"+val+"</li>";
+                                })
+                                   $('#loader').modal('close');
                                swal({
                                        title: "Error in insertion",
-                    text: "Record can not be inserted.",
+                    text: "<ul>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
                       closeOnConfirm: true,
-                      html: false
+                      html: true
                       }, function(){
                       // window.location = "../rooms/room_list.php";
                     });

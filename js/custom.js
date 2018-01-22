@@ -79,12 +79,18 @@ $(function() {
             // changeMonth: false,
             minDate: 0,
              onSelect: function(selected) {
-              // debugger;
-           $("#to").datepicker("option","minDate", selected)
-           debugger;
+              // / debugger;
+           $("#to").datepicker("option","minDate", selected);
+           
+            $('#to').prop('required',true);
+          
+          
+           
+
+           // debugger;
            if($("#from").parents('.def-show-date').hasClass('editroom')){
                 if($("#to").val() && $('#from').val() && !$('#from').parents('.collapsible-body').find('#date_id').val()){
-                 alert('Time to send ajax call for insertion')
+                 // alert('Time to send ajax call for insertion')
                  $('#ajaxbtn').trigger('click');
                   
 
@@ -101,7 +107,7 @@ $(function() {
 
                var from = to.datepicker("option", "maxDate", getDate(this));
                console.log($(this).val());
-
+               $('#to').prop('required',false);
              
           }),
         to = $(".to").datepicker({
@@ -112,11 +118,16 @@ $(function() {
            onSelect: function(selected,element) {
             // debugger;
             console.log(element);
-            $("#from").datepicker("option","maxDate", selected)
-            debugger;
+            $("#from").datepicker("option","maxDate", selected);
+            
+              $('#from').prop('required',true);
+            
+
+             
+            // debugger;
             if($("#to").parents('.def-show-date').hasClass('editroom')){
                 if($("#to").val() && $('#from').val() && !$('#from').parents('.collapsible-body').find('#date_id').val()){
-                 alert('Time to send ajax call for insertion')
+                 // alert('Time to send ajax call for insertion')
 
 
                    
@@ -132,7 +143,8 @@ $(function() {
 
                 }
             }
-         }
+            }
+         // }
 
            
         })
@@ -141,8 +153,9 @@ $(function() {
              var to =from.datepicker("option", "maxDate", getDate(this));
                 // console.log(Object.values(to));
               // alert('2.trigger')
+              $('#from').prop('required',false);
                manzar=$(this).val();
-                alert($(this).val())
+                // alert($(this).val())
           });
 
     function getDate(element) {
@@ -203,13 +216,14 @@ function gen_dates_input(event,editFlag) {//
                   // minDate: manzar, 
 
          onSelect: function(selected) {
-           debugger;
-           $("#"+to_id).datepicker("option","minDate", selected)
+           // debugger;
+           $("#"+to_id).datepicker("option","minDate", selected);
+           $('#'+to_id).prop('required',true);
             if($("#"+from_id).parents('.def-show-date').hasClass('editroom')){
                 if($("#"+to_id).val() && $('#'+from_id).val() && !$('#'+from_id).parents('.collapsible-body').find('#date_id').val()){
 
                   $('#ajaxbtn').trigger('click');
-                  alert('Time to send ajax call for insertion')
+                  // alert('Time to send ajax call for insertion')
                 }
             }
 
@@ -217,19 +231,25 @@ function gen_dates_input(event,editFlag) {//
           
           }
  
- });
+ }).on("change", function() {
+             
+               $('#'+to_id).prop('required',false);
+
+              
+          });
 
   to =$( ".to" ).datepicker({
             // minDate: manzar,
 
             onSelect: function(selected) {
              
-            $("#"+from_id).datepicker("option","maxDate", selected)
+            $("#"+from_id).datepicker("option","maxDate", selected);
+            $('#'+from_id).prop('required',true);
             if($("#"+to_id).parents('.def-show-date').hasClass('editroom')){
 
                 if($("#"+to_id).val() && $('#'+from_id).val() && !$('#'+from_id).parents('.collapsible-body').find('#date_id').val() ){
-                  alert('Time to send ajax call for insertion')
-                   debugger;
+                  // alert('Time to send ajax call for insertion')
+                   // debugger;
                   $('#ajaxbtn').trigger('click');
 
 
@@ -243,6 +263,7 @@ function gen_dates_input(event,editFlag) {//
              var to =from.datepicker("option", "minDate", getDate(this));
               
                manzar=$(this).val();
+               $('#'+from_id).prop('required',false);
 
               
           });
@@ -263,35 +284,6 @@ function gen_dates_input(event,editFlag) {//
     event.stopPropagation();
 }
 
-/*===================Ajax call for date Insertion==========================*/
- 
-
-
-
-
-
-function insertDtate() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // body...
-}
-
-
-
-
-
 
 /*=============Date For Expire discount  ================*/
 
@@ -305,12 +297,16 @@ function chk_food(that) {
     if (that.value == "yes") {
 
         document.getElementById('menupackage-wrap').style.display = "block";
+        $('.pkg_name').prop('required',true);
+        $('.pkg_price').prop('required',true);
     }else{
          document.getElementById('menupackage-wrap').style.display = "none";
          $('#menupackage-wrap').find('input').val('');
          
           $('#menupackage-wrap').find('input').removeClass('valid');
-           $('#menupackage-wrap').find('input').removeClass('invalid');
+          $('#menupackage-wrap').find('input').removeClass('invalid');
+          $('.pkg_name').prop('required',false);
+          $('.pkg_price').prop('required',false);
     }
     // body...
 }
@@ -320,7 +316,15 @@ function pickOffer(that) {
     // body...
     if (that.value == "yes") {
         $(".pickService").show();
-          
+        $('.pickup_air').prop('required',true);
+        $('.pickup_bus').prop('required',true);
+        $('.pickup_specific').prop('required',true);
+          if ($('.pickup_air').val() != "" || $('.pickup_bus').val() != "" || $('.pickup_specific').val() != "") {
+             debugger;
+              $('.pickup_air').pro('required',false);
+             $('.pickup_bus').pro('required',false);
+            $('.pickup_specific').pro('required',false);
+           }
          
 
     }else{
@@ -417,7 +421,7 @@ function gen_discount_input(event) {
 
   
     var new_discount=document.createElement('div');
-    new_discount.innerHTML='<div class="row newLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique"></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate"></div></div></div></div>';
+    new_discount.innerHTML='<div class="row newDiscountLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique"></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate"></div></div></div></div>';
     dis_div.appendChild(new_discount.firstChild);
 
 
@@ -920,11 +924,12 @@ $('.chips-package').on('chip.add', function(e, chip){
  $('#filled-in-aricon').click(function () {
   
   if($(".with_aricon input:checkbox:checked").length > 0){
-// debugger;
+ debugger;
   $('.with_ari').show();
-
+  $(".airconChrges").prop('required',true);
   }else{
     $('.with_ari').hide();
+    $(".airconChrges").prop('required',false);
   }
  })
 
@@ -934,9 +939,11 @@ $('.chips-package').on('chip.add', function(e, chip){
   if($(".with_generator input:checkbox:checked").length > 0){
 // debugger;
   $('.with_gent').show();
+  $(".genchrges").prop('required',true);
 
   }else{
     $('.with_gent').hide();
+    $(".genchrges").prop('required',true);
   }
  })
 
@@ -992,11 +999,21 @@ function hall_alone(that) {
   if(that.value=="yes"){
     $('#hall_alone').show();
     $('#show_hotelName').hide();
+    $('.ind_address').prop('required',true);
+    $('.ind_city').prop('required',true);
+    $('.ind_province').prop('required',true);
+    $('.ind_phone').prop('required',true);
+    $('.ind_email').prop('required',true);
 
   }else{
 
     $('#hall_alone').hide();
     $('#show_hotelName').show();
+    $('.ind_address').prop('required',false);
+    $('.ind_city').prop('required',false);
+    $('.ind_province').prop('required',false);
+    $('.ind_phone').prop('required',false);
+    $('.ind_email').prop('required',false);
   }
   // body...
 }
@@ -1051,3 +1068,16 @@ var tr=table.getElementsByTagName("tr");
  $('#departureTime').pickatime();
 
 $('#arrivalTime').pickatime();
+
+/*=================================*/
+
+ // if ($('.offer_expire').val()) {
+ //   debugger;
+ //   $('.offer_discount').prop('required',true);
+ // }else if ($('.offer_discount').val()) {
+ //   $('.offer_expire').prop('required',true);
+ // }else{
+ //  debugger;
+ //     $('.offer_discount').prop('required',false);
+ //     $('.offer_expire').prop('required',false);
+ // }

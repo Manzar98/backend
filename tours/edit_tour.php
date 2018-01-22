@@ -489,7 +489,7 @@ $global_tour_id="";
 
 							<?php }else{ ?>
 								     
-								    <option value="-1" disabled selected>Select One</option>
+								    <option value="" disabled selected>Select One</option>
 								    <option value="yes" >Yes</option>
 								    <option value="no" >No</option>
 
@@ -564,7 +564,7 @@ $global_tour_id="";
 
 						}else{ ?>
 
-						<div class="row newLI">
+						<div class="row newDiscountLI">
 								<div class="col-md-6">
 									<label>Number of People</label>
                                   <div class="input-field ">

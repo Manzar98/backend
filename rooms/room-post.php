@@ -5,220 +5,264 @@ include '../common-sql.php';
  // print_r($_POST);
 
 $is_check=true;
-
+$responseArray=[];
 
 if (empty($_POST['room_name'])) {
+
 	$is_check=false;
-	echo "Room Name is required";
+	array_push($responseArray,"Room name is required");
+
 }else{
 
 	$name= $_POST['room_name'];
 }
+
 if (empty($_POST['room_nosroom'])) {
+
 	$is_check=false;
-	echo "Number of Rooms is required";
+	array_push($responseArray,"Number of rooms field is required");
+
 }elseif (!is_numeric($_POST['room_nosroom'])) {
 
 	$is_check=false;
-	echo "Number of Rooms accept only numeric";
+	array_push($responseArray,"Number of rooms field accept only numeric");
+
 }
 else{
 
 	$nos= $_POST['room_nosroom'];
 }
+
 if (empty($_POST['room_service'])) {
+
 	$is_check=false;
-	echo "Room Service is required";
+	array_push($responseArray,"Room service field is required");
+
 }else{
 
 	$service=$_POST['room_service'];
 }
+
 if (empty($_POST['room_maxadult'])) {
+
 	$is_check=false;
-	echo "Maximum adults is required";
+	array_push($responseArray,"Maximum adults field is required");
+
 }elseif (!is_numeric($_POST['room_maxadult'])) {
 
 	$is_check=false;
-	echo "Maximum adults accept only numeric";
+	array_push($responseArray,"Maximum adults field accept only numeric");
+
 }else{
 
 	$maxadult=$_POST['room_maxadult'];
 }
+
 if (empty($_POST['room_matadult'])) {
+
 	$is_check=false;
-	echo "Extra mattress charges for adults is required";
+	array_push($responseArray,"Extra mattress charges for adults field is required");
 
 }elseif (!is_numeric($_POST['room_matadult'])) {
 
 	$is_check=false;
-	echo "Extra mattress charges for adults accept only numeric";
+	array_push($responseArray,"Extra mattress charges for adults field accept only numeric");
+
 }else{
 
 	$matadult=$_POST['room_matadult'];
 }
 
 if (empty($_POST['room_maxchild'])) {
+
 	$is_check=false;
-	echo "Maximum children is required";
+	array_push($responseArray,"Maximum children field is required");
+
 }elseif (!is_numeric($_POST['room_maxchild'])) {
 
 	$is_check=false;
-	echo "Maximum children accept only numeric";
+	array_push($responseArray,"Maximum children field accept only numeric");
+
 }else{
 
 	$maxchild=$_POST['room_maxchild'];
 }
+
 if (empty($_POST['room_matchild'])) {
+
 	$is_check=false;
-	echo "Extra mattress charges for Children is required";
+	array_push($responseArray,"Extra mattress charges for children field is required");
+
 }elseif (!is_numeric($_POST['room_matchild'])) {
 
 	$is_check=false;
-	echo "Extra mattress charges for Children accept only numeric";
+	array_push($responseArray,"Extra mattress charges for children field accept only numeric");
+
 }else{
 
 	$matchild=$_POST['room_matchild'];
 }
+
 if (empty($_POST['room_perni8'])) {
+
 	$is_check=false;
-	echo "Room charges  is required";
+	array_push($responseArray,"Room charges field is required");
+
 }elseif (!is_numeric($_POST['room_perni8'])) {
 
 	$is_check=false;
-	echo "Room charges accept only numeric";
+	array_push($responseArray,"Room charges field accept only numeric");
+
 }else{
 
 	$ni8=$_POST['room_perni8'];
-
 }
- if (empty($_POST['room_descrip'])) {
+
+if (empty($_POST['room_descrip'])) {
+
  	$is_check=false;
- 	echo "Room Description is required";
- }else{
+ 	array_push($responseArray,"Room description field is required");
+
+}else{
 
 	$descrip=$_POST['room_descrip'];
-
  }
+
 if (empty($_POST['room_other'])) {
+
 	$is_check=false;
-	echo "Amenities is required";
+	array_push($responseArray,"Amenities field is required");
+
 }else{
 
 	$other=$_POST['room_other'];
-
 }
 
-
-	$img=$_POST['common_image'];
-    // print_r(explode(",", $img)) ;
-    $imgarray= explode(",",$img);
-
-
-
-	$provideo=$_POST['common_video'];
-   
-
 if (empty($_POST['hotel_name'])) {
+
 	$is_check=false;
-	echo "Select hotel is required";
+	array_push($responseArray,"Select hotel is required");
+
 }else{
 
-	$hotelName=$_POST['hotel_name'];
-   
+	$hotelName=$_POST['hotel_name'];  
 }
 
 
 // foreach($_POST['book_fromdate'] as $bokFROM) { 
-	
-//                  
-// 	if (!empty($bokFROM)) {
+	                 
+//  	if (!empty($bokFROM)) {
+          
+//           $datefrom = date_create($_POST['book_fromdate']);
+// 	      $resultfrom = date_format($datefrom,"m/d/Y");
+// 		  if ($resultfrom) {
 
-// 		$from=$_POST['book_fromdate'];
-// 	}else{
-// 		$is_check=false;
-// 		echo "From Date field is required";
-//                   	// echo "array is empty";
-// 	}
+			     $from=$_POST['book_fromdate'];
+
+// 			}else{
+
+// 				 $is_check=false;
+// 				 array_push($responseArray,"From date field is invalid");
+// 			}
+	
+//  	}else{
+
+//  		$from=null;
+//  	}
 // }
 
- foreach($_POST['book_todate'] as $bokTO) { 
-	
-                  
- 	// if (!empty($bokTO)) {
 
- 	// 	$to=$_POST['book_todate'];
- 	// }else{
- 	// 	$is_check=false;
- 	// 	echo "To Date field is required";
-  //                  	// echo "array is empty";
- 	// }
- }
+// foreach($_POST['book_todate'] as $bokTO) { 
+	             
+//  	 if (!empty($bokTO)) {
 
-// echo  "From :".count($_POST['book_fromdate']);
-// echo  "To :".count($_POST['book_todate']);
-if (count((array) $_POST['book_fromdate'] ) == 0 && count((array) $_POST['book_todate']) > 1) {
-     $is_check=false;
- 	 echo "Both TO and FROM dates is required";
-     
-}elseif (count((array) $_POST['book_fromdate'] ) > 1 && count((array) $_POST['book_todate']) == 0) {
-	  $is_check=false;
- 	 echo "Both TO and FROM dates is required";
-	
-}else{
-      $from=$_POST['book_fromdate'];
-       $to=$_POST['book_todate'];
-	  
-}
+//  	 	   $dateto = date_create($_POST['book_todate']);
+// 	       $resultto = date_format($dateto,"m/d/Y");
+// 		  if ($resultto) {
 
-// if (empty($_POST['book_fromdate']) && empty($_POST['book_todate'])) {
-    
-//    
-	
-// }else{
+			    $to=$_POST['book_todate'];
 
-// 	  
-// }  
+// 			}else{
 
+// 				 $is_check=false;
+// 				 array_push($responseArray,"To date field is invalid");
+
+// 			}
+		
+//  	 }else{
+
+//  	 	$to=null;
+//  	 }
+// }
 
 if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
+
 	$is_check= false;
-	echo"Offer discount accept only numeric";
+	array_push($responseArray,"Offer discount field accept only numeric");
+
 }elseif (!empty($_POST['room_offerdiscount']) && empty($_POST['room_expireoffer'])) {
+
 	$is_check= false;
-	echo"Expire offer date field is required";
+	array_push($responseArray,"Expire offer date field is required");
+
 }
 elseif (!empty($_POST['room_offerdiscount']) && is_numeric($_POST['room_offerdiscount'])) {
+
 	$discuntofer=$_POST['room_offerdiscount'];
+
 }else{
 
 	$discuntofer=null;
 }
 
-if (!empty($_POST['room_expireoffer']) && empty($_POST['room_offerdiscount'])) {
-	$is_check=false;
-	echo "Offer discount field is required";
+if (!empty($_POST['room_expireoffer'])) {
+	# code...
 
+  if (!empty($_POST['room_expireoffer']) && empty($_POST['room_offerdiscount'])) {
+
+  	$is_check=false;
+  	array_push($responseArray,"Offer discount field is required");
+
+  }else{
+
+      $date = date_create($_POST['room_expireoffer']);
+ 	  $result = date_format($date,"m/d/Y");
+ 		if ($result) {
+
+ 			$discountexpire=$result;
+
+  		}else{
+
+  			 $is_check=false;
+ 			 array_push($responseArray,"Expire offer field is invalid");
+ 		}
+	
+  }
 }else{
-	$discountexpire=$_POST['room_expireoffer'];
+	$discountexpire=null;
 }
-// if (isset($_POST['room_expireoffer'])) {
-	
-// list($y, $m, $d) = explode('/', $_POST['room_expireoffer']);
-//   error_reporting(E_ALL ^ E_NOTICE);
-// if(checkdate($m, $d, $y)){
-//   $is_check=false;
-//   echo "Expire offer date is invalid";
-// }else{
-
-	
-// }
-
-// }
 
 
+$discountexpire=$_POST['room_expireoffer'];
+$img=$_POST['common_image'];
+$imgarray= explode(",",$img);
+$provideo=$_POST['common_video'];
 $formtype='room';
 $user_id= 2;
 $hotelid=31;
+
+$errorMsgs=implode(",",$responseArray);
+
+$newErrorMsgArr=array(
+    "status"=> "error",
+    "message"=> $errorMsgs
+);
+
+$newSuccessMsgArr=array(
+    "status"=> "success"
+    
+);
+
 
 
 if ($is_check==true) {
@@ -272,11 +316,12 @@ if (isset($_POST['common_video'])) {
  }
 
 
-  echo "sucess";
+  echo json_encode($newSuccessMsgArr);
 
 }else{
-	echo "you have an error";
-	return false;
+	
+	echo json_encode($newErrorMsgArr);
+    return false;
 }
 
 

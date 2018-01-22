@@ -1,5 +1,5 @@
-$("#pro-sub-btn").click(function(){
-  $("#pro-sub-btn").hide();
+$("#pro-sub-btn").click(function(event){
+  // $("#pro-sub-btn").hide();
   
 var validator= $("#banquet-form").validate({
 
@@ -34,14 +34,16 @@ if (validator.form()== false) {
 
        //alert("Finished animating");
     });
-      $("#pro-sub-btn").show();
+      // $("#pro-sub-btn").show();
 
    }else{
+    $('#loader').modal({dismissible: false});
+    $('#loader').modal('open');
         
       if ($('.newMenuLI input').length > 0) {
         // alert('manzar');
         insertMultiInput();
-
+        // debugger;
       }else{
       
           updateBanquet();
@@ -50,7 +52,8 @@ if (validator.form()== false) {
     
   
 }
-
+event.preventDefault();
+event.stopPropagation();
 })
 
 
@@ -59,7 +62,7 @@ if (validator.form()== false) {
 
 $("#pro-sub-btn_banquet").click(function(){
 
-    $("#pro-sub-btn_banquet").hide();
+    // $("#pro-sub-btn_banquet").hide();
   
 var validator= $("#banquet-form").validate({
 
@@ -94,22 +97,23 @@ if (validator.form()== false) {
 
        //alert("Finished animating");
     });
-         $("#pro-sub-btn_banquet").show();
+         // $("#pro-sub-btn_banquet").show();
    }else{
 
+$('#loader').modal({dismissible: false});
+$('#loader').modal('open');
      tinyMCE.triggerSave();
 $.ajax({
                              type:"POST",
                              url:"../banquets/banquet-post.php",
                              data: $("form").serialize(),
-                             success:function(data) {
+                             success:function(res) {
 
-       
+                            var data =JSON.parse(res);
                              console.log(data);
 
-                             if (data=='sucess') {
-                              $('#loader').modal({dismissible: false});
-                              $('#loader').modal('open');
+                             if (data.status=='success') {
+                              
                                $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
@@ -130,14 +134,19 @@ $.ajax({
 
                              }else{
 
+                                var responseArray = "";
+                                $.each(data.message.split(','),function(k,val){
+                                      responseArray += "<li style='color:red;'>"+val+"</li>";
+                                })
+                                 $('#loader').modal('close');
                                swal({
                                        title: "Error in insertion",
-                    text: "Record can not be inserted.",
+                    text: "<ul>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
                       closeOnConfirm: true,
-                      html: false
+                      html: true
                       }, function(){
                       // window.location = "../rooms/room_list.php";
                     });
@@ -159,9 +168,6 @@ $.ajax({
 })
 
 
-
-
-
 function updateBanquet() {
  
     tinyMCE.triggerSave();
@@ -174,10 +180,7 @@ function updateBanquet() {
                              console.log(data);
                           
                              if (data=='sucess') {
-                              
-                              $('#loader').modal({dismissible: false});
-                              $('#loader').modal('open');
-
+                       
                                 $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
@@ -209,27 +212,22 @@ function updateBanquet() {
                     });
 
                              }
-
-                            
-                           
-                            }
+       
+                    }
                           })
 }
 
 
 function insertMultiInput() {
 
-  
-
-
            $.ajax({
                               type:"POST",
-                              url:"../banquets/insert_banquet.php?act=common_menupackages",
+                              url:"../insert_menupkg.php?column_idName=banquet_id&type=banquet&id="+$('input[name="banquet_id"]').val(),
                               data: $('.newMenuLI input').serialize(),
                               success:function(data) {
-                var response = JSON.parse(data);
+                              var response = JSON.parse(data);
                               console.log(response);
-                              if(response.message == "success"){
+                              if(response.status == "success"){
                                 
                                 $('.newMenuLI').removeClass('newMenuLI');
                                 updateBanquet();
@@ -239,5 +237,4 @@ function insertMultiInput() {
 
                     })
    
-  
 }

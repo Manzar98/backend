@@ -99,7 +99,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
          <div class=" col-md-6" >
           <div class="with_ari" style="display: none;">
            <label >Charges</label>
-           <input type="number" name="banquet_aricon" class="input-field validate " value="<?php echo $resultbnq['banquet_aricon']; ?>"> 
+           <input type="number" name="banquet_aricon" class="input-field validate airconChrges" value="<?php echo $resultbnq['banquet_aricon']; ?>"> 
          </div>
        </div>
 
@@ -127,7 +127,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
      <div class="col-md-6">
       <div class="with_gent" style="display: none;">
        <label>Charges</label>
-       <input type="number" name="banquet_generator" class="input-field validate " value="<?php echo $resultbnq['banquet_generator']; ?>">
+       <input type="number" name="banquet_generator" class="input-field validate genchrges" value="<?php echo $resultbnq['banquet_generator']; ?>">
      </div>
    </div>
 
@@ -139,21 +139,21 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
  <label class="col s12">Serve Food ?</label>
  <select onchange="chk_food(this)"  class="" name="banquet_serve" id="bnqFood">
-         <?php if ($resultbnq['banquet_serve']== -1) { ?>
+         <?php if ($resultbnq['banquet_serve']== "") { ?>
 
- 		       <option value="-1" selected="" disabled="">Select One</option>
+ 		       <option value="" selected="" disabled="">Select One</option>
 			   <option value="yes">Yes</option>
 			   <option value="no">No</option>
 
  <?php	}elseif ($resultbnq['banquet_serve']== "yes") {?>
 
- 	           <option value="-1">Select One</option>
+ 	           <option value="">Select One</option>
 			   <option value="yes" selected="">Yes</option>
 			   <option value="no">No</option>
 
  <?php }elseif ($resultbnq['banquet_serve']== "no") {?>
 
- 	           <option value="-1">Select One</option>
+ 	           <option value="">Select One</option>
 			   <option value="yes">Yes</option>
 			   <option value="no" selected="">No</option>
  <?php }  ?>
@@ -186,11 +186,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
       
      <div class="col-md-6">
        <label>Package Name</label>
-       <input type="text"  class="input-field validate" name="foodpkg_name[]" value="<?php echo $resultbnqMenu['foodpkg_name'] ?>">
+       <input type="text"  class="input-field validate pkg_name" name="foodpkg_name[]" value="<?php echo $resultbnqMenu['foodpkg_name'] ?>">
      </div>
       <div class="col-md-6">
      <label>Package Price</label>
-     <input type="number"  class="input-field validate" name="foodpkg_price[]" value="<?php echo $resultbnqMenu['foodpkg_price'] ?>">
+     <input type="number"  class="input-field validate pkg_price" name="foodpkg_price[]" value="<?php echo $resultbnqMenu['foodpkg_price'] ?>">
    </div> 
    </div>
 
@@ -218,11 +218,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
      <div class="row">
      <div class="col-md-6">
        <label>Package Name</label>
-       <input type="text" value="" class="input-field validate pkgname" name="foodpkg_name[]">
+       <input type="text" value="" class="input-field validate pkgname pkg_name" name="foodpkg_name[]">
      </div>
      <div class="col-md-6">
      <label>Package Price</label>
-     <input type="number" value="" class="input-field validate pkgprice" name="foodpkg_price[]">
+     <input type="number" value="" class="input-field validate pkgprice pkg_price" name="foodpkg_price[]">
    </div> 
    </div>
 
@@ -258,25 +258,39 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <div class="col-md-6 common-wrapper comon_dropdown_botom_line" id="gathr_type">
   <label> Gathering Type <strong>?</strong></label>
   <select name="banquet_gathering">
-    <option value="-1">Select One</option>
-    <option value="mixed">Mixed</option>
-    <option value="separate">Separate</option>
+    <?php if ($resultbnq['banquet_gathering']=="mixed")  {?>
+
+          <option value="" disabled="" >Select One</option>
+          <option value="mixed" selected="">Mixed</option>
+          <option value="separate">Separate</option>
+   <?php  }elseif ($resultbnq['banquet_gathering']=="separate") {?>
+
+          <option value="" disabled="" >Select One</option>
+          <option value="mixed">Mixed</option>
+          <option value="separate" selected="">Separate</option>
+  <?php  }else{ ?>
+
+          <option value="" disabled="" selected="">Select One</option>
+          <option value="mixed">Mixed</option>
+          <option value="separate">Separate</option>
+ <?php }  ?>
+    
   </select>
 </div>
 <div class="col-md-6">
   <label>Additional Cost</label>
-  <input type="number" name="banquet_adcost" class="input-field validate" style="padding-top: 15px;" value="<?php echo $resultbnq['banquet_adcost']; ?>">
+  <input type="number" name="banquet_adcost" class="input-field validate" style="padding-top: 15px;" value="<?php echo $resultbnq['banquet_adcost']; ?>" required="">
 </div>
 </div>
 
 <div class="row">
   <div class="col-md-6">
    <label>Offer Discount (%)</label>
-   <input type="number" name="banquet_offerdiscount" class="input-field validate" value="<?php echo $resultbnq['banquet_offerdiscount']; ?>">
+   <input type="number" name="banquet_offerdiscount" class="input-field validate offer_discount" value="<?php echo $resultbnq['banquet_offerdiscount']; ?>">
  </div>
  <div class="col-md-6">
    <label>Expires on</label>
-   <input type="text" id="expireDate" class="input-field from" name="banquet_expireoffer" value="<?php echo $resultbnq['banquet_expireoffer']; ?>">
+   <input type="text" id="expireDate" class="input-field offer_expire" name="banquet_expireoffer" value="<?php echo $resultbnq['banquet_expireoffer']; ?>">
  </div>
 </div> 
 
@@ -405,19 +419,19 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
  	<?php if ($resultbnq['banquet_independ']== "yes") { ?>
 
- 		         <option value="-1"  disabled="">Select One</option>
+ 		         <option value=""  disabled="">Select One</option>
 			       <option value="yes" selected="">Yes</option>
 			       <option value="no">No</option>
 
  <?php	}elseif ($resultbnq['banquet_independ']== "no") {?>
 
- 	           <option value="-1" disabled="">Select One</option>
+ 	           <option value="" disabled="">Select One</option>
 			       <option value="yes" >Yes</option>
 			       <option value="no" selected="">No</option>
 
  <?php }else {?>
 
- 	           <option value="-1" disabled="" selected="">Select One</option>
+ 	           <option value="" disabled="" selected="">Select One</option>
 			       <option value="yes">Yes</option>
 			       <option value="no" >No</option>
  <?php }  ?>
@@ -456,11 +470,11 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
             <div class="row common-top">
              <div class="col-md-6">
               <label>Address</label>
-              <input  type="text" name="banquet_address" class="input-field validate" value="<?php echo $resultbnq['banquet_address']; ?>" >
+              <input  type="text" name="banquet_address" class="input-field validate ind_address" value="<?php echo $resultbnq['banquet_address']; ?>" >
             </div>
             <div class="col-md-6">
               <label>City</label>
-              <input  type="text" name="banquet_city" class="input-field validate" value="<?php echo $resultbnq['banquet_city']; ?>" >
+              <input  type="text" name="banquet_city" class="input-field validate ind_city" value="<?php echo $resultbnq['banquet_city']; ?>" >
             </div>
 
           </div>
@@ -468,11 +482,11 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
           <div class="row">
            <div class="col-md-6">
             <label>Province</label>
-            <input  type="text" name="banquet_province" class="input-field validate" value="<?php echo $resultbnq['banquet_province']; ?>" >
+            <input  type="text" name="banquet_province" class="input-field validate ind_province" value="<?php echo $resultbnq['banquet_province']; ?>" >
           </div>
           <div class="col-md-6">
             <label>Phone Number</label>
-            <input  type="number" name="banquet_phone" class="input-field validate" value="<?php echo $resultbnq['banquet_phone']; ?>" >
+            <input  type="number" name="banquet_phone" class="input-field validate ind_phone" value="<?php echo $resultbnq['banquet_phone']; ?>" >
           </div>
 
         </div>
@@ -480,7 +494,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
         <div class="row">
          <div class="col-md-6">
           <label>Email Address</label>
-          <input  type="email" name="banquet_email" class="input-field validate" value="<?php echo $resultbnq['banquet_email']; ?>" >
+          <input  type="email" name="banquet_email" class="input-field validate ind_email" value="<?php echo $resultbnq['banquet_email']; ?>" >
         </div>
         <div class="col-md-6">
           <label>Facebook</label>

@@ -1,199 +1,203 @@
 <?php
 
-  include '../common-sql.php';
+include '../common-sql.php';
  // print_r($_POST);
 
 $is_check= true;
+$responseArray=[];
 
- if (empty($_POST['hotel_name'])) {
+if (empty($_POST['hotel_name'])) {
 
- 	$is_check= false;
- 	echo "Hotel Name is required";
- }else{
+  $is_check= false;
+  array_push($responseArray,"Hotel name is required");
+
+}else{
 
 	$name=$_POST['hotel_name'];
- }
- if (empty($_POST['hotel_addres1'])) {
-	 
- 	 $is_check=false;
- 	 echo "Address 1 is required";
- }else{
+}
+if (empty($_POST['hotel_addres1'])) {
+
+ $is_check=false;
+ array_push($responseArray,"Address line 1 field is required");
+
+}else{
 
 	$addres1=$_POST['hotel_addres1'];
 
- }
+}
 
 $addres2=$_POST['hotel_addres2'];
 
- if (empty($_POST['hotel_city'])) {
-	 
- 	 $is_check=false;
- 	 echo "City is required";
- }else{
+if (empty($_POST['hotel_city'])) {
+
+ $is_check=false;
+ array_push($responseArray,"City field is required");
+}else{
 	
 	$city=$_POST['hotel_city'];
 
- }
- if (empty($_POST['hotel_province'])) {
-	 
- 	 $is_check=false;
- 	 echo "Province is required";
- }else{
+}
+if (empty($_POST['hotel_province'])) {
+
+ $is_check=false;
+ array_push($responseArray,"Province field is required");
+}else{
 	
 	$province=$_POST['hotel_province'];
 
- }
+}
 
- if (empty($_POST['hotel_phone'])) {
-	 
- 	 $is_check=false;
- 	 echo "Phone Number is required";
- }elseif(!is_numeric($_POST['hotel_phone'])){
+if (empty($_POST['hotel_phone'])) {
 
- 	 $is_check=false;
- 	 echo "Phone Number accept only numeric";
+ $is_check=false;
+ array_push($responseArray,"Phone number field is required"); 	 
+}elseif(!is_numeric($_POST['hotel_phone'])){
 
- }else{
+ $is_check=false;
+ array_push($responseArray,"Phone number field accept only numeric");
+}else{
 	
 	$phone=$_POST['hotel_phone'];
 
- }
- if (!empty($_POST['hotel_fax']) && !is_numeric($_POST['hotel_fax'])) {
+}
+if (!empty($_POST['hotel_fax']) && !is_numeric($_POST['hotel_fax'])) {
 	
- 	$is_check=false;
- 	 echo "Fax Number accept only numeric";
-
- }elseif(!empty($_POST['hotel_fax']) && is_numeric($_POST['hotel_fax'])){
+  $is_check=false;
+  array_push($responseArray,"Fax number field accept only numeric");
+}elseif(!empty($_POST['hotel_fax']) && is_numeric($_POST['hotel_fax'])){
 
 	$fax=$_POST['hotel_fax'];
- }else{
+}else{
   $fax=null;
- }
+}
 
-  if (empty($_POST['hotel_email'])) {
-	 
-  	 $is_check=false;
-  	 echo "Email Address is required ";
-  }elseif(!filter_var($_POST['hotel_email'], FILTER_VALIDATE_EMAIL)){
+if (empty($_POST['hotel_email'])) {
 
+  $is_check=false;
+  array_push($responseArray,"Email address field is required");
+}elseif(!filter_var($_POST['hotel_email'], FILTER_VALIDATE_EMAIL)){
+
+  $is_check=false;
+  array_push($responseArray,"Email address field is invalid");
+}else{
+	
+  $email=$_POST['hotel_email'];
+
+}
+
+if (!empty($_POST['hotel_web'])) {
+  # code...
+
+  if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['hotel_web'])) {
     $is_check=false;
-     echo "Email Address is invalid ";
-
+    array_push($responseArray,"Website url is invalid");  
   }else{
+
+   $web=$_POST['hotel_web'];
+ }
+}
+
+
+if (empty($_POST['hotel_descrp'])) {
 	
- 	$email=$_POST['hotel_email'];
-
-  }
-
-if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$_POST['hotel_web'])) {
-      $is_check=false;
-      echo  "Invalid URL"; 
-    }else{
-
-       $web=$_POST['hotel_web'];
-    }
-
-
-   
-  if (empty($_POST['hotel_descrp'])) {
-	
-  	$is_check=false;
-  	echo "Description is required ";
-
-  }else{
+ $is_check=false;
+ array_push($responseArray,"Description field is required");
+}else{
 
 	$descrp=$_POST['hotel_descrp'];
 
-  }
- if (empty($_POST['hotel_other'])) {
+}
+if (empty($_POST['hotel_other'])) {
 	
- 	$is_check=false;
- 	echo "Amenities is required "."<br>";
-
- }else{
+  $is_check=false;
+  array_push($responseArray,"Amenities field is required");
+}else{
 
 	$other=$_POST['hotel_other'];
 
- }
- if (empty($_POST['hotel_policy'])) {
+}
+if (empty($_POST['hotel_policy'])) {
 
-  	$is_check=false;
- 	echo "Canellation Policy is required ";
+ $is_check=false;
+ array_push($responseArray,"Canellation policy field is required");
+}else{
+
+ $policy=$_POST['hotel_policy'];
+}
+
+if (empty($_POST['hotel_pickup'])) {
+
+  $is_check=false;
+  array_push($responseArray,"Hotel pickup field is required");
+}elseif ($_POST['hotel_pickup'] == 'yes') {
+
+  $pickup=$_POST['hotel_pickup'];
+  if (empty($_POST['hotel_isair']) && empty($_POST['hotel_isbus'])) {
+
+    $is_check=false;
+    array_push($responseArray,"Check atleast one from pickup offered");
   }else{
 
-	$policy=$_POST['hotel_policy'];
-  }
+    if (isset($_POST['hotel_isair'])) {
 
- if (empty($_POST['hotel_pickup'])) {
+      $is_air= $_POST['hotel_isair'];
+      if (empty($_POST['hotel_pikcharge'])) {
 
- 	$is_check=false;
- 	echo "Hotel Pickup is required ";
+        $is_check=false;
+        array_push($responseArray,"Airport charges field is required");
+      }elseif (!empty($_POST['hotel_pikcharge']) && !is_numeric($_POST['hotel_pikcharge'])) {
 
- }elseif ($_POST['hotel_pickup'] == 'yes') {
-    $pickup=$_POST['hotel_pickup'];
-    if (empty($_POST['hotel_isair']) && empty($_POST['hotel_isbus'])) {
-          $is_check=false;
-          echo "Check atleast one from pickup offered";
-    }else{
-          
-                  if (isset($_POST['hotel_isair'])) {
-          
-                          $is_air= $_POST['hotel_isair'];
-                          if (empty($_POST['hotel_pikcharge'])) {
+        $is_check=false;
+        array_push($responseArray,"Airport charges field accept only numeric");
+      }else{
 
-                               $is_check=false;
-                               echo "Airport charges field is required";
-                          }elseif (!empty($_POST['hotel_pikcharge']) && !is_numeric($_POST['hotel_pikcharge'])) {
-                              $is_check=false;
-                              echo "Airport charges field accept only numeric";
-                          }else{
-                               $charges=$_POST['hotel_pikcharge'];
-                          }
-                  }else{
+       $charges=$_POST['hotel_pikcharge'];
+     }
+   }else{
 
-                   $is_air= 'off';
-                  }
+     $is_air= 'off';
+   }
 
-                  if (isset($_POST['hotel_isbus'])) {
-                    
-                        $is_bus= $_POST['hotel_isbus'];
-                        if (empty($_POST['hotel_buscharge'])) {
-                           $is_check=false;
-                           echo "Bus charges field is required";
-                        }elseif (!empty($_POST['hotel_buscharge']) && !is_numeric($_POST['hotel_buscharge'])) {
-                          $is_check=false;
-                          echo "Bus charges field accept only numeric";
-                        }else{
-                            $buscharge=$_POST['hotel_buscharge'];
-                        }
+   if (isset($_POST['hotel_isbus'])) {
 
-                  }else{
-
-                   $is_bus= 'off';
-                  }
-       }
+    $is_bus= $_POST['hotel_isbus'];
+    if (empty($_POST['hotel_buscharge'])) {
+     $is_check=false;
+     array_push($responseArray,"Bus charges field is required");
+   }elseif (!empty($_POST['hotel_buscharge']) && !is_numeric($_POST['hotel_buscharge'])) {
+     $is_check=false;
+     array_push($responseArray,"Bus charges field accept only numeric");
+   }else{
+     $buscharge=$_POST['hotel_buscharge'];
+   }
 
  }else{
-	  $pickup=$_POST['hotel_pickup'];
-    $charges=null;
-    $buscharge=null;
-    $is_bus= 'off';
-    $is_air= 'off';
 
+   $is_bus= 'off';
  }
+}
 
-   $intimg=$_POST['common_image'];
-   $intarray= explode(",",$intimg);
-   $extimg=$_POST['common_extimage'];
+}else{
+ $pickup=$_POST['hotel_pickup'];
+ $charges=null;
+ $buscharge=null;
+ $is_bus= 'off';
+ $is_air= 'off';
+
+}
+
+$intimg=$_POST['common_image'];
+$intarray= explode(",",$intimg);
+$extimg=$_POST['common_extimage'];
 if (isset($extimg)) {
 
- 	 $extarray= explode(",",$extimg);
- }
+  $extarray= explode(",",$extimg);
+}
 if (!empty($_POST['hotel_nobag'])) {
 
-    $nobag=$_POST['hotel_nobag'];
+  $nobag=$_POST['hotel_nobag'];
 }else{
-    $nobag=null;
+  $nobag=null;
 }
 
 $provideo=$_POST['common_video'];
@@ -209,41 +213,55 @@ $yuturl=$_POST['hotel_yuturl'];
 
 if (empty($_POST['hotel_checkin'])) {
   $is_check=false;
-  echo "Checkin field is required";
+  array_push($responseArray,"Checkin field is required");
 }elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['hotel_checkin'])) {
-     $is_check=false;
-     echo "Checkin time format is invalid";
+ $is_check=false;
+ array_push($responseArray,"Checkin time format is invalid");
 }else{
-   $checkIn=$_POST['hotel_checkin'];
+ $checkIn=$_POST['hotel_checkin'];
 }
 
 
 if (empty($_POST['hotel_checkout'])) {
+
   $is_check=false;
-  echo "Checkout field is required";
+  array_push($responseArray,"Checkout field is required");
 
 }elseif (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['hotel_checkout'])) {
-     $is_check=false;
-     echo "Checkout time format is invalid";
+
+ $is_check=false;
+ array_push($responseArray,"Checkout time format is invalid");
+
+
 }
 else{
 
-  $checkOut=$_POST['hotel_checkout'];
+$checkOut=$_POST['hotel_checkout'];
+
 }
 $formtype='hotel';
 $user_id= 2;
 
 
- if ($is_check==true) {
+
+$errorMsgs=implode(",",$responseArray);
+
+$newErrorMsgArr=array(
+    "status"=> "error",
+    "message"=> $errorMsgs
+);
+
+
+if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_isair,hotel_isbus,hotel_buscharge,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other.'","'.$pickup.'","'.$is_air.'","'.$is_bus.'","'.$buscharge.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
+  $query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_isair,hotel_isbus,hotel_buscharge,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other.'","'.$pickup.'","'.$is_air.'","'.$is_bus.'","'.$buscharge.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
 
 
 
   // echo $query;
- 
- if ($conn->query($query)== TRUE) {
+
+  if ($conn->query($query)== TRUE) {
   	# code...
   	$hotel_id=$conn->insert_id;
 
@@ -254,13 +272,13 @@ $query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_c
   // echo $hotel_id;
 
 
- if (isset($_POST['common_video'])) {
+  if (isset($_POST['common_video'])) {
 
- 	$videoQuery='INSERT INTO common_imagevideo(hotel_id,common_video,img_video_type)VALUES("'.$hotel_id.'","'.$provideo.'","'.$formtype.'")';
+    $videoQuery='INSERT INTO common_imagevideo(hotel_id,common_video,img_video_type)VALUES("'.$hotel_id.'","'.$provideo.'","'.$formtype.'")';
 
- 	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
+    mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
  	# code...
- }
+  }
 
 
 
@@ -269,38 +287,39 @@ $query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_c
 
   for ($i=0; $i<count($intarray); $i++) {
 
-         
 
-	   $img_UpdateQuery='UPDATE common_imagevideo SET
- 	  hotel_id="'.$hotel_id.'",
-  	  img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$intarray[$i].'"' ;
 
-              mysqli_query($conn,$img_UpdateQuery) or die(mysqli_error($conn));
+    $img_UpdateQuery='UPDATE common_imagevideo SET
+    hotel_id="'.$hotel_id.'",
+    img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$intarray[$i].'"' ;
+
+    mysqli_query($conn,$img_UpdateQuery) or die(mysqli_error($conn));
 
 
   }
 
   for ($i=0; $i<count($extarray); $i++) {
 
-         
 
-	   $ext_UpdateQuery='UPDATE common_imagevideo SET
-  	  hotel_id="'.$hotel_id.'",
-  	  img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$extarray[$i].'"' ;
 
-              mysqli_query($conn,$ext_UpdateQuery) or die(mysqli_error($conn));
+    $ext_UpdateQuery='UPDATE common_imagevideo SET
+    hotel_id="'.$hotel_id.'",
+    img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$extarray[$i].'"' ;
+
+    mysqli_query($conn,$ext_UpdateQuery) or die(mysqli_error($conn));
 
 
   }
 
   echo "sucess";
- }else{
- 	return false;
- 	 echo "<br>"."Your Form Can't Submit Kindly Check again "."<br>";
- }
+}else{
+  echo json_encode($newErrorMsgArr);
+  return false;
+
+}
 
 
-	
+
 
 
 

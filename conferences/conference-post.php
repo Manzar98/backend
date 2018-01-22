@@ -5,44 +5,47 @@
   // print_r($_POST);
 
 $is_check= true;
-
+$responseArray=[];
 
 if (empty($_POST['conference_name'])) {
  
 	$is_check= false;
-	echo "Hall Name is Required"."<br>";
-	 
+	array_push($responseArray,"Hall name is required");
 
 }else{
 
-   $name     = $_POST['conference_name'];
-	
+   $name     = $_POST['conference_name'];	
 }
+
 if (empty($_POST['conference_space'])) {
 
 	$is_check= false;
-	echo "Capacity Of Hall is Required"."<br>";
-	# code...
+	array_push($responseArray,"Capacity of hall  is required");
+
 }elseif (!is_numeric($_POST['conference_space'])) {
+
 	$is_check=false;
-	echo "This Field accept only Numeric"."<br>";
+	array_push($responseArray,"Capacity of hall field accept only numeric");
+
 }else{
 
-	$space        = $_POST['conference_space'];
-	
+	$space        = $_POST['conference_space'];	
 }
 
 if (!empty($_POST['conference_charges']) && is_numeric($_POST['conference_charges']))
 {
 	
 	$charges= $_POST['conference_charges'];
+
 }elseif (!empty($_POST['conference_charges']) && !is_numeric($_POST['conference_charges'])) {
+
 	$is_check=false;
-	echo "Hall Charges accept Only Numeric";
+	array_push($responseArray,"Hall charges field accept only numeric");
+
 }else{
      
      $is_check=false;
-	echo "Hall Charges is required";
+     array_push($responseArray,"Hall charges field is required");
 }
 
 
@@ -50,49 +53,68 @@ if (!empty($_POST['conference_charges']) && is_numeric($_POST['conference_charge
 if (empty($_POST['conference_serve'])) {
 
 	 $is_check= false;
-	echo "Serve Food is Required"."<br>";
+	 array_push($responseArray,"Serve food field is required");
 	
+}else if ($_POST['conference_serve']=='yes') {
+
+	    $serve        = $_POST['conference_serve'];
+
+		foreach($_POST['foodpkg_name'] as $foodpkgname) { 
+			    
+			if (!empty($foodpkgname)) {
+
+				$pkgname     = $_POST['foodpkg_name'];
+
+			}else{
+
+				 $is_check=false;
+				 array_push($responseArray,"Package name field is required");
+			}
+		}
+
+
+	    foreach($_POST['foodpkg_price'] as $menupkgprice) { 
+		
+			if (!empty($menupkgprice) && !is_numeric($menupkgprice)) {
+
+				$is_check=false;
+				array_push($responseArray,"Menu package price field accept only numeric");
+		                  	
+			}elseif(is_numeric($menupkgprice)){
+
+				$pkgprice     = $_POST['foodpkg_price'];
+
+			}else{
+
+				$is_check=false;
+				array_push($responseArray,"Menu Package Price field is required");
+			}
+	    }
+
+	    foreach($_POST['foodpkg_item'] as $menupkgitems) { 
+
+			$Itemresult = explode(",", $menupkgitems);
+
+			foreach($Itemresult as $item) { 
+
+				if (!empty($item)) {
+					
+					$pgkitem     = $_POST['foodpkg_item'];
+					
+				}else{
+		            
+		            $is_check=false;
+		            array_push($responseArray,"Package item field is required");	
+				}
+			}
+	    }
+
 }else{
-
-    $serve	      = $_POST['conference_serve'];
-    
-
-}
-
-
-
-
-foreach($_POST['foodpkg_name'] as $foodpkgname) { 
 	
-                  // echo $menupkgprice."<br>";
-	if (!empty($foodpkgname)) {
-
-		$pkgname     = $_POST['foodpkg_name'];
-                  	# code...
-	}else{
-		$pkgname=null;
-
-                  	// echo "array is empty";
-	}
-}
-
-
-foreach($_POST['foodpkg_price'] as $menupkgprice) { 
-	
-	
-	if (!empty($menupkgprice) && !is_numeric($menupkgprice)) {
-
-		$is_check=false;
-		echo "Menu Package Price accept only Numeric"."<br>";
-                  	# code...
-	}elseif(is_numeric($menupkgprice)){
-
-		$pkgprice     = $_POST['foodpkg_price'];
-	}else{
-		$pkgprice=null;
-
-                  	// echo "array is empty";
-	}
+  $serve   = $_POST['conference_serve'];
+  $pkgname =null;
+  $pkgprice=null;
+  $pgkitem =null;
 }
 
 foreach($_POST['foodpkg_discount'] as $menupkgdiscount) { 
@@ -101,7 +123,7 @@ foreach($_POST['foodpkg_discount'] as $menupkgdiscount) {
 	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
 
 		$is_check=false;
-		echo "Menu Package Discount accept only Numeric"."<br>";
+		array_push($responseArray,"Menu package discount field accept only numeric");
                   	# code...
 	}elseif(is_numeric($menupkgdiscount)){
 
@@ -113,50 +135,32 @@ foreach($_POST['foodpkg_discount'] as $menupkgdiscount) {
 	}
 }
 
-foreach($_POST['foodpkg_item'] as $menupkgitems) { 
-	
-           // echo $menupkgitems;
-
-
-	$Itemresult = explode(",", $menupkgitems);
-
-
-	foreach($Itemresult as $item) { 
-
-		if (!empty($item)) {
-			
-			$pgkitem     = $_POST['foodpkg_item'];
-			
-		}else{
-
-			$pgkitem=null;
-
-			// echo "array is empty";
-		}
-	}
-
-}
 
 
 if (empty($_POST['conference_independ'])) {
+
 	$is_check=false;
-	echo "Hall independent field is required";
+	array_push($responseArray,"Hall independent field is required");
+
 }elseif ($_POST['conference_independ']=='yes') {
 
-   $con_independ=$_POST['conference_independ'];
-   $con_hotelName=null;
+      $con_independ=$_POST['conference_independ'];
+      $con_hotelName=null;
 
      if (empty($_POST['conference_address'])) {
+
      	$is_check=false;
-     	echo "Address field is required";
+     	array_push($responseArray,"Address field is required");
+
      }else{
 
      	$con_addres=$_POST['conference_address'];
      }
+
      if (empty($_POST['conference_city'])) {
 
      	$is_check=false;
-     	echo "City field is required";
+     	array_push($responseArray,"City field is required");
 
      }else{
 
@@ -166,29 +170,40 @@ if (empty($_POST['conference_independ'])) {
      if (empty($_POST['conference_province'])) {
 
      	$is_check=false;
-     	echo "Province field is required";
+     	array_push($responseArray,"Province field is required");
+
      }else{
 
      	 $con_province=$_POST['conference_province'];
      }
 
      if (empty($_POST['conference_phone'])) {
+
      	$is_check=false;
-     	echo "Phone number field is required";
+     	array_push($responseArray,"Phone number field is required");
+
      }elseif (!empty($_POST['conference_phone']) && !is_numeric($_POST['conference_phone'])) {
+
      	$is_check=false;
-     	echo "Phone number field accept only numeric";
+     	array_push($responseArray,"Phone number field accept only numeric");
+
      }else{
+
      	$con_phone    = $_POST['conference_phone'];
      }
 
      if (empty($_POST['conference_email'])) {
+
      	$is_check=false;
-     	echo "Email address field is required";
+     	array_push($responseArray,"Email address field is required");
+
      }elseif (!filter_var($_POST['conference_email'], FILTER_VALIDATE_EMAIL)) {
+
      	$is_check=false;
-     	echo "Email address field is invalid";
+     	array_push($responseArray,"Email address field is invalid");
+
      }else{
+
      	$con_email=$_POST['conference_email'];
      }
 
@@ -200,18 +215,17 @@ else{
 		$con_province=null;
 		$con_phone = null;
 		$con_email=null;
-    if (empty($_POST['hotel_name'])) {
-    	$is_check=false;
-    	echo "Name of hotel is required";
-    	
-    }else{
+        if (empty($_POST['hotel_name'])) {
 
-    	$con_hotelName=$_POST['hotel_name'];
-    }
+	    	$is_check=false;
+	    	array_push($responseArray,"Name of hotel is required");
+    	
+        }else{
+
+    		$con_hotelName=$_POST['hotel_name'];
+       }
 	
 }
-
-
 
 if (!empty($_POST['conference_fcbok'])) {
 	
@@ -237,10 +251,6 @@ if (!empty($_POST['conference_utube'])) {
 	$con_utube=null;
 }
 
-
-
-
-
 $img          = $_POST['common_image'];
 $imgarray= explode(",",$img);
 $provideo       = $_POST['common_video'];
@@ -248,44 +258,128 @@ $provideo       = $_POST['common_video'];
 
 
 if (empty($_POST['conference_other'])) {
+
 	$is_check=false;
-	echo "Amenities is required";
+	array_push($responseArray,"Amenities field is required");
+
 }else{
+
 	$other	      = $_POST['conference_other'];
 }
 
 
+// foreach($_POST['book_fromdate'] as $bokFROM) { 
+	
+                  
+//  	if (!empty($bokFROM)) {
+          
+//            $datefrom = date_create($_POST['book_fromdate']);
+// 	       $resultfrom = date_format($datefrom,"m/d/Y");
 
-$frmdate      = $_POST['book_fromdate'];
-$todate       = $_POST['book_todate'];
+// 		  if ($resultfrom) {
+
+			     $frmdate=$_POST['book_fromdate'];
+
+// 			}else{
+
+// 				 $is_check=false;
+// 				 array_push($responseArray,"From Date field is invalid");
+// 			}
+	
+//  	}else{
+
+//  		  $frmdate=null;
+//  	}
+// }
+
+
+// foreach($_POST['book_todate'] as $bokTO) { 
+	
+                  
+//    if (!empty($bokTO)) {
+
+//  	 	     $dateto = date_create($_POST['book_todate']);
+// 	         $resultto = date_format($dateto,"m/d/Y");
+// 			  if ($resultto) {
+
+				$todate=$_POST['book_todate'];
+
+// 				}else{
+
+// 					 $is_check=false;
+// 					 array_push($responseArray,"To Date field is invalid");
+// 				}
+	 	
+//  	}else{
+
+//  	 	  $todate=null;
+//  	 }
+// }
+
 
 if (!empty($_POST['conference_offerdiscount']) && !is_numeric($_POST['conference_offerdiscount'])) {
+
 	$is_check= false;
-	echo"Offer discount accept only numeric";
+	array_push($responseArray,"Offer discount accept only numeric");
+
 }elseif (!empty($_POST['conference_offerdiscount']) && empty($_POST['conference_expireoffer'])) {
+
 	$is_check= false;
-	echo"Expire offer date field is required";
+	array_push($responseArray,"Expire offer date field is required");
 }
 elseif (!empty($_POST['conference_offerdiscount']) && is_numeric($_POST['conference_offerdiscount'])) {
+
 	$discuntofer=$_POST['conference_offerdiscount'];
+
 }else{
 
 	$discuntofer=null;
 }
 
+if (!empty($_POST['conference_expireoffer'])) {
+	# code...
+
 if (!empty($_POST['conference_expireoffer']) && empty($_POST['conference_offerdiscount'])) {
+
 	$is_check=false;
-	echo "Offer discount field is required";
+	array_push($responseArray,"Offer discount field is required");
 
 }else{
-	$discountexpire=$_POST['conference_expireoffer'];
+	
+	    $date = date_create($_POST['conference_expireoffer']);
+	    $result = date_format($date,"m/d/Y");
+
+		if ($result) {
+
+			$discountexpire=$result;
+
+		}else{
+
+			 $is_check=false;
+			array_push($responseArray,"Expire offer field is invalid");
+		}
+}
+
+}else{
+
+	$discountexpire=null;
 }
 
 $userid       = 2;
 $formtype     = 'conference';
 $hotelid      = 31;
 
+$errorMsgs=implode(",",$responseArray);
 
+$newErrorMsgArr=array(
+    "status"=> "error",
+    "message"=> $errorMsgs
+);
+
+$newSuccessMsgArr=array(
+    "status"=> "success"
+    
+);
 
  
 if ($is_check==true) {
@@ -350,9 +444,13 @@ if (isset($_POST['common_video'])) {
 
 
  }
- echo "sucess";
-}else{
 
-	 return false;
+    echo json_encode($newSuccessMsgArr);
+  
+}
+else{
+	 echo json_encode($newErrorMsgArr);
+     return false;
+	
 }
 ?>

@@ -42,7 +42,7 @@
 							<div class="col-md-6 hotelFod common-wrapper comon_dropdown_botom_line">
 								<label>Food Included ?</label>
 								<select name="tour_foodinclude" onchange="selectFod(this)">
-									<option value="-1" selected="">Select One</option>
+									<option value="" selected="">Select One</option>
 									<option value="yes">Yes</option>
 									<option value="no">No</option>
 								</select>
@@ -317,14 +317,14 @@
 							<div class="col-md-6">
 								<label>Airport</label>
 								 <div class="input-field ">
-								   <input type="number" value="" name="tour_pikair" class="validate"> 
+								   <input type="number" value="" name="tour_pikair" class="validate pickup_air"> 
 							      </div>
 
 							</div>
 							<div class="col-md-6">
 								<label> Bus Terminal</label>
 								 <div class="input-field ">
-								   <input type="number" value="" name="tour_pikbus" class="validate"> 
+								   <input type="number" value="" name="tour_pikbus" class="validate pickup_bus"> 
 							      </div>
 								
 							</div>
@@ -335,7 +335,7 @@
 								
 								  <label>Specific Location</label>
 								 <div class="input-field ">
-								   <input type="number" value="" name="tour_pikspecific" class="validate"> 
+								   <input type="number" value="" name="tour_pikspecific" class="validate pickup_specific"> 
 							      </div>
 							</div>
 						</div>
@@ -360,7 +360,7 @@
 							<div class="col-md-6">
 								<label>Airport</label>
 								 <div class="input-field ">
-								   <input type="number" value="" name="tour_drpair" class="validate"> 
+								   <input type="number" value="" name="tour_drpair" class="validate dropoff_air"> 
 							      </div>
 								
 
@@ -368,7 +368,7 @@
 							<div class="col-md-6">
 								<label>Bus Terminal</label>
 								 <div class="input-field ">
-								   <input type="number" value="" name="tour_drpbus" class="validate"> 
+								   <input type="number" value="" name="tour_drpbus" class="validate dropoff_bus"> 
 							      </div>
 								 
 							</div>
@@ -378,7 +378,7 @@
 							<div class="col-md-6 dropService"  style="display: none;">
 								<label>Specific Location</label>
 								 <div class="input-field ">
-								   <input type="number" value="" name="tour_drpspecific" class="validate"> 
+								   <input type="number" value="" name="tour_drpspecific" class="validate dropoff_specific" > 
 							      </div>
 							</div>
 						</div>
@@ -412,7 +412,7 @@
 						<div >
 							<label>Destination Description</label>
 							<div class="input-field col s8">
-								<textarea class="materialize-textarea textarea-t" name="destination_descrp[]"></textarea> 
+								<textarea class="materialize-textarea" name="destination_descrp[]"></textarea> 
 							</div>
 						</div>
                         <div id="attraction-wrap">
@@ -534,7 +534,7 @@
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	 
-     // tinymce.init({ selector:'.textarea-t' });
+     tinymce.init({ selector:'.textarea-t' });
 
   
 
