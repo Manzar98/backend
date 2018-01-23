@@ -2,7 +2,7 @@
 
  include '../common-sql.php';
 
-// print_r($_POST);
+ // print_r($_POST);
 
 $is_check=true;
 $responseArray=[];
@@ -315,19 +315,19 @@ if (!empty($_POST['banquet_expireoffer'])) {
  }else{
     
      	# code...
-     
-           $dateExpire = date_create($_POST['banquet_expireoffer']);
- 	       $resultExpire = date_format($dateExpire,"m/d/Y");
+           // $dateExpire = date_create($_POST['banquet_expireoffer']);
+ 	             // $dateExpire = new DateTime($_POST['banquet_expireoffer']);
+ 	       // $resultExpire  =DateTime::createFromFormat("m/d/Y", $_POST['banquet_expireoffer']);
+          // $resultExpire  = date_format($dateExpire, 'm/d/Y');
+ 		 // if ($resultExpire) {
 
- 		 if ($resultExpire) {
+ 		 	$discountexpire=$_POST['banquet_expireoffer'];
 
- 		 	$discountexpire=$resultExpire;
+  	 	// }else{
 
-  	 	}else{
-
-  	 		 $is_check=false;
- 		 	 array_push($responseArray,"Expire offer field is invalid");
- 		 }
+  	 		 // $is_check=false;
+ 		 	 // array_push($responseArray,"Expire offer field is invalid");
+ 		 // }
 	
    }
 
@@ -457,6 +457,7 @@ if (!empty($_POST['banquet_utube'])) {
 $userid       = 2;
 $formtype     = 'banquet';
 $hotelid      = 31;
+$inactive= $_POST['banquet_inactive'];
 
 $errorMsgs=implode(",",$responseArray);
 
@@ -477,7 +478,7 @@ if ($is_check==true) {
 
 
 
- $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'")';
+ $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
 
 
 

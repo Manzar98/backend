@@ -154,7 +154,7 @@ if (empty($_POST['hotel_pickup'])) {
        $charges=$_POST['hotel_pikcharge'];
      }
    }else{
-
+    $charges=null;
      $is_air= 'off';
    }
 
@@ -172,7 +172,7 @@ if (empty($_POST['hotel_pickup'])) {
    }
 
  }else{
-
+   $buscharge=null;
    $is_bus= 'off';
  }
 }
@@ -241,6 +241,12 @@ $checkOut=$_POST['hotel_checkout'];
 }
 $formtype='hotel';
 $user_id= 2;
+if (isset($_POST['hotel_inactive'])) {
+  $inactive=$_POST['hotel_inactive'];
+}else{
+  $inactive="off";
+}
+
 
 
 
@@ -251,11 +257,15 @@ $newErrorMsgArr=array(
     "message"=> $errorMsgs
 );
 
+$newSuccessMsgArr=array(
+    "status"=> "success"
+    
+);
 
 if ($is_check==true) {
 	# code...
 
-  $query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_isair,hotel_isbus,hotel_buscharge,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other.'","'.$pickup.'","'.$is_air.'","'.$is_bus.'","'.$buscharge.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'")';
+  $query='INSERT INTO hotel(user_id,hotel_name,hotel_addres1,hotel_addres2,hotel_city,hotel_province,hotel_phone,hotel_fax,hotel_email,hotel_web,hotel_descrp,hotel_other,hotel_pickup,hotel_isair,hotel_isbus,hotel_buscharge,hotel_pikcharge,hotel_nobag,hotel_bagprice,hotel_policy,hotel_fburl,hotel_twurl,hotel_gourl,hotel_insurl,hotel_pinurl,hotel_yuturl,hotel_checkin,hotel_checkout,hotel_inactive)VALUES("'.$user_id.'","'.$name.'","'.$addres1.'","'.$addres2.'","'.$city.'","'.$province.'","'.$phone.'","'.$fax.'","'.$email.'","'.$web.'","'.$descrp.'","'.$other.'","'.$pickup.'","'.$is_air.'","'.$is_bus.'","'.$buscharge.'","'.$charges.'","'.$nobag.'","'.$bagprice.'","'.$policy.'","'.$fburl.'","'.$twurl.'","'.$gourl.'","'.$insurl.'","'.$pinurl.'","'.$yuturl.'","'.$checkIn.'","'.$checkOut.'","'.$inactive.'")';
 
 
 
@@ -311,7 +321,7 @@ if ($is_check==true) {
 
   }
 
-  echo "sucess";
+  echo json_encode($newSuccessMsgArr);
 }else{
   echo json_encode($newErrorMsgArr);
   return false;

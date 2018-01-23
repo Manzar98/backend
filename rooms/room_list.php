@@ -38,6 +38,15 @@
 							<h3><img src="images/icon/dbc5.png" alt=""/>My Rooms</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
+						<div class="row">
+							<div class="col s1"></div>
+							<div class="col s8  ">	
+								<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
+							</div>
+							<div class="">
+								<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
+							</div>
+						</div>
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
@@ -62,7 +71,13 @@
 									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>
 									<td class="text-center "><?php echo $result['room_nosroom'];   ?></td>
 									<td class="text-center"><?php echo $result['room_perni8'];   ?></td>
-									<td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
+									<?php if ($result['room_inactive']== "on") { ?>
+										    
+										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+									<?php }else{ ?>
+
+                                             <td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
+									<?php } ?>
 									<td  class="tdwrap">
 									<div class="buttonsWrap">
 										<div class="row">
@@ -91,7 +106,7 @@
 			
 			</div>
 
-
+<?php include '../footer.php'; ?>
 
 				</body>
 

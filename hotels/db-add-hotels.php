@@ -280,6 +280,15 @@
                          		
                          	</div>
                          </div> 
+                         <div class="row" >
+                         	
+						            <p class="pTAG">
+						             <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="hotel_inactive" />
+						             <label for="filled-in-inactive">Inactive</label>
+						            </p>
+						             
+         						</div>
+         						
 
 						<div>
 							<div class="input-field col s8">
@@ -440,8 +449,8 @@
     		document.getElementById('bag-inpt').style.display = "none";
     		document.getElementById("transport").style.display = "none";
     		$('#buschgr').hide();
-    		$('#filled-in-airport').removeAttr('required');
-    		 
+    		 $('#buschgr input').val('');
+    		$('#ifYes input').val('');
 
     		  
         }
@@ -501,6 +510,7 @@
     }else{
 
     	$('#ifYes').hide();
+    	$('#ifYes input').val('');
     }
 });
 
@@ -512,6 +522,7 @@
     }else{
 
     	$('#buschgr').hide();
+    	$('#buschgr input').val('');
     }
 });
 

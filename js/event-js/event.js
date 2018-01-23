@@ -108,7 +108,7 @@ $.ajax({
                             var data =JSON.parse(res);
                              console.log(data);
 
-                             if (data.status.trim()=='sucess') {
+                             if (data.status.trim()=='success') {
                               
                               
 
@@ -116,15 +116,15 @@ $.ajax({
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                       title: "Successfully Inserted",
-                    text: "Your Event record has been inserted.",
+                                       title: "Event successfully submitted for review!",
+                    text: "Thank you for your submission! You will be notified once your event submission has been approved!",
                     type: "success",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
                       closeOnConfirm: true,
                       html: false
                       }, function(){
-                       window.location = "../events/showsingle_eventrecord.php";
+                       window.location = "../events/event_list.php";
                     });
                               },3000)
 
@@ -134,12 +134,12 @@ $.ajax({
 
                                 var responseArray = "";
                                 $.each(data.message.split(','),function(k,val){
-                                      responseArray += "<li style='color:red;'>"+val+"</li>";
+                                      responseArray += "<li style='color:red;'><i class='fa fa-times' aria-hidden='true'></i>"+val+"</li>";
                                 })
                                 
                                $('#loader').modal('close');
                                swal({
-                                       title: "Error in insertion",
+                                       title: "Something went wrong!",
                     text: "<ul>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
@@ -183,8 +183,8 @@ $.ajax({
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                       title: "Successfully Updated",
-                    text: "Your Event record has been updated.",
+                                       title: "Event successfully updated for review!",
+                    text: "Thank you for your submission! You will be notified once your event updation has been approved!",
                     type: "success",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
@@ -198,8 +198,8 @@ $.ajax({
                              }else{
 
                                swal({
-                                       title: "Error in updation",
-                    text: "Record can not be updated.",
+                                       title: "Something went wrong!",
+                    text: "",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",

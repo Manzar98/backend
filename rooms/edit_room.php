@@ -127,7 +127,7 @@
 								<input type="number"  class="input-field validate" name="room_maxadult" required value="<?php echo $resultRoom['room_maxadult'] ;   ?>">  
 							</div>
 							<div class=" col-md-6">
-								<label>Extra mattress charges for adults</label>
+								<label class="common-bottom">Extra mattress charges for adults</label>
 								<input type="number"  class="input-field validate" name="room_matadult" required value="<?php echo $resultRoom['room_matadult'] ;   ?>">  
 							</div>
 						</div>   
@@ -138,7 +138,7 @@
 								<input type="number"  class="input-field validate" name="room_maxchild" required value="<?php echo $resultRoom['room_maxchild'] ;   ?>">  
 							</div>
 							<div class=" col-md-6">
-								<label>Extra mattress charges for Children</label>
+								<label class="common-bottom">Extra mattress charges for Children</label>
 								<input type="number"  class="input-field validate" name="room_matchild" required value="<?php echo $resultRoom['room_matchild'] ;   ?>">
 							</div>
 						</div> 						
@@ -276,6 +276,29 @@
 						<div  class=" ">
 							<a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
 						</div>
+                        
+                        <div class="row" >
+                         	
+						           <p class="pTAG">
+						            	<?php if ($resultRoom['room_inactive']=='on') { ?>
+
+						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="room_inactive" checked="" />
+						             <label for="filled-in-inactive">Inactive</label>
+						             
+						            <?php 	}else{ ?>
+
+						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="room_inactive" />
+						             <label for="filled-in-inactive">Inactive</label>
+						          <?php  }  ?>
+						             
+						            </p>
+						             
+         						</div>
+
+
+
+
+
 
                        <?php   
                        // print_r($resultRoom);
@@ -284,6 +307,8 @@
                         <div  class=" ">
 							<a class="waves-effect waves-light btn " id="ajaxbtn" >Ajax</a>
 						</div>
+
+
 
 						<div>
 							<div class="input-field col s8">

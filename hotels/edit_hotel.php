@@ -381,6 +381,24 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 		</div>
 	</div> 
 
+	<div class="row" >
+                         	
+						           <p class="pTAG">
+						            	<?php if ($hotelResult['hotel_inactive']=='on') { ?>
+
+						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="hotel_inactive" checked="" />
+						             <label for="filled-in-inactive">Inactive</label>
+						             
+						            <?php 	}else{ ?>
+
+						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="hotel_inactive" />
+						             <label for="filled-in-inactive">Inactive</label>
+						          <?php  }  ?>
+						             
+						            </p>
+						             
+         						</div>
+
 	<div>
 		<div class="input-field col s8">
 			<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
@@ -534,6 +552,9 @@ if (that.value == "yes") {
     		document.getElementById('bag-inpt').style.display = "none";
     		document.getElementById("transport").style.display = "none";
     		$('#buschgr').hide();
+    		$('#buschgr input').val('');
+    		$('#ifYes input').val('');
+    		
     		 
 
     		  
@@ -597,6 +618,7 @@ $('#filled-in-airport').click(function () {
     }else{
 
     	$('#ifYes').hide();
+    	$('#ifYes input').val('');
     }
 });
 
@@ -608,6 +630,7 @@ $('#filled-in-airport').click(function () {
     }else{
 
     	$('#buschgr').hide();
+    	$('#buschgr input').val('');
     }
 });
 
@@ -712,21 +735,24 @@ if ($('#pik_select :selected').text() == "Yes") {
     		  
         }
     
-    if ($('#fil_air input').prop('checked')==true){
+    if ($("#fil_air input:checkbox:checked").length > 0){
 
        $('#ifYes').show();
     }else{
 
     	$('#ifYes').hide();
+
     }
 
 
- if ($('#fil_bus input').prop('checked')==true) {
+ if ($("#fil_bus input:checkbox:checked").length > 0) {
 
         $('#buschgr').show();
+
  }else{
 
  	   $('#buschgr').hide();
+ 	   
  }
 
 

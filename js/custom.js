@@ -295,7 +295,7 @@ function gen_dates_input(event,editFlag) {//
 function chk_food(that) {
 
     if (that.value == "yes") {
-
+   debugger;
         document.getElementById('menupackage-wrap').style.display = "block";
         $('.pkg_name').prop('required',true);
         $('.pkg_price').prop('required',true);
@@ -316,15 +316,15 @@ function pickOffer(that) {
     // body...
     if (that.value == "yes") {
         $(".pickService").show();
-        $('.pickup_air').prop('required',true);
-        $('.pickup_bus').prop('required',true);
-        $('.pickup_specific').prop('required',true);
-          if ($('.pickup_air').val() != "" || $('.pickup_bus').val() != "" || $('.pickup_specific').val() != "") {
-             debugger;
-              $('.pickup_air').pro('required',false);
-             $('.pickup_bus').pro('required',false);
-            $('.pickup_specific').pro('required',false);
-           }
+        // $('.pickup_air').prop('required',true);
+        // $('.pickup_bus').prop('required',true);
+        // $('.pickup_specific').prop('required',true);
+          // if ($('.pickup_air').val() || $('.pickup_bus').val() || $('.pickup_specific').val()) {
+          //    debugger;
+          //     $('.pickup_air').pro('required',false);
+          //    $('.pickup_bus').pro('required',false);
+          //   $('.pickup_specific').pro('required',false);
+          //  }
          
 
     }else{
@@ -930,6 +930,7 @@ $('.chips-package').on('chip.add', function(e, chip){
   }else{
     $('.with_ari').hide();
     $(".airconChrges").prop('required',false);
+    $(".airconChrges").val("");
   }
  })
 
@@ -944,6 +945,7 @@ $('.chips-package').on('chip.add', function(e, chip){
   }else{
     $('.with_gent').hide();
     $(".genchrges").prop('required',true);
+    $(".genchrges").val("");
   }
  })
 
@@ -1036,16 +1038,34 @@ var tr=table.getElementsByTagName("tr");
       // console.log(event.which);
 // debugger;
       if (filter=='') {
-        // debugger;
+       // debugger;
        tr[i].style.display="";
        console.log(tr[i].style.display);
      }else if (event.which==13 || event.type=="click") {
       // debugger;
       var TDLength=td.length;
         console.log(TDLength);
+     if(tr[i].parentNode.nodeName!='THEAD'){
+          tr[i].style.display="none";
+      }
 
-        if (tr[$i]) {}
+      if (td) {
+             // debugger;
+            for (var j = 0; j < TDLength; j++) {
+             var updatedtd=td[j];
+             console.log(filter);
+        // debugger;
+             if (updatedtd.innerHTML.toLowerCase().indexOf(filter)>-1) {
+ // debugger;
+                      console.log(filter);
+                     updatedtd.parentElement.style.display="";
 
+                   }
+
+                }
+
+              }
+       
   
 
      }

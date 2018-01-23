@@ -262,7 +262,14 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     </div>
   </div>
   
-                       
+                <div class="row" >
+                          
+                        <p class="pTAG">
+                         <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="conference_inactive" />
+                         <label for="filled-in-inactive">Inactive</label>
+                        </p>
+                         
+                    </div>        
 
 						<div>
 							<div class="input-field col s8">

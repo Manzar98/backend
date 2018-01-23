@@ -58,8 +58,8 @@ $.ajax({
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                       title: "Successfully Updated",
-                    text: "Your hotel record has been updated.",
+                                       title: "Updation successfully submitted for Review.",
+                    text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
                     type: "success",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
@@ -75,8 +75,8 @@ $.ajax({
                              }else{
 
                                swal({
-                                       title: "Error in updation",
-                    text: "Record can not be updated.",
+                                       title: "Something went wrong!",
+                    text: "",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
@@ -108,7 +108,7 @@ $.ajax({
 
 
 $("#pro-sub-btn_hotel").click(function(){
-  $("#pro-sub-btn_hotel").hide();
+  // $("#pro-sub-btn_hotel").hide();
 
  var validator= $("#hotel-form").validate({
 
@@ -148,6 +148,8 @@ $("#pro-sub-btn_hotel").click(function(){
     });
          $("#pro-sub-btn_hotel").show();
    }else{
+    $('#loader').modal({dismissible: false});
+    $('#loader').modal('open');
 
     tinyMCE.triggerSave();
 
@@ -161,16 +163,14 @@ $("#pro-sub-btn_hotel").click(function(){
                             var data =JSON.parse(res);
                              console.log(data);
 
-                             if (data=='sucess') {
-                              $('#loader').modal({dismissible: false});
-                              $('#loader').modal('open');
-
+                             if (data.status=='success') {
+                              
                                $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                       title: "Successfully Inserted",
-                    text: "Your hotel record has been inserted.",
+                                       title: "Hotel successfully submitted for review!",
+                    text: "Thank you for your submission! You will be notified once your hotel submission has been approved!",
                     type: "success",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
@@ -187,11 +187,11 @@ $("#pro-sub-btn_hotel").click(function(){
 
                                 var responseArray = "";
                                 $.each(data.message.split(','),function(k,val){
-                                      responseArray += "<li style='color:red;'>"+val+"</li>";
+                                      responseArray += " <li  style='color:red;'><i class='fa fa-times' aria-hidden='true'></i>"+val+"</li>";
                                 })
                                    $('#loader').modal('close');
                                swal({
-                                       title: "Error in insertion",
+                                       title: "Something went wrong!",
                     text: "<ul>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",

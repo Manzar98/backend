@@ -151,49 +151,48 @@ if (empty($_POST['hotel_name'])) {
 
 // foreach($_POST['book_fromdate'] as $bokFROM) { 
 	                 
-//  	if (!empty($bokFROM)) {
+  	// if (!empty($bokFROM)) {
           
-//           $datefrom = date_create($_POST['book_fromdate']);
-// 	      $resultfrom = date_format($datefrom,"m/d/Y");
-// 		  if ($resultfrom) {
+           
+ 	      // $resultfrom = DateTime::createFromFormat("m/d/Y", $_POST['book_fromdate']);
+ 		  // if ($resultfrom) {
 
 			     $from=$_POST['book_fromdate'];
 
-// 			}else{
+ 			// }else{
 
-// 				 $is_check=false;
-// 				 array_push($responseArray,"From date field is invalid");
-// 			}
+ 				 // $is_check=false;
+ 				 // array_push($responseArray,"From date field is invalid");
+ 			// }
 	
-//  	}else{
+  	// }else{
 
-//  		$from=null;
-//  	}
+ 		// $from=null;
+  	// }
 // }
 
 
-// foreach($_POST['book_todate'] as $bokTO) { 
+  // foreach($_POST['book_todate'] as $bokTO) { 
 	             
-//  	 if (!empty($bokTO)) {
+   	 // if (!empty($bokTO)) {
+                       
+  	 	   // $resultto = $_POST['book_todate']->format("m/d/Y");
+	 	  // if ($resultto) {
 
-//  	 	   $dateto = date_create($_POST['book_todate']);
-// 	       $resultto = date_format($dateto,"m/d/Y");
-// 		  if ($resultto) {
+	 		     $to=$_POST['book_todate'];
 
-			    $to=$_POST['book_todate'];
+  			// }else{
 
-// 			}else{
+  				// $is_check=false;
+  				 // array_push($responseArray,"To date field is invalid");
 
-// 				 $is_check=false;
-// 				 array_push($responseArray,"To date field is invalid");
-
-// 			}
+  			// }
 		
-//  	 }else{
+   	 // }else{
 
-//  	 	$to=null;
-//  	 }
-// }
+   	 	// $to=null;
+   	 // }
+  // }
 
 if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
 
@@ -224,9 +223,10 @@ if (!empty($_POST['room_expireoffer'])) {
   	array_push($responseArray,"Offer discount field is required");
 
   }else{
-
-      $date = date_create($_POST['room_expireoffer']);
- 	  $result = date_format($date,"m/d/Y");
+        $result = DateTime::createFromFormat("m/d/Y", $_POST['room_expireoffer']);
+    
+    //   $date = date_create($_POST['room_expireoffer']);
+ 	  // $result = date_format($date,"m/d/Y");
  		if ($result) {
 
  			$discountexpire=$result;
@@ -250,6 +250,7 @@ $provideo=$_POST['common_video'];
 $formtype='room';
 $user_id= 2;
 $hotelid=31;
+$inactive= $_POST['room_inactive'];
 
 $errorMsgs=implode(",",$responseArray);
 
@@ -268,7 +269,7 @@ $newSuccessMsgArr=array(
 if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'")';
+$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name,room_inactive)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'","'.$inactive.'")';
 
 
 if ($conn->query($query)== TRUE) {

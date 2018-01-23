@@ -89,7 +89,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								<input type="number" value="" class="input-field validate" name="room_maxadult" required>  
 							</div>
 							<div class=" col-md-6">
-								<label>Extra mattress charges for adults</label>
+								<label class="common-bottom">Extra mattress charges for adults</label>
 								<input type="number" value="" class="input-field validate" name="room_matadult" required>  
 							</div>
 						</div>   
@@ -100,7 +100,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								<input type="number" value="" class="input-field validate" name="room_maxchild" required>  
 							</div>
 							<div class=" col-md-6">
-								<label>Extra mattress charges for Children</label>
+								<label class="common-bottom">Extra mattress charges for Children</label>
 								<input type="number" value="" class="input-field validate" name="room_matchild" required>
 							</div>
 						</div> 						
@@ -183,6 +183,14 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div  class=" ">
 							<a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
 						</div>
+						<div class="row" >
+                         	
+						            <p class="pTAG">
+						             <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="room_inactive" />
+						             <label for="filled-in-inactive">Inactive</label>
+						            </p>
+						             
+         						</div>
 
 
 						<div>

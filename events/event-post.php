@@ -243,7 +243,7 @@ if (empty($_POST['event_drpoffer'])) {
 	if (empty($_POST['event_drpair']) && empty($_POST['event_drpbus']) && empty($_POST['event_drpspecific'])) {
          
 		 $is_check=false;
-		 array_push($responseArray,"Filled atleast one field from pickup offered");
+		 array_push($responseArray,"Filled atleast one field from dropoff offered");
 
 	 }else{
 
@@ -343,6 +343,7 @@ if (empty($_POST['event_serve'])) {
 
 			}else{
 				$eatAll="off";
+				$eatAllChrges=null;
 			}
 			if (isset($_POST['event_eatNeed'])) {
 
@@ -368,7 +369,7 @@ $provideo        = $_POST['common_video'];
 $userid       = 2;
 $hotelid      = 31;
 $formtype     = 'event';
-
+$inactive= $_POST['event_inactive'];
 $errorMsgs=implode(",",$responseArray);
 
 $newErrorMsgArr=array(
@@ -384,7 +385,7 @@ $newSuccessMsgArr=array(
 if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'")';
+$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific,event_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'")';
 
 if ($conn->query($query)== TRUE) {
  	# code...

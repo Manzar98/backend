@@ -78,7 +78,14 @@
 									<td class="text-center td-name"><?php echo $result['hotel_city'];  ?></td>
 									<td class="text-center"><?php echo "5/2";   ?></td>
 									<td class="text-center"><?php echo "1/9";   ?></td>
-									<td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
+									<?php if ($result['hotel_inactive']== "on") { ?>
+										    
+										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+									<?php }else{ ?>
+
+                                             <td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
+									<?php } ?>
+									
 									
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
@@ -110,21 +117,7 @@
 			
 				
 			</div>
-			<script src="../js/jquery.min.js"></script>
-	<script src="../js/jquery-ui.js"></script>
-	<script src="../js/angular.min.js"></script>
-	<script src="../js/bootstrap.js" type="text/javascript"></script>
-	<script src="../js/materialize.min.js" type="text/javascript"></script>
-	<script src="../js/jquery.mixitup.min.js" type="text/javascript"></script>
-	<script src="../js/custom.js"></script>
-	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script> -->
-	<script src="../js/jquery-validation.js"></script>
-	<script src="../js/additional-methods.js"></script>
-	<script src="../js/sweetalert.min.js"></script>
-	
-<!-- <script type="text/javascript" src="../js/custom.js"></script> -->
-
+			<?php include '../footer.php'; ?>
 
 			</body>
 

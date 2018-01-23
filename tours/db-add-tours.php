@@ -442,7 +442,14 @@
                         	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destinations</a>
                         </div>
 
-                 
+                       <div class="row" >
+                         	
+						            <p class="pTAG">
+						             <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="tour_inactive" />
+						             <label for="filled-in-inactive">Inactive</label>
+						            </p>
+						             
+         						</div>
                        
                        
 						<div>

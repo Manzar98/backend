@@ -55,8 +55,8 @@ $.ajax({
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                       title: "Successfully Updated",
-                    text: "Your room record has been updated.",
+                                       title: "Room successfully updated for review!",
+                    text: "Thank you for your submission! You will be notified once your room updation has been approved!",
                     type: "success",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
@@ -70,8 +70,8 @@ $.ajax({
                              }else{
 
                                swal({
-                                       title: "Error in updation",
-                    text: "Record can not be updated.",
+                                       title: "Something went wrong!",
+                    text: "",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
@@ -154,8 +154,8 @@ if (validator.form()== false) {
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                       title: "Successfully Inserted",
-                    text: "Your room record has been inserted.",
+                                       title: "Room successfully submitted for review!",
+                    text: "Thank you for your submission! You will be notified once your room submission has been approved!",
                     type: "success",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
@@ -172,12 +172,12 @@ if (validator.form()== false) {
 
                                var responseArray = "";
                                 $.each(data.message.split(','),function(k,val){
-                                      responseArray += "<li style='color:red;'>"+val+"</li>";
+                                      responseArray += "<li style='color:red;'><i class='fa fa-times' aria-hidden='true'></i>"+val+"</li>";
                                 })
 
                                 $('#loader').modal('close');
                                swal({
-                                       title: "Error in insertion",
+                                       title: "Something went wrong!",
                     text: "<ul>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",

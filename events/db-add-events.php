@@ -300,6 +300,14 @@
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Event's PROMOTIONAL VIDEO</span></div>
 										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
+							<div class="row" >
+                         	
+						            <p class="pTAG">
+						             <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="event_inactive" />
+						             <label for="filled-in-inactive">Inactive</label>
+						            </p>
+						             
+         						</div>
 
 						<div>
 							<div class="input-field col s8">

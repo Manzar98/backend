@@ -787,6 +787,24 @@ $global_tour_id="";
                         	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destinations</a>
                         </div>
 
+                        <div class="row" >
+                         	
+						           <p class="pTAG">
+						            	<?php if ($resulttour['tour_inactive']=='on') { ?>
+
+						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="tour_inactive" checked="" />
+						             <label for="filled-in-inactive">Inactive</label>
+						             
+						            <?php 	}else{ ?>
+
+						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="tour_inactive" />
+						             <label for="filled-in-inactive">Inactive</label>
+						          <?php  }  ?>
+						             
+						            </p>
+						             
+         						</div>
+
                  
                        <?php } ?>
                        

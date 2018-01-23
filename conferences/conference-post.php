@@ -368,6 +368,7 @@ if (!empty($_POST['conference_expireoffer']) && empty($_POST['conference_offerdi
 $userid       = 2;
 $formtype     = 'conference';
 $hotelid      = 31;
+$inactive  = $_POST['conference_inactive'];
 
 $errorMsgs=implode(",",$responseArray);
 
@@ -387,7 +388,7 @@ if ($is_check==true) {
 
 
      
-$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'")';
+$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
 
 if ($conn->query($query)== TRUE) {
  	# code...
@@ -410,14 +411,15 @@ $datesQuery='INSERT INTO common_bookdates(conference_id,book_fromdate,book_todat
  // print_r($datesQuery);
 }
 
+
+	# code...
+
 for ($i=0; $i<count($_POST['foodpkg_name']); $i++) {
 
 
 	$pkgQuery='INSERT INTO common_menupackages(conference_id,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$conference_id.'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
 
  mysqli_query($conn,$pkgQuery) or die(mysqli_error($conn));
-
-
 
 }
 
