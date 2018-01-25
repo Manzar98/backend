@@ -52,6 +52,7 @@
 									<th>Recurrence</th>
 									<th>Entry Fee</th>
 									<th>Status</th>
+									<th>Success</th>
 									
 								</tr>
 							</thead>
@@ -75,6 +76,7 @@
 
                                              <td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
+									<td class="text-center"><span class="db-not-success"><?php echo "Pending";   ?></span></td>
 									
 									
 									<td class="tdwrap">

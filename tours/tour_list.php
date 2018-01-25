@@ -54,6 +54,7 @@
 									<th>Price</th>
 									<th>Number of people</th>
 									<th>Status</th>
+									<th>Success</th>
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
@@ -77,6 +78,7 @@
 
                                              <td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
+									<td class="text-center"><span class="db-not-success"><?php echo "Pending";   ?></span></td>
 									
 									<td class="tdwrap">
 									<div class="buttonsWrap">

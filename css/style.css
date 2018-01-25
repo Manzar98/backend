@@ -4897,3 +4897,14 @@ label.freeLbl {
     padding: 2px 11px;
     
 }
+.responseDialog li{
+    float: left;
+    clear: both;
+}
+.sa-button-container{
+    clear: both;
+}
+
+.errordialog_x{
+    padding-right: 4px;
+}

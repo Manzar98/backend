@@ -2,7 +2,7 @@
 include '../common-sql.php';
 
 
-$selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
+$selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`=2 ';
 
 
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
@@ -39,14 +39,13 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 									if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 									<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  >
 										<label class="col s12">Select Hotel</label>
-										<select  class="" name="hotel_name" >
+										<select  class="hotelNames" name="hotel_name" >
 											<option value="">Select One</option>
 											<?php
 
 											while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
-
-											<option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+										<option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
 
 
 						    <?php	# code...

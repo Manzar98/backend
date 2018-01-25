@@ -25,7 +25,7 @@ if (empty($_POST['conference_space'])) {
 }elseif (!is_numeric($_POST['conference_space'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Capacity of hall field accept only numeric");
+	array_push($responseArray,"Capacity of hall field should only contain numbers.");
 
 }else{
 
@@ -40,7 +40,7 @@ if (!empty($_POST['conference_charges']) && is_numeric($_POST['conference_charge
 }elseif (!empty($_POST['conference_charges']) && !is_numeric($_POST['conference_charges'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Hall charges field accept only numeric");
+	array_push($responseArray,"Hall charges field should only contain numbers.");
 
 }else{
      
@@ -78,7 +78,7 @@ if (empty($_POST['conference_serve'])) {
 			if (!empty($menupkgprice) && !is_numeric($menupkgprice)) {
 
 				$is_check=false;
-				array_push($responseArray,"Menu package price field accept only numeric");
+				array_push($responseArray,"Menu package price field should only contain numbers.");
 		                  	
 			}elseif(is_numeric($menupkgprice)){
 
@@ -123,7 +123,7 @@ foreach($_POST['foodpkg_discount'] as $menupkgdiscount) {
 	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
 
 		$is_check=false;
-		array_push($responseArray,"Menu package discount field accept only numeric");
+		array_push($responseArray,"Menu package discount field should only contain numbers.");
                   	# code...
 	}elseif(is_numeric($menupkgdiscount)){
 
@@ -185,7 +185,7 @@ if (empty($_POST['conference_independ'])) {
      }elseif (!empty($_POST['conference_phone']) && !is_numeric($_POST['conference_phone'])) {
 
      	$is_check=false;
-     	array_push($responseArray,"Phone number field accept only numeric");
+     	array_push($responseArray,"Phone number field should only contain numbers.");
 
      }else{
 
@@ -268,59 +268,59 @@ if (empty($_POST['conference_other'])) {
 }
 
 
-// foreach($_POST['book_fromdate'] as $bokFROM) { 
+ foreach($_POST['book_fromdate'] as $bokFROM) { 
 	
                   
-//  	if (!empty($bokFROM)) {
+  	if (!empty($bokFROM)) {
           
 //            $datefrom = date_create($_POST['book_fromdate']);
 // 	       $resultfrom = date_format($datefrom,"m/d/Y");
 
-// 		  if ($resultfrom) {
+ 		  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokFROM)) {
 
-			     $frmdate=$_POST['book_fromdate'];
+			     $frmdate=$bokFROM;
 
-// 			}else{
+ 			}else{
 
-// 				 $is_check=false;
-// 				 array_push($responseArray,"From Date field is invalid");
-// 			}
+ 				 $is_check=false;
+ 				 array_push($responseArray,"From Date field is invalid");
+			}
 	
-//  	}else{
+  	}else{
 
-//  		  $frmdate=null;
-//  	}
-// }
+  		  $frmdate=null;
+  	}
+ }
 
 
-// foreach($_POST['book_todate'] as $bokTO) { 
+ foreach($_POST['book_todate'] as $bokTO) { 
 	
                   
-//    if (!empty($bokTO)) {
+    if (!empty($bokTO)) {
 
 //  	 	     $dateto = date_create($_POST['book_todate']);
 // 	         $resultto = date_format($dateto,"m/d/Y");
-// 			  if ($resultto) {
+ 			  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokTO)) {
 
-				$todate=$_POST['book_todate'];
+				$todate=$bokTO;
 
-// 				}else{
+ 				}else{
 
-// 					 $is_check=false;
-// 					 array_push($responseArray,"To Date field is invalid");
-// 				}
+ 					 $is_check=false;
+					 array_push($responseArray,"To Date field is invalid");
+				}
 	 	
-//  	}else{
+  	}else{
 
-//  	 	  $todate=null;
-//  	 }
-// }
+  	 	  $todate=null;
+  	 }
+ }
 
 
 if (!empty($_POST['conference_offerdiscount']) && !is_numeric($_POST['conference_offerdiscount'])) {
 
 	$is_check= false;
-	array_push($responseArray,"Offer discount accept only numeric");
+	array_push($responseArray,"Offer discount field should only contain numbers.");
 
 }elseif (!empty($_POST['conference_offerdiscount']) && empty($_POST['conference_expireoffer'])) {
 
@@ -346,12 +346,12 @@ if (!empty($_POST['conference_expireoffer']) && empty($_POST['conference_offerdi
 
 }else{
 	
-	    $date = date_create($_POST['conference_expireoffer']);
-	    $result = date_format($date,"m/d/Y");
+	    // $date = date_create($_POST['conference_expireoffer']);
+	    // $result = date_format($date,"m/d/Y");
 
-		if ($result) {
+		if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $_POST['conference_expireoffer'])) {
 
-			$discountexpire=$result;
+			$discountexpire= $_POST['conference_expireoffer'];
 
 		}else{
 
@@ -368,8 +368,12 @@ if (!empty($_POST['conference_expireoffer']) && empty($_POST['conference_offerdi
 $userid       = 2;
 $formtype     = 'conference';
 $hotelid      = 31;
-$inactive  = $_POST['conference_inactive'];
 
+if (isset($_POST['conference_inactive'])) {
+  $inactive=$_POST['conference_inactive'];
+}else{
+  $inactive="off";
+}
 $errorMsgs=implode(",",$responseArray);
 
 $newErrorMsgArr=array(

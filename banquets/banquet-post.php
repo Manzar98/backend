@@ -2,7 +2,7 @@
 
  include '../common-sql.php';
 
- // print_r($_POST);
+  // print_r($_POST);
 
 $is_check=true;
 $responseArray=[];
@@ -25,7 +25,7 @@ if (empty($_POST['banquet_space'])) {
 }elseif (!is_numeric($_POST['banquet_space'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Hall capacity field accept only numeric");
+	array_push($responseArray,"Hall capacity field should only contain numbers.");
 
 }else{
 
@@ -40,7 +40,7 @@ if (empty($_POST['banquet_charges'])) {
 }elseif (!is_numeric($_POST['banquet_charges'])) {
 
  	$is_check=false;
- 	array_push($responseArray,"Banquet charges field accept only numeric");
+ 	array_push($responseArray,"Banquet charges field should only contain numbers.");
 
 }else{
 	
@@ -78,7 +78,7 @@ if (isset($_POST['banquet_isgen']) && empty($_POST['banquet_generator'])) {
 if(!empty($_POST['banquet_aricon']) && !is_numeric($_POST['banquet_aricon'])){
 
 	$is_check= false;
-	array_push($responseArray,"Banquet charges field accet only numeric");
+	array_push($responseArray,"Banquet charges field should only contain numbers.");
 
 }elseif(!empty($_POST['banquet_aricon']) && is_numeric($_POST['banquet_aricon'])){
 
@@ -91,7 +91,7 @@ if(!empty($_POST['banquet_aricon']) && !is_numeric($_POST['banquet_aricon'])){
 if(!empty($_POST['banquet_generator']) && !is_numeric($_POST['banquet_generator'])){
 
 	$is_check= false;
-    array_push($responseArray,"Generator charges field accet only numeric");
+    array_push($responseArray,"Generator charges field should only contain numbers.");
 
 }elseif(!empty($_POST['banquet_generator']) && is_numeric($_POST['banquet_generator'])){
 
@@ -131,7 +131,7 @@ if (empty($_POST['banquet_serve'])) {
 			if (!empty($menupkgprice) && !is_numeric($menupkgprice)) {
 
 				$is_check=false;
-				array_push($responseArray,"Menu package price field accept only numeric");
+				array_push($responseArray,"Menu package price field should only contain numbers.");
 		                  	
 			}elseif(is_numeric($menupkgprice)){
 
@@ -176,7 +176,7 @@ foreach($_POST['foodpkg_discount'] as $menupkgdiscount) {
 	if (!empty($menupkgdiscount) && !is_numeric($menupkgdiscount)) {
 
 		$is_check=false;
-		array_push($responseArray,"Menu package discount field accept only numeric");
+		array_push($responseArray,"Menu package discount field should only contain numbers.");
                   	
 	}elseif(is_numeric($menupkgdiscount)){
 
@@ -202,7 +202,7 @@ if (empty($_POST['banquet_gathering'])) {
 if (!is_numeric($_POST['banquet_adcost'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Only numeric data is allowed in Additional Cost");
+	array_push($responseArray,"Additional cost field should only contain numbers.");
 
 }elseif (empty($_POST['banquet_adcost'])) {
 
@@ -237,58 +237,58 @@ $img          = $_POST['common_image'];
 $imgarray= explode(",",$img);
 $provideo        = $_POST['common_video'];
 
-// foreach($_POST['book_fromdate'] as $bokFROM) { 
-	
+ foreach($_POST['book_fromdate'] as $bokFROM) { 
+	// echo $bokFROM;
                   
-//  	if (!empty($bokFROM)) {
+  	if (!empty($bokFROM)) {
           
 //           $datefrom = date_create($_POST['book_fromdate']);
 // 	      $resultfrom = date_format($datefrom,"m/d/Y");
-// 		  if ($resultfrom) {
+ 		  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%',$bokFROM)) {
 
-			    $frmdate=$_POST['book_fromdate'];
+			    $frmdate=$bokFROM;
 
-// 			}else{
+ 			}else{
 
-// 				 $is_check=false;
-// 				 array_push($responseArray,"From Date field is invalid");
-// 			}
-//  	}else{
+ 				 $is_check=false;
+ 				 array_push($responseArray,"From Date field is invalid");
+ 			}
+  	}else{
 
-//  		$frmdate=null;
-//  	}
+  		$frmdate=null;
+  	}
 
-// }
+ }
 
 
-// foreach($_POST['book_todate'] as $bokTO) { 
-	
+ foreach($_POST['book_todate'] as $bokTO) { 
+	 // echo $bokTO;
                   
-//  	 if (!empty($bokTO)) {
+  	 if (!empty($bokTO)) {
 
-//  	 	   $dateto = date_create($_POST['book_todate']);
-// 	       $resultto = date_format($dateto,"m/d/Y");
-// 		  if ($resultto) {
+ 	 	   // $dateto = date_create($_POST['book_todate']);
+ 	       // $resultto = date_format($dateto,"m/d/Y");
+ 		  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%',$bokTO)) {
 
-			     $todate=$_POST['book_todate'];
+			     $todate=$bokTO;
 
-// 			}else{
-// 				 $is_check=false;
-// 				 array_push($responseArray,"To Date field is invalid");
+ 			}else{
+ 				 $is_check=false;
+ 				 array_push($responseArray,"To Date field is invalid");
 
-// 			}
-//  	 }else{
+ 			}
+  	 }else{
 
-//  	 	 $todate=null;
-//  	 }
+  	 	 $todate=null;
+  	 }
 
-// }
+ }
 
 
 if (!empty($_POST['banquet_offerdiscount']) && !is_numeric($_POST['banquet_offerdiscount'])) {
 
 	$is_check= false;
-	array_push($responseArray,"Offer discount accept only numeric");
+	array_push($responseArray,"Offer discount field should only contain numbers.");
 
 }elseif (!empty($_POST['banquet_offerdiscount']) && empty($_POST['banquet_expireoffer'])) {
 
@@ -315,19 +315,19 @@ if (!empty($_POST['banquet_expireoffer'])) {
  }else{
     
      	# code...
-           // $dateExpire = date_create($_POST['banquet_expireoffer']);
- 	             // $dateExpire = new DateTime($_POST['banquet_expireoffer']);
- 	       // $resultExpire  =DateTime::createFromFormat("m/d/Y", $_POST['banquet_expireoffer']);
-          // $resultExpire  = date_format($dateExpire, 'm/d/Y');
- 		 // if ($resultExpire) {
+          //   $dateExpire = date_create($_POST['banquet_expireoffer']);
+ 	        //       $dateExpire = new DateTime($_POST['banquet_expireoffer']);
+ 	        // $resultExpire  =DateTime::createFromFormat("m/d/Y", $_POST['banquet_expireoffer']);
+          //  $resultExpire  = date_format($dateExpire, 'm/d/Y');
+ 		  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $_POST['banquet_expireoffer'])) {
 
  		 	$discountexpire=$_POST['banquet_expireoffer'];
 
-  	 	// }else{
+  	 	 }else{
 
-  	 		 // $is_check=false;
- 		 	 // array_push($responseArray,"Expire offer field is invalid");
- 		 // }
+  	 		  $is_check=false;
+ 		 	  array_push($responseArray,"Expire offer field is invalid");
+ 		  }
 	
    }
 
@@ -385,7 +385,7 @@ if (empty($_POST['banquet_independ'])) {
      }elseif (!empty($_POST['banquet_phone']) && !is_numeric($_POST['banquet_phone'])) {
 
      	$is_check=false;
-     	array_push($responseArray,"Phone number field accept only numeric");
+     	array_push($responseArray,"Phone number field should only contain numbers.");
 
      }else{
 
@@ -457,7 +457,11 @@ if (!empty($_POST['banquet_utube'])) {
 $userid       = 2;
 $formtype     = 'banquet';
 $hotelid      = 31;
-$inactive= $_POST['banquet_inactive'];
+if (isset($_POST['banquet_inactive'])) {
+  $inactive=$_POST['banquet_inactive'];
+}else{
+  $inactive="off";
+}
 
 $errorMsgs=implode(",",$responseArray);
 

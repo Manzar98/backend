@@ -2,7 +2,7 @@
 
 include '../common-sql.php';
 
- // print_r($_POST);
+ print_r($_POST);
 
 $is_check=true;
 $responseArray=[];
@@ -25,7 +25,7 @@ if (empty($_POST['room_nosroom'])) {
 }elseif (!is_numeric($_POST['room_nosroom'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Number of rooms field accept only numeric");
+	array_push($responseArray,"Number of rooms field should only contain numbers.");
 
 }
 else{
@@ -51,7 +51,7 @@ if (empty($_POST['room_maxadult'])) {
 }elseif (!is_numeric($_POST['room_maxadult'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Maximum adults field accept only numeric");
+	array_push($responseArray,"Maximum adults field should only contain numbers.");
 
 }else{
 
@@ -66,7 +66,7 @@ if (empty($_POST['room_matadult'])) {
 }elseif (!is_numeric($_POST['room_matadult'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Extra mattress charges for adults field accept only numeric");
+	array_push($responseArray,"Extra mattress charges field should only contain numbers.");
 
 }else{
 
@@ -81,7 +81,7 @@ if (empty($_POST['room_maxchild'])) {
 }elseif (!is_numeric($_POST['room_maxchild'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Maximum children field accept only numeric");
+	array_push($responseArray,"Maximum children field should only contain numbers.");
 
 }else{
 
@@ -96,7 +96,7 @@ if (empty($_POST['room_matchild'])) {
 }elseif (!is_numeric($_POST['room_matchild'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Extra mattress charges for children field accept only numeric");
+	array_push($responseArray,"Extra mattress charges for children field should only contain numbers.");
 
 }else{
 
@@ -111,7 +111,7 @@ if (empty($_POST['room_perni8'])) {
 }elseif (!is_numeric($_POST['room_perni8'])) {
 
 	$is_check=false;
-	array_push($responseArray,"Room charges field accept only numeric");
+	array_push($responseArray,"Room charges field should only contain numbers.");
 
 }else{
 
@@ -149,55 +149,55 @@ if (empty($_POST['hotel_name'])) {
 }
 
 
-// foreach($_POST['book_fromdate'] as $bokFROM) { 
+ foreach($_POST['book_fromdate'] as $bokFROM) { 
 	                 
-  	// if (!empty($bokFROM)) {
+  	 if (!empty($bokFROM)) {
           
            
  	      // $resultfrom = DateTime::createFromFormat("m/d/Y", $_POST['book_fromdate']);
- 		  // if ($resultfrom) {
+ 		   if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokFROM)) {
 
-			     $from=$_POST['book_fromdate'];
+			     $from= $bokFROM;
 
- 			// }else{
+ 			 }else{
 
- 				 // $is_check=false;
- 				 // array_push($responseArray,"From date field is invalid");
- 			// }
+ 				  $is_check=false;
+ 				  array_push($responseArray,"From date field is invalid");
+ 			 }
 	
-  	// }else{
+  	 }else{
 
- 		// $from=null;
-  	// }
-// }
+ 		 $from=null;
+  	 }
+ }
 
 
-  // foreach($_POST['book_todate'] as $bokTO) { 
+   foreach($_POST['book_todate'] as $bokTO) { 
 	             
-   	 // if (!empty($bokTO)) {
+   	 if (!empty($bokTO)) {
                        
   	 	   // $resultto = $_POST['book_todate']->format("m/d/Y");
-	 	  // if ($resultto) {
+	 	   if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokTO)) {
 
-	 		     $to=$_POST['book_todate'];
+	 		     $to= $bokTO;
 
-  			// }else{
+  			 }else{
 
-  				// $is_check=false;
-  				 // array_push($responseArray,"To date field is invalid");
+  				 $is_check=false;
+  				  array_push($responseArray,"To date field is invalid");
 
-  			// }
+  			 }
 		
-   	 // }else{
+   	  }else{
 
-   	 	// $to=null;
-   	 // }
-  // }
+   	 	 $to=null;
+   	  }
+   }
 
 if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
 
 	$is_check= false;
-	array_push($responseArray,"Offer discount field accept only numeric");
+	array_push($responseArray,"Offer discount field should only contain numbers.");
 
 }elseif (!empty($_POST['room_offerdiscount']) && empty($_POST['room_expireoffer'])) {
 
@@ -223,13 +223,13 @@ if (!empty($_POST['room_expireoffer'])) {
   	array_push($responseArray,"Offer discount field is required");
 
   }else{
-        $result = DateTime::createFromFormat("m/d/Y", $_POST['room_expireoffer']);
+        // $result = DateTime::createFromFormat("m/d/Y", $_POST['room_expireoffer']);
     
     //   $date = date_create($_POST['room_expireoffer']);
  	  // $result = date_format($date,"m/d/Y");
- 		if ($result) {
+ 		if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $_POST['room_expireoffer'])) {
 
- 			$discountexpire=$result;
+ 			$discountexpire=$_POST['room_expireoffer'];
 
   		}else{
 
@@ -250,7 +250,12 @@ $provideo=$_POST['common_video'];
 $formtype='room';
 $user_id= 2;
 $hotelid=31;
-$inactive= $_POST['room_inactive'];
+
+if (isset($_POST['room_inactive'])) {
+  $inactive=$_POST['room_inactive'];
+}else{
+  $inactive="off";
+}
 
 $errorMsgs=implode(",",$responseArray);
 

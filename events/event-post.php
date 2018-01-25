@@ -63,7 +63,7 @@ if (empty($_POST['event_entry'])) {
 				}elseif(!empty($_POST['event_entryfee']) && !is_numeric($_POST['event_entryfee'])){
 
                      $is_check=false;
-                     array_push($responseArray,"Event price field accept only numeric");				
+                     array_push($responseArray,"Event price field should only contain numbers.");				
 
 				}else{
 
@@ -104,7 +104,7 @@ if (empty($_POST['event_childallow'])) {
 					if(!empty($_POST['event_undr5price']) && !is_numeric($_POST['event_undr5price'])){
 
 						$is_check= false;
-					    array_push($responseArray,"Half price field accept only numeric");
+					    array_push($responseArray,"Half price field should only contain numbers.");
 
 					}elseif(!empty($_POST['event_undr5price']) && is_numeric($_POST['event_undr5price'])){
 
@@ -134,7 +134,7 @@ if (empty($_POST['event_childallow'])) {
 				}elseif (!empty($_POST['event_halftikchild'] && !is_numeric($_POST['event_halftikchild']))) {
 
 					 $is_check= false;
-					 array_push($responseArray,"Children price field accept only numeric");
+					 array_push($responseArray,"Children price field should only contain numbers.");
 
 				}else{
 
@@ -176,7 +176,7 @@ if (empty($_POST['event_pikoffer'])) {
          if(!empty($_POST['event_pikair']) && !is_numeric($_POST['event_pikair'])){
 
 			$is_check= false;
-			array_push($responseArray,"From airport pickup field accept only numeric");
+			array_push($responseArray,"From airport pickup field should only contain numbers.");
 		    
 		}elseif(!empty($_POST['event_pikair']) && is_numeric($_POST['event_pikair'])){
 
@@ -190,7 +190,7 @@ if (empty($_POST['event_pikoffer'])) {
         if(!empty($_POST['event_pikbus']) && !is_numeric($_POST['event_pikbus'])){
 
 			$is_check= false;
-			array_push($responseArray,"From bus pickup field accept only numeric");
+			array_push($responseArray,"From bus pickup field should only contain numbers.");
 
 		}elseif(!empty($_POST['event_pikbus']) && is_numeric($_POST['event_pikbus'])){
 
@@ -205,7 +205,7 @@ if (empty($_POST['event_pikoffer'])) {
 		if(!empty($_POST['event_pikspecific']) && !is_numeric($_POST['event_pikspecific'])){
 
 			$is_check= false;
-			array_push($responseArray,"From specific location pickup field accept only numeric");
+			array_push($responseArray,"From specific location pickup field field should only contain numbers.");
 
 		}elseif(!empty($_POST['event_pikspecific']) && is_numeric($_POST['event_pikspecific'])){
 
@@ -250,7 +250,7 @@ if (empty($_POST['event_drpoffer'])) {
 				if(!empty($_POST['event_drpair']) && !is_numeric($_POST['event_drpair'])){
 
 					$is_check= false;
-					array_push($responseArray,"From  air dropoff field accept only numeric");
+					array_push($responseArray,"From air dropoff field should only contain numbers.");
 
 				}elseif(!empty($_POST['event_drpair']) && is_numeric($_POST['event_drpair'])){
 
@@ -264,7 +264,7 @@ if (empty($_POST['event_drpoffer'])) {
 				if(!empty($_POST['event_drpbus']) && !is_numeric($_POST['event_drpbus'])){
 
 					$is_check= false;
-					array_push($responseArray,"From bus dropoff field accept only numeric");
+					array_push($responseArray,"From bus dropoff field should only contain numbers.");
 
 				}elseif(!empty($_POST['event_drpbus']) && is_numeric($_POST['event_drpbus'])){
 
@@ -278,7 +278,7 @@ if (empty($_POST['event_drpoffer'])) {
 				if(!empty($_POST['event_drpspecific']) && !is_numeric($_POST['event_drpspecific'])){
 
 					$is_check= false;
-					array_push($responseArray,"From specific location dropoff field accept only numeric");
+					array_push($responseArray,"From specific location dropoff field should only contain numbers.");
 
 				}elseif(!empty($_POST['event_drpspecific']) && is_numeric($_POST['event_drpspecific'])){
 
@@ -334,7 +334,7 @@ if (empty($_POST['event_serve'])) {
 				 }elseif (!empty($_POST['event_eatAllChrges']) && !is_numeric($_POST['event_eatAllChrges'])) {
 
 				 	$is_check= false;
-				 	array_push($responseArray,"All you can eat charges  field accept only numeric");
+				 	array_push($responseArray,"All you can eat charges field should only contain numbers.");
 
 				 }else{
 
@@ -369,7 +369,13 @@ $provideo        = $_POST['common_video'];
 $userid       = 2;
 $hotelid      = 31;
 $formtype     = 'event';
-$inactive= $_POST['event_inactive'];
+
+if (isset($_POST['event_inactive'])) {
+  $inactive=$_POST['event_inactive'];
+}else{
+  $inactive="off";
+}
+
 $errorMsgs=implode(",",$responseArray);
 
 $newErrorMsgArr=array(

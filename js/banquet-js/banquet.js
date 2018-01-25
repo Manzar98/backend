@@ -136,12 +136,12 @@ $.ajax({
 
                                 var responseArray = "";
                                 $.each(data.message.split(','),function(k,val){
-                                      responseArray += "<li style='color:red;'><i class='fa fa-times' aria-hidden='true'></i>"+val+"</li>";
+                                      responseArray += "<li style='color:red;'><i class='fa fa-times errordialog_x' aria-hidden='true'></i>"+val+"</li>";
                                 })
                                  $('#loader').modal('close');
                                swal({
                                        title: "Something went wrong!",
-                    text: "<ul>"+responseArray+"</ul>",
+                    text: "<ul class='responseDialog'>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",

@@ -194,7 +194,7 @@
                             </div>
                             <div class="col-md-6" id="buschgr" style="display: none;">
                             	<label>Charges</label>
-                        		 <input type="text"  class="input-field validate " name="hotel_buscharge" id="buscharges">
+                        		 <input type="number"  class="input-field validate " name="hotel_buscharge" id="buscharges">
                             </div>
                         </div>
 
@@ -203,7 +203,6 @@
 				            <div class="input-field col s12 common-wrapper comon_dropdown_botom_line is_validate_select">
 							 <select onchange="noofbags(this)" name="hotel_nobag" id="qun-lags" class="input-field validate">
 							   <option value="" disabled selected>Choose your option</option>
-							    <option value="-1">0</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -219,7 +218,7 @@
                         		<label class="col s4" id="3bags" style="display: none;">3 bags charges</label>
                         		<label class="col s4" id="4bags" style="display: none;">4 bags charges</label>
                         		<div class="input-field col s8">
-								<input type="text"  class="validate"  id="bag-inpt" name="hotel_bagprice" style="display: none;"> </div>
+								<input type="number"  class="validate"  id="bag-inpt" name="hotel_bagprice" style="display: none;"> </div>
                         		                       
                         </div>
 

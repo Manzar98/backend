@@ -252,7 +252,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<div class="col-md-6" id="buschgr" style="display: none;">
 				
 				<label>Charges</label>
-                <input type="text"  class="input-field validate " name="hotel_buscharge" value="<?php  echo $hotelResult['hotel_buscharge'];  ?>">
+                <input type="number"  class="input-field validate " name="hotel_buscharge" value="<?php  echo $hotelResult['hotel_buscharge'];  ?>">
 			</div>
 		</div>
 
@@ -262,17 +262,9 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<div class="input-field col s12 common-wrapper comon_dropdown_botom_line is_validate_select">
 				<select onchange="noofbags(this)" name="hotel_nobag" id="qun-lags" class="input-field validate" data-value="<?php echo $hotelResult['hotel_nobag'];  ?>">
 					<option value="" disabled selected>Choose your option</option>
-					<?php if ($hotelResult['hotel_nobag']== -1) { ?>
+					<?php if ($hotelResult['hotel_nobag']== 1) { ?>
 
-					<option selected="" value="-1">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-
-					<?php  }elseif ($hotelResult['hotel_nobag']== 1) { ?>
-
-					<option  value="-1">0</option>
+					<option value="" disabled >Choose your option</option>
 					<option selected="" value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -281,7 +273,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 					<?php }elseif ($hotelResult['hotel_nobag']== 2) { ?>
 
-					<option  value="-1">0</option>
+                    <option value="" disabled >Choose your option</option>
 					<option  value="1">1</option>
 					<option selected="" value="2">2</option>
 					<option value="3">3</option>
@@ -289,7 +281,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 					<?php }elseif ($hotelResult['hotel_nobag']== 3) { ?>
 
-					<option  value="-1">0</option>
+					<option value="" disabled >Choose your option</option>
 					<option  value="1">1</option>
 					<option  value="2">2</option>
 					<option selected="" value="3">3</option>
@@ -297,11 +289,19 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 					<?php }elseif ($hotelResult['hotel_nobag']== 4) { ?>
 
-					<option  value="-1">0</option>
+					<option value="" disabled >Choose your option</option>
 					<option  value="1">1</option>
 					<option  value="2">2</option>
 					<option  value="3">3</option>
 					<option selected="" value="4">4</option>
+
+					<?php }else{ ?>
+                              
+                    <option value="" disabled selected="">Choose your option</option>
+					<option  value="1">1</option>
+					<option  value="2">2</option>
+					<option  value="3">3</option>
+					<option  value="4">4</option>
 
 					<?php }                ?>
 
@@ -316,7 +316,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<label class="col s4" id="3bags" style="display: none;">3 bags charges</label>
 			<label class="col s4" id="4bags" style="display: none;">4 bags charges</label>
 			<div class="input-field col s8">
-				<input type="text"  class="validate"  id="bag-inpt" name="hotel_bagprice" style="display: none;" value="<?php echo $hotelResult['hotel_bagprice'] ?>"> </div>
+				<input type="number"  class="validate"  id="bag-inpt" name="hotel_bagprice" style="display: none;" value="<?php echo $hotelResult['hotel_bagprice'] ?>"> </div>
 
 			</div>
 

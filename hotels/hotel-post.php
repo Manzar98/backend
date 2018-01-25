@@ -54,7 +54,7 @@ if (empty($_POST['hotel_phone'])) {
 }elseif(!is_numeric($_POST['hotel_phone'])){
 
  $is_check=false;
- array_push($responseArray,"Phone number field accept only numeric");
+ array_push($responseArray,"Phone number field should only contain numbers.");
 }else{
 	
 	$phone=$_POST['hotel_phone'];
@@ -63,7 +63,7 @@ if (empty($_POST['hotel_phone'])) {
 if (!empty($_POST['hotel_fax']) && !is_numeric($_POST['hotel_fax'])) {
 	
   $is_check=false;
-  array_push($responseArray,"Fax number field accept only numeric");
+  array_push($responseArray,"Fax number field should only contain numbers.");
 }elseif(!empty($_POST['hotel_fax']) && is_numeric($_POST['hotel_fax'])){
 
 	$fax=$_POST['hotel_fax'];
@@ -95,6 +95,9 @@ if (!empty($_POST['hotel_web'])) {
 
    $web=$_POST['hotel_web'];
  }
+}else{
+
+  $web=null;
 }
 
 
@@ -148,7 +151,7 @@ if (empty($_POST['hotel_pickup'])) {
       }elseif (!empty($_POST['hotel_pikcharge']) && !is_numeric($_POST['hotel_pikcharge'])) {
 
         $is_check=false;
-        array_push($responseArray,"Airport charges field accept only numeric");
+        array_push($responseArray,"Airport charges field should only contain numbers.");
       }else{
 
        $charges=$_POST['hotel_pikcharge'];
@@ -166,7 +169,7 @@ if (empty($_POST['hotel_pickup'])) {
      array_push($responseArray,"Bus charges field is required");
    }elseif (!empty($_POST['hotel_buscharge']) && !is_numeric($_POST['hotel_buscharge'])) {
      $is_check=false;
-     array_push($responseArray,"Bus charges field accept only numeric");
+     array_push($responseArray,"Bus charges field should only contain numbers.");
    }else{
      $buscharge=$_POST['hotel_buscharge'];
    }
@@ -193,15 +196,34 @@ if (isset($extimg)) {
 
   $extarray= explode(",",$extimg);
 }
-if (!empty($_POST['hotel_nobag'])) {
+if (!empty($_POST['hotel_nobag']) ) {
 
   $nobag=$_POST['hotel_nobag'];
-}else{
+
+   if ($_POST['hotel_nobag'] > 0) {
+
+      if (empty($_POST['hotel_bagprice'])) {
+        
+        $is_check= false;
+        array_push($responseArray,"Bag charges field is required");
+  }elseif (!empty($_POST['hotel_bagprice']) && !is_numeric($_POST['hotel_bagprice'])) {
+       $is_check= false;
+       array_push($responseArray,"Bag charges field should only contain numbers.");
+  }else{
+
+       $bagprice=$_POST['hotel_bagprice'];
+  }
+   }
+
+ 
+}
+else{
   $nobag=null;
+  $bagprice=null;
 }
 
 $provideo=$_POST['common_video'];
-$bagprice=$_POST['hotel_bagprice'];
+
 $fburl=$_POST['hotel_fburl'];
 $twurl=$_POST['hotel_twurl'];
 $gourl=$_POST['hotel_gourl'];
