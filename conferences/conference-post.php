@@ -403,30 +403,29 @@ if ($conn->query($query)== TRUE) {
  	echo "Error: " . $query . "<br>" . $conn->error;
  }
 
- // echo $conference_id;
-  // print_r($query);
-
-for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
-
-$datesQuery='INSERT INTO common_bookdates(conference_id,book_fromdate,book_todate,form_date_type)VALUES("'.$conference_id.'","'.$frmdate[$i].'","'.$todate[$i].'","'.$formtype.'")';
-
- mysqli_query($conn,$datesQuery) or die(mysqli_error($conn));
  
- // print_r($datesQuery);
+
+if ($todate) {
+
+   for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
+
+     $datesQuery='INSERT INTO common_bookdates(conference_id,book_fromdate,book_todate,form_date_type)VALUES("'.$conference_id.'","'.$frmdate[$i].'","'.$todate[$i].'","'.$formtype.'")';
+
+     mysqli_query($conn,$datesQuery) or die(mysqli_error($conn));
+ 
+   }
 }
 
+if ($pkgname) {
 
-	# code...
-
-for ($i=0; $i<count($_POST['foodpkg_name']); $i++) {
+    for ($i=0; $i<count($_POST['foodpkg_name']); $i++) {
 
 
-	$pkgQuery='INSERT INTO common_menupackages(conference_id,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$conference_id.'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
+	   $pkgQuery='INSERT INTO common_menupackages(conference_id,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$conference_id.'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
 
- mysqli_query($conn,$pkgQuery) or die(mysqli_error($conn));
-
+       mysqli_query($conn,$pkgQuery) or die(mysqli_error($conn));
+    }
 }
-
 
 if (isset($_POST['common_video'])) {
 

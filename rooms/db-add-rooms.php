@@ -39,18 +39,20 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 									if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 									<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  >
 										<label class="col s12">Select Hotel</label>
-										<select  class="hotelNames" name="hotel_name" >
+										<select  class="hotelNames"  name="hotel_name" >
 											<option value="">Select One</option>
 											<?php
 
 											while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
-										<option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
-
-
-						    <?php	# code...
+										<option name="" data-id="<?php echo $result['hotel_id']; ?>"  value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+                                     <?php	
 						}  ?>
+       
+                                    
 					</select>
+
+						  
 				</div>
 				<?php  }  ?>
 
@@ -59,6 +61,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
 				<div class="common-top">
+					<input type="hidden" name="hotel_id" id="hotelId"> 
 					<label class="col s4">Room Name </label>
 					<div class="input-field col s12">
 						<input type="text" value="" class="validate" name="room_name" required> </div>

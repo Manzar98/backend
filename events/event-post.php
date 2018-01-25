@@ -89,12 +89,10 @@ if (empty($_POST['event_childallow'])) {
 					$is_check=false;
 					array_push($responseArray,"Under 5 allowed field is required");
 
-				}else{
-
+				}elseif ($_POST['event_undr5allow']=="yes") {
 					$undr5allow       =$_POST['event_undr5allow'];
-				}
 
-				if (empty($_POST['event_undr5free']) && empty($_POST['event_undr5price'])) {
+					if (empty($_POST['event_undr5free']) && empty($_POST['event_undr5price'])) {
 
 					$is_check=false;
 					array_push($responseArray,"Filled atleast one field in Under 5 allowed");
@@ -126,6 +124,13 @@ if (empty($_POST['event_childallow'])) {
 
 				}
 
+				}else{
+
+					$undr5allow       =$_POST['event_undr5allow'];
+				}
+
+				
+
 				if (empty($_POST['event_halftikchild'])) {
 
 					   $is_check= false;
@@ -153,9 +158,45 @@ else{
 
 }
 
+
+foreach($_POST['common_nopeople'] as $noofpeop) { 
 	
-	$nospeople     = $_POST['common_nopeople'];
-	$discountx    = $_POST['common_discount'];
+	
+	if (!empty($noofpeop) && !is_numeric($noofpeop)) {
+
+		$is_check=false;
+		array_push($responseArray,"Number of people field should only contain numbers.");
+                  	
+	}elseif(is_numeric($noofpeop)){
+
+		$nospeople     = $noofpeop;
+
+	}else{
+
+		$nospeople =null;
+
+	}
+}
+
+
+foreach($_POST['common_discount'] as $discountpercent) { 
+	
+	
+	if (!empty($discountpercent) && !is_numeric($discountpercent)) {
+
+		$is_check=false;
+		array_push($responseArray,"Discount field should only contain numbers.");
+                  	
+	}elseif(is_numeric($discountpercent)){
+
+		$discountx     = $discountpercent;
+
+	}else{
+
+		$discountx =null;
+
+	}
+}
 
 if (empty($_POST['event_pikoffer'])) {
 	
@@ -427,15 +468,16 @@ if (isset($_POST['common_video'])) {
 
 
  }
- //
- for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
 
- // echo  count($_POST['common_nopeople']);
- 	$discountQuery='INSERT INTO common_nosofpeople(event_id,common_nopeople,common_discount,discount_type)VALUES("'.$event_id.'","'.$nospeople[$i].'","'.$discountx[$i].'","'.$formtype.'")';
-     // echo $discountQuery;
- 	$disQuery=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
+
+	
+   for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
+
+ 	  $discountQuery='INSERT INTO common_nosofpeople(event_id,common_nopeople,common_discount,discount_type)VALUES("'.$event_id.'","'.$nospeople[$i].'","'.$discountx[$i].'","'.$formtype.'")';
+ 	  $disQuery=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
  	
- }
+   }
+
 
 
     echo json_encode($newSuccessMsgArr);

@@ -198,10 +198,9 @@ if (empty($_POST['tour_childallow'])) {
 				if (empty($_POST['tour_undr5allow'])) {
 					$is_check=false;
 	                array_push($responseArray,"Under 5 allowed field is required");	
-				}else{
-					$undr5allow       =$_POST['tour_undr5allow'];
-				}
-				if (empty($_POST['tour_undr5free']) && empty($_POST['tour_undr5price'])) {
+				}elseif ($_POST['tour_undr5allow']=="yes") {
+					   $undr5allow       =$_POST['tour_undr5allow'];
+					if (empty($_POST['tour_undr5free']) && empty($_POST['tour_undr5price'])) {
 					$is_check=false;
 	                array_push($responseArray,"Filled atleast one field in Under 5 allowed");	
 				}else{
@@ -227,6 +226,10 @@ if (empty($_POST['tour_childallow'])) {
 					}
 
 				}
+				}else{
+					$undr5allow       =$_POST['tour_undr5allow'];
+				}
+				
 
 				if (empty($_POST['tour_halftikchild'])) {
 					   $is_check= false;
@@ -403,8 +406,49 @@ if (empty($_POST['tour_drpoffer'])) {
 	$drpspecific = null;
 
 }
-$noofpeople       =$_POST['common_nopeople'];	
-$discountpeople   =$_POST['common_discount'];
+
+foreach($_POST['common_nopeople'] as $noofpeop) { 
+	
+	
+	if (!empty($noofpeop) && !is_numeric($noofpeop)) {
+
+		$is_check=false;
+		array_push($responseArray,"Number of people field should only contain numbers.");
+                  	
+	}elseif(is_numeric($noofpeop)){
+
+		$noofpeople     = $noofpeop;
+
+	}else{
+
+		$noofpeople =null;
+
+	}
+}
+
+
+foreach($_POST['common_discount'] as $discountpercent) { 
+	
+	
+	if (!empty($discountpercent) && !is_numeric($discountpercent)) {
+
+		$is_check=false;
+		array_push($responseArray,"Discount field should only contain numbers.");
+                  	
+	}elseif(is_numeric($discountpercent)){
+
+		$discountpeople     = $discountpercent;
+
+	}else{
+
+		$discountpeople =null;
+
+	}
+}
+
+
+
+
 
 $img          = $_POST['common_image'];
 
@@ -542,18 +586,18 @@ if ($conn->query($query)== TRUE) {
 
  }
 
+if ($discountpeople) {
 
-	# code...
-
-for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
+    for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
 
 
- 	$discountQuery='INSERT INTO common_nosofpeople(tour_id,common_nopeople,common_discount,discount_type)VALUES("'.$tour_id.'","'.$noofpeople[$i].'","'.$discountpeople[$i].'","'.$formtype.'")';
-     // echo $discountQuery;
- 	$disResult=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
- 	# code...
- }
+ 	  $discountQuery='INSERT INTO common_nosofpeople(tour_id,common_nopeople,common_discount,discount_type)VALUES("'.$tour_id.'","'.$noofpeople[$i].'","'.$discountpeople[$i].'","'.$formtype.'")';
+     
+ 	  $disResult=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
+ 	
+    }
 
+}
 
  for ($i=0; $i < count($_POST['destination_name']) ; $i++) { 
 

@@ -2,7 +2,7 @@
 
 include '../common-sql.php';
 
- print_r($_POST);
+ // print_r($_POST);
 
 $is_check=true;
 $responseArray=[];
@@ -243,13 +243,12 @@ if (!empty($_POST['room_expireoffer'])) {
 }
 
 
-$discountexpire=$_POST['room_expireoffer'];
 $img=$_POST['common_image'];
 $imgarray= explode(",",$img);
 $provideo=$_POST['common_video'];
 $formtype='room';
 $user_id= 2;
-$hotelid=31;
+$hotelid=$_POST['hotel_id'];
 
 if (isset($_POST['room_inactive'])) {
   $inactive=$_POST['room_inactive'];
@@ -287,15 +286,15 @@ if ($conn->query($query)== TRUE) {
  }
 
 // echo $room_id;
+if ($to) {
 
-
-for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
+   for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
 
 	$datesQuery='INSERT INTO common_bookdates(room_id,book_fromdate,book_todate,form_date_type)VALUES("'.$room_id.'","'.$from[$i].'","'.$to[$i].'","'.$formtype.'")';
 
 	$datesResult=mysqli_query($conn,$datesQuery) or die(mysqli_error($conn));
+   }
 }
-
 
 
 if (isset($_POST['common_video'])) {

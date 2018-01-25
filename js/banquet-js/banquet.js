@@ -175,11 +175,12 @@ function updateBanquet() {
                              type:"POST",
                              url:"../banquets/update_banquet.php",
                              data: $("form").serialize(),
-                                       success:function(data) {
-
+                                       success:function(res) {
+                             
+                             var data =JSON.parse(res);
                              console.log(data);
                           
-                             if (data=='sucess') {
+                             if (data.status=='success') {
                        
                                 $("#btn-loader").hide();
                               setTimeout(function(){
@@ -199,14 +200,20 @@ function updateBanquet() {
 
                              }else{
 
+                               var responseArray = "";
+                                $.each(data.message.split(','),function(k,val){
+                                      responseArray += "<li style='color:red;'><i class='fa fa-times errordialog_x' aria-hidden='true'></i>"+val+"</li>";
+                                })
+                                 $('#loader').modal('close');
+
                                swal({
                                        title: "Something went wrong!",
-                    text: "",
+                    text: "<ul class='responseDialog'>"+responseArray+"</ul>",
                     type: "error",
                       //confirmButtonColor: "#DD6B55",
                       confirmButtonText: "ok",
                       closeOnConfirm: true,
-                      html: false
+                      html: true
                       }, function(){
                       // window.location = "../rooms/room_list.php";
                     });
