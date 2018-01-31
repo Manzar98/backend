@@ -149,7 +149,7 @@ if (validator.form()== false) {
         tinyMCE.triggerSave();
        
         $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
-        debugger;
+        // debugger;
         var form_serialize=$("form").serialize();
        
     $.ajax({

@@ -107,6 +107,12 @@
 						<div class="imgVeiwinline row" id="hotel_img_wrap">
 							 
 						</div>
+						<div class="imgVeiwinline row" id="hotel_img_exe_wrap">
+							 
+						</div>
+						<div class="row" id="hotel_cover_img">
+							
+						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<!-- Modal Trigger -->
@@ -303,7 +309,7 @@
 			</div>
 
 			<!-- Modal Structure -->
-			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
+			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body interior_wrap">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
 				<iframe src="up_load_img.php?name=interior"></iframe>
@@ -314,7 +320,7 @@
 		   </div>
 
 		   <!-- Modal Structure -->
-			<div id="modal-extimg" class="modal modal-fixed-footer image_drop_down_modal_body">
+			<div id="modal-extimg" class="modal modal-fixed-footer image_drop_down_modal_body exterior_wrap">
 
 				<div class="modal-content">
 						<div class="modal-header"><h2>Upload Exterior Photos</h2></div>
@@ -326,7 +332,7 @@
 		   </div>
 
 		   <!-- Modal Structure -->
-			<div id="modal-coverimg" class="modal modal-fixed-footer image_drop_down_modal_body" style="width: 50%; margin: 0 auto; box-shadow:none;" >
+			<div id="modal-coverimg" class="modal modal-fixed-footer image_drop_down_modal_body cover_wrap" style="width: 50%; margin: 0 auto; box-shadow:none;" >
 
 				<div class="modal-content">
 						<div class="modal-header"><h2>Upload Cover Photo</h2></div>

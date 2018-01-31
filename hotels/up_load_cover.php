@@ -70,6 +70,9 @@
 
                                       var coma_id=parent.document.getElementById('img_cover').value= storedId+','+updatedResponse.id;
                                      }
+                                     var singleImg = $('<div class="row"><label>Hotel Cover Photo:</label></div><div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
+                                     parent.$('#hotel_cover_img').append(singleImg[0]);
+                                         parent.$('#hotel_cover_img').append(singleImg[1]);
 
                                    
                                       // debugger;

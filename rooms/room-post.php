@@ -38,9 +38,37 @@ if (empty($_POST['room_service'])) {
 	$is_check=false;
 	array_push($responseArray,"Room service field is required");
 
+}elseif ($_POST['room_service']=='yes') {
+	$service=$_POST['room_service'];
+	if (empty($_POST['room_24hour']) && empty($_POST['room_selecthour'])) {
+		
+		$is_check=false;
+		array_push($responseArray,"Filled atleast one from room service");
+
+	}elseif (!empty($_POST['room_24hour'])) {
+
+		   $choosehour =$_POST['room_24hour'];
+		   $selecthour= null;
+
+	}elseif (!empty($_POST['room_selecthour'])) {
+
+		    if (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['room_selecthour'])) {
+
+				 $is_check=false;
+				 array_push($responseArray,"Select time format is invalid");
+				 
+				}else{
+
+					 $choosehour = null;
+		             $selecthour= $_POST['room_selecthour'];
+				}		   
+    }
+	
 }else{
 
 	$service=$_POST['room_service'];
+	$choosehour = null;
+	$selecthour= null;
 }
 
 if (empty($_POST['room_maxadult'])) {
@@ -273,7 +301,7 @@ $newSuccessMsgArr=array(
 if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name,room_inactive)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'","'.$inactive.'")';
+$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_selecthour,room_24hour,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name,room_inactive)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$selecthour.'","'.$choosehour.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'","'.$inactive.'")';
 
 
 if ($conn->query($query)== TRUE) {

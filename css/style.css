@@ -4592,7 +4592,7 @@ border-radius:0px;
 /*.events-checkbox p{
     padding-left: 13px;
 }*/
-.closediscount, .closedate, .closemenu, .deletIMG {
+.closediscount, .closedate, .closemenu, .deletIMG, .close_A, .close_D {
     float: right;
     cursor: pointer;
 }
@@ -4764,9 +4764,9 @@ label{
 .hotelVeiw .row{
     padding-left: 15px;
 }
-.imgVeiwinline{
+/*.imgVeiwinline{
     display: inline-flex;
-}
+}*/
 .pTAG{
     padding-bottom: 50px;
 }
@@ -4789,6 +4789,12 @@ label{
          height: 326px; 
 
     
+}
+.cover_wrap.modal, .interior_wrap.modal, .exterior_wrap.modal, .common-img_wrap.modal{
+    background: transparent;
+}
+.btn-flat{
+    right: 25px;
 }
 .checkbox-bottom{
     margin-bottom: 50px !important;

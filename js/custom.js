@@ -645,16 +645,23 @@ function selctdrink(that){
 /* Button for Add Destination in Tours (finction for Destination inputs) */
 
  function gen_destination(event) {
-   // body...
-   var dest_div= document.getElementById('destination-wrap');
+   
+ // debugger;
+
+         
+    if(validateDA($('.destination input.valid,.new_Destination textarea'))==true){
+
+            debugger;
+     
+      var dest_div= document.getElementById('destination-wrap');
 
 //   console.log(dest_div);
-
+    var lengthOfDestination = $('#destination-wrap .destination').length + 1; 
    var new_destination= document.createElement('div');
 
-   new_destination.innerHTML=`<div class="destination-wrap" id="destination-wrap">
+   new_destination.innerHTML=`<div class="destination new_Destination" id="destination-`+lengthOfDestination+`">
    <div class="common-top">
-   <label>Destination Name</label>
+   <label>Destination Name <a class="close_D" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
    <div class="input-field col s8">
    <input type="text" name="destination_name[]">
 
@@ -668,27 +675,38 @@ function selctdrink(that){
    </div>
    </div>
    <div id="attraction-wrap">
-   <div class="common-top">
-   <label>Attraction Name</label>
-   <div class="input-field col s8">
-   <input type="text"  name="attraction_name[]">
+      <div class="attractions" id="attraction-`+lengthOfDestination+`_1">
+          <div class="common-top">
+             <label>Attraction Name</label>
+             <div class="input-field col s8">
+             <input type="text"  name="attraction_name[]">
 
-   </div>
+             </div>
 
-   </div>
-   <div >
-   <label>Attraction Description</label>
-   <div class="input-field col s8">
-   <textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]"></textarea> 
-   </div>
-   </div>
+             </div>
+             <div >
+             <label>Attraction Description</label>
+             <div class="input-field col s8">
+             <textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]"></textarea> 
+             </div>
+             </div>
+      </div>
    </div>
 
    <div class="row col s8 attr_btn clearfix common-top">
-   <a class="waves-effect waves-light btn " onclick="gen_attraction(event)">Add More Attractions</a>
+   <a class="waves-effect waves-light btn attr-btn" onclick="gen_attraction(event)">Add More Attractions</a>
    </div>
    </div>`;
    dest_div.appendChild(new_destination.firstChild);
+
+    }else{
+       debugger;
+        alert('Error');
+
+    }
+    
+    
+
  }
 
 function gen_attraction(event){
@@ -696,15 +714,16 @@ function gen_attraction(event){
 
   
 
+   // debugger;
 
-
-  var attr_div= document.getElementById('attraction-wrap');
-
+  var attr_div= $(event.currentTarget).parents('.destination').find('#attraction-wrap')[0];
+  var destionation_number = $(event.currentTarget).parents('.destination').attr('id').split('-')[1];
+  var lengthOfAttraction = $(event.currentTarget).parents('.destination').find('#attraction-wrap .attractions').length + 1; 
   var new_attraction= document.createElement('div');
 
-  new_attraction.innerHTML=`<div id="attraction-wrap">
+  new_attraction.innerHTML=`<div class="attractions" id="attraction-`+destionation_number+`_`+lengthOfAttraction+`">
   <div class="common-top">
-  <label>Attraction Name</label>
+  <label>Attraction Name <a class="close_A" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
   <div class="input-field col s8">
   <input type="text"  name="attraction_name[]">
   </div>
@@ -721,6 +740,57 @@ function gen_attraction(event){
 
 
 }
+function validateDA(dataObj){
+  debugger;
+      var isvalidateDA = true
+      //dataObj each and validate every value
+       dataObj.each(function(key,value){
+        if ($(value).val()) {
+       
+            isvalidateDA = true;
+              
+        }else{
+
+           isvalidateDA =false;
+            return false;
+
+        }
+        console.log($(value).val());
+    });
+
+
+ return isvalidateDA;
+}
+
+
+
+
+
+
+$('body').on("click",".close_D",function(){
+
+
+$(this).parents('.destination').remove();
+
+
+
+
+
+
+})
+
+
+$('body').on("click",".close_A",function(){
+
+
+$(this).parents('.attractions').remove();
+
+
+
+
+
+
+})
 
 
 

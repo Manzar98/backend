@@ -399,44 +399,50 @@
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Tour's PROMOTIONAL VIDEO</span></div>
 										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
+								<div class="destination-wrap " id="destination-wrap">
+									<div class="destination new_Destination" id="destination-1">
+										<div class="common-top">
+											<label>Destination Name</label>
+											<div class="input-field col s8">
+												<input type="text" name="destination_name[]" required>
 
-						<div class="destination-wrap" id="destination-wrap">
-                        <div class="common-top">
-							<label>Destination Name</label>
-                            <div class="input-field col s8">
-                            	<input type="text" name="destination_name[]">
+											</div>
 
-                            </div>
-						   	 
-						</div>
-						<div >
-							<label>Destination Description</label>
-							<div class="input-field col s8">
-								<textarea class="materialize-textarea" name="destination_descrp[]"></textarea> 
-							</div>
-						</div>
-                        <div id="attraction-wrap">
-						<div class="common-top">
-							<label>Attraction Name</label>
-                            <div class="input-field col s8">
-                            	<input type="text"  name="attraction_name[]">
+										</div>
+										<div >
+											<label>Destination Description</label>
+											<div class="input-field col s8">
+												<textarea class="materialize-textarea" name="destination_descrp[]" required></textarea> 
+											</div>
+										</div>
+										<div id="attraction-wrap">
+											<div class="attractions" id="attraction-1_1">
+												<div class="common-top">
+													<label>Attraction Name</label>
+													<div class="input-field col s8">
+														<input type="text"  name="attraction_name[]" required>
 
-                            </div>
-						   	
-						</div>
-						<div >
-							<label>Attraction Description</label>
-							<div class="input-field col s8">
-								<textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]"></textarea> 
-							</div>
-						</div>
-					    </div>
+													</div>
+
+												</div>
+												<div >
+													<label>Attraction Description</label>
+													<div class="input-field col s8">
+														<textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]" required></textarea> 
+													</div>
+												</div>
+											</div>
+										</div>
+										
 
 
-						<div class="row col s8 attr_btn clearfix common-top">
-                        	<a class="waves-effect waves-light btn " onclick="gen_attraction(event)">Add More Attractions</a>
-                        </div>
-						</div>
+										<div class="row col s8 attr_btn clearfix common-top">
+											<a class="waves-effect waves-light btn attr-btn" onclick="gen_attraction(event)">Add More Attractions</a>
+										</div>
+									</div>
+                                    <input type="hidden" name="destination_id" id="D-id">
+								</div>
+						
 
 						<div class="col s8 common-top clearfix">
                         	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destinations</a>
@@ -466,7 +472,7 @@
 
              
 			<!-- Modal Structure -->
-			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
+			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
 				<iframe src="../up_load_singleimg.php"></iframe>

@@ -95,7 +95,7 @@
 						<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="rom-ser" >
 
 							<label class="col s12">Room service</label>
-							<select  class="" name="room_service" >
+							<select  class="room-serve" name="room_service" onchange="servicetiming(this)" >
 								<?php if ($resultRoom['room_service']== "") { ?>
 
 									<option value="" disabled selected>Select One</option>
@@ -119,6 +119,32 @@
 
 							</select>
 							
+						</div>
+
+						<div class="timing_wrap row" style="display: none;">
+							<div class="col-md-6 " >
+								<div class="with_24hour">
+								<p class="pTAG">
+									<?php if ($resultRoom['room_24hour']=='on') {?>
+
+										<input type="checkbox" class="filled-in" id="filled-in-24" name="room_24hour" checked="" />
+										<label for="filled-in-24">24 Hour</label>
+
+									<?php }else{?>
+
+										<input type="checkbox" class="filled-in" id="filled-in-24" name="room_24hour" />
+										<label for="filled-in-24">24 Hour</label>
+									<?php } ?>
+									
+								</p>
+							</div>
+							</div>
+							<div class="col-md-6 ">
+							   <div class="selecthour">
+								<label style="padding-bottom: 13px;">Select time</label>
+								<input type="text" class="timepicker" id="selecthour" name="room_selecthour" value="<?php echo $resultRoom['room_selecthour'] ;   ?>" >  
+							 </div>
+							</div>	
 						</div>
 						
 						<div class="row common-top">           
@@ -323,7 +349,7 @@
 			</div>
 
 		<!-- Modal Structure -->
-		<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
+		<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
 			<div class="modal-content">
 				<div class="modal-header"><h2>Upload  Photos</h2></div>
 				<iframe src="../up_load_singleimg.php?p=edit&t=room&r_id=<?php echo $global_room_id; ?>"></iframe>
@@ -396,10 +422,73 @@
 
 <script src="../js/room-js/room.js"></script>
 		   <script type="text/javascript">
-							tinymce.init({ selector:'textarea' });
+
+$('#selecthour').pickatime();
+
+$('#filled-in-24').click(function () {
+    if ($(".with_24hour input:checkbox:checked").length > 0) {
+           
+           
+           $('.selecthour').hide();
+    }else{
+    	   $('.selecthour').show();
+
+    	
+    }
+});
+
+$('#selecthour').change(function () {
+    if ($('.selecthour input').val()) {
+           
+           $('.with_24hour').hide();
+    }else{
+    	$('.with_24hour').show();
+
+    	
+    }
+});
+
+function servicetiming(that) {
+
+	if (that.value == "yes") {
+
+		$('.timing_wrap').show();
+	}else{
+		$('.timing_wrap').hide();
+	}
+	// body...
+}
+
+if ($('.room-serve :selected').text() == "Yes"){
+
+	$('.timing_wrap').show();
+}else{
+		$('.timing_wrap').hide();
+	}
+
+
+ if ($(".with_24hour input:checkbox:checked").length > 0){
+
+       $('.selecthour').hide();
+    }else{
+
+    	 $('.selecthour').show();
+    }
+
+
+    if ($('.selecthour input').val()) {
+           
+           $('.with_24hour').hide();
+    }else{
+    	$('.with_24hour').show();
+
+    	
+    }
 
 
 
+
+tinymce.init({ selector:'textarea' });
 $(document).ready(function(){
 
 	/*==============Ajax Function Defination (For Dates)==============*/

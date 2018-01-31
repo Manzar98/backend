@@ -80,7 +80,7 @@
 
                                           parent.document.getElementById('img_ids').value= storedId+','+updatedResponse.id;
                                         }
-                                        var singleImg = $('<div class="imgeWrap" ><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
+                                        var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
                                         parent.$('#hotel_img_wrap').append(singleImg[0]);
                                       }else{
 
@@ -99,8 +99,8 @@
 
                                            parent.document.getElementById('img_extids').value= storedextId+','+updatedResponse.id;
                                          }
-                                         var singleImg = $('<div class="imgeWrap" ><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
-                                         parent.$('#hotel_img_wrap').append(singleImg[0]);
+                                         var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
+                                         parent.$('#hotel_img_exe_wrap').append(singleImg[0]);
                                        }
                                      }
                                       // debugger;

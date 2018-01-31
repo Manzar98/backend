@@ -459,6 +459,10 @@ $denation_desp    =$_POST['destination_descrp'];
 $attraction_name  =$_POST['attraction_name'];
 $attraction_desp  =$_POST['attraction_descrp'];
 
+$D_id=$_POST['destination_id'];
+$D_idArray=explode(",", $D_id);
+
+
 if (empty($_POST['tour_depdate'])) {
   $is_check=false;
   array_push($responseArray,"Departure date field is required");
@@ -575,7 +579,7 @@ if ($conn->query($query)== TRUE) {
 
  for ($i=0; $i<count($imgarray); $i++) {
 
-             // print_r($imgarray) ;
+              // print_r($imgarray) ;
 
 	  $img_UpdateQuery='UPDATE common_imagevideo SET
  	 tour_id="'.$tour_id.'",
@@ -599,34 +603,16 @@ if ($discountpeople) {
 
 }
 
- for ($i=0; $i < count($_POST['destination_name']) ; $i++) { 
+  for ($i=0; $i < count($D_idArray) ; $i++) { 
+
+  $Desti_UpdateQuery='UPDATE tour_destination SET
+  	 tour_id="'.$tour_id.'" WHERE destination_id="'.$D_idArray[$i].'"' ;
+
+              mysqli_query($conn,$Desti_UpdateQuery) or die(mysqli_error($conn));
+  
 
 
- 	$destinationQuery='INSERT INTO tour_destination(tour_id,destination_name,destination_descrp)VALUES("'.$tour_id.'","'.$denation_name[$i].'","'.$denation_desp[$i].'")';
-
-
-    if ($conn->query($destinationQuery)== TRUE) {
- 	# code...
- 	$destination_id=$conn->insert_id;
-
- }else{
- 	echo "Error: " . $destinationQuery . "<br>" . $conn->error;
  }
-
-// echo $destination_id;
-
-     // echo $discountQuery;
- 	
-
- 	 
-
-for ($i=0; $i < count($_POST['attraction_name']) ; $i++) { 
- 	
- 	$attrctionQuery='INSERT INTO tour_attraction(destination_id,attraction_name,attraction_descrp)VALUES("'.$destination_id.'","'.$attraction_name[$i].'","'.$attraction_desp[$i].'")';
-
- 	$attrResult=mysqli_query($conn,$attrctionQuery) or die(mysqli_error($conn));
- }
-}
 
 
     echo json_encode($newSuccessMsgArr);

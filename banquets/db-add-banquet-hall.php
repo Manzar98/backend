@@ -349,7 +349,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 
 <!-- Modal Structure -->
-<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
+<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
   <div class="modal-content">
    <div class="modal-header"><h2>Upload  Photos</h2></div>
    <iframe src="../up_load_singleimg.php"></iframe>

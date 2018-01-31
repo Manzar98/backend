@@ -35,9 +35,37 @@ if (empty($_POST['room_service'])) {
   $is_check=false;
   array_push($responseArray,"Room service field is required");
 
+}elseif ($_POST['room_service']=='yes') {
+  $service=$_POST['room_service'];
+  if (empty($_POST['room_24hour']) && empty($_POST['room_selecthour'])) {
+    
+    $is_check=false;
+    array_push($responseArray,"Filled atleast one from room service");
+
+  }elseif (!empty($_POST['room_24hour'])) {
+
+       $choosehour =$_POST['room_24hour'];
+       $selecthour= null;
+
+  }elseif (!empty($_POST['room_selecthour'])) {
+
+        if (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['room_selecthour'])) {
+
+         $is_check=false;
+         array_push($responseArray,"Select time format is invalid");
+         
+        }else{
+
+           $choosehour = null;
+                 $selecthour= $_POST['room_selecthour'];
+        }      
+    }
+  
 }else{
 
   $service=$_POST['room_service'];
+  $choosehour = null;
+  $selecthour= null;
 }
 
 if (empty($_POST['room_maxadult'])) {

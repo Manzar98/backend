@@ -53,7 +53,7 @@
 									<th>Capacity</th>
 									<th>City</th>
 									<th>Status</th>
-									<th>Success</th>
+									
 									
 									
 								</tr>
@@ -93,9 +93,8 @@
 										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-success"><?php echo "Active";  ?></span></td>
+                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
-									<td class="text-center"><span class="db-not-success"><?php echo "Pending";   ?></span></td>
 
 									<td class="tdwrap">
 									<div class="buttonsWrap">

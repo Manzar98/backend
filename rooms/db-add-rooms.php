@@ -76,13 +76,29 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="rom-ser" >
 
 							<label class="col s12">Room service</label>
-							<select  class="" name="room_service" required="">
+							<select  class="" onchange="servicetiming(this)" name="room_service" required="">
 								<option value="" disabled selected>Select One</option>
 								<option value="yes">Yes</option>
 								<option value="no">No</option>
 
 							</select>
 							
+						</div>
+						<div class="timing_wrap row" style="display: none;">
+							<div class="col-md-6 " >
+								<div class="with_24hour">
+								<p class="pTAG">
+									<input type="checkbox" class="filled-in" id="filled-in-24" name="room_24hour" />
+									<label for="filled-in-24">24 Hour</label>
+								</p>
+							</div>
+							</div>
+							<div class="col-md-6 ">
+							   <div class="selecthour">
+								<label style="padding-bottom: 13px;">Select time</label>
+								<input type="text" value="" class="timepicker" id="selecthour" name="room_selecthour">  
+							 </div>
+							</div>	
 						</div>
 						
 						<div class="row common-top">           
@@ -91,7 +107,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								<input type="number" value="" class="input-field validate" name="room_maxadult" required>  
 							</div>
 							<div class=" col-md-6">
-								<label class="common-bottom">Extra mattress charges for adults</label>
+								<label >Extra mattress charges for adults</label>
 								<input type="number" value="" class="input-field validate" name="room_matadult" required>  
 							</div>
 						</div>   
@@ -102,7 +118,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								<input type="number" value="" class="input-field validate" name="room_maxchild" required>  
 							</div>
 							<div class=" col-md-6">
-								<label class="common-bottom">Extra mattress charges for Children</label>
+								<label>Extra mattress charges for Children</label>
 								<input type="number" value="" class="input-field validate" name="room_matchild" required>
 							</div>
 						</div> 						
@@ -208,7 +224,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 		</div>  
 
 		<!-- Modal Structure -->
-		<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
+		<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
 			<div class="modal-content">
 				<div class="modal-header"><h2>Upload  Photos</h2></div>
 				<iframe src="../up_load_singleimg.php"></iframe>
@@ -280,6 +296,41 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 <script type="text/javascript">
 
+$('#selecthour').pickatime();
+
+$('#filled-in-24').click(function () {
+    if ($(".with_24hour input:checkbox:checked").length > 0) {
+           
+           
+           $('.selecthour').hide();
+    }else{
+    	$('.selecthour').show();
+
+    	
+    }
+});
+
+$('#selecthour').change(function () {
+    if ($('.selecthour input').val()) {
+           
+           $('.with_24hour').hide();
+    }else{
+    	$('.with_24hour').show();
+
+    	
+    }
+});
+
+function servicetiming(that) {
+
+	if (that.value == "yes") {
+
+		$('.timing_wrap').show();
+	}else{
+		$('.timing_wrap').hide();
+	}
+	// body...
+}
 
 tinymce.init({ selector:'textarea' });
 

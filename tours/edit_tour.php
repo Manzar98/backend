@@ -22,6 +22,10 @@ $global_tour_id="";
 
        $edittournoofpeopleQuery=select('common_nosofpeople', array('tour_id'=>$resulttour['tour_id'])); 
 
+       $editDesQuery=select('tour_destination',array('tour_id'=>$resulttour['tour_id']));
+
+
+
      
 
   ?>
@@ -45,7 +49,7 @@ $global_tour_id="";
 						 
                          <div class="db-profile-edit">
 					<form class="col s12"  data-toggle="validator" id="tour-form" role="form" action="" method="POST" enctype="multipart/form-data">
-						<input type="hidden" name="tour_id" value="<?php echo $resulttour['tour_id'] ?>">
+						<input type="hidden" name="tour_id" value="<?php echo $resulttour['tour_id'] ?>" id="tour-id">
 						<input type="hidden" name="hotel_id" value="<?php echo $resulttour['hotel_id'] ?>">
 
 						<?php $global_tour_id=$resulttour['tour_id']; ?>
@@ -745,43 +749,124 @@ $global_tour_id="";
 										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
 
-						<div class="destination-wrap" id="destination-wrap">
-                        <div class="common-top">
-							<label>Destination Name</label>
-                            <div class="input-field col s8">
-                            	<input type="text" name="destination_name[]">
+							<div class="destination-wrap " id="destination-wrap">
+                                  <?php 
 
-                            </div>
-						   	 
-						</div>
-						<div >
-							<label>Destination Description</label>
-							<div class="input-field col s8">
-								<textarea class="materialize-textarea " name="destination_descrp[]"></textarea> 
-							</div>
-						</div>
-                        <div id="attraction-wrap">
-						<div class="common-top">
-							<label>Attraction Name</label>
-                            <div class="input-field col s8">
-                            	<input type="text"  name="attraction_name[]">
+                                   
 
-                            </div>
-						   	
-						</div>
-						<div >
-							<label>Attraction Description</label>
-							<div class="input-field col s8">
-								<textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]"></textarea> 
-							</div>
-						</div>
-					    </div>
+                                  if (mysqli_num_rows($editDesQuery) > 0) {
+                                      $i=1;
+								while ($result_D=mysqli_fetch_assoc($editDesQuery)) { 
+
+                                       $editAttrQuery=select('tour_attraction', array('destination_id'=>$result_D['destination_id']))
+									?>
 
 
-						<div class="row col s8 attr_btn clearfix common-top">
-                        	<a class="waves-effect waves-light btn " onclick="gen_attraction(event)">Add More Attractions</a>
-                        </div>
-						</div>
+
+									<div class="destination" id="destination-<?php echo $i; ?>">
+										<input type="hidden" name="destination_id[]" value="<?php echo $result_D['destination_id']; ?>" class="edit-D_id">
+										<div class="common-top">
+
+											<label>Destination Name</label>
+											<div class="input-field col s8">
+												<input type="text" name="destination_name[]" value="<?php echo $result_D['destination_name']; ?>">
+
+											</div>
+
+										</div>
+										<div >
+											<label>Destination Description</label>
+											<div class="input-field col s8">
+												<textarea class="materialize-textarea" name="destination_descrp[]"><?php echo $result_D['destination_descrp']; ?></textarea> 
+											</div>
+										</div>
+
+
+										<div id="attraction-wrap">
+                                           <?php  $j=1;  ?>
+											<?php while ($result_A=mysqli_fetch_assoc($editAttrQuery)) {  ?>
+											<input type="hidden" name="attraction_id[]" value="<?php echo $result_A['attraction_id']; ?>" class="edit-A_id">
+
+											<div class="attractions" id="attraction-<?php echo $i; ?>_<?php echo $j; ?>">
+
+												<div class="common-top">
+													<label>Attraction Name</label>
+													<div class="input-field col s8">
+														<input type="text"  name="attraction_name[]" value="<?php echo $result_A['attraction_name']; ?>">
+
+													</div>
+
+												</div>
+												<div >
+													<label>Attraction Description</label>
+													<div class="input-field col s8">
+														<textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]"><?php echo $result_A['attraction_descrp']; ?></textarea> 
+													</div>
+												</div>
+											</div>
+
+											<?php $j++;} ?>
+										</div>
+										
+
+
+										<div class="row col s8 attr_btn clearfix common-top">
+											<a class="waves-effect waves-light btn attr-btn" onclick="edit_gen_attraction(event)">Add More Attractions</a>
+										</div>
+									</div>
+
+									<?php $i++;}
+
+								 }else{ ?>
+
+
+									<div class="destination new_Destination" id="destination-1">
+
+										<div class="common-top">
+											<label>Destination Name</label>
+											<div class="input-field col s8">
+												<input type="text" name="destination_name[]" required>
+
+											</div>
+
+										</div>
+										<div >
+											<label>Destination Description</label>
+											<div class="input-field col s8">
+												<textarea class="materialize-textarea" name="destination_descrp[]" required></textarea> 
+											</div>
+										</div>
+										<div id="attraction-wrap">
+											<div class="attractions new_Attract" id="attraction-1_1">
+												
+												<div class="common-top">
+													<label>Attraction Name</label>
+													<div class="input-field col s8">
+														<input type="text"  name="attraction_name[]" required>
+
+													</div>
+
+												</div>
+												<div >
+													<label>Attraction Description</label>
+													<div class="input-field col s8">
+														<textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]" required></textarea> 
+													</div>
+												</div>
+											</div>
+										</div>
+										
+
+
+										<div class="row col s8 attr_btn clearfix common-top">
+											<a class="waves-effect waves-light btn attr-btn" onclick="edit_gen_attraction(event)">Add More Attractions</a>
+										</div>
+									</div>
+									<input type="hidden" name="destination_id" id="D-id">
+							<?php	}?>
+                              
+								</div>
+						
 
 						<div class="col s8 common-top clearfix">
                         	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destinations</a>
@@ -822,7 +907,7 @@ $global_tour_id="";
 
              
 			<!-- Modal Structure -->
-			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body">
+			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
 				<iframe src="../up_load_singleimg.php?p=edit&t=tour&t_id=<?php echo  $global_tour_id; ?>"></iframe>
@@ -935,8 +1020,6 @@ jQuery(document).ready(function(){
           }
         }
    });
-
-
 
 
 
@@ -1072,6 +1155,54 @@ if ($(".camping input:checkbox:checked").length > 0) {
 		 
 
 });
+
+
+ /*============================================
+   Edit time Destination & attraction generation 
+ ==============================================*/
+
+
+function edit_gen_attraction(event){
+
+
+    var desti_stored_id =$(event.currentTarget).parents('.destination').find('.edit-D_id').val();
+
+
+
+   debugger;
+
+  var attr_div= $(event.currentTarget).parents('.destination').find('#attraction-wrap')[0];
+  var destionation_number = $(event.currentTarget).parents('.destination').attr('id').split('-')[1];
+  var lengthOfAttraction = $(event.currentTarget).parents('.destination').find('#attraction-wrap .attractions').length + 1; 
+  var new_attraction= document.createElement('div');
+
+  new_attraction.innerHTML=`<div class="attractions new_Attract" id="attraction-`+destionation_number+`_`+lengthOfAttraction+`">
+  <input type="hidden" name="attraction_id[]" class="edit-A_id">
+  <input type="hidden" value="`+desti_stored_id+`" name="destination_att_id[]" class="edit-D_id">
+  <div class="common-top">
+  <label>Attraction Name <a class="close_A" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
+  <div class="input-field col s8">
+  <input type="text"  name="attraction_name[]">
+  </div>
+  </div>
+  <div >
+  <label>Attraction Description</label>
+  <div class="input-field col s8">
+  <textarea  class="materialize-textarea custom-text-area" name="attraction_descrp[]"></textarea> 
+  </div>
+  </div>
+  </div>`;
+
+  attr_div.appendChild(new_attraction.firstChild);
+
+
+}
+
+
+
+
+
+
 </script>
 
 </body>
