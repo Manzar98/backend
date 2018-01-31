@@ -54,7 +54,7 @@ if (validator.form()== false) {
 
               addDestionations();
         }
-           // update_D_A()
+           update_D_A()
           // updateTour();
       }
 
@@ -323,13 +323,17 @@ function insertDiscountinput() {
 
 function addDestionations(){
 
-  var data = $('.new_Destination input,.new_Destination textarea').serialize();
-  var DD_obj= $('.new_Destination').attr('id');
+  // var data = $('.new_Destination input,.new_Destination textarea').serialize();
   var stored_tour_id = "";
   if ($('#tour-form').find('#tour-id').val()) {
           stored_tour_id='&tour_id='+$('#tour-form').find('#tour-id').val();
   }
-  
+    $.each($('.new_Destination'),function(key,val){
+
+    debugger;
+      var data= $(val).find('input,textarea').serialize();
+
+
   $.ajax({
 
                       type: "POST",
@@ -341,18 +345,18 @@ function addDestionations(){
                                   console.log(response);
                                   if(response.status == "success"){
 
-                                    
+                                       var stored_att_id= response.attr_id;
+                                       var stored_att_id_array= stored_att_id.split(',');
 
 
-                                     var D_ids_array=response.id.split(',');
+                                     var D_ids_array=response.id;
 
                                      console.log(D_ids_array);
-                                     $.each($('.new_Destination input'),function(){
-                                         
-                                            $('.new_Destination .common-top').before('<input type="hidden" name="destination_id[]" value="" />')
-                                              debugger;
-                                      });
-
+                                     $(val).find('.only_destination').before('<input type="hidden" name="destination_id[]" value="'+D_ids_array+'" />');
+                                    
+                                    $.each($(val).find('.attractions'),function(k,v){
+                                      $(v).append('<input name="attraction_id[]" value="'+stored_att_id_array[k]+'" />')
+                                    })
 
                                     //$('#'+DD_obj).removeClass('new_Destination');
                                     // $('#'+DD_obj).find('.attr-btn').remove();
@@ -374,6 +378,11 @@ function addDestionations(){
 
 
                     })
+  })
+  // return false;
+  // var DD_obj= $('.new_Destination').attr('id');
+   
+
 }
 
 

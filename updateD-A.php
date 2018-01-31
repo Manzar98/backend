@@ -1,8 +1,8 @@
 <?php
   include 'common-sql.php';
-   print_r($_POST);
+   // print_r($_POST);
 
-   return false;
+   // return false;
 $desti_id_array=array();
 for ($i=0; $i < count($_POST['destination_name']) ; $i++) { 
      
@@ -13,10 +13,12 @@ for ($i=0; $i < count($_POST['destination_name']) ; $i++) {
       // echo $Desti_UpdateQuery;
        mysqli_query($conn,$Desti_UpdateQuery) or die(mysqli_error($conn));
      
-$attrResult= addAttraction($_POST['destination_id'][$i]);
+
 
 array_push($desti_id_array, $_POST['destination_id'][$i]);
 }
+
+$attrResult= addAttraction($_POST['destination_id']);
 
 if ($attrResult==1) {
 
@@ -47,7 +49,7 @@ function addAttraction($destination_id){
    $attrctionQuery='UPDATE tour_attraction SET
      attraction_name="'.$_POST['attraction_name'][$i].'",attraction_descrp="'.$_POST['attraction_descrp'][$i].'" WHERE attraction_id="'.$_POST['attraction_id'][$i].'"' ;
  	
-    echo $attrctionQuery;
+    // echo $attrctionQuery;
   $attrResult=mysqli_query($conn,$attrctionQuery) or die(mysqli_error($conn));
  }
 

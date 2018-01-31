@@ -660,7 +660,7 @@ function selctdrink(that){
    var new_destination= document.createElement('div');
 
    new_destination.innerHTML=`<div class="destination new_Destination" id="destination-`+lengthOfDestination+`">
-   <div class="common-top">
+   <div class="common-top  only_destination">
    <label>Destination Name <a class="close_D" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
    <div class="input-field col s8">
    <input type="text" name="destination_name[]">
