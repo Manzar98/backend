@@ -8,7 +8,7 @@
 for ($i=0; $i < count($_POST['destination_name']) ; $i++) { 
   
 
-if ($_POST['tour_id']) {
+if (isset($_POST['tour_id'])) {
 
       $destinationQuery='INSERT INTO tour_destination(tour_id,destination_name,destination_descrp)VALUES("'.$_POST['tour_id'].'","'.$_POST['destination_name'][$i].'","'.$_POST['destination_descrp'][$i].'")';
 }else{

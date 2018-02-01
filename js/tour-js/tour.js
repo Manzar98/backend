@@ -55,7 +55,7 @@ if (validator.form()== false) {
               addDestionations();
         }
            update_D_A()
-          // updateTour();
+           updateTour();
       }
 
 }
@@ -105,9 +105,10 @@ if (validator.form()== false) {
    }else{
     $('#loader').modal({dismissible: false});
     $('#loader').modal('open');
+
        tinyMCE.triggerSave();
        
-
+addDestionations();
 
 $.ajax({
                              type:"POST",
@@ -126,7 +127,7 @@ $.ajax({
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                       title: "Event successfully submitted for review!",
+                                       title: "Tour successfully submitted for review!",
                     text: "Thank you for your submission! You will be notified once your tour submission has been approved!.",
                     type: "success",
                       //confirmButtonColor: "#DD6B55",
@@ -191,8 +192,11 @@ function insertAttractions(){
                                       $.each($('.new_Attract input.edit-A_id'),function(key,value){
                                          
                                              $(value).val(ids_array[key]);
-                                              debugger;
+                                             $(value).parents('.new_Attract').removeClass("new_Attract");
+                                              // debugger;
                                       });
+
+                                      
                                   }
                       }
 
@@ -359,19 +363,20 @@ function addDestionations(){
                                     })
 
                                     //$('#'+DD_obj).removeClass('new_Destination');
-                                    // $('#'+DD_obj).find('.attr-btn').remove();
+                                    
+                                     $(val).removeClass('new_Destination');
                                     // debugger;
                                     // 
-                                  //   if ($('#D-id').val()) {
+                                    if ($('#D-id').val()) {
 
-                                  //     var storedDesti =$('#D-id').val();
-                                  //         storedDesti =storedDesti+','+response.id;
-                                  //         $('#D-id').val(storedDesti) ; 
-                                      
-                                  //   }else{
+                                       var storedDesti =$('#D-id').val();
+                                           storedDesti =storedDesti+','+response.id;
+                                           $('#D-id').val(storedDesti) ; 
+                                              debugger;
+                                     }else{
                                      
-                                  //        $('#D-id').val(response.id) ;              
-                                  //   }
+                                          $('#D-id').val(response.id) ;              
+                                     }
                                    }
                       }
 

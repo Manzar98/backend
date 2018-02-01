@@ -440,7 +440,7 @@
 											<a class="waves-effect waves-light btn attr-btn" onclick="gen_attraction(event)">Add More Attractions</a>
 										</div>
 									</div>
-                                    <input type="hidden" name="destination_id" id="D-id">
+                                    <input type="hidden" name="desti_id" id="D-id">
 								</div>
 						
 

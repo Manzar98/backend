@@ -104,11 +104,12 @@
 						</div>
 
 
-						<div class="imgVeiwinline row" id="hotel_img_wrap">
+						<div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
+							<h2>Interior Photos</h2>
 							 
 						</div>
-						<div class="imgVeiwinline row" id="hotel_img_exe_wrap">
-							 
+						<div class="imgVeiwinline row" id="hotel_img_exe_wrap" style="display: none;">
+							 <h2>Interior Photos</h2>
 						</div>
 						<div class="row" id="hotel_cover_img">
 							

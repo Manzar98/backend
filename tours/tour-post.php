@@ -1,6 +1,6 @@
 <?php
  include '../common-sql.php';
-  // print_r($_POST);
+     // print_r($_POST);
 
 // return false;
 $is_check=true;
@@ -459,8 +459,7 @@ $denation_desp    =$_POST['destination_descrp'];
 $attraction_name  =$_POST['attraction_name'];
 $attraction_desp  =$_POST['attraction_descrp'];
 
-$D_id=$_POST['destination_id'];
-$D_idArray=explode(",", $D_id);
+$D_idArray=explode(",",$_POST['desti_id']);
 
 
 if (empty($_POST['tour_depdate'])) {
