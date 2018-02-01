@@ -210,7 +210,9 @@ if (empty($_POST['tour_childallow'])) {
 					   
 					    array_push($responseArray,"Half price field should only contain numbers.");
 					}elseif(!empty($_POST['tour_undr5price']) && is_numeric($_POST['tour_undr5price'])){
+
 						$undr5price      = $_POST['tour_undr5price'];
+
 					}else{
 						$undr5price = null;
 
@@ -228,6 +230,8 @@ if (empty($_POST['tour_childallow'])) {
 				}
 				}else{
 					$undr5allow       =$_POST['tour_undr5allow'];
+					$undr5price  = null;
+					$undr5free   ='off';
 				}
 				
 
@@ -246,11 +250,14 @@ if (empty($_POST['tour_childallow'])) {
 else{
 
 	$childallow  =$_POST['tour_childallow'];
-	$undr5price  = null;
-    $undr5allow  = null;
+
+	
 	$undr5free   ='off';
 	$halftikchild= null;
 
+    $undr5allow  = null;
+
+    $undr5price  = null;
 }
 
 $extrachrbag      =$_POST['tour_extrachrbag'];

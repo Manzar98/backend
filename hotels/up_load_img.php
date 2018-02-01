@@ -86,8 +86,9 @@
                                         var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
 
                                         parent.$('#hotel_img_wrap').append(singleImg[0]);
-                                        parent.$('#hotel_img_wrap').show();
+                                         parent.$('#hotel_img_wrap').show();
 
+                                       
                                        
                                       }else{
 
@@ -108,6 +109,7 @@
                                          }
                                          var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
                                          parent.$('#hotel_img_exe_wrap').append(singleImg[0]);
+                                         parent.$('#hotel_img_exe_wrap').show();
                                        }
                                      }
                                       // debugger;
@@ -117,6 +119,7 @@
                           console.log($(file.previewElement).find('img[upload-file-name]').attr('upload-file-name'));
                           var deleteFile = $(file.previewElement).find('img[upload-file-name]').attr('upload-file-name');
                           var deleteId= $(file.previewElement).find('img[data-dz-remove]').attr('upload-file-id');
+                          parent.$('a[data-value='+"deleteId"+']').remove()
                           debugger;
                           $.post("../delete_img.php",{fileName : deleteFile,
                            fileId   : deleteId

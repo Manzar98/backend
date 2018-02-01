@@ -199,8 +199,11 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
          <div class="imgVeiwinline row" id="hotel_img_wrap">
            <?php
-
+          $photocounter=0;
            while ($imgResult=mysqli_fetch_assoc($editconImgQuery)) {
+            if ($photocounter==0) { ?>
+                      <div class="row int_title"><label>Photos :</label></div>
+                    <?php $photocounter++; } 
 
             if (!empty($imgResult['common_image'])) {?>
             <div class="imgeWrap">
@@ -446,9 +449,9 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
   <div class="modal-content">
    <div class="modal-header"><h2>Upload  Photos</h2></div>
-   <iframe src="../up_load_singleimg.php?p=edit&t=conference&c_id=<?php echo $global_conference_id; ?>"></iframe>
+   <iframe src="../up_load_singleimg.php?p=edit&t=conference&c_id=<?php echo $global_conference_id; ?>" id="photo_iframe"></iframe>
    <div class="modal-footer">
-     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
    </div>
  </div>
 </div>

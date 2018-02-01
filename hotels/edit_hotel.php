@@ -119,24 +119,51 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<input type="text" class="timepicker" id="checkOut" required="" name="hotel_checkout" value="<?php  echo $hotelResult['hotel_checkout'];  ?>">  
 		</div>
 	</div>
-	<div class="imgVeiwinline row" id="hotel_img_wrap">
+	
+
 		<?php
+		$interiorCounter = 0;
+        $exteriorCounter = 0;
 
 		while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {
 
 
 			if (!empty($imgResult['common_image'])) {?>
-			<div class="imgeWrap">
+	
+			<?php if ($imgResult['photo_int_ext_type']== "interior") {?>
+				            
+				            <?php if ($interiorCounter==0) { ?>
+				            	<div class="row int_title"><label>Interior Photos :</label></div>
+				            <?php $interiorCounter++; } ?>
+            <div class="imgVeiwinline" id="hotel_img_wrap" >
+			  <div class="imgeWrap">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 				<img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
-			</div>&nbsp;&nbsp;
+			</div>
 
+			</div>
+            <?php }elseif ($imgResult['photo_int_ext_type']== "exterior") { ?>
+            	      
+            	      <?php if ($exteriorCounter==0) { ?>
+				            	<div class="row int_title"><label>Interior Photos :</label></div>
+				            <?php $exteriorCounter++; } ?>
+		   <div class="imgVeiwinline row" id="hotel_img_exe_wrap" >		            
+			 <div class="imgeWrap">
+				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
+				<img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
+			</div>
+           </div>
+           <?php } ?>
+			
+             
 
 			<?php }elseif (!empty($imgResult['hotel_coverimg'])) { ?>
+			<div class="row" id="hotel_cover_img" >
 				<div class="imgeWrap">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['hotel_coverimg'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 				<img src="../<?php echo $imgResult['hotel_coverimg']  ?>" width="150" class="materialboxed">
 			</div>&nbsp;&nbsp;
+		</div>
 		<?php	} ?>
           
 
@@ -145,7 +172,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<?php	}
 
 			?>
-		</div>
+		
       
 
 
@@ -440,9 +467,9 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body interior_wrap">
 <div class="modal-content">
 <div class="modal-header"><h2>Upload  Photos</h2></div>
-<iframe src="up_load_img.php?p=edit&t=int-hotel&h_id=<?php echo $global_hotel_id; ?>"></iframe>
+<iframe src="up_load_img.php?p=edit&t=int-hotel&h_id=<?php echo $global_hotel_id; ?>" id="int_iframe"></iframe>
 <div class="modal-footer">
-<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat int_done">Done</a>
 </div>
 </div>
 </div>
@@ -452,9 +479,9 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 <div class="modal-content">
 <div class="modal-header"><h2>Upload Exterior Photos</h2></div>
-<iframe src="up_load_img.php?p=edit&t=ext-hotel&h_id=<?php echo $global_hotel_id; ?>"></iframe>
+<iframe src="up_load_img.php?p=edit&t=ext-hotel&h_id=<?php echo $global_hotel_id; ?>" id="ext_iframe"></iframe>
 <div class="modal-footer">
-<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ext_done">Done</a>
 </div>
 </div>
 </div>

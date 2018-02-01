@@ -84,7 +84,7 @@
                                         }
                                         var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
                                         parent.$('#hotel_img_wrap').append(singleImg[0]);
-                                        
+                                        parent.$('#hotel_img_wrap').show();
                                       // debugger;
                                     });
                      this.on("removedfile", function(file){

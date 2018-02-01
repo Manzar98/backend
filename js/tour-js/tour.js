@@ -35,7 +35,7 @@ if (validator.form()== false) {
     });
          // $("#pro-sub-btn").show();
    }else{
-      debugger;
+      // debugger;
       $('#loader').modal({dismissible: false});
       $('#loader').modal('open');
 
@@ -176,7 +176,7 @@ $.ajax({
 })
 
 function insertAttractions(){
-  debugger;
+  // debugger;
     var data = $('.new_Attract input, .new_Attract textarea').serialize();
     $.ajax({
 
@@ -219,7 +219,7 @@ function isDestinationInput(dataObj){
 }
 
 function isAttractionInput(dataObj){
-  debugger;
+  // debugger;
   var isValid = true;
   dataObj.each(function(key,val){
       if(!$(val).val() && !$(val).hasClass('edit-A_id')){
@@ -334,7 +334,7 @@ function addDestionations(){
   }
     $.each($('.new_Destination'),function(key,val){
 
-    debugger;
+    // debugger;
       var data= $(val).find('input,textarea').serialize();
 
 
@@ -372,7 +372,7 @@ function addDestionations(){
                                        var storedDesti =$('#D-id').val();
                                            storedDesti =storedDesti+','+response.id;
                                            $('#D-id').val(storedDesti) ; 
-                                              debugger;
+                                              // debugger;
                                      }else{
                                      
                                           $('#D-id').val(response.id) ;              
@@ -395,7 +395,7 @@ function addDestionations(){
 function update_D_A(){
  
    var data=$('.destination-wrap input,.destination-wrap textarea').serialize();
-debugger;
+// debugger;
     $.ajax({
 
                       type: "POST",

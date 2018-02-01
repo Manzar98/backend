@@ -234,6 +234,18 @@ $("#pro-sub-btn_hotel").click(function(){
 
 // $("#pro-sub-btn").ajaxSubmit({url: '../../hotels/update_hotel.php', type: 'post'})
 
+/*==================================
+    Remove imges when click on done in modal
+====================================*/
 
+$('.int_done').click(function () {
+    // debugger;
+    $('#int_iframe').contents().find('.dz-image-preview.dz-success.dz-complete').remove();
+  // body...
+})
 
-
+$('.ext_done').click(function () {
+    // debugger;
+    $('#ext_iframe').contents().find('.dz-image-preview.dz-success.dz-complete').remove();
+  // body...
+})

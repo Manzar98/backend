@@ -105,14 +105,14 @@
 
 
 						<div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
-							<h2>Interior Photos</h2>
+							<div class="row int_title"><label>Interior Photos :</label></div>
 							 
 						</div>
 						<div class="imgVeiwinline row" id="hotel_img_exe_wrap" style="display: none;">
-							 <h2>Interior Photos</h2>
+							 <div class="row int_title"><label>Exterior Photos :</label></div>
 						</div>
-						<div class="row" id="hotel_cover_img">
-							
+						<div class="imgVeiwinline row" id="hotel_cover_img" style="display: none;">
+							<div class="row int_title"><label>Hotel Cover Photo:</label></div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
@@ -313,9 +313,9 @@
 			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body interior_wrap">
 				<div class="modal-content">
 					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="up_load_img.php?name=interior"></iframe>
+				<iframe src="up_load_img.php?name=interior" id="int_iframe"></iframe>
                    <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat int_done">Done</a>
 				</div>
 		   </div>
 		   </div>
@@ -325,9 +325,9 @@
 
 				<div class="modal-content">
 						<div class="modal-header"><h2>Upload Exterior Photos</h2></div>
-				<iframe src="up_load_img.php?name=exterior"></iframe>
+				<iframe src="up_load_img.php?name=exterior" id="ext_iframe"></iframe>
                    <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ext_done">Done</a>
 				</div>
 		   </div>
 		   </div>

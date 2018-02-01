@@ -651,7 +651,7 @@ function selctdrink(that){
          
     if(validateDA($('.destination input.valid,.new_Destination textarea'))==true){
 
-            debugger;
+            // debugger;
      
       var dest_div= document.getElementById('destination-wrap');
 
@@ -700,7 +700,7 @@ function selctdrink(that){
    dest_div.appendChild(new_destination.firstChild);
 
     }else{
-       debugger;
+       // debugger;
         alert('Error');
 
     }
@@ -741,7 +741,7 @@ function gen_attraction(event){
 
 }
 function validateDA(dataObj){
-  debugger;
+  // debugger;
       var isvalidateDA = true
       //dataObj each and validate every value
        dataObj.each(function(key,value){
@@ -1073,6 +1073,7 @@ $('.chips-package').on('chip.add', function(e, chip){
 /*=============Delete Image in Preveiw in all forms===============*/
 
 function deletIMG(event){
+
   console.log(event.currentTarget.getAttribute("data-value"));
 
   var file_ID=event.currentTarget.getAttribute("data-value");
@@ -1099,8 +1100,17 @@ function(isConfirm){
                                          fileName : file_Name
                                              })
                  .done(function(data){
-                   console.log(data);
+                   var parentDiv= $(removeDIV).parents('.imgVeiwinline') ;
+
                    $(removeDIV).remove();
+
+                   if (parentDiv.find('.imgeWrap').length==0) {
+
+                      parentDiv.find('.int_title').hide();
+                      // debugger;
+                   }
+                   console.log(data);
+                     // debugger;
                  });
 
     swal("Deleted!", "Your imaginary file has been deleted.", "success");
@@ -1222,3 +1232,11 @@ $('#arrivalTime').pickatime();
  //     $('.offer_discount').prop('required',false);
  //     $('.offer_expire').prop('required',false);
  // }
+
+ /*===========================
+Remove imges when click on done in modal
+ =============================*/
+ $('.photo_done').click(function () {
+
+    $('#photo_iframe').contents().find('.dz-image-preview.dz-success.dz-complete').remove();
+ })

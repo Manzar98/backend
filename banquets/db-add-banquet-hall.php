@@ -181,7 +181,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  </div>
 </div> 
 
-<div class="imgVeiwinline row" id="hotel_img_wrap">
+<div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
+
+  <div class="row int_title"><label>Photos :</label></div>
                
 </div>
 
@@ -352,9 +354,9 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
   <div class="modal-content">
    <div class="modal-header"><h2>Upload  Photos</h2></div>
-   <iframe src="../up_load_singleimg.php"></iframe>
+   <iframe src="../up_load_singleimg.php" id="photo_iframe"></iframe>
    <div class="modal-footer">
-     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
    </div>
  </div>
 </div>
