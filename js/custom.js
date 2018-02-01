@@ -770,25 +770,76 @@ function validateDA(dataObj){
 $('body').on("click",".close_D",function(){
 
 
-$(this).parents('.destination').remove();
+  /*Delete Destination wrap from frontend and backend using ajax*/  
+  var destwrap_id=$(this).parents(".destination").find('.edit-D_id').val();
+      if (destwrap_id) {
+                      var colIdName= $(this).parents(".destination").find('.edit-D_id').attr('name');
+                          var col_name = colIdName.slice(0,-2);
+                   // console.log($(this).parents("#gen_menupackage_input"));
+                   var wrap_li=$(this).parents(".destination");
+                   wrap_li.css('background','tomato');
+                   wrap_li.fadeOut("slow", function(){ 
+                    // debugger;
+                    wrap_li.remove();
+       });
+            $.ajax({
+                                type:"POST",
+                               url:"../delete_multipleinputsrecord.php",
+                                data: {tableName : 'tour_destination',id : destwrap_id ,col_id_name : col_name},
+                                success:function(data) {
+                   var response = JSON.parse(data);
+                                 console.log(response);
+                                 if(response.message == "success"){
+                                 
+                                 }
+                     }
 
 
+                     })
+            /*---End Ajax---*/
 
+      }else{
 
-
+          $(this).parents('.destination').remove();
+      }
 
 })
 
 
 $('body').on("click",".close_A",function(){
 
+  /*Delete Attraction wrap from frontend and backend using ajax*/  
+  var attwrap_id=$(this).parents(".attractions").find('.edit-A_id').val();
+      if (attwrap_id) {
+                      var colIdName= $(this).parents(".attractions").find('.edit-A_id').attr('name');
+                          var col_name = colIdName.slice(0,-2);
+                   // console.log($(this).parents("#gen_menupackage_input"));
+                   var wrap_li=$(this).parents(".attractions");
+                   wrap_li.css('background','tomato');
+                   wrap_li.fadeOut("slow", function(){ 
+                    // debugger;
+                    wrap_li.remove();
+       });
+            $.ajax({
+                                type:"POST",
+                               url:"../delete_multipleinputsrecord.php",
+                                data: {tableName : 'tour_attraction',id : attwrap_id ,col_id_name : col_name},
+                                success:function(data) {
+                   var response = JSON.parse(data);
+                                 console.log(response);
+                                 if(response.message == "success"){
+                                 
+                                 }
+                     }
 
-$(this).parents('.attractions').remove();
 
+                     })
+            /*---End Ajax---*/
 
+      }else{
 
-
-
+          $(this).parents('.attractions').remove();
+      }
 
 })
 

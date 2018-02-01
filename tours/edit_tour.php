@@ -767,7 +767,7 @@ $global_tour_id="";
 										<input type="hidden" name="destination_id[]" value="<?php echo $result_D['destination_id']; ?>" class="edit-D_id">
 										<div class="common-top">
 
-											<label>Destination Name</label>
+											<label>Destination Name <a class="close_D" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
 											<div class="input-field col s8">
 												<input type="text" name="destination_name[]" value="<?php echo $result_D['destination_name']; ?>">
 
@@ -785,12 +785,14 @@ $global_tour_id="";
 										<div id="attraction-wrap">
                                            <?php  $j=1;  ?>
 											<?php while ($result_A=mysqli_fetch_assoc($editAttrQuery)) {  ?>
-											<input type="hidden" name="attraction_id[]" value="<?php echo $result_A['attraction_id']; ?>" class="edit-A_id">
+											
 
 											<div class="attractions" id="attraction-<?php echo $i; ?>_<?php echo $j; ?>">
 
+												<input type="hidden" name="attraction_id[]" value="<?php echo $result_A['attraction_id']; ?>" class="edit-A_id">
+
 												<div class="common-top">
-													<label>Attraction Name</label>
+													<label>Attraction Name <a class="close_A" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
 													<div class="input-field col s8">
 														<input type="text"  name="attraction_name[]" value="<?php echo $result_A['attraction_name']; ?>">
 
