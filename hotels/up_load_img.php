@@ -119,8 +119,8 @@
                           console.log($(file.previewElement).find('img[upload-file-name]').attr('upload-file-name'));
                           var deleteFile = $(file.previewElement).find('img[upload-file-name]').attr('upload-file-name');
                           var deleteId= $(file.previewElement).find('img[data-dz-remove]').attr('upload-file-id');
-                          parent.$('a[data-value='+"deleteId"+']').remove()
-                          debugger;
+                          parent.$('a[data-value='+deleteId+']').parent().remove();
+                          
                           $.post("../delete_img.php",{fileName : deleteFile,
                            fileId   : deleteId
                          })

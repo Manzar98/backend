@@ -1,10 +1,9 @@
 <?php 
-   include '../common-sql.php';
+  
    include '../common-apis/api.php';
-
+   
    // $conferenceQuery=select("conference",array("user_id"=>2));
-   $conferenceQuery='SELECT * FROM conference where user_id=2 ORDER BY conference_id DESC ';
-          $conference_resp =mysqli_query($conn,$conferenceQuery)  or die(mysqli_error($conn));
+   
 
 
 
@@ -21,7 +20,9 @@
 <head>
 	<title>List Of Conference Hall's</title>
 
-<?php include '../header.php'; ?>
+<?php include '../header.php'; 
+$conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id'].'" ORDER BY conference_id DESC ';
+          $conference_resp =mysqli_query($conn,$conferenceQuery)  or die(mysqli_error($conn));?>
 
 
 

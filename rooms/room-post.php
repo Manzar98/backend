@@ -275,7 +275,7 @@ $img=$_POST['common_image'];
 $imgarray= explode(",",$img);
 $provideo=$_POST['common_video'];
 $formtype='room';
-$user_id= 2;
+$user_id=$_POST['user_id'];
 $hotelid=$_POST['hotel_id'];
 
 if (isset($_POST['room_inactive'])) {

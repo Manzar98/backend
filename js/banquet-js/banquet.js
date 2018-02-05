@@ -102,7 +102,9 @@ if (validator.form()== false) {
 
 $('#loader').modal({dismissible: false});
 $('#loader').modal('open');
+
      tinyMCE.triggerSave();
+     $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
 $.ajax({
                              type:"POST",
                              url:"../banquets/banquet-post.php",

@@ -365,7 +365,7 @@ if (!empty($_POST['conference_expireoffer']) && empty($_POST['conference_offerdi
 	$discountexpire=null;
 }
 
-$userid       = 2;
+$userid       = $_POST['user_id'];
 $formtype     = 'conference';
 $hotelid      = 31;
 

@@ -1,8 +1,24 @@
 <?php
  include '../common-apis/api.php';
+?>
 
 
-$selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+<head>
+
+	<?php   
+
+   ?>
+	<title>Edit Banquet Hall</title>
+
+  <?php include '../header.php'; 
+    $userId= $_SESSION["user_id"];
+
+    $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'" ';
 
 
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
@@ -13,30 +29,14 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
    $global_banquet_id="";
 
-?>
+   while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){    
 
 
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-
-<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-<head>
-
-	<?php   while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){    
-
-
-	   $editbnqImgQuery=select('common_imagevideo',array('banquet_id'=>$resultbnq['banquet_id']));
+     $editbnqImgQuery=select('common_imagevideo',array('banquet_id'=>$resultbnq['banquet_id']));
        $editbnqDateQuery=select('common_bookdates', array('banquet_id'=>$resultbnq['banquet_id']));
     $editbnqmenuQuery=select('common_menupackages', array('banquet_id'=>$resultbnq['banquet_id']));
 
-   ?>
-	<title>Edit Banquet Hall</title>
-
-  <?php include '../header.php';?>
+    ?>
 
   <div class="db-cent">
     <div class="db-cent-1">

@@ -2,10 +2,6 @@
  include '../common-apis/api.php';
 
 
-$selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
-
-
-$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 ?>
 
@@ -21,7 +17,15 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <head>
 	<title>Add a Banquet Hall</title>
 
-  <?php include '../header.php';?>
+  <?php include '../header.php'; 
+    $userId= $_SESSION["user_id"];
+
+   $selectHotel = 'SELECT `hotel_name`,`hotel_id`  FROM `hotel` WHERE `user_id`="'.$userId.'" ';
+
+
+$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+
+    ?>
 
   <div class="db-cent">
     <div class="db-cent-1">
@@ -38,6 +42,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
          <form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="banquet-post.php" method="POST" enctype="multipart/form-data"> 
 
           <div>
+            <input type="hidden" name="hotel_id" id="hotelId">
+            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
             <label class="col s12">Banquet Hall name </label>
             <div class="input-field col s12">
              <input type="text"   value="" name="banquet_name" class="validate is_validate_input" required> 
@@ -258,14 +264,14 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
   <label class="col s12">Select Hotel</label>
-  <select  class="" name="hotel_name" >
+  <select  class="hotelNames" name="hotel_name" >
    <option value="null" selected="" disabled="">Select One</option>
    <?php
 
    while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
 
-   <option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+   <option name="" value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
 
 
 						    <?php	# code...

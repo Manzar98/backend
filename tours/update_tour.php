@@ -228,6 +228,8 @@ if (empty($_POST['tour_childallow'])) {
           
         }else{
           $undr5allow       =$_POST['tour_undr5allow'];
+          $undr5free   ='off';
+          $undr5price  = null;
         }
     
 

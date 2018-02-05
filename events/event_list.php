@@ -1,10 +1,8 @@
 <?php 
    include '../common-apis/api.php';
+ 
+   // $eventQuery=select("event",array("user_id"=>$_SESSION['user_id']));
 
-   $eventQuery=select("event",array("user_id"=>2));
-
-   $eventQuery=    'SELECT * FROM event where user_id=2 ORDER BY event_id DESC ';
-          $event_resp =mysqli_query($conn,$eventQuery)  or die(mysqli_error($conn));
 
 
   
@@ -21,7 +19,10 @@
 <head>
 	<title>List Of Events</title>
 
-<?php include '../header.php';  ?>
+<?php include '../header.php';  
+   $eventQuery=    'SELECT * FROM event where user_id="'.$_SESSION['user_id'].'" ORDER BY event_id DESC ';
+          $event_resp =mysqli_query($conn,$eventQuery)  or die(mysqli_error($conn));
+?>
 
 
 	<div class="db-cent">

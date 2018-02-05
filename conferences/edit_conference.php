@@ -1,13 +1,5 @@
 <?php
 include '../common-apis/api.php';
-
-$selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
-
-
-$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
-
-$editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +7,22 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
-  <?php
-  while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
+
+
+   <title>Edit Conference Hall</title>
+
+
+   <?php include '../header.php'; 
+    $userId= $_SESSION["user_id"];
+
+   $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`="'.$userId.'"';
+
+
+$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+
+$editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
+
+ while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
 
    $editconImgQuery=select('common_imagevideo',array('conference_id'=>$resultConference['conference_id']));
 
@@ -25,13 +31,7 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
    $editconmenuQuery=select('common_menupackages', array('conference_id'=>$resultConference['conference_id'])); 
 
     $global_conference_id="";
-
-   ?>
-
-   <title>Edit Conference Hall</title>
-
-
-   <?php include '../header.php'; ?>
+    ?>
 
 
    <div class="db-cent">

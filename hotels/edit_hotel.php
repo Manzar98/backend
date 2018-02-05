@@ -145,7 +145,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
             <?php }elseif ($imgResult['photo_int_ext_type']== "exterior") { ?>
             	      
             	      <?php if ($exteriorCounter==0) { ?>
-				            	<div class="row int_title"><label>Interior Photos :</label></div>
+				            	<div class="row int_title"><label>Exterior Photos :</label></div>
 				            <?php $exteriorCounter++; } ?>
 		   <div class="imgVeiwinline row" id="hotel_img_exe_wrap" >		            
 			 <div class="imgeWrap">
@@ -153,10 +153,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 				<img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
 			</div>
            </div>
-           <?php } ?>
-			
-             
-
+          
 			<?php }elseif (!empty($imgResult['hotel_coverimg'])) { ?>
 			<div class="row" id="hotel_cover_img" >
 				<div class="imgeWrap">
@@ -167,7 +164,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 		<?php	} ?>
           
 
-
+ <?php } ?>
 
 			<?php	}
 

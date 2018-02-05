@@ -4914,3 +4914,6 @@ label.freeLbl {
 .errordialog_x{
     padding-right: 4px;
 }
+#remembr_me[type="checkbox"] + label{
+    padding-left: 25px;
+}

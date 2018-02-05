@@ -1,11 +1,10 @@
 <?php
   
   include '../common-sql.php';
-
+ 
 
   // select("hotel",array("user_id"=>2));
-      $hotelQuery=    'SELECT * FROM hotel where user_id=2 ORDER BY hotel_id DESC ';
-          $hotel_resp =mysqli_query($conn,$hotelQuery)  or die(mysqli_error($conn));
+      
 
 
 
@@ -31,7 +30,10 @@
 	<title>List Of Hotels</title>
 
 
-<?php include '../header.php'; ?>
+<?php include '../header.php'; 
+$hotelQuery=    'SELECT * FROM hotel where user_id="'.$_SESSION['user_id'].'" ORDER BY hotel_id DESC ';
+          $hotel_resp =mysqli_query($conn,$hotelQuery)  or die(mysqli_error($conn));
+?>
 
 
 <div class="db-cent">

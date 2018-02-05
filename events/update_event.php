@@ -125,6 +125,8 @@ if (empty($_POST['event_childallow'])) {
         }else{
 
           $undr5allow       =$_POST['event_undr5allow'];
+          $undr5price  = null;
+          $undr5free   ='off';
         }
 
         

@@ -262,7 +262,7 @@ $checkOut=$_POST['hotel_checkout'];
 
 }
 $formtype='hotel';
-$user_id= 2;
+$user_id= $_POST['user_id'];
 if (isset($_POST['hotel_inactive'])) {
   $inactive=$_POST['hotel_inactive'];
 }else{

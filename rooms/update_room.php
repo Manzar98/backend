@@ -1,6 +1,6 @@
 <?php 
 include '../common-sql.php';
-  // print_r($_POST);
+ // print_r($_POST);
 $is_check=true;
 $responseArray=[];
 
@@ -376,7 +376,7 @@ global $conn;
 				$condString = substr($condString,0,-4);
          
 				$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
-        // echo $updatequery;
+         // echo $updatequery;
         }
        
        

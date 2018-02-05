@@ -535,7 +535,7 @@ if (empty($_POST['tour_arrtime'])) {
 
 
 
-$user_id          =2;
+$user_id          =$_POST['user_id'];
 $hotelid          =31;
 $formtype         ='tour';
 if (isset($_POST['tour_inactive'])) {

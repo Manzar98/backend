@@ -1,12 +1,10 @@
 <?php 
    
    include '../common-sql.php';
-
+  
    // $tourQuery=select("tour",array("user_id"=>2));
 
-   $tourQuery=    'SELECT * FROM tour where user_id=2 ORDER BY tour_id DESC ';
-          $tour_resp =mysqli_query($conn,$tourQuery)  or die(mysqli_error($conn));
-
+   
 
    
 
@@ -24,7 +22,12 @@
 	<title>List Of Tour Pacakages</title>
 
 
-<?php  include '../header.php';  ?>
+<?php  include '../header.php';  
+$tourQuery=    'SELECT * FROM tour where user_id="'.$_SESSION['user_id'].'" ORDER BY tour_id DESC ';
+echo $tourQuery;
+          $tour_resp =mysqli_query($conn,$tourQuery)  or die(mysqli_error($conn));
+
+?>
 
 <div class="db-cent">
 				<div class="db-cent-1">

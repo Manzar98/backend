@@ -1,13 +1,3 @@
-<?php
-include '../common-sql.php';
-
-
-$selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`=2 ';
-
-
-$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +7,17 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <head>
 	<title>Add a Room</title>
 	
-	<?php include '../header.php'; ?>
+	<?php 
+	include '../common-sql.php';
+	include '../header.php'; 
+    $userId= $_SESSION["user_id"];
 
+$selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'" ';
+
+// echo $selectHotel;
+
+$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+    ?>
 
 			<div class="db-cent">
 				<div class="db-cent-1">
@@ -61,6 +60,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
 				<div class="common-top">
+					<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 					<input type="hidden" name="hotel_id" id="hotelId"> 
 					<label class="col s4">Room Name </label>
 					<div class="input-field col s12">

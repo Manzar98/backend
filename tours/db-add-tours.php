@@ -24,7 +24,7 @@
                          <div class="db-profile-edit">
 					<form class="col s12"  data-toggle="validator" id="tour-form" role="form" action="tour-post.php" method="POST" enctype="multipart/form-data">
 						
-							
+							<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 						<div>
 							<label class="col s4">Package Name</label>
 							<div class="input-field col s8">

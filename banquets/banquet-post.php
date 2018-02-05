@@ -454,9 +454,9 @@ if (!empty($_POST['banquet_utube'])) {
 }
 
 
-$userid       = 2;
+$userid       = $_POST['user_id'];
 $formtype     = 'banquet';
-$hotelid      = 31;
+$hotelid      = $_POST['hotel_id'];
 if (isset($_POST['banquet_inactive'])) {
   $inactive=$_POST['banquet_inactive'];
 }else{

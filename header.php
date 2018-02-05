@@ -1,3 +1,12 @@
+<?php
+
+   session_start();
+   print_r($_SESSION);
+   if(!$_SESSION['login']){
+   header("location: ../index.php");
+   die;
+}
+?>
 <!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +79,7 @@
 						</li>
 						<li><a href="../blog-inner.html">Blog Inner</a>
 						</li>
-						<li><a href="../dashboard.html">User Dashboard</a>
+						<li><a href="../dashboard.php">User Dashboard</a>
 						</li>
 						<li><a href="../db-activity.html">DB Activity</a>
 						</li>
@@ -163,7 +172,7 @@
 						<!-- Dropdown Structure -->
 						<ul id='dropdown1' class='dropdown-content drop-con-man'>
 							<li>
-								<a href="../dashboard.html"><img src="../images/icon/15.png" alt=""> My Account</a>
+								<a href="../dashboard.php"><img src="../images/icon/15.png" alt=""> My Account</a>
 							</li>
 							<li>
 								<a href="../db-profile.html"><img src="../images/icon/2.png" alt=""> My Profile</a>
@@ -184,7 +193,7 @@
 								<a href="#!" data-toggle="modal" data-target="#modal1"><img src="../images/icon/6.png" alt=""> Log In</a>
 							</li>
 							<li>
-								<a href="#!" data-toggle="modal" data-target="#modal3"><img src="../images/icon/13.png" alt=""> Forgot Password</a>
+								<a href="../logout.php" ><img src="../images/icon/13.png" alt=""> Sign Out</a>
 							</li>
 						</ul>
 						<!-- Dropdown Structure -->
@@ -246,7 +255,7 @@
 							<div class="mm-1">
 								<h4>Pages</h4>
 								<ul>
-									<li><a href="../dashboard.html">User Dashboard</a>
+									<li><a href="../dashboard.php">User Dashboard</a>
 									</li>
 									<li><a href="../db-activity.html">DB Activity</a>
 									</li>
@@ -376,7 +385,7 @@
 				<div class="db-left-2">
 					<ul>
 						<li>
-							<a href="../dashboard.html"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
+							<a href="../dashboard.php"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
 							<a href="../add-listing.html"><img src="../images/icon/db2.png" alt="" />Add Listing</a>

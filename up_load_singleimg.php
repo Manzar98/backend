@@ -92,7 +92,7 @@
                       console.log($(file.previewElement).find('img[upload-file-name]').attr('upload-file-name'));
                       var deleteFile = $(file.previewElement).find('img[upload-file-name]').attr('upload-file-name');
                       var deleteId= $(file.previewElement).find('img[data-dz-remove]').attr('upload-file-id');
-                      
+                      parent.$('a[data-value='+deleteId+']').parent().remove();
                     // if (parent.document.getElementById('img_ids').value==deleteId) {
 
                      

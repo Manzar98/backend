@@ -182,7 +182,7 @@ function insertAttractions(){
 
                       type: "POST",
                       async: false,
-                      url : "../insertA.php",
+                      url : "../tours/insertA.php",
                       data: data,
                       success:function(data) {
                                   var response = JSON.parse(data);
@@ -342,7 +342,7 @@ function addDestionations(){
 
                       type: "POST",
                       async: false,
-                      url : "../insertD-A.php",
+                      url : "../tours/insertD-A.php",
                       data: data+stored_tour_id,
                       success:function(data) {
                                   var response = JSON.parse(data);
@@ -399,7 +399,7 @@ function update_D_A(){
     $.ajax({
 
                       type: "POST",
-                      url : "../updateD-A.php",
+                      url : "../tours/updateD-A.php",
                       data: data,
                       success:function(data) {
                                   var response = JSON.parse(data);

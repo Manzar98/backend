@@ -1,3 +1,15 @@
+<?php 
+
+  session_start();
+   if(!$_SESSION['login']){
+   header("location:index.php");
+   die;
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -187,7 +199,7 @@
 								<a href="#!" data-toggle="modal" data-target="#modal1"><img src="images/icon/6.png" alt=""> Log In</a>
 							</li>
 							<li>
-								<a href="#!" data-toggle="modal" data-target="#modal3"><img src="images/icon/13.png" alt=""> Forgot Password</a>
+								<a href="logout.php"><img src="images/icon/13.png" alt=""> Sign Out</a>
 							</li>
 						</ul>
 						<!-- Dropdown Structure -->

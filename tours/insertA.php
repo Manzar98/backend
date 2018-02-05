@@ -1,5 +1,5 @@
 <?php
-  include 'common-sql.php';
+  include '../common-sql.php';
   // print_r($_POST);
  
     // $destination_id=$_POST['destination_att_id'];

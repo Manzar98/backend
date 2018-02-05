@@ -24,11 +24,12 @@
                          <div class="db-profile-edit">
 					<form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
                         
-
+                          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 						<div>
+
 							<label class="col s4">Hotel Name</label>
 							<div class="input-field col s8">
-								<input type="text"  class="validate is_validate" id="hotel_name" name="hotel_name" data-error=".errorTxt1"  required>
+								<input type="text" class="validate is_validate" id="hotel_name" name="hotel_name" data-error=".errorTxt1"  required>
 								<div class="errorTxt1"></div>
 								
 							</div>

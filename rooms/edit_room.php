@@ -1,17 +1,5 @@
 <?php
  include '../common-apis/api.php';
-
-     $RoomID=  $_GET['id'];
-
-     $HotelID= $_GET['h_id'];
-
-   $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
-
-   $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
-
-   $editroomQuery=select('room',array('hotel_id'=>$HotelID,'room_id'=>$RoomID));
-   
-   $global_room_id="";
 ?>
 
 
@@ -24,19 +12,37 @@
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
 
-	<?php   while ($resultRoom=mysqli_fetch_assoc($editroomQuery)){    
+	
+	<title>Edit Room</title>
+
+
+<?php include '../header.php'; 
+     $userId= $_SESSION["user_id"];
+     $RoomID=  $_GET['id'];
+     $HotelID= $_GET['h_id'];
+
+   $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'"';
+
+   $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+
+   $editroomQuery=select('room',array('hotel_id'=>$HotelID,'room_id'=>$RoomID));
+   
+   $global_room_id="";
+   
+   while ($resultRoom=mysqli_fetch_assoc($editroomQuery)){    
 
 
 	   $editroomImgQuery=select('common_imagevideo',array('room_id'=>$resultRoom['room_id']));
        $editroomDateQuery=select('common_bookdates', array('room_id'=>$resultRoom['room_id']));
 
        // print_r($editroomDateQuery);
-   ?>
-	<title>Edit Room</title>
+  
 
 
-<?php include '../header.php'; ?>
 
+
+
+    ?>
 
 <div class="db-cent">
 				<div class="db-cent-1">
@@ -57,18 +63,18 @@
 									if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 									<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  >
 										<label class="col s12">Select Hotel</label>
-										<select  class="" name="hotel_name" >
+										<select  class="hotelNames" name="hotel_name" >
 											<option value="">Select One</option>
-											<option selected="" value="<?php echo $resultRoom['hotel_name'] ;   ?>"><?php echo $resultRoom['hotel_name'] ;   ?></option>
+											  <option selected="" value="<?php echo $resultRoom['hotel_name'] ;   ?>"><?php echo $resultRoom['hotel_name'] ;   ?></option> 
 											<?php
 
 											while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
 
-											<option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+											<option name="" value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
 
 
-						    <?php	# code...
+						    <?php	
 						}  ?>
 					</select>
 				</div>
@@ -77,7 +83,7 @@
 
 
 
-                 <input type="hidden" name="hotel_id" value="<?php echo $resultRoom['hotel_id']  ?>">
+                 <input type="hidden" name="hotel_id" value="" id="hotelId">
                  <?php $global_room_id = $resultRoom['room_id']; ?>
                  <input type="hidden" name="room_id" value="<?php echo $resultRoom['room_id'] ?>"> 
 				<div class="common-top">
@@ -189,13 +195,17 @@
                        	<div class="imgVeiwinline row" id="hotel_img_wrap">
 
 												<?php
-                                                    $photocounter=0;  
-												while ($imgResult=mysqli_fetch_assoc($editroomImgQuery)) {
+                                                    $photocounter=0; 
+                                                    $hidetitle=""; 
+												while ($imgResult=mysqli_fetch_assoc($editroomImgQuery)) { 
 
-													if ($photocounter==0) { ?>
-													<div class="row int_title"><label>Photos :</label></div>
+													
+													 if (!empty($imgResult['common_image'])) {
+                                                          if ($photocounter==0) { ?>
+													           <div class="row int_title"><label>Photos :</label></div>
 													<?php $photocounter++; }
-													if (!empty($imgResult['common_image'])) {?>
+													 	?>
+													 	
 													<div class="imgeWrap">
 														<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 														<img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">

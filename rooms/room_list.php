@@ -1,11 +1,8 @@
 <?php 
   
    include '../common-sql.php';
-
+  
    // $roomQuery=select("room",array("user_id"=>2));
-
-    $roomQuery=    'SELECT * FROM room where user_id=2 ORDER BY room_id DESC ';
-          $room_resp =mysqli_query($conn,$roomQuery)  or die(mysqli_error($conn));
 
 
    
@@ -25,7 +22,11 @@
 	<title>List Of Rooms</title>
 
 
-<?php  include '../header.php'; ?>
+<?php  include '../header.php'; 
+
+    $roomQuery=    'SELECT * FROM room where user_id="'.$_SESSION['user_id'].'" ORDER BY room_id DESC ';
+          $room_resp =mysqli_query($conn,$roomQuery)  or die(mysqli_error($conn));
+?>
 
 
 	<div class="db-cent">

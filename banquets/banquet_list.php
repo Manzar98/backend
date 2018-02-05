@@ -1,14 +1,9 @@
 <?php 
-   include '../common-sql.php';
-   include '../common-apis/api.php';
-
-   // $banquetQuery=select("banquet",array("user_id"=>2));
-     $banquetQuery='SELECT * FROM banquet where user_id=2 ORDER BY banquet_id DESC ';
-          $banquet_resp =mysqli_query($conn,$banquetQuery)  or die(mysqli_error($conn));
-
-
   
-
+   include '../common-apis/api.php';
+  
+   // $banquetQuery=select("banquet",array("user_id"=>2));
+    
 
 ?>
 
@@ -23,7 +18,9 @@
 <head>
 	<title>List Of Banquet Hall's</title>
 
-<?php  include '../header.php';  ?>
+<?php  include '../header.php'; 
+ $banquetQuery='SELECT * FROM banquet where user_id="'.$_SESSION['user_id'].'" ORDER BY banquet_id DESC ';
+          $banquet_resp =mysqli_query($conn,$banquetQuery)  or die(mysqli_error($conn)); ?>
 
 
 <div class="db-cent">

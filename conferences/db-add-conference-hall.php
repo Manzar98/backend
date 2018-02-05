@@ -1,12 +1,5 @@
 <?php
  include '../common-apis/api.php';
-
-
-$selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`=2 ';
-
-
-$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
-
 ?>
 
 
@@ -22,8 +15,15 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 	<title>Add a Conference Hall</title>
 
 
-<?php include '../header.php'; ?>
+<?php include '../header.php'; 
+    $userId= $_SESSION["user_id"];
 
+   $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`= "'.$userId.'" ';
+
+// echo $selectHotel;
+$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+
+    ?>
 
 <div class="db-cent">
 				<div class="db-cent-1">
@@ -42,6 +42,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								
 							
 						<div>
+              
+              <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 							<label class="col s4">Name of Hall </label>
 							<div class="input-field col s8">
 								<input type="text" value="" class="validate" name="conference_name" required="" aria-required="true"> </div>

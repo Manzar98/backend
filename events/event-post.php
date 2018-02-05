@@ -127,6 +127,8 @@ if (empty($_POST['event_childallow'])) {
 				}else{
 
 					$undr5allow       =$_POST['event_undr5allow'];
+					$undr5price  = null;
+					$undr5free   ='off';
 				}
 
 				
@@ -407,7 +409,7 @@ else{
 $img          = $_POST['common_image'];
 $imgarray= explode(",",$img);	
 $provideo        = $_POST['common_video'];
-$userid       = 2;
+$userid       = $_POST['user_id'];
 $hotelid      = 31;
 $formtype     = 'event';
 
