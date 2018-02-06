@@ -45,7 +45,7 @@ if (validator.form()== false) {
         insertMultiInput();
         // debugger;
       }else{
-      
+           
           updateBanquet();
       }
 
@@ -173,6 +173,7 @@ $.ajax({
 function updateBanquet() {
  
     tinyMCE.triggerSave();
+    $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
    $.ajax({
                              type:"POST",
                              url:"../banquets/update_banquet.php",

@@ -4917,3 +4917,6 @@ label.freeLbl {
 #remembr_me[type="checkbox"] + label{
     padding-left: 25px;
 }
+.room_HotelName{
+display: none;
+}

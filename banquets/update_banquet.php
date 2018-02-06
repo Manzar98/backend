@@ -446,7 +446,9 @@ if (!empty($_POST['banquet_utube'])) {
   $bnq_utube=null;
 }
 
-
+if (empty($_POST['hotel_id'])) {
+  
+}
 
 if (isset($_POST['banquet_inactive'])) {
   $inactive=$_POST['banquet_inactive'];
@@ -470,7 +472,16 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
-getUpdatequery('banquet',$_POST,array('hotel_id'=>$_POST['hotel_id'],'banquet_id'=>$_POST['banquet_id']));
+  if (!empty($_POST['hotel_id']) && $_POST['banquet_independ']!='no') {
+
+   getUpdatequery('banquet',$_POST,array('hotel_id'=>$_POST['hotel_id'],'banquet_id'=>$_POST['banquet_id']));
+
+  }else{
+    
+   getUpdatequery('banquet',$_POST,array('user_id'=>$_POST['user_id'],'banquet_id'=>$_POST['banquet_id']));
+  }
+
+
  echo json_encode($newSuccessMsgArr);
 
 }else{
@@ -492,16 +503,27 @@ global $conn;
      $whereClauseArray = array();
      $updtevalues      = array();
 
-      if (!empty($_POST['hotel_id']) && !empty($_POST['banquet_id'])) {
+      if (!empty($_POST['banquet_id'])) {
        # code...
-    
+       if (!empty($_POST['hotel_id']) || !empty($_POST['user_id'])) {
+         # code...
+       
 
       foreach ($updateObject as $key => $value) {
 
       // echo 	gettype($value);
         if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
+           
+           if ($key=='hotel_id' && empty($value)) {
+             
+             $updtevalues[] = "$key =  null";
 
-        	$updtevalues[] = "$key = '$value'";
+           }else{
+
+            $updtevalues[] = "$key = '$value'";
+           }
+        	
+
         }elseif (gettype($value)=="array") {
                 
                  // print_r($value) ;
@@ -542,7 +564,7 @@ global $conn;
      	if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
        			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
-       			 echo $updatequery;
+       			 // echo $updatequery;
         }else if(count($whereClauseArray) > 1) {
         		$condString='';
 				for ($i=0; $i < count($whereClauseArray); $i++) { 
@@ -555,7 +577,7 @@ global $conn;
 				$condString = substr($condString,0,-4);
          
 				$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
-        // echo $updatequery;
+         // echo $updatequery;
         }
        
        
@@ -564,7 +586,7 @@ global $conn;
           // echo"manzar";
       
      }
-      
+   }   
 }
 
 

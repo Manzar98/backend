@@ -681,6 +681,7 @@ Reintialize Dropdown and hide inputs
 
     $('#hall_alone').hide();
     $('#show_hotelName').show();
+    $('#hall_alone input').val('');
   }
 
 

@@ -95,11 +95,26 @@
 
 									<td class="tdwrap">
 									<div class="buttonsWrap">
+
+										<?php if ($result['banquet_independ']=='no') { ?>
+											
+										
 										<div class="row">
 											<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
 											<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
 										</div>
+								<?php	}else{ ?>
+
+								         <div class="row">
+											<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>"">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+
+
+
+								<?php }   ?>
 										
 									</div>
 									</td>

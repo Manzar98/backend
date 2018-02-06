@@ -295,7 +295,7 @@ function gen_dates_input(event,editFlag) {//
 function chk_food(that) {
 
     if (that.value == "yes") {
-   debugger;
+   // debugger;
         document.getElementById('menupackage-wrap').style.display = "block";
         $('.pkg_name').prop('required',true);
         $('.pkg_price').prop('required',true);
@@ -1045,7 +1045,7 @@ $('.chips-package').on('chip.add', function(e, chip){
  $('#filled-in-aricon').click(function () {
   
   if($(".with_aricon input:checkbox:checked").length > 0){
- debugger;
+
   $('.with_ari').show();
   $(".airconChrges").prop('required',true);
   }else{
@@ -1147,6 +1147,7 @@ function hall_alone(that) {
     $('.ind_province').prop('required',false);
     $('.ind_phone').prop('required',false);
     $('.ind_email').prop('required',false);
+    $('#hall_alone input').val('');
   }
   // body...
 }

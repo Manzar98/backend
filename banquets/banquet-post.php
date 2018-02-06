@@ -2,7 +2,7 @@
 
  include '../common-sql.php';
 
-  // print_r($_POST);
+   // print_r($_POST);
 
 $is_check=true;
 $responseArray=[];
@@ -456,7 +456,11 @@ if (!empty($_POST['banquet_utube'])) {
 
 $userid       = $_POST['user_id'];
 $formtype     = 'banquet';
-$hotelid      = $_POST['hotel_id'];
+if (isset($_POST['hotel_id'])) {
+
+	$hotelid      = $_POST['hotel_id'];
+}
+
 if (isset($_POST['banquet_inactive'])) {
   $inactive=$_POST['banquet_inactive'];
 }else{
@@ -480,11 +484,18 @@ $newSuccessMsgArr=array(
 if ($is_check==true) {
 	# code...
 
+if ($banquet_independ=='no') {
+	# code...
 
 
  $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
+ 
 
+}else{
 
+	$query='INSERT INTO banquet(user_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
+
+}
 
 if ($conn->query($query)== TRUE) {
   	# code...

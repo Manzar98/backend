@@ -23,8 +23,14 @@
 
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
+if (isset($_GET['h_id'])) {
 
   $editbnqQuery=select('banquet',array('banquet_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
+}else{
+
+  $editbnqQuery=select('banquet',array('banquet_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
+}
+  
 
 
    $global_banquet_id="";
@@ -37,6 +43,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
     $editbnqmenuQuery=select('common_menupackages', array('banquet_id'=>$resultbnq['banquet_id']));
 
     ?>
+}
+}
 
   <div class="db-cent">
     <div class="db-cent-1">
@@ -52,9 +60,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
        <div class="db-profile-edit">
          <form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="" method="POST" enctype="multipart/form-data"> 
               
-
+               <input type="hidden" name="user_id" value="<?php echo $resultbnq['user_id'];  ?>">
               <input type="hidden" name="banquet_id" value="<?php echo $resultbnq['banquet_id'];  ?>">
-              <input type="hidden" name="hotel_id" value="<?php echo $resultbnq['hotel_id']; ?>">
+              <input type="hidden" name="hotel_id" id="hotelId" value="<?php echo $resultbnq['hotel_id']; ?>">
               <?php   $global_banquet_id= $resultbnq['banquet_id']; ?>
           <div>
             <label class="col s12">Banquet Hall name </label>
@@ -415,6 +423,14 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
 </div>
 
+<?php if (!empty($resultbnq['hotel_id'])) {?>
+      <style type="text/css">
+          #dependent_wrap{
+             display: none;
+          }
+      </style>
+<?php } ?>
+<div id="dependent_wrap">
 <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
  <label class="col s12">Independent Hall?</label>
@@ -447,15 +463,15 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
   <label class="col s12">Select Hotel</label>
-  <select  class="" name="hotel_name" >
+  <select  class="hotelNames" name="hotel_name" >
    <option value="null" disabled="">Select One</option>
-   <option name="" selected="" value="<?php echo $resultbnq['hotel_name'] ?>"><?php echo $resultbnq['hotel_name'] ?></option>
+   <option selected="" value="<?php echo $resultbnq['hotel_name'] ?>"><?php echo $resultbnq['hotel_name'] ?></option>
    <?php
 
    while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
 
-   <option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+   <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
 
 
 						    <?php	# code...
@@ -464,8 +480,8 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
           </div>
           <?php  }  ?>
 
-
-
+</div>
+    
 
           
 
@@ -815,7 +831,17 @@ if($('#independ-select :selected').text()=="Yes"){
 
     $('#hall_alone').hide();
     $('#show_hotelName').show();
+    $('#hall_alone input').val('');
   }
+
+  // if ($('#independ-select :selected').text()=="No") {
+
+  //      $('#dependent_wrap').hide();
+
+  // }else{
+
+  //     $('#dependent_wrap').hide();
+  // }
 
 
 

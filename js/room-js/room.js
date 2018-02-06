@@ -40,8 +40,7 @@ if (validator.form()== false) {
     $('#loader').modal({dismissible: false});
     $('#loader').modal('open');
 tinyMCE.triggerSave();
-$("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
-debugger;
+
 $.ajax({
                              type:"POST",
                              url:"../rooms/update_room.php",
