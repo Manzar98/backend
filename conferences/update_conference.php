@@ -377,8 +377,14 @@ $newSuccessMsgArr=array(
 
 
 if ($is_check==true) {
+  if (!empty($_POST['hotel_id']) && $_POST['conference_independ']!='no') {
+    
+    getUpdatequery('conference',$_POST,array('hotel_id'=>$_POST['hotel_id'],'conference_id'=>$_POST['conference_id']));
+  }else{
+    getUpdatequery('conference',$_POST,array('user_id'=>$_POST['user_id'],'conference_id'=>$_POST['conference_id']));
+  }
 
- getUpdatequery('conference',$_POST,array('hotel_id'=>$_POST['hotel_id'],'conference_id'=>$_POST['conference_id'])); 
+  
  echo json_encode($newSuccessMsgArr);
 }else{
    echo json_encode($newErrorMsgArr);
@@ -400,16 +406,26 @@ global $conn;
      $whereClauseArray = array();
      $updtevalues      = array();
 
-      if (!empty($_POST['hotel_id']) && !empty($_POST['conference_id'])) {
+      if (!empty($_POST['conference_id'])) {
        # code...
-    
+         if (!empty($_POST['hotel_id']) || !empty($_POST['user_id']) ) {
+           # code...
+         
 
       foreach ($updateObject as $key => $value) {
 
       // echo 	gettype($value);
         if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
 
-        	$updtevalues[] = "$key = '$value'";
+        	if ($key=='hotel_id' && empty($value)) {
+             
+             $updtevalues[] = "$key =  null";
+
+           }else{
+
+            $updtevalues[] = "$key = '$value'";
+           }
+           
         }elseif (gettype($value)=="array") {
                 
                  // print_r($value) ;
@@ -471,7 +487,7 @@ global $conn;
         $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
       
      }
-
+}
       
 }
 

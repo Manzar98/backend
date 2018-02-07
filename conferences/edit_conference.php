@@ -15,12 +15,19 @@ include '../common-apis/api.php';
    <?php include '../header.php'; 
     $userId= $_SESSION["user_id"];
 
-   $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`="'.$userId.'"';
+   $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'"';
 
 
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
-$editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
+if (isset($_GET['h_id'])) {
+  $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
+}else{
+
+  $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
+}
+
+
 
  while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
 
@@ -47,8 +54,8 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 
        <div class="db-profile-edit">
          <form class="col s12"  data-toggle="validator" id="conference-form" role="form" action="" method="POST" enctype="multipart/form-data">
-
-           <input type="hidden" name="hotel_id" value="<?php echo $resultConference['hotel_id'] ?>">	
+            <input type="hidden" name="user_id" value="<?php echo $resultConference['user_id'];  ?>">
+           <input type="hidden" name="hotel_id" id="hotelId" value="<?php echo $resultConference['hotel_id'] ?>">	
            <input type="hidden" name="conference_id" value="<?php echo $resultConference['conference_id'] ?>"> 
            <?php $global_conference_id=$resultConference['conference_id'];  ?>
 
@@ -306,11 +313,20 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
   <div  class=" ">
    <a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
  </div>
+<?php if (!empty($resultConference['hotel_id'])) {?>
+      <style type="text/css">
+          #dependent_wrap{
+             display: none;
+          }
+      </style>
+<?php } ?>
 
+
+<div id="dependent_wrap">
  <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
  <label class="col s12">Independent Hall?</label>
- <select onchange="hall_alone(this)"  class="" name="conference_independ" id="independ-select">
+ <select onchange="hall_alone(this)"  class="hotelNames" name="conference_independ" id="independ-select">
 
   <?php if ($resultConference['conference_independ']== "yes") { ?>
 
@@ -339,15 +355,15 @@ $editconferenceQuery=select('conference',array('conference_id'=>$_GET['id'],'hot
 if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
   <label class="col s12">Select Hotel</label>
-  <select  class="" name="hotel_name" >
+  <select  class="hotelName" name="hotel_name" >
    <option value="null"  disabled="">Select One</option>
-   <option name="" selected="" value="<?php echo $resultConference['hotel_name'] ?>"><?php echo $resultConference['hotel_name'] ?></option>
+   <option selected="" value="<?php echo $resultConference['hotel_name'] ?>"><?php echo $resultConference['hotel_name'] ?></option>
    <?php
     
    while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
 
-   <option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+   <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
 
 
                 <?php # code...
@@ -355,7 +371,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
             </select>
           </div>
           <?php  }  ?>
-
+</div>
 
 
 

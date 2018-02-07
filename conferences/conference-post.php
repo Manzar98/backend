@@ -367,7 +367,7 @@ if (!empty($_POST['conference_expireoffer']) && empty($_POST['conference_offerdi
 
 $userid       = $_POST['user_id'];
 $formtype     = 'conference';
-$hotelid      = 31;
+$hotelid      = $_POST['hotel_id'];
 
 if (isset($_POST['conference_inactive'])) {
   $inactive=$_POST['conference_inactive'];
@@ -390,10 +390,16 @@ $newSuccessMsgArr=array(
 if ($is_check==true) {
 	# code...
 
+if ($con_independ=='no') {
 
      
 $query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
 
+}else{
+
+	$query='INSERT INTO conference(user_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
+
+}
 if ($conn->query($query)== TRUE) {
  	# code...
  	$conference_id=$conn->insert_id;

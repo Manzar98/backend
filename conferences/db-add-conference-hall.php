@@ -18,7 +18,7 @@
 <?php include '../header.php'; 
     $userId= $_SESSION["user_id"];
 
-   $selectHotel = 'SELECT `hotel_name` FROM `hotel` WHERE `user_id`= "'.$userId.'" ';
+   $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`= "'.$userId.'" ';
 
 // echo $selectHotel;
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
@@ -44,6 +44,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div>
               
               <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+              <input type="hidden" name="hotel_id" value="" id="hotelId">
 							<label class="col s4">Name of Hall </label>
 							<div class="input-field col s8">
 								<input type="text" value="" class="validate" name="conference_name" required="" aria-required="true"> </div>
@@ -194,14 +195,14 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
   <label class="col s12">Select Hotel</label>
-  <select  class="" name="hotel_name" >
+  <select  class="hotelNames" name="hotel_name" >
    <option value="null" selected="" disabled="">Select One</option>
    <?php
 
    while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
 
-   <option name="" value="<?php echo $result['hotel_name'] ?>"><?php echo $result['hotel_name'] ?></option>
+   <option name="" value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id'];  ?>"><?php echo $result['hotel_name'] ?></option>
 
 
                 <?php # code...

@@ -97,6 +97,7 @@ if (validator.form()== false) {
         
          $('#loader').modal({dismissible: false});
          $('#loader').modal('open');
+         $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
     $.ajax({
                              type:"POST",
                              url:"../conferences/conference-post.php",
@@ -166,7 +167,8 @@ if (validator.form()== false) {
 
 
 function updateConference() {
-
+       $("#hotelId").val($(".hotelName option:selected").attr("data-id"));
+       
   $.ajax({
                              type:"POST",
                              url:"../conferences/update_conference.php",

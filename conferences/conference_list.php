@@ -101,14 +101,30 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id']
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
 									<td class="tdwrap">
-									<div class="buttonsWrap">
+								<div class="buttonsWrap">
+
+										<?php if ($result['conference_independ']=='no') { ?>
+											
+										
 										<div class="row">
 											<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
 											<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
 										</div>
+								<?php	}else{ ?>
+
+								         <div class="row">
+											<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>"">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+
+
+
+								<?php }   ?>
 										
-									</div>
+							 </div>
+			
 									</td>
 								</tr>
 
