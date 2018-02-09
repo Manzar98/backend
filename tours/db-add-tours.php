@@ -427,7 +427,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<?php
 
 						if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
-							<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="" >
+							<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="showhotelList" style="display: none;" >
 								  <label class="col s12">Select Hotel</label>
 
 							    <select  class="hotelNames" name="hotel_name" >
@@ -445,7 +445,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								</select>
 							 </div>
 								          <?php  }  ?>
-
+                                 <input type="hidden" name="hotel_id" id="hotelId">
 								<div class="destination-wrap " id="destination-wrap">
 									<div class="destination new_Destination" id="destination-1">
 										<div class="common-top">

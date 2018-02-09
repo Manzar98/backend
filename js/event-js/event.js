@@ -127,6 +127,10 @@ if (validator.form()== false) {
      $('#loader').modal({dismissible: false});
      $('#loader').modal('open');
     tinyMCE.triggerSave();
+     if (!$('#hotelId').val()) {
+        // debugger;
+        $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+     }
 $.ajax({
                              type:"POST",
                              url:"../events/event-post.php",
@@ -195,6 +199,10 @@ function updateEvent() {
   
 
      tinyMCE.triggerSave();
+      if (!$('#hotelId').val()) {
+        // debugger;
+        $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+     }
   
 $.ajax({
                              type:"POST",

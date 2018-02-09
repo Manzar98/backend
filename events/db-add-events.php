@@ -7,9 +7,21 @@
 	<title>Add an Event - Member's Area </title>
 
 
-<?php  include"../header.php"; ?>
+<?php  
+ include '../common-sql.php';
+include"../header.php";  
 
 
+       $userId= $_SESSION["user_id"];
+
+   $selectHotel = 'SELECT `hotel_name`,`hotel_id`  FROM `hotel` WHERE `user_id`="'.$userId.'" ';
+
+
+$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+
+
+
+	  ?>
 	<div class="db-cent">
 				<div class="db-cent-1">
 					<p>Hi Jana Novakova,</p>
@@ -301,6 +313,42 @@
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Event's PROMOTIONAL VIDEO</span></div>
 										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
+
+							<div class="common-top">
+								<label>Event Independent ?</label>
+							      <select onchange="independ(this)" name="event_independ">
+								     <option value="">Select One</option>
+								     <option value="yes">Yes</option>
+								     <option value="no">No</option>
+							     </select>
+
+							</div>
+
+							<?php
+
+						if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
+							<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="showhotelList" style="display: none;" >
+								  <label class="col s12">Select Hotel</label>
+
+							    <select  class="hotelNames" name="hotel_name" >
+								   <option value="null" selected="" disabled="">Select One</option>
+								   <?php
+
+								   while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
+
+
+								   <option name="" value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
+
+
+														    <?php	# code...
+								             }  ?>
+								</select>
+							 </div>
+								          <?php  }  ?>
+                                 <input type="hidden" name="hotel_id" id="hotelId">
+
+
+
 							<div class="row" >
                          	
 						            <p class="pTAG">

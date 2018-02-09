@@ -406,11 +406,36 @@ else{
 	$eatAllChrges = null;
 }
 
+
+if (empty($_POST['event_independ'])) {
+
+	$is_check=false;
+	array_push($responseArray,"Independent field is required");
+
+}elseif ($_POST['event_independ']=='no') {
+	  $independ=$_POST['event_independ'];
+	if (empty($_POST['hotel_name'])) {
+
+		$is_check=false;
+	    array_push($responseArray,"Name of hotel is required");
+	}else{
+		$hotelname=$_POST['hotel_name'];
+	}
+}else{
+
+	$independ=$_POST['event_independ'];
+	$hotelname=null;
+}
+
+
 $img          = $_POST['common_image'];
 $imgarray= explode(",",$img);	
 $provideo        = $_POST['common_video'];
 $userid       = $_POST['user_id'];
-$hotelid      = 31;
+if (isset($_POST['hotel_id'])) {
+
+	$hotelid      = $_POST['hotel_id'];
+}
 $formtype     = 'event';
 
 if (isset($_POST['event_inactive'])) {
@@ -432,10 +457,17 @@ $newSuccessMsgArr=array(
 );
 
 if ($is_check==true) {
+
+	if ($independ=='no') {
+		# code...
+	
 	# code...
 
-$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific,event_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'")';
+$query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific,event_inactive,event_independ,hotel_name)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
+}else{
 
+	$query='INSERT INTO event(user_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific,event_inactive,event_independ,hotel_name)VALUES("'.$userid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
+}
 if ($conn->query($query)== TRUE) {
  	# code...
  	$event_id=$conn->insert_id;

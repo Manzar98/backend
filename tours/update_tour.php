@@ -516,6 +516,28 @@ if (empty($_POST['tour_arrtime'])) {
   $arrTime=$_POST['tour_arrtime'];
 }
 
+
+if (empty($_POST['tour_independ'])) {
+
+  $is_check=false;
+  array_push($responseArray,"Independent field is required");
+
+}elseif ($_POST['tour_independ']=='no') {
+    $independ=$_POST['tour_independ'];
+  if (empty($_POST['hotel_name'])) {
+
+    $is_check=false;
+      array_push($responseArray,"Name of hotel is required");
+  }else{
+    $hotelname=$_POST['hotel_name'];
+  }
+}else{
+
+  $independ=$_POST['tour_independ'];
+  $hotelname=null;
+}
+
+
 if (isset($_POST['tour_inactive'])) {
   $inactive=$_POST['tour_inactive'];
 }else{
@@ -534,7 +556,16 @@ $newSuccessMsgArr=array(
 );
 
 if ($is_check==true) {
+
+    if (!empty($_POST['hotel_id']) && $_POST['tour_independ']!='no') {
+
    getUpdatequery('tour',$_POST,array('hotel_id'=>$_POST['hotel_id'],'tour_id'=>$_POST['tour_id']));
+
+  }else{
+    
+   getUpdatequery('tour',$_POST,array('user_id'=>$_POST['user_id'],'tour_id'=>$_POST['tour_id']));
+  }
+  
    echo json_encode($newSuccessMsgArr);
 }else{
   echo json_encode($newErrorMsgArr);
@@ -566,7 +597,14 @@ global $conn;
       // echo 	gettype($value);
         if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
 
-        	$updtevalues[] = "$key = '$value'";
+        	 if ($key=='hotel_id' && empty($value)) {
+             
+             $updtevalues[] = "$key =  null";
+
+           }else{
+
+            $updtevalues[] = "$key = '$value'";
+           }
         }elseif (gettype($value)=="array") {
                 
                  // print_r($value) ;
@@ -602,7 +640,7 @@ global $conn;
      	if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
        			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
-       			 // echo $updatequery;
+       			  // echo $updatequery;
         }else if(count($whereClauseArray) > 1) {
         		$condString='';
 				for ($i=0; $i < count($whereClauseArray); $i++) { 
@@ -615,7 +653,7 @@ global $conn;
 				$condString = substr($condString,0,-4);
          
 				$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
-        // echo $updatequery;
+         // echo $updatequery;
         }
        
        

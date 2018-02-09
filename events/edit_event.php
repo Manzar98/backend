@@ -1,7 +1,13 @@
 <?php 
 include '../common-apis/api.php';
 
-$editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
+if (isset($_GET['h_id'])) {
+	$editeventQuery=select('event',array('event_id'=>$_GET['id'],'hotel_id'=>$_GET['h_id']));
+
+}else{
+	$editeventQuery=select('event',array('event_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
+
+}
 $global_event_id="";
 
 ?>
@@ -31,7 +37,14 @@ $global_event_id="";
 	<title>Edit Event</title>
 
 
-<?php  include"../header.php"; ?>
+<?php  include"../header.php"; 
+$userId= $_SESSION["user_id"];
+
+   $selectHotel = 'SELECT `hotel_name`,`hotel_id`  FROM `hotel` WHERE `user_id`="'.$userId.'" ';
+
+
+$selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
+?>
 
 
 	<div class="db-cent">
@@ -49,7 +62,8 @@ $global_event_id="";
 					<form class="col s12"  data-toggle="validator" id="event-form" role="form" action="" method="POST" enctype="multipart/form-data">
 						
 							<input type="hidden" name="event_id" value="<?php echo $resultevent['event_id']; ?>">
-							<input type="hidden" name="hotel_id" value="<?php echo $resultevent['hotel_id']; ?>">
+							<input type="hidden" name="hotel_id" value="<?php echo $resultevent['hotel_id']; ?>" id="hotelId">
+							<input type="hidden" name="user_id" value="<?php echo $resultevent['user_id'];  ?>">
 							<?php $global_event_id=$resultevent['event_id']; ?>
 						<div>
 							<label class="col s4">Event Name</label>
@@ -567,6 +581,70 @@ $global_event_id="";
 									<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>Event's PROMOTIONAL VIDEO</span></div>
 										<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
 							</div>
+
+ <?php if (!empty($resultevent['hotel_id'])) {?>
+      <style type="text/css">
+          #dependent_wrap{
+             display: none;
+          }
+      </style>
+<?php } ?>
+						<div id="dependent_wrap">
+                         	<div class="common-top">
+								<label>Event Independent ?</label>
+								<select onchange="independ(this)" name="event_independ" id="indipend">
+
+                        	<?php if ($resultevent['event_independ']== "yes") { ?>
+
+									<option value="" disabled="" >Select One</option>
+								    <option value="yes" selected>Yes</option>
+								    <option value="no">No</option>
+
+							<?php	}elseif ($resultevent['event_independ']== "no") {?>
+								
+								    <option value="" disabled="" >Select One</option>
+								    <option value="yes" >Yes</option>
+								    <option value="no" selected>No</option>
+
+							<?php }else{ ?>
+								     
+								    <option value="" disabled="" selected>Select One</option>
+								    <option value="yes" >Yes</option>
+								    <option value="no" >No</option>
+
+					        <?php	}  ?>
+
+								</select>
+							</div>
+
+                            <?php
+
+                            if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
+                            <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="showhotelList" style="display: none;"  >
+                            	<label class="col s12">Select Hotel</label>
+                            	<select  class="hotelNames" name="hotel_name" >
+                            		<option value="null" disabled="">Select One</option>
+                            		<option selected="" value="<?php echo $resulttour['hotel_name'] ?>"><?php echo $resultevent['hotel_name'] ?></option>
+                            		<?php
+
+                            		while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
+
+
+                            		<option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
+
+
+						    <?php	# code...
+						}  ?>
+					</select>
+				</div>
+				<?php  }  ?>
+
+			</div>
+
+
+
+
+
 							<div class="row" >
                          	
 						           <p class="pTAG">
@@ -966,7 +1044,16 @@ if($(".eatNeed input:checkbox:checked").length > 0){
 
    }
 
+if ($('#indipend :selected').text() == "No") {
 
+ $('#showhotelList').show();
+
+  }else{
+
+    $('#showhotelList').hide();
+
+   // body...
+  } 
 
 
 </script>

@@ -1254,3 +1254,21 @@ Remove imges when click on done in modal
 
     $('#photo_iframe').contents().find('.dz-image-preview.dz-success.dz-complete').remove();
  })
+
+ /*===================
+
+ ====================*/
+
+ function independ(that) {
+
+  if (that.value=='no') {
+
+    $('#showhotelList').show();
+
+  }else{
+
+    $('#showhotelList').hide();
+
+   // body...
+  }
+ }

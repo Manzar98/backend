@@ -135,9 +135,12 @@ if (validator.form()== false) {
     $('#loader').modal('open');
 
        tinyMCE.triggerSave();
-       
+          if (!$('#hotelId').val()) {
+        // debugger;
+        $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+     }
 addDestionations();
-
+           
 $.ajax({
                              type:"POST",
                              url:"../tours/tour-post.php",
@@ -275,6 +278,10 @@ function isDiscountInput(dataObj){
 function updateTour() {
 
       tinyMCE.triggerSave();
+      if (!$('#hotelId').val()) {
+        // debugger;
+        $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+     }
 $.ajax({
                              type:"POST",
                              url:"../tours/update_tour.php",

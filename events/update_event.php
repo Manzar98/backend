@@ -404,11 +404,35 @@ else{
   $eatAllChrges = null;
 }
 
+if (empty($_POST['event_independ'])) {
+
+  $is_check=false;
+  array_push($responseArray,"Independent field is required");
+
+}elseif ($_POST['event_independ']=='no') {
+    $independ=$_POST['event_independ'];
+  if (empty($_POST['hotel_name'])) {
+
+    $is_check=false;
+      array_push($responseArray,"Name of hotel is required");
+  }else{
+    $hotelname=$_POST['hotel_name'];
+  }
+}else{
+
+  $independ=$_POST['event_independ'];
+  $hotelname=null;
+}
+
+
 if (isset($_POST['event_inactive'])) {
   $inactive=$_POST['event_inactive'];
 }else{
   $inactive="off";
 }
+
+
+
 
 $errorMsgs=implode(",",$responseArray);
 
@@ -423,7 +447,17 @@ $newSuccessMsgArr=array(
 );
 
 if ($is_check==true) {
-  getUpdatequery('event',$_POST,array('hotel_id'=>$_POST['hotel_id'],'event_id'=>$_POST['event_id']));
+
+   if (!empty($_POST['hotel_id']) && $_POST['event_independ']!='no') {
+
+    getUpdatequery('event',$_POST,array('hotel_id'=>$_POST['hotel_id'],'event_id'=>$_POST['event_id']));
+
+  }else{
+    
+    getUpdatequery('event',$_POST,array('user_id'=>$_POST['user_id'],'event_id'=>$_POST['event_id']));
+  }
+
+ 
   echo json_encode($newSuccessMsgArr);
 }
 else{
@@ -453,7 +487,14 @@ global $conn;
       // echo 	gettype($value);
         if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
 
-        	$updtevalues[] = "$key = '$value'";
+        	if ($key=='hotel_id' && empty($value)) {
+             
+             $updtevalues[] = "$key =  null";
+
+           }else{
+
+            $updtevalues[] = "$key = '$value'";
+           }
         }elseif (gettype($value)=="array") {
                 
                  // print_r($value) ;

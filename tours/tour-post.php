@@ -532,11 +532,35 @@ if (empty($_POST['tour_arrtime'])) {
   $arrTime=$_POST['tour_arrtime'];
 }
 
+if (empty($_POST['tour_independ'])) {
 
+	$is_check=false;
+	array_push($responseArray,"Independent field is required");
+
+}elseif ($_POST['tour_independ']=='no') {
+	  $independ=$_POST['tour_independ'];
+	if (empty($_POST['hotel_name'])) {
+
+		$is_check=false;
+	    array_push($responseArray,"Name of hotel is required");
+	}else{
+		$hotelname=$_POST['hotel_name'];
+	}
+}else{
+
+	$independ=$_POST['tour_independ'];
+	$hotelname=null;
+}
 
 
 $user_id          =$_POST['user_id'];
-$hotelid          =31;
+
+if (isset($_POST['hotel_id'])) {
+
+	$hotelid      = $_POST['hotel_id'];
+}
+
+
 $formtype         ='tour';
 if (isset($_POST['tour_inactive'])) {
   $inactive=$_POST['tour_inactive'];
@@ -558,9 +582,13 @@ $newSuccessMsgArr=array(
 if ($is_check==true) {
 	# code...
 
+if ($independ=='no') {
+	# code...
 
-$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific,tour_inactive)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'")';
-
+$query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific,tour_inactive,tour_independ,hotel_name)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
+}else{
+	$query= 'INSERT INTO tour(user_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific,tour_inactive,tour_independ,hotel_name)VALUES("'.$user_id.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
+}
 
 // echo $query;
 if ($conn->query($query)== TRUE) {
