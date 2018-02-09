@@ -1,7 +1,21 @@
 $("#pro-sub-btn").click(function(){
-  // $("#pro-sub-btn").hide();
-   var validator= $("#conference-form").validate({
+    
+   if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
 
+          title: "Image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+   var validator= $("#conference-form").validate({
+      
        errorElement : 'div',
         errorPlacement: function(error, element) {
 
@@ -57,11 +71,26 @@ if (validator.form()== false) {
 
 $("#pro-sub-btn_conference").click(function(){
 
-  // $("#pro-sub-btn_conference").hide();
-  
-var validator= $("#conference-form").validate({
+   if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
 
+          title: "Image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+var validator= $("#conference-form").validate({
+        
+        
+        
        errorElement : 'div',
+
         errorPlacement: function(error, element) {
 
            console.log(element);
@@ -97,7 +126,11 @@ if (validator.form()== false) {
         
          $('#loader').modal({dismissible: false});
          $('#loader').modal('open');
-         $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+         if (!$('#hotelId').val()) {
+
+          $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+         }
+         
     $.ajax({
                              type:"POST",
                              url:"../conferences/conference-post.php",
@@ -167,7 +200,12 @@ if (validator.form()== false) {
 
 
 function updateConference() {
-       $("#hotelId").val($(".hotelName option:selected").attr("data-id"));
+  
+  if (!$('#hotelId').val()) {
+
+     $("#hotelId").val($(".hotelName option:selected").attr("data-id"));
+  }
+      
        
   $.ajax({
                              type:"POST",

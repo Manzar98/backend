@@ -995,6 +995,19 @@ function gen_menupackage_input(event) {
  document.getElementById('amenities-id').value = array_amenity.toString();
   });
 
+ $('.chips').on('chip.delete', function(e, chip){
+
+    var deletechip=$('#amenities-id').val();
+     var chipsplit=deletechip.split(",");
+     debugger;
+     var index = chipsplit.indexOf(chip.tag);
+     if (index > -1) {
+          chipsplit.splice(index, 1);
+          debugger;
+      }
+
+  });
+
 /*============Add Chips For Menu Packages in (Banquet & Conference)============*/
 
 $('.chips-package').on('chip.add', function(e, chip){
@@ -1107,7 +1120,7 @@ function(isConfirm){
                    if (parentDiv.find('.imgeWrap').length==0) {
 
                       parentDiv.find('.int_title').hide();
-                      // debugger;
+                       // debugger;
                    }
                    console.log(data);
                      // debugger;

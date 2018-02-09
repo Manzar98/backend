@@ -1,8 +1,6 @@
 <?php
  include '../common-apis/api.php';
 
-
-
 ?>
 
 

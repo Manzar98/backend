@@ -1,5 +1,19 @@
 $("#pro-sub-btn").click(function(){
-         // $("#pro-sub-btn").hide();
+
+  if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "At least one image is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
 var validator= $("#room-form").validate({
 
        errorElement : 'div',
@@ -105,7 +119,21 @@ $.ajax({
 /*===============Ajax call for room insertion (create new record)=================*/
 
 $("#pro-sub-btn_room").click(function(){
-$("#pro-sub-btn_room").hide();
+  
+if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "At least one image is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
 
 var validator= $("#room-form").validate({
 

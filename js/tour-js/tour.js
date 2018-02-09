@@ -1,5 +1,19 @@
 $("#pro-sub-btn").click(function(){
-  // $("#pro-sub-btn").hide();
+
+  if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
   var validator= $("#tour-form").validate({
 
        errorElement : 'div',
@@ -67,7 +81,21 @@ if (validator.form()== false) {
 /*===============Ajax call for Tour insertion (create new record)=================*/
 
 $("#pro-sub-btn_tour").click(function(){
-    // $("#pro-sub-btn_tour").hide();
+
+  if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
 var validator= $("#tour-form").validate({
 
        errorElement : 'div',

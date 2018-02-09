@@ -1,7 +1,14 @@
                  <div class="col s12">
 
-               <form action="../upload.php" enctype="multipart/form-data" class="dropzone" id="image-upload">
-                <?php if (isset($_GET['c']) && $_GET['c']=="edit") {
+               <form action="../upload.php" enctype="multipart/form-data" class="dropzone" id="image-upload"><?php 
+
+               if (isset($_GET['name'])) { 
+              $cover=$_GET['name'];?>
+             
+             <input type="hidden" name="cover_type" id="cover_type" value="<?php  echo $cover;  ?>"> 
+             
+           <?php }elseif (isset($_GET['c']) && $_GET['c']=="edit") {
+            
                   if ($_GET['t'] == "cover") { ?>
                       <input type="hidden" value="<?php echo $_GET['cov_id'];?>" name="hotel_id" />
                         <input type="hidden" value="hotel_c" name="hotelCover" />
@@ -11,11 +18,14 @@
       
          <div class="image_drop_element"></div>
          <?php
-          
-            // $cover=$_GET['name']?>
+             if (isset($_GET['name'])) {
+               # code...
+             
+             $cover=$_GET['name'];
 
+}?>
          <div class="image_drop_element"></div>
-        <!-- <input type="hidden" name="cover_type" id="cover_type" value="<?php  echo $cover;  ?>"> -->
+        
     
       </form>
               </div>
@@ -70,10 +80,11 @@
 
                                       var coma_id=parent.document.getElementById('img_cover').value= storedId+','+updatedResponse.id;
                                      }
-                                     var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" width="150" class="materialboxed"></div>');
+                                     var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" style="width: 150; height: 100;" class="materialboxed"></div>');
                                      parent.$('#hotel_cover_img').append(singleImg[0]);
                                         
                                       parent.$('#hotel_cover_img').show();
+                                      parent.$(".int_title").show();
                                    
                                       // debugger;
                                  });

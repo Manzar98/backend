@@ -1,5 +1,19 @@
 $("#pro-sub-btn").click(function(event){
-  // $("#pro-sub-btn").hide();
+
+   if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
   
 var validator= $("#banquet-form").validate({
 
@@ -23,35 +37,29 @@ var validator= $("#banquet-form").validate({
 
 if (validator.form()== false) {
 
-     // console.log($('#hotel-form').find(".error").eq(0).offset().top);
-     var body = $("html, body");
-
-      $.each($('#banquet-form').find(".error"),function(key,value){
-        if($(value).css('display')!="none"){
-           body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
-         return false; 
-        }
-
-       //alert("Finished animating");
-    });
-      // $("#pro-sub-btn").show();
+            var body = $("html, body");
+            $.each($('#banquet-form').find(".error"),function(key,value)
+            {
+              
+              if($(value).css('display')!="none")
+              {
+                 body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+               return false; 
+              }
+           });
 
    }else{
-    $('#loader').modal({dismissible: false});
-    $('#loader').modal('open');
-        
-      if ($('.newMenuLI input').length > 0) {
-        // alert('manzar');
-        insertMultiInput();
-        // debugger;
-      }else{
-           
-          updateBanquet();
-      }
 
-    
-  
-}
+          $('#loader').modal({dismissible: false});
+          $('#loader').modal('open');
+              
+            if ($('.newMenuLI input').length > 0) {
+              insertMultiInput();
+              
+            }else{
+                updateBanquet();
+            }  
+        }
 event.preventDefault();
 event.stopPropagation();
 })
@@ -62,8 +70,20 @@ event.stopPropagation();
 
 $("#pro-sub-btn_banquet").click(function(){
 
-    // $("#pro-sub-btn_banquet").hide();
-  
+   if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
 var validator= $("#banquet-form").validate({
 
        errorElement : 'div',
@@ -104,7 +124,11 @@ $('#loader').modal({dismissible: false});
 $('#loader').modal('open');
 
      tinyMCE.triggerSave();
-     $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+     if (!$('#hotelId').val()) {
+        // debugger;
+        $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+     }
+     
 $.ajax({
                              type:"POST",
                              url:"../banquets/banquet-post.php",
@@ -173,7 +197,11 @@ $.ajax({
 function updateBanquet() {
  
     tinyMCE.triggerSave();
-  $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+    if (!$('#hotelId').val()) {
+        // debugger;
+        $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));
+     }
+  
       
    $.ajax({
                              type:"POST",

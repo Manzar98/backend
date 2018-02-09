@@ -330,6 +330,11 @@ if ($is_check==true) {
 
   }
 
+  $cover_UpdateQuery='UPDATE common_imagevideo SET
+   hotel_id="'.$hotel_id.'",
+   img_video_type="'.$formtype.'" WHERE common_imgvideo_id="'.$_POST['hotel_coverimage'].'"';
+   mysqli_query($conn,$cover_UpdateQuery) or die(mysqli_error($conn));
+
   for ($i=0; $i<count($extarray); $i++) {
 
 

@@ -1,6 +1,6 @@
 <?php  
 include '../common-sql.php';
-  // print_r($_POST);
+    // print_r($_POST);
 $is_check=true;
 $responseArray=[];
 
@@ -43,7 +43,10 @@ if (empty($_POST['banquet_charges'])) {
   
      $charges         = $_POST['banquet_charges'];
 }
-
+if (!isset($_POST['banquet_isaircon'])) {
+  
+  $is_aircon="off";
+}
 if (isset($_POST['banquet_isaircon']) && empty($_POST['banquet_aricon'])) {
 
     $is_check=false;

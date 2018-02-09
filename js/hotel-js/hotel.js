@@ -1,9 +1,49 @@
 
 $("#pro-sub-btn").click(function(){
    // $("#pro-sub-btn").hide();
-   var validator= $("#hotel-form").validate({
+    if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
 
-  
+          title: "Interior image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+   if ($('#hotel_img_exe_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Exterior image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+    if ($('#hotel_cover_img .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Cover image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+   var validator= $("#hotel-form").validate({
 
        errorElement : 'div',
         errorPlacement: function(error, element) {
@@ -115,6 +155,48 @@ $.ajax({
 
 $("#pro-sub-btn_hotel").click(function(){
   // $("#pro-sub-btn_hotel").hide();
+   if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Interior image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+   if ($('#hotel_img_exe_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Exterior image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+    if ($('#hotel_cover_img .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "Cover image field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
 
  var validator= $("#hotel-form").validate({
 

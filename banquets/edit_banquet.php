@@ -303,19 +303,17 @@ if (isset($_GET['h_id'])) {
 </div> 
 
 <div class="imgVeiwinline row" id="hotel_img_wrap">
-   
+   <div class="row int_title"><label>Photos :</label></div>
        <?php
-              $photocounter=0;
+              
                         while ($imgResult=mysqli_fetch_assoc($editbnqImgQuery)) {
 
-                             if ($photocounter==0) { ?>
-                      <div class="row int_title"><label>Photos :</label></div>
-                    <?php $photocounter++; } 
+                    
 
                           if (!empty($imgResult['common_image'])) {?>
                           <div class="imgeWrap">
                             <a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-                            <img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
+                            <img src="../<?php echo $imgResult['common_image']  ?>" style="width: 150px; height: 100px;" class="materialboxed">
                           </div>&nbsp;&nbsp;
 
 

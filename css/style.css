@@ -4920,3 +4920,12 @@ label.freeLbl {
 .room_HotelName{
 display: none;
 }
+#hotel_img_wrap{
+    padding-left: 28px;
+}
+#hotel_img_exe_wrap{
+    padding-left: 28px;
+}
+#hotel_cover_img{
+    padding-left: 28px;
+}

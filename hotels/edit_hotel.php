@@ -119,14 +119,13 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<input type="text" class="timepicker" id="checkOut" required="" name="hotel_checkout" value="<?php  echo $hotelResult['hotel_checkout'];  ?>">  
 		</div>
 	</div>
-	
 
 		<?php
 		$interiorCounter = 0;
         $exteriorCounter = 0;
 
 		while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {
-
+                    
 
 			if (!empty($imgResult['common_image'])) {?>
 	
@@ -138,7 +137,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
             <div class="imgVeiwinline" id="hotel_img_wrap" >
 			  <div class="imgeWrap">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-				<img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
+				<img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
 			</div>
 
 			</div>
@@ -150,21 +149,26 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 		   <div class="imgVeiwinline row" id="hotel_img_exe_wrap" >		            
 			 <div class="imgeWrap">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-				<img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
+				<img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
 			</div>
            </div>
           
-			<?php }elseif (!empty($imgResult['hotel_coverimg'])) { ?>
+			<?php }
+            }  ?>
+            
+           <?php if (!empty($imgResult['hotel_coverimg'])) { ?>
 			<div class="row" id="hotel_cover_img" >
+		<div class="row int_title"><label>Cover Photo :</label></div>
+    
 				<div class="imgeWrap">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['hotel_coverimg'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-				<img src="../<?php echo $imgResult['hotel_coverimg']  ?>" width="150" class="materialboxed">
+				<img src="../<?php echo $imgResult['hotel_coverimg']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
 			</div>&nbsp;&nbsp;
 		</div>
-		<?php	} ?>
+	<?php   } ?>
           
 
- <?php } ?>
+
 
 			<?php	}
 
@@ -463,7 +467,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <!-- Modal Structure -->
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body interior_wrap">
 <div class="modal-content">
-<div class="modal-header"><h2>Upload  Photos</h2></div>
+<div class="modal-header"><h2>Upload Interior  Photos</h2></div>
 <iframe src="up_load_img.php?p=edit&t=int-hotel&h_id=<?php echo $global_hotel_id; ?>" id="int_iframe"></iframe>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat int_done">Done</a>
