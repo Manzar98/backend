@@ -350,27 +350,19 @@ function dropOffer(that) {
     
 }
 
-/*======= Dropdown For Hotel Stars in Tours (if stay in hotel than hide camping checkbox)====== */
-function changeStr(that) {
-  // body...
-
-  if (that.value == "") {
-    $('.camping').show();
-  }else {
-    $('.camping').hide();
-  }
- 
-}
-
 /*======= Checkbox For camping in Tours  (if camping than hide hotel star dropdown)======= */
 function changecamp(that){
   // body...
   // console.log(that.value);
 if ($(".camping input:checkbox:checked").length > 0) {
-    $('.hotelStr').hide();
+    $('#camp_day').show();
+    $('#camp_day input').prop('required',true);;
 }else{
    
-   $('.hotelStr').show();
+   $('#camp_day').hide();
+   $('#camp_day input').val('');
+   $('#camp_day input').prop('required',false);;
+
 }
 
  
@@ -1001,9 +993,12 @@ function gen_menupackage_input(event) {
      var chipsplit=deletechip.split(",");
      debugger;
      var index = chipsplit.indexOf(chip.tag);
+
      if (index > -1) {
-          chipsplit.splice(index, 1);
-          debugger;
+          var splicevalue=chipsplit.splice(index, 1);
+          
+           debugger;
+          
       }
 
   });

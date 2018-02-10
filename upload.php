@@ -1,7 +1,8 @@
 <?php
 
 include 'common-sql.php';
-// print_r($_POST);
+   // print_r($_POST);
+
 if (!empty($_FILES)) {
 
 $name = ''; 
@@ -80,20 +81,28 @@ $url = $file;
  $compfilename = compress_image($_FILES["file"]["tmp_name"], $url, 40);//calling compress function
  // $compfilename='images/uploads/'.$compfilename;
  croppingImage($compfilename,$url);//calling crop function
-
+$img_video_type='hotel';
  for ($i=0; $i <count($compfilename); $i++) { 
   	# code...
       if (isset($_POST['photo_type'])) {
   
-		  if ($_POST['photo_type'] == 'interior') {
-		  	# code...
-		  	$imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['photo_type'].'")';
+        		  if ($_POST['photo_type'] == 'interior' && !isset($_POST['hotel_id'])) {
+        		  	# code...
+        		  	$imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['photo_type'].'")';
 
-		  }elseif ($_POST['photo_type'] == 'exterior') {
+        		  }elseif ($_POST['photo_type'] == 'exterior' && !isset($_POST['hotel_id'])) {
 
-		  	$imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['photo_type'].'")';
+        		  	$imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['photo_type'].'")';
+                 
+        		  }elseif ($_POST['photo_type'] == 'exterior' && isset($_POST['hotel_id'])) {
+    
+                $imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type,img_video_type,hotel_id)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['photo_type'].'","'.$img_video_type.'","'.$_POST['hotel_id'].'")';
+                 // echo $imgQuery;
 
-		  }
+                }elseif ($_POST['photo_type'] == 'interior' && isset($_POST['hotel_id'])) {
+                $imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type,img_video_type,hotel_id)Values("'.'images/uploads/'.$compfilename.'","interior","'.$img_video_type.'","'.$_POST['hotel_id'].'")'; 
+                        // echo $imgQuery;
+                }
 
   	  }elseif(isset($_POST['cover_type'])){
 
@@ -103,7 +112,7 @@ $url = $file;
   	  }elseif (isset($_POST['hotel_id']) && isset($_POST['hotelCover'])) {
 
     	  $imgQuery='INSERT INTO common_imagevideo(hotel_coverimg,hotel_id)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['hotel_id'].'")';
-
+            // echo $imgQuery;
   	  }elseif(isset($_POST['room_id'])){
  		  
   		  $imgQuery= 'INSERT INTO common_imagevideo(common_image,room_id,img_video_type)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['room_id'].'","room")';
@@ -122,17 +131,12 @@ $url = $file;
  		
   	  }elseif (isset($_POST['event_id'])) {
 
-  		$imgQuery= 'INSERT INTO common_imagevideo(common_image,event_id,img_video_type)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['event_id'].'","event")'; 		
-  	  }elseif (isset($_POST['hotel_id']) && $_POST['photo_int_ext_type']== "exterior") {
- 		
-  		$imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type,hotel_id)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['photo_int_ext_type'].'","'.$_POST['hotel_id'].'")';
-
-  	  }elseif (isset($_POST['hotel_id']) && $_POST['photo_int_ext_type']== "interior") {
-  		$imgQuery='INSERT INTO common_imagevideo(common_image,photo_int_ext_type,hotel_id)Values("'.'images/uploads/'.$compfilename.'","interior","'.$_POST['hotel_id'].'")'; 
+  		$imgQuery= 'INSERT INTO common_imagevideo(common_image,event_id,img_video_type)Values("'.'images/uploads/'.$compfilename.'","'.$_POST['event_id'].'","event")'; 
 
   	  }else {
 
   	   $imgQuery='INSERT INTO common_imagevideo(common_image)Values("'.'images/uploads/'.$compfilename.'")';
+       
 
      }
 

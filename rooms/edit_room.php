@@ -206,7 +206,7 @@
 													<?php //$photocounter++; }
 													 	?>
 													 	
-													<div class="imgeWrap">
+													<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
 														<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 														<img src="../<?php echo $imgResult['common_image']  ?>" style="width: 150px; height: 100px;" class="materialboxed">
 													</div>&nbsp;&nbsp;

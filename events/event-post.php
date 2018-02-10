@@ -504,14 +504,15 @@ if (isset($_POST['common_video'])) {
  }
 
 
+if ($discountx) {
 	
    for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
 
- 	  $discountQuery='INSERT INTO common_nosofpeople(event_id,common_nopeople,common_discount,discount_type)VALUES("'.$event_id.'","'.$nospeople[$i].'","'.$discountx[$i].'","'.$formtype.'")';
+ 	  $discountQuery='INSERT INTO common_nosofpeople(event_id,common_nopeople,common_discount,discount_type)VALUES("'.$event_id.'","'.$_POST['common_nopeople'][$i].'","'.$_POST['common_discount'][$i].'","'.$formtype.'")';
  	  $disQuery=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
  	
    }
-
+}
 
 
     echo json_encode($newSuccessMsgArr);

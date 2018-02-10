@@ -478,7 +478,7 @@ global $conn;
      $whereClauseArray = array();
      $updtevalues      = array();
 
-      if (!empty($_POST['hotel_id']) && !empty($_POST['event_id'])) {
+      if ((!empty($_POST['hotel_id']) || !empty($_POST['user_id'])) && !empty($_POST['event_id'])) {
        # code...
     
 

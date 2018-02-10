@@ -1,6 +1,6 @@
 <?php  
 include '../common-sql.php';
- // print_r($_POST);
+  // print_r($_POST);
 $is_check=true;
  $responseArray=[];
 
@@ -125,10 +125,23 @@ $hotelstr         =$_POST['tour_hotelstr'];
 
 if (isset($_POST['tour_camping'])) {
 
-$camping          =$_POST['tour_camping'];
+   $camping          =$_POST['tour_camping'];
+     if (empty($_POST['tour_campday'])) {
+
+      $is_check=false;
+    array_push($responseArray,"Number of camping days field is required.");
+
+     }elseif (!empty($_POST['tour_campday']) && !is_numeric($_POST['tour_campday'])) {
+      $is_check=false;
+    array_push($responseArray,"Number of camping days fiel should only contain numbers.");
+     }else{
+
+        $campday=$_POST['tour_campday'];
+     }
 
 }else{
   $camping          ='off';
+  $campday=   null;
 
 }
 
@@ -588,7 +601,7 @@ global $conn;
      $whereClauseArray = array();
      $updtevalues      = array();
 
-      if (!empty($_POST['hotel_id']) && !empty($_POST['tour_id'])) {
+      if ((!empty($_POST['hotel_id']) || !empty($_POST['user_id'])) && !empty($_POST['tour_id'])) {
        # code...
     
 

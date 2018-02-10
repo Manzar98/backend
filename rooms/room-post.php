@@ -318,7 +318,7 @@ if ($to) {
 
    for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
 
-	$datesQuery='INSERT INTO common_bookdates(room_id,book_fromdate,book_todate,form_date_type)VALUES("'.$room_id.'","'.$from[$i].'","'.$to[$i].'","'.$formtype.'")';
+	$datesQuery='INSERT INTO common_bookdates(room_id,book_fromdate,book_todate,form_date_type)VALUES("'.$room_id.'","'.$_POST['book_fromdate'][$i].'","'.$_POST['book_todate'][$i].'","'.$formtype.'")';
 
 	$datesResult=mysqli_query($conn,$datesQuery) or die(mysqli_error($conn));
    }

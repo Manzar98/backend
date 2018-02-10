@@ -551,7 +551,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 										
 													if (!empty($imgResult['common_image'])) {?>
-													<div class="imgeWrap">
+													<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
 														<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 														<img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
 													</div>&nbsp;&nbsp;

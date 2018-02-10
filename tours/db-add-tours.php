@@ -162,7 +162,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<div class="hotelStr common-wrapper comon_dropdown_botom_line">
 								
 								  <label for="filled-in-box">Hotel Stay Stars</label>
-                                    <select class="" name="tour_hotelstr"  onchange="changeStr(this)">
+                                    <select class="" name="tour_hotelstr">
                                     	<option value="">Select One</option>
                                     	<option value="1">1</option>
                                     	<option value="2">2</option>
@@ -174,7 +174,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
                                     </select>								
 							</div>
 							</div>
-							<div class="col-md-6  " >
+							<div class="col-md-3  " >
 								<div class="camping">
 								<p class="checkbox-bottom">
 									<input type="checkbox" class="filled-in" onclick="changecamp(this)" name="tour_camping" id="cmp"/>
@@ -182,6 +182,12 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								</p>
 								</div>
 								
+							</div>
+							<div class="col-md-3" style="display: none;" id="camp_day">
+								<label>No of days</label>
+                                  <div class="input-field ">
+								   <input type="number" value="" name="tour_campday" class="validate"> 
+							      </div>
 							</div>							
 						</div>
 

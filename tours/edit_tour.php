@@ -279,7 +279,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<div class="hotelStr common-wrapper comon_dropdown_botom_line">
 								
 								  <label for="filled-in-box">Hotel Stay Stars</label>
-                                    <select class="" name="tour_hotelstr"  onchange="changeStr(this)">
+                                    <select class="" name="tour_hotelstr">
                         	<?php if ($resulttour['tour_hotelstr']== "1") { ?>
 
                                     	<option value="">Select One</option>
@@ -374,7 +374,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
                                     </select>								
 							</div>
 							</div>
-							<div class="col-md-6  " >
+							<div class="col-md-3  " >
 								<div class="camping">
 								<p class="checkbox-bottom">
 									<?php if ($resulttour['tour_camping']=='on') { ?>
@@ -391,7 +391,13 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								</p>
 								</div>
 
-							</div>							
+							</div>
+							<div class="col-md-3" style="display: none;" id="camp_day">
+								<label>No of days</label>
+                                  <div class="input-field ">
+								   <input type="number" value="<?php echo $resulttour['tour_campday']; ?>" name="tour_campday" class="validate" > 
+							      </div>
+							</div>								
 						</div>
 
 
@@ -734,7 +740,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 
 													if (!empty($imgResult['common_image'])) {?>
-													<div class="imgeWrap">
+													<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
 														<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 														<img src="../<?php echo $imgResult['common_image']  ?>" style="width: 150px; height: 100px;" class="materialboxed">
 													</div>&nbsp;&nbsp;
@@ -1223,10 +1229,14 @@ if ($('#undr5allow :selected').text() == "Yes") {
    }
 
 if ($(".camping input:checkbox:checked").length > 0) {
-    $('.hotelStr').hide();
+    $('#camp_day').show();
+    $('#camp_day input').prop('required',true);;
 }else{
    
-   $('.hotelStr').show();
+   $('#camp_day').hide();
+   $('#camp_day input').val('');
+   $('#camp_day input').prop('required',false);;
+
 }
 
 	if ($('#indipend :selected').text() == "No") {

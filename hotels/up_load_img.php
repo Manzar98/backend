@@ -1,27 +1,28 @@
                       <?php
                       if(isset($_GET['name'])){
                        $type=$_GET['name'];
+
                      }
                      ?>
                      <div class="col s12">
 
                        <form action="../upload.php" enctype="multipart/form-data" class="dropzone" id="image-upload">
                         <?php
-                       if (isset($_GET['name'])) {?>
+                       if (isset($_GET['name']) && !isset($_GET['p'])) {?>
                         <div class="image_drop_element"></div>
                         <input type="hidden" name="photo_type" id="photo_type" value="<?php  echo $type;  ?>">
 
                 <?php  }elseif (isset($_GET['p']) && $_GET['p']=="edit") {
 
-                         if ($_GET['t']== "ext-hotel") { ?>
-
-                                <input type="hidden" value="exterior" name="photo_int_ext_type" />
-                                 <input type="hidden" value="<?php echo $_GET['h_id'];?>" name="hotel_id" />
-                  <?php   }elseif ($_GET['t'] == 'int-hotel') { ?>
-                         
-                                 <input type="hidden" value="interior" name="photo_int_ext_type" />
-                                 <input type="hidden" value="<?php echo $_GET['h_id'];?>" name="hotel_id" />
-                  <?php   }
+                               if ($_GET['t']== "ext-hotel") { ?>
+                                       
+                                       <input type="hidden" name="photo_type" id="photo_type" value="<?php  echo $type;  ?>">
+                                       <input type="hidden" value="<?php echo $_GET['h_id'];?>" name="hotel_id" />
+                        <?php   }elseif ($_GET['t'] == 'int-hotel') { ?>
+                        
+                                         <input type="hidden" name="photo_type" id="photo_type" value="<?php  echo $type;  ?>">
+                                       <input type="hidden" value="<?php echo $_GET['h_id'];?>" name="hotel_id" />
+                        <?php   }
                            # code...
                        } ?>
                       </form>
@@ -54,7 +55,9 @@
                         <div class="dz-error-message"><span data-dz-errormessage></span></div>
 
                         </div>`,
+
                         init: function() {
+                              
                          this.on("success", function(file,response)
                          {
                           console.log('File : ', file);
@@ -64,8 +67,9 @@
                           $(file.previewElement).find('img[data-dz-thumbnail]').attr('upload-file-name',updatedResponse.filename);
 
                           $(file.previewElement).find('img[data-dz-remove]').attr('upload-file-id',updatedResponse.id);
-
-                          if ($('#photo_type').val() == 'interior' ) {
+                         // debugger;
+                          if ($('#photo_type').val() == 'interior') {
+                            // debugger;
                                        //set the ids of img in hidden inputs
                                        if (parent.document.getElementById('img_ids').value == "") {
 
@@ -83,7 +87,7 @@
 
                                           parent.document.getElementById('img_ids').value= storedId+','+updatedResponse.id;
                                         }
-                                        var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;"><a class="deletIMG" onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" style="width: 150px; height: 100px;" class="materialboxed"></div>');
+                                        var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px; padding-top: 19px;"><a class="deletIMG"  onclick="deletIMG(event)" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" style="width: 150px; height: 100px;" class="materialboxed"></div>');
 
                                         parent.$('#hotel_img_wrap').append(singleImg[0]);
                                          parent.$('#hotel_img_wrap').show();
@@ -112,6 +116,12 @@
                                          parent.$('#hotel_img_exe_wrap').show();
                                        }
                                      }
+
+                                
+
+
+
+
                                       // debugger;
                                     });
                          this.on("removedfile", function(file){

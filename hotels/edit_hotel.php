@@ -128,26 +128,28 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
                     
 
 			if (!empty($imgResult['common_image'])) {?>
-	
+	               <!-- <?php print_r($imgResult) ?> -->
 			<?php if ($imgResult['photo_int_ext_type']== "interior") {?>
+				             <!-- <?php echo $imgResult['photo_int_ext_type']; ?> -->
 				            
-				            <?php if ($interiorCounter==0) { ?>
+            <div class="imgVeiwinline" id="hotel_img_wrap" >
+            	<?php if ($interiorCounter==0) { ?>
 				            	<div class="row int_title"><label>Interior Photos :</label></div>
 				            <?php $interiorCounter++; } ?>
-            <div class="imgVeiwinline" id="hotel_img_wrap" >
-			  <div class="imgeWrap">
+			  <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 				<img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
 			</div>
 
 			</div>
             <?php }elseif ($imgResult['photo_int_ext_type']== "exterior") { ?>
-            	      
-            	      <?php if ($exteriorCounter==0) { ?>
-				            	<div class="row int_title"><label>Exterior Photos :</label></div>
-				            <?php $exteriorCounter++; } ?>
-		   <div class="imgVeiwinline row" id="hotel_img_exe_wrap" >		            
-			 <div class="imgeWrap">
+            	      <!-- <?php echo $imgResult['photo_int_ext_type']; ?> -->
+            	     
+		   <div class="imgVeiwinline row" id="hotel_img_exe_wrap" >	
+		    <?php if ($exteriorCounter==0) { ?>
+				            	<div class="row int_title" style="clear:  both;"><label>Exterior Photos :</label></div>
+				            <?php $exteriorCounter++; } ?>	            
+			 <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 				<img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
 			</div>
@@ -160,7 +162,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<div class="row" id="hotel_cover_img" >
 		<div class="row int_title"><label>Cover Photo :</label></div>
     
-				<div class="imgeWrap">
+				<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
 				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['hotel_coverimg'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
 				<img src="../<?php echo $imgResult['hotel_coverimg']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
 			</div>&nbsp;&nbsp;
@@ -468,7 +470,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body interior_wrap">
 <div class="modal-content">
 <div class="modal-header"><h2>Upload Interior  Photos</h2></div>
-<iframe src="up_load_img.php?p=edit&t=int-hotel&h_id=<?php echo $global_hotel_id; ?>" id="int_iframe"></iframe>
+<iframe src="up_load_img.php?name=interior&p=edit&t=int-hotel&h_id=<?php echo $global_hotel_id; ?>" id="int_iframe"></iframe>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat int_done">Done</a>
 </div>
@@ -480,7 +482,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 <div class="modal-content">
 <div class="modal-header"><h2>Upload Exterior Photos</h2></div>
-<iframe src="up_load_img.php?p=edit&t=ext-hotel&h_id=<?php echo $global_hotel_id; ?>" id="ext_iframe"></iframe>
+<iframe src="up_load_img.php?name=exterior&p=edit&t=ext-hotel&h_id=<?php echo $global_hotel_id; ?>" id="ext_iframe"></iframe>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ext_done">Done</a>
 </div>
