@@ -4,7 +4,7 @@ $("#pro-sub-btn").click(function(){
  
     swal({
 
-          title: "At least one image is required",
+          title: "At least one photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",
@@ -124,7 +124,7 @@ if ($('#hotel_img_wrap .imgeWrap').length==0) {
  
     swal({
 
-          title: "At least one image is required",
+          title: "At least one photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",

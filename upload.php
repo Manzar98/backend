@@ -35,8 +35,8 @@ function croppingImage($file,$url){
     $image = imagecreatefromjpeg($file);
 $filename = 'images/uploads/'.$url;
 
-$thumb_width = 500;
-$thumb_height = 500;
+$thumb_width = 800;
+$thumb_height = 600;
 
 $width = imagesx($image);
 $height = imagesy($image);

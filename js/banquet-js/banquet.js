@@ -4,7 +4,7 @@ $("#pro-sub-btn").click(function(event){
  
     swal({
 
-          title: "Image field is required",
+          title: "At least one photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",
@@ -74,7 +74,7 @@ $("#pro-sub-btn_banquet").click(function(){
  
     swal({
 
-          title: "Image field is required",
+          title: "At least one photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",

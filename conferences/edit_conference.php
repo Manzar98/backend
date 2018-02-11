@@ -640,6 +640,23 @@ $('#ajaxbtn').click(function(){
        }
      });
 
+
+
+
+  $('#'+id).on('chip.delete', function(e, chip){
+     
+       var deletechip=$('#input_'+id).val();
+       var chipsplit=deletechip.split(",");
+       var index = chipsplit.indexOf(chip.tag);
+
+       if (index > -1) {
+        
+             var splicevalue=chipsplit.splice(index, 1);
+             $('#input_'+id).val(chipsplit);
+       }
+
+  });
+
 })
 
 

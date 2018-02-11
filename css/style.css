@@ -4929,3 +4929,10 @@ display: none;
 #hotel_cover_img{
     padding-left: 28px;
 }
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left:7%;  
+  font-size: 18px;
+}

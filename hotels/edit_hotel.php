@@ -47,7 +47,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <div class="db-profile-edit">
 <form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="" method="POST" enctype="multipart/form-data">
 
-<input type='hidden' value='<?php echo $hotelResult['hotel_id']; ?>' name="hotel_id" />
+<input type='hidden' value='<?php echo $hotelResult['hotel_id']; ?>' id="h_Id" name="hotel_id" />
 <?php $global_hotel_id= $hotelResult['hotel_id']; ?>
 
 <div>
@@ -119,44 +119,18 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			<input type="text" class="timepicker" id="checkOut" required="" name="hotel_checkout" value="<?php  echo $hotelResult['hotel_checkout'];  ?>">  
 		</div>
 	</div>
+	    <div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
+			    <div class="row int_title"><label>Interior Photos :</label></div>
+							 
+		</div>
+		<div class="imgVeiwinline row" id="hotel_img_exe_wrap" style="display: none;">
+				<div class="row int_title"><label>Exterior Photos :</label></div>
+		</div>
 
-		<?php
-		$interiorCounter = 0;
-        $exteriorCounter = 0;
-
-		while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {
+<?php
+		while ($imgResult=mysqli_fetch_assoc($editHotelImgQuery)) {?>
                     
 
-			if (!empty($imgResult['common_image'])) {?>
-	               <!-- <?php print_r($imgResult) ?> -->
-			<?php if ($imgResult['photo_int_ext_type']== "interior") {?>
-				             <!-- <?php echo $imgResult['photo_int_ext_type']; ?> -->
-				            
-            <div class="imgVeiwinline" id="hotel_img_wrap" >
-            	<?php if ($interiorCounter==0) { ?>
-				            	<div class="row int_title"><label>Interior Photos :</label></div>
-				            <?php $interiorCounter++; } ?>
-			  <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
-				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-				<img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
-			</div>
-
-			</div>
-            <?php }elseif ($imgResult['photo_int_ext_type']== "exterior") { ?>
-            	      <!-- <?php echo $imgResult['photo_int_ext_type']; ?> -->
-            	     
-		   <div class="imgVeiwinline row" id="hotel_img_exe_wrap" >	
-		    <?php if ($exteriorCounter==0) { ?>
-				            	<div class="row int_title" style="clear:  both;"><label>Exterior Photos :</label></div>
-				            <?php $exteriorCounter++; } ?>	            
-			 <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
-				<a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-				<img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
-			</div>
-           </div>
-          
-			<?php }
-            }  ?>
             
            <?php if (!empty($imgResult['hotel_coverimg'])) { ?>
 			<div class="row" id="hotel_cover_img" >
@@ -557,14 +531,15 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
     
   </div>
 
-
+<div id="toast-container"></div>
 <?php  include"../footer.php";  ?>
 
 
 
 <script src="../js/hotel-js/hotel.js"></script>
+<script src="../js/hotel-js/images.js"></script>
 <script>
-
+ Materialize.toast('Loading images')
 tinymce.init({ selector:'textarea' });
 
 

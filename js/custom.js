@@ -954,7 +954,7 @@ function gen_menupackage_input(event) {
       array_amenity.push(chip_string[i].tag);
      
 }
- // debugger;
+   // debugger;
      $('#input_'+id).val(array_amenity.toString())
     console.log($('#'+id).val(array_amenity.toString()));
     e.stopPropagation();
@@ -962,6 +962,7 @@ function gen_menupackage_input(event) {
 
 
 }
+
 
 /*=================Function For Add Chips For Amenities in all form=======================*/
 
@@ -989,17 +990,16 @@ function gen_menupackage_input(event) {
 
  $('.chips').on('chip.delete', function(e, chip){
 
-    var deletechip=$('#amenities-id').val();
-     var chipsplit=deletechip.split(",");
-     debugger;
-     var index = chipsplit.indexOf(chip.tag);
+       var deletechip=$('#amenities-id').val();
+       var chipsplit=deletechip.split(",");
+       var index = chipsplit.indexOf(chip.tag);
 
-     if (index > -1) {
+       if (index > -1) {
           var splicevalue=chipsplit.splice(index, 1);
-          
-           debugger;
-          
-      }
+           console.log(chipsplit);
+           // debugger;
+           document.getElementById('amenities-id').value=chipsplit;
+       }
 
   });
 
@@ -1089,7 +1089,7 @@ function deletIMG(event){
   var removeDIV =event.currentTarget.parentElement;
 swal({
   title: "Are you sure?",
-  text: "You will not be able to recover this imaginary file!",
+  text: "You will not be able to recover this photo!",
   type: "warning",
   showCancelButton: true,
   confirmButtonColor: "#DD6B55",
@@ -1121,10 +1121,10 @@ function(isConfirm){
                      // debugger;
                  });
 
-    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+    swal("Deleted!", "Photo has been deleted.", "success");
 
   } else {
-    swal("Cancelled", "Your imaginary file is safe :)", "error");
+    swal("Cancelled", "Photo has not been deleted.", "error");
   }
 });
 
@@ -1251,7 +1251,7 @@ Remove imges when click on done in modal
  })
 
  /*===================
-
+ Independent & dependent in tours & events
  ====================*/
 
  function independ(that) {

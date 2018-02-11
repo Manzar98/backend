@@ -2,10 +2,10 @@
 $("#pro-sub-btn").click(function(){
    // $("#pro-sub-btn").hide();
     if ($('#hotel_img_wrap .imgeWrap').length==0) {
- 
+   
     swal({
 
-          title: "Interior image field is required",
+          title: "At least one interior photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",
@@ -19,7 +19,7 @@ $("#pro-sub-btn").click(function(){
  
     swal({
 
-          title: "Exterior image field is required",
+          title: "At least one exterior photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",
@@ -33,7 +33,7 @@ $("#pro-sub-btn").click(function(){
  
     swal({
 
-          title: "Cover image field is required",
+          title: "Cover photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",
@@ -159,7 +159,7 @@ $("#pro-sub-btn_hotel").click(function(){
  
     swal({
 
-          title: "Interior image field is required",
+          title: "At least one interior photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",
@@ -173,7 +173,7 @@ $("#pro-sub-btn_hotel").click(function(){
  
     swal({
 
-          title: "Exterior image field is required",
+          title: "At least one exterior photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",
@@ -187,7 +187,7 @@ $("#pro-sub-btn_hotel").click(function(){
  
     swal({
 
-          title: "Cover image field is required",
+          title: "Cover photo is required",
           
           type: "error",
             //confirmButtonColor: "#DD6B55",

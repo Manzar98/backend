@@ -656,43 +656,45 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
         /*==============Ajax Function Defination (For Dates)==============*/
 $('#ajaxbtn').click(function(){
 
-    debugger;
-
-    alert('jgjg');
    // console.log(dates_obj);
     var dataObj = {};
 
     $('.newLI input').each(function(key,value){
 
           console.log(value);
-      if(value.id.indexOf("from") > -1){
-        debugger;
-        dataObj['book_fromdate'] = $(value).val();
-      }
-      if(value.id.indexOf("to") > -1){
-        dataObj['book_todate'] = $(value).val();
-      }
+          if(value.id.indexOf("from") > -1){
+            // debugger;
+            dataObj['book_fromdate'] = $(value).val();
+          }
+          if(value.id.indexOf("to") > -1){
+            dataObj['book_todate'] = $(value).val();
+          }
     });
+
     dataObj['banquet_id'] = $('input[name=banquet_id]').val();
     dataObj['form_date_type'] = "banquet";
 
     console.log(dataObj);
     // debugger;
         $.ajax({
-                              type:"POST",
-                              url:"../banquets/insert_banquet.php",
-                              data: dataObj,
-                              success:function(data) {
-                var response = JSON.parse(data);
-                              console.log(response);
+                      type:"POST",
+                      url:"../banquets/insert_banquet.php",
+                      data: dataObj,
+                      success:function(data) {
+
+                               var response = JSON.parse(data);
+                               console.log(response);
+
                               if(response.message == "success"){
+
                                 $('.newLI #date_id').val(response.id);
                                 $('.newLI').removeClass('newLI');
+
                               }
                    }
 
 
-                    })
+              })
 
   });
 /*==============End Ajax Function Defination==============*/
@@ -782,6 +784,21 @@ $.each(packageitem,function(key,item){
           minLength: 1
         }
       });
+
+
+  $('#'+id).on('chip.delete', function(e, chip){
+     
+       var deletechip=$('#input_'+id).val();
+       var chipsplit=deletechip.split(",");
+       var index = chipsplit.indexOf(chip.tag);
+
+       if (index > -1) {
+        
+             var splicevalue=chipsplit.splice(index, 1);
+             $('#input_'+id).val(chipsplit);
+       }
+
+  });
 
 })
 
