@@ -11,7 +11,7 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
-	<title>PVC-Log in</title>
+	<title>PVC-Registration</title>
 	<!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,55 +72,95 @@
 			<div class="db-left">
 				
 				<div class="db-left-2">
-					
+					  
 				</div>
 			</div>
 			<div class="db-cent">
-				<!-- <div class="" style="padding-left: 10px;">
-					<h2>Hello... <span>{{ name }}</span></h2>
-					
-				</div> -->
-				    <div class="col-md-3"></div>
-					<div class="db-cent-2 col-md-6">
-					<div class="db-title">
-							<h3>Login</h3>
-							
+				  <div class="db-title reg-title_m">
+							<h3>Create an Account</h3>
+							<p>Don't have an account? Create your account. It's take less then a minutes</p>
 						</div>
-							<!-- LOGIN SECTION -->
+				 	<div class="db-profile-edit">
 
-                	<form class="col s8" role="form" action="auth.php" method="POST" enctype="multipart/form-data" id="login-form">
+					<form class="col s12" action="registration-post.php" method="post" role="form" id="registor-form">
 						<div>
-							<div class="input-field">
-								<input type="email" name="email"   class="validate">
-								<label>Email</label>
-							</div>
+							<label class="col s4">Name</label>
+							<div class="input-field col s8">
+								<input type="text" value="" id="reg_name" name="reg_name" class="validate"> </div>
 						</div>
 						<div>
-							<div class="input-field">
-								<input type="password" name="password" class="validate">
-								<label>Password</label>
-							</div>
+							<label class="col s4">Email Address</label>
+							<div class="input-field col s8">
+								<input type="email" value="" id="reg_email" name="reg_email" class="validate"> </div>
+						</div>
+                         
+                        <div class="row">
+
+                         	<div class="col-md-6">
+                         		<label>Mobile Number</label>
+                         		<div class="input-field ">
+                         		   <input type="number" id="reg_phone" name="reg_phone" class="validate">
+                         		</div>   
+                         	</div>
+                         	<div class="col-md-6">
+                         		<label>Postal Address</label>
+                         		<div class="input-field ">
+                         		   <input type="text" id="reg_postal" name="reg_postal" class="validate">
+                         	    </div>
+                         	</div>
+   
+                        </div>
+                        <div class="row">
+                        	
+                        	<div class="col-md-6">
+                        		<label>City</label>
+                        		<div class="input-field ">
+                        		   <input type="text" name="reg_city" id="reg_city" class="validate">
+                        		</div>   
+                        	</div>
+                        	<div class="col-md-6">
+                        		<label>Province</label>
+                        	    <div class="input-field ">
+                        		   <input type="text" name="reg_province" id="reg_province" class="validate">
+                        		</div> 
+                        	</div>
+
+                        </div>
+						<div>
+							<label class="col s4">Country</label>
+							<div class="input-field col s8">
+								<input type="text" value="" name="reg_country" id="reg_country" class="validate"> </div>
 						</div>
 						<div class="row">
-							<div class="col-md-9  re_me">
-								<p>
-									<input type="checkbox" id="remembr_me" />
-									<label for="remembr_me">Remember me</label>
-								</p>
+
+							<div class="col-md-6">
+								<label>Date of Birth</label>
+								<div class="input-field ">
+									<input type="text" value="" id="reg_birth" name="reg_birth" class="validate"> 
+								</div>
 							</div>
-							<div class="col-md-3  pull-right">
-								<p class="registor">
-									 <a href="registration.php">Registration?</a>
-								</p>
+							<div class="col-md-6">
+								<label>Password</label>
+								<div class="input-field">
+									<input type="password" value="" id="reg_password" name="reg_password" minlength="8" class="validate"> 
+								</div>
 							</div>
+
 						</div>
 						<div>
-							<div class="input-field">
-								<input type="button" value="Login" class="waves-effect waves-light log-in-btn" id="login_btn"> </div>
+							<div class="file-field input-field">
+								<div class="btn" id="pro-file-upload"> <span>File</span>
+									<input type="file"> </div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text" placeholder="Upload profile picture"> </div>
+							</div>
 						</div>
 						
+						<div>
+							<div class="input-field col s8">
+								<input type="button" value="Submit" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor"> </div>
+						</div>
 					</form>
-					
 				</div>
 
 			
@@ -128,7 +168,9 @@
 
 			
 			</div>
-	  <!-- Modal Structure -->
+
+
+			  <!-- Modal Structure -->
   <div id="loader" class="modal">
     <div class="modal-content">
       <div class="col-md-5"></div>
@@ -181,6 +223,7 @@
     
   </div>
 
+	
 		</div>
 		<!--END DASHBOARD SECTION-->
 		<!--TOP SECTION-->
@@ -316,6 +359,7 @@
 
 	</section>
 	<!--ALL SCRIPT FILES-->
+
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/angular.min.js"></script>
@@ -326,7 +370,22 @@
 	<script src="js/jquery-validation.js"></script>
 	<script src="js/additional-methods.js"></script>
 	<script src="js/sweetalert.min.js"></script>
-    <script src="js/login-js/login.js"></script>
+    <script src="js/registration-js/registration.js"></script>
+
+
+	<!-- <script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/bootstrap.js" type="text/javascript"></script>
+	<script src="js/materialize.min.js" type="text/javascript"></script>
+	<script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/jquery-validation.js"></script>
+	
+	<script src="js/additional-methods.js"></script>
+	<script src="js/sweetalert.min.js"></script> -->
+	
+	
 </body>
 
 

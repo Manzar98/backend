@@ -1267,3 +1267,13 @@ Remove imges when click on done in modal
    // body...
   }
  }
+
+
+ /*===================
+   Date of birth when registration
+ ===================*/
+  $('#reg_birth').datepicker({
+         
+            
+            
+ });

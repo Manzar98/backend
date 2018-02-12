@@ -1,22 +1,21 @@
 <?php 
 
-  session_start();
-   if(!$_SESSION['login']){
-   header("location:index.php");
-   die;
-}
+     include"common-apis/reg-api.php";
+
+    $reg_Query= select('credentials',array("user_id"=>$_GET['id']));
+
+
 
 ?>
-
 
 
 <!DOCTYPE html>
 <html lang="en">
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
-	<title>Dashboard</title>
+	<title>MyHotel - Hotel Booking and Room Booking Online Html Responsive Template</title>
 	<!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +31,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
 	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/sweetalert.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -199,7 +199,7 @@
 								<a href="#!" data-toggle="modal" data-target="#modal1"><img src="images/icon/6.png" alt=""> Log In</a>
 							</li>
 							<li>
-								<a href="logout.php"><img src="images/icon/13.png" alt=""> Sign Out</a>
+								<a href="#!" data-toggle="modal" data-target="#modal3"><img src="images/icon/13.png" alt=""> Forgot Password</a>
 							</li>
 						</ul>
 						<!-- Dropdown Structure -->
@@ -382,11 +382,17 @@
 		</div>
 		<!--TOP SECTION-->
 		<!--DASHBOARD SECTION-->
+		<?php   
+          
+          while ($reg_Result=mysqli_fetch_assoc($reg_Query)) { ?>
+          	
+          
+		
 		<div class="dashboard">
 			<div class="db-left">
 				<div class="db-left-1">
-					<h4>Jana Novakova</h4>
-					<p>Newyork, United States</p>
+					<h4><?php echo $reg_Result['reg_name']; ?></h4>
+					<p><?php echo $reg_Result['reg_city']; ?>, <?php echo $reg_Result['reg_country']; ?></p>
 				</div>
 				<div class="db-left-2">
 					<ul>
@@ -419,225 +425,117 @@
 			</div>
 			<div class="db-cent">
 				<div class="db-cent-1">
-					<p>Hi Jana Novakova,</p>
+					<p>Hi <?php echo $reg_Result['reg_name'] ?>,</p>
 					<h4>Welcome to your dashboard</h4> </div>
-
-					<div class="db-cent-2">
-					<div class="db-2-main-1">
-						<a href="add-listing.html"><div class="db-2-main-2"> <img src="images/icon/dbc5.png" alt=""> <span>Add Listing</span>
-							
-							<h2>12</h2> </div></a>
-					</div>
-
-					   <div class="db-2-main-1"><a href="manage-listing.html">
-						<div class="db-2-main-2"> <img src="images/icon/dbc6.png" alt=""> <span>Manage Listing</span>
-							
-							<h2>04</h2> </div>
-					</a></div>
-					
-
-					
+				<div class="db-profile"> <img src="images/user.jpg" alt="">
+					<h4><?php echo $reg_Result['reg_name']; ?></h4>
+					<p><?php echo $reg_Result['reg_postal']; ?></p>
 				</div>
-
-			
-
-				<div class="db-cent-3">
-					<div class="db-cent-table db-com-table">
-						<div class="db-title">
-							<h3><img src="images/icon/dbc5.png" alt=""/> My Bookings</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-						</div>
-						<table class="bordered responsive-table">
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>City</th>
-									<th>Arrival</th>
-									<th>Departure</th>
-									<th>Members</th>
-									<th>Payment</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>Liam</td>
-									<td>+01 2484 6521</td>
-									<td><span class="db-tab-hi">Bangalore,</span>India</td>
-									<td>18apr</td>
-									<td>24apr</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Logan</td>
-									<td>+01 6524 6521</td>
-									<td><span class="db-tab-hi">Los Angeles,</span>USA</td>
-									<td>05dec</td>
-									<td>12dec</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Michael</td>
-									<td>+01 3652 1425</td>
-									<td><span class="db-tab-hi">Bristol,</span>UK</td>
-									<td>14jen</td>
-									<td>24jen</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+				<div class="db-profile-view">
+					<table>
+						<thead>
+							<tr>
+								<th>Age</th>
+								<th>Profile Completion</th>
+								<th>Join Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>32</td>
+								<td>90%</td>
+								<td>May 2010</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-				<div class="db-cent-3">
-					<div class="db-cent-table db-com-table">
-						<div class="db-title">
-							<h3><img src="images/icon/dbc6.png" alt=""/> My Events</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+				 	<div class="db-profile-edit">
+
+					<form class="col s12" action="registration-update.php" method="post" role="form" id="registor-form">
+						<input type="hidden" name="user_id" value="<?php echo $_GET['id']; ?>">
+						<div>
+							<label class="col s4">Name</label>
+							<div class="input-field col s8">
+								<input type="text" value="<?php echo $reg_Result['reg_name'];  ?>" id="reg_name" name="reg_name" class="validate"> </div>
 						</div>
-						<table class="bordered responsive-table">
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>City</th>
-									<th>Arrival</th>
-									<th>Departure</th>
-									<th>Members</th>
-									<th>Payment</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>Liam</td>
-									<td>+01 2484 6521</td>
-									<td><span class="db-tab-hi">Bangalore,</span>India</td>
-									<td>18apr</td>
-									<td>24apr</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Logan</td>
-									<td>+01 6524 6521</td>
-									<td><span class="db-tab-hi">Los Angeles,</span>USA</td>
-									<td>05dec</td>
-									<td>12dec</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Michael</td>
-									<td>+01 3652 1425</td>
-									<td><span class="db-tab-hi">Bristol,</span>UK</td>
-									<td>14jen</td>
-									<td>24jen</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="db-cent-3">
-					<div class="db-cent-acti">
-						<div class="db-title">
-							<h3><img src="images/icon/dbc1.png" alt=""/> My Activity</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+						<div>
+							<label class="col s4">Email Address</label>
+							<div class="input-field col s8">
+								<input type="email" value="<?php echo $reg_Result['reg_email'];  ?>" id="reg_email" name="reg_email" class="validate"> </div>
 						</div>
-						<ul>
-							<li>
-								<div class="db-cent-wr-img"> <img src="images/users/3.png" alt=""> </div>
-								<div class="db-cent-wr-con">
-									<h6>Hotel Booking Canceled</h6> <span class="lr-revi-date">21th July, 2016</span>
-									<p>The hotel is clean, convenient and good value for money. Staff are courteous and helpful. However, they need more training to be efficient.</p>
-									<ul>
-										<li><a href="#!"><i class="fa fa-facebook" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-google-plus" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-youtube" aria-hidden="true"></i></a> </li>
-									</ul>
+                         
+                        <div class="row">
+
+                         	<div class="col-md-6">
+                         		<label>Mobile Number</label>
+                         		<div class="input-field ">
+                         		   <input type="number" id="reg_phone" name="reg_phone" class="validate" value="<?php echo $reg_Result['reg_phone'];  ?>">
+                         		</div>   
+                         	</div>
+                         	<div class="col-md-6">
+                         		<label>Postal Address</label>
+                         		<div class="input-field ">
+                         		   <input type="text" id="reg_postal" name="reg_postal" class="validate" value="<?php echo $reg_Result['reg_postal'];  ?>">
+                         	    </div>
+                         	</div>
+   
+                        </div>
+                        <div class="row">
+                        	
+                        	<div class="col-md-6">
+                        		<label>City</label>
+                        		<div class="input-field ">
+                        		   <input type="text" name="reg_city" id="reg_city" class="validate" value="<?php echo $reg_Result['reg_city'];  ?>">
+                        		</div>   
+                        	</div>
+                        	<div class="col-md-6">
+                        		<label>Province</label>
+                        	    <div class="input-field ">
+                        		   <input type="text" name="reg_province" id="reg_province" class="validate" value="<?php echo $reg_Result['reg_province'];  ?>">
+                        		</div> 
+                        	</div>
+
+                        </div>
+						<div>
+							<label class="col s4">Country</label>
+							<div class="input-field col s8">
+								<input type="text" value="<?php echo $reg_Result['reg_country'];  ?>" name="reg_country" id="reg_country" class="validate"> </div>
+						</div>
+						<div class="row">
+
+							<div class="col-md-6">
+								<label>Date of Birth</label>
+								<div class="input-field ">
+									<input type="text" value="<?php echo $reg_Result['reg_birth'];  ?>" id="reg_birth" name="reg_birth" class="validate"> 
 								</div>
-							</li>
-							<li>
-								<div class="db-cent-wr-img"> <img src="images/users/3.png" alt=""> </div>
-								<div class="db-cent-wr-con">
-									<h6>Hotel Payment Success</h6> <span class="lr-revi-date">08th August, 2016</span>
-									<p>The hotel is clean, convenient and good value for money. Staff are courteous and helpful. However, they need more training to be efficient.</p>
-									<ul>
-										<li><a href="#!"><i class="fa fa-facebook" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-google-plus" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-youtube" aria-hidden="true"></i></a> </li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
+							</div>
+							<div class="col-md-6">
+								<a class="waves-effect waves-light btn modal-trigger spc-modal " href="#modal-reset" >Reset Password</a>
+								<!-- <label>Password</label>
+								<div class="input-field">
+									<input type="button" value="<?php echo $reg_Result['reg_province'];  ?>" id="reg_password" name="reg_password" minlength="8" class="validate"> 
+								</div> -->
+							</div>
+
+						</div>
+						
+						<div>
+							<div class="file-field input-field">
+								<div class="btn" id="pro-file-upload"> <span>File</span>
+									<input type="file"> </div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text" placeholder="Upload profile picture"> </div>
+							</div>
+						</div>
+						
+						<div>
+							<div class="input-field col s8">
+								<input type="button" value="Submit" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor_update"> </div>
+						</div>
+					</form>
 				</div>
 			</div>
+
 			<div class="db-righ">
 				<h4>Notifications(18)</h4>
 				<ul>
@@ -683,7 +581,86 @@
 					</li>
 				</ul>
 			</div>
+
+<!-- Modal Structure -->
+<div id="modal-reset" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
+  <div class="modal-content">
+  	<div class="modal-header"><h2>Reset Password</h2></div>
+      <form id="password-wrap">
+                    <div>
+							<label class="col s4">Old Password</label>
+							<div class="input-field col s6">
+								<input type="password" id="old-passcode" name="old-password" class="validate"> </div>
+						</div>
+						<div>
+							<label class="col s4">New Password</label>
+							<div class="input-field col s6">
+								<input type="password"  id="new-passcode" name="new-password" class="validate"> </div>
+						</div>
+						<div class="input-field col s8">
+								<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_password_update"> </div>
+                    </form>
+   <div class="modal-footer">
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
+   </div>
+ </div>
+</div>
+
+ <!-- Modal Structure -->
+  <div id="loader" class="modal">
+    <div class="modal-content">
+      <div class="col-md-5"></div>
+         <div class="preloader-wrapper big active" style="top: 90px;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; padding-top: 170px;">
+    <span>Submitting.....</span>
+    </div>
+    </div>
+    
+  </div>
 		</div>
+
+			<?php } ?>
 		<!--END DASHBOARD SECTION-->
 		<!--TOP SECTION-->
 		<div class="hom-footer-section">
@@ -971,6 +948,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<!--ALL SCRIPT FILES-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
@@ -979,8 +957,25 @@
 	<script src="js/materialize.min.js" type="text/javascript"></script>
 	<script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/jquery-validation.js"></script>
+	<script src="js/additional-methods.js"></script>
+	<script src="js/sweetalert.min.js"></script>
+    <script src="js/registration-js/registration.js"></script>
+
+    <script type="text/javascript">
+    	$('#modal-reset').modal({dismissible: false});
+		
+	</script>
 </body>
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:50 GMT -->
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 </html>
+
+
+	
+
+
+
+
+	
