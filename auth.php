@@ -17,8 +17,8 @@ $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this
 	 //echo $crntresult['id'] ;
 	 session_start();
 	    $_SESSION['login'] = true;
-        $_SESSION['email']=$email;
-        $_SESSION['password']=$password;
+        $_SESSION['reg_email']=$email;
+        $_SESSION['reg_password']=$password;
         $_SESSION['user_id']=$crntresult['user_id'];
 
         $res_Array=array(

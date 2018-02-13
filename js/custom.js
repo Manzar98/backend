@@ -1277,3 +1277,43 @@ Remove imges when click on done in modal
             
             
  });
+
+
+/*=======================
+  Profile image reader
+=========================*/  
+function readURL(input) {
+     $('#blah').show();
+    if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+
+                reader.onload = function (e) {
+                     $('#blah')
+                         .attr('src', e.target.result)
+                        .width(150)
+                         .height(100);
+                 };
+
+                 reader.readAsDataURL(input.files[0]);
+    }
+}
+/*=================
+cover image reader
+===================*/
+function readcover(input){
+     $('#cover').show();
+    if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+
+                reader.onload = function (e) {
+                     $('#cover')
+                         .attr('src', e.target.result)
+                        .width(150)
+                         .height(100);
+                 };
+
+                 reader.readAsDataURL(input.files[0]);
+    }
+
+
+}

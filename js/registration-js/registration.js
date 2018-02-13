@@ -3,6 +3,21 @@
 ========================================*/ 
 
 $('#pro-sub-btn_registor').click(function(){
+
+   if ($("#msg").hasClass("email_error")) {
+ 
+    swal({
+
+          title: "Email is already exist",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
      
 var validator= $("#registor-form").validate({
 

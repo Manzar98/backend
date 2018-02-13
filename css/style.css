@@ -4962,3 +4962,7 @@ display: none;
 #password-wrap{
     padding-top: 20px;
 }
+.hi-red{
+    color: red;
+    font-size: 11px;
+}

@@ -2,10 +2,17 @@
 
      include"common-apis/reg-api.php";
 
+
     $reg_Query= select('credentials',array("user_id"=>$_GET['id']));
 
+    $reg_hotel=select('hotel',array("user_id"=>$_GET['id']));
+    $reg_room=select('room',array("user_id"=>$_GET['id']));
+    $reg_banquet=select('banquet',array("user_id"=>$_GET['id']));
+    $reg_conference=select('conference',array("user_id"=>$_GET['id']));
+    $reg_tour=select('tour',array("user_id"=>$_GET['id']));
+    $reg_event=select('event',array("user_id"=>$_GET['id']));
 
-
+ 
 ?>
 
 
@@ -397,7 +404,7 @@
 				<div class="db-left-2">
 					<ul>
 						<li>
-							<a href="dashboard.html"><img src="images/icon/db1.png" alt="" />Dashboard</a>
+							<a href="dashboard.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
 							<a href="add-listing.html"><img src="images/icon/db2.png" alt="" />Add Listing</a>
@@ -436,14 +443,48 @@
 						<thead>
 							<tr>
 								<th>Age</th>
-								<th>Profile Completion</th>
+								<th>Hotels</th>
+								<th>Rooms</th>
+								<th>Banquets</th>
+								<th>Conferences</th>
+								<th>Tours</th>
+								<th>Events</th>
 								<th>Join Date</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>32</td>
-								<td>90%</td>
+								<?php if (mysqli_num_rows($reg_hotel)< 1) { ?>
+								<td>0</td>
+								<?php }else{ ?>
+								<td><?php echo mysqli_num_rows($reg_hotel); ?></td>
+								<?php } ?>
+								<?php if (mysqli_num_rows($reg_room)< 1) { ?>
+								<td>0</td>
+								<?php }else{ ?>
+								<td><?php echo mysqli_num_rows($reg_room); ?></td>
+								<?php } ?>
+								<?php if (mysqli_num_rows($reg_banquet)< 1) { ?>
+								<td>0</td>
+								<?php }else{ ?>
+								<td><?php echo mysqli_num_rows($reg_banquet); ?></td>
+								<?php } ?>
+								<?php if (mysqli_num_rows($reg_conference)< 1) { ?>
+								<td>0</td>
+								<?php }else{ ?>
+								<td><?php echo mysqli_num_rows($reg_conference); ?></td>
+								<?php } ?>
+								<?php if (mysqli_num_rows($reg_tour)< 1) { ?>
+								<td>0</td>
+								<?php }else{ ?>
+								<td><?php echo mysqli_num_rows($reg_tour); ?></td>
+								<?php } ?>
+								<?php if (mysqli_num_rows($reg_event)< 1) { ?>
+								<td>0</td>
+								<?php }else{ ?>
+								<td><?php echo mysqli_num_rows($reg_event); ?></td>
+								<?php } ?>
 								<td>May 2010</td>
 							</tr>
 						</tbody>
@@ -586,7 +627,7 @@
 <div id="modal-reset" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
   <div class="modal-content">
   	<div class="modal-header"><h2>Reset Password</h2></div>
-      <form id="password-wrap">
+      <form id="password-wrap" action="updatepassword.php" method="post" role="form" id="registor-form">
                     <div>
 							<label class="col s4">Old Password</label>
 							<div class="input-field col s6">
@@ -601,7 +642,7 @@
 								<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_password_update"> </div>
                     </form>
    <div class="modal-footer">
-     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat password_done">Done</a>
    </div>
  </div>
 </div>
@@ -961,7 +1002,7 @@
 	<script src="js/additional-methods.js"></script>
 	<script src="js/sweetalert.min.js"></script>
     <script src="js/registration-js/registration.js"></script>
-
+    <script src="js/method-js/updatepassword.js"></script>
     <script type="text/javascript">
     	$('#modal-reset').modal({dismissible: false});
 		
