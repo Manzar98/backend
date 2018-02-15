@@ -398,7 +398,7 @@
 		
 		<div class="dashboard">
 			<div class="db-left">
-				<div class="db-left-1">
+				<div class="db-left-1" >
 					<h4><?php echo $reg_Result['reg_name']; ?></h4>
 					<p><?php echo $reg_Result['reg_city']; ?>, <?php echo $reg_Result['reg_country']; ?></p>
 				</div>
@@ -432,7 +432,7 @@
 				</div>
 			</div>
 			<div class="db-cent">
-				<div class="db-cent-1">
+				<div class="db-cent-1" style="background-image:url('<?php echo $reg_Result['reg_cover']; ?>') !important;">
 					<p>Hi <?php echo $reg_Result['reg_name'] ?>,</p>
 					<h4>Welcome to your dashboard</h4> </div>
 				<div class="db-profile"> <img src="<?php echo $reg_Result['reg_photo'] ?>" alt="">
@@ -440,6 +440,15 @@
 					<p><?php echo $reg_Result['reg_postal']; ?></p>
 				</div>
 				<div class="db-profile-view">
+					<?php 
+                          $userDob = $reg_Result['reg_birth'];
+                          $dob = new DateTime($userDob);
+                          $now = new DateTime();
+                          $difference = $now->diff($dob);
+                          $age = $difference->y;
+
+
+					?>
 					<table>
 						<thead>
 							<tr>
@@ -455,7 +464,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>32</td>
+								<td><?php echo $age; ?></td>
 								<?php if (mysqli_num_rows($reg_hotel)< 1) { ?>
 								<td>0</td>
 								<?php }else{ ?>
@@ -486,7 +495,7 @@
 								<?php }else{ ?>
 								<td><?php echo mysqli_num_rows($reg_event); ?></td>
 								<?php } ?>
-								<td>May 2010</td>
+								<td><?php echo $reg_Result['reg_joinD']; ?></td>
 							</tr>
 						</tbody>
 					</table>
@@ -551,7 +560,7 @@
 									<input type="text" value="<?php echo $reg_Result['reg_birth'];  ?>" id="reg_birth" name="reg_birth" class="validate"> 
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6" style="padding-top: 18px;">
 								<a class="waves-effect waves-light btn modal-trigger spc-modal " href="#modal-reset" >Reset Password</a>
 								<!-- <label>Password</label>
 								<div class="input-field">
@@ -571,10 +580,25 @@
 						</div> -->
 						
 						<input type="hidden" name="profile_img" id="profile_img">
+						<input type="hidden" name="coverimg" id="coverimg">
 					</form>
+					<div class="row">
+						   <div class="col-md-6">
+							<div class="file-field input-field">
+								<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
+									<input type="file" id="sortpicture" name="sortpic" onchange="readcover(this);"> </div>
+								<div class="file-path-wrapper" >
+									<input class="file-path validate" type="text" placeholder="Upload cover picture">
+									 </div>
+							</div>
+						  </div>
+						  <div class="col-md-6" >
+						  	   <img id="cover" src="#" alt="your image" style="display: none;"/>
+						  </div>
+						</div>
 					
 
-                        	<div class="row">
+                       <div class="row">
 						<form >
 							<div class="col-md-6">
 								<div class="file-field input-field">
@@ -598,7 +622,7 @@
 					   </div>
 					<div>
 							<div class="input-field col s8">
-								<input type="button" value="Submit" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor_update"> </div>
+								<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor_update"> </div>
 						</div>
 
 				</div>

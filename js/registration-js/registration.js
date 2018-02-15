@@ -112,53 +112,71 @@
       $('#loader').modal({dismissible: false});
       $('#loader').modal('open');
 
+       var file_data = $('#sortpicture').prop('files')[0];   
+       var form_data = new FormData();                  
+       form_data.append('file', file_data);
+    // alert(form_data);                             
+    $.ajax({
+                url: 'upload-ajax-cover.php', // point to server-side PHP script 
+                dataType: 'text',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,                         
+                type: 'post',
+                success: function(cover_data){
+                     $('#coverimg').val(cover_data);
 
+
+                    $.ajax({
+
+                             type: "POST",
+                             url: "registration-post.php",
+                             data: $('form').serialize(),
+                             success:function(res){
+
+                               var data=JSON.parse(res);
+                               if (data.status="Success") {
+
+                                 $("#btn-loader").hide();
+                                 setTimeout(function(){
+                                  $('#loader').modal('close');
+                                  swal({
+                                    title: "Registration successfully submitted for review!",
+                                    text: "Thank you for your submission! You will be notified once your registration submission has been approved!",
+                                    type: "success",
+                                             //confirmButtonColor: "#DD6B55",
+                                             confirmButtonText: "ok",
+                                             closeOnConfirm: true,
+                                             html: false
+                                           }, function(){
+                                            window.location = "index.php";
+                                          });
+                                },3000)
+                               }else{
+
+
+
+                                $('#loader').modal('close');
+                                swal({
+                                  title: "Something went wrong!",
+                                  
+                                  type: "error",
+                                             //confirmButtonColor: "#DD6B55",
+                                             confirmButtonText: "ok",
+                                             closeOnConfirm: true,
+                                             html: true
+                                           }, function(){
+                                            
+                                      });
+                                }
+
+                            }
+                         })
+                }
+     });
       
-      $.ajax({
-
-       type: "POST",
-       url: "registration-post.php",
-       data: $('form').serialize(),
-       success:function(res){
-
-         var data=JSON.parse(res);
-         if (data.status="Success") {
-
-           $("#btn-loader").hide();
-           setTimeout(function(){
-            $('#loader').modal('close');
-            swal({
-              title: "Registration successfully submitted for review!",
-              text: "Thank you for your submission! You will be notified once your registration submission has been approved!",
-              type: "success",
-                       //confirmButtonColor: "#DD6B55",
-                       confirmButtonText: "ok",
-                       closeOnConfirm: true,
-                       html: false
-                     }, function(){
-                      window.location = "index.php";
-                    });
-          },3000)
-         }else{
-
-
-
-          $('#loader').modal('close');
-          swal({
-            title: "Something went wrong!",
-            
-            type: "error",
-                       //confirmButtonColor: "#DD6B55",
-                       confirmButtonText: "ok",
-                       closeOnConfirm: true,
-                       html: true
-                     }, function(){
-                      
-                     });
-        }
-
-      }
-    })
+     
 
 
 
@@ -268,51 +286,76 @@
    	  // debugger;
    	  $('#loader').modal({dismissible: false});
        $('#loader').modal('open');
-       $.ajax({
 
-        type: "POST",
-        url: "registration-update.php",
-        data: $("form").serialize(),
-        success:function(res){
+       var file_data = $('#sortpicture').prop('files')[0];   
+       var form_data = new FormData();                  
+       form_data.append('file', file_data);
+    // alert(form_data);                             
+    $.ajax({
+                url: 'upload-ajax-cover.php', // point to server-side PHP script 
+                dataType: 'text',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,                         
+                type: 'post',
+                success: function(cover_data){
+                     $('#coverimg').val(cover_data);
 
-         var data=JSON.parse(res);
-         if (data.status="Success") {
+                            $.ajax({
 
-          $("#btn-loader").hide();
-          setTimeout(function(){
-           $('#loader').modal('close');
-           swal({
-             title: "Registration successfully updated for review!",
-             text: "Thank you for your updation! You will be notified once your registration updation has been approved!",
-             type: "success",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: false
-                    }, function(){
-                     window.location = "db-profile.php?id="+data.id;
-                   });
-         },3000)
-        }else{
+                                  type: "POST",
+                                  url: "registration-update.php",
+                                  data: $("form").serialize(),
+                                  success:function(res){
+
+                                   var data=JSON.parse(res);
+                                   if (data.status="Success") {
+
+                                    $("#btn-loader").hide();
+                                    setTimeout(function(){
+                                     $('#loader').modal('close');
+                                     swal({
+                                       title: "Registration successfully updated for review!",
+                                       text: "Thank you for your updation! You will be notified once your registration updation has been approved!",
+                                       type: "success",
+                                                //confirmButtonColor: "#DD6B55",
+                                                confirmButtonText: "ok",
+                                                closeOnConfirm: true,
+                                                html: false
+                                              }, function(){
+                                               window.location = "db-profile.php?id="+data.id;
+                                             });
+                                   },3000)
+                                  }else{
 
 
 
-         $('#loader').modal('close');
-         swal({
-           title: "Something went wrong!",
-           
-           type: "error",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: true
-                    }, function(){
-                      
-                    });
-       }
+                                   $('#loader').modal('close');
+                                   swal({
+                                     title: "Something went wrong!",
+                                     
+                                     type: "error",
+                                                //confirmButtonColor: "#DD6B55",
+                                                confirmButtonText: "ok",
+                                                closeOnConfirm: true,
+                                                html: true
+                                              }, function(){
+                                                
+                                              });
+                                 }
 
-     }
-   })
+                               }
+                             })
+
+                }
+     });
+
+
+
+
+
+
      }
 
    });

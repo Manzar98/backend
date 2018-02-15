@@ -151,11 +151,16 @@
 							</div>
 
 						</div>
-						<div class="row">
+						
+						<input type="hidden" name="profile_img" id="profile_img">
+						<input type="hidden" name="coverimg" id="coverimg">
+						
+					</form>
+                    <div class="row">
 						   <div class="col-md-6">
 							<div class="file-field input-field">
 								<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
-									<input type="file" id="blue" name="cover" onchange="readcover(this);"> </div>
+									<input type="file" id="sortpicture" name="sortpic" onchange="readcover(this);"> </div>
 								<div class="file-path-wrapper" >
 									<input class="file-path validate" type="text" placeholder="Upload cover picture">
 									 </div>
@@ -165,10 +170,6 @@
 						  	   <img id="cover" src="#" alt="your image" style="display: none;"/>
 						  </div>
 						</div>
-						<input type="hidden" name="profile_img" id="profile_img">
-						
-					</form>
-        
 					<div class="row">
 						<form>
 							<div class="col-md-6">

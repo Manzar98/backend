@@ -4,7 +4,7 @@ include"common-sql.php";
   // print_r($_POST);
 
 
-
+   $joinDate= date('M Y');
 
 
 
@@ -25,7 +25,7 @@ include"common-sql.php";
   // }
    
 
-   $query='INSERT INTO credentials(reg_name,reg_email,reg_phone,reg_postal,reg_city,reg_province,reg_country,reg_birth,reg_password,reg_photo)VALUES("'.$_POST['reg_name'].'","'.$_POST['reg_email'].'","'.$_POST['reg_phone'].'","'.$_POST['reg_postal'].'","'.$_POST['reg_city'].'","'.$_POST['reg_province'].'","'.$_POST['reg_country'].'","'.$_POST['reg_birth'].'","'.md5($_POST['reg_password']).'","'.$_POST['profile_img'].'")';
+   $query='INSERT INTO credentials(reg_name,reg_email,reg_phone,reg_postal,reg_city,reg_province,reg_country,reg_birth,reg_password,reg_photo,reg_cover,reg_joinD)VALUES("'.$_POST['reg_name'].'","'.$_POST['reg_email'].'","'.$_POST['reg_phone'].'","'.$_POST['reg_postal'].'","'.$_POST['reg_city'].'","'.$_POST['reg_province'].'","'.$_POST['reg_country'].'","'.$_POST['reg_birth'].'","'.md5($_POST['reg_password']).'","'.$_POST['profile_img'].'","'.$_POST['coverimg'].'","'.$joinDate.'")';
 
   $result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 
