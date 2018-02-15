@@ -1,16 +1,16 @@
 <?php 
-
+    session_start();
      include"common-apis/reg-api.php";
 
 
-    $reg_Query= select('credentials',array("user_id"=>$_GET['id']));
+    $reg_Query= select('credentials',array("user_id"=>$_SESSION['user_id']));
 
-    $reg_hotel=select('hotel',array("user_id"=>$_GET['id']));
-    $reg_room=select('room',array("user_id"=>$_GET['id']));
-    $reg_banquet=select('banquet',array("user_id"=>$_GET['id']));
-    $reg_conference=select('conference',array("user_id"=>$_GET['id']));
-    $reg_tour=select('tour',array("user_id"=>$_GET['id']));
-    $reg_event=select('event',array("user_id"=>$_GET['id']));
+    $reg_hotel=select('hotel',array("user_id"=>$_SESSION['user_id']));
+    $reg_room=select('room',array("user_id"=>$_SESSION['user_id']));
+    $reg_banquet=select('banquet',array("user_id"=>$_SESSION['user_id']));
+    $reg_conference=select('conference',array("user_id"=>$_SESSION['user_id']));
+    $reg_tour=select('tour',array("user_id"=>$_SESSION['user_id']));
+    $reg_event=select('event',array("user_id"=>$_SESSION['user_id']));
 
  
 ?>
@@ -39,6 +39,7 @@
 	<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
 	<link href="css/responsive.css" rel="stylesheet">
 	<link href="css/sweetalert.css" rel="stylesheet">
+	<link href="css/croppie.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -419,7 +420,7 @@
 							<a href="db-activity.html"><img src="images/icon/db5.png" alt="" /> Activity</a>
 						</li>
 						<li>
-							<a href="db-profile.php?id=<?php echo $_GET['id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
+							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
 						</li>
 						<li>
 							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
@@ -434,7 +435,7 @@
 				<div class="db-cent-1">
 					<p>Hi <?php echo $reg_Result['reg_name'] ?>,</p>
 					<h4>Welcome to your dashboard</h4> </div>
-				<div class="db-profile"> <img src="images/user.jpg" alt="">
+				<div class="db-profile"> <img src="<?php echo $reg_Result['reg_photo'] ?>" alt="">
 					<h4><?php echo $reg_Result['reg_name']; ?></h4>
 					<p><?php echo $reg_Result['reg_postal']; ?></p>
 				</div>
@@ -493,7 +494,7 @@
 				 	<div class="db-profile-edit">
 
 					<form class="col s12" action="registration-update.php" method="post" role="form" id="registor-form">
-						<input type="hidden" name="user_id" value="<?php echo $_GET['id']; ?>">
+						<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 						<div>
 							<label class="col s4">Name</label>
 							<div class="input-field col s8">
@@ -560,21 +561,49 @@
 
 						</div>
 						
-						<div>
+						<!-- <div>
 							<div class="file-field input-field">
 								<div class="btn" id="pro-file-upload"> <span>File</span>
 									<input type="file"> </div>
 								<div class="file-path-wrapper">
 									<input class="file-path validate" type="text" placeholder="Upload profile picture"> </div>
 							</div>
-						</div>
+						</div> -->
 						
-						<div>
+						<input type="hidden" name="profile_img" id="profile_img">
+					</form>
+					
+
+                        	<div class="row">
+						<form >
+							<div class="col-md-6">
+								<div class="file-field input-field">
+								    <div class="btn" id="pro-file-upload"> <span>Profile photo</span>
+										<input type="file" id="upload">	
+
+									</div>
+
+								</div>
+							</div>
+						    <div class="col-md-6" >
+								  	     <div id="upload-demo" style="width:350px">
+								  	     	<button  class="btn upload-result">Upload Image</button>
+								  	     </div>
+								  	     
+								  	     <div id="upload-demo-i">
+								  	     	
+								  	     </div>
+							</div>
+							</form>
+					   </div>
+					<div>
 							<div class="input-field col s8">
 								<input type="button" value="Submit" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor_update"> </div>
 						</div>
-					</form>
+
 				</div>
+
+			
 			</div>
 
 			<div class="db-righ">
@@ -997,6 +1026,7 @@
 	<script src="js/bootstrap.js" type="text/javascript"></script>
 	<script src="js/materialize.min.js" type="text/javascript"></script>
 	<script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
+	<script src="js/croppie.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/jquery-validation.js"></script>
 	<script src="js/additional-methods.js"></script>

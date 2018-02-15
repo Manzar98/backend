@@ -28,6 +28,7 @@
 	<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
 	<link href="css/responsive.css" rel="stylesheet">
 	<link href="css/sweetalert.css" rel="stylesheet">
+	<link href="css/croppie.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -82,7 +83,7 @@
 						</div>
 				 	<div class="db-profile-edit">
 
-					<form class="col s12" action="registration-post.php" method="post" role="form" id="registor-form">
+					<form class="col s12" action="registration-post.php" method="post" role="form" id="registor-form" enctype="multipart/form-data">
 						<div>
 							<label class="col s4">Name</label>
 							<div class="input-field col s8">
@@ -153,24 +154,9 @@
 						<div class="row">
 						   <div class="col-md-6">
 							<div class="file-field input-field">
-								<div class="btn" id="pro-file-upload"> <span>Profile photo</span>
-									<input type="file" onchange="readURL(this);"> </div>
-								<div class="file-path-wrapper">
-									<input class="file-path validate" type="text" placeholder="Upload profile picture"  >
-									 </div>
-							</div>
-						  </div>
-						  <div class="col-md-6" >
-						  	   <img id="blah" src="#" alt="your image" style="display: none;"/>
-						  </div>
-						</div>
-
-						<div class="row">
-						   <div class="col-md-6">
-							<div class="file-field input-field">
 								<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
-									<input type="file" onchange="readcover(this);"> </div>
-								<div class="file-path-wrapper">
+									<input type="file" id="blue" name="cover" onchange="readcover(this);"> </div>
+								<div class="file-path-wrapper" >
 									<input class="file-path validate" type="text" placeholder="Upload cover picture">
 									 </div>
 							</div>
@@ -179,12 +165,36 @@
 						  	   <img id="cover" src="#" alt="your image" style="display: none;"/>
 						  </div>
 						</div>
+						<input type="hidden" name="profile_img" id="profile_img">
 						
-						<div>
+					</form>
+        
+					<div class="row">
+						<form>
+							<div class="col-md-6">
+								<div class="file-field input-field">
+								    <div class="btn" id="pro-file-upload"> <span>Profile photo</span>
+										<input type="file" id="upload">	
+
+									</div>
+
+								</div>
+							</div>
+						    <div class="col-md-6" >
+								  	     <div id="upload-demo" style="width:350px">
+								  	     	<button  class="btn upload-result">Upload Image</button>
+								  	     </div>
+								  	     
+								  	     <div id="upload-demo-i">
+								  	     	
+								  	     </div>
+							</div>
+							</form>
+					   </div>
+					   <div>
 							<div class="input-field col s8">
 								<input type="button" value="Submit" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor"> </div>
 						</div>
-					</form>
 				</div>
 
 			
@@ -390,14 +400,87 @@
 	<script src="js/bootstrap.js" type="text/javascript"></script>
 	<script src="js/materialize.min.js" type="text/javascript"></script>
 	<script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
+	<script src="js/croppie.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/jquery-validation.js"></script>
 	<script src="js/additional-methods.js"></script>
 	<script src="js/sweetalert.min.js"></script>
     <script src="js/registration-js/registration.js"></script>
     <script src="js/method-js/email-validation.js"></script>
+    
 <script type="text/javascript">
+ 
+//     $('#')
+// $uploadCrop = $('#upload-demo').croppie({
+//     enableExif: true,
+//     viewport: {
+//         width: 200,
+//         height: 200,
+//         type: 'circle'
+//     },
+//     boundary: {
+//         width: 300,
+//         height: 300
+//     }
+// });
 
+
+// $('#upload').on('change', function () { 
+// 	var reader = new FileReader();
+//     reader.onload = function (e) {
+//     	$uploadCrop.croppie('bind', {
+//     		url: e.target.result
+//     	}).then(function(){
+//     		console.log('jQuery bind complete');
+//     	});
+    	
+//     }
+//     reader.readAsDataURL(this.files[0]);
+// });
+
+// $('.upload-result').on('click', function (ev) {
+// 	$uploadCrop.croppie('result', {
+// 		type: 'canvas',
+// 		size: 'viewport'
+// 	})
+// 	// .then(function (resp) {
+
+//  //          de
+// 	// 	$.ajax({
+// 	// 		url: "registration-post.php",
+// 	// 		type: "POST",
+// 	// 		data: {"image":resp},
+// 	// 		success: function (data) {
+// 	// 			$("#upload-demo-i").show();
+// 	// 			html = '<img src="' + resp + '" />';
+// 	// 			$("#upload-demo-i").html(html);
+// 	// 		}
+// 	// 	});
+// 	// });
+// });
+
+
+
+
+
+
+
+
+ // $('#bla').croppie();
+
+
+//  $(function() {
+//   var basic = $('#demo-basic').croppie({
+//     viewport: {
+//       width: 150,
+//       height: 200
+//     }
+//   });
+//   basic.croppie('bind', {
+//     url: 'https://i.imgur.com/xD9rzSt.jpg',
+//     points: [77, 469, 280, 739]
+//   });
+// });
 </script>
 
 	<!-- <script src="js/jquery.min.js"></script>
@@ -412,6 +495,9 @@
 	<script src="js/additional-methods.js"></script>
 	<script src="js/sweetalert.min.js"></script> -->
 	
+<script>
+// $('.my-image').croppie();
+</script>
 	
 </body>
 

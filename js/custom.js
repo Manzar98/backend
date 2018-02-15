@@ -1282,21 +1282,121 @@ Remove imges when click on done in modal
 /*=======================
   Profile image reader
 =========================*/  
-function readURL(input) {
-     $('#blah').show();
-    if (input.files && input.files[0]) {
-                 var reader = new FileReader();
 
-                reader.onload = function (e) {
-                     $('#blah')
-                         .attr('src', e.target.result)
-                        .width(150)
-                         .height(100);
-                 };
-
-                 reader.readAsDataURL(input.files[0]);
+    $('#upload-demo').hide();
+    $('#upload-demo-i').hide();
+$uploadCrop = $('#upload-demo').croppie({
+    enableExif: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+    },
+    boundary: {
+        width: 300,
+        height: 300
     }
-}
+});
+
+
+$('#upload').on('change', function () { 
+  $('#upload-demo').show();
+  var reader = new FileReader();
+    reader.onload = function (e) {
+      $uploadCrop.croppie('bind', {
+        url: e.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+      
+    }
+    reader.readAsDataURL(this.files[0]);
+});
+
+$('.upload-result').on('click', function (ev) {
+  $uploadCrop.croppie('result', {
+    type: 'canvas',
+    size: 'viewport'
+  }) .then(function (resp) {
+
+          
+    $.ajax({
+
+      type: "POST",
+      url: "profile_img_post.php",     
+      data: {"image":resp},
+      success: function (data) {
+         
+               $('#upload-demo').hide();
+               $("#upload-demo-i").show();
+                html = '<img src="' + resp + '" />';
+               $("#upload-demo-i").html(html);
+               $('#profile_img').val(data);
+
+          
+       
+        // debugger;
+      }
+    });
+   });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function readURL(input) {
+//     var src="";
+//      $('#blah').show();
+//     if (input.files && input.files[0]) {
+//                  var reader = new FileReader();
+
+//                 reader.onload = function (e) {
+//                      $('#blah')
+//                          .attr('src', e.target.result) .width(300)
+//                          .height(300);
+                        
+//                          src=e.target.result;
+//                         $('#blah').croppie({
+//       url: src,
+//   });
+
+                      
+//                       debugger;
+//                  };
+// //                 
+
+
+
+
+//                  console.log(src);
+//                 reader.readAsDataURL(input.files[0]);
+                 
+//                 debugger;
+//     }
+// }
 /*=================
 cover image reader
 ===================*/
@@ -1317,3 +1417,12 @@ function readcover(input){
 
 
 }
+
+/*===========
+Loader close
+==========*/
+
+$('#loader').modal({
+
+  dismissible: false
+})

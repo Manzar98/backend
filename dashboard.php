@@ -391,7 +391,7 @@
 				<div class="db-left-2">
 					<ul>
 						<li>
-							<a href="dashboard.html"><img src="images/icon/db1.png" alt="" />Dashboard</a>
+							<a href="dashboard.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
 							<a href="add-listing.html"><img src="images/icon/db2.png" alt="" />Add Listing</a>
@@ -406,7 +406,7 @@
 							<a href="db-activity.html"><img src="images/icon/db5.png" alt="" /> Activity</a>
 						</li>
 						<li>
-							<a href="db-profile.php?id=<?php echo $_GET['id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
+							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
 						</li>
 						<li>
 							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
