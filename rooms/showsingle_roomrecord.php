@@ -44,10 +44,6 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
 <?php include '../header.php'; ?>
 
 
-<div class="db-cent">
-				<div class="db-cent-1">
-					<p>Hi Jana Novakova,</p>
-					<h4>Welcome to your dashboard</h4> </div>
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
                       <div class="row">

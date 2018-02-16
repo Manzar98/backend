@@ -1,7 +1,7 @@
 <?php
 
    session_start();
-   print_r($_SESSION);
+   // print_r($_SESSION);
    if(!$_SESSION['login']){
    header("location: ../index.php");
    die;
@@ -379,19 +379,19 @@
 		<div class="dashboard">
 			<div class="db-left">
 				<div class="db-left-1">
-					<h4>Jana Novakova</h4>
-					<p>Newyork, United States</p>
+					<h4><?php echo $_SESSION['reg_name']; ?></h4>
+					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
 				<div class="db-left-2">
 					<ul>
 						<li>
-							<a href="../dashboard.php"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
+							<a href="../dashboard.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
-							<a href="../add-listing.html"><img src="../images/icon/db2.png" alt="" />Add Listing</a>
+							<a href="../add-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../images/icon/db2.png" alt="" />Add Listing</a>
 						</li>
 						<li>
-							<a href="../manage-listing.html"><img src="../images/icon/db3.png" alt="" />Manage Listing</a>
+							<a href="../manage-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
 							<a href="../db-event.html"><img src="../images/icon/db4.png" alt="" /> Event</a>
@@ -400,7 +400,7 @@
 							<a href="../db-activity.html"><img src="../images/icon/db5.png" alt="" /> Activity</a>
 						</li>
 						<li>
-							<a href="db-profile.html"><img src="../images/icon/db7.png" alt="" /> Profile</a>
+							<a href="../db-profile.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 						</li>
 						<li>
 							<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>
@@ -411,3 +411,8 @@
 					</ul>
 				</div>
 			</div>
+
+			<div class="db-cent">
+				<div class="db-cent-1" style="background-image:url('../<?php echo $_SESSION['reg_cover']; ?>') !important;">
+					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
+					<h4>Welcome to your dashboard</h4> </div>

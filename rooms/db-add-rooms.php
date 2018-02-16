@@ -19,10 +19,7 @@ $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
     ?>
 
-			<div class="db-cent">
-				<div class="db-cent-1">
-					<p>Hi Jana Novakova,</p>
-					<h4>Welcome to your dashboard</h4> </div>
+
 					<div class="db-cent-3">
 						<div class="db-cent-table db-com-table">
 							<div class="db-title">
@@ -154,11 +151,13 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							</div>
 						</div>
 
-						<div class="row  common-top clearfix">
-
-							<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>ROOM's PROMOTIONAL VIDEO</span></div>
-							<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
-						</div>
+						<div class="common-top clearfix">
+                 
+                  
+                <label class="col s4">Room's Promotional Video (url)</label>
+                <div class="input-field col s8">
+                  <input type="text"  class="" name="common_video"  ></div>
+                </div>
 						<div class="common-top">
 							<label class="col s4" style="margin-bottom: 10px;">Room Description</label>
 							<textarea name="room_descrip" required></textarea>

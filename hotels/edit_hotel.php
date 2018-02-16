@@ -33,10 +33,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <?php include '../header.php'; ?>
 
 
-<div class="db-cent">
-<div class="db-cent-1">
-<p>Hi Jana Novakova,</p>
-<h4>Welcome to your dashboard</h4> </div>
+
 <div class="db-cent-3">
 <div class="db-cent-table db-com-table">
 <div class="db-title">
@@ -167,15 +164,13 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 			</div>
 		</div>
 
-		<div class="row common-top">
-			<div class="">
-				<!-- Modal Trigger -->
-				<!-- <div class="col s1"></div> -->
-				<a class="waves-effect waves-light btn modal-trigger spc-modal" href="#modal-coverimg">Hotel Cover Photos</a>
-				<input type="hidden" name="hotel_coverimage" id="img_cover">
-			</div>
-		</div>
-
+		<div class="common-top clearfix">
+								 
+									
+								<label class="col s4">Hotel Promotional Video (url)</label>
+								<div class="input-field col s8">
+									<input type="text"  class="" name="common_video"  ></div>
+						    </div>
 
 
 		<div class="row  common-top clearfix">

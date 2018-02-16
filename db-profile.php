@@ -398,7 +398,7 @@
 		
 		<div class="dashboard">
 			<div class="db-left">
-				<div class="db-left-1" >
+				<div class="db-left-1"  >
 					<h4><?php echo $reg_Result['reg_name']; ?></h4>
 					<p><?php echo $reg_Result['reg_city']; ?>, <?php echo $reg_Result['reg_country']; ?></p>
 				</div>
@@ -408,10 +408,10 @@
 							<a href="dashboard.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
-							<a href="add-listing.html"><img src="images/icon/db2.png" alt="" />Add Listing</a>
+							<a href="add-listing.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
 						</li>
 						<li>
-							<a href="manage-listing.html"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
+							<a href="manage-listing.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
 							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
@@ -449,52 +449,59 @@
 
 
 					?>
-					<table>
+					<table class="responsive-table profle-forms-reocrds-tbl" >
 						<thead>
 							<tr>
 								<th>Age</th>
-								<th>Hotels</th>
-								<th>Rooms</th>
-								<th>Banquets</th>
-								<th>Conferences</th>
-								<th>Tours</th>
-								<th>Events</th>
+								<th class="TT" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Hotels</th>
+								<th class="TT" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Rooms</th>
+								<th class="TT" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Banquets</th>
+								<th class="TT" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Conferences</th>
+								<th class="TT" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Tours</th>
+								<th class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Events</th>
 								<th>Join Date</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td><?php echo $age; ?></td>
+								
 								<?php if (mysqli_num_rows($reg_hotel)< 1) { ?>
-								<td>0</td>
+							     <td class="TT" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_SESSION['user_id']; ?>'">0</td>
 								<?php }else{ ?>
-								<td><?php echo mysqli_num_rows($reg_hotel); ?></td>
+								   <td class="TT" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_SESSION['user_id']; ?>'"><?php echo mysqli_num_rows($reg_hotel); ?></td>
 								<?php } ?>
+								
 								<?php if (mysqli_num_rows($reg_room)< 1) { ?>
-								<td>0</td>
+								<td class="TT" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_SESSION['user_id']; ?>'">0</td>
 								<?php }else{ ?>
-								<td><?php echo mysqli_num_rows($reg_room); ?></td>
+								<td class="TT" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_SESSION['user_id']; ?>'"><?php echo mysqli_num_rows($reg_room); ?></td>
 								<?php } ?>
+
 								<?php if (mysqli_num_rows($reg_banquet)< 1) { ?>
-								<td>0</td>
+								<td class="TT" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_SESSION['user_id']; ?>'">0</td>
 								<?php }else{ ?>
-								<td><?php echo mysqli_num_rows($reg_banquet); ?></td>
+								<td class="TT" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_SESSION['user_id']; ?>'"><?php echo mysqli_num_rows($reg_banquet); ?></td>
 								<?php } ?>
+
 								<?php if (mysqli_num_rows($reg_conference)< 1) { ?>
-								<td>0</td>
+								<td class="TT" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_SESSION['user_id']; ?>'">0</td>
 								<?php }else{ ?>
-								<td><?php echo mysqli_num_rows($reg_conference); ?></td>
+								<td class="TT" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_SESSION['user_id']; ?>'"><?php echo mysqli_num_rows($reg_conference); ?></td>
 								<?php } ?>
+
 								<?php if (mysqli_num_rows($reg_tour)< 1) { ?>
-								<td>0</td>
+								<td class="TT" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_SESSION['user_id']; ?>'">0</td>
 								<?php }else{ ?>
-								<td><?php echo mysqli_num_rows($reg_tour); ?></td>
+								<td class="TT" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_SESSION['user_id']; ?>'"><?php echo mysqli_num_rows($reg_tour); ?></td>
 								<?php } ?>
+
 								<?php if (mysqli_num_rows($reg_event)< 1) { ?>
-								<td>0</td>
+								<td class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_SESSION['user_id']; ?>'">0</td>
 								<?php }else{ ?>
-								<td><?php echo mysqli_num_rows($reg_event); ?></td>
+								<td class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_SESSION['user_id']; ?>'"><?php echo mysqli_num_rows($reg_event); ?></td>
 								<?php } ?>
+
 								<td><?php echo $reg_Result['reg_joinD']; ?></td>
 							</tr>
 						</tbody>
@@ -552,49 +559,31 @@
 							<div class="input-field col s8">
 								<input type="text" value="<?php echo $reg_Result['reg_country'];  ?>" name="reg_country" id="reg_country" class="validate"> </div>
 						</div>
-						<div class="row">
-
-							<div class="col-md-6">
-								<label>Date of Birth</label>
-								<div class="input-field ">
-									<input type="text" value="<?php echo $reg_Result['reg_birth'];  ?>" id="reg_birth" name="reg_birth" class="validate"> 
-								</div>
-							</div>
-							<div class="col-md-6" style="padding-top: 18px;">
+						
+							<div>
 								<a class="waves-effect waves-light btn modal-trigger spc-modal " href="#modal-reset" >Reset Password</a>
-								<!-- <label>Password</label>
-								<div class="input-field">
-									<input type="button" value="<?php echo $reg_Result['reg_province'];  ?>" id="reg_password" name="reg_password" minlength="8" class="validate"> 
-								</div> -->
+								
 							</div>
 
-						</div>
-						
-						<!-- <div>
-							<div class="file-field input-field">
-								<div class="btn" id="pro-file-upload"> <span>File</span>
-									<input type="file"> </div>
-								<div class="file-path-wrapper">
-									<input class="file-path validate" type="text" placeholder="Upload profile picture"> </div>
-							</div>
-						</div> -->
-						
+					
 						<input type="hidden" name="profile_img" id="profile_img">
 						<input type="hidden" name="coverimg" id="coverimg">
 					</form>
 					<div class="row">
+						<form>
 						   <div class="col-md-6">
 							<div class="file-field input-field">
 								<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
 									<input type="file" id="sortpicture" name="sortpic" onchange="readcover(this);"> </div>
 								<div class="file-path-wrapper" >
-									<input class="file-path validate" type="text" placeholder="Upload cover picture">
+									<input class="file-path validate" type="hidden" id="check_cover">
 									 </div>
 							</div>
 						  </div>
 						  <div class="col-md-6" >
 						  	   <img id="cover" src="#" alt="your image" style="display: none;"/>
 						  </div>
+						  </form>
 						</div>
 					
 
@@ -689,8 +678,14 @@
 						<div>
 							<label class="col s4">New Password</label>
 							<div class="input-field col s6">
-								<input type="password"  id="new-passcode" name="new-password" class="validate"> </div>
+								<input type="password"  id="new-passcode" name="new_password" class="validate"> </div>
 						</div>
+						<div>
+							<label class="col s4">Confrom Password</label>
+							<div class="input-field col s6">
+								<input type="password"  id="reg_conpassword" name="reg_conpassword" class="validate"> </div>
+						</div>
+						<input type="hidden"  id="check_Oldpass" value="<?php echo $_SESSION['reg_password']; ?>" class="validate">
 						<div class="input-field col s8">
 								<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_password_update"> </div>
                     </form>

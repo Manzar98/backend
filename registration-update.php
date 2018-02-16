@@ -10,7 +10,6 @@
   reg_city="'.$_POST['reg_city'].'",
   reg_province="'.$_POST['reg_province'].'",
   reg_country="'.$_POST['reg_country'].'",
-  reg_birth="'.$_POST['reg_birth'].'",
   reg_photo="'.$_POST['profile_img'].'",
   reg_cover="'.$_POST['coverimg'].'" WHERE user_id="'.$_POST['user_id'].'"';
 
@@ -24,7 +23,6 @@
   reg_city="'.$_POST['reg_city'].'",
   reg_province="'.$_POST['reg_province'].'",
   reg_country="'.$_POST['reg_country'].'",
-  reg_birth="'.$_POST['reg_birth'].'",
   reg_photo="'.$_POST['profile_img'].'" WHERE user_id="'.$_POST['user_id'].'"';
  }elseif(!empty($_POST['coverimg']) && empty($_POST['profile_img'])){
 
@@ -35,7 +33,6 @@
   reg_city="'.$_POST['reg_city'].'",
   reg_province="'.$_POST['reg_province'].'",
   reg_country="'.$_POST['reg_country'].'",
-  reg_birth="'.$_POST['reg_birth'].'",
   reg_cover="'.$_POST['coverimg'].'" WHERE user_id="'.$_POST['user_id'].'"';
 
 
@@ -49,8 +46,7 @@ $query='UPDATE credentials SET reg_name="'.$_POST['reg_name'].'",
   reg_postal="'.$_POST['reg_postal'].'",
   reg_city="'.$_POST['reg_city'].'",
   reg_province="'.$_POST['reg_province'].'",
-  reg_country="'.$_POST['reg_country'].'",
-  reg_birth="'.$_POST['reg_birth'].'" WHERE user_id="'.$_POST['user_id'].'"';
+  reg_country="'.$_POST['reg_country'].'" WHERE user_id="'.$_POST['user_id'].'"';
 
 
  }

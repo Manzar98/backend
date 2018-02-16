@@ -385,8 +385,8 @@
 		<div class="dashboard">
 			<div class="db-left">
 				<div class="db-left-1">
-					<h4>Jana Novakova</h4>
-					<p>Newyork, United States</p>
+					<h4><?php echo $_SESSION['reg_name']; ?></h4>
+					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
 				<div class="db-left-2">
 					<ul>
@@ -394,10 +394,10 @@
 							<a href="dashboard.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
-							<a href="add-listing.html"><img src="images/icon/db2.png" alt="" />Add Listing</a>
+							<a href="add-listing.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
 						</li>
 						<li>
-							<a href="manage-listing.html"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
+							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
 							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
@@ -418,21 +418,22 @@
 				</div>
 			</div>
 			<div class="db-cent">
-				<div class="db-cent-1">
-					<p>Hi Jana Novakova,</p>
+				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
+					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
 					<h4>Welcome to your dashboard</h4> </div>
 
 					<div class="db-cent-2">
 					<div class="db-2-main-1">
-						<a href="add-listing.html"><div class="db-2-main-2"> <img src="images/icon/dbc5.png" alt=""> <span>Add Listing</span>
+						<a href="add-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><div class="db-2-main-2"> <img src="images/icon/dbc5.png" alt=""> <span>Add Listing</span>
 							
-							<h2>12</h2> </div></a>
+							<h2 style="visibility: hidden;">12</h2> 
+						</div></a>
 					</div>
 
-					   <div class="db-2-main-1"><a href="manage-listing.html">
+					   <div class="db-2-main-1"><a href="manage-listing.php?id=<?php echo $_SESSION['user_id']; ?>">
 						<div class="db-2-main-2"> <img src="images/icon/dbc6.png" alt=""> <span>Manage Listing</span>
 							
-							<h2>04</h2> </div>
+							<h2 style="visibility: hidden;">04</h2> </div>
 					</a></div>
 					
 

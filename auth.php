@@ -20,6 +20,10 @@ $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this
         $_SESSION['reg_email']=$email;
         $_SESSION['reg_password']=$password;
         $_SESSION['user_id']=$crntresult['user_id'];
+        $_SESSION['reg_cover']=$crntresult['reg_cover'];
+        $_SESSION['reg_name']=$crntresult['reg_name'];
+        $_SESSION['reg_city']=$crntresult['reg_city'];
+        $_SESSION['reg_country']=$crntresult['reg_country'];
 
         $res_Array=array(
           "status"=>"Success",

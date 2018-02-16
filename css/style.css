@@ -4710,7 +4710,7 @@ right: 40px;
 border-radius: unset;
     box-shadow: unset !important;
     width: 500px;
-    height: 450px;
+    height: 550px;
     margin: 0 auto;
     margin-top: 100px;
 }
@@ -4965,4 +4965,7 @@ display: none;
 .hi-red{
     color: red;
     font-size: 11px;
+}
+.profle-forms-reocrds-tbl .TT{
+  cursor: pointer;
 }

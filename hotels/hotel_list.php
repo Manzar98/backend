@@ -31,15 +31,14 @@
 
 
 <?php include '../header.php'; 
+
+
 $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_SESSION['user_id'].'" ORDER BY hotel_id DESC ';
           $hotel_resp =mysqli_query($conn,$hotelQuery)  or die(mysqli_error($conn));
 ?>
 
 
-<div class="db-cent">
-				<div class="db-cent-1">
-					<p>Hi Jana Novakova,</p>
-					<h4>Welcome to your dashboard</h4> </div>
+             <!--  <input type="text"  id="row_count" name=""> -->
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
@@ -121,7 +120,17 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_SESSION['user_id'].'" OR
 				
 			</div>
 			<?php include '../footer.php'; ?>
+<script type="text/javascript">
+	
+	// $(document).ready(function(){
 
+
+ //      var Row_length=$('.wrap-td tr').length;
+
+ //          $('#row_count').val(Row_length);
+
+	// })
+</script>
 			</body>
 
 
