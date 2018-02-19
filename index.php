@@ -91,13 +91,13 @@
                 	<form class="col s8" role="form" action="auth.php" method="POST" enctype="multipart/form-data" id="login-form">
 						<div>
 							<div class="input-field">
-								<input type="email" name="email"   class="validate">
+								<input type="email" name="email" onkeyup="enterBTN()"   class="validate">
 								<label>Email</label>
 							</div>
 						</div>
 						<div>
 							<div class="input-field">
-								<input type="password" name="password" class="validate">
+								<input type="password" name="password" onkeyup="enterBTN()" class="validate">
 								<label>Password</label>
 							</div>
 						</div>

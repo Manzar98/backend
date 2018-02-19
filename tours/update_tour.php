@@ -30,7 +30,7 @@ if (empty($_POST['tour_foodinclude'])) {
      array_push($responseArray,"Food include field is required");
 }elseif ($_POST['tour_foodinclude']=='yes') {
   $fodinclude       =$_POST['tour_foodinclude'];
-  if (empty($_POST['tour_brkfast']) && empty($_POST['tour_lunch']) && empty($_POST['tour_dinner'])) {
+  if (($_POST['tour_brkfast']=="off") && ($_POST['tour_lunch']=="off") && ($_POST['tour_dinner']=="off")) {
     $is_check=false;
     array_push($responseArray,"Check at least one from Food included");
   }else{
@@ -70,7 +70,7 @@ if (empty($_POST['tour_drink'])) {
 
 }elseif ($_POST['tour_drink']=='yes') {
   $drnkinclude      =$_POST['tour_drink'];
-     if (empty($_POST['tour_aloholic']) && empty($_POST['tour_nonaloholic'])) {
+     if (($_POST['tour_aloholic']=="off") && ($_POST['tour_nonaloholic']=="off")) {
        $is_check=false;
        array_push($responseArray,"Check at least one from Drink included");
      }else{
@@ -123,7 +123,7 @@ if (empty($_POST['tour_stayni8'])) {
 $hotelstr         =$_POST['tour_hotelstr'];
 
 
-if (isset($_POST['tour_camping'])) {
+if ($_POST['tour_camping']=="on") {
 
    $camping          =$_POST['tour_camping'];
      if (empty($_POST['tour_campday'])) {
@@ -212,7 +212,7 @@ if (empty($_POST['tour_childallow'])) {
         }elseif ($_POST['tour_undr5allow']=="yes") {
           $undr5allow       =$_POST['tour_undr5allow'];
 
-              if (empty($_POST['tour_undr5free']) && empty($_POST['tour_undr5price'])) {
+              if (($_POST['tour_undr5free']=="off") && empty($_POST['tour_undr5price'])) {
           $is_check=false;
                   array_push($responseArray,"Filled atleast one field in Under 5 allowed"); 
         }else{

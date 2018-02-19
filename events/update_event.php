@@ -90,7 +90,7 @@ if (empty($_POST['event_childallow'])) {
         }elseif ($_POST['event_undr5allow']=="yes") {
           $undr5allow       =$_POST['event_undr5allow'];
 
-          if (empty($_POST['event_undr5free']) && empty($_POST['event_undr5price'])) {
+          if (($_POST['event_undr5free']=="off") && empty($_POST['event_undr5price'])) {
 
           $is_check=false;
           array_push($responseArray,"Filled atleast one field in Under 5 allowed");
@@ -353,7 +353,7 @@ if (empty($_POST['event_serve'])) {
 }elseif ($_POST['event_serve']=="yes") {
 
        $serveFood=$_POST['event_serve'];
-     if(empty($_POST['event_eatFree']) && empty($_POST['event_eatAll']) && empty('$event_eatNeed')){
+     if(($_POST['event_eatFree']=="off") && ($_POST['event_eatAll']=="off") && ($_POST['event_eatNeed']=="off")){
 
            $is_check=false;
            array_push($responseArray,"checked the one field from serve food");
@@ -365,7 +365,7 @@ if (empty($_POST['event_serve'])) {
       }else{
         $eatFree    = 'off';
       }
-      if (isset($_POST['event_eatAll'])) {
+      if ($_POST['event_eatAll']=="on") {
          $eatAll    = $_POST['event_eatAll'];
          if (empty($_POST['event_eatAllChrges'])) {
 

@@ -14,6 +14,96 @@ $("#pro-sub-btn").click(function(){
             });
      return;
    }
+
+   if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
+        
+
+            $('#hidden_checkbox').val('on');
+
+        
+   }else{
+               $('#hidden_checkbox').val('off');
+
+   }
+
+   if ($(".brkfast input:checkbox:checked").length > 0) {
+        
+
+            $('#tour_brkfast').val('on');
+
+        
+   }else{
+               $('#tour_brkfast').val('off');
+
+   }
+
+   if ($(".lunch input:checkbox:checked").length > 0) {
+        
+
+            $('#tour_lunch').val('on');
+
+        
+   }else{
+               $('#tour_lunch').val('off');
+
+   }
+   
+    if ($(".dinner input:checkbox:checked").length > 0) {
+        
+
+            $('#tour_dinner').val('on');
+
+        
+   }else{
+               $('#tour_dinner').val('off');
+
+   }
+
+   if ($(".aloholic input:checkbox:checked").length > 0) {
+        
+
+            $('#tour_aloholic').val('on');
+
+        
+   }else{
+               $('#tour_aloholic').val('off');
+
+   }
+
+    if ($(".nonaloholic input:checkbox:checked").length > 0) {
+        
+
+            $('#tour_nonaloholic').val('on');
+
+        
+   }else{
+               $('#tour_nonaloholic').val('off');
+
+   }
+
+   if ($(".camping input:checkbox:checked").length > 0) {
+        
+
+            $('#tour_camping').val('on');
+
+        
+   }else{
+               $('#tour_camping').val('off');
+
+   }
+
+    if ($(".c-childfree input:checkbox:checked").length > 0) {
+        
+
+            $('#tour_undr5free').val('on');
+
+        
+   }else{
+               $('#tour_undr5free').val('off');
+
+   }
+
+
   var validator= $("#tour-form").validate({
 
        errorElement : 'div',

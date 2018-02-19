@@ -43,6 +43,35 @@ $("#pro-sub-btn").click(function(){
             });
      return;
    }
+
+
+
+   if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
+        
+
+            $('#hidden_checkbox').val('on');
+
+        
+   }else{
+               $('#hidden_checkbox').val('off');
+
+   }
+
+   if ($("#fil_air input:checkbox:checked").length>0) {
+
+          $('#hotel_isair').val('on');
+   }else{
+
+       $('#hotel_isair').val('off');
+   }
+
+   if ($("#fil_bus input:checkbox:checked").length>0) {
+
+          $('#hotel_isbus').val('on');
+   }else{
+
+       $('#hotel_isbus').val('off');
+   }
    var validator= $("#hotel-form").validate({
 
        errorElement : 'div',

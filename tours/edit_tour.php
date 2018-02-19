@@ -104,18 +104,19 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 								</select>
 							</div>
-							 <div id="show-food">
+							<div id="show-food">
 							<div  class="col-md-2 c-food">
 
-								<p>
+								<p class="brkfast">
+									<input type="hidden" name="tour_brkfast" id="tour_brkfast">
 									<?php if ($resulttour['tour_brkfast']=='on') { ?>
 
-										<input type="checkbox" class="filled-in" id="filled-in-box"   name="tour_brkfast" checked="" />
+										<input type="checkbox" class="filled-in" id="filled-in-box" checked="" />
 									<label for="filled-in-box">Breakfast</label>
 
 								<?php	}else{ ?>
                                          
-                                         <input type="checkbox" class="filled-in" id="filled-in-box"   name="tour_brkfast" />
+                                         <input type="checkbox" class="filled-in" id="filled-in-box"/>
 									<label for="filled-in-box">Breakfast</label>
 
 								<?php }   ?>
@@ -125,15 +126,16 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							</div>
 							<div class="col-md-2 c-food">
 								
-								<p>
+								<p class="lunch">
+									<input type="hidden" name="tour_lunch" id="tour_lunch">
 									<?php if ($resulttour['tour_lunch']=='on') { ?>
 
-							               <input type="checkbox" class="filled-in" id="filled-in-lunch"  name="tour_lunch"  checked="" />
+							               <input type="checkbox" class="filled-in" id="filled-in-lunch" checked="" />
 									       <label for="filled-in-lunch">Lunch</label>
 
 								    <?php	}else{ ?>
 
-                                         <input type="checkbox" class="filled-in" id="filled-in-lunch"  name="tour_lunch" />
+                                         <input type="checkbox" class="filled-in" id="filled-in-lunch"/>
 									     <label for="filled-in-lunch">Lunch</label>
 
 								    <?php }   ?>
@@ -142,14 +144,15 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								
 							</div>
 							<div class="col-md-2 c-food">
-								<p>
+								<p class="dinner">
+									<input type="hidden" name="tour_dinner" id="tour_dinner">
 									<?php if ($resulttour['tour_dinner']=='on') { ?>
 
-                                           <input type="checkbox" class="filled-in" id="filled-in-diner"   name="tour_dinner" checked="" />
+                                           <input type="checkbox" class="filled-in" id="filled-in-diner" checked="" />
 									       <label for="filled-in-diner">Dinner</label>
 									<?php	}else{ ?>
 
-									       <input type="checkbox" class="filled-in" id="filled-in-diner"   name="tour_dinner" />
+									       <input type="checkbox" class="filled-in" id="filled-in-diner"/>
 									       <label for="filled-in-diner">Dinner</label>
 
 									<?php }   ?>
@@ -190,15 +193,16 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							</div>
 							<div id="drink-wrap">
 							<div class="col-md-2 c-drink">
-								<p>
+								<p class="aloholic">
+									<input type="hidden" name="tour_aloholic" id="tour_aloholic">
 									<?php if ($resulttour['tour_aloholic']=='on') { ?>
 
-									<input type="checkbox" class="filled-in" id="filled-in-alcholic"   name="tour_aloholic" checked="" />
+									<input type="checkbox" class="filled-in" id="filled-in-alcholic" checked="" />
 									<label for="filled-in-alcholic">Alcoholic</label>
                        
                                     <?php	}else{ ?>
 
-                                    <input type="checkbox" class="filled-in" id="filled-in-alcholic"   name="tour_aloholic" />
+                                    <input type="checkbox" class="filled-in" id="filled-in-alcholic" />
 									<label for="filled-in-alcholic">Alcoholic</label>
 
                                     <?php }   ?>
@@ -207,15 +211,16 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								
 							</div> 
 							<div class="col-md-4 c-drink">
-								<p>
+								<p class="nonaloholic">
+									<input type="hidden" name="tour_nonaloholic" id="tour_nonaloholic">
 									<?php if ($resulttour['tour_nonaloholic']=='on') { ?>
 
-									<input type="checkbox" class="filled-in" id="filled-in-nonalc"   name="tour_nonaloholic" checked="" />
+									<input type="checkbox" class="filled-in" id="filled-in-nonalc" checked="" />
 									<label for="filled-in-nonalc">Non Alcoholic</label>
 
 									<?php	}else{ ?>
 
-									<input type="checkbox" class="filled-in" id="filled-in-nonalc"   name="tour_nonaloholic" />
+									<input type="checkbox" class="filled-in" id="filled-in-nonalc"/>
 									<label for="filled-in-nonalc">Non Alcoholic</label>
 
                                     <?php }   ?>
@@ -374,14 +379,15 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<div class="col-md-3  " >
 								<div class="camping">
 								<p class="checkbox-bottom">
+									<input type="hidden" name="tour_camping" id="tour_camping">
 									<?php if ($resulttour['tour_camping']=='on') { ?>
 
-									<input type="checkbox" class="filled-in" onclick="changecamp(this)" name="tour_camping" id="cmp" checked="" />
+									<input type="checkbox" class="filled-in" onclick="changecamp(this)" id="cmp" checked="" />
 									<label for="cmp">Camping ?</label>
 										
 								<?php	}else{ ?>
 
-									<input type="checkbox" class="filled-in" onclick="changecamp(this)" name="tour_camping" id="cmp"/>
+									<input type="checkbox" class="filled-in" onclick="changecamp(this)" id="cmp"/>
 									<label for="cmp">Camping ?</label>
 
 								<?php  } ?>
@@ -525,17 +531,17 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
                         	</div>
                         	<div class="col-md-2 events-checkbox">
                         		<div class="c-childfree">
-
+                                        <input type="hidden" name="tour_undr5free" id="tour_undr5free">
                         			<p>
                         				<?php if ($resulttour['tour_undr5free']=='on') { ?>
 
-		                        				<input type="checkbox" class="filled-in" onclick="childrnfree(this)" name="tour_undr5free" id="undr5free" checked="" />
+		                        				<input type="checkbox" class="filled-in" onclick="childrnfree(this)" id="undr5free" checked="" />
 												<label for="undr5free">Free?</label>
 
                         					
                         			<?php	}else{ ?>
 
-												<input type="checkbox" class="filled-in" onclick="childrnfree(this)" name="tour_undr5free" id="undr5free"/>
+												<input type="checkbox" class="filled-in" onclick="childrnfree(this)" id="undr5free"/>
 												<label for="undr5free">Free?</label>
 
 									<?php } ?>
@@ -956,21 +962,22 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
                         <div class="row" >
                          	
-						           <p class="pTAG">
+						           <p class="pTAG inactive_checkbox">
+						           	<input type="hidden" name="tour_inactive" id="hidden_checkbox">
 						            	<?php if ($resulttour['tour_inactive']=='on') { ?>
 
-						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="tour_inactive" checked="" />
+						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" checked="" />
 						             <label for="filled-in-inactive">Inactive</label>
 						             
 						            <?php 	}else{ ?>
 
-						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="tour_inactive" />
+						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" />
 						             <label for="filled-in-inactive">Inactive</label>
 						          <?php  }  ?>
 						             
 						            </p>
 						             
-         						</div>
+         				</div>
 
                  
                        <?php } ?>

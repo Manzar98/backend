@@ -47,7 +47,7 @@ if (!isset($_POST['banquet_isaircon'])) {
   
   $is_aircon="off";
 }
-if (isset($_POST['banquet_isaircon']) && empty($_POST['banquet_aricon'])) {
+if (($_POST['banquet_isaircon']=="on") && empty($_POST['banquet_aricon'])) {
 
     $is_check=false;
     array_push($responseArray,"Aircon charges field is required");
@@ -60,7 +60,7 @@ if (isset($_POST['banquet_isaircon']) && empty($_POST['banquet_aricon'])) {
    $is_aircon="off";
 }
 
-if (isset($_POST['banquet_isgen']) && empty($_POST['banquet_generator'])) {
+if (($_POST['banquet_isgen']=="on") && empty($_POST['banquet_generator'])) {
 
   $is_check=false;
   array_push($responseArray,"Generator charges field is required");

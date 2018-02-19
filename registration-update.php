@@ -4,6 +4,7 @@
   if (!empty($_POST['profile_img']) && !empty($_POST['coverimg'])) {
 
   $query='UPDATE credentials SET reg_name="'.$_POST['reg_name'].'",
+  reg_lstname="'.$_POST['reg_lstname'].'",
   reg_email="'.$_POST['reg_email'].'",
   reg_phone="'.$_POST['reg_phone'].'",
   reg_postal="'.$_POST['reg_postal'].'",
@@ -17,6 +18,7 @@
    # code...
 
   $query='UPDATE credentials SET reg_name="'.$_POST['reg_name'].'",
+  reg_lstname="'.$_POST['reg_lstname'].'",
   reg_email="'.$_POST['reg_email'].'",
   reg_phone="'.$_POST['reg_phone'].'",
   reg_postal="'.$_POST['reg_postal'].'",
@@ -27,6 +29,7 @@
  }elseif(!empty($_POST['coverimg']) && empty($_POST['profile_img'])){
 
     $query='UPDATE credentials SET reg_name="'.$_POST['reg_name'].'",
+    reg_lstname="'.$_POST['reg_lstname'].'",
   reg_email="'.$_POST['reg_email'].'",
   reg_phone="'.$_POST['reg_phone'].'",
   reg_postal="'.$_POST['reg_postal'].'",
@@ -41,6 +44,7 @@
  }else{
 
 $query='UPDATE credentials SET reg_name="'.$_POST['reg_name'].'",
+reg_lstname="'.$_POST['reg_lstname'].'",
   reg_email="'.$_POST['reg_email'].'",
   reg_phone="'.$_POST['reg_phone'].'",
   reg_postal="'.$_POST['reg_postal'].'",

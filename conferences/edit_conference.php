@@ -425,15 +425,16 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
   </div>
   <div class="row" >
                           
-                       <p class="pTAG">
+                       <p class="pTAG inactive_checkbox">
+                        <input type="hidden" name="conference_inactive" id="hidden_checkbox">
                           <?php if ($resultConference['conference_inactive']=='on') { ?>
 
-                           <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="conference_inactive" checked="" />
+                           <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" checked="" />
                          <label for="filled-in-inactive">Inactive</label>
                          
                         <?php   }else{ ?>
 
-                        <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="conference_inactive" />
+                        <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" />
                          <label for="filled-in-inactive">Inactive</label>
                       <?php  }  ?>
                          

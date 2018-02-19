@@ -102,7 +102,6 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <div>
 	<label class="col s4">Website</label>
 	<div class="input-field col s8 web">
-		<label>https://</label>
 		<input type="url"  class="validate " name="hotel_web" value="<?php  echo $hotelResult['hotel_web'];  ?>"></div>
 	</div>
 
@@ -163,6 +162,14 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 			</div>
 		</div>
+		<div class="row common-top">
+							<div class="">
+								<!-- Modal Trigger -->
+								<!-- <div class="col s1"></div> -->
+							<a class="waves-effect waves-light btn modal-trigger spc-modal" href="#modal-coverimg">Hotel Cover Photos</a>
+								<input type="hidden" name="hotel_coverimage" id="img_cover">
+							</div>
+					   </div>
 
 		<div class="common-top clearfix">
 								 
@@ -173,11 +180,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 						    </div>
 
 
-		<div class="row  common-top clearfix">
-
-			<div class="col s6 dumi_vid_btn" id="pro-file-upload"> <span>HOTEL PROMOTIONAL VIDEO</span></div>
-			<input type="text" placeholder="Upload Promotional video URL" name="common_video" class="input-field validate col s5 dumi_vid_inpt">
-		</div>
+		
 
 		<div class="common-top">
 			<label class="col s4">Hotel Description</label>
@@ -214,13 +217,14 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 				
 				<div class="col-md-6" id="fil_air" >
 						            <p class="pTAG">
+						            	<input type="hidden" name="hotel_isair" id="hotel_isair">
 						            	<?php if ($hotelResult['hotel_isair']=='on') { ?>
 
-						            	<input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair" checked="" />
+						            	<input type="checkbox" class="filled-in" id="filled-in-airport"  checked="" />
 						             <label for="filled-in-airport" id="air">Airport</label>	
 						            <?php 	}else{ ?>
 
-						            <input type="checkbox" class="filled-in" id="filled-in-airport" name="hotel_isair"  />
+						            <input type="checkbox" class="filled-in" id="filled-in-airport"   />
 						             <label for="filled-in-airport" id="air">Airport</label>
 						           <?php  }  ?>
 						             
@@ -228,13 +232,14 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
          						</div>
          						<div class="col-md-6" id="fil_bus">
 						            <p class="pTAG">
+						            	<input type="hidden" name="hotel_isbus" id="hotel_isbus">
 						            	<?php if ($hotelResult['hotel_isbus']=='on') { ?>
 
-						            	 <input type="checkbox" class="filled-in" id="filled-in-bus" name="hotel_isbus" checked="" />
+						            	 <input type="checkbox" class="filled-in" id="filled-in-bus"  checked="" />
 						             <label for="filled-in-bus">Bus station</label>
 						            <?php 	}else{ ?>
 
-						             <input type="checkbox" class="filled-in" id="filled-in-bus" name="hotel_isbus" />
+						             <input type="checkbox" class="filled-in" id="filled-in-bus"  />
 						             <label for="filled-in-bus">Bus station</label>
 						          <?php  }  ?>
 						             
@@ -386,15 +391,16 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 	<div class="row" >
                          	
-						           <p class="pTAG">
+						           <p class="pTAG inactive_checkbox">
+						           	<input type="hidden" name="hotel_inactive" id="hidden_checkbox">
 						            	<?php if ($hotelResult['hotel_inactive']=='on') { ?>
 
-						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="hotel_inactive" checked="" />
+						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="" checked=""  />
 						             <label for="filled-in-inactive">Inactive</label>
 						             
 						            <?php 	}else{ ?>
 
-						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="hotel_inactive" />
+						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="" />
 						             <label for="filled-in-inactive">Inactive</label>
 						          <?php  }  ?>
 						             

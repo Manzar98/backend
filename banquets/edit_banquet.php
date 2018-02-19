@@ -90,12 +90,13 @@ if (isset($_GET['h_id'])) {
 
           <div class="col-md-6 with_aricon" >
            <p class="pTAG">
+             <input type="hidden" name="banquet_isaircon" id="banquet_isaircon">
             <?php if ($resultbnq['banquet_isaircon'] == "on") { ?>
-          <input type="checkbox" class="filled-in" id="filled-in-aricon" name="banquet_isaircon"  checked="" />
+          <input type="checkbox" class="filled-in" id="filled-in-aricon" checked="" />
              <label for="filled-in-aricon">Aircon?</label>
        <?php  }else{ ?>
 
-        <input type="checkbox" class="filled-in" id="filled-in-aricon" name="banquet_isaircon" />
+        <input type="checkbox" class="filled-in" id="filled-in-aricon" />
              <label for="filled-in-aricon">Aircon?</label>
         <?php      }  ?>
             
@@ -117,13 +118,13 @@ if (isset($_GET['h_id'])) {
 
      <div class="col-md-6 with_generator clearfix" >
        <p class="pTAG">
-
+         <input type="hidden" name="banquet_isgen" id="banquet_isgen">
      <?php if ($resultbnq['banquet_isgen'] == "on") { ?>
-          <input type="checkbox" class="filled-in" id="filled-in-gen"  name="banquet_isgen"  checked="" />
+          <input type="checkbox" class="filled-in" id="filled-in-gen" checked="" />
          <label for="filled-in-gen">Generator?</label>
        <?php  }else{ ?>
 
-        <input type="checkbox" class="filled-in" id="filled-in-gen"  name="banquet_isgen" />
+        <input type="checkbox" class="filled-in" id="filled-in-gen" />
          <label for="filled-in-gen">Generator?</label>
         <?php      }  ?>
          
@@ -532,17 +533,18 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     </div>
   </div>
    
-            <div class="row" >
+            <div class="row inactive_checkbox" >
 
              <p class="pTAG">
+              <input type="hidden" name="banquet_inactive" id="hidden_checkbox">
               <?php if ($resultbnq['banquet_inactive']=='on') { ?>
 
-              <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="banquet_inactive" checked="" />
+              <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
               <label for="filled-in-inactive">Inactive</label>
 
               <?php   }else{ ?>
 
-              <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="banquet_inactive" />
+              <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
               <label for="filled-in-inactive">Inactive</label>
               <?php  }  ?>
 

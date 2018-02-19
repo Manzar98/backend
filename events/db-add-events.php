@@ -4,7 +4,7 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
-	<title>Add an Event - Member's Area </title>
+	<title>Add an Event </title>
 
 
 <?php  

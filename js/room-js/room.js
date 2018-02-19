@@ -14,6 +14,25 @@ $("#pro-sub-btn").click(function(){
             });
      return;
    }
+
+   if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
+        
+
+            $('#hidden_checkbox').val('on');
+
+        
+   }else{
+               $('#hidden_checkbox').val('off');
+
+   }
+
+   if ($('.with_24hour input:checkbox:checked').length > 0) {
+
+        $('#room_24hour').val('on');
+   }else{
+
+       $('#room_24hour').val('off');
+   }
 var validator= $("#room-form").validate({
 
        errorElement : 'div',

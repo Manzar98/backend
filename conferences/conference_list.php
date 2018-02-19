@@ -34,15 +34,21 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id']
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
 
-		 <div class="row">
- 	<div class="col s1"></div>
-	 <div class="col s8  ">	
-    <input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-  </div>
-  <div class="">
-    <input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-  </div>
-</div>
+		 
+            	<?php
+
+					if (mysqli_num_rows($conference_resp) > 0) { ?>
+
+					<div class="row">
+						<div class="col s1"></div>
+						<div class="col s8  ">	
+							<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
+						</div>
+						<div class="">
+							<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
+						</div>
+					</div>
+
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
@@ -56,12 +62,10 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id']
 							</thead>
 							
 								<tbody class="wrap-td">
-								<?php
-
-								if (mysqli_num_rows($conference_resp) > 0) { 
+							
 
 								
-                                   while ($result=mysqli_fetch_assoc($conference_resp)) { 
+                               <?php    while ($result=mysqli_fetch_assoc($conference_resp)) { 
 
 
                                          $hotelQuery=select("hotel",array('hotel_id'=>$result['hotel_id']));
@@ -130,12 +134,24 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id']
             
     <?php    
  // print_r($result);
-       }
-        	}?>
+       } ?>
+        	
 								
 						
 							</tbody>
 						</table>
+						<?php	}else{ ?>
+
+						 <div class="text-center"><span>You have no Conference Halls</span></div>
+						 <div class="row common-top text-center">
+						 	<div class="">
+						 		
+						 		<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-conference-hall.php">Add New Conference</a>
+						 		
+						 	</div>
+						 </div>
+
+						 <?php	}?>
 					</div>
 				</div>
 				</div>

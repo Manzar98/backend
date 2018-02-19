@@ -128,14 +128,15 @@
 							<div class="col-md-6 " >
 								<div class="with_24hour">
 								<p class="pTAG">
+									<input type="hidden" name="room_24hour" id="room_24hour">
 									<?php if ($resultRoom['room_24hour']=='on') {?>
 
-										<input type="checkbox" class="filled-in" id="filled-in-24" name="room_24hour" checked="" />
+										<input type="checkbox" class="filled-in" id="filled-in-24"  checked="" />
 										<label for="filled-in-24">24 Hour</label>
 
 									<?php }else{?>
 
-										<input type="checkbox" class="filled-in" id="filled-in-24" name="room_24hour" />
+										<input type="checkbox" class="filled-in" id="filled-in-24"  />
 										<label for="filled-in-24">24 Hour</label>
 									<?php } ?>
 									
@@ -229,7 +230,7 @@
 							</div>
 						</div>
 
-						div class="common-top clearfix">
+				<div class="common-top clearfix">
                  
                   
                 <label class="col s4">Room's Promotional Video (url)</label>
@@ -316,15 +317,16 @@
                         
                         <div class="row" >
                          	
-						           <p class="pTAG">
+						           <p class="pTAG inactive_checkbox">
+						           		<input type="hidden" name="room_inactive" id="hidden_checkbox">
 						            	<?php if ($resultRoom['room_inactive']=='on') { ?>
 
-						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="room_inactive" checked="" />
+						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
 						             <label for="filled-in-inactive">Inactive</label>
 						             
 						            <?php 	}else{ ?>
 
-						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="room_inactive" />
+						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
 						             <label for="filled-in-inactive">Inactive</label>
 						          <?php  }  ?>
 						             

@@ -1,6 +1,10 @@
 <?php 
  
 session_start();
+if(!$_SESSION['login']){
+   header("location: ../index.php");
+   die;
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +13,7 @@ session_start();
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
-	<title>Add List</title>
+	<title>Add Lists</title>
 	<!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -378,7 +382,7 @@ session_start();
 		<div class="dashboard">
 			<div class="db-left">
 				<div class="db-left-1">
-					<h4><?php echo $_SESSION['reg_name']; ?></h4>
+					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
 					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
 				<div class="db-left-2">
@@ -405,47 +409,49 @@ session_start();
 							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
 						</li>
 						<li>
-							<a href="#"><img src="images/icon/db8.png" alt="" /> Logout</a>
+							<a href="logout.php"><img src="images/icon/db8.png" alt="" /> Logout</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="db-cent">
 				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
+					
 					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
-					<h4>Welcome to your dashboard</h4> </div>
+					<h4>Welcome to your dashboard</h4>
+					 </div>
 				<div class="db-cent-2">
 					<div class="db-2-main-1">
-						<a href="hotels/db-add-hotels.php"><div class="db-2-main-2"> <img src="images/icon/dbc5.png" alt=""> <span>Add Hotel</span>
+						<a href="hotels/db-add-hotels.php"><div class="db-2-main-2"> <img src="images/icon/dbc5.png" alt=""> <span>Hotels</span>
 							<p>All the Lorem Ipsum generators on the</p>
 							 </div>
 					</div></a>
 
 					<a href="rooms/db-add-rooms.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc6.png" alt=""> <span>Add Rooms</span>
+						<div class="db-2-main-2"> <img src="images/icon/dbc6.png" alt=""> <span>Rooms</span>
 							<p>All the Lorem Ipsum generators on the</p>
 							 </div>
 					</div></a>
 					<a href="banquets/db-add-banquet-hall.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Add Banquet Halls</span>
+						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Banquet Halls</span>
 							<p>All the Lorem Ipsum generators on the</p>
 							 </div>
 					</div></a>
 
 					<a href="conferences/db-add-conference-hall.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Add Conference Hall</span>
+						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Conference Halls</span>
 							<p>All the Lorem Ipsum generators on the</p>
 							 </div>
 					</div></a>
 					
 					<a href="tours/db-add-tours.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Add Tour Packages</span>
+						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Tour Packages</span>
 							<p>All the Lorem Ipsum generators on the</p>
 							 </div>
 					</div></a>
 
 					<a href="events/db-add-events.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Add Event Packages</span>
+						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Event Packages</span>
 							<p>All the Lorem Ipsum generators on the</p>
 							 </div>
 					</div></a>

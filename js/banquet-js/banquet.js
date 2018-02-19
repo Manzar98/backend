@@ -14,6 +14,39 @@ $("#pro-sub-btn").click(function(event){
             });
      return;
    }
+
+   if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
+        
+
+            $('#hidden_checkbox').val('on');
+
+        
+   }else{
+               $('#hidden_checkbox').val('off');
+
+   }
+
+   if ($(".with_generator input:checkbox:checked").length > 0) {
+        
+
+            $('#banquet_isgen').val('on');
+
+        
+   }else{
+               $('#banquet_isgen').val('off');
+
+   }
+
+   if ($(".with_aricon input:checkbox:checked").length > 0) {
+        
+
+            $('#banquet_isaircon').val('on');
+
+        
+   }else{
+               $('#banquet_isaircon').val('off');
+
+   }
   
 var validator= $("#banquet-form").validate({
 
@@ -196,7 +229,7 @@ $.ajax({
 
 function updateBanquet() {
  
-    tinyMCE.triggerSave();
+    // tinyMCE.triggerSave();
     if (!$('#hotelId').val()) {
         // debugger;
         $("#hotelId").val($(".hotelNames option:selected").attr("data-id"));

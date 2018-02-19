@@ -183,12 +183,12 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<div class="col-md-3 " >
 								<div class="eatFree">
 							       <p class="pTAG">
-
+                                        <input type="hidden" name="event_eatFree" id="event_eatFree">
 							       <?php if ($resultevent['event_eatFree']=="on") {?>
-							               <input type="checkbox" class="filled-in freeLbl" id="filled-in-all_free"  name="event_eatFree" checked="" />
+							               <input type="checkbox" class="filled-in freeLbl" id="filled-in-all_free" checked="" />
 							               <label for="filled-in-all_free" class="freeLbl">Free?</label>
 							      <?php  }else{ ?>
-							                <input type="checkbox" class="filled-in freeLbl" id="filled-in-all_free"  name="event_eatFree" />
+							                <input type="checkbox" class="filled-in freeLbl" id="filled-in-all_free" />
 							               <label for="filled-in-all_free" class="freeLbl">Free?</label>
 
 
@@ -200,11 +200,12 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<div class="col-md-4 " >
 								<div class="eatAll">
 							       <p class="pTAG">
+							       	<input type="hidden" name="event_eatAll" id="event_eatAll">
 							       <?php if ($resultevent['event_eatAll']=="on") { ?>
-							       		   <input type="checkbox" class="filled-in allLbl" id="filled-in-all_u_can"  name="event_eatAll" checked="" />
+							       		   <input type="checkbox" class="filled-in allLbl" id="filled-in-all_u_can" checked="" />
 							               <label for="filled-in-all_u_can" >All you can eat</label>
 							       <?php }else { ?>
-							       	       <input type="checkbox" class="filled-in allLbl" id="filled-in-all_u_can"  name="event_eatAll" />
+							       	       <input type="checkbox" class="filled-in allLbl" id="filled-in-all_u_can"/>
 							              <label for="filled-in-all_u_can" >All you can eat</label>
 							       <?php }  ?>
 							         
@@ -218,11 +219,12 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<div class="col-md-4 " >
 								<div class="eatNeed">
 							       <p class="pTAG">
+							       	<input type="hidden" name="event_eatNeed" id="event_eatNeed">
 							      <?php if ($resultevent['event_eatNeed']=="on") { ?>
-							       		   <input type="checkbox" class="filled-in needLbl" id="filled-in-as_u_need"  name="event_eatNeed" checked="" />
+							       		   <input type="checkbox" class="filled-in needLbl" id="filled-in-as_u_need" checked="" />
 							               <label for="filled-in-as_u_need">As you need</label>
 							      <?php }else{ ?>
-							               <input type="checkbox" class="filled-in needLbl" id="filled-in-as_u_need"  name="event_eatNeed" />
+							               <input type="checkbox" class="filled-in needLbl" id="filled-in-as_u_need" />
 							               <label for="filled-in-as_u_need">As you need</label>
 							      <?php } ?>
 							         
@@ -340,6 +342,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
                         	<div class="col-md-2 events-checkbox">
                         		<div class="c-childfree">
                         			<p>
+                        				<input type="hidden" name="event_undr5free" id="event_undr5free">
                         				<?php if ($resultevent['event_undr5free']=='on') {?>
                         					
                         					<input type="checkbox" class="filled-in" onclick="childrnfree(this)" name="event_undr5free" id="undr5free" checked="" />
@@ -646,15 +649,16 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 							<div class="row" >
                          	
-						           <p class="pTAG">
+						           <p class="pTAG inactive_checkbox">
+						           	<input type="hidden" name="event_inactive" id="hidden_checkbox">
 						            	<?php if ($resultevent['event_inactive']=='on') { ?>
 
-						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="event_inactive" checked="" />
+						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" checked="" />
 						             <label for="filled-in-inactive">Inactive</label>
 						             
 						            <?php 	}else{ ?>
 
-						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="event_inactive" />
+						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"/>
 						             <label for="filled-in-inactive">Inactive</label>
 						          <?php  }  ?>
 						             
@@ -1005,7 +1009,7 @@ if($(".eatFree input:checkbox:checked").length > 0){
   }
 
 if($(".eatAll input:checkbox:checked").length > 0){
- // debugger;
+  
   $('.eatFree').hide();
   $('.eatNeed').hide();
   $('#eatallChrges').show();

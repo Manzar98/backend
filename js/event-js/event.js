@@ -15,6 +15,49 @@ $("#pro-sub-btn").click(function(){
      return;
    }
 
+   if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
+        
+
+            $('#hidden_checkbox').val('on');
+
+        
+   }else{
+               $('#hidden_checkbox').val('off');
+
+   }
+
+   if ($('.eatFree input:checkbox:checked').length > 0) {
+
+        $('#event_eatFree').val('on');
+   }else{
+
+        $('#event_eatFree').val('off');
+   }
+
+    if ($('.eatAll input:checkbox:checked').length > 0) {
+
+        $('#event_eatAll').val('on');
+   }else{
+
+        $('#event_eatAll').val('off');
+   }
+
+   if ($('.eatNeed input:checkbox:checked').length > 0) {
+
+        $('#event_eatNeed').val('on');
+   }else{
+
+        $('#event_eatNeed').val('off');
+   }
+
+   if ($('.c-childfree input:checkbox:checked').length > 0) {
+
+        $('#event_undr5free').val('on');
+   }else{
+
+        $('#event_undr5free').val('off');
+   }
+
  var validator= $("#event-form").validate({
 
        errorElement : 'div',

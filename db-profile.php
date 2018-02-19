@@ -1,5 +1,9 @@
 <?php 
     session_start();
+    if(!$_SESSION['login']){
+   header("location: ../index.php");
+   die;
+}
      include"common-apis/reg-api.php";
 
 
@@ -22,7 +26,7 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
-	<title>MyHotel - Hotel Booking and Room Booking Online Html Responsive Template</title>
+	<title>Profile</title>
 	<!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -399,7 +403,7 @@
 		<div class="dashboard">
 			<div class="db-left">
 				<div class="db-left-1"  >
-					<h4><?php echo $reg_Result['reg_name']; ?></h4>
+					<h4><?php echo $reg_Result['reg_name'];  ?> <?php echo $reg_Result['reg_lstname']; ?></h4>
 					<p><?php echo $reg_Result['reg_city']; ?>, <?php echo $reg_Result['reg_country']; ?></p>
 				</div>
 				<div class="db-left-2">
@@ -414,10 +418,10 @@
 							<a href="manage-listing.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
-							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
+							<a href="paid_ads.php"><img src="images/icon/db5.png" alt="" /> Paid Ads</a>
 						</li>
 						<li>
-							<a href="db-activity.html"><img src="images/icon/db5.png" alt="" /> Activity</a>
+							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
 						</li>
 						<li>
 							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
@@ -426,17 +430,19 @@
 							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
 						</li>
 						<li>
-							<a href="#"><img src="images/icon/db8.png" alt="" /> Logout</a>
+							<a href="logout.php"><img src="images/icon/db8.png" alt="" /> Logout</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="db-cent">
 				<div class="db-cent-1" style="background-image:url('<?php echo $reg_Result['reg_cover']; ?>') !important;">
-					<p>Hi <?php echo $reg_Result['reg_name'] ?>,</p>
-					<h4>Welcome to your dashboard</h4> </div>
+					
+					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
+					<h4>Welcome to your dashboard</h4>
+					</div>
 				<div class="db-profile"> <img src="<?php echo $reg_Result['reg_photo'] ?>" alt="">
-					<h4><?php echo $reg_Result['reg_name']; ?></h4>
+					<h4><?php echo $reg_Result['reg_name'];  ?> <?php echo $reg_Result['reg_lstname']; ?></h4>
 					<p><?php echo $reg_Result['reg_postal']; ?></p>
 				</div>
 				<div class="db-profile-view">
@@ -447,8 +453,16 @@
                           $difference = $now->diff($dob);
                           $age = $difference->y;
 
-
+                         $lastlogin=date_create($reg_Result['reg_lastlogin']);
 					?>
+					<table class="last-lgon_tbl">
+						<thead>
+							<th>Last Login</th>
+						</thead>
+						<tbody>
+							<td><?php echo date_format($lastlogin, 'd-m-Y '); ?></td>
+						</tbody>
+					</table>
 					<table class="responsive-table profle-forms-reocrds-tbl" >
 						<thead>
 							<tr>
@@ -460,6 +474,7 @@
 								<th class="TT" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Tours</th>
 								<th class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_SESSION['user_id']; ?>'">Events</th>
 								<th>Join Date</th>
+
 							</tr>
 						</thead>
 						<tbody>
@@ -503,18 +518,27 @@
 								<?php } ?>
 
 								<td><?php echo $reg_Result['reg_joinD']; ?></td>
+								
 							</tr>
 						</tbody>
 					</table>
+					
 				</div>
 				 	<div class="db-profile-edit">
 
 					<form class="col s12" action="registration-update.php" method="post" role="form" id="registor-form">
 						<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-						<div>
-							<label class="col s4">Name</label>
-							<div class="input-field col s8">
+						<div class="row">
+						<div class="col-md-6">
+							<label >First Name</label>
+							<div class="input-field ">
 								<input type="text" value="<?php echo $reg_Result['reg_name'];  ?>" id="reg_name" name="reg_name" class="validate"> </div>
+						</div>
+						<div class="col-md-6">
+							<label>Last Name</label>
+							<div class="input-field">
+								<input type="text" value="<?php echo $reg_Result['reg_lstname'];  ?>" id="reg_lstname" name="reg_lstname" class="validate"> </div>
+						</div>
 						</div>
 						<div>
 							<label class="col s4">Email Address</label>
@@ -600,8 +624,9 @@
 							</div>
 						    <div class="col-md-6" >
 								  	     <div id="upload-demo" style="width:350px">
-								  	     	<button  class="btn upload-result">Upload Image</button>
+								  	     	
 								  	     </div>
+								  	     <button id="upload-demo-btn"  class="btn upload-result">Crop Image</button>
 								  	     
 								  	     <div id="upload-demo-i">
 								  	     	

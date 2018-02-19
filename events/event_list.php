@@ -33,15 +33,20 @@
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
 
-						<div class="row">
-							<div class="col s1"></div>
-							<div class="col s8  ">	
-								<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-							</div>
-							<div class="">
-								<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-							</div>
-						</div>
+						
+						<?php
+
+								if (mysqli_num_rows($event_resp) > 0) { ?>
+
+								<div class="row">
+									<div class="col s1"></div>
+									<div class="col s8  ">	
+										<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
+									</div>
+									<div class="">
+										<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
+									</div>
+								</div>
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
@@ -55,12 +60,10 @@
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
-								<?php
-
-								if (mysqli_num_rows($event_resp) > 0) { 
+								
 
 								
-                                   while ($result=mysqli_fetch_assoc($event_resp)) { ?>
+                                <?php   while ($result=mysqli_fetch_assoc($event_resp)) { ?>
 
                                    <tr>
 									<td class="td-name"><?php echo $result['event_name'];   ?></td>
@@ -109,11 +112,23 @@
     <?php    
   // print_r($result);
        }
-        	}?>
+        	?>
 								
 						
 							</tbody>
 						</table>
+						<?php 	}else{ ?>
+ 
+						<div class="text-center"><span>You have no Event Packages</span></div>
+						<div class="row common-top text-center">
+							<div class="">
+								
+								<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-events.php">Add New Event</a>
+								
+							</div>
+						</div>
+
+						 <?php	}?>
 					</div>
 				</div>
 				</div>

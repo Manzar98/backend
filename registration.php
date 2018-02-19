@@ -84,10 +84,17 @@
 				 	<div class="db-profile-edit">
 
 					<form class="col s12" action="registration-post.php" method="post" role="form" id="registor-form" enctype="multipart/form-data">
-						<div>
-							<label class="col s4">Name</label>
-							<div class="input-field col s8">
+						<div class="row">
+						<div class="col-md-6">
+							<label>First Name</label>
+							<div class="input-field">
 								<input type="text" value="" id="reg_name" name="reg_name" class="validate"> </div>
+						</div>
+						<div class="col-md-6">
+							<label >Last Name</label>
+							<div class="input-field ">
+								<input type="text" value="" id="reg_lstname" name="reg_lstname" class="validate"> </div>
+						</div>
 						</div>
 						<div>
 							<label class="col s4">Email Address</label>
@@ -192,8 +199,9 @@
 							</div>
 						    <div class="col-md-6" >
 								  	     <div id="upload-demo" style="width:350px">
-								  	     	<button  class="btn upload-result">Upload Image</button>
+								  	     	
 								  	     </div>
+								  	     <button id="upload-demo-btn"  class="btn upload-result">Crop Image</button>
 								  	     
 								  	     <div id="upload-demo-i">
 								  	     	

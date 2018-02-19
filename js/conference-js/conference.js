@@ -14,6 +14,18 @@ $("#pro-sub-btn").click(function(){
             });
      return;
    }
+
+    if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
+        
+
+            $('#hidden_checkbox').val('on');
+
+        
+   }else{
+               $('#hidden_checkbox').val('off');
+
+   }
+   
    var validator= $("#conference-form").validate({
       
        errorElement : 'div',

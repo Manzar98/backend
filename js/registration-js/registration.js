@@ -77,6 +77,9 @@
        reg_name:{
         required:true
       },
+      reg_lstname:{
+        required:true
+      },
       reg_email:{
         required:true,
         email:true
@@ -258,6 +261,9 @@
       rules:{
        
        reg_name:{
+        required:true
+      },
+      reg_lstname:{
         required:true
       },
       reg_email:{
@@ -483,6 +489,7 @@
 
     $('#upload-demo').hide();
     $('#upload-demo-i').hide();
+    $('#upload-demo-btn').hide();
 $uploadCrop = $('#upload-demo').croppie({
     enableExif: true,
     viewport: {
@@ -499,6 +506,7 @@ $uploadCrop = $('#upload-demo').croppie({
 
 $('#upload').on('change', function () { 
   $('#upload-demo').show();
+  $('#upload-demo-btn').show();
   var reader = new FileReader();
     reader.onload = function (e) {
       $uploadCrop.croppie('bind', {
@@ -526,6 +534,7 @@ $('.upload-result').on('click', function (ev) {
       success: function (data) {
          
                $('#upload-demo').hide();
+               $('#upload-demo-btn').hide();
                $("#upload-demo-i").show();
                 html = '<img src="' + resp + '" />';
                $("#upload-demo-i").html(html);

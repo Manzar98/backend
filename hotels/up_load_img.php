@@ -40,7 +40,7 @@
 
                       Dropzone.options.imageUpload = {
 
-                        maxFilesize:10,
+                        maxFilesize:3,
                         acceptedFiles: ".jpeg,.jpg,.png,.gif",
                         previewTemplate : `<div class="dz-preview dz-file-preview">
                         <div class="dz-image">
