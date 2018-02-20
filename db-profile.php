@@ -418,7 +418,7 @@
 							<a href="manage-listing.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
-							<a href="paid_ads.php"><img src="images/icon/db5.png" alt="" /> Paid Ads</a>
+							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
 						<li>
 							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>

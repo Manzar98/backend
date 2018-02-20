@@ -193,7 +193,7 @@
                     $.ajax({
 
                              type: "POST",
-                             url: "registration-post.php",
+                             url: "../registration/registration-post.php",
                              data: $('form').serialize(),
                              success:function(res){
 
@@ -212,7 +212,7 @@
                                              closeOnConfirm: true,
                                              html: false
                                            }, function(){
-                                            window.location = "index.php";
+                                            window.location = "../index.php";
                                           });
                                 },3000)
                                }else{
@@ -372,7 +372,7 @@
                             $.ajax({
 
                                   type: "POST",
-                                  url: "registration-update.php",
+                                  url: "../registration/registration-update.php",
                                   data: $("form").serialize(),
                                   success:function(res){
 
@@ -391,7 +391,7 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
-                                               window.location = "db-profile.php?id="+data.id;
+                                               window.location = "../db-profile.php?id="+data.id;
                                              });
                                    },3000)
                                   }else{
@@ -422,7 +422,7 @@
               $.ajax({
 
                                   type: "POST",
-                                  url: "registration-update.php",
+                                  url: "../registration/registration-update.php",
                                   data: $("form").serialize(),
                                   success:function(res){
 
@@ -441,7 +441,7 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
-                                               window.location = "db-profile.php?id="+data.id;
+                                               window.location = "../db-profile.php?id="+data.id;
                                              });
                                    },3000)
                                   }else{

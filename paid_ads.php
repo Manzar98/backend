@@ -3,7 +3,11 @@
     if(!$_SESSION['login']){
    header("location: ../index.php");
    die;
-}
+
+   }
+
+
+
      
  
 ?>
@@ -15,7 +19,7 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
-	<title>Profile</title>
+	<title>Featured Ads</title>
 	<!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -392,7 +396,7 @@
 		<div class="dashboard">
 			<div class="db-left">
 				<div class="db-left-1"  >
-					<h4><?php echo $_SESSION['reg_name']; ?></h4>
+					<h4><?php echo $_SESSION['reg_name']; ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
 					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
 				<div class="db-left-2">
@@ -407,7 +411,7 @@
 							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
-							<a href="paid_ads.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
+							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
 						<li>
 							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
@@ -426,20 +430,82 @@
 			</div>
 			<div class="db-cent">
 				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
-					<div  style="visibility: hidden;">
+					
 					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
 					<h4>Welcome to your dashboard</h4>
-					</div></div>
-					<div class="db-cent-3">
-                          
-
 					</div>
-				
+					<div class="db-cent-3">
+					<div class="db-cent-table db-com-table">
+						<div class="db-title">
+							<h3><img src="../images/icon/dbc5.png" alt=""/>Featured an Ads</h3>
+							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+						</div>
+						 
+                         <div class="db-profile-edit paid-ads">
+					
+                   <form class="col s12"  data-toggle="validator" id="paid-form" role="form" action="paid-post.php" method="POST" enctype="multipart/form-data">
 
 
+                       <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'];?>" id="user_id"> 
+					   <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="select_parent"  >
 
+							<label class="col s4 pull-left">Select One</label>
+							
+							 <select   class="" name="select_any" onchange="showlist(this)">
+								<option value=""  disabled selected>Select One</option>
+								<option value="hotel">Hotels</option>
+								<option value="room">Rooms</option>
+								<option value="banquet">Banquets</option>
+								<option value="conference">Conferences</option>
+								<option value="tour">Tours</option>
+								<option value="event">Events</option>
+
+							</select> 
+						</div>
+                     
+                     <div class="row">
+						<div class="col-md-6 common-wrapper comon_dropdown_botom_line is_validate_select"   >
+                         <div id="list_of_any">
+					 
+						</div>
+                       </div>
+						<div class="col-md-6 common-wrapper comon_dropdown_botom_line is_validate_select" >
+                         <div id="on_which_page">
+							<label class=" pull-left">On which page</label>
+							
+							 <select   class="" name="on_which_page" onchange="on_which(this)">
+								<option value=""  disabled selected>Select One</option>
+								<option value="home" >Home Page</option>
+
+							</select> 
+						</div>
+						</div>
+						</div>
+
+						<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="no_of_days"  >
+
+							<label class="col s4 pull-left">No of days</label>
+							
+							 <select   class="" name="no_of_days">
+								<option value=""  disabled selected>Select One</option>
+								<option value="day" >One day</option>
+								<option value="week" >One week</option>
+								<option value="month" >One month</option>
+								<option value="year" >One year</option>
+								
+
+							</select> 
+						</div>
+                         <div class="common-top">
+							<div class="input-field col s8">
+								<input type="button" value="Checkout" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_paid"> </div>
+						</div>
+						</form>
+				</div>
 			
 			</div>
+      </div>
+  </div>
 
 			<div class="db-righ">
 				<h4>Notifications(18)</h4>
@@ -845,7 +911,8 @@
 	<script src="js/additional-methods.js"></script>
 	<script src="js/sweetalert.min.js"></script>
    
-    
+ 
+
     
 </body>
 

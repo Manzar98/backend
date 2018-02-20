@@ -110,7 +110,7 @@
 							</div>
 							<div class="col-md-3  pull-right">
 								<p class="registor">
-									 <a href="registration.php">Registration?</a>
+									 <a href="registration/registration.php">Registration?</a>
 								</p>
 							</div>
 						</div>

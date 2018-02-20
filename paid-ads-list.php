@@ -1,32 +1,26 @@
-
-<?php
- session_start();
- if(!$_SESSION['login']){
+<?php 
+    session_start();
+    if(!$_SESSION['login']){
    header("location: ../index.php");
    die;
-}
-     include"common-apis/reg-api.php";
 
+   }
+ include 'common-sql.php';
+$paidQuery=    'SELECT * FROM paid_ads where user_id="'.$_SESSION['user_id'].'" ORDER BY paid_id DESC ';
+          $ads_resp =mysqli_query($conn,$paidQuery)  or die(mysqli_error($conn));
 
-    
-
-    $reg_hotel=select('hotel',array("user_id"=>$_SESSION['user_id']));
-    $reg_room=select('room',array("user_id"=>$_SESSION['user_id']));
-    $reg_banquet=select('banquet',array("user_id"=>$_SESSION['user_id']));
-    $reg_conference=select('conference',array("user_id"=>$_SESSION['user_id']));
-    $reg_tour=select('tour',array("user_id"=>$_SESSION['user_id']));
-    $reg_event=select('event',array("user_id"=>$_SESSION['user_id']));
+     
+ 
 ?>
-
 
 
 <!DOCTYPE html>
 <html lang="en">
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
-	<title>Manage Lists</title>
+	<title>List of featured ads</title>
 	<!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,6 +36,8 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
 	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/sweetalert.css" rel="stylesheet">
+	<link href="css/croppie.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -392,22 +388,28 @@
 		</div>
 		<!--TOP SECTION-->
 		<!--DASHBOARD SECTION-->
+	  
+          
+         
+          	
+          
+		
 		<div class="dashboard">
 			<div class="db-left">
-				<div class="db-left-1" >
-					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
+				<div class="db-left-1"  >
+					<h4><?php echo $_SESSION['reg_name']; ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
 					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
 				<div class="db-left-2">
 					<ul>
 						<li>
-							<a href="dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
+							<a href="dashboard.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
-							<a href="add-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
+							<a href="add-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
 						</li>
 						<li>
-							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
+							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
 							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
@@ -416,7 +418,7 @@
 							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
 						</li>
 						<li>
-							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
+							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
 						</li>
 						<li>
 							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
@@ -432,291 +434,83 @@
 					
 					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
 					<h4>Welcome to your dashboard</h4>
-					 </div>
-				<div class="db-cent-2">
-					<div class="db-2-main-1">
-						<a href="
-						hotels/hotel_list.php"><div class="db-2-main-2"> <img src="images/icon/dbc5.png" alt=""> <span>Hotels</span>
-						<?php if (mysqli_num_rows($reg_hotel)<1) {?>
-
-								  <h2>0</h2>
-						<?php 	}else{ ?>
-
-                                   <h2><?php echo mysqli_num_rows($reg_hotel) ?></h2> 
-
-						<?php } ?>
-							
-						</div></a>
 					</div>
-
-					<a href="rooms/room_list.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc6.png" alt=""> <span>Rooms</span>
-							 
-						<?php if (mysqli_num_rows($reg_room)<1) {?>
-						
-								  <h2>0</h2>
-						<?php 	}else{ ?>
-
-                                   <h2><?php echo mysqli_num_rows($reg_room) ?></h2> 
-
-						<?php } ?> 
-
-						</div>
-					</div></a>
-					<a href="banquets/banquet_list.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Banquet Halls</span>
-							
-                        <?php if (mysqli_num_rows($reg_banquet)<1) {?>
-						
-								  <h2>0</h2>
-						<?php 	}else{ ?>
-
-                                   <h2><?php echo mysqli_num_rows($reg_banquet) ?></h2> 
-
-						<?php } ?> 
-
-						</div>
-					</div></a>
-
-					<a href="conferences/conference_list.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Conference Halls</span>
-							
-                        <?php if (mysqli_num_rows($reg_conference)<1) {?>
-						
-								  <h2>0</h2>
-						<?php 	}else{ ?>
-
-                                   <h2><?php echo mysqli_num_rows($reg_conference) ?></h2> 
-
-						<?php } ?>  
-						</div>
-					</div></a>
-					
-					<a href="tours/tour_list.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Tour Packages</span>
-							
-						<?php if (mysqli_num_rows($reg_tour)<1) {?>
-						
-								  <h2>0</h2>
-						<?php 	}else{ ?>
-
-                                   <h2><?php echo mysqli_num_rows($reg_tour) ?></h2> 
-
-						<?php } ?>  
-						</div>
-					</div></a>
-
-					<a href="events/event_list.php"><div class="db-2-main-1">
-						<div class="db-2-main-2"> <img src="images/icon/dbc3.png" alt=""> <span>Event Packages</span>
-							
-						<?php if (mysqli_num_rows($reg_event)<1) {?>
-						
-								  <h2>0</h2>
-						<?php 	}else{ ?>
-
-                                   <h2><?php echo mysqli_num_rows($reg_event) ?></h2> 
-
-						<?php } ?>   
-						</div>
-					</div></a>
-				</div>
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
-							<h3><img src="images/icon/dbc5.png" alt=""/> My Bookings</h3>
+							<h3><img src="../images/icon/dbc5.png" alt=""/>My Featured Ads</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+
 						</div>
-						<table class="bordered responsive-table">
+
+						
+						<?php
+
+								if (mysqli_num_rows($ads_resp) > 0) { ?>
+                              <div class="row common-top ">
+							<div class="featured_btn">
+								
+								<a class="waves-effect waves-light btn" href="paid_ads.php">Add Ads</a>
+								
+							</div>
+						</div>
+								 
+						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>City</th>
-									<th>Arrival</th>
-									<th>Departure</th>
-									<th>Members</th>
-									<th>Payment</th>
+									<th>Select One</th>
+									<th>List of</th>
+									<th>On which page</th>
+									<th>No of days</th>
+									<th>Status</th>
+									
+									
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
+							<tbody class="wrap-td">
+								
+
+								
+                                <?php   while ($result=mysqli_fetch_assoc($ads_resp)) { ?>
+
+                                   <tr>
+									<td class="td-name"><?php echo $result['select_any'];   ?></td>
+									<td class="text-center"><?php echo $result['list_of_any']; ?></td>
+									<td class="text-center"><?php echo $result['on_which_page'];   ?></td>
+									<td class="text-center"><?php echo $result['no_of_days'];   ?></td>
+									<td class="text-center"><a onclick="show_pause()" id="play"><i class="fa fa-play" aria-hidden="true"></i></a>
+										<a onclick="show_play()" id="pause" style="display: none;"><i class="fa fa-pause" aria-hidden="true"></i></a></td>
+									
+									
 								</tr>
-								<tr>
-									<td>02</td>
-									<td>Liam</td>
-									<td>+01 2484 6521</td>
-									<td><span class="db-tab-hi">Bangalore,</span>India</td>
-									<td>18apr</td>
-									<td>24apr</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Logan</td>
-									<td>+01 6524 6521</td>
-									<td><span class="db-tab-hi">Los Angeles,</span>USA</td>
-									<td>05dec</td>
-									<td>12dec</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Michael</td>
-									<td>+01 3652 1425</td>
-									<td><span class="db-tab-hi">Bristol,</span>UK</td>
-									<td>14jen</td>
-									<td>24jen</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
+
+
+
+            
+    <?php    
+  // print_r($result);
+       }
+        	?>
+								
+						
 							</tbody>
 						</table>
-					</div>
-				</div>
-				<div class="db-cent-3">
-					<div class="db-cent-table db-com-table">
-						<div class="db-title">
-							<h3><img src="images/icon/dbc6.png" alt=""/> My Events</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+						<?php 	}else{ ?>
+ 
+						<div class="text-center"><span>You have no featured ads</span></div>
+						<div class="row common-top text-center">
+							<div class="">
+								
+								<a class="waves-effect waves-light btn" href="paid_ads.php">Add Ads</a>
+								
+							</div>
 						</div>
-						<table class="bordered responsive-table">
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>City</th>
-									<th>Arrival</th>
-									<th>Departure</th>
-									<th>Members</th>
-									<th>Payment</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>Liam</td>
-									<td>+01 2484 6521</td>
-									<td><span class="db-tab-hi">Bangalore,</span>India</td>
-									<td>18apr</td>
-									<td>24apr</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Logan</td>
-									<td>+01 6524 6521</td>
-									<td><span class="db-tab-hi">Los Angeles,</span>USA</td>
-									<td>05dec</td>
-									<td>12dec</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Michael</td>
-									<td>+01 3652 1425</td>
-									<td><span class="db-tab-hi">Bristol,</span>UK</td>
-									<td>14jen</td>
-									<td>24jen</td>
-									<td>12</td>
-									<td><a href="#" class="db-not-success">Pending</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Alvin</td>
-									<td>+01 4215 3521</td>
-									<td><span class="db-tab-hi">New york,</span>USA</td>
-									<td>12may</td>
-									<td>20may</td>
-									<td>12</td>
-									<td><a href="#" class="db-success">Success</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+
+						 <?php	}?>
 					</div>
 				</div>
-				<div class="db-cent-3">
-					<div class="db-cent-acti">
-						<div class="db-title">
-							<h3><img src="images/icon/dbc1.png" alt=""/> My Activity</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-						</div>
-						<ul>
-							<li>
-								<div class="db-cent-wr-img"> <img src="images/users/3.png" alt=""> </div>
-								<div class="db-cent-wr-con">
-									<h6>Hotel Booking Canceled</h6> <span class="lr-revi-date">21th July, 2016</span>
-									<p>The hotel is clean, convenient and good value for money. Staff are courteous and helpful. However, they need more training to be efficient.</p>
-									<ul>
-										<li><a href="#!"><i class="fa fa-facebook" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-google-plus" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-youtube" aria-hidden="true"></i></a> </li>
-									</ul>
-								</div>
-							</li>
-							<li>
-								<div class="db-cent-wr-img"> <img src="images/users/3.png" alt=""> </div>
-								<div class="db-cent-wr-con">
-									<h6>Hotel Payment Success</h6> <span class="lr-revi-date">08th August, 2016</span>
-									<p>The hotel is clean, convenient and good value for money. Staff are courteous and helpful. However, they need more training to be efficient.</p>
-									<ul>
-										<li><a href="#!"><i class="fa fa-facebook" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-google-plus" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </li>
-										<li><a href="#!"><i class="fa fa-youtube" aria-hidden="true"></i></a> </li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+  </div>
+
 			<div class="db-righ">
 				<h4>Notifications(18)</h4>
 				<ul>
@@ -762,7 +556,11 @@
 					</li>
 				</ul>
 			</div>
+
+
 		</div>
+
+			 
 		<!--END DASHBOARD SECTION-->
 		<!--TOP SECTION-->
 		<div class="hom-footer-section">
@@ -1050,6 +848,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<!--ALL SCRIPT FILES-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
@@ -1057,9 +856,38 @@
 	<script src="js/bootstrap.js" type="text/javascript"></script>
 	<script src="js/materialize.min.js" type="text/javascript"></script>
 	<script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
+	<script src="js/croppie.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/jquery-validation.js"></script>
+	<script src="js/additional-methods.js"></script>
+	<script src="js/sweetalert.min.js"></script>
+   
+ 
+<script type="text/javascript">
+$('#pause').hide();	
+function show_pause() {
+	
+	$('#play').hide();
+	$('#pause').show();
+}
+
+function show_play() {
+	
+	$('#play').show();
+	$('#pause').hide();
+}
+</script>
+    
 </body>
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:50 GMT -->
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 </html>
+
+
+	
+
+
+
+
+	

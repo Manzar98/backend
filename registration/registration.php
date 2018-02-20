@@ -20,15 +20,15 @@
 	<!-- GOOGLE FONT -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins%7CQuicksand:500,700" rel="stylesheet">
 	<!-- FONTAWESOME ICONS -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
 	<!-- ALL CSS FILES -->
-	<link href="css/materialize.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../css/materialize.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
-	<link href="css/responsive.css" rel="stylesheet">
-	<link href="css/sweetalert.css" rel="stylesheet">
-	<link href="css/croppie.css" rel="stylesheet">
+	<link href="../css/responsive.css" rel="stylesheet">
+	<link href="../css/sweetalert.css" rel="stylesheet">
+	<link href="../css/croppie.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -60,7 +60,7 @@
 				</div>
 				<div class="row">
 					<div class="logo">
-						<a href="main.html"><img src="images/logo.png" alt="" />
+						<a href="../main.html"><img src="../images/logo.png" alt="" />
 						</a>
 					</div>
 					
@@ -295,9 +295,9 @@
 					<div class="foot-com foot-2">
 						<h5>Phone: (+404) 142 21 23 78</h5> </div>
 					<div class="foot-com foot-3">
-						<!--<a class="waves-effect waves-light" href="#">online room booking</a>--><a class="waves-effect waves-light" href="booking.html">room reservation</a> </div>
+						<!--<a class="waves-effect waves-light" href="#">online room booking</a>--><a class="waves-effect waves-light" href="../booking.html">room reservation</a> </div>
 					<div class="foot-com foot-4">
-						<a href="#"><img src="images/card.png" alt="" />
+						<a href="#"><img src="../images/card.png" alt="" />
 						</a>
 					</div>
 				</div>
@@ -313,28 +313,28 @@
 						<div>
 							<div class="container">
 								<div class="row">
-									<div class="col-sm-12 col-md-3 foot-logo"> <img src="images/logo1.png" alt="logo">
+									<div class="col-sm-12 col-md-3 foot-logo"> <img src="../images/logo1.png" alt="logo">
 										<p class="hasimg">Hotels worldwide incl. Infos, Ratings and Photos. Make your Hotel Reservation cheap.</p>
 										<p class="hasimg">The top-rated hotel booking services.</p>
 									</div>
 									<div class="col-sm-12 col-md-3">
 										<h4>Support &amp; Help</h4>
 										<ul class="two-columns">
-											<li><a href="dashboard.html">Dashboard</a>
+											<li><a href="../dashboard.html">Dashboard</a>
 											</li>
-											<li><a href="db-activity.html">DB Activity</a>
+											<li><a href="../db-activity.html">DB Activity</a>
 											</li>
-											<li><a href="booking.html">Booking</a>
+											<li><a href="../booking.html">Booking</a>
 											</li>
-											<li><a href="contact-us.html">Contact Us</a>
+											<li><a href="../contact-us.html">Contact Us</a>
 											</li>
-											<li><a href="about-us.html">About Us</a>
+											<li><a href="../about-us.html">About Us</a>
 											</li>
-											<li><a href="aminities.html">Aminities</a>
+											<li><a href="../aminities.html">Aminities</a>
 											</li>
-											<li><a href="blog.html">Blog</a>
+											<li><a href="../blog.html">Blog</a>
 											</li>
-											<li><a href="menu1.html">Food Menu</a>
+											<li><a href="../menu1.html">Food Menu</a>
 											</li>
 										</ul>
 									</div>
@@ -372,7 +372,7 @@
 								<div class="row">
 									<div class="col-sm-12 col-md-3">
 										<h4>Payment Options</h4>
-										<p class="hasimg"> <img src="images/payment.png" alt="payment"> </p>
+										<p class="hasimg"> <img src="../images/payment.png" alt="payment"> </p>
 									</div>
 									<div class="col-sm-12 col-md-4">
 										
@@ -412,19 +412,19 @@
 	</section>
 	<!--ALL SCRIPT FILES-->
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/bootstrap.js" type="text/javascript"></script>
-	<script src="js/materialize.min.js" type="text/javascript"></script>
-	<script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
-	<script src="js/croppie.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/jquery-validation.js"></script>
-	<script src="js/additional-methods.js"></script>
-	<script src="js/sweetalert.min.js"></script>
-    <script src="js/registration-js/registration.js"></script>
-    <script src="js/method-js/email-validation.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+	<script src="../js/angular.min.js"></script>
+	<script src="../js/bootstrap.js" type="text/javascript"></script>
+	<script src="../js/materialize.min.js" type="text/javascript"></script>
+	<script src="../js/jquery.mixitup.min.js" type="text/javascript"></script>
+	<script src="../js/croppie.js"></script>
+	<script src="../js/custom.js"></script>
+	<script src="../js/jquery-validation.js"></script>
+	<script src="../js/additional-methods.js"></script>
+	<script src="../js/sweetalert.min.js"></script>
+    <script src="../js/registration-js/registration.js"></script>
+    <script src="../js/method-js/email-validation.js"></script>
     
 <script type="text/javascript">
  

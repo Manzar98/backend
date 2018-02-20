@@ -1,5 +1,5 @@
 <?php 
-  include 'common-sql.php';
+  include '../common-sql.php';
  // print_r($_POST);
   if (!empty($_POST['profile_img']) && !empty($_POST['coverimg'])) {
 

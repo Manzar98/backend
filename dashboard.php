@@ -400,10 +400,10 @@
 							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
-							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
+							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
 						<li>
-							<a href="db-activity.html"><img src="images/icon/db5.png" alt="" /> Activity</a>
+							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
 						</li>
 						<li>
 							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>

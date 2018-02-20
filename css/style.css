@@ -4838,7 +4838,8 @@ table#h_table tr:hover td.tdwrap {
 }
 #pro-sub-btn_hotel, #pro-sub-btn_room, #pro-sub-btn_banquet, 
 #pro-sub-btn_conference, #pro-sub-btn_tour, #pro-sub-btn_event, 
-#pro-sub-btn_registor, #pro-sub-btn_registor_update, #pro-sub-btn_password_update{
+#pro-sub-btn_registor, #pro-sub-btn_registor_update,
+ #pro-sub-btn_password_update, #pro-sub-btn_paid{
     
     background: #f4364f;
     padding: 7px 25px;
@@ -4978,4 +4979,14 @@ display: none;
 
     margin: 0 auto;
     width: 50%;
+}
+
+.paid-ads label{
+    font-size: 13px ;
+    color: #333 ;
+}
+.featured_btn{
+    float: right;
+    margin-bottom: 20px;
+    padding-right: 20px;
 }

@@ -1,6 +1,6 @@
 <?php
   
-include"common-sql.php";
+include"../common-sql.php";
   // print_r($_POST);
 
 
