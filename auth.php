@@ -19,8 +19,10 @@ if(mysqli_num_rows($result) == 1){
 	//echo 'Successfuly authorized';
 $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this  
 	 //echo $crntresult['id'] ;
+  
 	 session_start();
-	    $_SESSION['login'] = true;
+
+	      $_SESSION['login'] = true;
         $_SESSION['reg_email']=$email;
         $_SESSION['reg_password']=$password;
         $_SESSION['user_id']=$crntresult['user_id'];
@@ -29,6 +31,7 @@ $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this
         $_SESSION['reg_lstname']=$crntresult['reg_lstname'];
         $_SESSION['reg_city']=$crntresult['reg_city'];
         $_SESSION['reg_country']=$crntresult['reg_country'];
+        $_SESSION['reg_photo']=$crntresult['reg_photo'];
 
         $res_Array=array(
           "status"=>"Success",

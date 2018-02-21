@@ -124,9 +124,10 @@
     background-image: url('images/picker_sprite-v107.png');
     background-position: -60px -490px;
     width: 74px;
-    height: 86px;
+    height: 70px;
     background-repeat: no-repeat;
-    margin: 30px auto 10px;
+    margin: 0px auto 0px;
+    margin-top: -47px;
 }
 
 .dz-clickable span {
@@ -186,10 +187,10 @@
 
 
 .dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete {
-    bottom: 140px;
+    bottom: 70px;
 }
 
 .dz-preview.dz-error.dz-complete.dz-image-preview {
-      bottom: 140px;
+      bottom: 70px;
 }
   </style>

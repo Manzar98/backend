@@ -1752,7 +1752,7 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
     width: 100%;
 }
 .db-left-1 h4 {
-    margin-top: 0px;
+    margin-top: 20px;
     margin-bottom: 0px;
     font-weight: 100;
     font-size: 24px;
@@ -4989,4 +4989,45 @@ display: none;
     float: right;
     margin-bottom: 20px;
     padding-right: 20px;
+}
+.paly_pause .play, .pause{
+
+    cursor: pointer;
+}
+#list_of_any .select2-container--default .select2-selection--single{
+
+    background-color: #fff;
+    border: inherit;
+    border-radius: inherit;
+    border-bottom: 1px solid #575e63;
+}
+
+#list_of_any .select2-container--default 
+.select2-selection--single .select2-selection__arrow b {
+    border-color: #000 transparent transparent transparent;
+    border-style: solid;
+    border-width: 7px 3px 0 4px;
+    height: 0;
+    left: 80%;
+    margin-left: -4px;
+    margin-top: -2px;
+    position: absolute;
+    top: 0%;
+    width: 0;
+}
+#list_of_any .select2-container--default 
+.select2-selection--single 
+.select2-selection__rendered {
+    color: #444;
+    line-height: 28px;
+    font-size: 10px;
+    float: left;
+}
+.select2 {
+width:100%!important;
+}
+#list_of_any .select2-container--default 
+.select2-selection--single 
+.select2-selection__clear{
+   display: none;
 }

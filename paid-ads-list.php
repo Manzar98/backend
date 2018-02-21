@@ -1,19 +1,3 @@
-<?php 
-    session_start();
-    if(!$_SESSION['login']){
-   header("location: ../index.php");
-   die;
-
-   }
- include 'common-sql.php';
-$paidQuery=    'SELECT * FROM paid_ads where user_id="'.$_SESSION['user_id'].'" ORDER BY paid_id DESC ';
-          $ads_resp =mysqli_query($conn,$paidQuery)  or die(mysqli_error($conn));
-
-     
- 
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,385 +5,14 @@ $paidQuery=    'SELECT * FROM paid_ads where user_id="'.$_SESSION['user_id'].'" 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
 	<title>List of featured ads</title>
-	<!-- META TAGS -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- FAV ICON(BROWSER TAB ICON) -->
-	<link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
-	<!-- GOOGLE FONT -->
-	<link href="https://fonts.googleapis.com/css?family=Poppins%7CQuicksand:500,700" rel="stylesheet">
-	<!-- FONTAWESOME ICONS -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<!-- ALL CSS FILES -->
-	<link href="css/materialize.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-	<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
-	<link href="css/responsive.css" rel="stylesheet">
-	<link href="css/sweetalert.css" rel="stylesheet">
-	<link href="css/croppie.css" rel="stylesheet">
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-</head>
+	<?php  include 'header-main.php'; 
 
-<body data-ng-app="">
-	<!--MOBILE MENU-->
-	<section>
-		<div class="mm">
-			<div class="mm-inn">
-				<div class="mm-logo">
-					<a href="main.html"><img src="images/logo.png" alt="">
-					</a>
-				</div>
-				<div class="mm-icon"><span><i class="fa fa-bars show-menu" aria-hidden="true"></i></span>
-				</div>
-				<div class="mm-menu">
-					<div class="mm-close"><span><i class="fa fa-times hide-menu" aria-hidden="true"></i></span>
-					</div>
-					<ul>
-						<li><a href="main.html">Home - Default</a>
-						</li>
-						<li><a href="index-1.html">Home - Reservation</a>
-						</li>
-						<li><a href="index-2.html">Home - FullSlider</a>
-						</li>
-						<li><a href="index-3.html">Home - Block Color</a>
-						</li>
-						<li><a href="room-details.html">Room Details</a>
-						</li>
-						<li><a href="room-details-block.html">Room Details Block</a>
-						</li>
-						<li><a href="hotel-details.html">Hotel Details</a>
-						</li>
-						<li><a href="hotel-detail.html">Hotel Details - 1</a>
-						</li>
-						<li><a href="about-us.html">About Us</a>
-						</li>
-						<li><a href="aminities.html">Aminities</a>
-						</li>
-						<li><a href="aminities1.html">Aminities - 1</a>
-						</li>
-						<li><a href="menu.html">Food Menu</a>
-						</li>
-						<li><a href="menu1.html">Food Menu - 1</a>
-						</li>
-						<li><a href="blog.html">Blog</a>
-						</li>
-						<li><a href="blog-inner.html">Blog Inner</a>
-						</li>
-						<li><a href="dashboard.html">User Dashboard</a>
-						</li>
-						<li><a href="db-activity.html">DB Activity</a>
-						</li>
-						<li><a href="db-booking.html">DB-Booking</a>
-						</li>
-						<li><a href="db-event.html">DB-Event</a>
-						</li>
-						<li><a href="db-new-booking.html">DB New Booking</a>
-						</li>
-						<li><a href="booking.html">Booking</a>
-						</li>
-						<li><a href="collapsible.html">Collapsible</a>
-						</li>
-						<li><a href="events.html">Events</a>
-						</li>
-						<li><a href="form-fields.html">Form Fields</a>
-						</li>
-						<li><a href="preloading.html">Preloading</a>
-						</li>
-						<li><a href="gallery.html">Gallery</a>
-						</li>
-						<li><a href="gallery1.html">Gallery - 1</a>
-						</li>
-						<li><a href="gallery2.html">Gallery - 2</a>
-						</li>
-						<li><a href="detail.html">Room Detail</a>
-						</li>
-						<li><a href="all-rooms.html">All Rooms</a>
-						</li>
-						<li><a href="all-rooms1.html">All Rooms - 1</a>
-						</li>
-						<li><a href="services.html">Services</a>
-						</li>
-						<li><a href="services1.html">Services - 1</a>
-						</li>
-						<li><a href="typho-grid.html">Grid Layout</a>
-						</li>
-						<li><a href="typo-alert.html">Alert Messages</a>
-						</li>
-						<li><a href="typo-all-head.html">All Headers</a>
-						</li>
-						<li><a href="typo-badges-labels.html">Labels</a>
-						</li>
-						<li><a href="typo-buttons.html">Buttons</a>
-						</li>
-						<li><a href="typo-pagination.html">Pagination</a>
-						</li>
-						<li><a href="typo-progressbar.html">Progressbar</a>
-						</li>
-						<li><a href="typo-slider.html">Image Sliders</a>
-						</li>
-						<li><a href="typo-table.html">Table</a>
-						</li>
-						<li><a href="typo-buttons.html">Buttons</a>
-						</li>
-						<li><a href="typo-pagination.html">Pagination</a>
-						</li>
-						<li><a href="typo-progressbar.html">Progressbar</a>
-						</li>
-						<li><a href="sitemap.html">Sitemap</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--HEADER SECTION-->
-	<section>
-		<!--TOP SECTION-->
-		<div class="menu-section">
-			<div class="container">
-				<div class="row">
-					<div class="top-bar">
-						<ul>
-							<li><a class='dropdown-button' href='#' data-activates='dropdown1'> My Account <i class="fa fa-angle-down"></i></a>
-							</li>
-							<li><a href="all-hotels.html">Our Hotels</a>
-							</li>
-							<li><a href="about-us.html">About Us</a>
-							</li>
-							<li><a href="contact-us.html">Contact Us</a>
-							</li>
-							<li><a class='dropdown-button' href='#' data-activates='dropdown2'>Language <i class="fa fa-angle-down"></i></a>
-							</li>
-							<li><a href="#">Toll Free No: 1800 102 7275</a>
-							</li>
-						</ul>
-					</div>
-					<div class="all-drop-down">
-						<!-- Dropdown Structure -->
-						<ul id='dropdown1' class='dropdown-content drop-con-man'>
-							<li>
-								<a href="dashboard.html"><img src="images/icon/15.png" alt=""> My Account</a>
-							</li>
-							<li>
-								<a href="db-profile.html"><img src="images/icon/2.png" alt=""> My Profile</a>
-							</li>
-							<li>
-								<a href="db-booking.html"><img src="images/icon/16.png" alt=""> My Bookings</a>
-							</li>
-							<li>
-								<a href="db-event.html"><img src="images/icon/17.png" alt=""> My Events</a>
-							</li>
-							<li>
-								<a href="db-activity.html"><img src="images/icon/14.png" alt=""> My Activity</a>
-							</li>
-							<li>
-								<a href="#!" data-toggle="modal" data-target="#modal2"><img src="images/icon/5.png" alt=""> Register</a>
-							</li>
-							<li>
-								<a href="#!" data-toggle="modal" data-target="#modal1"><img src="images/icon/6.png" alt=""> Log In</a>
-							</li>
-							<li>
-								<a href="#!" data-toggle="modal" data-target="#modal3"><img src="images/icon/13.png" alt=""> Forgot Password</a>
-							</li>
-						</ul>
-						<!-- Dropdown Structure -->
-						<ul id='drop-home' class='dropdown-content drop-con-man'>
-							<li><a href="main.html">Home - Default</a>
-							</li>
-							<li><a href="index-1.html">Home - Reservation</a>
-							</li>
-							<li><a href="index-2.html">Home - FullSlider</a>
-							</li>
-							<li><a href="index-3.html">Home - Block Color</a>
-							</li>
-						</ul>
-						<!-- Dropdown Structure -->
-						<ul id='dropdown2' class='dropdown-content drop-con-man'>
-							<li><a href="#!">English</a>
-							</li>
-							<li><a href="#!">Spanish</a>
-							</li>
-							<li><a href="#!">Hindi</a>
-							</li>
-							<li><a href="#!">Russian</a>
-							</li>
-							<li><a href="#!">Portuguese</a>
-							</li>
-						</ul>
-						<!-- ROOM Dropdown Structure -->
-						<ul id='drop-room' class='dropdown-content drop-con-man'>
-							<li><a href="all-rooms.html">All Suite Rooms</a>
-							</li>
-							<li><a href="room-details.html">Room Details</a>
-							</li>
-							<li><a href="room-details-block.html">Room Details Block</a>
-							</li>
-							<li><a href="room-details-1.html">Room Parallax</a>
-							</li>
-						</ul>
-						<!-- PAGES Dropdown Structure -->
-						<div id='drop-page' class='dropdown-content drop-con-man drop-full'>
-							<div class="mm-1">
-								<h4>Pages</h4>
-								<ul>
-									<li><a href="room-details.html">Room Details - 1</a>
-									</li>
-									<li><a href="room-details-1.html">Room Details - 2</a>
-									</li>
-									<li><a href="room-details-block.html">Room Details - 3</a>
-									</li>
-									<li><a href="all-rooms.html">All Rooms</a>
-									</li>
-									<li><a href="all-rooms1.html">All Rooms - 1</a>
-									</li>
-									<li><a href="aminities.html">Aminities</a>
-									</li>
-									<li><a href="aminities1.html">Aminities - 1</a>
-									</li>
-								</ul>
-							</div>
-							<div class="mm-1">
-								<h4>Pages</h4>
-								<ul>
-									<li><a href="dashboard.html">User Dashboard</a>
-									</li>
-									<li><a href="db-activity.html">DB Activity</a>
-									</li>
-									<li><a href="db-booking.html">DB-Booking</a>
-									</li>
-									<li><a href="db-event.html">DB-Event</a>
-									</li>
-									<li><a href="db-new-booking.html">DB New Booking</a>
-									</li>
-									<li><a href="booking.html">Booking</a>
-									</li>
-									<li><a href="contact-us.html">Contact Us</a>
-									</li>
-								</ul>
-							</div>
-							<div class="mm-1">
-								<h4>Pages</h4>
-								<ul>
-									<li><a href="blog.html">Blog</a>
-									</li>
-									<li><a href="blog-inner.html">Blog Inner</a>
-									</li>
-									<li><a href="events.html">Events</a>
-									</li>
-									<li><a href="gallery.html">Gallery</a>
-									</li>
-									<li><a href="gallery1.html">Gallery - 1</a>
-									</li>
-									<li><a href="gallery2.html">Gallery - 2</a>
-									</li>
-									<li><a href="collapsible.html">Collapsible</a>
-									</li>
-								</ul>
-							</div>
-							<div class="mm-1">
-								<h4>Pages</h4>
-								<ul>
-									<li><a href="about-us.html">About Us</a>
-									</li>
-									<li><a href="services.html">Services</a>
-									</li>
-									<li><a href="services1.html">Services - 1</a>
-									</li>
-									<li><a href="typho-grid.html">Grid Layout</a>
-									</li>
-									<li><a href="typo-alert.html">Alert Messages</a>
-									</li>
-									<li><a href="form-fields.html">Form Fields</a>
-									</li>
-									<li><a href="menu.html">Food Menu</a>
-									</li>
-								</ul>
-							</div>
-							<div class="mm-1">
-								<h4>Pages</h4>
-								<ul>
-									<li><a href="typo-all-head.html">All Headers</a>
-									</li>
-									<li><a href="typo-badges-labels.html">Labels</a>
-									</li>
-									<li><a href="typo-buttons.html">Buttons</a>
-									</li>
-									<li><a href="typo-pagination.html">Pagination</a>
-									</li>
-									<li><a href="typo-progressbar.html">Progressbar</a>
-									</li>
-									<li><a href="preloading.html">Preloading</a>
-									</li>
-									<li><a href="menu1.html">Food Menu - 1</a>
-									</li>
-								</ul>
-							</div>
-							<div class="mm-1">
-								<h4>Pages</h4>
-								<ul>
-									<li><a href="typo-slider.html">Image Sliders</a>
-									</li>
-									<li><a href="typo-table.html">Table</a>
-									</li>
-									<li><a href="typo-buttons.html">Buttons</a>
-									</li>
-									<li><a href="typo-pagination.html">Pagination</a>
-									</li>
-									<li><a href="typo-progressbar.html">Progressbar</a>
-									</li>
-									<li><a href="sitemap.html">Sitemap</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="logo">
-						<a href="main.html"><img src="images/logo.png" alt="" />
-						</a>
-					</div>
-					<div class="menu-bar">
-						<ul>
-							<li><a href="#" class='dropdown-button' data-activates='drop-home'>Home <i class="fa fa-angle-down"></i></a>
-							</li>
-							<li><a href="#" class='dropdown-button' data-activates='drop-room'>Rooms <i class="fa fa-angle-down"></i></a>
-							</li>
-							<li><a href="services.html">Services</a>
-							</li>
-							<li><a href="menu.html">Menu</a>
-							</li>
-							<li><a href="events.html">Events</a>
-							</li>
-							<li><a href="aminities1.html">Amenities</a>
-							</li>
-							<li><a href="#" class='dropdown-button' data-activates='drop-page'>Pages <i class="fa fa-angle-down"></i></a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--TOP SECTION-->
-		<!--DASHBOARD SECTION-->
-	  
-          
-         
-          	
-          
-		
-		<div class="dashboard">
-			<div class="db-left">
-				<div class="db-left-1"  >
-					<h4><?php echo $_SESSION['reg_name']; ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
-					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
-				</div>
+	include 'common-sql.php';
+	$paidQuery=    'SELECT * FROM paid_ads where user_id="'.$_SESSION['user_id'].'" ORDER BY paid_id DESC ';
+          $ads_resp =mysqli_query($conn,$paidQuery)  or die(mysqli_error($conn));
+
+
+	?>
 				<div class="db-left-2">
 					<ul>
 						<li>
@@ -469,17 +82,17 @@ $paidQuery=    'SELECT * FROM paid_ads where user_id="'.$_SESSION['user_id'].'" 
 							</thead>
 							<tbody class="wrap-td">
 								
-
+                                  <?php $i=0; ?>
 								
                                 <?php   while ($result=mysqli_fetch_assoc($ads_resp)) { ?>
 
-                                   <tr>
+                                   <tr class="">
 									<td class="td-name"><?php echo $result['select_any'];   ?></td>
 									<td class="text-center"><?php echo $result['list_of_any']; ?></td>
 									<td class="text-center"><?php echo $result['on_which_page'];   ?></td>
 									<td class="text-center"><?php echo $result['no_of_days'];   ?></td>
-									<td class="text-center"><a onclick="show_pause()" id="play"><i class="fa fa-play" aria-hidden="true"></i></a>
-										<a onclick="show_play()" id="pause" style="display: none;"><i class="fa fa-pause" aria-hidden="true"></i></a></td>
+									<td class="text-center paly_pause"><a onclick="show_pause(event)" id="play_<?php echo $i ?>" class="play"><i class="fa fa-play" aria-hidden="true"></i></a>
+										<a onclick="show_play()" id="pause_<?php echo $i ?>" style="display: none;" class="pause"><i class="fa fa-pause" aria-hidden="true"></i></a></td>
 									
 									
 								</tr>
@@ -489,7 +102,7 @@ $paidQuery=    'SELECT * FROM paid_ads where user_id="'.$_SESSION['user_id'].'" 
             
     <?php    
   // print_r($result);
-       }
+       $i++;}
         	?>
 								
 						
@@ -865,16 +478,19 @@ $paidQuery=    'SELECT * FROM paid_ads where user_id="'.$_SESSION['user_id'].'" 
  
 <script type="text/javascript">
 $('#pause').hide();	
-function show_pause() {
-	
-	$('#play').hide();
-	$('#pause').show();
-}
+function show_pause(event) {
+	 
+	 $(event.currentTarget).hide();
+	 
+	 console.log($(event.currentTarget).parents('.paly_pause').find('.pause').show());
+	 // debugger;
+} 
 
 function show_play() {
 	
-	$('#play').show();
-	$('#pause').hide();
+	$(event.currentTarget).hide();
+	 
+	 console.log($(event.currentTarget).parents('.paly_pause').find('.play').show());
 }
 </script>
     

@@ -1309,7 +1309,7 @@ function showlist(that){
            console.log(data);
         // debugger;
         var   dropdown='<label class="pull-left lbl-list">List of '+stored_tbl_name+"s"+'</label>'
-              dropdown+='<select name="list_of_any"  id="List_any" onchange="list_of(this)" >'
+              dropdown+='<select name="list_of_any" id="List_any" onchange="list_of(this)" >'
               dropdown+='<option  disabled selected>Select One</option>'
            $.each(data,function(k,val){
              
@@ -1318,7 +1318,11 @@ function showlist(that){
            });
            dropdown+='</select>';
             document.getElementById('list_of_any').innerHTML=dropdown;
-            $('#List_any').material_select();
+            // $('#List_any').material_select();
+            $("#List_any").select2({
+                    placeholder: "Select a State",
+                    allowClear: true
+             }); 
        }
     })
 
@@ -1380,7 +1384,7 @@ $('#loader').modal({dismissible: false});
                       closeOnConfirm: true,
                       html: false
                       }, function(){
-                       window.location = "";
+                       window.location = "paid-ads-list.php";
                     });
                               },3000)
                     }else{

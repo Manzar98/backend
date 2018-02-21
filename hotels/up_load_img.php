@@ -148,77 +148,80 @@
 
                   </script>
                   <style type="text/css">
-                  .dropzone{
-                    border: 0px solid  ;
-                  }
-                  .image_drop_element{
-                    background-image: url('images/picker_sprite-v107.png');
+              .dropzone{
+                border: 0px solid  ;
+              }
+              .image_drop_element{
+                background-image: url('../images/picker_sprite-v107.png');
                     background-position: -60px -490px;
                     width: 74px;
-                    height: 86px;
+                    height: 70px;
                     background-repeat: no-repeat;
-                    margin: 30px auto 10px;
-                  }
+                    margin: 0px auto 0px;
+                    margin-top: -22px;
+              }
 
-                  .dz-clickable span {
-                    color: #aaa;
-                    font-size: 12px;
-                    padding: 0 10px;
-                    font-family: sans-serif;
-                  }
+              .dz-clickable span {
+                color: #aaa;
+                font-size: 12px;
+                padding: 0 10px;
+                font-family: sans-serif;
+              }
 
-                  .btn-select-image {
-                    -webkit-box-shadow: none;
-                    -moz-box-shadow: none;
-                    box-shadow: none;
-                    background-color: #f5f5f5;
-                    background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
-                    background-image: -moz-linear-gradient(top,#f5f5f5,#f1f1f1);
-                    background-image: -ms-linear-gradient(top,#f5f5f5,#f1f1f1);
-                    background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1);
-                    background-image: linear-gradient(top,#f5f5f5,#f1f1f1);
-                    color: #444;
-                    border: 1px solid #dcdcdc;
-                    border: 1px solid rgba(0,0,0,0.1);
-                    -webkit-border-radius: 2px;
-                    -moz-border-radius: 2px;
-                    border-radius: 2px;
-                    cursor: default;
-                    font-size: 11px !important;
-                    font-weight: bold;
-                    text-align: center;
-                    white-space: nowrap;
-                    margin-right: 16px;
-                    height: 27px;
-                    line-height: 27px;
-                    min-width: 54px;
-                    outline: 0;
-                    padding: 3px 8px !important;
-                  }
-                  .dz-message i {
-                    display: block;
-                    font-style: normal;
-                    color: #aaa;
-                    font-family: sans-serif;
-                    font-size: 16px;
-                    margin: 10px 0;
-                  }
-                  .dropzone .dz-preview.dz-success .dz-progress{
-                    opacity: 0;
-                    -webkit-transition: opacity 0.4s ease-in;
-                    -moz-transition: opacity 0.4s ease-in;
-                    -ms-transition: opacity 0.4s ease-in;
-                    -o-transition: opacity 0.4s ease-in;
-                    transition: opacity 0.4s ease-in;
-                  }
-                  .dz-message{
-                    display: block !important;
-                  }
-                  .dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete {
+              .btn-select-image {
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                background-color: #f5f5f5;
+                background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+                background-image: -moz-linear-gradient(top,#f5f5f5,#f1f1f1);
+                background-image: -ms-linear-gradient(top,#f5f5f5,#f1f1f1);
+                background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1);
+                background-image: linear-gradient(top,#f5f5f5,#f1f1f1);
+                color: #444;
+                border: 1px solid #dcdcdc;
+                border: 1px solid rgba(0,0,0,0.1);
+                -webkit-border-radius: 2px;
+                -moz-border-radius: 2px;
+                border-radius: 2px;
+                cursor: default;
+                font-size: 11px !important;
+                font-weight: bold;
+                text-align: center;
+                white-space: nowrap;
+                margin-right: 16px;
+                height: 27px;
+                line-height: 27px;
+                min-width: 54px;
+                outline: 0;
+                padding: 3px 8px !important;
+              }
+              .dz-message i {
+                display: block;
+                font-style: normal;
+                color: #aaa;
+                font-family: sans-serif;
+                font-size: 16px;
+                margin: 10px 0;
+              }
+              .dropzone .dz-preview.dz-success .dz-progress{
+                opacity: 0;
+                -webkit-transition: opacity 0.4s ease-in;
+                -moz-transition: opacity 0.4s ease-in;
+                -ms-transition: opacity 0.4s ease-in;
+                -o-transition: opacity 0.4s ease-in;
+                transition: opacity 0.4s ease-in;
+              }
+              .dz-message{
+                display: block !important;
+              }
 
-                    bottom: 60px;
-                  }
-                  .dz-preview.dz-error.dz-complete.dz-image-preview {
-                   bottom: 60px;
-                 }
-               </style>
+
+              .dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete {
+                bottom: 70px;
+              }
+
+              .dz-preview.dz-error.dz-complete.dz-image-preview {
+                bottom: 70px;
+              }
+            </style>
