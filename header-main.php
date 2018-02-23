@@ -378,7 +378,47 @@
 		<!--DASHBOARD SECTION-->
 		<div class="dashboard">
 			<div class="db-left">
-				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo $_SESSION['reg_photo'];?>'),url('<?php echo $_SESSION['reg_cover'] ?>');background-size: 105px,cover;">
+				<?php
+
+				   $cover=substr($_SESSION['reg_cover'],3) ;
+				   $img=substr($_SESSION['reg_photo'], 3)
+				?>
+				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo  $img;?>'),url('<?php echo $cover; ?>');background-size: 95px,cover;">
 					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
 					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
+              <div class="db-left-2">
+					<ul>
+						<li>
+							<a href="dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
+						</li>
+						<li>
+							<a href="add-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
+						</li>
+						<li>
+							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
+						</li>
+						<li>
+							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
+						</li>
+						<li>
+							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
+						</li>
+						<li>
+							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
+						</li>
+						<li>
+							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
+						</li>
+						<li>
+							<a href="logout.php"><img src="images/icon/db8.png" alt="" /> Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="db-cent">
+				<div class="db-cent-1" style="background-image:url('<?php echo $cover; ?>') !important;">
+					
+					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
+					<h4>Welcome to your dashboard</h4>
+					 </div>

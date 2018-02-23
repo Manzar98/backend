@@ -427,55 +427,72 @@
     <script src="../js/method-js/email-validation.js"></script>
     
 <script type="text/javascript">
+
  
-//     $('#')
-// $uploadCrop = $('#upload-demo').croppie({
-//     enableExif: true,
-//     viewport: {
-//         width: 200,
-//         height: 200,
-//         type: 'circle'
-//     },
-//     boundary: {
-//         width: 300,
-//         height: 300
-//     }
-// });
+/*=======================
+  Profile image reader
+=========================*/  
+
+    $('#upload-demo').hide();
+    $('#upload-demo-i').hide();
+    $('#upload-demo-btn').hide();
+$uploadCrop = $('#upload-demo').croppie({
+    enableExif: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
+});
 
 
-// $('#upload').on('change', function () { 
-// 	var reader = new FileReader();
-//     reader.onload = function (e) {
-//     	$uploadCrop.croppie('bind', {
-//     		url: e.target.result
-//     	}).then(function(){
-//     		console.log('jQuery bind complete');
-//     	});
-    	
-//     }
-//     reader.readAsDataURL(this.files[0]);
-// });
+$('#upload').on('change', function () { 
+  $('#upload-demo').show();
+  $('#upload-demo-btn').show();
+  var reader = new FileReader();
+    reader.onload = function (e) {
+      $uploadCrop.croppie('bind', {
+        url: e.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+      
+    }
+    reader.readAsDataURL(this.files[0]);
+});
 
-// $('.upload-result').on('click', function (ev) {
-// 	$uploadCrop.croppie('result', {
-// 		type: 'canvas',
-// 		size: 'viewport'
-// 	})
-// 	// .then(function (resp) {
+$('.upload-result').on('click', function (ev) {
+  $uploadCrop.croppie('result', {
+    type: 'canvas',
+    size: 'viewport'
+  }) .then(function (resp) {
 
-//  //          de
-// 	// 	$.ajax({
-// 	// 		url: "registration-post.php",
-// 	// 		type: "POST",
-// 	// 		data: {"image":resp},
-// 	// 		success: function (data) {
-// 	// 			$("#upload-demo-i").show();
-// 	// 			html = '<img src="' + resp + '" />';
-// 	// 			$("#upload-demo-i").html(html);
-// 	// 		}
-// 	// 	});
-// 	// });
-// });
+          
+    $.ajax({
+
+      type: "POST",
+      url: "profile_img_post.php",     
+      data: {"image":resp},
+      success: function (data) {
+         
+               $('#upload-demo').hide();
+               $('#upload-demo-btn').hide();
+               $("#upload-demo-i").show();
+                html = '<img src="' + resp + '" />';
+               $("#upload-demo-i").html(html);
+               $('#profile_img').val(data);
+
+          
+       
+        // debugger;
+      }
+    });
+   });
+});
 
 
 
@@ -483,39 +500,10 @@
 
 
 
-
- // $('#bla').croppie();
-
-
-//  $(function() {
-//   var basic = $('#demo-basic').croppie({
-//     viewport: {
-//       width: 150,
-//       height: 200
-//     }
-//   });
-//   basic.croppie('bind', {
-//     url: 'https://i.imgur.com/xD9rzSt.jpg',
-//     points: [77, 469, 280, 739]
-//   });
-// });
 </script>
 
-	<!-- <script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/bootstrap.js" type="text/javascript"></script>
-	<script src="js/materialize.min.js" type="text/javascript"></script>
-	<script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/jquery-validation.js"></script>
 	
-	<script src="js/additional-methods.js"></script>
-	<script src="js/sweetalert.min.js"></script> -->
-	
-<script>
-// $('.my-image').croppie();
-</script>
+
 	
 </body>
 

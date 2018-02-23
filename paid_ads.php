@@ -6,41 +6,7 @@
 <head>
 	<title>Featured Ads</title>
   <?php  include 'header-main.php'; ?>
-				<div class="db-left-2">
-					<ul>
-						<li>
-							<a href="dashboard.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
-						</li>
-						<li>
-							<a href="add-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
-						</li>
-						<li>
-							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
-						</li>
-						<li>
-							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
-						</li>
-						<li>
-							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
-						</li>
-						<li>
-							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
-						</li>
-						<li>
-							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
-						</li>
-						<li>
-							<a href="logout.php"><img src="images/icon/db8.png" alt="" /> Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="db-cent">
-				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
-					
-					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
-					<h4>Welcome to your dashboard</h4>
-					</div>
+
 					<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
@@ -56,7 +22,7 @@
                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'];?>" id="user_id"> 
 					   <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="select_parent"  >
 
-							<label class="col s4 pull-left">Select One</label>
+							<label class="col s4 pull-left">Choose a List</label>
 							
 							 <select   class="" name="select_any" onchange="showlist(this)">
 								<option value=""  disabled selected>Select One</option>
@@ -84,8 +50,14 @@
 							<label class=" pull-left">On which page</label>
 							
 							 <select   class="" name="on_which_page" onchange="on_which(this)">
-								<option value=""  disabled selected>Select One</option>
+								 <option value=""  disabled selected>Select One</option>
 								<option value="home" >Home Page</option>
+								<option value="hotel" >Hotel Page</option>
+								<option value="room" >Room Page</option>
+								<option value="banquet" >Banquet Page</option>
+								<option value="conference" >Conference Page</option>
+								<option value="tour" >Tour Page</option>
+								<option value="event" >Event Page</option>
 
 							</select> 
 						</div>
@@ -95,7 +67,7 @@
 
 							<label class="pull-left">No of days</label>
 							
-							 <select   class="" name="no_of_days">
+							 <select   class="" name="no_of_days" onchange="n_day()">
 								<option value=""  disabled selected>Select One</option>
 								<option value="day" >One day</option>
 								<option value="week" >One week</option>

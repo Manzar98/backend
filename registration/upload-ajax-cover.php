@@ -19,7 +19,7 @@ elseif ($info['mime'] == 'image/png')
 
 function croppingImage($file,$url){
     $image = imagecreatefromjpeg($file);
-$filename = 'images/uploads/'.$url;
+$filename = '../images/uploads/'.$url;
 
 $thumb_width = 1012;
 $thumb_height = 191;
@@ -61,15 +61,16 @@ imagejpeg($thumb, $filename, 80);
 
 
     if ( 0 < $_FILES['file']['error'] ) {
+      
         echo 'Error: ' . $_FILES['file']['error'] . '<br>';
     }
     else {
 
-                      $url=$file;
-    	               $storedCover= 'images/uploads/' .time()."-".$_FILES['file']['name'];
+                      $url=$file;    	               
                       $compfilename = compress_image($_FILES["file"]["tmp_name"], $url, 40);
-                    croppingImage($compfilename,$file);
+                      croppingImage($compfilename,$file);
 
+                      $storedCover= '../images/uploads/' .time()."-".$_FILES['file']['name'];
           echo $storedCover;
     }
 

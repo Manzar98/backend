@@ -1752,10 +1752,10 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
     width: 100%;
 }
 .db-left-1 h4 {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 0px;
     font-weight: 100;
-    font-size: 24px;
+    font-size: 20px;
     color: #fff;
     z-index: 99;
     position: relative;
@@ -1770,6 +1770,7 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
     text-overflow: ellipsis;
     white-space: pre;
     overflow: hidden;
+    font-size: 12px;
 }
 .db-left-2 {
     position: relative;
@@ -4839,7 +4840,7 @@ table#h_table tr:hover td.tdwrap {
 #pro-sub-btn_hotel, #pro-sub-btn_room, #pro-sub-btn_banquet, 
 #pro-sub-btn_conference, #pro-sub-btn_tour, #pro-sub-btn_event, 
 #pro-sub-btn_registor, #pro-sub-btn_registor_update,
- #pro-sub-btn_password_update, #pro-sub-btn_paid{
+ #pro-sub-btn_password_update, #pro-sub-btn_paid, #pro-sub-btn_paid_edit{
     
     background: #f4364f;
     padding: 7px 25px;
@@ -5030,4 +5031,8 @@ width:100%!important;
 .select2-selection--single 
 .select2-selection__clear{
    display: none;
+}
+.lbl-list{
+
+    text-transform: capitalize;
 }

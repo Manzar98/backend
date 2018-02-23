@@ -9,9 +9,9 @@ list(, $data)      = explode(',', $data);
 
 $data = base64_decode($data);
 $imageName = time().'.png';
- file_put_contents('images/uploads/'.$imageName, $data);
+ file_put_contents('../images/uploads/'.$imageName, $data);
 
- $storedimg='images/uploads/'.$imageName;
+ $storedimg='../images/uploads/'.$imageName;
 echo $storedimg;
  // $res_Array=array(
  //    "status"=>"Success",

@@ -193,7 +193,7 @@
                     $.ajax({
 
                              type: "POST",
-                             url: "../registration/registration-post.php",
+                             url: "registration-post.php",
                              data: $('form').serialize(),
                              success:function(res){
 
@@ -359,7 +359,7 @@
 
     if ($('#check_cover').val()!="") {                          
     $.ajax({
-                url: 'upload-ajax-cover.php', // point to server-side PHP script 
+                url: 'registration/upload-ajax-cover.php', // point to server-side PHP script 
                 dataType: 'text',  // what to expect back from the PHP script, if anything
                 cache: false,
                 contentType: false,
@@ -372,7 +372,7 @@
                             $.ajax({
 
                                   type: "POST",
-                                  url: "../registration/registration-update.php",
+                                  url: "registration/registration-update.php",
                                   data: $("form").serialize(),
                                   success:function(res){
 
@@ -391,7 +391,7 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
-                                               window.location = "../db-profile.php?id="+data.id;
+                                               window.location = "db-profile.php?id="+data.id;
                                              });
                                    },3000)
                                   }else{
@@ -422,7 +422,7 @@
               $.ajax({
 
                                   type: "POST",
-                                  url: "../registration/registration-update.php",
+                                  url: "registration/registration-update.php",
                                   data: $("form").serialize(),
                                   success:function(res){
 
@@ -441,7 +441,7 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
-                                               window.location = "../db-profile.php?id="+data.id;
+                                               window.location = "db-profile.php?id="+data.id;
                                              });
                                    },3000)
                                   }else{
@@ -482,71 +482,6 @@
 
 
 
-
-/*=======================
-  Profile image reader
-=========================*/  
-
-    $('#upload-demo').hide();
-    $('#upload-demo-i').hide();
-    $('#upload-demo-btn').hide();
-$uploadCrop = $('#upload-demo').croppie({
-    enableExif: true,
-    viewport: {
-        width: 200,
-        height: 200,
-        type: 'circle'
-    },
-    boundary: {
-        width: 300,
-        height: 300
-    }
-});
-
-
-$('#upload').on('change', function () { 
-  $('#upload-demo').show();
-  $('#upload-demo-btn').show();
-  var reader = new FileReader();
-    reader.onload = function (e) {
-      $uploadCrop.croppie('bind', {
-        url: e.target.result
-      }).then(function(){
-        console.log('jQuery bind complete');
-      });
-      
-    }
-    reader.readAsDataURL(this.files[0]);
-});
-
-$('.upload-result').on('click', function (ev) {
-  $uploadCrop.croppie('result', {
-    type: 'canvas',
-    size: 'viewport'
-  }) .then(function (resp) {
-
-          
-    $.ajax({
-
-      type: "POST",
-      url: "profile_img_post.php",     
-      data: {"image":resp},
-      success: function (data) {
-         
-               $('#upload-demo').hide();
-               $('#upload-demo-btn').hide();
-               $("#upload-demo-i").show();
-                html = '<img src="' + resp + '" />';
-               $("#upload-demo-i").html(html);
-               $('#profile_img').val(data);
-
-          
-       
-        // debugger;
-      }
-    });
-   });
-});
 
 
 /*=================

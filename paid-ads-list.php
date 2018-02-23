@@ -13,41 +13,7 @@
 
 
 	?>
-				<div class="db-left-2">
-					<ul>
-						<li>
-							<a href="dashboard.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
-						</li>
-						<li>
-							<a href="add-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
-						</li>
-						<li>
-							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
-						</li>
-						<li>
-							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
-						</li>
-						<li>
-							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
-						</li>
-						<li>
-							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
-						</li>
-						<li>
-							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
-						</li>
-						<li>
-							<a href="logout.php"><img src="images/icon/db8.png" alt="" /> Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="db-cent">
-				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
-					
-					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
-					<h4>Welcome to your dashboard</h4>
-					</div>
+
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
@@ -63,7 +29,7 @@
                               <div class="row common-top ">
 							<div class="featured_btn">
 								
-								<a class="waves-effect waves-light btn" href="paid_ads.php">Add Ads</a>
+								<a class="waves-effect waves-light btn" href="paid_ads.php">Feature an Ad</a>
 								
 							</div>
 						</div>
@@ -71,7 +37,7 @@
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
-									<th>Select One</th>
+									<th>Choose a list</th>
 									<th>List of</th>
 									<th>On which page</th>
 									<th>No of days</th>
@@ -91,8 +57,31 @@
 									<td class="text-center"><?php echo $result['list_of_any']; ?></td>
 									<td class="text-center"><?php echo $result['on_which_page'];   ?></td>
 									<td class="text-center"><?php echo $result['no_of_days'];   ?></td>
-									<td class="text-center paly_pause"><a onclick="show_pause(event)" id="play_<?php echo $i ?>" class="play"><i class="fa fa-play" aria-hidden="true"></i></a>
-										<a onclick="show_play()" id="pause_<?php echo $i ?>" style="display: none;" class="pause"><i class="fa fa-pause" aria-hidden="true"></i></a></td>
+									<td class="text-center paly_pause">
+ 
+                                     <?php if ($result['status_play_pause']=="on") { ?>
+
+                                     		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off"><i class="fa fa-pause" aria-hidden="true" ></i></a>
+                                     		<a  onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on" style="display: none;"><i class="fa fa-play" aria-hidden="true"></i></a>
+                                     	
+                                   <?php  }else{ ?>
+
+                                    		<a onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on"><i class="fa fa-play" aria-hidden="true"></i></a>
+                                    		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off" style="display: none;"><i class="fa fa-pause" aria-hidden="true" ></i></a>
+ 
+                                   	         
+                                 <?php   } ?>
+										</td>
+										
+								 <td class="tdwrap">
+									<div class="buttonsWrap">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="edit_paid_ad.php?id=<?php echo $_SESSION['user_id'];  ?>&p_id=<?php echo $result['paid_id'] ?>">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+										
+									</div>
+								</td> 
 									
 									
 								</tr>
@@ -114,7 +103,7 @@
 						<div class="row common-top text-center">
 							<div class="">
 								
-								<a class="waves-effect waves-light btn" href="paid_ads.php">Add Ads</a>
+								<a class="waves-effect waves-light btn" href="paid_ads.php">Feature an Ad</a>
 								
 							</div>
 						</div>
@@ -477,20 +466,46 @@
    
  
 <script type="text/javascript">
-$('#pause').hide();	
+
 function show_pause(event) {
-	 
+
+	  var btn=$(event.currentTarget).attr('value');
+      var p_id=$(event.currentTarget).attr('p_id');
+	   $.ajax({
+             
+             type:"POST",
+             url:"paid-ads-update.php",
+             data:{'btn':btn,'p_id':p_id},
+             success:function(data){
+                 
+                 console.log(data);
+             }    
+
+	   });
 	 $(event.currentTarget).hide();
-	 
-	 console.log($(event.currentTarget).parents('.paly_pause').find('.pause').show());
+	  
+	 $(event.currentTarget).parents('.paly_pause').find('.pause').show();
 	 // debugger;
 } 
 
 function show_play() {
-	
+
+	var btn=$(event.currentTarget).attr('value');
+      var p_id=$(event.currentTarget).attr('p_id');
+	   $.ajax({
+             
+             type:"POST",
+             url:"paid-ads-update.php",
+             data:{'btn':btn,'p_id':p_id},
+             success:function(data){
+                 
+                 console.log(data);
+             }   
+
+	   });
 	$(event.currentTarget).hide();
 	 
-	 console.log($(event.currentTarget).parents('.paly_pause').find('.play').show());
+	 $(event.currentTarget).parents('.paly_pause').find('.play').show();
 }
 </script>
     

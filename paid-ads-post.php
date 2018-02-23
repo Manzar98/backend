@@ -7,7 +7,7 @@ $responseArray=[];
  if (empty($_POST['select_any'])) {
 
  	     $is_check=false;
-	     array_push($responseArray,"Select One is required");
+	     array_push($responseArray,"Choose a list");
  }else{
     
      $selct_one=$_POST['select_any'];

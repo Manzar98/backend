@@ -24,43 +24,9 @@
 ?>
 				<?php   
           
-          while ($reg_Result=mysqli_fetch_assoc($reg_Query)) { ?>
-				<div class="db-left-2">
-					<ul>
-						<li>
-							<a href="dashboard.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
-						</li>
-						<li>
-							<a href="add-listing.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
-						</li>
-						<li>
-							<a href="manage-listing.php?id=<?php echo $reg_Result['user_id']; ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
-						</li>
-						<li>
-							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
-						</li>
-						<li>
-							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
-						</li>
-						<li>
-							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'];?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
-						</li>
-						<li>
-							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
-						</li>
-						<li>
-							<a href="logout.php"><img src="images/icon/db8.png" alt="" /> Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="db-cent">
-				<div class="db-cent-1" style="background-image:url('<?php echo $reg_Result['reg_cover']; ?>') !important;">
-					
-					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
-					<h4>Welcome to your dashboard</h4>
-					</div>
-				<div class="db-profile"> <img src="<?php echo $reg_Result['reg_photo'] ?>" alt="">
+          while ($reg_Result=mysqli_fetch_assoc($reg_Query)) { 
+                     $pro_img=substr($reg_Result['reg_photo'],3) ;  ?>
+				<div class="db-profile"> <img src="<?php echo $pro_img; ?>" alt="">
 					<h4><?php echo $reg_Result['reg_name'];  ?> <?php echo $reg_Result['reg_lstname']; ?></h4>
 					<p><?php echo $reg_Result['reg_postal']; ?></p>
 				</div>
@@ -699,6 +665,71 @@
     <script type="text/javascript">
     	$('#modal-reset').modal({dismissible: false});
 		
+/*=======================
+  Profile image reader
+=========================*/  
+
+    $('#upload-demo').hide();
+    $('#upload-demo-i').hide();
+    $('#upload-demo-btn').hide();
+$uploadCrop = $('#upload-demo').croppie({
+    enableExif: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
+});
+
+
+$('#upload').on('change', function () { 
+  $('#upload-demo').show();
+  $('#upload-demo-btn').show();
+  var reader = new FileReader();
+    reader.onload = function (e) {
+      $uploadCrop.croppie('bind', {
+        url: e.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+      
+    }
+    reader.readAsDataURL(this.files[0]);
+});
+
+$('.upload-result').on('click', function (ev) {
+  $uploadCrop.croppie('result', {
+    type: 'canvas',
+    size: 'viewport'
+  }) .then(function (resp) {
+
+          
+    $.ajax({
+
+      type: "POST",
+      url: "registration/profile_img_post.php",     
+      data: {"image":resp},
+      success: function (data) {
+         
+               $('#upload-demo').hide();
+               $('#upload-demo-btn').hide();
+               $("#upload-demo-i").show();
+                html = '<img src="' + resp + '" />';
+               $("#upload-demo-i").html(html);
+               $('#profile_img').val(data);
+
+          
+       
+        // debugger;
+      }
+    });
+   });
+});
+
 	</script>
 </body>
 

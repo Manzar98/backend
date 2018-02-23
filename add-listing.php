@@ -8,41 +8,7 @@
 <head>
 	<title>Add Lists</title>
 	  <?php  include 'header-main.php'; ?>
-				<div class="db-left-2">
-					<ul>
-						<li>
-							<a href="dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db1.png" alt="" />Dashboard</a>
-						</li>
-						<li>
-							<a href="add-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db2.png" alt="" />Add Listing</a>
-						</li>
-						<li>
-							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db3.png" alt="" />Manage Listing</a>
-						</li>
-						<li>
-							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="images/icon/db5.png" alt="" /> Featured Ads</a>
-						</li>
-						<li>
-							<a href="db-event.html"><img src="images/icon/db4.png" alt="" /> Event</a>
-						</li>
-						<li>
-							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="images/icon/db7.png" alt="" /> Profile</a>
-						</li>
-						<li>
-							<a href="#"><img src="images/icon/db6.png" alt="" /> Payments</a>
-						</li>
-						<li>
-							<a href="logout.php"><img src="images/icon/db8.png" alt="" /> Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="db-cent">
-				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
-					
-					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
-					<h4>Welcome to your dashboard</h4>
-					 </div>
+
 				<div class="db-cent-2">
 					<div class="db-2-main-1">
 						<a href="hotels/db-add-hotels.php"><div class="db-2-main-2"> <img src="images/icon/dbc5.png" alt=""> <span>Hotels</span>

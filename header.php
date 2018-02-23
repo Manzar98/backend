@@ -379,7 +379,7 @@
 		<!--DASHBOARD SECTION-->
 		<div class="dashboard">
 			<div class="db-left">
-				<div class="db-left-1" style="max-height: 193px; background-image:url('../<?php echo $_SESSION['reg_photo'];?>'),url('../<?php echo $_SESSION['reg_cover'] ?>');background-size: 105px,cover;">
+				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo $_SESSION['reg_photo'];?>'),url('<?php echo $_SESSION['reg_cover'] ?>');background-size: 95px,cover;">
 					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
 					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
@@ -414,7 +414,7 @@
 			</div>
 
 			<div class="db-cent">
-				<div class="db-cent-1" style="background-image:url('../<?php echo $_SESSION['reg_cover']; ?>') !important;">
+				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
 					
 					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
 					<h4>Welcome to your dashboard</h4>

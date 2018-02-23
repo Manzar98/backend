@@ -15,7 +15,7 @@ if(mysqli_num_rows($result) == 1){
 
  $queryup= 'UPDATE `credentials` SET reg_lastlogin=now() Where reg_email="'.$email.'"';
  
- mysqli_query($conn,$queryup)or die(mysqli_error());
+ mysqli_query($conn,$queryup)or die(mysqli_error($conn));
 	//echo 'Successfuly authorized';
 $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this  
 	 //echo $crntresult['id'] ;
