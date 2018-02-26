@@ -71,6 +71,7 @@ imagejpeg($thumb, $filename, 80);
                       croppingImage($compfilename,$file);
 
                       $storedCover= '../images/uploads/' .time()."-".$_FILES['file']['name'];
+                      unlink($compfilename);
           echo $storedCover;
     }
 

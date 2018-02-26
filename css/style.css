@@ -4821,9 +4821,27 @@ label{
     box-shadow: 1px 0px 1px 1px;
 
 }
+.tdwrap_ads{
+
+    position: absolute;
+    left: 0;
+    background: rgba(255,255,255,0.8);
+    width: 85%;
+    display: none;
+    border: 1px solid #a7a4a4;
+    box-shadow: 1px 0px 1px 1px;
+
+}
 .buttonsWrap{
         width: 170px;
     margin: 0 auto;
+}
+.buttonsWrap_ads{
+        width: 103px;
+    margin: 0 auto;
+}
+.buttonsWrap_ads .row{
+        margin-bottom: 0px;
 }
 .buttonsWrap .row{
     margin-bottom: 0px;

@@ -73,8 +73,8 @@
                                  <?php   } ?>
 										</td>
 										
-								 <td class="tdwrap">
-									<div class="buttonsWrap">
+								 <td class="tdwrap tdwrap_ads">
+									<div class="buttonsWrap buttonsWrap_ads">
 										<div class="row">
 											<a class="waves-effect waves-light btn" href="edit_paid_ad.php?id=<?php echo $_SESSION['user_id'];  ?>&p_id=<?php echo $result['paid_id'] ?>">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
