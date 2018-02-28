@@ -1448,7 +1448,7 @@ $('#loader').modal({dismissible: false});
       $.ajax({
           
           type:"POST",
-          url:"paid-ads-update.php",
+          url:"../vendors/paid-ads-update.php",
           data:{"user_id":user_id,"paid_id":paid_id,"select_any":select_one,"list_of_any":list_any,"on_which_page":on_which,"no_of_days":no_days},
           success:function(res){
                     
@@ -1468,7 +1468,7 @@ $('#loader').modal({dismissible: false});
                       closeOnConfirm: true,
                       html: false
                       }, function(){
-                       window.location = "paid-ads-list.php";
+                       window.location = "../vendors/paid-ads-list.php";
                     });
                               },3000)
                     }else{

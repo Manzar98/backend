@@ -11,7 +11,16 @@ $('#login_btn').click(function(){
 
   	   	if (data.status=="Success") {
 
-  	   		window.location = "dashboard.php?id="+data.id;
+           if (data.u_type=="vendor") {
+
+                   window.location = "vendors/dashboard.php?id="+data.id;
+
+           }else if(data.u_type=="admin"){
+
+                   window.location = "admin/dashboard.php?id="+data.id;
+           }
+
+  	   		
   	   	}else{
 
   	   		 swal({
@@ -52,7 +61,15 @@ function enterBTN(event){
 
         if (data.status=="Success") {
 
-          window.location = "dashboard.php?id="+data.id;
+          if (data.u_type=="vendor") {
+
+                   window.location = "vendors/dashboard.php?id="+data.id;
+
+           }else if(data.u_type=="admin"){
+
+                   window.location = "admin/dashboard.php?id="+data.id;
+           }
+
         }else{
 
            swal({

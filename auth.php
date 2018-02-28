@@ -37,6 +37,22 @@ $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this
           "status"=>"Success",
            "id"=> $crntresult['user_id']
         );
+
+        if ($crntresult['user_type']=='vendor') {
+       $res_Array=array(
+          "status"=>"Success",
+           "id"=> $crntresult['user_id'],
+           "u_type"=> $crntresult['user_type']
+        );
+  }elseif ($crntresult['user_type']=='admin'){
+         
+         $res_Array=array(
+          "status"=>"Success",
+           "id"=> $crntresult['user_id'],
+           "u_type"=> $crntresult['user_type']
+        );
+
+  }
        echo json_encode($res_Array);
      	  // header('Location: dashboard.php?id='.$crntresult['user_id']);//to send the id for 
      

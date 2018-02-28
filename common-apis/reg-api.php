@@ -1,5 +1,5 @@
 <?php
-   include 'common-sql.php';
+   include '../../common-sql.php';
  /*----------------------------
     Function for dynamic select Query
  ------------------------------*/

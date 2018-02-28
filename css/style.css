@@ -5054,3 +5054,6 @@ width:100%!important;
 
     text-transform: capitalize;
 }
+.vendor-pending.db-not-success{
+      padding: 2px 14px;
+}
