@@ -82,6 +82,16 @@
                                    	         
                                  <?php   } ?>
                                     </td>
+                                    <td class="tdwrap_vendors">
+									<div class="buttonsWrap_vendors">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="veiw_vendors.php?id=<?php echo $result['user_id'];  ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $result['user_id'];  ?>">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										</div>
+										
+									</div>
+								</td>
 									
 									
 								</tr>
