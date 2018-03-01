@@ -5078,3 +5078,16 @@ width:100%!important;
 .vendor-pending.db-not-success{
       padding: 2px 14px;
 }
+#susp.modal{
+    width: 30%;
+    height: 40%;
+    background:none;
+    max-height: 30%;
+}
+#sus_reason_btn{
+    width: 100%;
+}
+#susp.z-depth-4, .modal {
+    -webkit-box-shadow:inherit ;
+     box-shadow: inherit; 
+}

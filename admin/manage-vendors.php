@@ -71,12 +71,14 @@
                                     <td class="text-center sus_appr">
                                     	<?php if ($result['user_status']=="Approved") { ?>
 
-                                     		<a onclick="show_suspend(event)"  u_id="<?php echo $result['user_id'] ?>" class="suspend btn" value="Suspended">Suspend</a>
+                                     		<a  href="#susp" u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+                                     		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
                                      		<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
                                      	
                                    <?php  }else{ ?>
 
-                                    		<a onclick="show_suspend(event)"  u_id="<?php echo $result['user_id'] ?>" class="suspend btn" value="Suspended" style="display: none;">Suspend</a>
+                                    		<a href="#susp"  u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" style="display: none;">Suspend</a>
+                                    		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
                                      		<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" >Approve</a>
  
                                    	         
@@ -119,15 +121,54 @@
 						</div>
 
 						 <?php	}?>
+						  <!-- Modal Trigger -->
+  
+
+  <!-- Modal Structure -->
+  <div id="susp" class="modal ">
+    <div class="modal-content">
+      <h4>Reason for suspention</h4>
+     <div class="input-field col s12">
+          <textarea id="textarea_susp" class="materialize-textarea"></textarea>
+          <label for="textarea_susp">Reason</label>
+          <input type="button" value="Submit" class="btn" name="" onclick="reason_submit()">
+        </div>
+    </div>
+    
+  </div>
 					</div>
 				</div>
   </div>
 
 <?php include'footer.php'; ?>
 <script type="text/javascript">
-	
-	function show_suspend(event) {
+	var rowValue = "";
+      $('#susp').modal({
+      	dismissible: false, // Modal can be dismissed by clicking outside of the modal
+     
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        // alert("Ready");
+        rowValue =trigger.parents('tr');
+        console.log(modal, trigger);
+        // debugger;
+      },
+      });
+function reason_submit() {
+
+      	if ($('#textarea_susp').val()) {
+         
+		      rowValue.find('.org_susp').trigger('click');
+		      rowValue.find('.suspend').hide();
+		      $('#textarea_susp').val('');  
+		      $('#susp').modal('close');
+
+      	}
       
+      
+ }
+	function show_suspend(event) {
+		// debugger;
+      var text_area=$('#textarea_susp').val();
       var sus=$(event.currentTarget).parents('tr');
 	  var btn=$(event.currentTarget).attr('value');
       var u_id=$(event.currentTarget).attr('u_id');
@@ -135,7 +176,7 @@
              
              type:"POST",
              url:"update-user_status.php",
-             data:{'btn':btn,'u_id':u_id},
+             data:{'btn':btn,'u_id':u_id,'reason':text_area},
              success:function(res){
                    
                    var data=JSON.parse(res);
@@ -154,14 +195,14 @@
              }    
 
 	   });
-	 $(event.currentTarget).hide();
+	 // $(event.currentTarget).hide();
 	  
 	 $(event.currentTarget).parents('.sus_appr').find('.approve').show();
 	 // debugger;
 } 
 
 function show_approve(event) {
-       
+      
       var sus=$(event.currentTarget).parents('tr');
 
 	var btn=$(event.currentTarget).attr('value');
@@ -193,8 +234,10 @@ function show_approve(event) {
 
 	   });
 	$(event.currentTarget).hide();
+	
 	 
-	 $(event.currentTarget).parents('.sus_appr').find('.suspend').show();
+ 	 $(event.currentTarget).parents('.sus_appr').find('.suspend').show();
+ 	 
 }
 </script>
     

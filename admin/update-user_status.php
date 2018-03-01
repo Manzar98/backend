@@ -1,9 +1,18 @@
 <?php
 
   include '../common-sql.php';
-$query='UPDATE credentials SET user_status="'.$_POST['btn'].'" WHERE user_id="'.$_POST['u_id'].'"';
 
+if (isset($_POST['reason'])) {
 
+     $query='UPDATE credentials SET user_status="'.$_POST['btn'].'",
+     suspend_reason="'.$_POST['reason'].'" WHERE user_id="'.$_POST['u_id'].'"';
+
+}else{
+
+$query='UPDATE credentials SET user_status="'.$_POST['btn'].'",
+     suspend_reason="'.null.'" WHERE user_id="'.$_POST['u_id'].'"';
+
+}
  
 // echo $query;
 
@@ -18,5 +27,6 @@ $query='UPDATE credentials SET user_status="'.$_POST['btn'].'" WHERE user_id="'.
 
       echo json_encode($res_Array);
    }
+
 
 ?>

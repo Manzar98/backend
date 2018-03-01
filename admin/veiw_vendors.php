@@ -26,7 +26,56 @@
           
           while ($reg_Result=mysqli_fetch_assoc($reg_Query)) { 
                      $pro_img=substr($reg_Result['reg_photo'],3) ;  ?>
-				<div class="db-profile"> <img src="<?php echo $pro_img; ?>" alt="">
+                     <div class="veiw_sus_appr">
+                      <div class="row" style="margin-top: 20px;">
+                      	<div class="col s11">
+					   	  
+                        <div class="pull-right sus_appr" style="margin-left: 10px;">
+                             
+                                    	<?php if ($reg_Result['user_status']=="Approved") { ?>
+
+                                     		<a  href="#susp" u_id="<?php echo $reg_Result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+                                     		<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                     	
+                                   <?php  }else{ ?>
+
+                                    		<a href="#susp"  u_id="<?php echo $reg_Result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" style="display: none;">Suspend</a>
+                                    		<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" >Approve</a>
+ 
+                                   	         
+                                 <?php   } ?>
+                                   
+                        </div>
+                        <div class="pull-right" >
+                            <a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $reg_Result['user_id'];  ?>">Edit</a>
+                        </div>
+                        </div>
+					   </div>
+
+					   <div class="text-center " >
+                          <span style="margin-left: 10px;">Status:</span>
+                           <?php if ($reg_Result['user_status']=="Approved") { ?>
+                                
+                             	 <span class="appr" style="color: green; "><b><?php echo $reg_Result['user_status']; ?></b></span>
+                             	 <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
+
+                           <?php   }else{ ?>
+                                   
+                                    <span class="sus" style="color: red;"><b><?php echo $reg_Result['user_status']; ?></b></span>
+                                    <span class="appr" style="color: green; display: none;"><b>Approved</b></span>
+                                    
+
+
+                         <?php   } ?>
+                        </div>
+                        
+                        </div>
+				<div class="db-profile"> 
+
+                        
+					<img src="<?php echo $pro_img; ?>" alt="">
 					<h4><?php echo $reg_Result['reg_name'];  ?> <?php echo $reg_Result['reg_lstname']; ?></h4>
 					<p><?php echo $reg_Result['reg_postal']; ?></p>
 				</div>
@@ -117,6 +166,28 @@
 						<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-10 ">
+								<div class="row reason_sp">
+								<?php if(!empty($reg_Result['suspend_reason'])){?>
+
+                                          
+								<div class="col-md-10 col-sm-12 col-xs-12 ">
+								<label >Reason Suspention:</label>
+								<div class="pull-left">
+									 <span><?php echo $reg_Result['suspend_reason'];  ?></span>
+									 </div>
+							</div>
+							
+							<?php	} ?>
+							</div>
+							<div class="row">
+							
+							<div class="col-md-10 col-sm-12 col-xs-12 realtime_reason" style="display: none;">
+								<label >Reason Suspention:</label>
+								<div class="pull-left">
+									 <span class="res_sup"></span>
+									 </div>
+							</div>
+								</div>
 						<div class="row">
 							<div class="col-md-6 col-sm-12 col-xs-12 ">
 								<label >First Name :</label>
@@ -188,9 +259,127 @@
 			</div>
 
 
+     <!-- Modal Structure -->
+  <div id="susp" class="modal ">
+    <div class="modal-content">
+      <h4>Reason for suspention</h4>
+     <div class="input-field col s12">
+          <textarea id="textarea_susp" class="materialize-textarea"></textarea>
+          <label for="textarea_susp">Reason</label>
+          <input type="button" value="Submit" class="btn" name="" onclick="reason_submit()">
+        </div>
+    </div>
+    
+  </div>
+
 
 			<?php } ?>
 	<?php include 'footer.php'; ?>
+
+<script type="text/javascript">
+
+	var rowValue = "";
+      $('#susp').modal({
+      	dismissible: false, // Modal can be dismissed by clicking outside of the modal
+     
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        // alert("Ready");
+        rowValue =trigger.parents('.sus_appr');
+        console.log(modal, trigger);
+         
+      },
+      });
+function reason_submit() {
+
+      	if ($('#textarea_susp').val()) {
+
+		      rowValue.find('.org_susp').trigger('click');
+		      rowValue.find('.suspend').hide();
+		      $('#textarea_susp').val('');  
+		      $('.realtime_reason').show();
+		      $('#susp').modal('close');
+		      
+		      
+
+      	}
+      
+      
+ }
+	
+	function show_suspend(event) {
+      
+       var text_area=$('#textarea_susp').val();
+      var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+     
+	  var btn=$(event.currentTarget).attr('value');
+      var u_id=$(event.currentTarget).attr('u_id');
+	   $.ajax({
+             
+             type:"POST",
+             url:"update-user_status.php",
+             data:{'btn':btn,'u_id':u_id,'reason':text_area},
+             success:function(res){
+                   
+                   var data=JSON.parse(res);
+
+                   if (data.status=="Suspended") {
+
+                         sus.find('.sus').show();
+                         sus.find('.appr').hide();
+                         $('#registor-form').find('.res_sup').text(text_area);
+                            
+                   }else{
+
+                         
+                         
+                   }
+                 console.log(data);
+             }    
+
+	   });
+	 $(event.currentTarget).hide();
+	  
+	 $(event.currentTarget).parents('.sus_appr').find('.approve').show();
+	 // debugger;
+} 
+
+function show_approve(event) {
+       
+      var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+
+	var btn=$(event.currentTarget).attr('value');
+      var u_id=$(event.currentTarget).attr('u_id');
+	   $.ajax({
+             
+             type:"POST",
+             url:"update-user_status.php",
+             data:{'btn':btn,'u_id':u_id},
+             success:function(res){
+                   
+                   var data=JSON.parse(res);
+
+                   if (data.status=="Approved") {
+
+                          $('.reason_sp').hide();
+                          sus.find('.sus').hide();
+                          sus.find('.appr').show();
+
+                        
+                   }else{
+                      
+                      
+                      
+                   }
+                 console.log(data);
+             }   
+
+	   });
+	$(event.currentTarget).hide();
+	 
+	 $(event.currentTarget).parents('.sus_appr').find('.suspend').show();
+}
+
+	</script>
 </body>
 
 
