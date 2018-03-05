@@ -28,10 +28,25 @@
 
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-						<div class="db-title">
+
+						<div class="row">
+						<div class="db-title col s9">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> <?php echo $_GET['name']; ?> Events</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
+						<div class="col s3" style="margin-top: 10px;">
+							<span >Status:</span>
+							 <?php if ($_GET['status']=='Suspended') { ?>
+							 	<span class="appr" style="color: red; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php  }else{ ?>
+
+                                      <span class="appr" style="color: green; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php } ?>
+						</div>
+						</div>
+						
 
 						
 						<?php
@@ -83,20 +98,47 @@
 									<div class="buttonsWrap">
 
                                           <?php if ($result['event_independ']=='no') { ?>
-											
+											 
+											 <?php if ($_GET['status']=="Suspended") { ?>
+
+													<div class="row">
+														<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+														<a class="waves-effect waves-light btn" href="#">Delete</a>
+												    </div>
 										
-										<div class="row">
-											<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
-										</div>
+
+											<?php }else{?>
+
+											        <div class="row">
+														<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+														<a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+														<a class="waves-effect waves-light btn" href="#">Delete</a>
+										            </div>
+
+											<?php } ?>
+										
 								<?php	}else{ ?>
 
-								         <div class="row">
-											<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $result['event_id'];  ?>&u_id=<?php echo $result['user_id']; ?>"">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
-										</div>
+								            <?php if ($_GET['status']=="Suspended") { ?>
+										
+                                                <div class="row">
+													<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="#">Delete</a>
+												</div>
+
+											<?php }else{?>
+
+											    <div class="row">
+													<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $result['event_id'];  ?>&u_id=<?php echo $result['user_id']; ?>"">Edit</a>
+													<a class="waves-effect waves-light btn" href="#">Delete</a>
+												</div>
+
+
+
+											<?php } ?>
+
+								         
 
 
 
@@ -118,8 +160,14 @@
 							</tbody>
 						</table>
 						<?php 	}else{ ?>
- 
-						<div class="text-center"><span><?php echo $_GET['name']; ?> has no Event Packages</span></div>
+
+						<?php if ($_GET['status']=='Suspended') { ?>
+
+							 	 <div class="text-center"><span><?php echo $_GET['name']; ?> has Suspended</span></div>
+
+							<?php  }else{ ?>
+
+                             <div class="text-center"><span><?php echo $_GET['name']; ?> has no Event Packages</span></div>
 						<div class="row common-top text-center">
 							<div class="">
 								
@@ -127,6 +175,9 @@
 								
 							</div>
 						</div>
+							<?php } ?>
+ 
+						
 
 						 <?php	}?>
 					</div>

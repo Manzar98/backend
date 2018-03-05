@@ -218,10 +218,10 @@
 
 
               .dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete {
-                bottom: 70px;
+                bottom: 40px;
               }
 
               .dz-preview.dz-error.dz-complete.dz-image-preview {
-                bottom: 70px;
+                bottom: 40px;
               }
             </style>

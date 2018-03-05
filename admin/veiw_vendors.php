@@ -61,6 +61,8 @@
                              	 <span class="appr" style="color: green; "><b><?php echo $reg_Result['user_status']; ?></b></span>
                              	 <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
 
+
+
                            <?php   }else{ ?>
                                    
                                     <span class="sus" style="color: red;"><b><?php echo $reg_Result['user_status']; ?></b></span>
@@ -89,7 +91,11 @@
 
                          $lastlogin=date_create($reg_Result['reg_lastlogin']);
 					?>
+					
+					<input type="hidden"  value="<?php echo $reg_Result['reg_name'];?>" id=hidden-name_val>
+							<input type="hidden"  value="<?php echo $_GET['id']?>" id=hidden-id_val>
 					<table class="last-lgon_tbl">
+
 						<thead>
 							<th>Last Login</th>
 						</thead>
@@ -99,14 +105,15 @@
 					</table>
 					<table class="responsive-table profle-forms-reocrds-tbl" >
 						<thead>
+							
 							<tr>
 								<th>Age</th>
-								<th class="TT" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">Hotels</th>
-								<th class="TT" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">Rooms</th>
-								<th class="TT" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">Banquets</th>
-								<th class="TT" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">Conferences</th>
-								<th class="TT" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">Tours</th>
-								<th class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">Events</th>
+								<th class="TT ho-1" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Hotels</th>
+								<th class="TT ro-1" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Rooms</th>
+								<th class="TT ban-1" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Banquets</th>
+								<th class="TT con-1" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Conferences</th>
+								<th class="TT tor-1" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Tours</th>
+								<th class="TT ev-1" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Events</th>
 								<th>Join Date</th>
 
 							</tr>
@@ -116,39 +123,39 @@
 								<td><?php echo $age; ?></td>
 								
 								<?php if (mysqli_num_rows($reg_hotel)< 1) { ?>
-							     <td class="TT" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">0</td>
+							     <td class="TT ho-1" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								   <td class="TT" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'"><?php echo mysqli_num_rows($reg_hotel); ?></td>
+								   <td class="TT ho-1" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_hotel); ?></td>
 								<?php } ?>
 								
 								<?php if (mysqli_num_rows($reg_room)< 1) { ?>
-								<td class="TT" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">0</td>
+								<td class="TT ro-1" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'"><?php echo mysqli_num_rows($reg_room); ?></td>
+								<td class="TT ro-1" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_room); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_banquet)< 1) { ?>
-								<td class="TT" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">0</td>
+								<td class="TT ban-1" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'"><?php echo mysqli_num_rows($reg_banquet); ?></td>
+								<td class="TT ban-1" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_banquet); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_conference)< 1) { ?>
-								<td class="TT" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">0</td>
+								<td class="TT con-1" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'"><?php echo mysqli_num_rows($reg_conference); ?></td>
+								<td class="TT con-1" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_conference); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_tour)< 1) { ?>
-								<td class="TT" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">0</td>
+								<td class="TT tor-1" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'"><?php echo mysqli_num_rows($reg_tour); ?></td>
+								<td class="TT tor-1" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_tour); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_event)< 1) { ?>
-								<td class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'">0</td>
+								<td class="TT ev-1" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>'"><?php echo mysqli_num_rows($reg_event); ?></td>
+								<td class="TT ev-1" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_event); ?></td>
 								<?php } ?>
 
 								<td><?php echo $reg_Result['reg_joinD']; ?></td>
@@ -308,11 +315,13 @@ function reason_submit() {
 	
 	function show_suspend(event) {
       
-       var text_area=$('#textarea_susp').val();
-      var sus=$(event.currentTarget).parents('.veiw_sus_appr');
-     
-	  var btn=$(event.currentTarget).attr('value');
-      var u_id=$(event.currentTarget).attr('u_id');
+        var text_area=$('#textarea_susp').val();
+        var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+	    var btn=$(event.currentTarget).attr('value');
+        var u_id=$(event.currentTarget).attr('u_id');
+        
+        var id_val= $('#hidden-id_val').val();
+        var name_val=$('#hidden-name_val').val();
 	   $.ajax({
              
              type:"POST",
@@ -326,8 +335,18 @@ function reason_submit() {
 
                          sus.find('.sus').show();
                          sus.find('.appr').hide();
+                          var st_val= sus.find('.sus').text();
+        
                          $('#registor-form').find('.res_sup').text(text_area);
-                            
+                       
+                          $('.ho-1').attr('onclick',"document.location.href='hotels/hotel_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.ro-1').attr('onclick',"document.location.href='rooms/room_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.ban-1').attr('onclick',"document.location.href='banquets/banquet_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.con-1').attr('onclick',"document.location.href='conferences/conference_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.tor-1').attr('onclick',"document.location.href='tours/tour_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.ev-1').attr('onclick',"document.location.href='events/event_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                        
+                           
                    }else{
 
                          
@@ -349,7 +368,27 @@ function show_approve(event) {
 
 	var btn=$(event.currentTarget).attr('value');
       var u_id=$(event.currentTarget).attr('u_id');
-	   $.ajax({
+        var id_val= $('#hidden-id_val').val();
+        var name_val=$('#hidden-name_val').val();
+
+           swal({
+
+        title: "Are you sure you want to approve this user?",
+        
+        type: "warning",
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: true,
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "cancel",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          },function (isconfirm) {
+
+          	if (isconfirm) {
+                       
+            $.ajax({
              
              type:"POST",
              url:"update-user_status.php",
@@ -363,6 +402,18 @@ function show_approve(event) {
                           $('.reason_sp').hide();
                           sus.find('.sus').hide();
                           sus.find('.appr').show();
+                          
+                           sus.find('.approve').hide();
+					      sus.find('.suspend').show();
+					       var st_val= sus.find('.appr').text();
+
+                          $('.ho-1').attr('onclick',"document.location.href='hotels/hotel_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.ro-1').attr('onclick',"document.location.href='rooms/room_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.ban-1').attr('onclick',"document.location.href='banquets/banquet_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.con-1').attr('onclick',"document.location.href='conferences/conference_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.tor-1').attr('onclick',"document.location.href='tours/tour_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.ev-1').attr('onclick',"document.location.href='events/event_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                         
 
                         
                    }else{
@@ -374,9 +425,18 @@ function show_approve(event) {
              }   
 
 	   });
-	$(event.currentTarget).hide();
-	 
-	 $(event.currentTarget).parents('.sus_appr').find('.suspend').show();
+           
+
+          	}
+
+          	
+          });
+   
+
+
+
+	
+	
 }
 
 	</script>

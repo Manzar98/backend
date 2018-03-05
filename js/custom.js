@@ -1094,9 +1094,9 @@ swal({
   showCancelButton: true,
   confirmButtonColor: "#DD6B55",
   confirmButtonText: "Yes, delete it!",
-  cancelButtonText: "No, cancel plx!",
+  cancelButtonText: "cancel",
   closeOnConfirm: false,
-  closeOnCancel: false
+  closeOnCancel: true
 },
 function(isConfirm){
   console.log(isConfirm);
@@ -1177,12 +1177,18 @@ var tr=table.getElementsByTagName("tr");
       var td=tr[i].getElementsByTagName("td");
       // console.log(event.which);
 // debugger;
-      if (filter=='') {
+      if (event.which==8 && filter=='') {
        // debugger;
        tr[i].style.display="";
        console.log(tr[i].style.display);
-     }else if (event.which==13 || event.type=="click") {
+     }else if (event.which==13 || event.type=="click" || event.type=="change") {
       // debugger;
+      if (event.type=="change") {
+        // debugger;
+          filter=$('#yourole').val();
+          console.log(filter);
+       }
+      
       var TDLength=td.length;
         console.log(TDLength);
      if(tr[i].parentNode.nodeName!='THEAD'){
@@ -1195,7 +1201,7 @@ var tr=table.getElementsByTagName("tr");
              var updatedtd=td[j];
              console.log(filter);
         // debugger;
-             if (updatedtd.innerHTML.toLowerCase().indexOf(filter)>-1) {
+             if (updatedtd.innerHTML.indexOf(filter)>-1) {
  // debugger;
                       console.log(filter);
                      updatedtd.parentElement.style.display="";

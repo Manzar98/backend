@@ -198,7 +198,7 @@
                              success:function(res){
 
                                var data=JSON.parse(res);
-                               if (data.status="Success") {
+                               if (data.status=="Success") {
 
                                  $("#btn-loader").hide();
                                  setTimeout(function(){
@@ -372,13 +372,14 @@
                             $.ajax({
 
                                   type: "POST",
-                                  url: " registration/registration-update.php",
+                                  url: "registration/registration-update.php",
                                   data: $("form").serialize(),
                                   success:function(res){
 
                                    var data=JSON.parse(res);
-                                   if (data.status="Success") {
 
+                                   if (data.status=="Success") {
+                                  
                                     $("#btn-loader").hide();
                                     setTimeout(function(){
                                      $('#loader').modal('close');
@@ -394,6 +395,27 @@
                                                window.location = "db-profile.php?id="+data.id;
                                              });
                                    },3000)
+                                  }else if(data.status=="vendor_success"){
+
+                                          $("#btn-loader").hide();
+                                    setTimeout(function(){
+                                     $('#loader').modal('close');
+                                     swal({
+                                       title: "Registration successfully updated for review!",
+                                       text: "Thank you for your updation! You will be notified once your changes have been approved!",
+                                       type: "success",
+                                                //confirmButtonColor: "#DD6B55",
+                                                confirmButtonText: "ok",
+                                                closeOnConfirm: true,
+                                                html: false
+                                              }, function(){
+                                               window.location = "edit_vendor.php?id="+data.id;
+                                             });
+                                   },3000)
+
+
+
+
                                   }else{
 
 
@@ -427,8 +449,8 @@
                                   success:function(res){
 
                                    var data=JSON.parse(res);
-                                   if (data.status="Success") {
-
+                                   if (data.status=="Success") {
+                                   debugger;
                                     $("#btn-loader").hide();
                                     setTimeout(function(){
                                      $('#loader').modal('close');
@@ -444,6 +466,27 @@
                                                window.location = "db-profile.php?id="+data.id;
                                              });
                                    },3000)
+                                  }else if(data.status=="vendor_success"){
+
+                                          $("#btn-loader").hide();
+                                    setTimeout(function(){
+                                     $('#loader').modal('close');
+                                     swal({
+                                       title: "Registration successfully updated for review!",
+                                       text: "Thank you for your updation! You will be notified once your changes have been approved!",
+                                       type: "success",
+                                                //confirmButtonColor: "#DD6B55",
+                                                confirmButtonText: "ok",
+                                                closeOnConfirm: true,
+                                                html: false
+                                              }, function(){
+                                               window.location = "edit_vendor.php?id="+data.id;
+                                             });
+                                   },3000)
+
+
+
+
                                   }else{
 
 

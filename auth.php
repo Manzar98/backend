@@ -13,16 +13,19 @@ $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
 
 if(mysqli_num_rows($result) == 1){
 
- $queryup= 'UPDATE `credentials` SET reg_lastlogin=now() Where reg_email="'.$email.'"';
+  //echo 'Successfuly authorized';
+$crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this  
+   //echo $crntresult['id'] ;
+if ($crntresult['user_status']!="Suspended") {
+    
+    $queryup= 'UPDATE `credentials` SET reg_lastlogin=now() Where reg_email="'.$email.'"';
  
  mysqli_query($conn,$queryup)or die(mysqli_error($conn));
-	//echo 'Successfuly authorized';
-$crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this  
-	 //echo $crntresult['id'] ;
-  
-	 session_start();
 
-	      $_SESSION['login'] = true;
+  
+   session_start();
+
+        $_SESSION['login'] = true;
         $_SESSION['reg_email']=$email;
         $_SESSION['reg_password']=$password;
         $_SESSION['user_id']=$crntresult['user_id'];
@@ -54,7 +57,19 @@ $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this
 
   }
        echo json_encode($res_Array);
-     	  // header('Location: dashboard.php?id='.$crntresult['user_id']);//to send the id for 
+        // header('Location: dashboard.php?id='.$crntresult['user_id']);//to send the id for 
+  }else{
+
+       $res_Array=array(
+          "status"=>"Error",
+           "type"=>"Suspended"
+     
+        );
+  echo  json_encode($res_Array);
+
+  }
+
+ 
      
   
         

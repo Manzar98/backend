@@ -137,7 +137,7 @@
 							<div class="common-top clearfix">
 								 
 									
-								<label class="col s4">Hotel Promotional Video (url)</label>
+								<label class="col s4">Hotel Promotional Video (URL)</label>
 								<div class="input-field col s8">
 									<input type="text"  class="" name="common_video"  ></div>
 						    </div>

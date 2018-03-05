@@ -4639,6 +4639,7 @@ color: inherit !important;
     width: 51%;
     margin: 0 auto;
     height: 50%;
+    max-height: 72%
 }
 .spc-modal.btn{
    padding: 21px 13px;

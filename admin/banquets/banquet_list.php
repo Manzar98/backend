@@ -26,9 +26,22 @@
 
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-						<div class="db-title">
+						<div class="row">
+						<div class="db-title col s9">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> <?php echo $_GET['name']; ?> Banquet Hall's</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
+						</div>
+						<div class="col s3" style="margin-top: 10px;">
+							<span >Status:</span>
+							 <?php if ($_GET['status']=='Suspended') { ?>
+							 	<span class="appr" style="color: red; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php  }else{ ?>
+
+                                      <span class="appr" style="color: green; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php } ?>
+						</div>
 						</div>
 
 
@@ -97,20 +110,48 @@
 									<div class="buttonsWrap">
 
 										<?php if ($result['banquet_independ']=='no') { ?>
+
+										         <?php if ($_GET['status']=="Suspended") { ?>
+
+										            <div class="row">
+														<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+														<a class="waves-effect waves-light btn" href="#">Delete</a>
+													</div>
+
+										         <?php }else{ ?>
+
+										            <div class="row">
+														<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+														<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+														<a class="waves-effect waves-light btn" href="#">Delete</a>
+													</div>
+
+										         <?php } ?>
+
 											
 										
-										<div class="row">
-											<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
-										</div>
-								<?php	}else{ ?>
+										
+								<?php	}else{ ?> 
 
-								         <div class="row">
-											<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>"">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
-										</div>
+								              <?php if($_GET['status']=="Suspended"){ ?>
+                                                        
+                                                      <div class="row">
+														<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+														<a class="waves-effect waves-light btn" href="#">Delete</a>
+										              </div>
+
+								              <?php }else{ ?>
+
+								                      <div class="row">
+														<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+														<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>"">Edit</a>
+														<a class="waves-effect waves-light btn" href="#">Delete</a>
+										              </div>
+
+								              <?php } ?>
+
+
+								         
 
 
 
@@ -137,14 +178,24 @@
 						</table>
 						 <?php	}else{ ?>
 
-						 <div class="text-center"><span><?php echo $_GET['name']; ?> has no Banquet Halls</span></div>
-						 <div class="row common-top text-center">
-						 	<div class="">
-						 		
-						 		<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-banquet-hall.php">Add New Banquet</a>
-						 		
-						 	</div>
-						 </div>
+						 <?php if ($_GET['status']=='Suspended') { ?>
+
+							 	 <div class="text-center"><span><?php echo $_GET['name']; ?> has Suspended</span></div>
+
+							<?php  }else{ ?>
+
+                              <div class="text-center"><span><?php echo $_GET['name']; ?> has no Banquet Halls</span></div>
+								 <div class="row common-top text-center">
+								 	<div class="">
+								 		
+								 		<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-banquet-hall.php">Add New Banquet</a>
+								 		
+								 	</div>
+								 </div>
+
+							<?php } ?>
+
+						 
 
 						 <?php	}?>
 					</div>

@@ -8,7 +8,7 @@ $('#login_btn').click(function(){
   	   success:function(res){
 
   	   	var data=JSON.parse(res);
-
+            
   	   	if (data.status=="Success") {
 
            if (data.u_type=="vendor") {
@@ -23,7 +23,25 @@ $('#login_btn').click(function(){
   	   		
   	   	}else{
 
-  	   		 swal({
+              
+             if (data.type=="Suspended") {
+                    
+                      swal({
+                                       title: "This user has been Suspended",
+                    
+                    type: "error",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: true
+                      }, function(){
+                      
+                    });
+
+
+             }else{
+
+                   swal({
                                        title: "Email or Password is incorrect",
                     
                     type: "error",
@@ -34,6 +52,10 @@ $('#login_btn').click(function(){
                       }, function(){
                       
                     });
+
+             }
+
+  	   		
   	   	}
 
 
@@ -72,7 +94,24 @@ function enterBTN(event){
 
         }else{
 
-           swal({
+                if (data.type=="Suspended") {
+                      
+                      swal({
+                                       title: "This user has been Suspended",
+                    
+                    type: "error",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: true
+                      }, function(){
+                      
+                    });
+
+
+             }else{
+
+                   swal({
                                        title: "Email or Password is incorrect",
                     
                     type: "error",
@@ -83,6 +122,8 @@ function enterBTN(event){
                       }, function(){
                       
                     });
+
+             }
         }
 
 

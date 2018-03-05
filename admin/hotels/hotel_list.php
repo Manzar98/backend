@@ -29,10 +29,25 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
              <!--  <input type="text"  id="row_count" name=""> -->
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-						<div class="db-title">
+
+						<div class="row">
+						<div class="db-title col s9">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> <?php echo $_GET['name']; ?> Hotels</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
+						<div class="col s3" style="margin-top: 10px;">
+							<span >Status:</span>
+							 <?php if ($_GET['status']=='Suspended') { ?>
+							 	<span class="appr" style="color: red; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php  }else{ ?>
+
+                                      <span class="appr" style="color: green; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php } ?>
+						</div>
+						</div>
+						
  
 
                   <?php
@@ -83,11 +98,23 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 									</td> -->
 									<td class="tdwrap">
 									<div class="buttonsWrap">
+										<?php if ($_GET['status']=="Suspended") { ?>
+											
+												<div class="row">
+												<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>">Veiw</a>
+												<a class="waves-effect waves-light btn" href="#">Delete</a>
+											</div>
+
+										<?php }else{ ?>
+
 										<div class="row">
 											<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>">Veiw</a>
 											<a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $result['hotel_id'];  ?>">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
 										</div>
+
+										<?php } ?>
+										
 										
 									</div>
 									</td>
@@ -106,7 +133,15 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 						</table>
 
 						<?php	}else{ ?>
-                          <div class="text-center"><span><?php echo $_GET['name']; ?> has no Hotels</span></div>
+
+
+						<?php if ($_GET['status']=='Suspended') { ?>
+
+							 	 <div class="text-center"><span><?php echo $_GET['name']; ?> has Suspended</span></div>
+
+							<?php  }else{ ?>
+
+                            <div class="text-center"><span><?php echo $_GET['name']; ?> has no Hotels</span></div>
                           <div class="row common-top text-center">
 							<div class="">
 								
@@ -114,6 +149,8 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 								
 							</div>
 					   </div>
+							<?php } ?>
+                         
 
 							<?php }?>
 					</div>

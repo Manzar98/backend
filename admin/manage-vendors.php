@@ -23,6 +23,23 @@
 
 						</div>
 
+				   <div class="row">
+						 	<div class="col s4">
+						 		
+						 		 <select onchange="myFunction(event)" id="yourole"  name="">
+								      <option value="Approved">Approved</option>
+								      <option value="Suspended">Suspended</option>
+								      
+                                 </select>
+						 	</div>
+						 	<div class="col s6  ">	
+						 		<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
+						 	</div>
+						 	<div class="">
+						 		<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
+						 	</div>
+				   </div>
+
 						
 						<?php
 
@@ -60,14 +77,14 @@
 
 										<?php }elseif ($result['user_status']=="Suspended") {?>
 
-										<td class="status_wrap sus"><span class="db-not-success"><?php echo $result['user_status']; ?></td>
+										<td class="status_wrap sus"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
 										<td class="status_wrap appr" style="display: none;"><span class="db-success">Approved</span></td>
 
 										<?php }else{ ?>
 
 										<td class="status_wrap "><span class="db-not-success vendor-pending">Pending</span></td>
 										<?php } ?>
-									</span>
+									
                                     <td class="text-center sus_appr">
                                     	<?php if ($result['user_status']=="Approved") { ?>
 
@@ -207,7 +224,26 @@ function show_approve(event) {
 
 	var btn=$(event.currentTarget).attr('value');
       var u_id=$(event.currentTarget).attr('u_id');
-	   $.ajax({
+
+       swal({
+
+        title: "Are you sure you want to approve this user?",
+        
+        type: "warning",
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: true,
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "cancel",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          },function (isconfirm) {
+
+          	if (isconfirm) {
+                       
+
+          		 	   $.ajax({
              
              type:"POST",
              url:"update-user_status.php",
@@ -221,9 +257,10 @@ function show_approve(event) {
                           
                           sus.find('.sus').hide();
                           sus.find('.appr').show();
-                          
-                         
-                         
+                        
+					      sus.find('.approve').hide();
+					      sus.find('.suspend').show();
+ 	 
                    }else{
                       
                       
@@ -231,12 +268,16 @@ function show_approve(event) {
                    }
                  console.log(data);
              }   
-
+       
 	   });
-	$(event.currentTarget).hide();
-	
+           
+
+          	}
+
+          	
+          });
+
 	 
- 	 $(event.currentTarget).parents('.sus_appr').find('.suspend').show();
  	 
 }
 </script>

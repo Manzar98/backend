@@ -33,10 +33,24 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-						<div class="db-title">
+						<div class="row">
+						<div class="db-title col s9">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> <?php echo $_GET['name'] ?> Tour Pacakages</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
+						<div class="col s3" style="margin-top: 10px;">
+							<span >Status:</span>
+							 <?php if ($_GET['status']=='Suspended') { ?>
+							 	<span class="appr" style="color: red; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php  }else{ ?>
+
+                                      <span class="appr" style="color: green; "><b><?php echo $_GET['status']; ?></b></span>
+
+							<?php } ?>
+						</div>
+						</div>
+						
 						
 
 						<?php
@@ -92,16 +106,38 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 											
 										
 										<div class="row">
-											<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
+											<?php if ($_GET['status']=="Suspended") { ?>
+
+											        <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="#">Delete</a>
+												
+
+											<?php }else{?>
+
+													<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Edit</a>
+													<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+											<?php } ?>
+											
 										</div>
 								<?php	}else{ ?>
 
 								         <div class="row">
-											<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
+								         	<?php if ($_GET['status']=="Suspended") { ?>
+
+									         	<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+												<a class="waves-effect waves-light btn" href="#">Delete</a>
+												
+											<?php }else{ ?>
+
+		                                                 <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Edit</a>
+													<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+
+											<?php } ?>
+											
 										</div>
 
 
@@ -127,7 +163,13 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 
 						<?php	}else{ ?>
 
-						 <div class="text-center"><span><?php echo $_GET['name'] ?> has no Tour Packages</span></div>
+						<?php if ($_GET['status']=='Suspended') { ?>
+
+							 	 <div class="text-center"><span><?php echo $_GET['name']; ?> has Suspended</span></div>
+
+							<?php  }else{ ?>
+
+                         <div class="text-center"><span><?php echo $_GET['name'] ?> has no Tour Packages</span></div>
 						 <div class="row common-top text-center">
 						 	<div class="">
 						 		
@@ -135,6 +177,9 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 						 		
 						 	</div>
 						 </div>
+							<?php } ?>
+
+						 
 
 						 <?php	}?>
 					</div>
