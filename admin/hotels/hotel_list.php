@@ -101,14 +101,14 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 										<?php if ($_GET['status']=="Suspended") { ?>
 											
 												<div class="row">
-												<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>">Veiw</a>
+												<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>">Veiw</a>
 												<a class="waves-effect waves-light btn" href="#">Delete</a>
 											</div>
 
 										<?php }else{ ?>
 
 										<div class="row">
-											<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>">Veiw</a>
 											<a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $result['hotel_id'];  ?>">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
 										</div>

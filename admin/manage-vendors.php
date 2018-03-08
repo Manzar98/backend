@@ -24,18 +24,19 @@
 						</div>
 
 				   <div class="row">
-						 	<div class="col s4">
+						 	<div class="col s4 search_flter">
 						 		
 						 		 <select onchange="myFunction(event)" id="yourole"  name="">
+						 		 	  <option value="" selected="" disabled="">Search By Filter</option>
 								      <option value="Approved">Approved</option>
 								      <option value="Suspended">Suspended</option>
 								      
                                  </select>
 						 	</div>
-						 	<div class="col s6  ">	
+						 	<div class="col s6 search_field">	
 						 		<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
 						 	</div>
-						 	<div class="">
+						 	<div class="search_field_btn">
 						 		<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
 						 	</div>
 				   </div>
@@ -63,7 +64,7 @@
 								
                                 <?php   while ($result=mysqli_fetch_assoc($vendor_resp)) { ?>
 
-                                   <tr class="">
+                                   <tr class="tr-1">
 									<td class="td-name"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
 									<td class="text-center"><?php echo $result['reg_postal']; ?></td>
 									<td class="text-center"><?php echo $result['reg_city'];   ?></td>
@@ -73,12 +74,12 @@
 
 										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['user_status']; ?></span></td>
 
-										<td class="status_wrap sus" style="display: none;"><span class="db-not-success">Suspended</span></td>
+										<!-- <td class="status_wrap sus" style="display: none;"><span class="db-not-success">Suspended</span></td> -->
 
 										<?php }elseif ($result['user_status']=="Suspended") {?>
 
-										<td class="status_wrap sus"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
-										<td class="status_wrap appr" style="display: none;"><span class="db-success">Approved</span></td>
+										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
+										<!-- <td class="status_wrap appr" style="display: none;"><span class="db-success">Approved</span></td> -->
 
 										<?php }else{ ?>
 
@@ -199,9 +200,12 @@ function reason_submit() {
                    var data=JSON.parse(res);
 
                    if (data.status=="Suspended") {
-
-                         sus.find('.sus').show();
-                         sus.find('.appr').hide();
+                        // sus.find('.appr').hide();
+                         // sus.find('.sus').show();
+                         
+                         sus.find(".appr").html('');
+                         sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
+                         // debugger;
 
                    }else{
 
@@ -253,10 +257,12 @@ function show_approve(event) {
                    var data=JSON.parse(res);
 
                    if (data.status=="Approved") {
-
                           
-                          sus.find('.sus').hide();
-                          sus.find('.appr').show();
+                          sus.find(".appr").html('');
+                         sus.find(".appr").html('<span class="db-success">Approved</span>');
+                          // sus.find('.sus').hide();
+                          // sus.find('.appr').show();
+
                         
 					      sus.find('.approve').hide();
 					      sus.find('.suspend').show();

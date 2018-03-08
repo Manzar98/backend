@@ -1167,56 +1167,47 @@ function myFunction(event) {
   var input=document.getElementById("mysearch");
 
  var filter=input.value;
- // console.log(filter);
-var table=document.getElementById("h_table");
-var tr=table.getElementsByTagName("tr");
-// console.log(tr);
-  
-  for (var i = 0; i < tr.length; i++) {
-        // console.log(tr[i]);
-      var td=tr[i].getElementsByTagName("td");
-      // console.log(event.which);
-// debugger;
-      if (event.which==8 && filter=='') {
-       // debugger;
-       tr[i].style.display="";
-       console.log(tr[i].style.display);
-     }else if (event.which==13 || event.type=="click" || event.type=="change") {
-      // debugger;
-      if (event.type=="change") {
-        // debugger;
-          filter=$('#yourole').val();
-          console.log(filter);
-       }
-      
-      var TDLength=td.length;
-        console.log(TDLength);
-     if(tr[i].parentNode.nodeName!='THEAD'){
-          tr[i].style.display="none";
-      }
 
-      if (td) {
-             // debugger;
-            for (var j = 0; j < TDLength; j++) {
-             var updatedtd=td[j];
-             console.log(filter);
-        // debugger;
-             if (updatedtd.innerHTML.indexOf(filter)>-1) {
- // debugger;
-                      console.log(filter);
-                     updatedtd.parentElement.style.display="";
+var trObj = $('#h_table tbody tr');
+$('#h_table tbody tr').hide();
 
-                   }
-
-                }
-
-              }
-       
-  
-
-     }
-
+if (event.which==13 || event.type=="click" ) {
+ 
+$.each(trObj,function(k,value){
+  // debugger;
+  if(value.innerHTML.toLowerCase().indexOf(filter) > -1){
+ $(value).show();
   }
+});
+
+}else if(event.type=="change"){
+
+        
+           filter=$('#yourole').val();
+           // console.log(filter);
+        
+$.each($('.appr'),function(k,value){
+
+   console.log(value);
+    
+  if(value.innerHTML.indexOf(filter) > -1){
+
+    $(value).parent('.tr-1').show();
+  }
+});
+
+
+
+
+}else{
+
+  $.each(trObj,function(k,value){
+  if(value.innerHTML.toLowerCase().indexOf(filter) > -1){
+ $(value).show();
+  }
+});
+ 
+}
 
 }
 

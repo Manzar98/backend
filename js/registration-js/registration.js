@@ -450,7 +450,7 @@
 
                                    var data=JSON.parse(res);
                                    if (data.status=="Success") {
-                                   debugger;
+                                   
                                     $("#btn-loader").hide();
                                     setTimeout(function(){
                                      $('#loader').modal('close');

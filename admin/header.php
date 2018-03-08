@@ -408,7 +408,7 @@
 							<a href="db-event.html"><img src="../images/icon/db4.png" alt="" /> Event</a>
 						</li>
 						<li>
-							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
+							<a href="edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 						</li>
 						<li>
 							<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>
