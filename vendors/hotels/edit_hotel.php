@@ -30,7 +30,9 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 <title>Edit Hotel</title>
 
 
-<?php include '../header.php'; ?>
+<?php include '../header.php'; 
+
+include'../../methods/general_amenities.php'; ?>
 
 
 
@@ -659,16 +661,21 @@ for (var i = 0; i < amenity.length; i++) {
 	      ameinty_obj.push({"tag":amenity[i]});
 }
 
+ var am_obj=[];
+   var am_data=$('#amenities-input_wrap').val().split(',');
+   // console.log(am_data);
+
+ for (var i = 0; i < am_data.length; i++) {
+	      
+	      am_obj[am_data[i]] = "";
+}
+
+
 // console.log(ameinty_obj);
 $('.chips-autocomplete').material_chip({
 	data : ameinty_obj,
 autocompleteOptions: {
-data: {
-'Wifi': null,
-'Swimming Pool': null,
-'Room service': null,
-'Restaurant': null
-},
+ data : am_obj,
 limit: Infinity,
 minLength: 1
 }

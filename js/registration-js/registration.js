@@ -541,7 +541,7 @@ function readcover(input){
                         .width(150)
                          .height(100);
                  };
-
+                 $('#preveiw_cover').remove();
                  reader.readAsDataURL(input.files[0]);
     }
 

@@ -6,6 +6,12 @@
    header("location: ../index.php");
    die;
 }
+
+include '../../common-sql.php';
+
+$userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
+
+ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 ?>
 <!-- META TAGS -->
 	<meta charset="utf-8">
@@ -377,9 +383,10 @@
 		</div>
 		<!--TOP SECTION-->
 		<!--DASHBOARD SECTION-->
+		<?php while ($user_result=mysqli_fetch_assoc($user_con)) {?>
 		<div class="dashboard">
 			<div class="db-left">
-				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo $_SESSION['reg_photo'];?>'),url('<?php echo $_SESSION['reg_cover'] ?>');background-size: 95px,cover;">
+				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo $user_result['reg_photo'];?>'),url('<?php echo $user_result['reg_cover'] ?>');background-size: 95px,cover;">
 					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
 					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
 				</div>
@@ -417,8 +424,9 @@
 			</div>
 
 			<div class="db-cent">
-				<div class="db-cent-1" style="background-image:url('<?php echo $_SESSION['reg_cover']; ?>') !important;">
+				<div class="db-cent-1" style="background-image:url('<?php echo $user_result['reg_cover']; ?>') !important;">
 					
 					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
 					<h4>Welcome to your dashboard</h4>
 					 </div>
+					 <?php } ?>

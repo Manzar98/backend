@@ -1023,24 +1023,6 @@ $('.chips-package').on('chip.add', function(e, chip){
    console.log($('#input_'+e.currentTarget.id).val(array_amenity.toString()));
 });
 
-/*=============File Uploading================*/
-
-
-
-
-/*======Form Validation=======*/
-
-// function form_Validate()
-//             {
-//                 var e = document.getElementById("");
-//                 var strUser = e.options[e.selectedIndex].value;
-
-//                 var strUser1 = e.options[e.selectedIndex].text;
-//                 if(strUser==0)
-//                 {
-//                     alert("Please select a user");
-//                 }
-//             }
 
 /*===============Images Modal ===================*/
  $('#modal-images').modal({dismissible: false});

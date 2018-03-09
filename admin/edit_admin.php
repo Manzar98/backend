@@ -126,7 +126,12 @@
 									 </div>
 							</div>
 						  </div>
+						  <?php 
+                             $cover=substr($reg_Result['reg_cover'],3) ;
+				             
+						  ?>
 						  <div class="col-md-6" >
+						  	<img id="preveiw_cover"  src="<?php echo $cover; ?>" alt="your image" style="width: 150px;height: 70px; margin-top: 10px;"/>
 						  	   <img id="cover" src="#" alt="your image" style="display: none;"/>
 						  </div>
 						  </form>
@@ -145,6 +150,7 @@
 								</div>
 							</div>
 						    <div class="col-md-6" >
+						    	<img src="<?php echo $pro_img; ?>" id="preveiw_image" width="50%" alt="">
 								  	     <div id="upload-demo" style="width:350px">
 								  	     	
 								  	     </div>
@@ -631,6 +637,7 @@ $('#upload').on('change', function () {
       $uploadCrop.croppie('bind', {
         url: e.target.result
       }).then(function(){
+      	$('#preveiw_image').remove();
         console.log('jQuery bind complete');
       });
       
@@ -803,8 +810,8 @@ $('.upload-result').on('click', function (ev) {
                                      setTimeout(function(){
                                       $('#loader').modal('close');
                                       swal({
-                                        title: "Registration successfully updated for review!",
-                                        text: "Thank you for your updation! You will be notified once your changes have been approved!",
+                                        title: "Edits successfully updated",
+                                        
                                         type: "success",
                                                  //confirmButtonColor: "#DD6B55",
                                                  confirmButtonText: "ok",
@@ -853,8 +860,8 @@ $('.upload-result').on('click', function (ev) {
                                      setTimeout(function(){
                                       $('#loader').modal('close');
                                       swal({
-                                        title: "Registration successfully updated for review!",
-                                        text: "Thank you for your updation! You will be notified once your changes have been approved!",
+                                        title: "Edits successfully updated",
+                            
                                         type: "success",
                                                  //confirmButtonColor: "#DD6B55",
                                                  confirmButtonText: "ok",
@@ -918,7 +925,7 @@ $('.upload-result').on('click', function (ev) {
                         .width(150)
                           .height(100);
                   };
-
+                 $('#preveiw_cover').remove();
                   reader.readAsDataURL(input.files[0]);
      }
 

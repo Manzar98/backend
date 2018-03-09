@@ -220,7 +220,12 @@
 									 </div>
 							</div>
 						  </div>
+						  <?php 
+                             $cover=substr($reg_Result['reg_cover'],3) ;
+				             
+						  ?>
 						  <div class="col-md-6" >
+						  	<img id="preveiw_cover"  src="<?php echo $cover; ?>" alt="your image" style="width: 150px;height: 70px; margin-top: 10px;" />
 						  	   <img id="cover" src="#" alt="your image" style="display: none;"/>
 						  </div>
 						  </form>
@@ -239,6 +244,7 @@
 								</div>
 							</div>
 						    <div class="col-md-6" >
+						    	<img src="<?php echo $pro_img; ?>" id="preveiw_image" width="50%" alt="">
 								  	     <div id="upload-demo" style="width:350px">
 								  	     	
 								  	     </div>
@@ -396,6 +402,7 @@ $('#upload').on('change', function () {
       $uploadCrop.croppie('bind', {
         url: e.target.result
       }).then(function(){
+      	$('#preveiw_image').remove();
         console.log('jQuery bind complete');
       });
       
@@ -404,6 +411,7 @@ $('#upload').on('change', function () {
 });
 
 $('.upload-result').on('click', function (ev) {
+
   $uploadCrop.croppie('result', {
     type: 'canvas',
     size: 'viewport'
@@ -416,7 +424,7 @@ $('.upload-result').on('click', function (ev) {
       url: "registration/profile_img_post.php",     
       data: {"image":resp},
       success: function (data) {
-         
+               
                $('#upload-demo').hide();
                $('#upload-demo-btn').hide();
                $("#upload-demo-i").show();

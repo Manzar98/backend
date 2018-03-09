@@ -27,7 +27,7 @@
 						 	<div class="col s4 search_flter">
 						 		
 						 		 <select onchange="myFunction(event)" id="yourole"  name="">
-						 		 	  <option value="" selected="" disabled="">Search By Filter</option>
+						 		 	  <option value="" selected="" >View all</option>
 								      <option value="Approved">Approved</option>
 								      <option value="Suspended">Suspended</option>
 								      

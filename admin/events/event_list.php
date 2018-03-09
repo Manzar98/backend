@@ -163,8 +163,16 @@
 
 						<?php if ($_GET['status']=='Suspended') { ?>
 
-							 	 <div class="text-center"><span><?php echo $_GET['name']; ?> has Suspended</span></div>
-
+							 	 <div class="row">
+						        <div class="col s1"></div>
+                                <div class="pull-left">
+                                 <h3  style="color: red;"><?php echo $_GET['name']; ?> is Suspended<b>!</b></h3>
+                                  <div style="padding-left: 5px; width: 635px;">
+                                  <span >Listings cannot be added under the suspended users. Approve the user first to add listings under their name.</span>
+                                  </div>
+                                </div>
+							 	
+                             </div>
 							<?php  }else{ ?>
 
                              <div class="text-center"><span><?php echo $_GET['name']; ?> has no Event Packages</span></div>

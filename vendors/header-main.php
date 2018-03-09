@@ -6,6 +6,12 @@
    header("location: ../index.php");
    die;
 }
+
+include '../common-sql.php';
+
+$userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
+
+ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 ?>
 
 <!-- META TAGS -->
@@ -376,12 +382,13 @@
 		</div>
 		<!--TOP SECTION-->
 		<!--DASHBOARD SECTION-->
+		<?php while ($user_result=mysqli_fetch_assoc($user_con)) {?>
 		<div class="dashboard">
 			<div class="db-left">
 				<?php
 
-				   $cover=substr($_SESSION['reg_cover'],3) ;
-				   $img=substr($_SESSION['reg_photo'], 3)
+				   $cover=substr($user_result['reg_cover'],3) ;
+				   $img=substr($user_result['reg_photo'], 3);
 				?>
 				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo  $img;?>'),url('<?php echo $cover; ?>');background-size: 95px,cover;">
 					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
@@ -422,3 +429,4 @@
 					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
 					<h4>Welcome to your dashboard</h4>
 					 </div>
+					 <?php } ?>

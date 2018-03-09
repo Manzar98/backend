@@ -7,7 +7,18 @@
 	<title>Add a Hotel</title>
 
 
-<?php include '../header.php'; ?>
+<?php 
+
+ 
+  
+include '../header.php'; 
+
+include'../../methods/general_amenities.php'; ?>
+
+   
+
+
+
 
 
 
@@ -413,37 +424,7 @@
               document.getElementById("transport").style.display = "block";
         if (that.value == "yes") {
              document.getElementById("bag-char").style.display = "block";
-             // if ($('#filled-in-airport').prop('checked') == false && $('#filled-in-bus').prop('checked') == false) {
-             // 	 // console.log('both values is empty');
-             	 
-             // 	 // $("#filled-in-airport").prop('required',true);
-             // 	 // $("#filled-in-bus").prop('required',true);
-     
-             	
-             // }else if($('#filled-in-airport').prop('checked') == true && $('#filled-in-bus').prop('checked') == false){
-             //       $("#filled-in-bus").prop('required',false);
-             //       debugger;
-             //       if ($('#filled-in-airport').prop('checked') == true) {
-             //             $('#aircharges').attr('required');
-             //             debugger;
-             //       }else{
-             //       	    $('#aircharges').removeAttr('required');
-             //       }
-             // }else if ($('#filled-in-airport').prop('checked') == false && $('#filled-in-bus').prop('checked') == true) {
-             //          $('#filled-in-air').removeAttr('required');
-             // 	 if ($('#filled-in-bus').prop('checked') == true) {
-             //             $('#buscharges').attr('required');
-             // 	 }else{
-             //       	    $('#buscharges').removeAttr('required');
-             //       }
-
-
-             // }else{
-
-             // 	  $('#buscharges').attr('required');
-             // 	   $('#aircharges').attr('required');
-             // }
-             // $('#filled-in-airport').attr('required');
+          
         } else {
              document.getElementById("ifYes").style.display = "none";
             document.getElementById("bag-char").style.display = "none";
@@ -534,21 +515,24 @@
 
 jQuery(document).ready(function(){
 
+   var am_obj=[];
+   var am_data=$('#amenities-input_wrap').val().split(',');
+   // console.log(am_data);
+
+ for (var i = 0; i < am_data.length; i++) {
+	      
+	      am_obj[am_data[i]] = "";
+}
 
  $('.chips-autocomplete').material_chip({
     autocompleteOptions: {
-      data: {
-        'Wifi': null,
-        'Swimming Pool': null,
-        'Room service': null,
-        'Restaurant': null
-      },
+      data : am_obj,
       limit: Infinity,
       minLength: 1
     }
   });
 
-
+// debugger;
 
 
 $('#modal-extimg').modal({dismissible: false});

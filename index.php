@@ -80,6 +80,7 @@
 					<h2>Hello... <span>{{ name }}</span></h2>
 					
 				</div> -->
+				<div class="whole_login_block" style="height: 310px;">
 				    <div class="col-md-3"></div>
 					<div class="db-cent-2 col-md-6">
 					<div class="db-title">
@@ -124,7 +125,7 @@
 				</div>
 
 			
-
+</div>
 
 			
 			</div>
