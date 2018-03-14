@@ -1094,7 +1094,7 @@ jQuery(document).ready(function(){
         	}else if ($('.select-wrapper').val()!=""  &&  $('.select-wrapper').hasClass('error')){
 
                  $('.select-wrapper').removeClass('error');
-                 debugger;
+                 // debugger;
         	}
         	// debugger;
         	 console.log(element);
@@ -1271,7 +1271,7 @@ function edit_gen_attraction(event){
 
 
 
-   debugger;
+   // debugger;
 
   var attr_div= $(event.currentTarget).parents('.destination').find('#attraction-wrap')[0];
   var destionation_number = $(event.currentTarget).parents('.destination').attr('id').split('-')[1];

@@ -101,15 +101,15 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 										<?php if ($_GET['status']=="Suspended") { ?>
 											
 												<div class="row">
-												<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>">Veiw</a>
+												<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Veiw</a>
 												<a class="waves-effect waves-light btn" href="#">Delete</a>
 											</div>
 
 										<?php }else{ ?>
 
 										<div class="row">
-											<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $result['hotel_id'];  ?>">Edit</a>
+											<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
 										</div>
 
@@ -154,7 +154,7 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
                           <div class="row common-top text-center">
 							<div class="">
 								
-							<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-hotels.php">Add New Hotel</a>
+							<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-hotels.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Add New Hotel</a>
 								
 							</div>
 					   </div>

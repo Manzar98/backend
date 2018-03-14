@@ -242,24 +242,58 @@ $.ajax({
 
                              if (data.status=='success') {
                               
+                                                                 // 
+                                              var url=window.location.href;
+                // debugger;
+                                              if (url.indexOf('status') > -1) {
 
-                               $("#btn-loader").hide();
-                               
-                              setTimeout(function(){
-                                 $('#loader').modal('close');
-                                 swal({
-                                       title: "Tour successfully submitted for review!",
-                    text: "Thank you for your submission! You will be notified once your tour submission has been approved!.",
-                    type: "success",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: false
-                      }, function(){
-                       window.location = "../tours/tour_list.php";
-                    });
-                              },2000)
+                                                var url_split=url.split('&');
+                                                console.log(url_split[1]);
 
+
+                                                $("#btn-loader").hide();
+                                                setTimeout(function(){
+                                                 $('#loader').modal('close');
+                                                 swal({
+                                                  title: "Tour successfully submitted ",
+                                                   // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
+                                                   type: "success",
+                                      //confirmButtonColor: "#DD6B55",
+                                      confirmButtonText: "ok",
+                                      closeOnConfirm: true,
+                                      html: false
+                                    }, function(){
+
+                                      window.location = "../tours/tour_list.php?id="+data.id+"&"+url_split[1]+"&"+url_split[2];
+
+                                    });
+                                               },3000)
+
+
+
+                                              }else{
+                         
+
+                                               $("#btn-loader").hide();
+                                               
+                                              setTimeout(function(){
+                                                 $('#loader').modal('close');
+                                                 swal({
+                                                       title: "Tour successfully submitted for review!",
+                                    text: "Thank you for your submission! You will be notified once your tour submission has been approved!.",
+                                    type: "success",
+                                      //confirmButtonColor: "#DD6B55",
+                                      confirmButtonText: "ok",
+                                      closeOnConfirm: true,
+                                      html: false
+                                      }, function(){
+                                       window.location = "../tours/tour_list.php";
+                                    });
+                                              },2000)
+
+
+                                              }
+                              
 
 
                              }else{
@@ -383,8 +417,37 @@ $.ajax({
 
                              if (data.status=='success') {
                              
+                                  var url=window.location.href;
+// debugger;
+                              if (url.indexOf('status') > -1) {
+
+                                var url_split=url.split('&');
+                                console.log(url_split[1]);
+
 
                                 $("#btn-loader").hide();
+                                setTimeout(function(){
+                                 $('#loader').modal('close');
+                                 swal({
+                                  title: "Tour successfully updated ",
+                                   // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
+                                   type: "success",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: false
+                    }, function(){
+
+                      window.location = "../tours/tour_list.php?id="+data.id+"&"+url_split[2]+"&"+url_split[3];
+
+                    });
+                               },3000)
+
+
+
+                              }else{
+         
+                              $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
@@ -399,6 +462,14 @@ $.ajax({
                       window.location = "../tours/tour_list.php";
                     });
                               },3000)
+
+
+                              }
+                              
+
+
+
+                                
 
                              }else{
                                var responseArray = "";

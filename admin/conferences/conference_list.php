@@ -117,14 +117,14 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 											  <?php if($_GET['status']=="Suspended") {?>
 
                                                         <div class="row">
-															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>
 										                </div>										      
 										      <?php }else{ ?>
 
 										                <div class="row">
-															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
-															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
+															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>
 										                </div>
 
@@ -134,15 +134,15 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 											  
 											  <?php if($_GET['status']=="Suspended") {?>
 												         <div class="row">
-															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>
 														</div>
 										      
 										      <?php }else{ ?>
 												         
 												        <div class="row">
-															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
-															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>"">Edit</a>
+															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
+															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>
 														</div>
 
@@ -187,7 +187,7 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 						 <div class="row common-top text-center">
 						 	<div class="">
 						 		
-						 		<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-conference-hall.php">Add New Conference</a>
+						 		<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-conference-hall.php?user_id=<?php echo $_GET['id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>">Add New Conference</a>
 						 		
 						 	</div>
 						 </div>

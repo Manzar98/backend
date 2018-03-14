@@ -108,14 +108,14 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 										<div class="row">
 											<?php if ($_GET['status']=="Suspended") { ?>
 
-											        <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+											        <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
 												
 
 											<?php }else{?>
 
-													<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
-													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Edit</a>
+													<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
 
 											<?php } ?>
@@ -126,13 +126,13 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 								         <div class="row">
 								         	<?php if ($_GET['status']=="Suspended") { ?>
 
-									         	<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
+									         	<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 												<a class="waves-effect waves-light btn" href="#">Delete</a>
 												
 											<?php }else{ ?>
 
-		                                                 <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Veiw</a>
-													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>">Edit</a>
+		                                                 <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
 
 
@@ -182,7 +182,7 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 						 <div class="row common-top text-center">
 						 	<div class="">
 						 		
-						 		<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-tours.php">Add New Tour</a>
+						 		<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-tours.php?user_id=<?php echo $_GET['id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>">Add New Tour</a>
 						 		
 						 	</div>
 						 </div>

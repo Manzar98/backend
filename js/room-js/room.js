@@ -83,10 +83,42 @@ $.ajax({
                              var data =JSON.parse(res);
                              console.log(data);
 
-                             if (data.status=='success') { 
-                              
+                             if (data.status=='success') {
+
+
+                                                           // 
+                              var url=window.location.href;
+// debugger;
+                              if (url.indexOf('status') > -1) {
+
+                                var url_split=url.split('&');
+                                console.log(url_split[1]);
+
 
                                 $("#btn-loader").hide();
+                                setTimeout(function(){
+                                 $('#loader').modal('close');
+                                 swal({
+                                  title: "Room successfully updated ",
+                                   // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
+                                   type: "success",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: false
+                    }, function(){
+
+                      window.location = "../rooms/room_list.php?id="+data.id+"&"+url_split[2]+"&"+url_split[3];
+
+                    });
+                               },3000)
+
+
+
+                              }else{
+
+
+                               $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
@@ -102,7 +134,13 @@ $.ajax({
                     });
                               },2000)
 
-                             }else{
+
+                              }
+                              
+
+                               
+
+                          }else{
 
                                var responseArray = "";
                                 $.each(data.message.split(','),function(k,val){
@@ -210,7 +248,39 @@ if (validator.form()== false) {
                              console.log(data);
 
                              if (data.status=='success') {
-                              
+
+                                                             // 
+                              var url=window.location.href;
+// debugger;
+                              if (url.indexOf('status') > -1) {
+
+                                var url_split=url.split('&');
+                                console.log(url_split[1]);
+
+
+                                $("#btn-loader").hide();
+                                setTimeout(function(){
+                                 $('#loader').modal('close');
+                                 swal({
+                                  title: "Room successfully submitted ",
+                                   // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
+                                   type: "success",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: false
+                    }, function(){
+
+                      window.location = "../rooms/room_list.php?id="+data.id+"&"+url_split[1]+"&"+url_split[2];
+
+                    });
+                               },3000)
+
+
+
+                              }else{
+
+
                                $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
@@ -226,6 +296,13 @@ if (validator.form()== false) {
                        window.location = "../rooms/room_list.php";
                     });
                               },3000)
+
+
+                              }
+
+
+                              
+                              
 
 
 

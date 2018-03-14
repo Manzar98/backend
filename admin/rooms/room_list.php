@@ -98,14 +98,14 @@
 										<div class="row">
 											<?php if ($_GET['status']=="Suspended") {?>
 
-													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Veiw</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
 
 												
 											<?php }else{ ?>
 
-													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>">Veiw</a>
-													<a class="waves-effect waves-light btn" href="edit_room.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>"">Edit</a>
+													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Veiw</a>
+													<a class="waves-effect waves-light btn" href="edit_room.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Edit</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
 											<?php } ?>
 											
@@ -148,7 +148,7 @@
 						<div class="row common-top text-center">
 							<div class="">
 								
-								<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-rooms.php">Add New Room</a>
+								<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-rooms.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Add New Room</a>
 								
 							</div>
 						</div>

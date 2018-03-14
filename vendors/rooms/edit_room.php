@@ -508,8 +508,8 @@ $(document).ready(function(){
 $('#ajaxbtn').click(function(){
 
 	
-      debugger;
-     alert('jgjg');
+      // debugger;
+     // alert('jgjg');
   
     var dataObj = {};
 
@@ -525,7 +525,7 @@ $('#ajaxbtn').click(function(){
     dataObj['form_date_type'] = "room";
 
     console.log(dataObj);
-    debugger;
+    // debugger;
         $.ajax({
 
 

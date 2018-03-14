@@ -153,8 +153,41 @@ if (validator.form()== false) {
                              console.log(data);
 
                              if (data.status=='success') {
-                            
-                               $("#btn-loader").hide();
+
+
+
+                                  var url=window.location.href;
+
+                              if (url.indexOf('status') > -1) {
+
+                                var url_split=url.split('&');
+                                console.log(url_split[1]);
+
+
+                                $("#btn-loader").hide();
+                                setTimeout(function(){
+                                 $('#loader').modal('close');
+                                 swal({
+                                  title: "Conference successfully submitted",
+                                   // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
+                                   type: "success",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: false
+                    }, function(){
+
+                      window.location = "../conferences/conference_list.php?id="+data.id+"&"+url_split[1]+"&"+url_split[2];
+
+                    });
+                               },3000)
+
+
+
+                              }else{
+
+
+                              $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
@@ -169,6 +202,11 @@ if (validator.form()== false) {
                        window.location = "../conferences/conference_list.php";
                     });
                               },3000)
+
+
+                              }
+                            
+                               
 
 
 
@@ -229,8 +267,43 @@ function updateConference() {
                              console.log(data);
 
                              if (data.status=='success') {
-                              
+
+
+
+
+
+                                  var url=window.location.href;
+
+                              if (url.indexOf('status') > -1) {
+
+                                var url_split=url.split('&');
+                                console.log(url_split[1]);
+
+
                                 $("#btn-loader").hide();
+                                setTimeout(function(){
+                                 $('#loader').modal('close');
+                                 swal({
+                                  title: "Conference successfully updated",
+                                   // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
+                                   type: "success",
+                      //confirmButtonColor: "#DD6B55",
+                      confirmButtonText: "ok",
+                      closeOnConfirm: true,
+                      html: false
+                    }, function(){
+
+                      window.location = "../conferences/conference_list.php?id="+data.id+"&"+url_split[2]+"&"+url_split[3];
+
+                    });
+                               },3000)
+
+
+
+                              }else{
+
+
+                              $("#btn-loader").hide();
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
@@ -245,6 +318,12 @@ function updateConference() {
                       window.location = "../conferences/conference_list.php";
                     });
                               },3000)
+
+
+                              }
+                            
+                              
+                               
 
                              }else{
                                var responseArray = "";

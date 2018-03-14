@@ -352,32 +352,5 @@ if ($is_check==true) {
 
 
 
-// DUmMY CODe
 
-/*select('hotel',array('hotel_id'=>47));
-
-$slct=array();
-  foreach ($where as $key => $value) {
-      
-      $slct[]="$key='$value'";
-
-     }
-    //print_r($slct);
-     if (count($slct)==1) {
-
-       $query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
-        
-}else if (count($slct) > 1) {
-  $condString='';
-  for ($i=0; $i < count($slct); $i++) { 
-    if ($condString=="") {
-        $condString = $slct[$i]." AND ";    
-      }else{
-      $condString .= $slct[$i]." AND ";
-    }
-  }
-
-   $condString = substr($condString,0,-4);
-  $query='SELECT * From '.$tableName.' WHERE '.$condString;
-}*/
 ?>
