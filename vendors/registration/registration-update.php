@@ -60,6 +60,10 @@ reg_lstname="'.$_POST['reg_lstname'].'",
 
   if ($result==1) {
 
+    include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated","Existing Vendor Updated.","".$_POST['reg_name']." has been updated as a vendor",date("F j, Y, g:i a"),"veiw_vendors.php?id=".$_POST['user_id']."","vendor");
+      
     $responseArray=array(
 
         "status"=> "Success",

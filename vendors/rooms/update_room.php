@@ -1,5 +1,7 @@
 <?php 
 include '../../common-sql.php';
+
+ session_start();
   // print_r($_POST);
 $is_check=true;
 $responseArray=[];
@@ -296,7 +298,47 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
+  $romupdate='SELECT `room`.`room_inactive` FROM `room` WHERE room_id="'.$_POST['room_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+
+  $romupdate_result=mysqli_query($conn,$romupdate) or die(mysqli_error($conn));
+
+  $romupdate_assoc=mysqli_fetch_assoc($romupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($romupdate_assoc['room_inactive']== $inactive) {
+  
+  $notify_title="Existing listing has been updated for review.";
+  $notify_descrip="".$name." in ".$hotelName." has been posted for review by ".$_SESSION['reg_name'];
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="".$_SESSION['reg_name']." has activated".$name;
+         $notify_descrip="".$name." has been reactivated and ready for review";
+
+       }else{
+          
+         $notify_title="".$_SESSION['reg_name']." has inactivated ".$name;
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
+
+
 getUpdatequery('room',$_POST,array('hotel_id'=>$_POST['hotel_id'],'room_id'=>$_POST['room_id']));
+
+  include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id']."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"room" );
+
   echo json_encode($newSuccessMsgArr);
 
 }else{
@@ -337,8 +379,7 @@ global $conn;
         	foreach ($value as $k => $v) {
 				 
       if (isset($updateObject['common_bokdate_id'][$k])) {
-        # code...
-     
+      
 				  $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
 				  mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
 				  //echo $updatequery;

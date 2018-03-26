@@ -1267,7 +1267,7 @@ $('#loader').modal({
 })
 
 /*=================
-
+   Function for Ads 
 ======================*/
 $('#pro-sub-btn_paid').prop('disabled',true);
 $('.lbl-list').hide();
@@ -1309,7 +1309,7 @@ function showlist(that){
 }
 
 /*=================
-
+ Function for Ads 
 ======================*/
 $('#on_which_page').hide();
 function list_of(that){
@@ -1318,7 +1318,7 @@ function list_of(that){
 }
 
 /*=================
-
+ Function for Ads 
 ======================*/
 $('#no_of_days').hide();
 function on_which(that){
@@ -1329,13 +1329,13 @@ function on_which(that){
 
 /*=================
 
-======================*/
+=========== Function for Ads ===========*/
 function n_day() {
    
    $('#pro-sub-btn_paid').prop('disabled',false);
 }
 /*=================
-
+ Function for Ads submission
 ======================*/
 
 $("#pro-sub-btn_paid").click(function(){
@@ -1408,7 +1408,9 @@ $('#loader').modal({dismissible: false});
 
 })
 
-
+/*=================
+ Function for Ads Updation
+======================*/
 
 
 $("#pro-sub-btn_paid_edit").click(function(){

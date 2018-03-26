@@ -1,7 +1,7 @@
 <?php
 
 include '../../common-sql.php';
-
+ session_start();
  // print_r($_POST);
 
 $is_check=true;
@@ -347,6 +347,10 @@ if (isset($_POST['common_video'])) {
 
 
  }
+
+   include '../../methods/send-notification.php';
+
+     insert_notification($conn,$user_id,"vendor","true","false","Created","New Listing has been posted for review.","".$name." in ".$hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$room_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$user_id,"room" );
 
 
   echo json_encode($newSuccessMsgArr);

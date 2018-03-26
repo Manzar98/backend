@@ -2,6 +2,7 @@
 
 include '../../common-sql.php';
  // print_r($_POST);
+session_start();
 
 $is_check= true;
 $responseArray=[];
@@ -347,6 +348,10 @@ if ($is_check==true) {
 
 
   }
+
+  include '../../methods/send-notification.php';
+
+     insert_notification($conn,$user_id,"vendor","true","false","Created","New listing has been posted for review.","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id."&status=Pending&name=".$_SESSION['reg_name'],"hotel" );
 
   echo json_encode($newSuccessMsgArr);
 }else{

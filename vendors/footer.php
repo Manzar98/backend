@@ -1,46 +1,7 @@
 <div class="db-righ">
 <h4>Notifications(18)</h4>
-<ul>
-<li>
-<a href="#!"> <img src="../images/icon/dbr1.jpg" alt="">
-<h5>Joseph, write a review</h5>
-<p>All the Lorem Ipsum generators on the</p> <span>2 hours ago</span> </a>
-</li>
-<li>
-<a href="#!"> <img src="../images/icon/dbr2.jpg" alt="">
-<h5>14 New Messages</h5>
-<p>All the Lorem Ipsum generators on the</p> <span>4 hours ago</span> </a>
-</li>
-<li>
-<a href="#!"> <img src="../images/icon/dbr3.jpg" alt="">
-<h5>Ads expairy soon</h5>
-<p>All the Lorem Ipsum generators on the</p> <span>10 hours ago</span> </a>
-</li>
-<li>
-<a href="#!"> <img src="../images/icon/dbr4.jpg" alt="">
-	<h5>Post free ads - today only</h5>
-	<p>All the Lorem Ipsum generators on the</p> <span>12 hours ago</span> </a>
-</li>
-<li>
-	<a href="#!"> <img src="../images/icon/dbr5.jpg" alt="">
-		<h5>listing limit increase</h5>
-		<p>All the Lorem Ipsum generators on the</p> <span>14 hours ago</span> </a>
-	</li>
-	<li>
-		<a href="#!"> <img src="../images/icon/dbr6.jpg" alt="">
-			<h5>mobile app launch</h5>
-			<p>All the Lorem Ipsum generators on the</p> <span>18 hours ago</span> </a>
-		</li>
-		<li>
-			<a href="#!"> <img src="../images/icon/dbr7.jpg" alt="">
-				<h5>Setting Updated</h5>
-				<p>All the Lorem Ipsum generators on the</p> <span>20 hours ago</span> </a>
-			</li>
-			<li>
-				<a href="#!"> <img src="../images/icon/dbr8.jpg" alt="">
-					<h5>Increase listing viewers</h5>
-					<p>All the Lorem Ipsum generators on the</p> <span>2 days ago</span> </a>
-				</li>
+<ul class="notify_wrap">
+
 			</ul>
 		</div>
 	</div>
@@ -306,5 +267,142 @@
 	<script src="../../js/additional-methods.js"></script>
 	<script src="../../js/sweetalert.min.js"></script>
 	
+<?php 
 
-	
+	session_start();
+?>
+	<script type="text/javascript">
+		
+		
+
+ $( document ).ready(function(){
+
+ 	var isLoadNotify = true;
+    function generateNotifications(){
+
+    		var requestAjax = $.ajax({
+
+			type:'GET',
+			url:'../../methods/get-notification.php?id=<?php echo $_SESSION['user_id'];  ?>',
+            success:function (res) {
+            	 // console.log(res);
+                 
+            	  var data= JSON.parse(res);
+ 
+            	  console.log(data);
+            	  $('ul.notify_wrap').html('');
+            	  $.each(data,function(k,val){
+                       console.log(val);
+                          // debugger;
+                      isLoadNotify = true;
+			        var li_Wraps= $(`<li class="li-wrap"><i class="fa fa-times noti_x_icon"  aria-hidden="true"></i>
+									  <a href="#" data-href="`+val.url+`" class="x_icon"> <img src="`+val.photo+`" alt="">
+										   <h5 alt="`+val.title+`" title="`+val.title+`">`+val.title+`</h5>
+										   <p alt="`+val.desc+`" title="`+val.desc+`">`+val.desc+`</p> <span>`+val.time+`</span>
+									  </a><input type="hidden" id="noti_id" value="`+val.notify_id+`"/>
+								   </li>`);
+
+
+			        $('ul.notify_wrap').append(li_Wraps);
+			        attachNotiyFunction();
+			        redirectNotiyFunction();
+            	  })
+            	 
+            }
+
+
+		});
+    }
+    // if(!)
+    function callNotifyFunction(){
+    	if(isLoadNotify){
+    			isLoadNotify=false;
+    			generateNotifications()
+    			callNotifyFunction();
+    		}else{
+    			setTimeout(function(){	
+    				callNotifyFunction();
+    			},5000);
+    		}
+    		
+    }
+    callNotifyFunction()
+
+
+    	function attachNotiyFunction(){
+    			$('.noti_x_icon').click(function(){
+
+              var li= $(event.currentTarget).parent('.li-wrap'); 
+              var noti_id=li.find('#noti_id').val();
+              
+ 			$.ajax({
+
+               type:"POST",
+               url: '../../methods/update-notification.php',
+               data :{"id":noti_id},
+               success:function(data){
+
+               	if (data=="success") {
+
+               			li.hide();
+               			// debugger;
+               	}else{
+
+               			li.show();
+               	}
+
+               
+               }
+			})
+            
+            
+		      
+
+
+
+				});
+    	}
+
+ 		
+
+ function redirectNotiyFunction(){
+    			$('.x_icon').click(function(){
+
+    				var loc =$(this).attr('data-href');
+             
+              var li= $(event.currentTarget).parent('.li-wrap'); 
+              var noti_id=li.find('#noti_id').val();
+
+ 			$.ajax({
+
+               type:"POST",
+               url: '../methods/update-notification.php',
+               data :{"id":noti_id},
+               success:function(data){
+
+               	if (data=="success") {
+
+               			li.hide();
+               			 window.location= loc;
+               			 // debugger;
+               	}else{
+
+               			li.show();
+               	}
+
+               
+               }
+			})
+            
+            
+		      
+
+
+
+				});
+    	 }
+
+ })
+		
+
+	</script>

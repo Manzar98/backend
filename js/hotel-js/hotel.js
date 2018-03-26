@@ -136,7 +136,7 @@ if (validator.form()== false) {
                                 setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                  title: "Updation successfully ",
+                                  title: "Updation successful.",
                                    // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
                                    type: "success",
                       //confirmButtonColor: "#DD6B55",
@@ -330,7 +330,7 @@ $("#pro-sub-btn_hotel").click(function(){
                                 setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
-                                  title: "Hotel successfully submitted ",
+                                  title: "Hotel successfully submitted",
                                    // text: "Thank you for your submission! You will be notified once your hotel updation has been approved!",
                                    type: "success",
                       //confirmButtonColor: "#DD6B55",

@@ -1,6 +1,7 @@
 <?php 
 include '../../common-sql.php';
     // print_r($_POST);
+session_start();
 $h_id = $_POST['hotel_id'];
 
 $is_check= true;
@@ -256,7 +257,7 @@ $checkOut=$_POST['hotel_checkout'];
 
 }
 $formtype='hotel';
-$user_id= 2;
+$user_id= $_POST['user_id'];
 if (isset($_POST['hotel_inactive'])) {
   $inactive=$_POST['hotel_inactive'];
 }else{
@@ -281,6 +282,10 @@ $newSuccessMsgArr=array(
 
 
 if ($is_check==true) {
+     
+     include '../../methods/send-notification.php';
+
+     insert_notification($conn,$user_id,"vendor","true","false","Updated","Listing has been updated for review.","".$name." has been updated for review by ".$_SESSION['reg_name']."",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=Approved&name=".$_SESSION['reg_name'],"hotel" );
 
   getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));
  echo json_encode($newSuccessMsgArr);

@@ -415,6 +415,8 @@ function show_approve(event) {
                           $('.ev-1').attr('onclick',"document.location.href='events/event_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                          
 
+
+                             
                         
                    }else{
                       

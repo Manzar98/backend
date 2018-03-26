@@ -8,7 +8,7 @@
 	<?php  include 'header.php'; 
 
 	include '../common-sql.php';
-	$vendorQuery=    'SELECT * FROM credentials where user_type="vendor" ';
+	$vendorQuery=    'SELECT * FROM credentials where user_type="vendor" ORDER BY user_id DESC ';
 	 
           $vendor_resp =mysqli_query($conn,$vendorQuery)  or die(mysqli_error($conn));
 
@@ -55,7 +55,7 @@
 									<th>City</th>
 									<th>Email Address</th>
 									<th>Status</th>
-									<th>Click</th>
+									<th>Action</th>
 									
 									
 								</tr>
@@ -83,7 +83,7 @@
 
 										<?php }else{ ?>
 
-										<td class="status_wrap "><span class="db-not-success vendor-pending">Pending</span></td>
+										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
 										<?php } ?>
 									
                                     <td class="text-center sus_appr">

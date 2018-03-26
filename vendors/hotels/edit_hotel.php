@@ -48,7 +48,7 @@ include'../../methods/general_amenities.php'; ?>
 
 <input type='hidden' value='<?php echo $hotelResult['hotel_id']; ?>' id="h_Id" name="hotel_id" />
 <?php $global_hotel_id= $hotelResult['hotel_id']; ?>
-
+<input type="hidden" name="user_id" value="<?php echo $hotelResult['user_id']; ?>">
 <div>
 <label class="col s4">Hotel Name</label>
 <div class="input-field col s8">

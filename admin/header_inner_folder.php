@@ -387,8 +387,10 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 		<div class="dashboard">
 			<div class="db-left">
 				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo $user_result['reg_photo'];?>'),url('<?php echo $user_result['reg_cover'] ?>');background-size: 95px,cover;">
+					<div style="width: 105px; margin: 0 auto;">
 					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
 					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
+					</div>
 				</div>
              <div class="db-left-2">
 					<ul>

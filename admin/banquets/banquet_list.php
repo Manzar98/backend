@@ -211,7 +211,7 @@
 
 
 
-				<?php include"../footer.php"; ?>
+				<?php include"../footer_inner_folder.php"; ?>
 
 
 </body>

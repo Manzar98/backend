@@ -54,7 +54,7 @@
 
 							<div class="db-profile-edit">
 								<form class="col s12"  data-toggle="validator" id="room-form" role="form" action="" method="POST" enctype="multipart/form-data">
-
+                                <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
 									<?php
 
 									if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
