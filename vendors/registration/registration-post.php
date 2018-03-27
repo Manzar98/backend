@@ -32,9 +32,10 @@ include"../../common-sql.php";
   if ($conn->query($query)== TRUE) {
     # code...
     $user_id =$conn->insert_id;
+    
    include '../../methods/send-notification.php';
 
-     insert_notification($conn,$user_id,"vendor","true","false","Created","New Vendor Registered.","".$_POST['reg_name']." has been registered as new vendor",date("F j, Y, g:i a"),"veiw_vendors.php?id=".$user_id."","vendor");
+     insert_notification($conn,$user_id,"vendor","true","false","Created","New vendor registered","".$_POST['reg_name']." has been registered as new vendor",date("F j, Y, g:i a"),"veiw_vendors.php?id=".$user_id."","vendor","admin");
 
      $responseArray=array(
          "status"=> "Success",

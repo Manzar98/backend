@@ -60,6 +60,9 @@ reg_lstname="'.$_POST['reg_lstname'].'",
 
   if ($result==1) {
 
+
+
+
     $responseArray=array(
 
         "status"=> "vendor_success",

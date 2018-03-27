@@ -2,6 +2,8 @@
 
  include '../../common-sql.php';
 
+ session_start();
+
   // print_r($_POST);
 
 $is_check= true;
@@ -395,12 +397,7 @@ if ($con_independ=='no') {
      
 $query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
 
-}else{
-
-	$query='INSERT INTO conference(user_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
-
-}
-if ($conn->query($query)== TRUE) {
+   if ($conn->query($query)== TRUE) {
  	# code...
  	$conference_id=$conn->insert_id;
 
@@ -455,6 +452,84 @@ if (isset($_POST['common_video'])) {
 
 
  }
+
+     include '../../methods/send-notification.php';
+
+
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Listing has been posted for review.","".$name." in ".$con_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin" );
+
+
+}else{
+
+	$query='INSERT INTO conference(user_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
+
+
+	if ($conn->query($query)== TRUE) {
+ 	# code...
+ 	$conference_id=$conn->insert_id;
+
+ 	
+ }else{
+ 	echo "Error: " . $query . "<br>" . $conn->error;
+ }
+
+ 
+
+if ($todate) {
+
+   for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
+
+     $datesQuery='INSERT INTO common_bookdates(conference_id,book_fromdate,book_todate,form_date_type)VALUES("'.$conference_id.'","'.$_POST['book_fromdate'][$i].'","'.$_POST['book_todate'][$i].'","'.$formtype.'")';
+
+     mysqli_query($conn,$datesQuery) or die(mysqli_error($conn));
+ 
+   }
+}
+
+if ($pkgname) {
+
+    for ($i=0; $i<count($_POST['foodpkg_name']); $i++) {
+
+
+	   $pkgQuery='INSERT INTO common_menupackages(conference_id,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$conference_id.'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
+
+       mysqli_query($conn,$pkgQuery) or die(mysqli_error($conn));
+    }
+}
+
+if (isset($_POST['common_video'])) {
+
+	$videoQuery='INSERT INTO common_imagevideo(conference_id,common_video,img_video_type)VALUES("'.$conference_id.'","'.$provideo.'","'.$formtype.'")';
+
+	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
+	# code...
+}
+
+
+
+ for ($i=0; $i<count($imgarray); $i++) {
+
+             // print_r($imgarray) ;
+
+	  $img_UpdateQuery='UPDATE common_imagevideo SET
+ 	  conference_id="'.$conference_id.'",
+ 	 img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$imgarray[$i].'"' ;
+
+             mysqli_query($conn,$img_UpdateQuery) or die(mysqli_error($conn));
+
+
+ }
+
+   include '../../methods/send-notification.php';
+
+
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Listing has been posted for review.","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin" );
+
+
+
+
+}
+
 
     echo json_encode($newSuccessMsgArr);
   

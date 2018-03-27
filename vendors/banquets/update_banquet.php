@@ -1,6 +1,7 @@
 <?php  
 include '../../common-sql.php';
     // print_r($_POST);
+session_start();
 $is_check=true;
 $responseArray=[];
 
@@ -475,13 +476,93 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
-  if (!empty($_POST['hotel_id']) && $_POST['banquet_independ']!='no') {
+  if (!empty($_POST['hotel_id']) && $_POST['banquet_independ']!='yes') {
+
+    
+    
+     $banupdate='SELECT `banquet`.`banquet_inactive` FROM `banquet` WHERE banquet_id="'.$_POST['banquet_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+
+  $banupdate_result=mysqli_query($conn,$banupdate) or die(mysqli_error($conn));
+
+  $banupdate_assoc=mysqli_fetch_assoc($banupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($banupdate_assoc['banquet_inactive']== $inactive) {
+  
+  $notify_title="Listing has been updated for review.";
+  $notify_descrip="".$name." in ".$_POST['hotel_name']." has been updated for review by ".$_SESSION['reg_name'];
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="".$_SESSION['reg_name']. " has activated ".$name;
+         $notify_descrip="".$name." has been reactivated and ready for review";
+
+       }else{
+          
+         $notify_title="".$_SESSION['reg_name']." has inactivated ".$name;
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
 
    getUpdatequery('banquet',$_POST,array('hotel_id'=>$_POST['hotel_id'],'banquet_id'=>$_POST['banquet_id']));
 
+    include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"banquet","admin" );
+
   }else{
+
+
+  $banupdate='SELECT `banquet`.`banquet_inactive` FROM `banquet` WHERE banquet_id="'.$_POST['banquet_id'].'" AND user_id="'.$_POST['user_id'].'"';
+
+  $banupdate_result=mysqli_query($conn,$banupdate) or die(mysqli_error($conn));
+
+  $banupdate_assoc=mysqli_fetch_assoc($banupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($banupdate_assoc['banquet_inactive']== $inactive) {
+  
+  $notify_title="Listing has been updated for review.";
+  $notify_descrip="".$name." has been updated for review by ".$_SESSION['reg_name'];
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="".$_SESSION['reg_name']. " has activated ".$name;
+         $notify_descrip="".$name." has been reactivated and ready for review";
+
+       }else{
+          
+         $notify_title="".$_SESSION['reg_name']." has inactivated ".$name;
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
     
    getUpdatequery('banquet',$_POST,array('user_id'=>$_POST['user_id'],'banquet_id'=>$_POST['banquet_id']));
+   
+   include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"banquet","admin" );
+
   }
 
 

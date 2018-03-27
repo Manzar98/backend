@@ -279,7 +279,7 @@
     		var requestAjax = $.ajax({
 
 			type:'GET',
-			url:'../methods/get-notification.php',
+			url:'../methods/get-notification.php?gen_for=admin',
             success:function (res) {
             	 // console.log(res);
                  

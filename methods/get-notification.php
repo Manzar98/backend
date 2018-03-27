@@ -2,11 +2,19 @@
 
 include '../common-sql.php';
       $dataArray=array();
-      if(isset($_GET['id'])){
-         $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `credentials`.`user_id`="'.$_GET['id'].'" ORDER BY noti_id DESC';
-      }else{
-         $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" ORDER BY noti_id DESC';
-      }
+    
+    if (isset($_GET['gen_for'])=="admin") {
+
+       $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="admin" ORDER BY noti_id DESC';
+    }
+
+
+
+      // if(isset($_GET['id'])){
+      //    $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `credentials`.`user_id`="'.$_GET['id'].'" ORDER BY noti_id DESC';
+      // }else{
+        
+      // }
    
     // echo $noti_Query;
 
@@ -33,6 +41,7 @@ include '../common-sql.php';
                   "time"     => $result['noti_time'],
                   "url"      => $result['noti_url'],
                   "formtype" => $result['noti_type'],
+                  "gen_for"=> $result['noti_generate_for'],
                   "count"    => $count
                  
 

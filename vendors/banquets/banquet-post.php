@@ -1,7 +1,7 @@
 <?php
 
  include '../../common-sql.php';
-
+  session_start();
    // print_r($_POST);
 
 $is_check=true;
@@ -489,15 +489,8 @@ if ($banquet_independ=='no') {
 
 
  $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
- 
 
-}else{
-
-	$query='INSERT INTO banquet(user_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
-
-}
-
-if ($conn->query($query)== TRUE) {
+ if ($conn->query($query)== TRUE) {
   	# code...
   	$banquet_id =$conn->insert_id;
 
@@ -554,6 +547,85 @@ if (isset($_POST['common_video'])) {
 
 
  }
+
+
+  include '../../methods/send-notification.php';
+
+
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Listing has been posted for review.","".$name." in ".$banquet_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"banquet","admin" );
+ 
+
+}else{
+
+	$query='INSERT INTO banquet(user_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
+
+
+	if ($conn->query($query)== TRUE) {
+  	# code...
+  	$banquet_id =$conn->insert_id;
+
+// echo $banquet_id;
+  }else{
+  	echo "Error: " . $query . "<br>" . $conn->error;
+  }
+
+ // echo $banquet_id;
+  // print_r($query);
+
+if ($todate) {
+
+   for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
+
+    $datesQuery='INSERT INTO common_bookdates(banquet_id,book_fromdate,book_todate,form_date_type)VALUES("'.$banquet_id.'","'.$_POST['book_fromdate'][$i].'","'.$_POST['book_todate'][$i].'","'.$formtype.'")';
+
+    mysqli_query($conn,$datesQuery) or die(mysqli_error($conn));
+   }
+}
+
+if ($pkgname) {
+	
+   for ($i=0; $i<count($_POST['foodpkg_price']); $i++) {
+
+
+	  $pkgQuery='INSERT INTO common_menupackages(banquet_id,foodpkg_name,foodpkg_price,foodpkg_discount,foodpkg_item, 	conference_banquet_type)VALUES("'.$banquet_id.'","'.$pkgname[$i].'","'.$pkgprice[$i].'","'.$pkgdis[$i].'","'.$pgkitem[$i].'","'.$formtype.'")';
+
+      mysqli_query($conn,$pkgQuery) or die(mysqli_error($conn));
+   }
+}
+
+
+if (isset($_POST['common_video'])) {
+
+	$videoQuery='INSERT INTO common_imagevideo(banquet_id,common_video,img_video_type)VALUES("'.$banquet_id.'","'.$provideo.'","'.$formtype.'")';
+
+// echo $videoQuery;
+	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
+	
+}
+
+
+
+ for ($i=0; $i<count($imgarray); $i++) {
+
+             // print_r($imgarray) ;
+
+	  $img_UpdateQuery='UPDATE common_imagevideo SET
+ 	  banquet_id="'.$banquet_id.'",
+ 	  img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$imgarray[$i].'"' ;
+
+             mysqli_query($conn,$img_UpdateQuery) or die(mysqli_error($conn));
+
+
+ }
+
+  include '../../methods/send-notification.php';
+
+     insert_notification($conn,$userid,"vendor","true","false","Created","New listing has been posted for review.","".$name." in ".$banquet_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid,"banquet","admin" );
+
+
+}
+
+
 
 
   // echo "sucess";

@@ -309,7 +309,7 @@ if ($is_check==true) {
 
   if ($romupdate_assoc['room_inactive']== $inactive) {
   
-  $notify_title="Existing listing has been updated for review.";
+  $notify_title="Listing has been updated for review.";
   $notify_descrip="".$name." in ".$hotelName." has been posted for review by ".$_SESSION['reg_name'];
 
     
@@ -318,7 +318,7 @@ if ($is_check==true) {
 
       if ($inactive=="off") {
 
-         $notify_title="".$_SESSION['reg_name']." has activated".$name;
+         $notify_title="".$_SESSION['reg_name']. " has activated ".$name;
          $notify_descrip="".$name." has been reactivated and ready for review";
 
        }else{
@@ -337,7 +337,7 @@ getUpdatequery('room',$_POST,array('hotel_id'=>$_POST['hotel_id'],'room_id'=>$_P
 
   include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id']."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"room" );
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"room","admin" );
 
   echo json_encode($newSuccessMsgArr);
 

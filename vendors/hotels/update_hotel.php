@@ -282,10 +282,51 @@ $newSuccessMsgArr=array(
 
 
 if ($is_check==true) {
+
+
+$hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_id.'"';
+
+  $hotlupdate_result=mysqli_query($conn,$hotlupdate) or die(mysqli_error($conn));
+
+  $hotlupdate_assoc=mysqli_fetch_assoc($hotlupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($hotlupdate_assoc['hotel_inactive']== $inactive) {
+  
+  $notify_title="Listing has been updated for review.";
+
+  $notify_descrip="".$name." has been updated for review by ".$_SESSION['reg_name']."";
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="".$_SESSION['reg_name']. " has activated ".$name;
+         $notify_descrip="".$name." has been reactivated and ready for review";
+
+       }else{
+          
+         $notify_title="".$_SESSION['reg_name']." has inactivated ".$name;
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
+
+
+
+
+
      
      include '../../methods/send-notification.php';
 
-     insert_notification($conn,$user_id,"vendor","true","false","Updated","Listing has been updated for review.","".$name." has been updated for review by ".$_SESSION['reg_name']."",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=Approved&name=".$_SESSION['reg_name'],"hotel" );
+     insert_notification($conn,$user_id,"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=Approved&name=".$_SESSION['reg_name'],"hotel","admin" );
 
   getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));
  echo json_encode($newSuccessMsgArr);

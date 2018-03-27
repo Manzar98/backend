@@ -1,6 +1,8 @@
 <?php  
 include '../../common-sql.php';
   // print_r($_POST);
+
+session_start();
 $is_check=true;
  $responseArray=[];
 
@@ -570,13 +572,91 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
-    if (!empty($_POST['hotel_id']) && $_POST['tour_independ']!='no') {
+    if (!empty($_POST['hotel_id']) && $_POST['tour_independ']!='yes') {
+
+
+       $evupdate='SELECT `tour`.`tour_inactive` FROM `tour` WHERE tour_id="'.$_POST['tour_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+
+  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+
+  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($evupdate_assoc['tour_inactive']== $inactive) {
+  
+  $notify_title="Listing has been updated for review.";
+  $notify_descrip="". $tourname." in ".$_POST['hotel_name']." has been updated for review by ".$_SESSION['reg_name'];
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="".$_SESSION['reg_name']. " has activated ". $tourname;
+         $notify_descrip="". $tourname." has been reactivated and ready for review";
+
+       }else{
+          
+         $notify_title="".$_SESSION['reg_name']." has inactivated ". $tourname;
+         $notify_descrip="". $tourname." has been inactivated ";
+
+       } 
+   
+
+
+  }
 
    getUpdatequery('tour',$_POST,array('hotel_id'=>$_POST['hotel_id'],'tour_id'=>$_POST['tour_id']));
 
+   include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"event","admin" );
+
+
   }else{
+
+      $evupdate='SELECT `tour`.`tour_inactive` FROM `tour` WHERE tour_id="'.$_POST['tour_id'].'" AND user_id="'.$_POST['user_id'].'"';
+
+  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+
+  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($evupdate_assoc['tour_inactive']== $inactive) {
+  
+  $notify_title="Listing has been updated for review.";
+  $notify_descrip="". $tourname." has been updated for review by ".$_SESSION['reg_name'];
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="".$_SESSION['reg_name']. " has activated ". $tourname;
+         $notify_descrip="". $tourname." has been reactivated and ready for review";
+
+       }else{
+          
+         $notify_title="".$_SESSION['reg_name']." has inactivated ". $tourname;
+         $notify_descrip="". $tourname." has been inactivated ";
+
+       } 
+   
+
+
+  }
     
    getUpdatequery('tour',$_POST,array('user_id'=>$_POST['user_id'],'tour_id'=>$_POST['tour_id']));
+
+    include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"event","admin" );
   }
   
    echo json_encode($newSuccessMsgArr);

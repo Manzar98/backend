@@ -278,7 +278,7 @@ $( document ).ready(function(){
     		var requestAjax = $.ajax({
 
 			type:'GET',
-			url:'../../methods/get-notification.php',
+			url:'../../methods/get-notification.php?gen_for=admin',
             success:function (res) {
             	 // console.log(res);
                  
@@ -292,8 +292,8 @@ $( document ).ready(function(){
                       isLoadNotify = true;
 			        var li_Wraps= $(`<li class="li-wrap"><i class="fa fa-times noti_x_icon"  aria-hidden="true"></i>
 									  <a href="#" data-href="`+val.url+`" class="x_icon"> <img src="`+val.photo+`" alt="">
-										   <h5>`+val.title+`</h5>
-										   <p>`+val.desc+`</p> <span>`+val.time+`</span>
+										   <h5 alt="`+val.title+`" title="`+val.title+`">`+val.title+`</h5>
+										   <p alt="`+val.desc+`" title="`+val.desc+`">`+val.desc+`</p> <span>`+val.time+`</span>
 									  </a><input type="hidden" id="noti_id" value="`+val.notify_id+`"/>
 								   </li>`);
 
