@@ -20,14 +20,15 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
-
+<script src="../../js/jquery.min.js"></script>
      <?php  while ($BnqResult=mysqli_fetch_assoc($showBnqQuery)) {     
 
 $showBnqImgQuery=select('common_imagevideo',array('banquet_id'=>$BnqResult['banquet_id']));
 
 $showBnqDateQuery=select('common_bookdates',array('banquet_id'=>$BnqResult['banquet_id']));
 
-$showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['banquet_id']))
+$showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['banquet_id']));
+
 
 
         ?>
@@ -44,10 +45,7 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
                       <div class="row">
-						<div class="db-title col-md-8">
-							<h3><img src="../../images/icon/dbc5.png" alt=""/> Detail of <?php echo $BnqResult['banquet_name']; ?> </h3>
-							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
-						</div>
+				
                         <div class="pull-right">
                         <?php if (isset($_GET['h_id'])) { ?>
                             <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $BnqResult['banquet_id'];  ?>&h_id=<?php echo  $BnqResult['hotel_id']  ?>">Edit</a>
@@ -58,228 +56,284 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
                             
                         </div>
                       </div>
+                      <div class="db-profile"> 
+
+                            <img src="" id="cover_photo_common" alt=""> 
+                            <h4><?php echo $BnqResult['banquet_name'];  ?> </h4>
+                            <p><?php  ?></p>
+                      </div>
 						 
                          <div class="hotelVeiw">
                             
                              <div class="row">
-                             	<span><b>Banquet Name :</b></span>
-                             	<span><?php echo $BnqResult['banquet_name']."."; ?></span>
+                                <span><b>Banquet Name :</b></span>
+                                <span><?php echo $BnqResult['banquet_name']."."; ?></span>
                              </div>
                              <div class="row">
-                             	<span><b>Capacity :</b></span>
-                             	<span><?php echo $BnqResult['banquet_space']."."; ?></span>
+                                <span><b>Capacity :</b></span>
+                                <span><?php echo $BnqResult['banquet_space']."."; ?></span>
                              </div>
                              <div class="row">
-                             	<span><b>Base Booking Charges :</b></span>
-                             	<span><?php echo $BnqResult['banquet_charges']."."; ?></span>
+                                <span><b>Base Booking Charges :</b></span>
+                                <span><?php echo $BnqResult['banquet_charges']."."; ?></span>
                              </div>
-                             <div class="row"><span><b>Hall Booking Charges :</b></span></div>
-                              <div class="row">
-                                <span><b>Aircon? :</b></span>
-                                <?php if (!empty($BnqResult['banquet_isaircon'])) {?>
 
-                                    <span><?php echo $BnqResult['banquet_isaircon']."."; ?></span>
-                               <?php }else{ ?>
-
-                                     <span>Off.</span>
- 
-                            <?php    }    ?>
+                             <div class="db-profile-view">
+                    <table class="responsive-table profle-forms-reocrds-tbl" >
+                        <thead>
+                            
+                            <tr>
+                                <th>Capacity</th>
+                                <th>Base Booking Charges</th>
+                                <th>Serve Food?</th>
                                 
-                             </div>
+                            </tr>
 
-                             <div class="row">
-                                <span><b>Charges :</b></span>
-                                <?php if (!empty($BnqResult['banquet_aricon'])) {?>
+                        </thead>
+                        <tbody>
 
-                                    <span><?php echo $BnqResult['banquet_aricon']."."; ?></span>
-                               <?php }else{ ?>
-
-                                     <span>Null.</span>
- 
-                            <?php    }    ?>
+                            <tr>
+                                <td><?php echo $BnqResult['banquet_space']; ?></td>
+                                <td><?php echo $BnqResult['banquet_charges']; ?></td>
+                                <td class="capitalize"><?php echo $BnqResult['banquet_serve']; ?></td>
                                 
+                            </tr>
+
+                        </tbody>
+                    </table>
+                  </div> 
+                             <div class="row sp_top">
+                                <span><b>Hall Booking Charges :</b></span>
+                            </div>
+                             <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>With Aircon?</th>
+                                          <th>With Generator?</th>
+                                          
+                                           
+                                       </tr>
+                                     </thead>
+                                     <tbody>
+                                        <?php if (!empty($BnqResult['banquet_aricon'])) {?>
+                                            <td><?php  echo $BnqResult['banquet_aricon'];  ?></td>
+                                       <?php  }else{ ?>
+
+                                            <td>N/A</td>
+
+                                       <?php } ?>
+                                       <?php if (!empty($BnqResult['banquet_generator'])) {?>
+                                            <td><?php  echo $BnqResult['banquet_generator'];  ?></td>
+                                       <?php  }else{ ?>
+
+                                            <td>N/A</td>
+
+                                       <?php } ?>
+                                         
+                                     </tbody>
+                                 </table>
+                             </div>
+                              
+                             <div class="row sp_top">
+                                <span><b>Serve Food ? :</b></span>
+                                <span class="capitalize"><?php echo $BnqResult['banquet_serve']."."; ?></span>
                              </div>
 
-                              <div class="row">
-                                <span><b>Generator? :</b></span>
-                                <?php if (!empty($BnqResult['banquet_isgen'])) {?>
+                    
 
-                                    <span><?php echo $BnqResult['banquet_isgen']."."; ?></span>
-                               <?php }else{ ?>
-
-                                     <span>Off.</span>
- 
-                            <?php    }    ?>
-                                
-                             </div>
-
-                             <div class="row">
-                                <span><b>Charges :</b></span>
-                                <?php if (!empty($BnqResult['banquet_generator'])) {?>
-
-                                    <span><?php echo $BnqResult['banquet_generator']."."; ?></span>
-                               <?php }else{ ?>
-
-                                     <span>Null.</span>
- 
-                            <?php    }    ?>
-                                
-                             </div>
-                             <div class="row">
-                             	<span><b>Serve Food ? :</b></span>
-                             	<span><?php echo $BnqResult['banquet_serve']."."; ?></span>
-                             </div>
-
+                         <?php   if ($BnqResult['banquet_serve']=="yes") {?>
                             <div class="row">
                                  <span><b>Menu Packages :</b></span>
 
                              </div>
-                             <div class="row">
-                                <div class="col-md-3">
-                                 <span><b>Package Name :</b></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span><b>Package Price :</b></span>
-                                </div>
+
+                            <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>Package Name</th>
+                                          <th>Package Price</th>
+                                          <th>Discount Percentage</th>
+                                          <th>Package Items</th>
+                                           
+                                       </tr>
+                                     </thead>
+                                      <?php  while ($menuResult=mysqli_fetch_assoc($showBnqMenuQuery)) { ?>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $menuResult['foodpkg_name'];  ?></td>
+                                         <td><?php  echo $menuResult['foodpkg_price'];  ?></td>
+                                         <td><?php  echo $menuResult['foodpkg_discount'];  ?></td>
+                                         <td><?php  echo $menuResult['foodpkg_item'];  ?></td>
+                                         
+                                     </tbody>
+                                      <?php  } ?>
+                                 </table>
                              </div>
                              
+                                <?php }   
+                                 
+                                  ?>
 
-                                <?php  while ($menuResult=mysqli_fetch_assoc($showBnqMenuQuery)) { ?>
-                                    
-                               <div class="row">
-                                 <div class="col-md-3">
-                                    <span><?php  echo $menuResult['foodpkg_name'];  ?></span>
+                             <div class="row sp_top">
+                                <span><b>Gathering Type :</b></span>
+                                <span class="capitalize"><?php echo $BnqResult['banquet_gathering']."."; ?></span>
+                             </div>
+                             <div class="row">
+                                <span><b>Additional Cost :</b></span>
+                                <span><?php echo $BnqResult['banquet_adcost']."."; ?></span>
+                             </div>
+                             <?php if (!empty($BnqResult['banquet_offerdiscount'])) { ?>
+                                 
+                           
+                             <div class="row">
+                                <span><b>Offer Discount (%) :</b></span>
+                                <span><?php echo $BnqResult['banquet_offerdiscount']."."; ?></span>
+                             </div>
+                             <div class="row">
+                                <span><b>Expires on :</b></span>
+                                <span><?php echo $BnqResult['banquet_expireoffer']."."; ?></span>
+                             </div>
+                              <?php  } ?>
+                              <div>
+                                <span><b>Room Description :</b></span>
+                                <div class="listing-desc sp_top">
+                                <span><?php echo $BnqResult['banquet_descrip']; ?></span>
+                                </div>
+                             </div>
+                             <div class="sp_top">
+                                <span><b>Amenities:</b></span>
+                                <div class="listing-desc sp_top ">
+                                <?php $amenity =explode(',', $BnqResult['banquet_other']); ?>
+
+
+                                      <?php 
+                                       
+                                       foreach ($amenity as $k => $v) {?>
+                                           
+                                            <div class="amenity_div">
+                                             <span><?php echo $v."<br/>"; ?></span>
+                                             </div>
+                                     <?php  }
+
+                                      ?>
                                  </div>
-                                <div class="col-md-3">
-                                    <span><?php  echo $menuResult['foodpkg_price'];  ?></span>
                                 </div>
-                               </div>
-                                <?php }   ?>
-
-
-                                <div class="row">
-                                <div class="col-md-3">
-                                 <span><b>Discount Percentage :</b></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span><b>Package Items :</b></span>
-                                </div>
-                             </div>
-
-                             <?php  while ($mResult=mysqli_fetch_assoc($showBnqMenuQuery)) { ?>
+                       
+                                  
+                                  
                                     
-                               <div class="row">
-                                 <div class="col-md-3">
-                                    <span><?php  echo $mResult['foodpkg_discount'];  ?></span>
-                                 </div>
-                                <div class="col-md-3">
-                                    <span><?php  echo $mResult['foodpkg_item'];  ?></span>
-                                </div>
-                               </div>
-                                <?php }   ?>
-
-
-
-
-
-                            
-                             <div class="row">
-                             	<span><b>Gathering Type :</b></span>
-                             	<span><?php echo $BnqResult['banquet_gathering']."."; ?></span>
-                             </div>
-                             <div class="row">
-                             	<span><b>Additional Cost :</b></span>
-                             	<span><?php echo $BnqResult['banquet_adcost']."."; ?></span>
-                             </div>
-                             <div class="row">
-                             	<span><b>Offer Discount (%) :</b></span>
-                             	<span><?php echo $BnqResult['banquet_offerdiscount']."."; ?></span>
-                             </div>
-                             <div class="row">
-                             	<span><b>Expires on :</b></span>
-                             	<span><?php echo $BnqResult['banquet_expireoffer']."."; ?></span>
-                             </div>
-                             <div class="row">
-                             	<span><b>Banquet Description :</b></span>
-                             	<span><?php echo $BnqResult['banquet_descrip']."."; ?></span>
-                             </div>
-                             <div class="row">
-                             	<span><b>Amenities :</b></span>
-                             	<span><?php echo $BnqResult['banquet_other']."."; ?></span>
-                             </div>
-                             <div class="row">
-                             	<span><b>Independent Hall? :</b></span>
-                             	<span><?php echo $BnqResult['banquet_independ']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>Address :</b></span>
-                                <span><?php echo $BnqResult['banquet_address']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>City :</b></span>
-                                <span><?php echo $BnqResult['banquet_city']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>Province :</b></span>
-                                <span><?php echo $BnqResult['banquet_province']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>Phone Number :</b></span>
-                                <span><?php echo $BnqResult['banquet_phone']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>Email Address :</b></span>
-                                <span><?php echo $BnqResult['banquet_email']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>Facebook URL :</b></span>
-                                <span><?php echo $BnqResult['banquet_fcbok']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>Twitter URL :</b></span>
-                                <span><?php echo $BnqResult['banquet_twiter']."."; ?></span>
-                             </div>
-                             <div class="row">
-                                <span><b>Youtube URL :</b></span>
-                                <span><?php echo $BnqResult['banquet_utube']."."; ?></span>
-                             </div>
-                            
-
-
-                             
-
-                             <div class="row">
+                           
+                           <div class="row sp_top">
                                  <span><b>Unavailable in these days :</b></span>
 
                              </div>
-                             <div class="row">
-                                <div class="col-md-3">
-                                 <span><b>From :</b></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span><b>To :</b></span>
-                                </div>
+                             <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>From</th>
+                                          <th>To</th>
+                                           
+                                       </tr>
+                                     </thead>
+                                      <?php  while ($dateResult=mysqli_fetch_assoc($showBnqDateQuery)) { ?>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $dateResult['book_fromdate'];  ?></td>
+                                         <td><?php  echo $dateResult['book_todate'];  ?></td>
+                                          
+                                     </tbody>
+                                     <?php } ?>
+                                 </table>
                              </div>
                              
+                             
+                            
+                             <div class="row sp_top">
+                                <span><b>Independent Hall? :</b></span>
+                                <span class="capitalize"><?php echo $BnqResult['banquet_independ']."."; ?></span>
+                             </div>
 
-                                <?php  while ($dateResult=mysqli_fetch_assoc($showBnqDateQuery)) { ?>
-                                    
-                               <div class="row">
-                                 <div class="col-md-3">
-                                    <span><?php  echo $dateResult['book_fromdate'];  ?></span>
-                                 </div>
-                                <div class="col-md-3">
-                                    <span><?php  echo $dateResult['book_todate'];  ?></span>
-                                </div>
-                               </div>
-                                <?php }   ?>
+                        <?php if($BnqResult['banquet_independ']=="yes") { ?>
+                                 
+                                 <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>Address</th>
+                                          <th>City</th>
+                                          <th>Province</th>
+                                          <th>Phone</th>
+                                          <th>Email</th>
+                                          
+                                           
+                                       </tr>
+                                     </thead>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $BnqResult['banquet_address'];  ?></td>
+                                         <td><?php  echo $BnqResult['banquet_city'];  ?></td>
+                                         <td><?php  echo $BnqResult['banquet_province'];  ?></td>
+                                         <td><?php  echo $BnqResult['banquet_phone'];  ?></td>
+                                         <td><?php  echo $BnqResult['banquet_email'];  ?></td>
+                                         
+                                          
+                                     </tbody>
+                                 </table>
+                             </div>
+                           
+                           <?php if (!empty($BnqResult['banquet_fcbok']) || !empty($BnqResult['banquet_twiter']) || !empty($BnqResult['banquet_utube'])) { ?>
+                              
+                             <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>Facebook</th>
+                                          <th>Twitter</th>
+                                          <th>Youtube</th>
+                                          
+                                           
+                                       </tr>
+                                     </thead>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $BnqResult['banquet_fcbok'];  ?></td>
+                                         <td><?php  echo $BnqResult['banquet_twiter'];  ?></td>
+                                         <td><?php  echo $BnqResult['banquet_utube'];  ?></td>  
+                                     </tbody>
+                                 </table>
+                             </div>
+                             <?php } ?>
+
+
+                            
+
+
+                           <?php }else{ ?>
+
+                            <div class="row sp_top">
+                                <span><b>Under Which Hotel? :</b></span>
+                                <span class="capitalize"><?php echo $BnqResult['hotel_name']; ?></span>
+                            </div>
+
+
+
+                          <?php  } ?>
+                            
+                            
+
+
+                             
+
                              
                              
                        <?php } ?>
 
-				</div>
+                </div>
               
-					</div>
+                    </div>
                            <div class="row" style="padding-left: 15px;">
                                <span><b>Banquet Images :</b></span>
                            </div>
@@ -287,14 +341,24 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
 
                             <?php
                             
-                            while ($imgResult=mysqli_fetch_assoc($showBnqImgQuery)) {
+                             while ($imgResult=mysqli_fetch_assoc($showBnqImgQuery)) {
 
                              
                                 if (!empty($imgResult['common_image'])) {?>
-                                    <div class="imgeWrap">
-                                    <a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-                                    <img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
-                                    </div>&nbsp;&nbsp;
+                                <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
+                              <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
+                            </div>&nbsp;&nbsp;
+                                    <script type="text/javascript">
+                                  $(document).ready(function(){
+                                    
+                                    setTimeout(function(){
+
+                                      $('#cover_photo_common').attr('src',$('#hotel_img_wrap img').eq(0).attr('src'));
+                                    },2000);
+
+                                  })
+                                     
+                                </script>
                                     
                                    
                                 <?php } ?>
@@ -302,15 +366,14 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
                                
                               
 
-                        <?php   }
+                        <?php   
+                     }
 
                             ?>
                         </div>
-					
-				</div>
-			</div>
-
-		
+                    
+                </div>
+            </div>
 
 
 

@@ -5109,3 +5109,50 @@ width:100%!important;
 
     text-transform: inherit !important;
 }
+.listing-desc{
+    width: 97%;
+    border: 1px solid #dedede;
+    padding: 7px;
+
+}
+.capitalize{
+    text-transform: capitalize;
+}
+.listing-tbl{
+
+    border:1px solid #dedede;
+    width: 97%;
+}
+.listing_td, .listing_th{
+   
+   border-right: 1px solid #dedede;
+}
+.listing-tbl th, td{
+    padding-top: 10px;
+    text-align: center;
+    
+}
+
+.sp_top{
+
+   margin-top: 10px;
+}
+.amenity_div{
+    border: 1px solid #dedede;
+    width: 20%;
+    text-align: center;
+    padding: 5px 0 5px 0;
+    background: #dedede;
+    margin-bottom: 6px;
+    display: inline-block;
+
+}
+.tbl_social tr td, th{
+   border-right:1px solid #dedede;
+   border-bottom: 1px solid #dedede;
+   padding: 5px 0 5px 0;
+
+}
+.h_title {
+    padding-left: 12px;
+}

@@ -3,6 +3,7 @@
 
  include '../common-sql.php';
  // print_r($_POST);
+ session_start();
 
 if (!isset($_POST['btn'])) {
 
@@ -65,6 +66,11 @@ $newSuccessMsgArr=array(
 
 
   $result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
+
+
+   include '../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated","Featured ad has been updated","Ad has been featured by ".$_SESSION['reg_name']." for ".$_POST['select_any']."",date("F j, Y, g:i a"),"#","ads","admin" );
 
 
 	echo json_encode($newSuccessMsgArr);

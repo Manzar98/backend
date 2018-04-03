@@ -1,6 +1,7 @@
 <?php
 
  include '../common-sql.php';
+ session_start();
  // print_r($_POST);
 $is_check=true;
 $responseArray=[];
@@ -53,7 +54,20 @@ $newSuccessMsgArr=array(
   if ($is_check ==true) {
   $paidQuery='INSERT INTO paid_ads(user_id,select_any,list_of_any,on_which_page,no_of_days)VALUES("'.$_POST['user_id'].'","'.$selct_one.'","'.$lst_any.'","'.$which_pge.'","'.$no_days.'")';
 
-  $result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
+  // $result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
+
+  if ($conn->query($paidQuery)== TRUE) {
+  # code...
+  $paid_id=$conn->insert_id;
+
+ 
+ }else{
+  echo "Error: " . $paidQuery . "<br>" . $conn->error;
+ }
+
+   include '../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Created","New ad has been featured","New ad has been featured by ".$_SESSION['reg_name']." for ".$_POST['select_any']."",date("F j, Y, g:i a"),"#","ads","admin" );
 
 
 	echo json_encode($newSuccessMsgArr);

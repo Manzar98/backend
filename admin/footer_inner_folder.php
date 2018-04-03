@@ -280,10 +280,11 @@ $( document ).ready(function(){
 			type:'GET',
 			url:'../../methods/get-notification.php?gen_for=admin',
             success:function (res) {
-            	 // console.log(res);
-                 
+            	 console.log(res);
+               if (res) {
+                    // debugger;
             	  var data= JSON.parse(res);
- 
+
             	  console.log(data);
             	  $('ul.notify_wrap').html('');
             	  $.each(data,function(k,val){
@@ -303,8 +304,13 @@ $( document ).ready(function(){
 			        redirectNotiyFunction();
             	  })
             	 
+            }else{
+                 
+
+              isLoadNotify=true;
             }
 
+}
 
 		});
     }

@@ -42,7 +42,12 @@
 
 							<?php } ?>
 						</div>
+						<div>
+							<span style="margin-left: 7px;">Name:</span>
+							<span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
 						</div>
+						</div>
+
 
 
             <?php

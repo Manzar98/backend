@@ -26,7 +26,7 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
-
+<script src="../../js/jquery.min.js"></script>
      <?php  while ($RoomResult=mysqli_fetch_assoc($showRoomQuery)) {     
 
 $showRoomImgQuery=select('common_imagevideo',array('room_id'=>$RoomResult['room_id']));
@@ -47,16 +47,23 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
                       <div class="row">
-						<div class="db-title col-md-8">
-							<h3><img src="../../images/icon/dbc5.png" alt=""/> Detail of <?php echo $RoomResult['room_name']; ?> </h3>
-							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
-						</div>
+						
                         <div class="pull-right">
                             <?php if ($_GET['status']=="Approved") { ?>
                             <a class="waves-effect waves-light btn" href="edit_room.php?id=<?php echo $RoomResult['room_id'];  ?>&h_id=<?php echo  $RoomResult['hotel_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['user_id'] ?>">Edit</a>
                             <?php } ?>
                         </div>
                       </div>
+                       <div class="text-center " >
+                          <span style="margin-left: 10px;">Status:</span>
+                          <span class="" style="color: green; "><b>Approved</b></span>
+                    </div>
+                    <div class="db-profile"> 
+
+                             <img src="" id="cover_photo_common" alt="">
+                            <h4><?php echo $RoomResult['room_name'];  ?> </h4>
+                            <p><?php echo $RoomResult['hotel_name']; ?></p>
+                    </div>
 						 
                          <div class="hotelVeiw">
                             
@@ -68,15 +75,55 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                              	<span><b>Room Name :</b></span>
                              	<span><?php echo $RoomResult['room_name']."."; ?></span>
                              </div>
-                             <div class="row">
-                             	<span><b>Number Of Rooms:</b></span>
-                             	<span><?php echo $RoomResult['room_nosroom']."."; ?></span>
-                             </div>
-                              <div class="row">
-                                <span><b>Room service :</b></span>
-                                <span><?php echo $RoomResult['room_service']."."; ?></span>
-                             </div>
-                             <div class="row">
+                                   <div class="row sp_top">
+                                        <span><b>Room service</b></span>
+                                        <span><?php echo $RoomResult['room_service']."."; ?></span>
+                            </div>
+                            <?php if ($RoomResult['room_service']=="yes") {
+
+                                 if (!empty($RoomResult['room_24hour'])) {?>
+                                         
+                                    <div class="row sp_top">
+                                        <span><b>24 hour service</b></span>
+                                        <span><?php echo $RoomResult['room_24hour']."."; ?></span>
+                                    </div>
+
+                                <?php  }else{ ?>
+
+                                     <div class="row sp_top">
+                                        <span><b>Select hour</b></span>
+                                        <span><?php echo $RoomResult['room_selecthour']."."; ?></span>
+                                    </div>
+
+                               <?php  }
+                            } ?> 
+                             
+                              <div class="db-profile-view">
+                    <table class="responsive-table profle-forms-reocrds-tbl" >
+                        <thead>
+                            
+                            <tr>
+                                <th>Number of Rooms</th>
+                                <th>Charges per night</th>
+                                <th>Room Service</th>
+                                
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td><?php echo $RoomResult['room_nosroom']; ?></td>
+                                <td><?php echo $RoomResult['room_perni8']; ?></td>
+                                <td><?php echo $RoomResult['room_service']; ?></td>
+                                
+                            </tr>
+
+                        </tbody>
+                    </table>
+                  </div>     
+                      
+                             <div class="row sp_top">
                              	<span><b>Maximum adults allowed in one room :</b></span>
                              	<span><?php echo $RoomResult['room_maxadult']."."; ?></span>
                              </div>
@@ -93,19 +140,32 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                              	<span><b>Extra mattress charges for Children :</b></span>
                              	<span><?php echo $RoomResult['room_matchild']."."; ?></span>
                              </div>
-                             <div class="row">
-                             	<span><b>Room Charges per night :</b></span>
-                             	<span><?php echo $RoomResult['room_perni8']."."; ?></span>
+                              <div>
+                                <span><b>Room Description :</b></span>
+                                <div class="listing-desc sp_top">
+                                <span><?php echo $RoomResult['room_descrip']; ?></span>
+                                </div>
                              </div>
-                             <div class="row">
-                             	<span><b>Room Description :</b></span>
-                             	<span><?php echo $RoomResult['room_descrip']."."; ?></span>
-                             </div>
-                             <div class="row">
-                             	<span><b>Amenities :</b></span>
-                             	<span><?php echo $RoomResult['room_other']."."; ?></span>
-                             </div>
-                             <div class="row">
+                             <div class="sp_top">
+                                <span><b>Amenities:</b></span>
+                                <div class="listing-desc sp_top ">
+                                <?php $amenity =explode(',', $RoomResult['room_other']); ?>
+
+
+                                      <?php 
+                                       
+                                       foreach ($amenity as $k => $v) {?>
+                                           
+                                            <div class="amenity_div">
+                                             <span><?php echo $v."<br/>"; ?></span>
+                                             </div>
+                                     <?php  }
+
+                                      ?>
+                                 </div>
+                                </div>
+                           <?php if (!empty($RoomResult['room_offerdiscount'])) { ?>
+                             <div class="row sp_top">
                              	<span><b>Offer Discount (%) :</b></span>
                              	<span><?php echo $RoomResult['room_offerdiscount']."."; ?></span>
                              </div>
@@ -113,32 +173,41 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                              	<span><b>Expires on :</b></span>
                              	<span><?php echo $RoomResult['room_expireoffer']."."; ?></span>
                              </div>
+                           <?php    } ?>
 
+                           <?php  while ($dateResult=mysqli_fetch_assoc($showRoomDateQuery)) {
+                               
+                               if (!empty($dateResult['book_fromdate'])) { ?>
+                                  
+
+                            
                              <div class="row">
                                  <span><b>Unavailable in these days :</b></span>
 
                              </div>
-                             <div class="row">
-                                <div class="col-md-3">
-                                 <span><b>From :</b></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span><b>To :</b></span>
-                                </div>
+                             <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>From</th>
+                                          <th>To</th>
+                                           
+                                       </tr>
+                                     </thead>
+                                     <tbody>
+                                        
+                                         <td><?php  echo $dateResult['book_fromdate'];  ?></td>
+                                         <td><?php  echo $dateResult['book_todate'];  ?></td>
+                                          
+                                     </tbody>
+                                 </table>
                              </div>
                              
+                              <?php   } ?>
 
-                                <?php  while ($dateResult=mysqli_fetch_assoc($showRoomDateQuery)) { ?>
+                              <?php }   ?>  
                                     
-                               <div class="row">
-                                 <div class="col-md-3">
-                                    <span><?php  echo $dateResult['book_fromdate'];  ?></span>
-                                 </div>
-                                <div class="col-md-3">
-                                    <span><?php  echo $dateResult['book_todate'];  ?></span>
-                                </div>
-                               </div>
-                                <?php }   ?>
+                              
                              
                              
                        <?php } ?>
@@ -153,14 +222,24 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
 
                             <?php
                             
-                            while ($imgResult=mysqli_fetch_assoc($showRoomImgQuery)) {
+                          while ($imgResult=mysqli_fetch_assoc($showRoomImgQuery)) {
 
                              
                                 if (!empty($imgResult['common_image'])) {?>
-                                    <div class="imgeWrap">
-                                    <a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-                                    <img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
-                                    </div>&nbsp;&nbsp;
+                                <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
+                              <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
+                            </div>&nbsp;&nbsp;
+                                    <script type="text/javascript">
+                                  $(document).ready(function(){
+                                    
+                                    setTimeout(function(){
+
+                                      $('#cover_photo_common').attr('src',$('#hotel_img_wrap img').eq(0).attr('src'));
+                                    },2000);
+
+                                  })
+                                     
+                                </script>
                                     
                                    
                                 <?php } ?>
@@ -168,7 +247,8 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                                
                               
 
-                        <?php   }
+                        <?php   
+                     }
 
                             ?>
                         </div>

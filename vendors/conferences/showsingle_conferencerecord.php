@@ -20,14 +20,15 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
-
+<script src="../../js/jquery.min.js"></script>
      <?php  while ($ConResult=mysqli_fetch_assoc($showConQuery)) {     
 
 $showConImgQuery=select('common_imagevideo',array('conference_id'=>$ConResult['conference_id']));
 
 $showConDateQuery=select('common_bookdates',array('conference_id'=>$ConResult['conference_id']));
 
-$showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult['conference_id']))
+$showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult['conference_id']));
+
 
 
         ?>
@@ -44,10 +45,6 @@ $showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
                       <div class="row">
-						<div class="db-title col-md-8">
-							<h3><img src="../../images/icon/dbc5.png" alt=""/> Detail of <?php echo $ConResult['conference_name']; ?> </h3>
-							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
-						</div>
                         <div class="pull-right">
                             <?php if (isset($_GET["h_id"])) { ?>
                                 <a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $ConResult['conference_id'];  ?>&h_id=<?php echo  $ConResult['hotel_id']  ?>">Edit</a>
@@ -59,22 +56,57 @@ $showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult
                             
                         </div>
                       </div>
-						 
+                    <div class="db-profile"> 
+
+                            <img src="" id="cover_photo_common" alt="">
+                            <h4><?php echo $ConResult['conference_name'];  ?> </h4>
+                            <p><?php  ?></p>
+                    </div>
+                         
                          <div class="hotelVeiw">
                             
                              <div class="row">
-                             	<span><b>Conference Hall Name :</b></span>
-                             	<span><?php echo $ConResult['conference_name']."."; ?></span>
+                                <span><b>Conference Hall Name :</b></span>
+                                <span><?php echo $ConResult['conference_name']."."; ?></span>
                              </div>
                              <div class="row">
-                             	<span><b>Capacity :</b></span>
-                             	<span><?php echo $ConResult['conference_space']."."; ?></span>
+                                <span><b>Capacity :</b></span>
+                                <span><?php echo $ConResult['conference_space']."."; ?></span>
                              </div>
                              <div class="row">
-                             	<span><b>Hall Booking Charges :</b></span>
-                             	<span><?php echo $ConResult['conference_charges']."."; ?></span>
+                                <span><b>Hall Charges :</b></span>
+                                <span><?php echo $ConResult['conference_charges']."."; ?></span>
                              </div>
-                             <div class="row">
+
+                  <div class="db-profile-view">
+                    <table class="responsive-table profle-forms-reocrds-tbl" >
+                        <thead>
+                            
+                            <tr>
+                                <th>Capacity</th>
+                                <th>Hall Cahrges</th>
+                                <th>Serve Food?</th>
+                                
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td><?php echo $ConResult['conference_space']; ?></td>
+                                <td><?php echo $ConResult['conference_charges']; ?></td>
+                                <td class="capitalize"><?php echo $ConResult['conference_serve']; ?></td>
+                                
+                            </tr>
+
+                        </tbody>
+                    </table>
+                  </div> 
+                            
+                            <?php if (!empty($ConResult['conference_offerdiscount'])) { ?>
+                                
+                        
+                             <div class="row sp_top">
                                 <span><b>Offer Discount (%) :</b></span>
                                 <span><?php echo $ConResult['conference_offerdiscount']."."; ?></span>
                              </div>
@@ -82,128 +114,200 @@ $showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult
                                 <span><b>Expires on :</b></span>
                                 <span><?php echo $ConResult['conference_expireoffer']."."; ?></span>
                              </div>
+                             <?php    } ?>
 
 
-                             <div class="row"><span><b>Hall Booking Charges :</b></span></div>
-                              <div class="row">
-                                <span><b>Aircon? :</b></span>
-                                <?php if (!empty($BnqResult['banquet_isaircon'])) {?>
+                             <div class="sp_top">
+                                <span><b>Amenities:</b></span>
+                                <div class="listing-desc sp_top ">
+                                <?php $amenity =explode(',', $ConResult['conference_other']); ?>
 
-                                    <span><?php echo $BnqResult['banquet_isaircon']."."; ?></span>
-                               <?php }else{ ?>
 
-                                     <span>Off.</span>
- 
-                            <?php    }    ?>
-                                
+                                      <?php 
+                                       
+                                       foreach ($amenity as $k => $v) {?>
+                                           
+                                            <div class="amenity_div">
+                                             <span><?php echo $v."<br/>"; ?></span>
+                                             </div>
+                                     <?php  }
+
+                                      ?>
+                                 </div>
+                                </div>
+                            
+                             
+
+                             <div class="row sp_top">
+                                <span><b>Serve Food ? :</b></span>
+                                <span class="capitalize"><?php echo $ConResult['conference_serve']."."; ?></span>
                              </div>
+                           
 
-                             <div class="row">
-                             	<span><b>Serve Food ? :</b></span>
-                             	<span><?php echo $ConResult['conference_serve']."."; ?></span>
-                             </div>
-
+                          <?php  if ($ConResult['conference_serve']=="yes") {?>
                             <div class="row">
                                  <span><b>Menu Packages :</b></span>
 
                              </div>
-                             <div class="row">
-                                <div class="col-md-3">
-                                 <span><b>Package Name :</b></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span><b>Package Price :</b></span>
-                                </div>
+
+                            <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>Package Name</th>
+                                          <th>Package Price</th>
+                                          <th>Discount Percentage</th>
+                                          <th>Package Items</th>
+                                           
+                                       </tr>
+                                     </thead>
+                                     <?php  while ($menuResult=mysqli_fetch_assoc($showConMenuQuery)) {?>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $menuResult['foodpkg_name'];  ?></td>
+                                         <td><?php  echo $menuResult['foodpkg_price'];  ?></td>
+                                         <td><?php  echo $menuResult['foodpkg_discount'];  ?></td>
+                                         <td><?php  echo $menuResult['foodpkg_item'];  ?></td>
+                                          
+                                     </tbody>
+                                     <?php  } ?>
+                                 </table>
                              </div>
                              
-
-                                <?php  while ($menuResult=mysqli_fetch_assoc($showConMenuQuery)) {  ?>
-                                    
-                               <div class="row">
-                                 <div class="col-md-3">
-                                    <span><?php  echo $menuResult['foodpkg_name'];  ?></span>
-                                 </div>
-                                <div class="col-md-3">
-                                    <span><?php  echo $menuResult['foodpkg_price'];  ?></span>
-                                </div>
-                               </div>
-                                <?php }   ?>
+                                <?php }   
+                                 
+                                  ?>
 
 
-                                <div class="row">
-                                <div class="col-md-3">
-                                 <span><b>Discount Percentage :</b></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span><b>Package Items :</b></span>
-                                </div>
-                             </div>
-
-                            <!--  <?php  while ($mResult=mysqli_fetch_assoc($showConMenuQuery)) { ?>
-                                    
-                               <div class="row">
-                                 <div class="col-md-3">
-                                    <span><?php  echo $mResult['foodpkg_discount'];  ?></span>
-                                 </div>
-                                <div class="col-md-3">
-                                    <span><?php  echo $mResult['foodpkg_item'];  ?></span>
-                                </div>
-                               </div>
-                                <?php }   ?> -->
-
-                             
-                             <div class="row">
-                             	<span><b>Amenities :</b></span>
-                             	<span><?php echo $ConResult['conference_other']."."; ?></span>
-                             </div>
-                            
-                             <div class="row">
+                           <div class="row sp_top">
                                  <span><b>Unavailable in these days :</b></span>
 
                              </div>
-                             <div class="row">
-                                <div class="col-md-3">
-                                 <span><b>From :</b></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span><b>To :</b></span>
-                                </div>
+                             <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>From</th>
+                                          <th>To</th>
+                                           
+                                       </tr>
+                                     </thead>
+                                     <?php  while ($dateResult=mysqli_fetch_assoc($showConDateQuery)) { ?>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $dateResult['book_fromdate'];  ?></td>
+                                         <td><?php  echo $dateResult['book_todate'];  ?></td>
+                                          
+                                     </tbody>
+                                     <?php }  ?>
+                                 </table>
                              </div>
-                             
+                              
 
-                                <?php  while ($dateResult=mysqli_fetch_assoc($showConDateQuery)) { ?>
-                                    
-                               <div class="row">
-                                 <div class="col-md-3">
-                                    <span><?php  echo $dateResult['book_fromdate'];  ?></span>
-                                 </div>
-                                <div class="col-md-3">
-                                    <span><?php  echo $dateResult['book_todate'];  ?></span>
-                                </div>
-                               </div>
-                                <?php }   ?>
+
+                        
+                           <div class="row sp_top">
+                                <span><b>Hall Independent? :</b></span>
+                                <span class="capitalize"><?php echo $ConResult['conference_independ']; ?></span>
+                            </div>
+                            <?php if($ConResult['conference_independ']=="yes") { ?>
+                                 
+                                 <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>Address</th>
+                                          <th>City</th>
+                                          <th>Province</th>
+                                          <th>Phone</th>
+                                          <th>Email</th>
+                                          
+                                           
+                                       </tr>
+                                     </thead>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $ConResult['conference_address'];  ?></td>
+                                         <td><?php  echo $ConResult['conference_city'];  ?></td>
+                                         <td><?php  echo $ConResult['conference_province'];  ?></td>
+                                         <td><?php  echo $ConResult['conference_phone'];  ?></td>
+                                         <td><?php  echo $ConResult['conference_email'];  ?></td>
+                                         
+                                          
+                                     </tbody>
+                                 </table>
+                             </div>
+                           
+                           <?php if (!empty($ConResult['conference_fcbok']) || !empty($ConResult['conference_twiter']) || !empty($ConResult['conference_utube'])) { ?>
+                              
+                             <div>
+                                 <table class="listing-tbl sp_top tbl_social">
+                                     <thead>
+                                        <tr>
+                                         <th>Facebook</th>
+                                          <th>Twitter</th>
+                                          <th>Youtube</th>
+                                          
+                                           
+                                       </tr>
+                                     </thead>
+                                     <tbody>
+                                       
+                                         <td><?php  echo $ConResult['conference_fcbok'];  ?></td>
+                                         <td><?php  echo $ConResult['conference_twiter'];  ?></td>
+                                         <td><?php  echo $ConResult['conference_utube'];  ?></td>  
+                                     </tbody>
+                                 </table>
+                             </div>
+                             <?php } ?>
+
+
+                            
+
+
+                           <?php }else{ ?>
+
+                            <div class="row sp_top">
+                                <span><b>Under Which Hotel? :</b></span>
+                                <span class="capitalize"><?php echo $ConResult['hotel_name']; ?></span>
+                            </div>
+
+
+
+                          <?php  } ?>
+            
                              
                              
                        <?php } ?>
 
-				</div>
+                </div>
               
-					</div>
-                           <div class="row" style="padding-left: 15px;">
+                    </div>
+                           <div class="row sp_top" style="padding-left: 15px;">
                                <span><b>Conference Images :</b></span>
                            </div>
                             <div class="imgVeiwinline row" id="hotel_img_wrap" style="padding-left: 15px;">
 
                             <?php
                             
-                            while ($imgResult=mysqli_fetch_assoc($showConImgQuery)) {
+                           while ($imgResult=mysqli_fetch_assoc($showConImgQuery)) {
 
                              
                                 if (!empty($imgResult['common_image'])) {?>
-                                    <div class="imgeWrap">
-                                    <a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-                                    <img src="../<?php echo $imgResult['common_image']  ?>" width="150" class="materialboxed">
-                                    </div>&nbsp;&nbsp;
+                                <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
+                              <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
+                            </div>&nbsp;&nbsp;
+                                    <script type="text/javascript">
+                                  $(document).ready(function(){
+                                    
+                                    setTimeout(function(){
+
+                                      $('#cover_photo_common').attr('src',$('#hotel_img_wrap img').eq(0).attr('src'));
+                                    },2000);
+
+                                  })
+                                     
+                                </script>
                                     
                                    
                                 <?php } ?>
@@ -211,15 +315,15 @@ $showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult
                                
                               
 
-                        <?php   }
+                        <?php   
+                     }
 
                             ?>
                         </div>
-					
-				</div>
-			</div>
+                    
+                </div>
+            </div>
 
-		
 
 
 

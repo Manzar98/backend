@@ -282,7 +282,7 @@
 			url:'../methods/get-notification.php?gen_for=admin',
             success:function (res) {
             	 // console.log(res);
-                 
+                 if (res) {
             	  var data= JSON.parse(res);
  
             	  console.log(data);
@@ -303,7 +303,9 @@
 			        attachNotiyFunction();
 			        redirectNotiyFunction();
             	  })
-            	 
+            	}else{
+            		isLoadNotify=true;
+            	} 
             }
 
 
@@ -328,9 +330,9 @@
     	function attachNotiyFunction(){
     			$('.noti_x_icon').click(function(){
 
-              var li= $(event.currentTarget).parent('.li-wrap'); 
+              var li= $(event.currentTarget).parents('.li-wrap'); 
               var noti_id=li.find('#noti_id').val();
-              
+              // debugger;
  			$.ajax({
 
                type:"POST",
@@ -366,9 +368,10 @@
 
     				var loc =$(this).attr('data-href');
              
-              var li= $(event.currentTarget).parent('.li-wrap'); 
-              var noti_id=li.find('#noti_id').val();
+              var li= $(event.currentTarget).parents('.li-wrap'); 
 
+              var noti_id=li.find('#noti_id').val();
+ // debugger;
  			$.ajax({
 
                type:"POST",
