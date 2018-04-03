@@ -119,7 +119,7 @@ $showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult
 
                              <div class="sp_top">
                                 <span><b>Amenities:</b></span>
-                                <div class="listing-desc sp_top ">
+                                <div class="sp_top ">
                                 <?php $amenity =explode(',', $ConResult['conference_other']); ?>
 
 

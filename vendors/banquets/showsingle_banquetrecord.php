@@ -204,7 +204,7 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
                              </div>
                              <div class="sp_top">
                                 <span><b>Amenities:</b></span>
-                                <div class="listing-desc sp_top ">
+                                <div class="sp_top ">
                                 <?php $amenity =explode(',', $BnqResult['banquet_other']); ?>
 
 

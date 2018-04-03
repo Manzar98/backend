@@ -3,15 +3,20 @@
 include '../common-sql.php';
       $dataArray=array();
     
-    if (isset($_GET['gen_for'])=="admin") {
+    // echo $_GET['gen_for'];
+    if (isset($_GET['gen_for']) && $_GET['gen_for']=="admin") {
 
        $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="admin" ORDER BY noti_id DESC';
-    
-
-
+    // echo $noti_Query;
+     }else if (isset($_GET['gen_for']) && $_GET['gen_for'] =="vendor" && isset($_GET['id'])) {
+        
+        $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="vendor" ORDER BY noti_id DESC';
+   
+     }
+// echo $noti_Query;
 
       // if(isset($_GET['id'])){
-      //    $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `credentials`.`user_id`="'.$_GET['id'].'" ORDER BY noti_id DESC';
+      //    
       // }else{
         
       // }
@@ -53,4 +58,4 @@ include '../common-sql.php';
    
   }  
 
-  }
+ 

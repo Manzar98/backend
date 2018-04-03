@@ -56,10 +56,15 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
                        <?php } ?>
                           <?php   } ?>  
                         </div>
+                        
                       </div>
                       <div class="text-center " >
                           <span style="margin-left: 10px;">Status:</span>
                           <span class="" style="color: green; "><b>Approved</b></span>
+                    </div>
+                    <div class="text-center ">
+                          <span style="padding-right: 7px;">Name:</span>
+                          <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
                     </div>
                     <div class="db-profile"> 
 
@@ -209,7 +214,7 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
                              </div>
                              <div class="sp_top">
                                 <span><b>Amenities:</b></span>
-                                <div class="listing-desc sp_top ">
+                                <div class="sp_top ">
                                 <?php $amenity =explode(',', $BnqResult['banquet_other']); ?>
 
 

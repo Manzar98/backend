@@ -284,8 +284,50 @@ $newSuccessMsgArr=array(
 
 
 if ($is_check==true) {
-// echo $user_status;
+
+$hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_id.'"';
+
+  $hotlupdate_result=mysqli_query($conn,$hotlupdate) or die(mysqli_error($conn));
+
+  $hotlupdate_assoc=mysqli_fetch_assoc($hotlupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($hotlupdate_assoc['hotel_inactive']== $inactive) {
+  
+  $notify_title="Your Listing has been updated.";
+
+  $notify_descrip="".$name." has been updated";
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="Your Listing has been activated ";
+         $notify_descrip="".$name." has been reactivated ";
+
+       }else{
+          
+         $notify_title="Your Listing has been inactivated ";
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
+
+     
+  include '../../methods/send-notification.php';
+
+  insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id,"hotel","vendor" );
+
   getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));
+
+
   
   echo json_encode($newSuccessMsgArr);
 }else{

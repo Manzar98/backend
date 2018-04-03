@@ -271,11 +271,9 @@
 
 	session_start();
 ?>
-	<script type="text/javascript">
+		<script type="text/javascript">
 		
-		
-
- $( document ).ready(function(){
+$( document ).ready(function(){
 
  	var isLoadNotify = true;
     function generateNotifications(){
@@ -283,12 +281,13 @@
     		var requestAjax = $.ajax({
 
 			type:'GET',
-			url:'../../methods/get-notification.php?id=<?php echo $_SESSION['user_id'];  ?>',
+			url:'../../methods/get-notification.php?gen_for=vendor&id=<?php echo $_SESSION['user_id']; ?>',
             success:function (res) {
-            	 // console.log(res);
-                 
+            	 console.log(res);
+               if (res) {
+                    // debugger;
             	  var data= JSON.parse(res);
- 
+
             	  console.log(data);
             	  $('ul.notify_wrap').html('');
             	  $.each(data,function(k,val){
@@ -308,8 +307,13 @@
 			        redirectNotiyFunction();
             	  })
             	 
+            }else{
+                 
+
+              isLoadNotify=true;
             }
 
+}
 
 		});
     }
@@ -324,7 +328,9 @@
     				callNotifyFunction();
     			},5000);
     		}
-    		
+    		// else{
+    		// 	generateNotifications();
+    		// }
     }
     callNotifyFunction()
 
@@ -376,14 +382,14 @@
  			$.ajax({
 
                type:"POST",
-               url: '../methods/update-notification.php',
+               url: '../../methods/update-notification.php',
                data :{"id":noti_id},
                success:function(data){
 
                	if (data=="success") {
 
                			li.hide();
-               			 window.location= loc;
+               			 window.location= '../'+loc;
                			 // debugger;
                	}else{
 

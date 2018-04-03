@@ -142,7 +142,7 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                              </div>
                              <div class="sp_top">
                                 <span><b>Amenities:</b></span>
-                                <div class="listing-desc sp_top ">
+                                <div class="sp_top ">
                                 <?php $amenity =explode(',', $RoomResult['room_other']); ?>
 
 

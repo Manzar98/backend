@@ -157,7 +157,7 @@
 
                              <div class="sp_top">
                                 <span><b>Amenities:</b></span>
-                                <div class="listing-desc sp_top ">
+                                <div class="sp_top ">
                                 <?php $amenity =explode(',', $hotelResult['hotel_other']); ?>
 
 

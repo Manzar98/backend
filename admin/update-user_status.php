@@ -11,6 +11,10 @@ if (isset($_POST['reason'])) {
      $query='UPDATE credentials SET user_status="'.$_POST['btn'].'",
      suspend_reason="'.$_POST['reason'].'" WHERE user_id="'.$_POST['u_id'].'"';
 
+     include '../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Your account has been suspended","Sorry ",date("F j, Y, g:i a"),"#", "vendor","vendor");
+
 }else{
 
 $query='UPDATE credentials SET user_status="'.$_POST['btn'].'",
@@ -18,7 +22,9 @@ $query='UPDATE credentials SET user_status="'.$_POST['btn'].'",
 
      include '../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['u_id'],"vendor","true","false","Approved","Your registration has been approved","Now you can manage your account",date("F j, Y, g:i a"),"vendors/db-profile.php?id=".$_POST['u_id'], "vendor");
+     insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Your registration has been approved","Now you can manage your account",date("F j, Y, g:i a"),"db-profile.php?id=".$_POST['u_id'], "vendor","vendor");
+     
+
 
 }
  
