@@ -5153,6 +5153,30 @@ width:100%!important;
    padding: 5px 0 5px 0;
 
 }
-.h_title {
+.h_title i {
     padding-left: 12px;
+}
+.you_icon{
+    margin-right: 3px;
+    color: #FF0000;
+}
+.fb_icon i {
+    margin-right: 3px;
+    color: #4267b2;
+}
+.tw_icon i {
+    margin-right: 3px;
+    color: #1da1f2;
+}
+.google_icon{
+  margin-right: 3px;
+  color: #DD4B39;
+}
+.pin_icon{
+  margin-right: 3px;
+  color: #BD081B;
+}
+.insta_icon{
+  margin-right: 3px;
+  color: #BB3687;
 }

@@ -189,20 +189,20 @@
                              </div>
                              <div>
                                  <table class="listing-tbl sp_top tbl_social">
-                                     <tbody>
+                                    <tbody>
                                         <tr>
-                                         <td><?php echo $hotelResult['hotel_fburl']; ?></td>
-                                          <td><?php echo $hotelResult['hotel_twurl']; ?></td>
+                                         <td><span class="fb_icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span><?php echo $hotelResult['hotel_fburl']; ?></td>
+                                          <td><span class="tw_icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></span><?php echo $hotelResult['hotel_twurl']; ?></td>
                                            
                                        </tr>
                                        <tr>
-                                         <td><?php echo $hotelResult['hotel_gourl']; ?></td>
-                                          <td><?php echo $hotelResult['hotel_insurl']; ?></td>
+                                         <td><span class="google_icon"><i class="fa fa-google-plus-square" aria-hidden="true"></i></span><?php echo $hotelResult['hotel_gourl']; ?></td>
+                                          <td><span class="insta_icon"><i class="fa fa-instagram" aria-hidden="true"></i></span><?php echo $hotelResult['hotel_insurl']; ?></td>
                                            
                                        </tr>
                                        <tr>
-                                           <td><?php echo $hotelResult['hotel_pinurl']; ?></td>
-                                          <td><?php echo $hotelResult['hotel_yuturl']; ?></td>
+                                           <td><span class="pin_icon"><i class="fa fa-pinterest-square" aria-hidden="true"></i></span><?php echo $hotelResult['hotel_pinurl']; ?></td>
+                                          <td><span class="you_icon"><i class="fa fa-youtube-play" aria-hidden="true"></i></span><?php echo $hotelResult['hotel_yuturl']; ?></td>
                                            
                                        </tr>
                                      </tbody>

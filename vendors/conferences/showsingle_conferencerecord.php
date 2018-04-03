@@ -253,9 +253,9 @@ $showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult
                                      </thead>
                                      <tbody>
                                        
-                                         <td><?php  echo $ConResult['conference_fcbok'];  ?></td>
-                                         <td><?php  echo $ConResult['conference_twiter'];  ?></td>
-                                         <td><?php  echo $ConResult['conference_utube'];  ?></td>  
+                                         <td><span class="fb_icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span><?php  echo $ConResult['conference_fcbok'];  ?></td>
+                                         <td><span class="tw_icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></span><?php  echo $ConResult['conference_twiter'];  ?></td>
+                                         <td><span class="you_icon"><i class="fa fa-youtube-play" aria-hidden="true"></i></span><?php  echo $ConResult['conference_utube'];  ?></td>   
                                      </tbody>
                                  </table>
                              </div>

@@ -299,9 +299,9 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
                                      </thead>
                                      <tbody>
                                        
-                                         <td><?php  echo $BnqResult['banquet_fcbok'];  ?></td>
-                                         <td><?php  echo $BnqResult['banquet_twiter'];  ?></td>
-                                         <td><?php  echo $BnqResult['banquet_utube'];  ?></td>  
+                                        <td><span class="fb_icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_fcbok'];  ?></td>
+                                         <td><span class="tw_icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_twiter'];  ?></td>
+                                         <td><span class="you_icon"><i class="fa fa-youtube-play" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_utube'];  ?></td>
                                      </tbody>
                                  </table>
                              </div>
