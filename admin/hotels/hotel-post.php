@@ -348,6 +348,13 @@ if ($is_check==true) {
 
   }
 
+
+  include '../../methods/send-notification.php';
+
+  insert_notification($conn,$user_id,"admin","true","false","Created","New hotel created under your account",$name. "has been created under your account",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id,"hotel","vendor" );
+
+  
+
   echo json_encode($newSuccessMsgArr);
 }else{
   echo json_encode($newErrorMsgArr);

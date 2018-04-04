@@ -465,10 +465,7 @@ if ($is_check==true) {
 	# code...
 
 $query='INSERT INTO event(user_id,hotel_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific,event_inactive,event_independ,hotel_name)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
-}else{
 
-	$query='INSERT INTO event(user_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific,event_inactive,event_independ,hotel_name)VALUES("'.$userid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
-}
 if ($conn->query($query)== TRUE) {
  	# code...
  	$event_id=$conn->insert_id;
@@ -514,6 +511,68 @@ if ($discountx) {
  	
    }
 }
+
+ include '../../methods/send-notification.php';
+
+
+     insert_notification($conn,$userid ,"admin","true","false","Created","New event created under your account.","".$name." in ".$hotelname." has been created under your account.",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid,"event","vendor" );
+
+}else{
+
+	$query='INSERT INTO event(user_id,event_name,event_venue,event_recurrence,event_serve,event_eatFree,event_eatAll,event_eatAllChrges,event_eatNeed,event_descrip,event_entry,event_entryfee,event_childallow,event_undr5allow,event_halftikchild,event_undr5free,event_undr5price,event_pikoffer,event_pikair,event_pikbus,event_pikspecific,event_drpoffer,event_drpair,event_drpbus,event_drpspecific,event_inactive,event_independ,hotel_name)VALUES("'.$userid.'","'.$name.'","'.$venue.'","'.$recurrence.'","'.$serveFood.'","'.$eatFree.'","'.$eatAll.'","'.$eatAllChrges.'","'.$eatNeed.'","'.$descrip.'","'.$evententry.'","'.$entryfee.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
+
+	if ($conn->query($query)== TRUE) {
+ 	# code...
+ 	$event_id=$conn->insert_id;
+
+ }else{
+ 	echo "Error: " . $query . "<br>" . $conn->error;
+ }
+
+// echo $event_id;
+
+
+if (isset($_POST['common_video'])) {
+
+	$videoQuery='INSERT INTO common_imagevideo(event_id,common_video,img_video_type)VALUES("'.$event_id.'","'.$provideo.'","'.$formtype.'")';
+
+	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
+	# code...
+  // echo 	$videoQuery;
+}
+
+
+
+ for ($i=0; $i<count($imgarray); $i++) {
+
+             // print_r($imgarray) ;
+
+	  $img_UpdateQuery='UPDATE common_imagevideo SET
+ 	 event_id="'.$event_id.'",
+ 	 img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$imgarray[$i].'"' ;
+
+             mysqli_query($conn,$img_UpdateQuery) or die(mysqli_error($conn));
+
+
+ }
+
+
+if ($discountx) {
+	
+   for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
+
+ 	  $discountQuery='INSERT INTO common_nosofpeople(event_id,common_nopeople,common_discount,discount_type)VALUES("'.$event_id.'","'.$_POST['common_nopeople'][$i].'","'.$_POST['common_discount'][$i].'","'.$formtype.'")';
+ 	  $disQuery=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
+ 	
+   }
+}
+
+include '../../methods/send-notification.php';
+
+
+     insert_notification($conn,$userid ,"admin","true","false","Created","New event created under your account.","".$name." has been created under your account",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid,"event","vendor" );
+}
+
 
 
     echo json_encode($newSuccessMsgArr);

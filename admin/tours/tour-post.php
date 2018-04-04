@@ -600,12 +600,8 @@ if ($independ=='no') {
 	# code...
 
 $query= 'INSERT INTO tour(user_id,hotel_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_campday,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific,tour_inactive,tour_independ,hotel_name)VALUES("'.$user_id.'","'.$hotelid.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$campday.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
-}else{
-	$query= 'INSERT INTO tour(user_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_campday,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific,tour_inactive,tour_independ,hotel_name)VALUES("'.$user_id.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$campday.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
-}
-
-// echo $query;
-if ($conn->query($query)== TRUE) {
+ 
+ if ($conn->query($query)== TRUE) {
  	# code...
  	$tour_id=$conn->insert_id;
 
@@ -661,6 +657,81 @@ if ($discountpeople) {
 
 
  }
+
+ include '../../methods/send-notification.php';
+
+
+     insert_notification($conn,$user_id  ,"admin","true","false","Created","New tour created under your account.","".$tourname." in ".$hotelname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid,"tour","tour" );
+
+}else{
+	$query= 'INSERT INTO tour(user_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_campday,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific,tour_inactive,tour_independ,hotel_name)VALUES("'.$user_id.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$campday.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'")';
+
+	if ($conn->query($query)== TRUE) {
+ 	# code...
+ 	$tour_id=$conn->insert_id;
+
+ }else{
+ 	echo "Error: " . $query . "<br>" . $conn->error;
+ }
+
+// echo $tour_id;
+ 
+ if (isset($_POST['common_video'])) {
+
+	$videoQuery='INSERT INTO common_imagevideo(tour_id,common_video,img_video_type)VALUES("'.$tour_id.'","'.$provideo.'","'.$formtype.'")';
+
+	mysqli_query($conn,$videoQuery) or die(mysqli_error($conn));
+	# code...
+}
+
+
+
+ for ($i=0; $i<count($imgarray); $i++) {
+
+              // print_r($imgarray) ;
+
+	  $img_UpdateQuery='UPDATE common_imagevideo SET
+ 	 tour_id="'.$tour_id.'",
+ 	 img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$imgarray[$i].'"' ;
+
+             mysqli_query($conn,$img_UpdateQuery) or die(mysqli_error($conn));
+
+
+ }
+
+if ($discountpeople) {
+
+    for ($i=0; $i < count($_POST['common_nopeople']) ; $i++) { 
+
+
+ 	  $discountQuery='INSERT INTO common_nosofpeople(tour_id,common_nopeople,common_discount,discount_type)VALUES("'.$tour_id.'","'.$_POST['common_nopeople'][$i].'","'.$_POST['common_discount'][$i].'","'.$formtype.'")';
+     
+ 	  $disResult=mysqli_query($conn,$discountQuery) or die(mysqli_error($conn));
+ 	
+    }
+
+}
+
+  for ($i=0; $i < count($D_idArray) ; $i++) { 
+
+  $Desti_UpdateQuery='UPDATE tour_destination SET
+  	 tour_id="'.$tour_id.'" WHERE destination_id="'.$D_idArray[$i].'"' ;
+
+              mysqli_query($conn,$Desti_UpdateQuery) or die(mysqli_error($conn));
+  
+
+
+ }
+
+  include '../../methods/send-notification.php';
+
+
+     insert_notification($conn,$user_id,"admin","true","false","Created","New tour created under your account.","".$tourname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id,"tour","vendor" );
+
+}
+
+// echo $query;
+
 
 
     echo json_encode($newSuccessMsgArr);

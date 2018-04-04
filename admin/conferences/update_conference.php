@@ -379,10 +379,93 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
   if (!empty($_POST['hotel_id']) && $_POST['conference_independ']!='no') {
+
+
+    $cnupdate='SELECT `conference`.`conference_inactive` FROM `conference` WHERE conference_id="'.$_POST['conference_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+
+  $cnupdate_result=mysqli_query($conn,$cnupdate) or die(mysqli_error($conn));
+
+  $cnupdate_assoc=mysqli_fetch_assoc($cnupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($cnupdate_assoc['conference_inactive']== $inactive) {
+  
+  $notify_title="Your Listing has updated.";
+  $notify_descrip="".$name." in ".$_POST['hotel_name']." has been updated";
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="Your Listing has activated";
+         $notify_descrip="".$name." has been reactivated";
+
+       }else{
+          
+         $notify_title="Your Listing has inactivated";
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
+
     
     getUpdatequery('conference',$_POST,array('hotel_id'=>$_POST['hotel_id'],'conference_id'=>$_POST['conference_id']));
+   
+   insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id'],"conference","vendor" );
+
+
   }else{
+
+
+  $cnupdate='SELECT `conference`.`conference_inactive` FROM `conference` WHERE conference_id="'.$_POST['conference_id'].'" AND user_id="'.$_POST['user_id'].'"';
+
+  $cnupdate_result=mysqli_query($conn,$cnupdate) or die(mysqli_error($conn));
+
+  $cnupdate_assoc=mysqli_fetch_assoc($cnupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($cnupdate_assoc['conference_inactive']== $inactive) {
+  
+  $notify_title="Listing has updated";
+  $notify_descrip="".$name." has been updated";
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="Your listing has activated ";
+         $notify_descrip="".$name." has been reactivated";
+
+       }else{
+          
+         $notify_title="Your listing has inactivated ";
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
+
+
     getUpdatequery('conference',$_POST,array('user_id'=>$_POST['user_id'],'conference_id'=>$_POST['conference_id']));
+
+
+    include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id'],"conference","vendor" );
+
   }
 
   

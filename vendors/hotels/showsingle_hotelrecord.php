@@ -213,7 +213,7 @@
 
               
                     </div>
-                </div>
+                
 
                            <div class="row sp_top" style="padding-left: 15px;">
                                <span><b>Hotel Images :</b></span>
@@ -278,7 +278,7 @@
                 </div>
             </div>
 
- 
+
 		
 
 

@@ -349,6 +349,10 @@ if (isset($_POST['common_video'])) {
 
  }
 
+  include '../../methods/send-notification.php';
+
+     insert_notification($conn,$user_id,"admin","true","false","Created","New Room created under your account.","".$name." in ".$hotelName." has been created under your account",date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$room_id."&h_id=".$hotelid,"room","vendor" );
+
 
   echo json_encode($newSuccessMsgArr);
 

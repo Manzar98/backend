@@ -351,7 +351,7 @@ if ($is_check==true) {
 
   include '../../methods/send-notification.php';
 
-     insert_notification($conn,$user_id,"admin","true","false","Created","Your Listing has been approved","".$name." has been approved ",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id,"hotel","vendor" );
+     insert_notification($conn,$user_id,"admin","true","false","Created","New listing has been created for yours.","".$name." has been created for yours",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id,"hotel","vendor" );
 
   echo json_encode($newSuccessMsgArr);
 }else{

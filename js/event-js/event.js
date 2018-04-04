@@ -301,7 +301,6 @@ $.ajax({
                                                 var url_split=url.split('&');
                                                 console.log(url_split[1]);
 
-debugger;
                                                 $("#btn-loader").hide();
                                                 setTimeout(function(){
                                                  $('#loader').modal('close');

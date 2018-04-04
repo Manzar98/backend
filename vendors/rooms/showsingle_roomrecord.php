@@ -169,13 +169,13 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                              </div>
                            <?php    } ?>
 
-                           <?php  while ($dateResult=mysqli_fetch_assoc($showRoomDateQuery)) {
+                           
                                
-                               if (!empty($dateResult['book_fromdate'])) { ?>
+                               
                                   
 
                             
-                             <div class="row">
+                             <div class="row sp_top">
                                  <span><b>Unavailable in these days :</b></span>
 
                              </div>
@@ -188,18 +188,20 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                                            
                                        </tr>
                                      </thead>
+                                     <?php  while ($dateResult=mysqli_fetch_assoc($showRoomDateQuery)) { ?>
                                      <tbody>
                                         
                                          <td><?php  echo $dateResult['book_fromdate'];  ?></td>
                                          <td><?php  echo $dateResult['book_todate'];  ?></td>
-                                          
+                                         
                                      </tbody>
+                                      <?php }   ?>  
                                  </table>
                              </div>
                              
-                              <?php   } ?>
+                             
 
-                              <?php }   ?>  
+                              
                                     
                               
                              
@@ -209,7 +211,7 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                 </div>
               
                     </div>
-                           <div class="row" style="padding-left: 15px;">
+                           <div class="row sp_top" style="padding-left: 15px;">
                                <span><b>Room Images :</b></span>
                            </div>
                             <div class="imgVeiwinline row" id="hotel_img_wrap" style="padding-left: 15px;">

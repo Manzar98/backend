@@ -451,11 +451,88 @@ if ($is_check==true) {
 
    if (!empty($_POST['hotel_id']) && $_POST['event_independ']!='no') {
 
+     $evupdate='SELECT `event`.`event_inactive` FROM `event` WHERE event_id="'.$_POST['event_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+
+  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+
+  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($evupdate_assoc['event_inactive']== $inactive) {
+  
+  $notify_title="Your Listing has updated.";
+  $notify_descrip="".$name." in ".$_POST['hotel_name']." has been updated";
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="Your Listing has activated";
+         $notify_descrip="".$name." has been reactivated";
+
+       }else{
+          
+         $notify_title="Your Listing has inactivated ";
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
+
+
     getUpdatequery('event',$_POST,array('hotel_id'=>$_POST['hotel_id'],'event_id'=>$_POST['event_id']));
 
+     include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id'],"event","vendor" );
+
   }else{
+
+       $evupdate='SELECT `event`.`event_inactive` FROM `event` WHERE event_id="'.$_POST['event_id'].'" AND user_id="'.$_POST['user_id'].'"';
+
+  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+
+  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($evupdate_assoc['event_inactive']== $inactive) {
+  
+  $notify_title="Your Listing has updated.";
+  $notify_descrip="".$name." has been updated";
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="Your Listing has activated ";
+         $notify_descrip="".$name." has been reactivated";
+
+       }else{
+          
+         $notify_title="Your Listing has inactivated ";
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
     
     getUpdatequery('event',$_POST,array('user_id'=>$_POST['user_id'],'event_id'=>$_POST['event_id']));
+
+     include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id'],"event","vendor" );
   }
 
  

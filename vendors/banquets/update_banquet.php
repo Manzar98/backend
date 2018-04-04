@@ -476,7 +476,7 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
-  if (!empty($_POST['hotel_id']) && $_POST['banquet_independ']!='yes') {
+  if (!empty($_POST['hotel_id']) && $_POST['banquet_independ']!='no') {
 
     
     

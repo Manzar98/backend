@@ -379,7 +379,7 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
-  if (!empty($_POST['hotel_id']) && $_POST['conference_independ']!='yes') {
+  if (!empty($_POST['hotel_id']) && $_POST['conference_independ']!='no') {
 
     $cnupdate='SELECT `conference`.`conference_inactive` FROM `conference` WHERE conference_id="'.$_POST['conference_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
 

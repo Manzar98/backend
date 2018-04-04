@@ -450,7 +450,7 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
-   if (!empty($_POST['hotel_id']) && $_POST['event_independ']!='yes') {
+   if (!empty($_POST['hotel_id']) && $_POST['event_independ']!='no') {
 
        $evupdate='SELECT `event`.`event_inactive` FROM `event` WHERE event_id="'.$_POST['event_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
 
@@ -516,7 +516,7 @@ if ($is_check==true) {
 
       if ($inactive=="off") {
 
-         $notify_title="".$_SESSION['reg_name']. " has activated ".$name;
+         $notify_title="".$_SESSION['reg_name']." has activated ".$name;
          $notify_descrip="".$name." has been reactivated and ready for review";
 
        }else{

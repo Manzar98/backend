@@ -306,12 +306,12 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
 
       if ($inactive=="off") {
 
-         $notify_title="Your Listing has been activated ";
+         $notify_title="Your Listing has activated ";
          $notify_descrip="".$name." has been reactivated ";
 
        }else{
           
-         $notify_title="Your Listing has been inactivated ";
+         $notify_title="Your Listing has inactivated ";
          $notify_descrip="".$name." has been inactivated ";
 
        } 

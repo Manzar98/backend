@@ -47,7 +47,7 @@
                         <?php if ($_GET['status']=="Approved") { ?>
                         
                             <div class="pull-right">
-                                <a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $hotelResult['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>"">Edit</a>
+                                <a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $hotelResult['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Edit</a>
                             </div>
                        <?php  } ?>
                         
@@ -230,7 +230,7 @@
                        <?php } ?>
 
               </div>
-					</div>
+				
           <style type="text/css">
                       .imgeWrap a {
                            display: none;

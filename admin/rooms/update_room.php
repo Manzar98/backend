@@ -297,7 +297,50 @@ $newSuccessMsgArr=array(
 
 if ($is_check==true) {
 
+
+  $romupdate='SELECT `room`.`room_inactive` FROM `room` WHERE room_id="'.$_POST['room_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+
+  $romupdate_result=mysqli_query($conn,$romupdate) or die(mysqli_error($conn));
+
+  $romupdate_assoc=mysqli_fetch_assoc($romupdate_result);
+
+  $notify_title="";
+  $notify_descrip = "";
+
+  if ($romupdate_assoc['room_inactive']== $inactive) {
+  
+  $notify_title="Your Listing has updated.";
+  $notify_descrip="".$name." in ".$hotelName." has been updated";
+
+    
+  }else{
+
+
+      if ($inactive=="off") {
+
+         $notify_title="Your Listing has activated";
+         $notify_descrip="".$name." has been reactivated";
+
+       }else{
+          
+         $notify_title="Your Listing has inactivated";
+         $notify_descrip="".$name." has been inactivated ";
+
+       } 
+   
+
+
+  }
+
+
+
+
 getUpdatequery('room',$_POST,array('hotel_id'=>$_POST['hotel_id'],'room_id'=>$_POST['room_id']));
+
+include '../../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id'],"room","vendor" );
+     
   echo json_encode($newSuccessMsgArr);
 
 }else{
