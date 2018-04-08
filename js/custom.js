@@ -404,16 +404,18 @@ function selectFod(that){
 
 
 /* Button For Add More Discounts  in Tours  (function For more Inputs) */
+
 function gen_discount_input(event) {
-
-
+ 
+   
   $('.unique').removeClass('unique');
   
        var dis_div =document.getElementById('discount_wrap');
-
-  
+      
+        // console.log(gen_person);
+        // debugger;
     var new_discount=document.createElement('div');
-    new_discount.innerHTML='<div class="row newDiscountLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique"></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate"></div></div></div></div>';
+    new_discount.innerHTML='<div class="row newDiscountLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique "></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate tour-discount-dis "></div></div></div></div>';
     dis_div.appendChild(new_discount.firstChild);
 
 
@@ -423,6 +425,7 @@ function gen_discount_input(event) {
 function compareInputs(event) {
 
   var allInputs= $('#discount_wrap').find('.tour-discount-per');
+
 
   
   var foo=allInputs.slice(0, -1);

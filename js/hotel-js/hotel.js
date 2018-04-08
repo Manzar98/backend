@@ -74,6 +74,28 @@ if ($("#fil_bus input:checkbox:checked").length>0) {
 }
 var validator= $("#hotel-form").validate({
 
+  rules:{
+
+      hotel_pikcharge:{
+        number:true
+      },
+      hotel_buscharge:{
+       
+        number:true
+      },
+
+  },
+  messages: {
+
+     hotel_buscharge:{
+       number:'Bus charges field should only contain numbers.'
+     },
+     hotel_pikcharge:{
+       number:'Airport charges field should only contain numbers.'
+     },
+     
+   },
+
  errorElement : 'div',
  errorPlacement: function(error, element) {
 
@@ -264,6 +286,28 @@ $("#pro-sub-btn_hotel").click(function(){
   }
 
   var validator= $("#hotel-form").validate({
+
+    rules:{
+
+      hotel_pikcharge:{
+        email:true
+      },
+      hotel_buscharge:{
+       
+        number:true
+      },
+
+  },
+  messages: {
+
+     hotel_buscharge:{
+       number:'Bus charges field should only contain numbers.'
+     },
+     hotel_buscharge:{
+       number:'Airport charges field should only contain numbers.'
+     },
+     
+   },
 
 
 

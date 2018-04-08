@@ -99,10 +99,11 @@ if (validator.form()== false) {
      $('#loader').modal({dismissible: false});
      $('#loader').modal('open');
     
-        if ($('.newDiscountLI input').length > 0) {
+        if ($('.newDiscountLI input').length > 0 isDiscountInput($('.newDiscountLI input')) == true) {
         // alert('manzar');
+          debugger;
         insertDiscountinput();
-        // debugger;
+       
       }else{
       
           updateEvent();
@@ -393,5 +394,18 @@ function insertDiscountinput() {
 
 
                     })
+}
+
+
+function isDiscountInput(dataObj){
+  var isValid = true;
+  dataObj.each(function(ke,value){
+      if(!$(value).val()){
+        isValid = false;
+         return false;
+      }
+
+  });
+  return isValid;
 }
 

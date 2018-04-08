@@ -206,12 +206,12 @@ include'../../methods/general_amenities.php'; ?>
                           <div class="col-md-6" >
                           	<div class="" style="display: none;" id="ifYes">
                         		<label>Charges</label>
-                        		 <input type="number"  class="input-field validate is_validate" name="hotel_pikcharge" id="aircharges">
+                        		 <input type="number" id="hotel_pikcharge" class="input-field validate is_validate" name="hotel_pikcharge">
                             </div>
                             </div>
                             <div class="col-md-6" id="buschgr" style="display: none;">
                             	<label>Charges</label>
-                        		 <input type="number"  class="input-field validate " name="hotel_buscharge" id="buscharges">
+                        		 <input type="number" id="hotel_buscharge" class="input-field validate " name="hotel_buscharge">
                             </div>
                         </div>
 

@@ -285,10 +285,10 @@
                  if (res) {
             	  var data= JSON.parse(res);
  
-            	  console.log(data);
+            	  // console.log(data);
             	  $('ul.notify_wrap').html('');
             	  $.each(data,function(k,val){
-                       console.log(val);
+                       // console.log(val);
                           // debugger;
                       isLoadNotify = true;
 			        var li_Wraps= $(`<li class="li-wrap"><i class="fa fa-times noti_x_icon"  aria-hidden="true"></i>

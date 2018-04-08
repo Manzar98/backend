@@ -136,23 +136,20 @@ if (empty($_POST['hotel_pickup'])) {
 }elseif ($_POST['hotel_pickup'] == 'yes') {
 
   $pickup=$_POST['hotel_pickup'];
-  if (empty($_POST['hotel_isair']) && empty($_POST['hotel_isbus'])) {
+  
+  if ($_POST['hotel_isair']=="off" && $_POST['hotel_isbus']=="off") {
 
     $is_check=false;
     array_push($responseArray,"Check atleast one from pickup offered");
   }else{
 
-    if (isset($_POST['hotel_isair'])) {
+    if ($_POST['hotel_isair']=="on") {
 
       $is_air= $_POST['hotel_isair'];
       if (empty($_POST['hotel_pikcharge'])) {
 
         $is_check=false;
         array_push($responseArray,"Airport charges field is required");
-      }elseif (!empty($_POST['hotel_pikcharge']) && !is_numeric($_POST['hotel_pikcharge'])) {
-
-        $is_check=false;
-        array_push($responseArray,"Airport charges field should only contain numbers.");
       }else{
 
        $charges=$_POST['hotel_pikcharge'];
@@ -162,15 +159,12 @@ if (empty($_POST['hotel_pickup'])) {
      $is_air= 'off';
    }
 
-   if (isset($_POST['hotel_isbus'])) {
+   if ($_POST['hotel_isbus']=='on') {
 
     $is_bus= $_POST['hotel_isbus'];
     if (empty($_POST['hotel_buscharge'])) {
      $is_check=false;
      array_push($responseArray,"Bus charges field is required");
-   }elseif (!empty($_POST['hotel_buscharge']) && !is_numeric($_POST['hotel_buscharge'])) {
-     $is_check=false;
-     array_push($responseArray,"Bus charges field should only contain numbers.");
    }else{
      $buscharge=$_POST['hotel_buscharge'];
    }

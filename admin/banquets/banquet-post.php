@@ -3,7 +3,7 @@
  include '../../common-sql.php';
 
    // print_r($_POST);
-
+ 
 $is_check=true;
 $responseArray=[];
 
@@ -144,14 +144,15 @@ if (empty($_POST['banquet_serve'])) {
 			}
 	    }
 
-	    foreach($_POST['foodpkg_item'] as $menupkgitems) { 
+	    
+$trimcomaitem = trim($_POST['foodpkg_item'][0],",");
 
-			$Itemresult = explode(",", $menupkgitems);
-
+			$Itemresult = explode(",", $trimcomaitem);
+              print_r($Itemresult);
 			foreach($Itemresult as $item) { 
-
+ 
 				if (!empty($item)) {
-					
+					echo $item;
 					$pgkitem     = $_POST['foodpkg_item'];
 					
 				}else{
@@ -160,7 +161,7 @@ if (empty($_POST['banquet_serve'])) {
 		            array_push($responseArray,"Package item field is required");	
 				}
 			}
-	    }
+	    
 
 }else{
 	
@@ -621,7 +622,7 @@ if (isset($_POST['common_video'])) {
 
  include '../../methods/send-notification.php';
 
-     insert_notification($conn,$userid,"admin","true","false","Created","New banquet created under your account.","".$name."has been created under your account",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&u_id=".$userid,"banquet","vendor" );
+     insert_notification($conn,$userid,"admin","true","false","Created","New banquet created under your account.","".$name." has been created under your account",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&u_id=".$userid,"banquet","vendor" );
 
 }
 

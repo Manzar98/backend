@@ -1,6 +1,7 @@
 <?php  
 include '../../common-sql.php';
-    // print_r($_POST);
+     // print_r($_POST['foodpkg_item']);
+  
 $is_check=true;
 $responseArray=[];
 
@@ -143,13 +144,14 @@ if (empty($_POST['banquet_serve'])) {
         array_push($responseArray,"Menu Package Price field is required");
       }
       }
+        
+      $trimcomaitem = trim($_POST['foodpkg_item'][0],",");
 
-      foreach($_POST['foodpkg_item'] as $menupkgitems) { 
-
-      $Itemresult = explode(",", $menupkgitems);
-
+           
+      $Itemresult = explode(",", $trimcomaitem);
+       
       foreach($Itemresult as $item) { 
-
+          
         if (!empty($item)) {
           
           $pgkitem     = $_POST['foodpkg_item'];
@@ -160,7 +162,7 @@ if (empty($_POST['banquet_serve'])) {
                 array_push($responseArray,"Package item field is required");  
         }
       }
-      }
+      
 
 }else{
   

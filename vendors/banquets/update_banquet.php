@@ -145,23 +145,40 @@ if (empty($_POST['banquet_serve'])) {
       }
       }
 
-      foreach($_POST['foodpkg_item'] as $menupkgitems) { 
+  //  $i=0;
+      foreach($_POST['foodpkg_item'] as $menupkgitems) {
 
-      $Itemresult = explode(",", $menupkgitems);
+       $trimcomaitem = trim($menupkgitems,",");
 
-      foreach($Itemresult as $item) { 
+     // echo $trimcomaitem;
 
-        if (!empty($item)) {
+     if (!$trimcomaitem) {
+       $is_check=false;
+                 array_push($responseArray,"Package item field is required"); 
+                 break;
+     }else{
+
+       $pgkitem     = $_POST['foodpkg_item'];
+     }
+
+  // // print_r($menupkgitems);//array([0]=>faf,asf[1]=>sds,sdfsd,sdgsd)
+  // // echo"<hr/>";
+  //      $Itemresult = explode(",", $menupkgitems);
+
+  //     foreach($Itemresult as $item) { 
+
+  //       if (!empty($item)) {
           
-          $pgkitem     = $_POST['foodpkg_item'];
+  //         $pgkitem     = $_POST['foodpkg_item'];
           
-        }else{
+  //       }else{
                 
-                $is_check=false;
-                array_push($responseArray,"Package item field is required");  
-        }
-      }
-      }
+  //               $is_check=false;
+  //               array_push($responseArray,"Package item field is required");  
+  //       }
+  //     }
+
+    }
 
 }else{
   
@@ -473,7 +490,7 @@ $newSuccessMsgArr=array(
     
 );
 
-
+ 
 if ($is_check==true) {
 
   if (!empty($_POST['hotel_id']) && $_POST['banquet_independ']!='no') {

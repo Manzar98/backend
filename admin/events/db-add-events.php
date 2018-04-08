@@ -197,7 +197,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 								<div class="col-md-6">
 									<label>Discount (Percentage)</label>
                                   <div class="input-field ">
-								   <input type="number" value="" name="common_discount[]" class="validate" > 
+								   <input type="number" value="" name="common_discount[]" class="validate tour-discount-dis" > 
 							      </div>
 
 								</div>								

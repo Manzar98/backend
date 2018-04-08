@@ -66,7 +66,7 @@
 
                                    <tr class="tr-1">
 									<td class="td-name"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
-									<td class="text-center"><?php echo $result['reg_postal']; ?></td>
+									<td class="text-center td-name"><?php echo $result['reg_postal']; ?></td>
 									<td class="text-center"><?php echo $result['reg_city'];   ?></td>
 									<td class="text-center"><?php echo $result['reg_email'];   ?></td>
 									

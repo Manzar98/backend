@@ -86,7 +86,8 @@ if (validator.form()== false) {
           $('#loader').modal({dismissible: false});
           $('#loader').modal('open');
               
-            if ($('.newMenuLI input').length > 0) {
+            if (($('.newMenuLI input').length > 0) && ($('.newMenuLI').find('.pkgname').val()!="") && ($('.newMenuLI').find('.pkgprice').val()!="") && ($('.newMenuLI').find('.menupkg-id').val()!="")) {
+               // debugger;
               insertMultiInput();
               
             }else{
@@ -371,6 +372,7 @@ function updateBanquet() {
 
 function insertMultiInput() {
 
+        
            $.ajax({
                               type:"POST",
                               url:"../insert_menupkg.php?column_idName=banquet_id&type=banquet&id="+$('input[name="banquet_id"]').val(),
