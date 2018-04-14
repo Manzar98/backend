@@ -237,52 +237,52 @@ $img          = $_POST['common_image'];
 $imgarray= explode(",",$img);
 $provideo        = $_POST['common_video'];
 
- foreach($_POST['book_fromdate'] as $bokFROM) { 
-	// echo $bokFROM;
-                  
-  	if (!empty($bokFROM)) {
-          
-//           $datefrom = date_create($_POST['book_fromdate']);
-// 	      $resultfrom = date_format($datefrom,"m/d/Y");
- 		  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%',$bokFROM)) {
+if (isset($_POST['book_fromdate'])) {
+  foreach($_POST['book_fromdate'] as $bokFROM) { 
 
-			    $frmdate=$bokFROM;
+    if (!empty($bokFROM)) {
+ 
+      if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%',$bokFROM)) {
 
- 			}else{
+          $frmdate=$bokFROM;
 
- 				 $is_check=false;
- 				 array_push($responseArray,"From Date field is invalid");
- 			}
-  	}else{
+      }else{
 
-  		$frmdate=null;
-  	}
+         $is_check=false;
+         array_push($responseArray,"From Date field is invalid");
+      }
+    }
 
  }
 
+}else{
 
- foreach($_POST['book_todate'] as $bokTO) { 
-	 // echo $bokTO;
-                  
-  	 if (!empty($bokTO)) {
+      $frmdate=null;
+}
 
- 	 	   // $dateto = date_create($_POST['book_todate']);
- 	       // $resultto = date_format($dateto,"m/d/Y");
- 		  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%',$bokTO)) {
+if(isset($_POST['book_todate'])){
 
-			     $todate=$bokTO;
+     foreach($_POST['book_todate'] as $bokTO) { 
+     
+     if (!empty($bokTO)) {
 
- 			}else{
- 				 $is_check=false;
- 				 array_push($responseArray,"To Date field is invalid");
+      if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%',$bokTO)) {
 
- 			}
-  	 }else{
+           $todate=$bokTO;
 
-  	 	 $todate=null;
-  	 }
+      }else{
+         $is_check=false;
+         array_push($responseArray,"To Date field is invalid");
+
+      }
+     }
 
  }
+
+}else{
+
+       $todate=null;
+}
 
 
 if (!empty($_POST['banquet_offerdiscount']) && !is_numeric($_POST['banquet_offerdiscount'])) {

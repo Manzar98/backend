@@ -282,17 +282,7 @@
       </div>
       <?php  } ?>
   </div>
-
-			<div class="db-righ">
-				<h4>Notifications(18)</h4>
-				<ul>
-					
-				</ul>
-			</div>
-
-
-
- <!-- Modal Structure -->
+  <!-- Modal Structure -->
   <div id="loader" class="modal">
     <div class="modal-content">
       <div class="col-md-5"></div>
@@ -344,6 +334,17 @@
     </div>
     
   </div>
+
+			<div class="db-righ">
+				<h4>Notifications(18)</h4>
+				<ul>
+					
+				</ul>
+			</div>
+
+
+
+ 
 		</div>
 
 			 
@@ -643,13 +644,15 @@
 	<script src="../js/materialize.min.js" type="text/javascript"></script>
 	<script src="../js/jquery.mixitup.min.js" type="text/javascript"></script>
 	<script src="../js/croppie.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 	<script src="../js/custom.js"></script>
 	<script src="../js/jquery-validation.js"></script>
 	<script src="../js/additional-methods.js"></script>
 	<script src="../js/sweetalert.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<script src="../js/paid-ads-js/ads-vendor.js"></script>
+   <?php include 'cal_noti_main_folder.php'; ?>
 
-	<?php include 'cal_noti_main_folder.php'; ?>
+   
 <script type="text/javascript">
 	
 	if (($('#choose_list :selected').text()=="Hotels") || ($('#choose_list :selected').text()=="Rooms") || ($('#choose_list :selected').text()=="Banquets") || ($('#choose_list :selected').text()=="Conferences") || ($('#choose_list :selected').text()=="Tours") || ($('#choose_list :selected').text()=="Events")) {

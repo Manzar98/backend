@@ -9,10 +9,10 @@
       today = new Date(),
       dob = new Date(value.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
       age = today.getFullYear() - dob.getFullYear(); //This is the update
-       if (age<15) {
+       if (age<13) {
              swal({
 
-        title: "Age is blah",
+        title: "You must be 13 years of age!",
         
         type: "error",
             //confirmButtonColor: "#DD6B55",

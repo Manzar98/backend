@@ -9,30 +9,38 @@
 	
 	<?php 
 	include '../../common-sql.php';
-	include '../header_inner_folder.php'; 
-    $userId= $_GET["id"];
+	include '../header_inner_folder.php';
+if (isset($_GET["user_id"])) {
+	$userId= $_GET["user_id"];
+}else{
+$userId= $_GET["id"];
+}
+    
 
 $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'" ';
 
 // echo $selectHotel;
 
 $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
-    ?>
 
+    ?>
+   
 
 					<div class="db-cent-3">
 						<div class="db-cent-table db-com-table">
+
+        <?php  
+         if (mysqli_num_rows($selectHotelQuery) > 0) { 
+    	?>
 							<div class="db-title">
 								<h3><img src="../../images/icon/dbc5.png" alt=""/> Add Rooms</h3>
-								<p>There are many variations of passages of Lorem Ipsum available, but the majority have8suffered alteration in some form</p>
+								<p>Fill out the form below to add a new Room.</p>
 							</div>
 
 							<div class="db-profile-edit">
 								<form class="col s12"  data-toggle="validator" id="room-form" role="form" action="room-post.php" method="POST" enctype="multipart/form-data">
 
-									<?php
-
-									if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
+									
 									<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  >
 										<label class="col s12">Select Hotel</label>
 										<select  class="hotelNames"  name="hotel_name" >
@@ -50,7 +58,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 						  
 				</div>
-				<?php  }  ?>
+				
 
 
 
@@ -217,7 +225,17 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							</div>
 						</form>
 					</div>
+  <?php  }else{ ?>
 
+                            <div class="db-title">
+								<h3><img src="../../images/icon/dbc5.png" alt=""/> Add Rooms</h3>
+								 <span>This vendor does not have any Approved Hotels, please Add a hotel first to add Rooms.</span>
+								<p></p>
+							</div>
+
+
+
+<?php  }  ?>
 				</div>
 
 			</div>

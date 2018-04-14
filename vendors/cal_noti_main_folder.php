@@ -26,7 +26,7 @@ $( document ).ready(function(){
                           // debugger;
                       isLoadNotify = true;
 			        var li_Wraps= $(`<li class="li-wrap"><i class="fa fa-times noti_x_icon"  aria-hidden="true"></i>
-									  <a href="#" data-href="`+val.url+`" class="x_icon"> <img src="`+val.photo+`" alt="">
+									  <a href="#" data-href="`+val.url+`" class="x_icon"> <img src="`+val.photo.slice(3)+`" alt="">
 										   <h5 alt="`+val.title+`" title="`+val.title+`">`+val.title+`</h5>
 										   <p alt="`+val.desc+`" title="`+val.desc+`">`+val.desc+`</p> <span>`+val.time+`</span>
 									  </a><input type="hidden" id="noti_id" value="`+val.notify_id+`"/>

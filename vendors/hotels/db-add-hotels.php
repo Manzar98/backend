@@ -26,7 +26,7 @@ include'../../methods/general_amenities.php'; ?>
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> Add Hotel</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							<p>Fill out the form below to add a new Hotel.</p>
 						</div>
 						 
                          <div class="db-profile-edit">

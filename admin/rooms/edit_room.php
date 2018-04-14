@@ -508,10 +508,6 @@ $(document).ready(function(){
 	/*==============Ajax Function Defination (For Dates)==============*/
 $('#ajaxbtn').click(function(){
 
-	
-      // debugger;
-     // alert('jgjg');
-  
     var dataObj = {};
 
     $('.newLI input').each(function(key,value){
@@ -526,8 +522,9 @@ $('#ajaxbtn').click(function(){
     dataObj['form_date_type'] = "room";
 
     console.log(dataObj);
-    // debugger;
-        $.ajax({
+
+
+  $.ajax({
 
 
                               type:"POST",

@@ -4848,8 +4848,9 @@ label{
 
 }
 .buttonsWrap_vendors{
-        width: 170px;
+   /*width: 170px;*/
     margin: 0 auto;
+    height: 49px;
 }
 .buttonsWrap{
         width: 170px;
@@ -5179,4 +5180,7 @@ width:100%!important;
 .insta_icon{
   margin-right: 3px;
   color: #BB3687;
+}
+.v-lsting-cursor{
+    cursor: pointer;
 }

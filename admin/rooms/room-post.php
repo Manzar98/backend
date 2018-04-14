@@ -176,51 +176,58 @@ if (empty($_POST['hotel_name'])) {
 	$hotelName=$_POST['hotel_name'];  
 }
 
+ if (isset($_POST['book_fromdate'])) {
 
- foreach($_POST['book_fromdate'] as $bokFROM) { 
-	                 
-  	 if (!empty($bokFROM)) {
+      foreach($_POST['book_fromdate'] as $bokFROM) { 
+                   
+     if (!empty($bokFROM)) {
           
            
- 	      // $resultfrom = DateTime::createFromFormat("m/d/Y", $_POST['book_fromdate']);
- 		   if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokFROM)) {
+        // $resultfrom = DateTime::createFromFormat("m/d/Y", $_POST['book_fromdate']);
+       if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokFROM)) {
 
-			     $from= $bokFROM;
+           $from= $bokFROM;
 
- 			 }else{
+       }else{
 
- 				  $is_check=false;
- 				  array_push($responseArray,"From date field is invalid");
- 			 }
-	
-  	 }else{
-
- 		 $from=null;
-  	 }
+          $is_check=false;
+          array_push($responseArray,"From date field is invalid");
+       }
+  
+     }
  }
 
+ }else{
 
-   foreach($_POST['book_todate'] as $bokTO) { 
-	             
-   	 if (!empty($bokTO)) {
+     $from=null;
+
+ }
+
+if (isset($_POST['book_todate'])) {
+
+  foreach($_POST['book_todate'] as $bokTO) { 
+               
+     if (!empty($bokTO)) {
                        
-  	 	   // $resultto = $_POST['book_todate']->format("m/d/Y");
-	 	   if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokTO)) {
+         // $resultto = $_POST['book_todate']->format("m/d/Y");
+       if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokTO)) {
 
-	 		     $to= $bokTO;
+           $to= $bokTO;
 
-  			 }else{
+         }else{
 
-  				 $is_check=false;
-  				  array_push($responseArray,"To date field is invalid");
+           $is_check=false;
+            array_push($responseArray,"To date field is invalid");
 
-  			 }
-		
-   	  }else{
-
-   	 	 $to=null;
-   	  }
+         }
+    
+      }
    }
+  
+}else{
+
+       $to=null;
+ }
 
 if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
 

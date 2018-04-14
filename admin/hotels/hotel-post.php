@@ -135,13 +135,13 @@ if (empty($_POST['hotel_pickup'])) {
 }elseif ($_POST['hotel_pickup'] == 'yes') {
 
   $pickup=$_POST['hotel_pickup'];
-  if ($_POST['hotel_isair']=="off" && $_POST['hotel_isbus']=="off") {
+  if (!isset($_POST['hotel_isair']) && !isset($_POST['hotel_isbus'])) {
 
     $is_check=false;
     array_push($responseArray,"Check atleast one from pickup offered");
   }else{
 
-    if ($_POST['hotel_isair']=="on") {
+    if (isset($_POST['hotel_isair']) && $_POST['hotel_isair']=="on") {
 
       $is_air= $_POST['hotel_isair'];
       if (empty($_POST['hotel_pikcharge'])) {
@@ -157,7 +157,7 @@ if (empty($_POST['hotel_pickup'])) {
      $is_air= 'off';
    }
 
-   if ($_POST['hotel_isbus']=='on') {
+   if (isset($_POST['hotel_isbus']) && $_POST['hotel_isbus']=='on') {
 
     $is_bus= $_POST['hotel_isbus'];
     if (empty($_POST['hotel_buscharge'])) {
@@ -344,7 +344,7 @@ if ($is_check==true) {
 
   include '../../methods/send-notification.php';
 
-  insert_notification($conn,$user_id,"admin","true","false","Created","New hotel created under your account",$name. "has been created under your account",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id,"hotel","vendor" );
+  insert_notification($conn,$user_id,"admin","true","false","Created","New hotel created under your account",$name. " has been created under your account",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id,"hotel","vendor" );
 
   
 

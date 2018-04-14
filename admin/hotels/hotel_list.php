@@ -23,6 +23,10 @@
 
 $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY hotel_id DESC ';
           $hotel_resp =mysqli_query($conn,$hotelQuery)  or die(mysqli_error($conn));
+
+
+
+
 ?>
 
 
@@ -69,7 +73,7 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 								<tr >
 									<th>Name</th>
 									<th>City</th>
-									<th>Active/Inactive Rooms</th>
+									<th>Inactive/Active Rooms</th>
 									<th>Booked/Free Rooms</th>
 									<th>Status</th>
 								</tr>
@@ -78,12 +82,31 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 								
 
 								
-                                 <?php  while ($result=mysqli_fetch_assoc($hotel_resp)) { ?>
+                                 <?php  while ($result=mysqli_fetch_assoc($hotel_resp)) { 
+                                $roomcount_inact='SELECT COUNT(*) AS count FROM room WHERE hotel_id="'.$result['hotel_id'].'" AND room_inactive="off"';
+                                $roomcount_act='SELECT COUNT(*) AS count FROM room WHERE hotel_id="'.$result['hotel_id'].'" AND room_inactive="on"';
+                             
+                                  $roomquery_inact= mysqli_query($conn,$roomcount_inact) or die(mysqli_error($conn));
+                                  $roomquery_act= mysqli_query($conn,$roomcount_act) or die(mysqli_error($conn));
+                                
+
+                                 	?>
 
                                    <tr>
 									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>
 									<td class="text-center td-name"><?php echo $result['hotel_city'];  ?></td>
-									<td class="text-center"><?php echo "5/2";   ?></td>
+                             <?php if (mysqli_num_rows($roomquery_inact)> 0) {
+                             	        $cnt=mysqli_fetch_assoc($roomquery_inact);
+                             	        $inactive_count= $cnt['count']."</br>";
+                             	      // echo   count($cnt);
+                             }  ?>
+                              <?php if (mysqli_num_rows($roomquery_act)> 0) {
+                             	        $cnt_act=mysqli_fetch_assoc($roomquery_act);
+                             	        $active_count= $cnt_act['count'];
+                             	      // echo   count($cnt);
+                             }  ?>
+
+									<td class="text-center"><?php echo $active_count."/".$inactive_count; ?></td>
 									<td class="text-center"><?php echo "1/9";   ?></td>
 									<?php if ($result['hotel_inactive']== "on") { ?>
 										    
@@ -149,7 +172,12 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 							 	
                              </div>
 
-							<?php  }else{ ?>
+							<?php  }elseif ($_GET['status']=='Pending') { ?>
+							
+							<h3  style="color: red;"><?php echo $_GET['name']; ?> is Pending<b>!</b></h3>
+							  <span>The user’s status is pending; first approve the user to add listings under his name</span>
+								
+							<?php }else{ ?>
 
                             <div class="text-center"><span><?php echo $_GET['name']; ?> has no Hotels</span></div>
                           <div class="row common-top text-center">

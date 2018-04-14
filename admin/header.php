@@ -16,6 +16,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 <!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<!-- FAV ICON(BROWSER TAB ICON) -->
 	<link rel="shortcut icon" href="../images/fav.ico" type="image/x-icon">
 	<!-- GOOGLE FONT -->
@@ -406,13 +407,13 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db3.png" alt="" /> Manage Vendors</a>
 						</li>
 						<li>
-							<a href="add-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db2.png" alt="" />Add Listing</a>
+							<a href="list-of-vendor_manage_add.php?act=add"><img src="../images/icon/db2.png" alt="" />Add Listing</a>
 						</li>
 						<li>
-							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db3.png" alt="" />Manage Listing</a>
+							<a href="list-of-vendor_manage_add.php?act=manage"><img src="../images/icon/db3.png" alt="" />Manage Listing</a>
 						</li>
 						<li>
-							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../images/icon/db5.png" alt="" /> Featured Ads</a>
+							<a href="list-of-vendor_manage_add.php?act=feature_ad"><img src="../images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
 						<li>
 							<a href="db-event.html"><img src="../images/icon/db4.png" alt="" /> Event</a>

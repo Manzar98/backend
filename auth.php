@@ -16,7 +16,7 @@ if(mysqli_num_rows($result) == 1){
   //echo 'Successfuly authorized';
 $crntresult=mysqli_fetch_assoc($result) ;//for exract out id we use this  
    //echo $crntresult['id'] ;
-if ($crntresult['user_status']!="Suspended") {
+if ($crntresult['user_status']!="Suspended" && $crntresult['user_status']!="Pending") {
     
     $queryup= 'UPDATE `credentials` SET reg_lastlogin=now() Where reg_email="'.$email.'"';
  
@@ -58,22 +58,31 @@ if ($crntresult['user_status']!="Suspended") {
   }
        echo json_encode($res_Array);
         // header('Location: dashboard.php?id='.$crntresult['user_id']);//to send the id for 
-  }else{
+  }elseif($crntresult['user_status'] == "Suspended"){
 
        $res_Array=array(
-          "status"=>"Error",
+          "status"=>"Error-sus",
            "type"=>"Suspended"
      
         );
   echo  json_encode($res_Array);
 
+  }elseif ($crntresult['user_status'] == "Pending") {
+    
+    $res_Array=array(
+          "status"=>"Error-pen",
+           "type"=>"Pending"
+     
+        );
+
+  echo  json_encode($res_Array);
   }
 
  
      
   
         
-}else{
+}else{ 
 
 	   $res_Array=array(
           "status"=>"Error"

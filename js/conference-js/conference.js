@@ -14,6 +14,20 @@ $("#pro-sub-btn").click(function(){
             });
      return;
    }
+   // if ($('.newMenuLI').find('.chip').length < 1) {
+ 
+   //  swal({
+
+   //        title: "Package item field is required",
+          
+   //        type: "error",
+   //          //confirmButtonColor: "#DD6B55",
+   //          confirmButtonText: "ok",
+   //          closeOnConfirm: true,
+   //          html: false
+   //          });
+   //   return;
+   // }
 
     if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
         

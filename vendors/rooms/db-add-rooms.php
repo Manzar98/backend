@@ -24,7 +24,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 						<div class="db-cent-table db-com-table">
 							<div class="db-title">
 								<h3><img src="../../images/icon/dbc5.png" alt=""/> Add Rooms</h3>
-								<p>There are many variations of passages of Lorem Ipsum available, but the majority have8suffered alteration in some form</p>
+								<p>Fill out the form below to add a new Room.</p>
 							</div>
 
 							<div class="db-profile-edit">

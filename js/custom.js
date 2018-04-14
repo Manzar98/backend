@@ -280,7 +280,8 @@ function gen_dates_input(event,editFlag) {//
 
 
     }
-
+   $('#'+to_id).prop('required',true);
+   $('#'+from_id).prop('required',true);
     event.stopPropagation();
 }
 
@@ -415,9 +416,10 @@ function gen_discount_input(event) {
         // console.log(gen_person);
         // debugger;
     var new_discount=document.createElement('div');
-    new_discount.innerHTML='<div class="row newDiscountLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique "></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate tour-discount-dis "></div></div></div></div>';
+    new_discount.innerHTML='<div class="row newDiscountLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique dis_peop"></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate tour-discount-dis dis_per"></div></div></div></div>';
     dis_div.appendChild(new_discount.firstChild);
-
+  $('.dis_per').prop('required',true);
+   $('.dis_peop').prop('required',true);
 
 }
 
@@ -527,7 +529,31 @@ function compareInputs(event) {
                     wrap_li.fadeOut(800, function(){ 
                      // debugger;
                     wrap_li.remove();
+                     if ($('.def-show-date li').length == 0) {
+
+                                        // debugger;
+                                         var new_obj =`<li class="newLI active">
+                                                         <div class="collapsible-header  active">Date</div>
+                                                         <div class="collapsible-body"> 
+                                                           <div class="row">
+                                                             <input type="hidden" name="common_bokdate_id[]" id="date_id">
+                                                            <div class="col-md-6">
+                                                             <label>From</label>
+                                                             <input type="text" id="from" class="input-field from" name="book_fromdate[]">
+                                                           </div>
+                                                           <div class="col-md-6">
+                                                             <label>To</label>
+                                                            <input type="text" id="to" class="input-field to" name="book_todate[]" > 
+                                                           </div>
+                                                         </div>
+                                                       </div>
+                                                     </li>`;
+
+                                                     $('.def-show-date').append(new_obj);
+                                     }
+                                 
         });
+
                     $.ajax({ 
 
                                 type:"POST",
@@ -537,7 +563,8 @@ function compareInputs(event) {
                                   var response = JSON.parse(data);
                                   console.log(response);
                                   if(response.message == "success"){
-                                 
+                                     // debugger;
+                                    
                                   }
                       }
 
@@ -915,7 +942,7 @@ function gen_menupackage_input(event) {
     
   
      
-  var new_package= '<li id="gen_menupackage_input" class="newMenuLI"><div class="collapsible-header ">Menu   <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row"><div class="col-md-6"><label>Package Name</label><input type="text" name="foodpkg_name[]" value="" class="input-field validate pkgname"></div><div class="col-md-6"><label>Package Price</label><input type="number" value="" name="foodpkg_price[]" class="input-field validate pkgprice"></div></div><div class="row"><div class="col-md-6"><label >Discount Percentage</label><input type="number" name="foodpkg_discount[]" value="" class="input-field validate discountprcent" style="padding-top:18px;"></div><div class="col-md-6"><label>Package Items</label><div class="input-field "><div class="chips chips-packageitem" id="'+id+'"> </div><input type="hidden"  name="foodpkg_item[]" id="input_'+id+'" class="menupkg-id"></div></div></div></div></li>';
+  var new_package= '<li id="gen_menupackage_input" class="newMenuLI"><div class="collapsible-header ">Menu   <a class="closemenu" ><i class="fa fa-times" aria-hidden="true"></i></a></div><div class="collapsible-body"><div class="row"><div class="col-md-6"><label>Package Name</label><input type="text" name="foodpkg_name[]" value="" class="input-field validate pkgname pk_nme"></div><div class="col-md-6"><label>Package Price</label><input type="number" value="" name="foodpkg_price[]" class="input-field validate pkgprice pk_prc"></div></div><div class="row"><div class="col-md-6"><label >Discount Percentage</label><input type="number" name="foodpkg_discount[]" value="" class="input-field validate discountprcent" style="padding-top:18px;"></div><div class="col-md-6"><label>Package Items</label><div class="input-field "><div class="chips chips-packageitem" id="'+id+'"> </div><input type="hidden"  name="foodpkg_item[]" id="input_'+id+'" class="menupkg-id"></div></div></div></div></li>';
    
    $('.def-show-menu').append(new_package);
 
@@ -937,7 +964,8 @@ function gen_menupackage_input(event) {
     }
   });
    
-   
+   $('.pk_nme').attr('required',true);
+   $('.pk_prc').attr('required',true);
 
    /*===========================
    Reinitialize Add Chips For Menu Packages in (Banquet & Conference) when click add more button
@@ -1159,7 +1187,7 @@ $('#h_table tbody tr').hide();
 if (event.which==13 || event.type=="click" ) {
  
 $.each(trObj,function(k,value){
-  // debugger;
+   
   if(value.innerHTML.toLowerCase().indexOf(filter) > -1){
  $(value).show();
   }
@@ -1167,7 +1195,7 @@ $.each(trObj,function(k,value){
 
 }else if(event.type=="change"){
 
-        
+        // debugger;
            filter=$('#yourole').val();
            // console.log(filter);
         
@@ -1269,220 +1297,4 @@ $('#loader').modal({
   dismissible: false
 })
 
-/*=================
-   Function for Ads 
-======================*/
-$('#pro-sub-btn_paid').prop('disabled',true);
-$('.lbl-list').hide();
-function showlist(that){
 
-    $('.lbl-list').show();
-    
-     var stored_tbl_name=that.value;
-     var stored_id=$('#user_id').val();
-     
-    $.ajax({
-
-
-       type:"GET",
-       url:'get_list.php',
-       data:{"tbl_name":stored_tbl_name,"user_id":stored_id},
-       success:function(res){
-           var data= JSON.parse(res);
-           console.log(data);
-        // debugger;
-        var   dropdown='<label class="pull-left lbl-list">List of '+stored_tbl_name+'</label>'
-              dropdown+='<select name="list_of_any" id="List_any" onchange="list_of(this)" >'
-              dropdown+='<option  disabled selected>Select One</option>'
-           $.each(data,function(k,val){
-             
-                dropdown+='<option value='+val.name+'>'+val.name+'</option>';
-
-           });
-           dropdown+='</select>';
-            document.getElementById('list_of_any').innerHTML=dropdown;
-            // $('#List_any').material_select();
-            $("#List_any").select2({
-                    placeholder: "Select a State",
-                    allowClear: true
-             }); 
-       }
-    })
-
-}
-
-/*=================
- Function for Ads 
-======================*/
-$('#on_which_page').hide();
-function list_of(that){
-    $('#on_which_page').show();
-
-}
-
-/*=================
- Function for Ads 
-======================*/
-$('#no_of_days').hide();
-function on_which(that){
-    $('#no_of_days').show();
-
-}
-
-
-/*=================
-
-=========== Function for Ads ===========*/
-function n_day() {
-   
-   $('#pro-sub-btn_paid').prop('disabled',false);
-}
-/*=================
- Function for Ads submission
-======================*/
-
-$("#pro-sub-btn_paid").click(function(){
-
-$('#loader').modal({dismissible: false});
-      $('#loader').modal('open');
-
-          var user_id=$('#user_id').val();
-          var select_one=$('#select_parent option:selected').val();
-          var list_any=$('#list_of_any option:selected').val();
-          var on_which=$('#on_which_page option:selected').val();
-          var no_days=$('#no_of_days option:selected').val();
-
- 
-      $.ajax({
-          
-          type:"POST",
-          url:"paid-ads-post.php",
-          data:{"user_id":user_id,"select_any":select_one,"list_of_any":list_any,"on_which_page":on_which,"no_of_days":no_days},
-          success:function(res){
-                    
-                    var data= JSON.parse(res);
-                    console.log(data);
-
-                    if (data.status=="success") {
-                         
-                            setTimeout(function(){
-                                 $('#loader').modal('close');
-                                 swal({
-                                       title: "Ads successfully submitted for review!",
-                    text: "Thank you for your submission! You will be notified once your ads submission has been approved!",
-                    type: "success",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: false
-                      }, function(){
-                       window.location = "paid-ads-list.php";
-                    });
-                              },3000)
-                    }else{
-                        
-                           var responseArray = "";
-                                $.each(data.message.split(','),function(k,val){
-                                      responseArray += "<li style='color:red;'><i class='fa fa-times errordialog_x' aria-hidden='true'></i>"+val+"</li>";
-                                })
-                                
-                               $('#loader').modal('close');
-                               swal({
-                                       title: "Something went wrong!",
-                    text: "<ul class='responseDialog'>"+responseArray+"</ul>",
-                    type: "error",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: true
-                      }, function(){
-                      // window.location = "../rooms/room_list.php";
-                    });
-
-
-                    }
-
-          }
-
-
-      })
-
-
-
-})
-
-/*=================
- Function for Ads Updation
-======================*/
-
-
-$("#pro-sub-btn_paid_edit").click(function(){
-
-$('#loader').modal({dismissible: false});
-      $('#loader').modal('open');
-
-          var user_id=$('#user_id').val();
-          var paid_id=$('#paid_id').val();
-          var select_one=$('#select_parent option:selected').val();
-          var list_any=$('#list_of_any option:selected').val();
-          var on_which=$('#on_which_page option:selected').val();
-          var no_days=$('#no_of_days option:selected').val();
-
- 
-      $.ajax({
-          
-          type:"POST",
-          url:"../vendors/paid-ads-update.php",
-          data:{"user_id":user_id,"paid_id":paid_id,"select_any":select_one,"list_of_any":list_any,"on_which_page":on_which,"no_of_days":no_days},
-          success:function(res){
-                    
-                    var data= JSON.parse(res);
-                    console.log(data);
-
-                    if (data.status=="success") {
-                         
-                            setTimeout(function(){
-                                 $('#loader').modal('close');
-                                 swal({
-                                       title: "Ads successfully updated for review!",
-                    text: "Thank you for your submission! You will be notified once your ads updation has been approved!",
-                    type: "success",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: false
-                      }, function(){
-                       window.location = "../vendors/paid-ads-list.php";
-                    });
-                              },3000)
-                    }else{
-                        
-                           var responseArray = "";
-                                $.each(data.message.split(','),function(k,val){
-                                      responseArray += "<li style='color:red;'><i class='fa fa-times errordialog_x' aria-hidden='true'></i>"+val+"</li>";
-                                })
-                                
-                               $('#loader').modal('close');
-                               swal({
-                                       title: "Something went wrong!",
-                    text: "<ul class='responseDialog'>"+responseArray+"</ul>",
-                    type: "error",
-                      //confirmButtonColor: "#DD6B55",
-                      confirmButtonText: "ok",
-                      closeOnConfirm: true,
-                      html: true
-                      }, function(){
-                      // window.location = "../rooms/room_list.php";
-                    });
-
-
-                    }
-
-          }
-
-
-      })
-
-
-
-})

@@ -287,10 +287,10 @@ $("#pro-sub-btn_hotel").click(function(){
 
   var validator= $("#hotel-form").validate({
 
-    rules:{
+   rules:{
 
       hotel_pikcharge:{
-        email:true
+        number:true
       },
       hotel_buscharge:{
        
@@ -303,7 +303,7 @@ $("#pro-sub-btn_hotel").click(function(){
      hotel_buscharge:{
        number:'Bus charges field should only contain numbers.'
      },
-     hotel_buscharge:{
+     hotel_pikcharge:{
        number:'Airport charges field should only contain numbers.'
      },
      

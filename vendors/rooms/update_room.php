@@ -176,7 +176,9 @@ if (empty($_POST['hotel_name'])) {
 }
 
 
- foreach($_POST['book_fromdate'] as $bokFROM) { 
+if (isset($_POST['book_fromdate'])) {
+
+      foreach($_POST['book_fromdate'] as $bokFROM) { 
                    
      if (!empty($bokFROM)) {
           
@@ -192,14 +194,18 @@ if (empty($_POST['hotel_name'])) {
           array_push($responseArray,"From date field is invalid");
        }
   
-     }else{
-
-     $from=null;
      }
  }
 
+ }else{
 
-   foreach($_POST['book_todate'] as $bokTO) { 
+     $from=null;
+
+ }
+
+if (isset($_POST['book_todate'])) {
+
+  foreach($_POST['book_todate'] as $bokTO) { 
                
      if (!empty($bokTO)) {
                        
@@ -215,11 +221,13 @@ if (empty($_POST['hotel_name'])) {
 
          }
     
-      }else{
-
-       $to=null;
       }
    }
+  
+}else{
+
+       $to=null;
+ }
 
 if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
 
@@ -378,7 +386,7 @@ global $conn;
                  // print_r($value) ;
         	foreach ($value as $k => $v) {
 				 
-      if (isset($updateObject['common_bokdate_id'][$k])) {
+      if (isset($updateObject['common_bokdate_id'][$k]) && !empty($updateObject['common_bokdate_id'][$k])) {
       
 				  $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
 				  mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
@@ -404,7 +412,7 @@ global $conn;
      	if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
        			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
-       			 echo $updatequery;
+       			 // echo $updatequery;
         }else if(count($whereClauseArray) > 1) {
         		$condString='';
 				for ($i=0; $i < count($whereClauseArray); $i++) { 

@@ -30,7 +30,7 @@
 						 		 	  <option value="" selected="" >View all</option>
 								      <option value="Approved">Approved</option>
 								      <option value="Suspended">Suspended</option>
-								      
+								      <option value="Pending">Waiting Approval</option>
                                  </select>
 						 	</div>
 						 	<div class="col s6 search_field">	
@@ -55,7 +55,7 @@
 									<th>City</th>
 									<th>Email Address</th>
 									<th>Status</th>
-									<th>Action</th>
+									
 									
 									
 								</tr>
@@ -87,7 +87,15 @@
 										<?php } ?>
 									
                                     <td class="text-center sus_appr">
-                                    	<?php if ($result['user_status']=="Approved") { ?>
+                               
+                                    </td>
+                                    <td class="tdwrap">
+									<div class="buttonsWrap_vendors">
+										<div class="row">
+											<a class="waves-effect waves-light btn" href="veiw_vendors.php?id=<?php echo $result['user_id'];  ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $result['user_id'];  ?>">Edit</a>
+											<a class="waves-effect waves-light btn" href="#">Delete</a>
+											     	<?php if ($result['user_status']=="Approved") { ?>
 
                                      		<a  href="#susp" u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
                                      		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
@@ -101,13 +109,6 @@
  
                                    	         
                                  <?php   } ?>
-                                    </td>
-                                    <td class="tdwrap_vendors">
-									<div class="buttonsWrap_vendors">
-										<div class="row">
-											<a class="waves-effect waves-light btn" href="veiw_vendors.php?id=<?php echo $result['user_id'];  ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $result['user_id'];  ?>">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
 										</div>
 										
 									</div>
@@ -127,33 +128,10 @@
 						
 							</tbody>
 						</table>
-						<?php 	}else{ ?>
+						<?php 	} ?>
  
-						<div class="text-center"><span>You have no featured ads</span></div>
-						<div class="row common-top text-center">
-							<div class="">
-								
-								<a class="waves-effect waves-light btn" href="paid_ads.php">Feature an Ad</a>
-								
-							</div>
-						</div>
-
-						 <?php	}?>
-						  <!-- Modal Trigger -->
-  
-
-  <!-- Modal Structure -->
-  <div id="susp" class="modal ">
-    <div class="modal-content">
-      <h4>Reason for suspention</h4>
-     <div class="input-field col s12">
-          <textarea id="textarea_susp" class="materialize-textarea"></textarea>
-          <label for="textarea_susp">Reason</label>
-          <input type="button" value="Submit" class="btn" name="" onclick="reason_submit()">
-        </div>
-    </div>
-    
-  </div>
+						
+						 <?php include '../common-ftns/suspend_reason_modal.php'; ?>
 					</div>
 				</div>
   </div>

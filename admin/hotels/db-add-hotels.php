@@ -13,7 +13,16 @@
   
 include '../header_inner_folder.php'; 
 
-include'../../methods/general_amenities.php'; ?>
+include'../../methods/general_amenities.php'; 
+
+if (isset($_GET['id'])) {
+	$userId=$_GET['id'];
+}else{
+
+$userId=$_GET['user_id'];
+}
+
+?>
 
    
 
@@ -26,13 +35,13 @@ include'../../methods/general_amenities.php'; ?>
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> Add Hotel</h3>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							<p>Fill out the form below to add a new Hotel.</p>
 						</div>
 						 
                          <div class="db-profile-edit">
 					<form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
                         
-                          <input type="hidden" name="user_id" value="<?php echo $_GET['id']; ?>">
+                          <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
 						<div>
 
 							<label class="col s4">Hotel Name</label>

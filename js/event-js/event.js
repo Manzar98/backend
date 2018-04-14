@@ -99,7 +99,7 @@ if (validator.form()== false) {
      $('#loader').modal({dismissible: false});
      $('#loader').modal('open');
     
-        if ($('.newDiscountLI input').length > 0 isDiscountInput($('.newDiscountLI input')) == true) {
+        if ($('.newDiscountLI input').length > 0 && isDiscountInput($('.newDiscountLI input')) == true) {
         // alert('manzar');
           debugger;
         insertDiscountinput();

@@ -284,6 +284,7 @@ if (isset($_GET['h_id'])) {
         <?php $i++;  }
 
          }else{ ?>
+         
          <li class="newLI">
     <div class="collapsible-header  active">Date</div>
     <div class="collapsible-body"> 

@@ -65,9 +65,11 @@ $newSuccessMsgArr=array(
   echo "Error: " . $paidQuery . "<br>" . $conn->error;
  }
 
-   include '../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Created","New ad has been featured","New ad has been featured by ".$_SESSION['reg_name']." for ".$_POST['select_any']."",date("F j, Y, g:i a"),"#","ads","admin" );
+
+      include '../methods/send-notification.php';
+
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Created","New ad has been featured","New ad has been featured by ".$_SESSION['reg_name']." for ".$_POST['select_any']."",date("F j, Y, g:i a"),"#","paid-ads","admin" );
 
 
 	echo json_encode($newSuccessMsgArr);

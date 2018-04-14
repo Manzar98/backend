@@ -177,7 +177,12 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 							 	
                              </div>
 
-							<?php  }else{ ?>
+							<?php  }elseif ($_GET['status']=='Pending') { ?>
+							
+							<h3  style="color: red;"><?php echo $_GET['name']; ?> is Pending<b>!</b></h3>
+							  <span>The user’s status is pending; first approve the user to add listings under his name</span>
+								
+							<?php }else{ ?>
 
                          <div class="text-center"><span><?php echo $_GET['name'] ?> has no Tour Packages</span></div>
 						 <div class="row common-top text-center">

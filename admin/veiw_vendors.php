@@ -265,19 +265,7 @@
 			
 			</div>
 
-
-     <!-- Modal Structure -->
-  <div id="susp" class="modal ">
-    <div class="modal-content">
-      <h4>Reason for suspention</h4>
-     <div class="input-field col s12">
-          <textarea id="textarea_susp" class="materialize-textarea"></textarea>
-          <label for="textarea_susp">Reason</label>
-          <input type="button" value="Submit" class="btn" name="" onclick="reason_submit()">
-        </div>
-    </div>
-    
-  </div>
+<?php include '../common-ftns/suspend_reason_modal.php'; ?>
 
 
 			<?php } ?>
