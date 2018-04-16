@@ -2,9 +2,6 @@
    Function for Ads 
 ======================*/
 $('#pro-sub-btn_paid').prop('disabled',true);
-
-
-
 $('.lbl-list').hide();
 function showlist(that){
 
@@ -65,8 +62,9 @@ function on_which(that){
 /*=================
 
 =========== Function for Ads ===========*/
+$('#bid_price').hide();
 function n_day() {
-   
+   $('#bid_price').show();
    $('#pro-sub-btn_paid').prop('disabled',false);
 }
 /*=================
@@ -74,6 +72,63 @@ function n_day() {
 ======================*/
 
 $("#pro-sub-btn_paid").click(function(){
+
+
+  var validator= $("#paid-form").validate({
+
+     rules:{
+      
+      ad_name:{
+        required:true
+      },
+      bid_amount:{
+        required:true,
+        number:true
+      }
+    
+     },
+
+  messages:{
+
+   bid_amount:{
+    number:"Bidding amount field should only contain numbers"
+   },
+
+  },
+
+       errorElement : 'div',
+        errorPlacement: function(error, element) {
+
+           console.log(element);
+          var placement = $(element).data('error');
+
+             console.log(placement);
+             console.log(error);
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+
+});
+
+   validator.form();
+    
+    if (validator.form()== false) {
+     
+      var body = $("html, body");
+      $.each($('#paid-form').find(".error"),function(key,value)
+      {
+        
+        if($(value).css('display')!="none")
+        {
+         body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+         return false; 
+       }
+     });
+
+    }else{
 
 $('#loader').modal({dismissible: false});
       $('#loader').modal('open');
@@ -85,12 +140,14 @@ $('#loader').modal({dismissible: false});
           var no_days=$('#no_of_days option:selected').val();
           var st_status=$('#status').val();
           var st_name=$('#v_name').val();
+          var bidAmt=$('#bid_amount').val();
+          var adNme=$('#ad_name').val();
  // debugger; 
       $.ajax({
           
           type:"POST",
           url:"paid-ads-post.php",
-          data:{"user_id":user_id,"select_any":select_one,"list_of_any":list_any,"on_which_page":on_which,"no_of_days":no_days,"v_name":st_name,"status":st_status},
+          data:{"user_id":user_id,"ad_name":adNme,"select_any":select_one,"list_of_any":list_any,"on_which_page":on_which,"no_of_days":no_days,"bid_amount":bidAmt,"v_name":st_name,"status":st_status},
           success:function(res){
                     
                     var data= JSON.parse(res);
@@ -140,6 +197,7 @@ $('#loader').modal({dismissible: false});
 
 
       })
+  }
 
 
 
@@ -152,6 +210,61 @@ $('#loader').modal({dismissible: false});
 
 $("#pro-sub-btn_paid_edit").click(function(){
 
+  var validator= $("#paid-form").validate({
+
+     rules:{
+      
+      ad_name:{
+        required:true
+      },
+      bid_amount:{
+        required:true,
+        number:true
+      }
+    
+     },
+
+  messages:{
+
+   bid_amount:{
+    number:"Bidding amount field should only contain numbers"
+   },
+
+  },
+
+       errorElement : 'div',
+        errorPlacement: function(error, element) {
+
+           console.log(element);
+          var placement = $(element).data('error');
+
+             console.log(placement);
+             console.log(error);
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+
+});
+
+   validator.form();
+    
+    if (validator.form()== false) {
+     
+      var body = $("html, body");
+      $.each($('#paid-form').find(".error"),function(key,value)
+      {
+        
+        if($(value).css('display')!="none")
+        {
+         body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+         return false; 
+       }
+     });
+
+    }else{
 $('#loader').modal({dismissible: false});
       $('#loader').modal('open');
 
@@ -163,13 +276,15 @@ $('#loader').modal({dismissible: false});
           var no_days=$('#no_of_days option:selected').val();
           var st_status=$('#status').val();
           var st_name=$('#v_name').val();
+          var bidAmt=$('#bid_amount').val();
+          var adNme=$('#ad_name').val();
 
  
       $.ajax({
           
           type:"POST",
           url:"../paid_ads/paid-ads-update.php",
-          data:{"user_id":user_id,"paid_id":paid_id,"select_any":select_one,"list_of_any":list_any,"on_which_page":on_which,"no_of_days":no_days,"v_name":st_name,"status":st_status},
+          data:{"user_id":user_id,"ad_name":adNme,"paid_id":paid_id,"select_any":select_one,"list_of_any":list_any,"on_which_page":on_which,"no_of_days":no_days,"bid_amount":bidAmt,"v_name":st_name,"status":st_status},
           success:function(res){
                     
                     var data= JSON.parse(res);
@@ -219,6 +334,7 @@ $('#loader').modal({dismissible: false});
 
 
       })
+    }
 
 
 

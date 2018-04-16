@@ -9,6 +9,7 @@ if (!isset($_POST['btn'])) {
 
 $is_check=true;
 $responseArray=[];
+$adName=$_POST['ad_name'];
  if (empty($_POST['select_any'])) {
 
  	     $is_check=false;
@@ -44,7 +45,7 @@ if (empty($_POST['list_of_any'])) {
     
      $no_days=$_POST['no_of_days'];
  }
-
+$bidAmt=$_POST['bid_amount'];
  $errorMsgs=implode(",",$responseArray);
   $newErrorMsgArr=array(
     "status"=> "error",
@@ -61,10 +62,12 @@ $newSuccessMsgArr=array(
   if ($is_check ==true) {
 
   	         
-  $paidQuery='UPDATE paid_ads SET select_any="'.$_POST['select_any'].'",
-              	list_of_any="'.$lst_any.'",
-				on_which_page="'.$which_pge.'",
-				no_of_days="'.$no_days.'" WHERE paid_id="'.$_POST['paid_id'].'"';
+  $paidQuery='UPDATE paid_ads SET ad_name="'.$adName.'",
+        select_any="'.$_POST['select_any'].'",
+        list_of_any="'.$lst_any.'",
+        on_which_page="'.$which_pge.'",
+        no_of_days="'.$no_days.'",
+        bid_amount="'.$bidAmt.'" WHERE paid_id="'.$_POST['paid_id'].'"';
 
 
 

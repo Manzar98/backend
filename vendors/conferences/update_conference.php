@@ -89,23 +89,7 @@ if (empty($_POST['conference_serve'])) {
       }
       }
 
-      foreach($_POST['foodpkg_item'] as $menupkgitems) { 
 
-      $Itemresult = explode(",", $menupkgitems);
-
-      foreach($Itemresult as $item) { 
-
-        if (!empty($item)) {
-          
-          $pgkitem     = $_POST['foodpkg_item'];
-          
-        }else{
-                
-                $is_check=false;
-                array_push($responseArray,"Package item field is required");  
-        }
-      }
-      }
 
 }else{
   

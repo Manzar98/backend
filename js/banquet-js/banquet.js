@@ -47,6 +47,21 @@ $("#pro-sub-btn").click(function(event){
                $('#banquet_isaircon').val('off');
 
    }
+
+    if ($(".newMenuLI").length > 0 && $('.newMenuLI').find('.chip').length < 1) {
+      // debugger;
+     swal({
+
+           title: "Package item field is required",
+          
+           type: "error",
+             //confirmButtonColor: "#DD6B55",
+             confirmButtonText: "ok",
+             closeOnConfirm: true,
+             html: false
+             });
+      return;
+    }
   
 var validator= $("#banquet-form").validate({
 

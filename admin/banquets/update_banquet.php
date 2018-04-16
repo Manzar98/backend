@@ -145,24 +145,7 @@ if (empty($_POST['banquet_serve'])) {
       }
       }
         
-      $trimcomaitem = trim($_POST['foodpkg_item'][0],",");
-
-           
-      $Itemresult = explode(",", $trimcomaitem);
-       
-      foreach($Itemresult as $item) { 
-          
-        if (!empty($item)) {
-          
-          $pgkitem     = $_POST['foodpkg_item'];
-          
-        }else{
-                
-                $is_check=false;
-                array_push($responseArray,"Package item field is required");  
-        }
-      }
-      
+ 
 
 }else{
   

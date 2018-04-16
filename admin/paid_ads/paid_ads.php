@@ -24,9 +24,16 @@
                        <input type="hidden" name="user_id" value="<?php echo $_GET['user_id'];?>" id="user_id"> 
                        <input type="hidden" value="<?php echo $_GET['name'];?>" id="v_name"> 
                        <input type="hidden" value="<?php echo $_GET['status'];?>" id="status"> 
-					   <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="select_parent"  >
+                       <div class="row">
+                       	<div class="col s6">
+							<div class="">
+								<label>Featured Ad Name</label>
+								<input type="text" value="" name="ad_name" class="input-field validate" id="ad_name">
+							</div>	
+						</div>
+					   <div class="col s6 common-wrapper comon_dropdown_botom_line is_validate_select" id="select_parent"  >
 
-							<label class="col s4 pull-left">Choose a List</label>
+							<label class="pull-left">Choose a List</label>
 							
 							 <select   class="" name="select_any" onchange="showlist(this)">
 								<option value=""  disabled selected>Select One</option>
@@ -39,6 +46,7 @@
 
 							</select> 
 						</div>
+					   </div>	
                      
                      <div class="row">
 						<div class="col-md-12 common-wrapper comon_dropdown_botom_line is_validate_select"   >
@@ -66,12 +74,11 @@
 							</select> 
 						</div>
 						</div>
-
 						<div class="col-md-6 common-wrapper comon_dropdown_botom_line is_validate_select" id="no_of_days"  >
 
 							<label class="pull-left">No of days</label>
 							
-							 <select   class="" name="no_of_days" onchange="n_day()">
+							<select   class="" name="no_of_days" onchange="n_day()">
 								<option value=""  disabled selected>Select One</option>
 								<option value="day" >One day</option>
 								<option value="week" >One week</option>
@@ -80,8 +87,16 @@
 								
 
 							</select> 
+						   </div>
+					    </div>
+
+						<div class="col s12 comon_dropdown_botom_line" id="bid_price">
+							<div class="">
+								<label class="col s4 pull-left">Bidding Amount</label>
+								<input type="number" value="" name="bid_amount" class="input-field validate" id="bid_amount">
+							</div>	
 						</div>
-					</div>
+					
                          <div class="common-top">
 							<div class="input-field col s8">
 								<input type="button" value="Checkout" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_paid"> </div>

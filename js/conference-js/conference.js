@@ -13,21 +13,22 @@ $("#pro-sub-btn").click(function(){
             html: false
             });
      return;
+     
    }
-   // if ($('.newMenuLI').find('.chip').length < 1) {
- 
-   //  swal({
+    if ($(".newMenuLI").length > 0 && $('.newMenuLI').find('.chip').length < 1) {
+      // debugger;
+     swal({
 
-   //        title: "Package item field is required",
+           title: "Package item field is required",
           
-   //        type: "error",
-   //          //confirmButtonColor: "#DD6B55",
-   //          confirmButtonText: "ok",
-   //          closeOnConfirm: true,
-   //          html: false
-   //          });
-   //   return;
-   // }
+           type: "error",
+             //confirmButtonColor: "#DD6B55",
+             confirmButtonText: "ok",
+             closeOnConfirm: true,
+             html: false
+             });
+      return;
+    }
 
     if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
         
@@ -111,6 +112,7 @@ $("#pro-sub-btn_conference").click(function(){
             });
      return;
    }
+
 var validator= $("#conference-form").validate({
         
         

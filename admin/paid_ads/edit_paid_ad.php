@@ -32,9 +32,16 @@
                        <input type="hidden" value="<?php echo $_GET['name'];?>" id="v_name"> 
                        <input type="hidden" value="<?php echo $_GET['status'];?>" id="status"> 
                        <input type="hidden" value="<?php echo $result['paid_id'];?>" id="paid_id"> 
-					   <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="select_parent"  >
+                       <div class="row">
+                       	 <div class="col s6">
+							<div class="">
+								<label>Featured Ad Name</label>
+								<input type="text" name="ad_name" class="input-field validate" id="ad_name" value="<?php echo $result['ad_name']; ?>">
+							</div>	
+						 </div>
+					   <div class="col s6 common-wrapper comon_dropdown_botom_line is_validate_select" id="select_parent"  >
 
-							<label class="col s4 pull-left">Choose a list</label>
+							<label class="pull-left">Choose a list</label>
 							  <input type="hidden" name=choose_list value="<?php echo $result['select_any'] ?>" id="choose">
 							 <select   class="" name="select_any" id="choose_list" onchange="showlist(this)">
 							<?php if ($result['select_any']=="hotel") { ?>
@@ -110,6 +117,8 @@
 							
 							</select> 
 						</div>
+
+						</div>
                      
                      <div class="row">
                      	<input type="hidden" name="list" id="list-of" value="<?php echo $result['list_of_any'] ?>">
@@ -121,7 +130,7 @@
 						
 						</div>
 						<div class="row">
-                        <div class="col-md-6 common-wrapper comon_dropdown_botom_line is_validate_select" >
+                        <div class="col s6 common-wrapper comon_dropdown_botom_line is_validate_select" >
                          <div id="on_which_page">
 							<label class=" pull-left">On which page</label>
 							
@@ -225,7 +234,7 @@
 
 							<label class="pull-left">No of days</label>
 							
-							 <select   class="" name="no_of_days">
+							 <select   class="" name="no_of_days" id="no_of_d">
 							 	<?php if ($result['no_of_days']=="day") {?>
 
 									    <option value=""  disabled >Select One</option>
@@ -273,6 +282,13 @@
 							</select> 
 						</div>
 					</div>
+
+					<div class="col s12 comon_dropdown_botom_line" id="bid_price">
+							<div class="">
+								<label class="col s4 pull-left">Bidding Amount</label>
+								<input type="number" name="bid_amount" class="input-field validate" id="bid_amount" value="<?php echo $result['bid_amount']; ?>">
+							</div>	
+						</div>
                          <div class="common-top">
 							<div class="input-field col s8">
 								<input type="button" value="Checkout" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_paid_edit"> </div>
@@ -349,6 +365,12 @@
   if (($('#w_page :selected').text()=="Home") || ($('#w_page :selected').text()=="Hotel Page") || ($('#w_page :selected').text()=="Room Page") || ($('#w_page :selected').text()=="Banquet Page") || ($('#w_page :selected').text()=="Conference Page") || ($('#w_page :selected').text()=="Tour Page") || ($('#w_page :selected').text()=="Event Page")) {
 
        $('#no_of_days').show();
+       
+	}
+
+	 if (($('#no_of_d :selected').text()=="One day") || ($('#no_of_d :selected').text()=="One week") || ($('#no_of_d :selected').text()=="One month") || ($('#no_of_d :selected').text()=="One year")) {
+
+       $('#bid_price').show();
        
 	}
 

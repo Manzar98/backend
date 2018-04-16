@@ -145,40 +145,7 @@ if (empty($_POST['banquet_serve'])) {
       }
       }
 
-  //  $i=0;
-      foreach($_POST['foodpkg_item'] as $menupkgitems) {
 
-       $trimcomaitem = trim($menupkgitems,",");
-
-     // echo $trimcomaitem;
-
-     if (!$trimcomaitem) {
-       $is_check=false;
-                 array_push($responseArray,"Package item field is required"); 
-                 break;
-     }else{
-
-       $pgkitem     = $_POST['foodpkg_item'];
-     }
-
-  // // print_r($menupkgitems);//array([0]=>faf,asf[1]=>sds,sdfsd,sdgsd)
-  // // echo"<hr/>";
-  //      $Itemresult = explode(",", $menupkgitems);
-
-  //     foreach($Itemresult as $item) { 
-
-  //       if (!empty($item)) {
-          
-  //         $pgkitem     = $_POST['foodpkg_item'];
-          
-  //       }else{
-                
-  //               $is_check=false;
-  //               array_push($responseArray,"Package item field is required");  
-  //       }
-  //     }
-
-    }
 
 }else{
   

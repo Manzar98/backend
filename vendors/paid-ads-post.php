@@ -5,6 +5,8 @@
  // print_r($_POST);
 $is_check=true;
 $responseArray=[];
+  $adName=$_POST['ad_name'];
+
  if (empty($_POST['select_any'])) {
 
  	     $is_check=false;
@@ -41,6 +43,8 @@ if (empty($_POST['list_of_any'])) {
      $no_days=$_POST['no_of_days'];
  }
 
+ $bidAmt=$_POST['bid_amount'];
+
  $errorMsgs=implode(",",$responseArray);
   $newErrorMsgArr=array(
     "status"=> "error",
@@ -52,7 +56,7 @@ $newSuccessMsgArr=array(
     
 );
   if ($is_check ==true) {
-  $paidQuery='INSERT INTO paid_ads(user_id,select_any,list_of_any,on_which_page,no_of_days)VALUES("'.$_POST['user_id'].'","'.$selct_one.'","'.$lst_any.'","'.$which_pge.'","'.$no_days.'")';
+  $paidQuery='INSERT INTO paid_ads(user_id,ad_name,select_any,list_of_any,on_which_page,no_of_days,bid_amount)VALUES("'.$_POST['user_id'].'","'.$adName.'","'.$selct_one.'","'.$lst_any.'","'.$which_pge.'","'.$no_days.'","'.$bidAmt.'")';
 
   // $result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
 
