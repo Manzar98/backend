@@ -37,11 +37,12 @@
 								 
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
-								<tr>
-									<th>Choose a list</th>
-									<th>List of</th>
-									<th>On which page</th>
-									<th>No of days</th>
+								<tr> 
+									<th>Name</th>
+									<th>Listing Type</th>
+									<th>Listing Name</th>
+									<th>Page</th>
+									<th>Duration</th>
 									<th>Status</th>
 									
 									
@@ -54,6 +55,7 @@
                                 <?php   while ($result=mysqli_fetch_assoc($ads_resp)) { ?>
 
                                    <tr class="">
+                                   	<td class="td-name capitalize"><?php echo $result['ad_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['select_any'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['list_of_any']; ?></td>
 									<td class="td-name capitalize"><?php echo $result['on_which_page'];   ?></td>

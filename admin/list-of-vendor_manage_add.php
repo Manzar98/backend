@@ -42,7 +42,7 @@
 
 							<?php }else{ ?>
 							        
-							        <h3><img src="../images/icon/dbc5.png" alt=""/> Add/manage feature an ad</h3>
+							        <h3><img src="../images/icon/dbc5.png" alt=""/> Add/Manage Featured Ad</h3>
 									<p>Choose a vendor you want to add or manage the feature ads for.</p>
 
 							<?php } ?>
