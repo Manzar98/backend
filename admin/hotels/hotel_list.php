@@ -93,8 +93,8 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
                                  	?>
 
                                    <tr>
-									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>
-									<td class="text-center td-name"><?php echo $result['hotel_city'];  ?></td>
+									<td class="td-name capitalize"><?php echo $result['hotel_name'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['hotel_city'];  ?></td>
                              <?php if (mysqli_num_rows($roomquery_inact)> 0) {
                              	        $cnt=mysqli_fetch_assoc($roomquery_inact);
                              	        $inactive_count= $cnt['count']."</br>";
@@ -106,14 +106,14 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
                              	      // echo   count($cnt);
                              }  ?>
 
-									<td class="text-center"><?php echo $active_count."/".$inactive_count; ?></td>
-									<td class="text-center"><?php echo "1/9";   ?></td>
+									<td class="capitalize"><?php echo $active_count."/".$inactive_count; ?></td>
+									<td class="capitalize"><?php echo "1/9";   ?></td>
 									<?php if ($result['hotel_inactive']== "on") { ?>
 										    
-										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
 									
 									

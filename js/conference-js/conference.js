@@ -15,6 +15,8 @@ $("#pro-sub-btn").click(function(){
      return;
      
    }
+   if ($('#conferenceFood :selected').text()=="Yes") {
+    
     if ($(".newMenuLI").length > 0 && $('.newMenuLI').find('.chip').length < 1) {
       // debugger;
      swal({
@@ -29,7 +31,7 @@ $("#pro-sub-btn").click(function(){
              });
       return;
     }
-
+}
     if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
         
 

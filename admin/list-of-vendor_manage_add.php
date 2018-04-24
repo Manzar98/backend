@@ -103,10 +103,10 @@
                                         <tr class="tr-1 v-lsting-cursor" onClick="document.location.href='paid_ads/paid-ads-list.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>'" >
                                 <?php } ?>
                                    
-									<td class="td-name"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
-									<td class="text-center td-name"><?php echo $result['reg_postal']; ?></td>
-									<td class="text-center"><?php echo $result['reg_city'];   ?></td>
-									<td class="text-center"><?php echo $result['reg_email'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['reg_postal']; ?></td>
+									<td class="td-name capitalize"><?php echo $result['reg_city'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['reg_email'];   ?></td>
 									
 										<?php if ($result['user_status']=="Approved") { ?>
 

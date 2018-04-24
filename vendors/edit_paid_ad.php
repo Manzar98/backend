@@ -282,7 +282,7 @@
 					    <div class="col s12 comon_dropdown_botom_line" id="bid_price">
 							<div class="">
 								<label class="col s4 pull-left">Bidding Amount</label>
-								<input type="number" name="bid_amount" class="input-field validate" id="bid_amount" value="<?php echo $result['bid_amount']; ?>">
+								<input type="number" name="bid_amount" class="input-field validate tooltipped" data-position="top" data-tooltip="Your ranking in the search results depend on your bidding amount; higher the bidding amount, higher will be the ad." id="bid_amount" value="<?php echo $result['bid_amount']; ?>">
 							</div>	
 						</div>
                          <div class="common-top">
@@ -727,7 +727,11 @@
 	})
 </script>
 
-
+<script type="text/javascript">
+	 $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+</script>
    
  
 

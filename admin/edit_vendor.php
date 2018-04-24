@@ -129,7 +129,9 @@
 						<div>
 							<label class="col s4">Email Address</label>
 							<div class="input-field col s8">
-								<input type="email" value="<?php echo $reg_Result['reg_email'];  ?>" id="reg_email" name="reg_email" class="validate"> </div>
+								<input type="email"  value="<?php echo $reg_Result['reg_email'];  ?>" id="reg_email" onblur="checkemail_main(this.value)" name="reg_email" class="validate">
+                                 <span id="msg" class="hi-red"></span>
+								 </div>
 						</div>
                          
                         <div class="row">
@@ -358,6 +360,7 @@
 		<script src="../js/croppie.js"></script>
  <script src="../js/registration-js/registration.js"></script>
     <script src="../js/method-js/updatepassword.js"></script>
+    <script src="../js/method-js/email-validation.js"></script>
     <script type="text/javascript">
     	$('#modal-reset').modal({dismissible: false});
 		

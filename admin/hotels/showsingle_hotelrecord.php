@@ -42,20 +42,54 @@
 				<div class="db-cent-3">
 
 					<div class="db-cent-table db-com-table">
-                      <div class="row">
-						
+                      
+						       <div class="veiw_sus_appr">
                         <?php if ($_GET['status']=="Approved") { ?>
-                        
+                        <div class="row sus_appr">
                             <div class="pull-right">
                                 <a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $hotelResult['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Edit</a>
+                                <?php if ($hotelResult['hotel_status']=="Approved") { ?>
+
+                                        <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+
+                                        <a  onclick="show_suspend(event)" id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+                                        <a  onclick="show_approve(event)"  id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                               <?php  }else{ ?>
+
+                                          <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+                                          <a  onclick="show_suspend(event)" id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+                                          <a  onclick="show_approve(event)"  id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" class="approve btn" value="Approved" >Approve</a>
+                             <?php  } ?>
                             </div>
+                          </div>
                        <?php  } ?>
-                        
+                       <div class="text-center " >
+                        <span style="margin-left: 10px;">Status:</span>
+                        <?php if ($hotelResult['hotel_status']=="Approved") { ?>
+
+                                <span class="appr" style="color: green; "><b><?php echo $hotelResult['hotel_status']; ?></b></span>
+                                <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
+                                
+
+                        <?php   }else if ($hotelResult['hotel_status']=="Suspended"){ ?>
+
+                                <span class="sus" style="color: red;"><b><?php echo $hotelResult['hotel_status']; ?></b></span>
+                                <span class="appr" style="color: green; display: none;"><b>Approved</b></span>
+                              
+
+                        <?php   }else{ ?>
+
+                                     <span class="appr" style="color: green;  display: none;"><b>Approved</b></span>
+                                     <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
+                                <span class="pend" style="color: red;"><b><?php echo $hotelResult['hotel_status']; ?></b></span>
+                        <?php } ?>
                       </div>
-                      <div class="text-center " >
-                          <span style="margin-left: 10px;">Status:</span>
-                          <span class="" style="color: green; "><b>Approved</b></span>
                     </div>
+                        
+                     
                     <div class="text-center ">
                           <span style="padding-right: 7px;">Name:</span>
                           <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
@@ -295,16 +329,20 @@
                               }
 
                             ?>
-                        </div>
-					
 				</div>
 			</div>
 
 </div>
 
 
+
 		   <?php  include"../footer_inner_folder.php";  ?>
+       <?php include '../../common-ftns/suspend_reason_modal.php'; ?>
        <script src="../../js/hotel-js/images.js"></script>
+       <script src="../../js/hotel-js/hotel_approve.js"></script>
+       <script src="../../js/hotel-js/hotel_suspend.js"></script>
+      
+
 
 
 

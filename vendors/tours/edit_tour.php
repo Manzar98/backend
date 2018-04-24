@@ -64,7 +64,64 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
                         <input type="hidden" name="user_id" value="<?php echo $resulttour['user_id'];  ?>">
 						<?php $global_tour_id=$resulttour['tour_id']; ?>
 
-							
+							<?php if (!empty($resulttour['hotel_id'])) {?>
+      <style type="text/css">
+          #dependent_wrap{
+             display: none;
+          }
+      </style>
+<?php } ?>
+<div id="dependent_wrap">
+                         	<div class="common-top">
+								<label>Tour Independent ?</label>
+								<select onchange="independ(this)" name="tour_independ" id="indipend">
+
+                        	<?php if ($resulttour['tour_independ']== "yes") { ?>
+
+									<option value="" disabled="" >Select One</option>
+								    <option value="yes" selected>Yes</option>
+								    <option value="no">No</option>
+
+							<?php	}elseif ($resulttour['tour_independ']== "no") {?>
+								
+								    <option value="" disabled="" >Select One</option>
+								    <option value="yes" >Yes</option>
+								    <option value="no" selected>No</option>
+
+							<?php }else{ ?>
+								     
+								    <option value="" disabled="" selected>Select One</option>
+								    <option value="yes" >Yes</option>
+								    <option value="no" >No</option>
+
+					        <?php	}  ?>
+
+								</select>
+							</div>
+
+                            <?php
+
+if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
+<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="showhotelList" style="display: none;"  >
+  <label class="col s12">Select Hotel</label>
+  <select  class="hotelNames" name="hotel_name" >
+   <option value="null" disabled="">Select One</option>
+   <option selected="" value="<?php echo $resulttour['hotel_name'] ?>"><?php echo $resulttour['hotel_name'] ?></option>
+   <?php
+
+   while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
+
+
+   <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
+
+
+						    <?php	# code...
+              }  ?>
+            </select>
+          </div>
+          <?php  }  ?>
+
+</div>
 						<div>
 							<label class="col s4">Package Name</label>
 							<div class="input-field col s8">
@@ -774,66 +831,6 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 					                <div class="input-field col s8">
 					                  <input type="text"  class="" name="common_video"  ></div>
                             </div>
-
-<?php if (!empty($resulttour['hotel_id'])) {?>
-      <style type="text/css">
-          #dependent_wrap{
-             display: none;
-          }
-      </style>
-<?php } ?>
-<div id="dependent_wrap">
-                         	<div class="common-top">
-								<label>Tour Independent ?</label>
-								<select onchange="independ(this)" name="tour_independ" id="indipend">
-
-                        	<?php if ($resulttour['tour_independ']== "yes") { ?>
-
-									<option value="" disabled="" >Select One</option>
-								    <option value="yes" selected>Yes</option>
-								    <option value="no">No</option>
-
-							<?php	}elseif ($resulttour['tour_independ']== "no") {?>
-								
-								    <option value="" disabled="" >Select One</option>
-								    <option value="yes" >Yes</option>
-								    <option value="no" selected>No</option>
-
-							<?php }else{ ?>
-								     
-								    <option value="" disabled="" selected>Select One</option>
-								    <option value="yes" >Yes</option>
-								    <option value="no" >No</option>
-
-					        <?php	}  ?>
-
-								</select>
-							</div>
-
-                            <?php
-
-if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
-<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="showhotelList" style="display: none;"  >
-  <label class="col s12">Select Hotel</label>
-  <select  class="hotelNames" name="hotel_name" >
-   <option value="null" disabled="">Select One</option>
-   <option selected="" value="<?php echo $resulttour['hotel_name'] ?>"><?php echo $resulttour['hotel_name'] ?></option>
-   <?php
-
-   while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
-
-
-   <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
-
-
-						    <?php	# code...
-              }  ?>
-            </select>
-          </div>
-          <?php  }  ?>
-
-</div>
-
 
 							<div class="destination-wrap " id="destination-wrap">
                                   <?php 

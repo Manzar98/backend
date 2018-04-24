@@ -4900,7 +4900,9 @@ table#h_table tr:hover td.tdwrap_vendors {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 150px; 
+    max-width: 80px; 
+    text-align: left;
+    padding-left: 20px;
 }
 [type="checkbox"].allLbl.filled-in:not(:checked) + label::after{
     left: 40px;

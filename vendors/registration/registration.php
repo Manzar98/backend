@@ -99,7 +99,7 @@
 						<div>
 							<label class="col s4">Email Address</label>
 							<div class="input-field col s8">
-								<input type="email" value="" id="reg_email" name="reg_email" class="validate" > 
+								<input type="email" onblur="checkemail(this.value)" value="" id="reg_email" name="reg_email" class="validate" > 
 								<span id="msg" class="hi-red"></span>
 							</div>
 							<!-- onblur="checkemail(this.value)" -->

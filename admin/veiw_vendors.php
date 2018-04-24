@@ -65,8 +65,10 @@
 
                            <?php   }else{ ?>
                                    
-                                    <span class="sus" style="color: red;"><b><?php echo $reg_Result['user_status']; ?></b></span>
+                                    <span class="pend" style="color: red;"><b><?php echo $reg_Result['user_status']; ?></b></span>
                                     <span class="appr" style="color: green; display: none;"><b>Approved</b></span>
+                                     <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
+                               
                                     
 
 
@@ -390,6 +392,8 @@ function show_approve(event) {
                           $('.reason_sp').hide();
                           sus.find('.sus').hide();
                           sus.find('.appr').show();
+                          sus.find('.pend').hide();
+
                           
                            sus.find('.approve').hide();
 					      sus.find('.suspend').show();

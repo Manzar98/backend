@@ -278,7 +278,7 @@ if(isset($_POST['book_todate'])){
      }
 
  }
-
+   echo $_POST['book_todate'];
 }else{
 
        $todate=null;
@@ -489,7 +489,7 @@ if ($banquet_independ=='no') {
 	# code...
 
 
- $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
+ $query='INSERT INTO banquet(user_id,hotel_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive,banquet_status)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'","Pending")';
 
  if ($conn->query($query)== TRUE) {
   	# code...
@@ -503,7 +503,7 @@ if ($banquet_independ=='no') {
  // echo $banquet_id;
   // print_r($query);
 
-if ($todate) {
+if (count($_POST['book_fromdate']) > 0 && !empty($_POST['book_fromdate'][0])) {
 
    for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
 
@@ -513,7 +513,7 @@ if ($todate) {
    }
 }
 
-if ($pkgname) {
+if (count($_POST['foodpkg_name']) > 0 && !empty($_POST['foodpkg_name'][0])) {
 	
    for ($i=0; $i<count($_POST['foodpkg_price']); $i++) {
 
@@ -558,7 +558,7 @@ if (isset($_POST['common_video'])) {
 
 }else{
 
-	$query='INSERT INTO banquet(user_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'")';
+	$query='INSERT INTO banquet(user_id,banquet_name,banquet_space,banquet_charges,banquet_aricon,banquet_isaircon,banquet_isgen,banquet_generator,banquet_serve,banquet_gathering,banquet_adcost,banquet_descrip,banquet_other,banquet_offerdiscount,banquet_expireoffer,banquet_independ,hotel_name,banquet_address,banquet_city,banquet_province,banquet_phone,banquet_email,banquet_fcbok,banquet_twiter,banquet_utube,banquet_inactive,banquet_status)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$charges.'","'.$aircon.'","'.$is_aircon.'","'.$is_gen.'","'.$gen.'","'.$serve.'","'.$gath.'","'.$adcost.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$banquet_independ.'","'.$banquet_hotelName.'","'.$banquet_addres.'","'.$banquet_city.'","'.$banquet_province.'","'.$banquet_phone.'","'.$banquet_email.'","'.$bnq_fcbok.'","'.$bnq_twter.'","'.$bnq_utube.'","'.$inactive.'","Pending")';
 
 	if ($conn->query($query)== TRUE) {
   	# code...
@@ -572,7 +572,7 @@ if (isset($_POST['common_video'])) {
  // echo $banquet_id;
   // print_r($query);
 
-if ($todate) {
+if (count($_POST['book_fromdate']) > 0 && !empty($_POST['book_fromdate'][0])) {
 
    for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
 
@@ -582,7 +582,7 @@ if ($todate) {
    }
 }
 
-if ($pkgname) {
+if (count($_POST['foodpkg_name']) > 0 && !empty($_POST['foodpkg_name'][0])) {
 	
    for ($i=0; $i<count($_POST['foodpkg_price']); $i++) {
 

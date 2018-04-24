@@ -42,26 +42,89 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
 
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-                      <div class="row">
-					
-                        <div class="pull-right">
-                            <?php if ($_GET['status']=="Approved") { ?>
-                                
-                          
-                        <?php if (isset($_GET['h_id'])) { ?>
+                   
+                    <div class="veiw_sus_appr">
+                       <?php if ($_GET['status']=="Approved") { ?>
+                      <div class="row" style="margin-top: 20px;">
+                        <div class="col s11">
+                
+                        <div class="pull-right sus_appr" style="margin-left: 10px;">
+                             <?php if (isset($_GET['h_id'])) { ?>
+                                      <?php if ($BnqResult['banquet_status']=="Approved") { ?>
+
+                                        <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                      
+                                   <?php  }else{ ?>
+
+                                        <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" >Approve</a>
+ 
+                                             
+                                 <?php   } ?>
+                                   
+                        </div>
+                        <div class="pull-right" >
+
                             <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $BnqResult['banquet_id'];  ?>&h_id=<?php echo  $BnqResult['hotel_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
                        <?php  }else{ ?>
 
+                               <?php if ($BnqResult['banquet_status']=="Approved") { ?>
+
+                                         <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+
+                                        <a  onclick="show_suspend(event)" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+                                        <a  onclick="show_approve(event)"  u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                      
+                                   <?php  }else{ ?>
+
+                                         <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+                                        <a  onclick="show_suspend(event)" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+                                        <a  onclick="show_approve(event)"  u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" >Approve</a>
+ 
+                                             
+                                 <?php   } ?>
+
                                    <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $BnqResult['banquet_id'];  ?>&u_id=<?php echo  $BnqResult['user_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
                        <?php } ?>
-                          <?php   } ?>  
+                           
+                        </div>
+                        </div>
+             </div>
+          <?php   } ?> 
+             <div class="text-center " >
+                          <span style="margin-left: 10px;">Status:</span>
+                           <?php if ($BnqResult['banquet_status']=="Approved") { ?>
+                                
+                               <span class="appr" style="color: green; "><b><?php echo $BnqResult['banquet_status']; ?></b></span>
+                               <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
+
+
+
+                           <?php   }else if($BnqResult['banquet_status']=="Suspended"){ ?>
+                                   
+                                    <span class="sus" style="color: red;"><b><?php echo $BnqResult['banquet_status']; ?></b></span>
+                                    <span class="appr" style="color: green; display: none;"><b>Approved</b></span>
+                                    
+                         <?php   }else{ ?>
+
+                                      <span class="appr" style="color: green;  display: none;"><b>Approved</b></span>
+                                     <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
+                                <span class="pend" style="color: red;"><b><?php echo $BnqResult['banquet_status']; ?></b></span>
+
+                         <?php } ?>
                         </div>
                         
-                      </div>
-                      <div class="text-center " >
-                          <span style="margin-left: 10px;">Status:</span>
-                          <span class="" style="color: green; "><b>Approved</b></span>
-                    </div>
+                        </div>
                     <div class="text-center ">
                           <span style="padding-right: 7px;">Name:</span>
                           <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
@@ -390,9 +453,10 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
 
 
 		   <?php  include"../footer_inner_folder.php";  ?>
+<?php include '../../common-ftns/suspend_reason_modal.php'; ?>
 
-
-
+     <?php  include"../../methods/approve_list.php";  ?>
+     <?php  include"../../methods/suspend_list.php";  ?>
 
 	
 

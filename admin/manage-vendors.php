@@ -86,16 +86,14 @@
 										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
 										<?php } ?>
 									
-                                    <td class="text-center sus_appr">
-                               
-                                    </td>
-                                    <td class="tdwrap">
+                                  
+                                    <td class="tdwrap sus_appr">
 									<div class="buttonsWrap_vendors">
 										<div class="row">
 											<a class="waves-effect waves-light btn" href="veiw_vendors.php?id=<?php echo $result['user_id'];  ?>">Veiw</a>
 											<a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $result['user_id'];  ?>">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
-											     	<?php if ($result['user_status']=="Approved") { ?>
+											<?php if ($result['user_status']=="Approved") { ?>
 
                                      		<a  href="#susp" u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
                                      		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>

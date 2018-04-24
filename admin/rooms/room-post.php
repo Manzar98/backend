@@ -309,7 +309,7 @@ $newSuccessMsgArr=array(
 if ($is_check==true) {
 	# code...
 
-$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_selecthour,room_24hour,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name,room_inactive)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$selecthour.'","'.$choosehour.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'","'.$inactive.'")';
+$query='INSERT INTO room(user_id,hotel_id,room_name,room_nosroom,room_service,room_selecthour,room_24hour,room_maxadult,room_matadult,room_maxchild,room_matchild,room_perni8,room_descrip,room_other,room_offerdiscount,room_expireoffer,hotel_name,room_inactive,room_status)VALUES("'.$user_id.'","'.$hotelid.'","'.$name.'","'.$nos.'","'.$service.'","'.$selecthour.'","'.$choosehour.'","'.$maxadult.'","'.$matadult.'","'.$maxchild.'","'.$matchild.'","'.$ni8.'","'.$descrip.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$hotelName.'","'.$inactive.'","Pending")';
 
 
 if ($conn->query($query)== TRUE) {
@@ -322,7 +322,7 @@ if ($conn->query($query)== TRUE) {
  }
 
 // echo $room_id;
-if ($to) {
+if (count($_POST['book_fromdate']) > 0 && !empty($_POST['book_fromdate'][0])) {
 
    for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
 

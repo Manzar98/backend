@@ -82,16 +82,16 @@
                                 <?php   while ($result=mysqli_fetch_assoc($event_resp)) { ?>
 
                                    <tr>
-									<td class="td-name"><?php echo $result['event_name'];   ?></td>
-									<td class="text-center"><?php echo $result['event_venue']; ?></td>
-									<td class="text-center"><?php echo $result['event_recurrence'];   ?></td>
-									<td class="text-center"><?php echo $result['event_entry'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['event_name'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['event_venue']; ?></td>
+									<td class="td-name capitalize"><?php echo $result['event_recurrence'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['event_entry'];   ?></td>
 									<?php if ($result['event_inactive']== "on") { ?>
 										    
-										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
 									
 									

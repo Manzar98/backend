@@ -255,6 +255,22 @@
    =========================================*/ 
 
    $('#pro-sub-btn_registor_update').click(function(){
+
+
+    if ($("#msg").hasClass("email_error")) {
+       
+      swal({
+
+        title: "This email address already exists",
+        
+        type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+          });
+      return;
+    }
      
     var validator= $("#registor-form").validate({
 

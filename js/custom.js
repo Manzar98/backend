@@ -418,7 +418,7 @@ function gen_discount_input(event) {
     var new_discount=document.createElement('div');
     new_discount.innerHTML='<div class="row newDiscountLI"  id="gen-discount-wrap"><div class="col-md-6"><label>Number of People</label><div class="input-field "><input type="number" value=""  id="unique" onchange="compareInputs(event)"  name="common_nopeople[]" class="tour-discount-per validate hasNew unique dis_peop"></div></div><div class="col-md-6"><label>Discount (Percentage)<a class="closediscount" ><i class="fa fa-times" aria-hidden="true"></i></a></label><div class="input-field "><input type="number" value="" name="common_discount[]" class="validate tour-discount-dis dis_per"></div></div></div></div>';
     dis_div.appendChild(new_discount.firstChild);
-  $('.dis_per').prop('required',true);
+   $('.dis_per').prop('required',true);
    $('.dis_peop').prop('required',true);
 
 }
@@ -601,6 +601,39 @@ $("body").on("click",".closemenu",function(){
                    wrap_li.fadeOut("slow", function(){ 
                     // debugger;
                     wrap_li.remove();
+                    if ($('.def-show-menu li').length==0) {
+
+                         var new_obj=`<li class="newMenuLI active">
+                                                <div class="collapsible-header  active">Menu </div>
+                                                <div class="collapsible-body"> 
+                                                 <div class="row">
+                                                 <div class="col-md-6">
+                                                   <label>Package Name</label>
+                                                   <input type="text" value="" class="input-field validate pkgname pkg_name" name="foodpkg_name[]">
+                                                 </div>
+                                                 <div class="col-md-6">
+                                                 <label>Package Price</label>
+                                                 <input type="number" value="" class="input-field validate pkgprice pkg_price" name="foodpkg_price[]">
+                                               </div> 
+                                               </div>
+
+                                               <div class="row">
+                                                <div class="col-md-6">
+                                                 <label >Discount Percentage</label>
+                                                 <input type="number" value="" class="input-field validate discountprcent" name="foodpkg_discount[]" style="padding-top: 18px;">
+                                               </div>   
+                                               <div class="col-md-6">
+                                                 <label>Package Items</label>
+                                              <div class="input-field ">
+                                               <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
+                                               <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+                                               </div>           
+                                             </div>
+
+                                            </div>
+                                        </li>`;
+                                      $('.def-show-menu').append(new_obj);
+                    }
        });
             $.ajax({
                                 type:"POST",
@@ -792,7 +825,10 @@ function validateDA(dataObj){
 $('body').on("click",".close_D",function(){
 
 
-  /*Delete Destination wrap from frontend and backend using ajax*/  
+/*=========================================
+Delete Destination wrap from frontend and backend using ajax
+===========================================*/
+
   var destwrap_id=$(this).parents(".destination").find('.edit-D_id').val();
       if (destwrap_id) {
                       var colIdName= $(this).parents(".destination").find('.edit-D_id').attr('name');
@@ -803,6 +839,8 @@ $('body').on("click",".close_D",function(){
                    wrap_li.fadeOut("slow", function(){ 
                     // debugger;
                     wrap_li.remove();
+
+
        });
             $.ajax({
                                 type:"POST",
@@ -830,7 +868,9 @@ $('body').on("click",".close_D",function(){
 
 $('body').on("click",".close_A",function(){
 
-  /*Delete Attraction wrap from frontend and backend using ajax*/  
+/*=========================================================
+Delete Attraction wrap from frontend and backend using ajax
+===========================================================*/  
   var attwrap_id=$(this).parents(".attractions").find('.edit-A_id').val();
       if (attwrap_id) {
                       var colIdName= $(this).parents(".attractions").find('.edit-A_id').attr('name');

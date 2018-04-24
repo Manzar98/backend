@@ -73,18 +73,18 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id']
                                    	?>
 
                                    <tr>
-									<td class="td-name"><?php echo $result['conference_name'];   ?></td>
-									<td class="text-center"><?php echo $result['conference_space'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['conference_name'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['conference_space'];   ?></td>
 
 									<?php 
 									  if ($result['conference_independ']=='yes') {?>
 									  	
-									  	<td class="text-center td-name"><?php echo $result['conference_city'];   ?></td>
+									  	<td class="td-name capitalize"><?php echo $result['conference_city'];   ?></td>
 									<?php   }else{ 
 
 									while ($hotelCity=mysqli_fetch_assoc($hotelQuery)) { ?>
 
-									     <td class="text-center td-name"><?php echo $hotelCity['hotel_city'];   ?></td> 
+									     <td class="td-name capitalize"><?php echo $hotelCity['hotel_city'];   ?></td> 
 
 										
 								 <?php 
@@ -93,10 +93,10 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id']
 									  } ?>
                                     <?php if ($result['conference_inactive']== "on") { ?>
 										    
-										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>

@@ -86,17 +86,17 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
                                  <?php  while ($result=mysqli_fetch_assoc($tour_resp)) { ?>
 
                                    <tr>
-									<td class="td-name"><?php echo $result['tour_name'];   ?></td>
-									<td class="text-center td-name"><?php echo $result['tour_destinationname'];   ?></td>
-									<td class="text-center"><?php echo $result['tour_stayday']."/".$result['tour_stayni8'];  ?></td>
-									<td class="text-center"><?php echo $result['tour_pkgprice'];   ?></td>
-									<td class="text-center"><?php echo $result['tour_capacitypeople'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['tour_name'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['tour_destinationname'];   ?></td>
+									<td class="capitalize"><?php echo $result['tour_stayday']."/".$result['tour_stayni8'];  ?></td>
+									<td class="td-name capitalize"><?php echo $result['tour_pkgprice'];   ?></td>
+									<td class="capitalize"><?php echo $result['tour_capacitypeople'];   ?></td>
 									<?php if ($result['tour_inactive']== "on") { ?>
 										    
-										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
 									
 									<td class="tdwrap">

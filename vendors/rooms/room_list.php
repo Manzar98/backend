@@ -67,16 +67,16 @@
                                <?php    while ($result=mysqli_fetch_assoc($room_resp)) { ?>
 
                                    <tr>
-                                   	<td class="td-name"><?php echo $result['room_name'];   ?></td>
-									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>
-									<td class="text-center "><?php echo $result['room_nosroom'];   ?></td>
-									<td class="text-center"><?php echo $result['room_perni8'];   ?></td>
+                                   	<td class="td-name capitalize"><?php echo $result['room_name'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['hotel_name'];   ?></td>
+									<td class="capitalize"><?php echo $result['room_nosroom'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['room_perni8'];   ?></td>
 									<?php if ($result['room_inactive']== "on") { ?>
 										    
-										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
 									<td  class="tdwrap">
 									<div class="buttonsWrap">

@@ -65,7 +65,7 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_SESSION['user_id'].'" OR
 								<tr >
 									<th>Name</th>
 									<th>City</th>
-									<th>Active/Inactive Rooms</th>
+									<th>Inactive/Active Rooms</th>
 									<th>Booked/Free Rooms</th>
 									<th>Status</th>
 								</tr>
@@ -74,19 +74,37 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_SESSION['user_id'].'" OR
 								
 
 								
-                                 <?php  while ($result=mysqli_fetch_assoc($hotel_resp)) { ?>
+                                 <?php  while ($result=mysqli_fetch_assoc($hotel_resp)) { 
+
+                                       $roomcount_inact='SELECT COUNT(*) AS count FROM room WHERE hotel_id="'.$result['hotel_id'].'" AND room_inactive="off"';
+                                $roomcount_act='SELECT COUNT(*) AS count FROM room WHERE hotel_id="'.$result['hotel_id'].'" AND room_inactive="on"';
+                             
+                                  $roomquery_inact= mysqli_query($conn,$roomcount_inact) or die(mysqli_error($conn));
+                                  $roomquery_act= mysqli_query($conn,$roomcount_act) or die(mysqli_error($conn));
+                                 	?>
 
                                    <tr>
-									<td class="td-name"><?php echo $result['hotel_name'];   ?></td>
-									<td class="text-center td-name"><?php echo $result['hotel_city'];  ?></td>
-									<td class="text-center"><?php echo "5/2";   ?></td>
-									<td class="text-center"><?php echo "1/9";   ?></td>
+									<td class="td-name capitalize"><?php echo $result['hotel_name'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['hotel_city'];  ?></td>
+									<?php if (mysqli_num_rows($roomquery_inact)> 0) {
+                             	        $cnt=mysqli_fetch_assoc($roomquery_inact);
+                             	        $inactive_count= $cnt['count']."</br>";
+                             	      // echo   count($cnt);
+                             }  ?>
+                              <?php if (mysqli_num_rows($roomquery_act)> 0) {
+                             	        $cnt_act=mysqli_fetch_assoc($roomquery_act);
+                             	        $active_count= $cnt_act['count'];
+                             	      // echo   count($cnt);
+                             }  ?>
+
+									<td class="capitalize"><?php echo $active_count."/".$inactive_count; ?></td>
+									<td class="capitalize"><?php echo "1/9";   ?></td>
 									<?php if ($result['hotel_inactive']== "on") { ?>
 										    
-										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
 									
 									

@@ -47,7 +47,8 @@ $("#pro-sub-btn").click(function(event){
                $('#banquet_isaircon').val('off');
 
    }
-
+if ($('#bnqFood :selected').text()=="Yes") {
+  
     if ($(".newMenuLI").length > 0 && $('.newMenuLI').find('.chip').length < 1) {
       // debugger;
      swal({
@@ -62,7 +63,7 @@ $("#pro-sub-btn").click(function(event){
              });
       return;
     }
-  
+  }
 var validator= $("#banquet-form").validate({
 
        errorElement : 'div',

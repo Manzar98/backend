@@ -5,11 +5,32 @@
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
 	<title>Featured Ads</title>
-  <?php  include 'header-main.php'; ?>
+  <?php  include 'header-main.php'; 
 
-					<div class="db-cent-3">
+include"../common-apis/api.php";
+
+
+ 
+
+    $reg_hotel=select('hotel',array("user_id"=>$_SESSION['user_id']));
+    $reg_banquet=select('banquet',array("user_id"=>$_SESSION['user_id']));
+    $reg_conference=select('conference',array("user_id"=>$_SESSION['user_id']));
+    $reg_tour=select('tour',array("user_id"=>$_SESSION['user_id']));
+    $reg_event=select('event',array("user_id"=>$_SESSION['user_id']));
+  ?>
+<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-						<div class="db-title">
+					  <?php if (mysqli_num_rows($reg_hotel)< 1 || mysqli_num_rows($reg_banquet)< 1 || mysqli_num_rows($reg_conference)< 1 || mysqli_num_rows($reg_tour)< 1 || mysqli_num_rows($reg_event)< 1) { ?>
+					  <div class="db-title">
+					  	<h3><img src="../images/icon/dbc5.png" alt=""/> Featured an Ads</h3>
+					  	           <span>
+					  	           	You do not have anything to feature yet, please add a listing first
+					  	           </span>
+					  	       </div>
+					  <?php   }else{?>
+
+					     
+                          						<div class="db-title">
 							<h3><img src="../images/icon/dbc5.png" alt=""/>Featured an Ads</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
@@ -90,7 +111,7 @@
 					    <div class="col s12 comon_dropdown_botom_line" id="bid_price">
 							<div class="">
 								<label class="col s4 pull-left">Bidding Amount</label>
-								<input type="number" value="" name="bid_amount" class="input-field validate" id="bid_amount">
+								<input type="number" value="" name="bid_amount" class="input-field validate tooltipped" data-position="top" data-tooltip="Your ranking in the search results depend on your bidding amount; higher the bidding amount, higher will be the ad." id="bid_amount">
 							</div>	
 						</div>
 
@@ -101,6 +122,10 @@
 						</div>
 						</form>
 				</div>
+
+					<?Php }?>
+					
+
 			
 			</div>
       </div>
@@ -476,7 +501,11 @@
 <?php include 'cal_noti_main_folder.php'; ?>
    
  
-
+<script type="text/javascript">
+	 $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+</script>
     
 </body>
 

@@ -6,12 +6,37 @@
 <head>
 
 	<title>Featured Ads</title>
-  <?php  include '../header_inner_folder.php'; ?>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <?php  include '../header_inner_folder.php'; 
+  include"../../common-apis/reg-api.php";
+
+
+ 
+
+    $reg_hotel=select('hotel',array("user_id"=>$_GET['user_id']));
+    $reg_banquet=select('banquet',array("user_id"=>$_GET['user_id']));
+    $reg_conference=select('conference',array("user_id"=>$_GET['user_id']));
+    $reg_tour=select('tour',array("user_id"=>$_GET['user_id']));
+    $reg_event=select('event',array("user_id"=>$_GET['user_id']));
+  ?>
+
+  
 
 					<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-						<div class="db-title">
+
+			<?Php if (mysqli_num_rows($reg_hotel)< 1 || mysqli_num_rows($reg_banquet)< 1 || mysqli_num_rows($reg_conference)< 1 || mysqli_num_rows($reg_tour)< 1 || mysqli_num_rows($reg_event)< 1) { ?>
+
+			             <div class="db-title">
+					  	<h3><img src="../../images/icon/dbc5.png" alt=""/> Featured an Ads</h3>
+					  	           <span>
+					  	           	You do not have anything to feature yet, please add a listing first
+					  	           </span>
+					  	       </div>
+				     
+			<?Php }else{ ?>
+
+                        <div class="db-title">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> Featured an Ads</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
@@ -93,7 +118,7 @@
 						<div class="col s12 comon_dropdown_botom_line" id="bid_price">
 							<div class="">
 								<label class="col s4 pull-left">Bidding Amount</label>
-								<input type="number" value="" name="bid_amount" class="input-field validate" id="bid_amount">
+								<input type="number" value="" name="bid_amount" class="input-field validate tooltipped" data-position="top" data-tooltip="Your ranking in the search results depend on your bidding amount; higher the bidding amount, higher will be the ad." id="bid_amount">
 							</div>	
 						</div>
 					
@@ -103,6 +128,8 @@
 						</div>
 						</form>
 				</div>
+			<?php } ?>
+						
 			
 			</div>
       </div>
@@ -164,7 +191,11 @@
 <?php include '../footer_inner_folder.php'; ?>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="../../js/paid-ads-js/ads-admin.js"></script>
-
+<script type="text/javascript">
+	 $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+</script>
     
 </body>
 

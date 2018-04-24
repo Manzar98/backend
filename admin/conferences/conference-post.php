@@ -2,7 +2,7 @@
 
  include '../../common-sql.php';
 
-  // print_r($_POST);
+// print_r($_POST);
 
 $is_check= true;
 $responseArray=[];
@@ -392,7 +392,7 @@ if ($is_check==true) {
 if ($con_independ=='no') {
 
      
-$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
+$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive,conference_status)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'","Pending")';
 
 if ($conn->query($query)== TRUE) {
  	# code...
@@ -404,8 +404,7 @@ if ($conn->query($query)== TRUE) {
  }
 
 
-
-if ($todate) {
+if (count($_POST['book_fromdate']) > 0 && !empty($_POST['book_fromdate'][0])) {
 
    for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
 
@@ -416,7 +415,7 @@ if ($todate) {
    }
 }
 
-if ($pkgname) {
+if (count($_POST['foodpkg_name']) > 0 && !empty($_POST['foodpkg_name'][0])) {
 
     for ($i=0; $i<count($_POST['foodpkg_name']); $i++) {
 
@@ -459,7 +458,7 @@ if (isset($_POST['common_video'])) {
 
 }else{
 
-	$query='INSERT INTO conference(user_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'")';
+	$query='INSERT INTO conference(user_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive,conference_status)VALUES("'.$userid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'","Pending")';
 
 
 	if ($conn->query($query)== TRUE) {
@@ -473,7 +472,7 @@ if (isset($_POST['common_video'])) {
 
 
 
-if ($todate) {
+if (count($_POST['book_fromdate']) > 0 && !empty($_POST['book_fromdate'][0])) {
 
    for ($i=0; $i<count($_POST['book_fromdate']); $i++) {
 
@@ -484,7 +483,7 @@ if ($todate) {
    }
 }
 
-if ($pkgname) {
+if (count($_POST['foodpkg_name']) > 0 && !empty($_POST['foodpkg_name'][0])) {
 
     for ($i=0; $i<count($_POST['foodpkg_name']); $i++) {
 

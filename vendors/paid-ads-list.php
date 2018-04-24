@@ -53,11 +53,11 @@
                                 <?php   while ($result=mysqli_fetch_assoc($ads_resp)) { ?>
 
                                    <tr class="">
-									<td class="td-name"><?php echo $result['select_any'];   ?></td>
-									<td class="text-center"><?php echo $result['list_of_any']; ?></td>
-									<td class="text-center"><?php echo $result['on_which_page'];   ?></td>
-									<td class="text-center"><?php echo $result['no_of_days'];   ?></td>
-									<td class="text-center paly_pause">
+									<td class="td-name capitalize"><?php echo $result['select_any'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['list_of_any']; ?></td>
+									<td class="td-name capitalize"><?php echo $result['on_which_page'];   ?></td>
+									<td class="td-name capitalize"><?php echo $result['no_of_days'];   ?></td>
+									<td class="paly_pause">
  
                                      <?php if ($result['status_play_pause']=="on") { ?>
 
@@ -432,6 +432,24 @@ function show_pause(event) {
 
 	  var btn=$(event.currentTarget).attr('value');
       var p_id=$(event.currentTarget).attr('p_id');
+        var eve=$(event.currentTarget);
+
+        swal({
+
+        title: "Are you sure you want to pause this ad?",
+        
+        type: "warning",
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: true,
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "cancel",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          },function (isconfirm) {
+
+          	if (isconfirm) {
 	   $.ajax({
              
              type:"POST",
@@ -439,13 +457,16 @@ function show_pause(event) {
              data:{'btn':btn,'p_id':p_id},
              success:function(data){
                  
-                 console.log(data);
+                 $(eve).hide();
+	             $(eve).parents('.paly_pause').find('.pause').show();
              }    
 
 	   });
-	 $(event.currentTarget).hide();
-	  
-	 $(event.currentTarget).parents('.paly_pause').find('.pause').show();
+
+	}
+
+});
+	 
 	 // debugger;
 } 
 
@@ -453,6 +474,23 @@ function show_play() {
 
 	var btn=$(event.currentTarget).attr('value');
       var p_id=$(event.currentTarget).attr('p_id');
+        var eve=$(event.currentTarget);
+       swal({
+
+        title: "Are you sure you want to play this ad?",
+        
+        type: "warning",
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: true,
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "cancel",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          },function (isconfirm) {
+
+          	if (isconfirm) {
 	   $.ajax({
              
              type:"POST",
@@ -460,13 +498,14 @@ function show_play() {
              data:{'btn':btn,'p_id':p_id},
              success:function(data){
                  
-                 console.log(data);
+                $(eve).hide();
+	            $(eve).parents('.paly_pause').find('.play').show();
              }   
 
 	   });
-	$(event.currentTarget).hide();
-	 
-	 $(event.currentTarget).parents('.paly_pause').find('.play').show();
+	}
+});
+	
 }
 </script>
     
