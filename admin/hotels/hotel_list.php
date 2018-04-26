@@ -121,7 +121,7 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
 									<td class="tdwrap">
-									<div class="buttonsWrap">
+									<div class="buttonsWrap_vendors">
 										<?php if ($_GET['status']=="Suspended") { ?>
 											
 												<div class="row">
@@ -130,11 +130,29 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 											</div>
 
 										<?php }else{ ?>
-
-										<div class="row">
-											<a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Veiw</a>
+     
+										<div class="row sus_appr veiw_sus_appr">
+                                              
+                                              <a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Veiw</a>
 											<a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+									     <?php if ($result['hotel_status']=="Approved") { ?>
+									     	
+									     <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+
+									     <a  onclick="show_suspend(event)" id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+									     <a  onclick="show_approve(event)"  id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
+									     <?php  }else{ ?>
+
+									     <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+									     <a  onclick="show_suspend(event)" id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+									     <a  onclick="show_approve(event)"  id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" >Approve</a>
+									     <?php  } ?>
+											
 										</div>
 
 										<?php } ?>
@@ -197,6 +215,9 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 				
 			</div>
 			<?php include '../footer_inner_folder.php'; ?>
+			<?php include '../../common-ftns/suspend_reason_modal.php'; ?>
+            <script src="../../js/hotel-js/hotel_approve.js"></script>
+            <script src="../../js/hotel-js/hotel_suspend.js"></script>
 
 			</body>
 

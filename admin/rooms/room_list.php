@@ -95,8 +95,8 @@
                                              <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
 									<?php } ?>
 									<td  class="tdwrap">
-									<div class="buttonsWrap">
-										<div class="row">
+									<div class="buttonsWrap_vendors">
+										<div class="row sus_appr veiw_sus_appr">
 											<?php if ($_GET['status']=="Suspended") {?>
 
 													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Veiw</a>
@@ -108,6 +108,25 @@
 													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Veiw</a>
 													<a class="waves-effect waves-light btn" href="edit_room.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Edit</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+													<?php if ($result['room_status']=="Approved") { ?>
+
+													<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+
+													<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['room_id']; ?>" tbl-name="room" col-name="room_status" col-name-reason="room_sus_reason" id-col="room_id" h-col="hotel_id" l-url="rooms/showsingle_roomrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['room_id']; ?>" tbl-name="room" col-name="room_status" id-col="room_id" h-col="hotel_id" col-name-reason="room_sus_reason" l-url="rooms/showsingle_roomrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+													<?php  }else{ ?>
+
+													<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+													<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['room_id']; ?>" tbl-name="room" col-name="room_status" col-name-reason="room_sus_reason" id-col="room_id" h-col="hotel_id" l-url="rooms/showsingle_roomrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['room_id']; ?>" tbl-name="room" col-name="room_status" id-col="room_id" h-col="hotel_id" col-name-reason="room_sus_reason" l-url="rooms/showsingle_roomrecord.php" class="approve btn" value="Approved" >Approve</a>
+
+
+													<?php   } ?>
 											<?php } ?>
 											
 										</div>
@@ -168,7 +187,10 @@
 			
 			</div>
 
-<?php include '../footer_inner_folder.php'; ?>
+			<?php include '../footer_inner_folder.php'; ?>
+			<?php include '../../common-ftns/suspend_reason_modal.php'; ?>
+            <?php  include"../../methods/approve_list.php";  ?>
+            <?php  include"../../methods/suspend_list.php";  ?>
 
 				</body>
 

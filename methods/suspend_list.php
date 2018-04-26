@@ -11,11 +11,10 @@
       },
       });
 function reason_submit() {
-debugger;
+
       	if ($('#textarea_susp').val()) {
 
 		      rowValue.find('.org_susp').trigger('click');
-          debugger;
 		      rowValue.find('.suspend').hide();
 		      $('#textarea_susp').val('');  
 		      $('.realtime_reason').show();
@@ -29,7 +28,7 @@ debugger;
  }
 	
 	function show_suspend(event) {
-      debugger;
+      
         var text_area=$('#textarea_susp').val();
         var sus=$(event.currentTarget).parents('.veiw_sus_appr');
         console.log(sus);
@@ -86,14 +85,15 @@ debugger;
 
                       
                           var st_val= $(sus_btn).find('.sus').text();
-        
+                    
                          $('#registor-form').find('.res_sup').text(text_area);
-                       $(event.currentTarget).hide();
-                      $(event.currentTarget).parents('.sus_appr').find('.approve').show();
+                         $(event.currentTarget).hide();
+                        $(event.currentTarget).parents('.sus_appr').find('.approve').show();
                       console.log($(sus_btn).parents('.sus_appr'));
+                          sus.find('.suspend').hide();
+                          sus.find('.approve').show();
                       console.log($(event.currentTarget));
-                       debugger;  
-                        
+                      
                            
                    }else{
 

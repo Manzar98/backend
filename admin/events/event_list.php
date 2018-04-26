@@ -96,7 +96,7 @@
 									
 									
 									<td class="tdwrap">
-									<div class="buttonsWrap">
+									<div class="buttonsWrap_vendors">
 
                                           <?php if ($result['event_independ']=='no') { ?>
 											 
@@ -110,10 +110,29 @@
 
 											<?php }else{?>
 
-											        <div class="row">
+											        <div class="row sus_appr veiw_sus_appr">
 														<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 														<a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $result['event_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 														<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+														<?php if ($result['event_status']=="Approved") { ?>
+
+														<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+
+														<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" col-name-reason="event_sus_reason" id-col="event_id" h-col="hotel_id" l-url="events/showsingle_eventrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+														<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" id-col="event_id" h-col="hotel_id" col-name-reason="event_sus_reason" l-url="events/showsingle_eventrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+														<?php  }else{ ?>
+
+														<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+														<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" col-name-reason="event_sus_reason" id-col="event_id" h-col="hotel_id" l-url="events/showsingle_eventrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+														<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" id-col="event_id" h-col="hotel_id" col-name-reason="event_sus_reason" l-url="events/showsingle_eventrecord.php" class="approve btn" value="Approved" >Approve</a>
+
+
+														<?php   } ?>
 										            </div>
 
 											<?php } ?>
@@ -129,10 +148,29 @@
 
 											<?php }else{?>
 
-											    <div class="row">
+											    <div class="row sus_appr veiw_sus_appr">
 													<a class="waves-effect waves-light btn" href="showsingle_eventrecord.php?id=<?php echo $result['event_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 													<a class="waves-effect waves-light btn" href="edit_event.php?id=<?php echo $result['event_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+													<?php if ($result['event_status']=="Approved") { ?>
+
+													<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+
+													<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" col-name-reason="event_sus_reason" id-col="event_id" u-col="user_id" l-url="events/showsingle_eventrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" id-col="event_id" u-col="user_id" col-name-reason="event_sus_reason" l-url="events/showsingle_eventrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+													<?php  }else{ ?>
+
+													<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+													<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" id-col="event_id" u-col="user_id" col-name-reason="event_sus_reason" l-url="events/showsingle_eventrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['event_id']; ?>" tbl-name="event" col-name="event_status" col-name-reason="event_sus_reason" id-col="event_id" u-col="user_id" l-url="events/showsingle_eventrecord.php" class="approve btn" value="Approved" >Approve</a>
+
+
+													<?php   } ?>
 												</div>
 
 
@@ -196,7 +234,10 @@
 					</div>
 				</div>
 				</div>
-<?php include '../footer_inner_folder.php'; ?>
+       <?php include '../footer_inner_folder.php'; ?>
+       <?php include '../../common-ftns/suspend_reason_modal.php'; ?>
+       <?php  include"../../methods/approve_list.php";  ?>
+       <?php  include"../../methods/suspend_list.php";  ?>
 
 				</body>
 

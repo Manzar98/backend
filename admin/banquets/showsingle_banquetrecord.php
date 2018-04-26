@@ -453,8 +453,7 @@ $showBnqMenuQuery=select('common_menupackages',array('banquet_id'=>$BnqResult['b
 
 
 		   <?php  include"../footer_inner_folder.php";  ?>
-<?php include '../../common-ftns/suspend_reason_modal.php'; ?>
-
+     <?php include '../../common-ftns/suspend_reason_modal.php'; ?>
      <?php  include"../../methods/approve_list.php";  ?>
      <?php  include"../../methods/suspend_list.php";  ?>
 

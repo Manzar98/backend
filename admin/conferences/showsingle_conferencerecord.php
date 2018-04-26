@@ -62,7 +62,7 @@ $showConMenuQuery=select('common_menupackages',array('conference_id'=>$ConResult
                                       
                                    <?php  }else{ ?>
 
-                                         <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+                                        <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
 
                                         <a  onclick="show_suspend(event)" h_id="<?php echo $ConResult['hotel_id'] ?>" u_id="<?php echo $ConResult['user_id'] ?>" id="<?php echo $ConResult['conference_id']; ?>" tbl-name="conference" col-name="conference_status" col-name-reason="conference_sus_reason" id-col="conference_id" h-col="hotel_id" l-url="conferences/showsingle_conferencerecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
 

@@ -15,7 +15,6 @@ function reason_submit() {
       	if ($('#textarea_susp').val()) {
 
 		      rowValue.find('.org_susp').trigger('click');
-          // debugger;
 		      rowValue.find('.suspend').hide();
 		      $('#textarea_susp').val('');  
 		      $('.realtime_reason').show();
@@ -53,7 +52,7 @@ function reason_submit() {
                           sus.find('.suspend').hide();
                           sus.find('.approve').show();
                           $('#registor-form').find('.res_sup').text(text_area);
-                       
+                      
                     
                    }else{
 

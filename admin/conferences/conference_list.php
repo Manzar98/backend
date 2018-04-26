@@ -111,7 +111,7 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
 									<td class="tdwrap">
-								<div class="buttonsWrap">
+								<div class="buttonsWrap_vendors">
 
 										<?php if ($result['conference_independ']=='no') { ?>
 											  
@@ -123,10 +123,29 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 										                </div>										      
 										      <?php }else{ ?>
 
-										                <div class="row">
+										                <div class="row sus_appr veiw_sus_appr">
 															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+															<?php if ($result['conference_status']=="Approved") { ?>
+
+															<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+
+															<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" col-name-reason="conference_sus_reason" id-col="conference_id" h-col="hotel_id" l-url="conferences/showsingle_conferencerecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+															<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" id-col="conference_id" h-col="hotel_id" col-name-reason="conference_sus_reason" l-url="conferences/showsingle_conferencerecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+															<?php  }else{ ?>
+
+															<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+															<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" col-name-reason="conference_sus_reason" id-col="conference_id" h-col="hotel_id" l-url="conferences/showsingle_conferencerecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+															<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" id-col="conference_id" h-col="hotel_id" col-name-reason="conference_sus_reason" l-url="conferences/showsingle_conferencerecord.php" class="approve btn" value="Approved" >Approve</a>
+
+
+															<?php   } ?>
 										                </div>
 
 										      <?php  } ?>
@@ -141,10 +160,29 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 										      
 										      <?php }else{ ?>
 												         
-												        <div class="row">
+												        <div class="row sus_appr veiw_sus_appr">
 															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+															<?php if ($result['conference_status']=="Approved") { ?>
+
+															<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+
+															<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" col-name-reason="conference_sus_reason" id-col="conference_id" u-col="user_id" l-url="conferences/showsingle_conferencerecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+															<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" id-col="conference_id" u-col="user_id" col-name-reason="conference_sus_reason" l-url="conferences/showsingle_conferencerecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+															<?php  }else{ ?>
+
+															<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+															<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" id-col="conference_id" u-col="user_id" col-name-reason="conference_sus_reason" l-url="conferences/showsingle_conferencerecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+															<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['conference_id']; ?>" tbl-name="conference" col-name="conference_status" col-name-reason="conference_sus_reason" id-col="conference_id" u-col="user_id" l-url="conferences/showsingle_conferencerecord.php" class="approve btn" value="Approved" >Approve</a>
+
+
+															<?php   } ?>
 														</div>
 
 										      <?php  } ?>
@@ -208,7 +246,9 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 
 
 				<?php  include '../footer_inner_folder.php';?>
-
+                <?php include '../../common-ftns/suspend_reason_modal.php'; ?>
+                <?php  include"../../methods/approve_list.php";  ?>
+                <?php  include"../../methods/suspend_list.php";  ?>
 
 				</body>
 

@@ -100,13 +100,13 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 									<?php } ?>
 									
 									<td class="tdwrap">
-									<div class="buttonsWrap">
+									<div class="buttonsWrap_vendors">
 
 
 										<?php if ($result['tour_independ']=='no') { ?>
 											
 										
-										<div class="row">
+										<div class="row sus_appr veiw_sus_appr">
 											<?php if ($_GET['status']=="Suspended") { ?>
 
 											        <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
@@ -119,12 +119,31 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
 
+													<?php if ($result['tour_status']=="Approved") { ?>
+
+													<a  href="#susp" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+
+													<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+													<?php  }else{ ?>
+
+													<a href="#susp"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" class="suspend waves-effect waves-light btn modal-trigger" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" style="display: none;">Suspend</a>
+
+													<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" >Approve</a>
+
+
+													<?php   } ?>
+
 											<?php } ?>
 											
 										</div>
 								<?php	}else{ ?>
 
-								         <div class="row">
+								         <div class="row sus_appr veiw_sus_appr">
 								         	<?php if ($_GET['status']=="Suspended") { ?>
 
 									         	<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
@@ -135,6 +154,25 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 		                                                 <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 													<a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+													<?php if ($result['tour_status']=="Approved") { ?>
+
+													<a  href="#susp" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+
+													<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+													<?php  }else{ ?>
+
+													<a href="#susp"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="suspend waves-effect waves-light btn modal-trigger"  style="display: none;">Suspend</a>
+
+													<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" >Approve</a>
+
+
+													<?php   } ?>
 
 
 											<?php } ?>
@@ -202,8 +240,10 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 				</div>
 
 
-				<?php include '../footer_inner_folder.php'; ?>
-
+	   <?php include '../footer_inner_folder.php'; ?>
+       <?php include '../../common-ftns/suspend_reason_modal.php'; ?>
+       <?php  include"../../methods/approve_list.php";  ?>
+       <?php  include"../../methods/suspend_list.php";  ?>
         
 					</body>
 
