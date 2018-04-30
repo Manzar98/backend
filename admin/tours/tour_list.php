@@ -1,42 +1,22 @@
-<?php 
-   
+<?php   
    include '../../common-sql.php';
-  
-   // $tourQuery=select("tour",array("user_id"=>2));
-
-   
-
-   
-
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
 	<title>List Of Tour Pacakages</title>
 
-
 <?php  include '../header_inner_folder.php'; 
 
 $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour_id DESC ';
-// echo $tourQuery;
-          $tour_resp =mysqli_query($conn,$tourQuery)  or die(mysqli_error($conn));
-
+$tour_resp =mysqli_query($conn,$tourQuery)  or die(mysqli_error($conn));
 ?>
-
-
-				<div class="db-cent-3">
+                <div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="row">
 						<div class="db-title col s9">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> <?php echo $_GET['name'] ?> Tour Pacakages</h3>
-							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
 						<div class="col s3" style="margin-top: 10px;">
 							<span >Status:</span>
@@ -58,15 +38,7 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 
 								if (mysqli_num_rows($tour_resp) > 0) { ?>
 
-								<div class="row">
-									<div class="col s1"></div>
-									<div class="col s8  ">	
-										<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-									</div>
-									<div class="">
-										<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-									</div>
-								</div>
+								<?php include '../../common-ftns/filter-sus-app-pen.php'; ?>
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
@@ -75,7 +47,8 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 									<th>Days/Nights</th>
 									<th>Price</th>
 									<th>Number of people</th>
-									<th>Status</th>
+									<th>Status 1</th>
+									<th>Status 2</th>
 									
 								</tr>
 							</thead>
@@ -85,8 +58,8 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 								
                                  <?php  while ($result=mysqli_fetch_assoc($tour_resp)) { ?>
 
-                                   <tr>
-									<td class="td-name capitalize"><?php echo $result['tour_name'];   ?></td>
+                                   <tr class="tr-1">
+									<td class="td-name capitalize listing_name"><?php echo $result['tour_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['tour_destinationname'];   ?></td>
 									<td class="capitalize"><?php echo $result['tour_stayday']."/".$result['tour_stayni8'];  ?></td>
 									<td class="td-name capitalize"><?php echo $result['tour_pkgprice'];   ?></td>
@@ -96,17 +69,25 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
+									<?php if ($result['tour_status']=="Approved") { ?>
+
+										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['tour_status']; ?></span></td>
+										<?php }elseif ($result['tour_status']=="Suspended") {?>
+
+										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['tour_status']; ?></span></td>
+										
+										<?php }else{ ?>
+
+										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['tour_status']; ?></span></td>
+										<?php } ?>
 									
-									<td class="tdwrap">
+									<td class="tdwrap sus_appr">
 									<div class="buttonsWrap_vendors">
-
-
 										<?php if ($result['tour_independ']=='no') { ?>
 											
-										
-										<div class="row sus_appr veiw_sus_appr">
+										<div class="row">
 											<?php if ($_GET['status']=="Suspended") { ?>
 
 											        <a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
@@ -143,7 +124,7 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_GET['id'].'" ORDER BY tour
 										</div>
 								<?php	}else{ ?>
 
-								         <div class="row sus_appr veiw_sus_appr">
+								         <div class="row">
 								         	<?php if ($_GET['status']=="Suspended") { ?>
 
 									         	<a class="waves-effect waves-light btn" href="showsigle_tourrecord.php?id=<?php echo $result['tour_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>

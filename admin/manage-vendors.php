@@ -23,23 +23,7 @@
 
 						</div>
 
-				   <div class="row">
-						 	<div class="col s4 search_flter">
-						 		
-						 		 <select onchange="myFunction(event)" id="yourole"  name="">
-						 		 	  <option value="" selected="" >View all</option>
-								      <option value="Approved">Approved</option>
-								      <option value="Suspended">Suspended</option>
-								      <option value="Pending">Waiting Approval</option>
-                                 </select>
-						 	</div>
-						 	<div class="col s6 search_field">	
-						 		<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-						 	</div>
-						 	<div class="search_field_btn">
-						 		<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-						 	</div>
-				   </div>
+				       <?php include '../common-ftns/filter-sus-app-pen.php'; ?>
 
 						
 						<?php
@@ -176,26 +160,17 @@ function reason_submit() {
                    var data=JSON.parse(res);
 
                    if (data.status=="Suspended") {
-                        // sus.find('.appr').hide();
-                         // sus.find('.sus').show();
-                         
+                       
                          sus.find(".appr").html('');
                          sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
-                         // debugger;
-
-                   }else{
-
-                         
-                         
+                        
                    }
-                 console.log(data);
              }    
 
 	   });
-	 // $(event.currentTarget).hide();
-	  
+
 	 $(event.currentTarget).parents('.sus_appr').find('.approve').show();
-	 // debugger;
+
 } 
 
 function show_approve(event) {
@@ -235,20 +210,11 @@ function show_approve(event) {
                    if (data.status=="Approved") {
                           
                           sus.find(".appr").html('');
-                         sus.find(".appr").html('<span class="db-success">Approved</span>');
-                          // sus.find('.sus').hide();
-                          // sus.find('.appr').show();
-
-                        
+                          sus.find(".appr").html('<span class="db-success">Approved</span>');
 					      sus.find('.approve').hide();
 					      sus.find('.suspend').show();
  	 
-                   }else{
-                      
-                      
-                      
                    }
-                 console.log(data);
              }   
        
 	   });
@@ -257,7 +223,7 @@ function show_approve(event) {
           	}
 
           	
-          });
+   });
 
 	 
  	 

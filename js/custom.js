@@ -716,7 +716,7 @@ function selctdrink(that){
 
    new_destination.innerHTML=`<div class="destination new_Destination" id="destination-`+lengthOfDestination+`">
    <div class="common-top  only_destination">
-   <label>Destination Name <a class="close_D" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
+   <label>Stopover Name <a class="close_D" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
    <div class="input-field col s8">
    <input type="text" name="destination_name[]">
 
@@ -724,7 +724,7 @@ function selctdrink(that){
 
    </div>
    <div >
-   <label>Destination Description</label>
+   <label>Stopover Description</label>
    <div class="input-field col s8">
    <textarea class="materialize-textarea custom-text-area" name="destination_descrp[]"></textarea> 
    </div>
@@ -753,10 +753,6 @@ function selctdrink(that){
    </div>
    </div>`;
    dest_div.appendChild(new_destination.firstChild);
-
-    }else{
-       // debugger;
-        alert('Error');
 
     }
     
@@ -1232,13 +1228,13 @@ $.each(trObj,function(k,value){
  $(value).show();
   }
 });
-
+// debugger;
 }else if(event.type=="change"){
 
-        // debugger;
+       
            filter=$('#yourole').val();
-           // console.log(filter);
-        
+           console.log(filter);
+        // debugger;
 $.each($('.appr'),function(k,value){
 
    console.log(value);

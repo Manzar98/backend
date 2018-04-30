@@ -51,22 +51,15 @@
 
 								if (mysqli_num_rows($banquet_resp) > 0) { ?>
 
-								<div class="row">
-									<div class="col s1"></div>
-									<div class="col s8  ">	
-										<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-									</div>
-									<div class="">
-										<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-									</div>
-								</div>
+								<?php include '../../common-ftns/filter-sus-app-pen.php'; ?>
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
 									<th>Name</th>
 									<th>Capacity</th>
 									<th>City</th>
-									<th>Status</th>
+									<th>Status 1</th>
+									<th>Status 2</th>
 									
 									
 									
@@ -82,8 +75,8 @@
                                      // print_r($hotelQuery);
                                       ?>
 
-                                   <tr>
-									<td class="td-name capitalize"><?php echo $result['banquet_name'];   ?></td>
+                                   <tr class="tr-1">
+									<td class="td-name capitalize listing_name"><?php echo $result['banquet_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['banquet_space'];   ?></td>
 									<?php 
 									  if ($result['banquet_independ']=='yes') {?>
@@ -105,10 +98,21 @@
 										    <td class="capitalize"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="capitalize"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class="capitalize"><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
+									<?php if ($result['banquet_status']=="Approved") { ?>
 
-									<td class="tdwrap">
+										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['banquet_status']; ?></span></td>
+										<?php }elseif ($result['banquet_status']=="Suspended") {?>
+
+										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['banquet_status']; ?></span></td>
+										
+										<?php }else{ ?>
+
+										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['banquet_status']; ?></span></td>
+										<?php } ?>
+
+									<td class="tdwrap sus_appr">
 									<div class="buttonsWrap_vendors">
 
 										<?php if ($result['banquet_independ']=='no') { ?>
@@ -122,7 +126,7 @@
 
 										         <?php }else{ ?>
 
-										            <div class="row sus_appr veiw_sus_appr">
+										            <div class="row">
 														<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 														<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 														<a class="waves-effect waves-light btn" href="#">Delete</a>
@@ -165,7 +169,7 @@
 
 								              <?php }else{ ?>
 
-								                      <div class="row sus_appr veiw_sus_appr">
+								                      <div class="row">
 														<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 														<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 														<a class="waves-effect waves-light btn" href="#">Delete</a>

@@ -60,6 +60,118 @@ if (isset($_GET['h_id'])) {
               <input type="hidden" name="banquet_id" value="<?php echo $resultbnq['banquet_id'];  ?>">
               <input type="hidden" name="hotel_id" id="hotelId" value="<?php echo $resultbnq['hotel_id']; ?>">
               <?php   $global_banquet_id= $resultbnq['banquet_id']; ?>
+
+              <?php if (!empty($resultbnq['hotel_id'])) {?>
+      <style type="text/css">
+          #dependent_wrap{
+             display: none;
+          }
+      </style>
+<?php } ?>
+<div id="dependent_wrap">
+<div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
+
+ <label class="col s12">Independent Hall?</label>
+ <select onchange="hall_alone(this)"  class="" name="banquet_independ" id="independ-select">
+
+  <?php if ($resultbnq['banquet_independ']== "yes") { ?>
+
+             <option value=""  disabled="">Select One</option>
+             <option value="yes" selected="">Yes</option>
+             <option value="no">No</option>
+
+ <?php  }elseif ($resultbnq['banquet_independ']== "no") {?>
+
+             <option value="" disabled="">Select One</option>
+             <option value="yes" >Yes</option>
+             <option value="no" selected="">No</option>
+
+ <?php }else {?>
+
+             <option value="" disabled="" selected="">Select One</option>
+             <option value="yes">Yes</option>
+             <option value="no" >No</option>
+ <?php }  ?>
+  
+</select>
+</div>
+
+<?php
+
+if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
+<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
+  <label class="col s12">Select Hotel</label>
+  <select  class="hotelNames" name="hotel_name" >
+   <option value="null" disabled="">Select One</option>
+   <option selected="" value="<?php echo $resultbnq['hotel_name'] ?>"><?php echo $resultbnq['hotel_name'] ?></option>
+   <?php
+
+   while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
+
+
+   <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
+
+
+                <?php # code...
+              }  ?>
+            </select>
+          </div>
+          <?php  }  ?>
+
+</div>
+    
+
+          
+
+          <div id="hall_alone" style="display: none;">
+            <div class="row common-top">
+             <div class="col-md-6">
+              <label>Address</label>
+              <input  type="text" name="banquet_address" class="input-field validate ind_address" value="<?php echo $resultbnq['banquet_address']; ?>" >
+            </div>
+            <div class="col-md-6">
+              <label>City</label>
+              <input  type="text" name="banquet_city" class="input-field validate ind_city" value="<?php echo $resultbnq['banquet_city']; ?>" >
+            </div>
+
+          </div>
+
+          <div class="row">
+           <div class="col-md-6">
+            <label>Province</label>
+            <input  type="text" name="banquet_province" class="input-field validate ind_province" value="<?php echo $resultbnq['banquet_province']; ?>" >
+          </div>
+          <div class="col-md-6">
+            <label>Phone Number</label>
+            <input  type="number" name="banquet_phone" class="input-field validate ind_phone" value="<?php echo $resultbnq['banquet_phone']; ?>" >
+          </div>
+
+        </div>
+
+        <div class="row">
+         <div class="col-md-6">
+          <label>Email Address</label>
+          <input  type="email" name="banquet_email" class="input-field validate ind_email" value="<?php echo $resultbnq['banquet_email']; ?>" >
+        </div>
+        <div class="col-md-6">
+          <label>Facebook</label>
+          <input  type="text" name="banquet_fcbok" class="input-field validate" value="<?php echo $resultbnq['banquet_fcbok']; ?>" >
+        </div>
+
+      </div>
+
+      <div class="row">
+       <div class="col-md-6">
+        <label>Twitter</label>
+        <input  type="text" name="banquet_twiter" class="input-field validate" value="<?php echo $resultbnq['banquet_twiter']; ?>" >
+      </div>
+      <div class="col-md-6">
+        <label>Youtube</label>
+        <input  type="text" name="banquet_utube" class="input-field validate" value="<?php echo $resultbnq['banquet_utube']; ?>" >
+      </div>
+
+    </div>
+  </div>
           <div>
             <label class="col s12">Banquet Hall name </label>
             <div class="input-field col s12">
@@ -420,117 +532,7 @@ if (isset($_GET['h_id'])) {
  <a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
 </div>
 
-<?php if (!empty($resultbnq['hotel_id'])) {?>
-      <style type="text/css">
-          #dependent_wrap{
-             display: none;
-          }
-      </style>
-<?php } ?>
-<div id="dependent_wrap">
-<div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
- <label class="col s12">Independent Hall?</label>
- <select onchange="hall_alone(this)"  class="" name="banquet_independ" id="independ-select">
-
- 	<?php if ($resultbnq['banquet_independ']== "yes") { ?>
-
- 		         <option value=""  disabled="">Select One</option>
-			       <option value="yes" selected="">Yes</option>
-			       <option value="no">No</option>
-
- <?php	}elseif ($resultbnq['banquet_independ']== "no") {?>
-
- 	           <option value="" disabled="">Select One</option>
-			       <option value="yes" >Yes</option>
-			       <option value="no" selected="">No</option>
-
- <?php }else {?>
-
- 	           <option value="" disabled="" selected="">Select One</option>
-			       <option value="yes">Yes</option>
-			       <option value="no" >No</option>
- <?php }  ?>
-  
-</select>
-</div>
-
-<?php
-
-if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
-<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
-  <label class="col s12">Select Hotel</label>
-  <select  class="hotelNames" name="hotel_name" >
-   <option value="null" disabled="">Select One</option>
-   <option selected="" value="<?php echo $resultbnq['hotel_name'] ?>"><?php echo $resultbnq['hotel_name'] ?></option>
-   <?php
-
-   while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
-
-
-   <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
-
-
-						    <?php	# code...
-              }  ?>
-            </select>
-          </div>
-          <?php  }  ?>
-
-</div>
-    
-
-          
-
-          <div id="hall_alone" style="display: none;">
-            <div class="row common-top">
-             <div class="col-md-6">
-              <label>Address</label>
-              <input  type="text" name="banquet_address" class="input-field validate ind_address" value="<?php echo $resultbnq['banquet_address']; ?>" >
-            </div>
-            <div class="col-md-6">
-              <label>City</label>
-              <input  type="text" name="banquet_city" class="input-field validate ind_city" value="<?php echo $resultbnq['banquet_city']; ?>" >
-            </div>
-
-          </div>
-
-          <div class="row">
-           <div class="col-md-6">
-            <label>Province</label>
-            <input  type="text" name="banquet_province" class="input-field validate ind_province" value="<?php echo $resultbnq['banquet_province']; ?>" >
-          </div>
-          <div class="col-md-6">
-            <label>Phone Number</label>
-            <input  type="number" name="banquet_phone" class="input-field validate ind_phone" value="<?php echo $resultbnq['banquet_phone']; ?>" >
-          </div>
-
-        </div>
-
-        <div class="row">
-         <div class="col-md-6">
-          <label>Email Address</label>
-          <input  type="email" name="banquet_email" class="input-field validate ind_email" value="<?php echo $resultbnq['banquet_email']; ?>" >
-        </div>
-        <div class="col-md-6">
-          <label>Facebook</label>
-          <input  type="text" name="banquet_fcbok" class="input-field validate" value="<?php echo $resultbnq['banquet_fcbok']; ?>" >
-        </div>
-
-      </div>
-
-      <div class="row">
-       <div class="col-md-6">
-        <label>Twitter</label>
-        <input  type="text" name="banquet_twiter" class="input-field validate" value="<?php echo $resultbnq['banquet_twiter']; ?>" >
-      </div>
-      <div class="col-md-6">
-        <label>Youtube</label>
-        <input  type="text" name="banquet_utube" class="input-field validate" value="<?php echo $resultbnq['banquet_utube']; ?>" >
-      </div>
-
-    </div>
-  </div>
    
             <div class="row inactive_checkbox" >
 
@@ -568,77 +570,9 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 </div>
 </div>
 
-
-<!-- Modal Structure -->
-<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
-  <div class="modal-content">
-   <div class="modal-header"><h2>Upload  Photos</h2></div>
-   <iframe src="../up_load_singleimg.php?p=edit&t=banquet&b_id=<?php echo $global_banquet_id; ?>" id="photo_iframe"></iframe>
-   <div class="modal-footer">
-     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
-   </div>
- </div>
-</div>
-
-
-  <!-- Modal Structure -->
-  <div id="loader" class="modal">
-    <div class="modal-content">
-      <div class="col-md-5"></div>
-         <div class="preloader-wrapper big active" style="top: 90px;">
-      <div class="spinner-layer spinner-blue">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-yellow">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-green">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-    </div>
-    <div style="text-align: center; padding-top: 170px;">
-    <span>Submitting.....</span>
-    </div>
-    </div>
-    
-  </div>
-
-
-
+<?php include '../../common-ftns/upload-img-modal.php'; ?>
+<?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php include '../footer_inner_folder.php';?>
-
-
 
 <script src="../../js/banquet-js/banquet.js"></script>
 <script type="text/javascript">

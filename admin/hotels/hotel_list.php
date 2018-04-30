@@ -1,4 +1,4 @@
-<?php
+ <?php
   
   include '../../common-sql.php';
  
@@ -58,16 +58,7 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
                   <?php
 
 				 if (mysqli_num_rows($hotel_resp) > 0) {   ?>
-				 <div class="row">
-				 	<div class="col s1"></div>
-				 	<div class="col s8  ">	
-				 		<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-				 	</div>
-				 	<div class="">
-				 		<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-				 	</div>
-				 </div>
-
+				 <?php include '../../common-ftns/filter-sus-app-pen.php'; ?>
 						<table class="bordered responsive-table" cellpadding="10" cellspacing="10" id="h_table">
 							<thead>
 								<tr >
@@ -75,7 +66,8 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 									<th>City</th>
 									<th>Inactive/Active Rooms</th>
 									<th>Booked/Free Rooms</th>
-									<th>Status</th>
+									<th>Status 1</th>
+									<th>Status 2</th>
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
@@ -92,7 +84,7 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 
                                  	?>
 
-                                   <tr>
+                                   <tr class="tr-1">
 									<td class="td-name capitalize"><?php echo $result['hotel_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['hotel_city'];  ?></td>
                              <?php if (mysqli_num_rows($roomquery_inact)> 0) {
@@ -113,14 +105,21 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
+									<?php if ($result['hotel_status']=="Approved") { ?>
+
+										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['hotel_status']; ?></span></td>
+										<?php }elseif ($result['hotel_status']=="Suspended") {?>
+
+										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['hotel_status']; ?></span></td>
+										
+										<?php }else{ ?>
+
+										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['hotel_status']; ?></span></td>
+										<?php } ?>
 									
-									
-									
-									<!-- <td><a href="#" class="db-success">Success</a>
-									</td> -->
-									<td class="tdwrap">
+									<td class="tdwrap sus_appr">
 									<div class="buttonsWrap_vendors">
 										<?php if ($_GET['status']=="Suspended") { ?>
 											
@@ -131,7 +130,7 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 
 										<?php }else{ ?>
      
-										<div class="row sus_appr veiw_sus_appr">
+										<div class="row">
                                               
                                               <a class="waves-effect waves-light btn" href="showsingle_hotelrecord.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Veiw</a>
 											<a class="waves-effect waves-light btn" href="edit_hotel.php?id=<?php echo $result['hotel_id'];  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>">Edit</a>

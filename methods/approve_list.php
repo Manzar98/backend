@@ -1,7 +1,7 @@
 <script type="text/javascript">
   function show_approve(event) {
        
-      var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+      var sus=$(event.currentTarget).parents('tr');
 
       var btn=$(event.currentTarget).attr('value'); 
       
@@ -38,7 +38,8 @@
       var id_col=$(event.currentTarget).attr('id-col');
       var reason_col=$(event.currentTarget).attr('col-name-reason');
       var l_url=$(event.currentTarget).attr('l-url');
-          // debugger;
+      var listing_name= sus.find('.listing_name').text();
+
            swal({
 
         title: "Are you sure you want to approve this user?",
@@ -60,33 +61,19 @@
              
              type:"POST",
              url:"../update-list_status.php",
-             data:{'btn':btn,'u_id':u_id,'h_id':h_id,'col_name':col_name,'tbl_name':tbl_name,'list_id':list_id,'id_col':id_col,'u_col':u_col,'h_col':h_col,'reason_col':reason_col,'l_url':l_url},
+             data:{'btn':btn,'u_id':u_id,'h_id':h_id,'col_name':col_name,'tbl_name':tbl_name,'list_id':list_id,'id_col':id_col,'u_col':u_col,'h_col':h_col,'reason_col':reason_col,'l_url':l_url,'list_name':listing_name},
              success:function(res){
                    
                    var data=JSON.parse(res);
 
                    if (data.status=="Approved") {
 
-                          $('.reason_sp').hide();
-                          sus.find('.sus').hide();
-                          sus.find('.appr').show();
-                          sus.find('.pend').hide();
-                          
-                           sus.find('.approve').hide();
-                sus.find('.suspend').show();
-                 var st_val= sus.find('.appr').text();
-
-                         
-
-
-                             
-                        
-                   }else{
-                      
-                      
-                      
+                          sus.find('.approve').hide();
+                          sus.find('.suspend').show();
+                          sus.find(".appr").html('');
+                          sus.find(".appr").html('<span class="db-success">Approved</span>');
+    
                    }
-                 console.log(data);
              }   
 
      });

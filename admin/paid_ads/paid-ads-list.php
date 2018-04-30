@@ -25,15 +25,17 @@
 
 					<?php
 
-								if (mysqli_num_rows($ads_resp) > 0) { ?>	
+						if (mysqli_num_rows($ads_resp) > 0) { ?>	
 					
                               <div class="row common-top ">
-							<div class="featured_btn">
-								
-								<a class="waves-effect waves-light btn" href="paid_ads.php?user_id=<?php echo $_GET['user_id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Feature an Ad</a>
-								
-							</div>
-						</div>
+							    <div class="featured_btn">
+								<?php if ($_GET['status']=="Approved") { ?>
+
+									   <a class="waves-effect waves-light btn" href="paid_ads.php?user_id=<?php echo $_GET['user_id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Feature an Ad</a>
+
+								<?php } ?>
+							    </div>
+						      </div>
 								 
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
@@ -44,43 +46,66 @@
 									<th>Page</th>
 									<th>Duration</th>
 									<th>Status</th>
-									
-									
 								</tr>
 							</thead>
-							<tbody class="wrap-td">
+							<tbody class="wrap-td ">
 								
                                   <?php $i=0; ?>
 								
                                 <?php   while ($result=mysqli_fetch_assoc($ads_resp)) { ?>
 
-                                   <tr class="">
+                                   <tr class="tr-wrap">
                                    	<td class="td-name capitalize"><?php echo $result['ad_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['select_any'];   ?></td>
-									<td class="td-name capitalize"><?php echo $result['list_of_any']; ?></td>
+									<td class="td-name capitalize listing_name"><?php echo $result['list_of_any']; ?></td>
 									<td class="td-name capitalize"><?php echo $result['on_which_page'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['no_of_days'];   ?></td>
-									<td class="text-center paly_pause">
- 
-                                     <?php if ($result['status_play_pause']=="on") { ?>
+								    <?php if ($result['ad_status']=="Approved") { ?>
 
-                                     		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off"><i class="fa fa-pause" aria-hidden="true" ></i></a>
-                                     		<a  onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on" style="display: none;"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                     	
-                                   <?php  }else{ ?>
+										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['ad_status']; ?></span></td>
+										<?php }elseif ($result['ad_status']=="Suspended") {?>
 
-                                    		<a onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                    		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off" style="display: none;"><i class="fa fa-pause" aria-hidden="true" ></i></a>
- 
-                                   	         
-                                 <?php   } ?>
-										</td>
+										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['ad_status']; ?></span></td>
 										
-								 <td class="tdwrap tdwrap_ads">
+										<?php }else{ ?>
+
+										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['ad_status']; ?></span></td>
+										<?php } ?>
+									
+										
+								 <td class="tdwrap tdwrap_ads sus_appr">
 									<div class="buttonsWrap buttonsWrap_ads">
-										<div class="row">
-											<a class="waves-effect waves-light btn" href="edit_paid_ad.php?id=<?php echo $_GET['user_id'];  ?>&p_id=<?php echo $result['paid_id'] ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Edit</a>
-											<a class="waves-effect waves-light btn" href="#">Delete</a>
+										<div class="row  ">
+
+											<?php if ($_GET['status']=="Suspended") { ?>
+												
+													<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+											<?php }else{ ?>
+
+													<a class="waves-effect waves-light btn" href="edit_paid_ad.php?id=<?php echo $_GET['user_id'];  ?>&p_id=<?php echo $result['paid_id'] ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Edit</a>
+													<a class="waves-effect waves-light btn" href="#">Delete</a>
+
+													<?php if ($result['ad_status']=="Approved") { ?>
+
+													<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+
+													<a  onclick="show_suspend(event)" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['paid_id']; ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['paid_id']; ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
+
+													<?php }else{ ?>
+
+													<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+													<a  onclick="show_suspend(event)" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['paid_id']; ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+
+													<a  onclick="show_approve(event)" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['paid_id']; ?>" class="approve btn" value="Approved" >Approve</a>
+
+													<?php } ?>
+
+											<?php } ?>
+											
 										</div>
 										
 									</div>
@@ -141,20 +166,21 @@
   </div>
 
 	<?php include'../footer_inner_folder.php'; ?>
+   <?php include '../../common-ftns/suspend_reason_modal.php'; ?>
 
-<script type="text/javascript">
-
-function show_pause(event) {
-
-
-
-	  var btn=$(event.currentTarget).attr('value');
+ <script type="text/javascript">
+   	
+   	 function show_approve(event) {
+       
+      var sus=$(event.currentTarget).parents('tr');
+      var btn=$(event.currentTarget).attr('value'); 
       var p_id=$(event.currentTarget).attr('p_id');
-      var eve=$(event.currentTarget);
+      var u_id=$(event.currentTarget).attr('id');
+      var listing_name= sus.find('.listing_name').text();
 
-        swal({
+    swal({
 
-        title: "Are you sure you want to pause this ad?",
+        title: "Are you sure you want to approve this user?",
         
         type: "warning",
             // confirmButtonColor: "#DD6B55",
@@ -167,70 +193,102 @@ function show_pause(event) {
             closeOnCancel: true
           },function (isconfirm) {
 
-          	if (isconfirm) {
+            if (isconfirm) {
+                       
+            $.ajax({
+             
+             type:"POST",
+             url:"paid-ads-update.php",
+             data:{'btn':btn,'u_id':u_id,'p_id':p_id,'list_name':listing_name},
+             success:function(res){
+                   
+                   var data=JSON.parse(res);
+
+                   if (data.status=="Approved") {
+
+                          sus.find('.approve').hide();
+                          sus.find('.suspend').show();
+                          sus.find(".appr").html('');
+                          sus.find(".appr").html('<span class="db-success">Approved</span>');
+                   }
+             }   
+
+     });
+           
+
+            }
+
+            
+          });
+  
+}
+
+
+	var rowValue = "";
+      $('#susp').modal({
+      	dismissible: false, // Modal can be dismissed by clicking outside of the modal
+     
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        // alert("Ready");
+        rowValue =trigger.parents('.sus_appr');
+        console.log(modal, trigger);
+         
+      },
+      });
+function reason_submit() {
+
+      	if ($('#textarea_susp').val()) {
+
+		      rowValue.find('.org_susp').trigger('click');
+		      rowValue.find('.suspend').hide();
+		      $('#textarea_susp').val('');  
+		      $('.realtime_reason').show();
+		      $('#susp').modal('close');
+		      
+		      
+
+      	}
+      
+      
+ }
+	
+	function show_suspend(event) {
+     
+        var text_area=$('#textarea_susp').val();
+        var sus=$(event.currentTarget).parents('tr');
+        var btn=$(event.currentTarget).attr('value');
+        var p_id=$(event.currentTarget).attr('p_id');
+        var u_id=$(event.currentTarget).attr('id');
+        var listing_name=sus.find('.listing_name').text();
 	   $.ajax({
              
              type:"POST",
              url:"paid-ads-update.php",
-             data:{'btn':btn,'p_id':p_id},
-             success:function(data){
-                 
-                  $(eve).hide();
-	              $(eve).parents('.paly_pause').find('.pause').show();
+              data:{'btn':btn,'u_id':u_id,'p_id':p_id,'reason':text_area,'list_name':listing_name},
+             success:function(res){
+                   
+                   var data=JSON.parse(res);
+
+                   if (data.status=="Suspended") {
+
+                          sus.find('.suspend').hide();
+                          sus.find('.approve').show();
+                          sus.find(".appr").html('');
+                         sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
+                   }else{
+
+                         
+                   }
+                 console.log(data);
              }    
 
 	   });
-	   
-
-	}
-
-	   });
+	 
 	 // debugger;
 } 
 
-function show_play() {
-
-	var btn=$(event.currentTarget).attr('value');
-      var p_id=$(event.currentTarget).attr('p_id');
-        var eve=$(event.currentTarget);
-       swal({
-
-        title: "Are you sure you want to play this ad?",
-        
-        type: "warning",
-            // confirmButtonColor: "#DD6B55",
-            showCancelButton: true,
-            confirmButtonText: "ok",
-            closeOnConfirm: true,
-            confirmButtonText: "Yes",
-            cancelButtonText: "cancel",
-            closeOnConfirm: true,
-            closeOnCancel: true
-          },function (isconfirm) {
-
-          	if (isconfirm) {
-	   $.ajax({
-             
-             type:"POST",
-             url:"paid-ads-update.php",
-             data:{'btn':btn,'p_id':p_id},
-             success:function(data){
-                 
-                 // console.log(data);
-                 $(eve).hide(); 
-	             $(eve).parents('.paly_pause').find('.play').show();
-             }   
-
-	   });
-	
-
-	}
-
-	   });
-	   
-}
-</script>
-    
+   </script>
+  
 </body>
 
 

@@ -12,7 +12,7 @@ if (isset($_POST['reason'])) {
 
           include '../methods/send-notification.php';
 
-          insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Your listing has been suspended","sorry",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&h_id=".$_POST['h_id'],$_POST['tbl_name'],"vendor");
+          insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Listing Suspended","".$_POST['list_name']." has been suspended",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&h_id=".$_POST['h_id'],$_POST['tbl_name'],"vendor");
 	}else{
      
 	     $query='UPDATE '.$_POST['tbl_name'].' SET '.$_POST['col_name'].'="'.$_POST['btn'].'",
@@ -20,7 +20,7 @@ if (isset($_POST['reason'])) {
 
 		  include '../methods/send-notification.php';
 
-		    insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Your listing has been suspended","sorry",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&u_id=".$_POST['u_id'],$_POST['tbl_name'],"vendor");
+		    insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Listing Suspended","".$_POST['list_name']." has been suspended",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&u_id=".$_POST['u_id'],$_POST['tbl_name'],"vendor");
 
 	}
 
@@ -35,7 +35,7 @@ if (isset($_POST['reason'])) {
 
           include '../methods/send-notification.php';
 
-          insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Your listing has been approved","Now you can manage your listing",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&h_id=".$_POST['h_id'],$_POST['tbl_name'],"vendor");
+          insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Listing Approved","You can manage ".$_POST['list_name']." now",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&h_id=".$_POST['h_id'],$_POST['tbl_name'],"vendor");
 	}else{
      
 	     $query='UPDATE '.$_POST['tbl_name'].' SET '.$_POST['col_name'].'="'.$_POST['btn'].'",
@@ -43,7 +43,7 @@ if (isset($_POST['reason'])) {
 
 		     include '../methods/send-notification.php';
 
-		    insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Your listing has been approved","Now you can manage your listing",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&u_id=".$_POST['u_id'],$_POST['tbl_name'],"vendor");
+		    insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Listing Approved","You can manage ".$_POST['list_name']." now",date("F j, Y, g:i a"),$_POST['l_url']."?id=".$_POST['list_id']."&u_id=".$_POST['u_id'],$_POST['tbl_name'],"vendor");
 
 	}
 

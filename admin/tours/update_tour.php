@@ -585,7 +585,7 @@ if ($is_check==true) {
 
   if ($evupdate_assoc['tour_inactive']== $inactive) {
   
-  $notify_title="Your Listing has updated.";
+  $notify_title="Listing Updated";
   $notify_descrip="". $tourname." in ".$_POST['hotel_name']." has been updated";
 
     
@@ -594,13 +594,13 @@ if ($is_check==true) {
 
       if ($inactive=="off") {
 
-         $notify_title="Your Listing has activated";
-         $notify_descrip="". $tourname." has been reactivated";
+         $notify_title="Listing Activated";
+         $notify_descrip="". $tourname." has been activated";
 
        }else{
           
-         $notify_title="Your Listing has inactivated ";
-         $notify_descrip="". $tourname." has been inactivated ";
+         $notify_title="Listing Deactivated";
+         $notify_descrip="". $tourname." has been deactivated";
 
        } 
    
@@ -628,7 +628,7 @@ if ($is_check==true) {
 
   if ($evupdate_assoc['tour_inactive']== $inactive) {
   
-  $notify_title="Your Listing has updated.";
+  $notify_title="Listing Updated";
   $notify_descrip="". $tourname." has been updated";
 
     
@@ -637,13 +637,13 @@ if ($is_check==true) {
 
       if ($inactive=="off") {
 
-         $notify_title="Your Listing has activated ";
-         $notify_descrip="". $tourname." has been reactivated";
+         $notify_title="Listing Activated";
+         $notify_descrip="". $tourname." has been activated";
 
        }else{
           
-         $notify_title="Your Listing has inactivated ";
-         $notify_descrip="". $tourname." has been inactivated ";
+         $notify_title="Listing Deactivated";
+         $notify_descrip="". $tourname." has been deactivated";
 
        } 
    

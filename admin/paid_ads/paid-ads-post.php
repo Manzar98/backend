@@ -58,7 +58,7 @@ $newSuccessMsgArr=array(
     
 );
   if ($is_check ==true) {
-  $paidQuery='INSERT INTO paid_ads(user_id,ad_name,select_any,list_of_any,on_which_page,no_of_days,bid_amount)VALUES("'.$_POST['user_id'].'","'.$adName.'","'.$selct_one.'","'.$lst_any.'","'.$which_pge.'","'.$no_days.'","'.$bidAmt.'")';
+  $paidQuery='INSERT INTO paid_ads(user_id,ad_name,select_any,list_of_any,on_which_page,no_of_days,bid_amount,ad_status)VALUES("'.$_POST['user_id'].'","'.$adName.'","'.$selct_one.'","'.$lst_any.'","'.$which_pge.'","'.$no_days.'","'.$bidAmt.'","Pending")';
 
   // $result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
 
@@ -73,7 +73,7 @@ $newSuccessMsgArr=array(
 
    include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New ad has been featured","New ad has been featured under your account",date("F j, Y, g:i a"),"#","paid-ads","vendor" );
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Ad featured","Ad for ".$lst_any." has been featured",date("F j, Y, g:i a"),"#","paid-ads","vendor" );
 
 
 	echo json_encode($newSuccessMsgArr);

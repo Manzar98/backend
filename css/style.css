@@ -4814,9 +4814,9 @@ label{
 .tdwrap{
 
     position: absolute;
-    left: 0;
+    left: 5px;
     background: rgba(255,255,255,0.8);
-    width: 100%;
+    width: 99%;
     display: none;
     border: 1px solid #a7a4a4;
     box-shadow: 1px 0px 1px 1px;
@@ -4825,9 +4825,9 @@ label{
 .tdwrap_ads{
 
     position: absolute;
-    left: 0;
+    left: 5px;
     background: rgba(255,255,255,0.8);
-    width: 85%;
+    width: 99%;
     display: none;
     border: 1px solid #a7a4a4;
     box-shadow: 1px 0px 1px 1px;
@@ -4857,7 +4857,7 @@ label{
     margin: 0 auto;
 }
 .buttonsWrap_ads{
-        width: 103px;
+    width: 197px;
     margin: 0 auto;
 }
 .buttonsWrap_ads .row{

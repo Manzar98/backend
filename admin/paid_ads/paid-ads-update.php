@@ -88,12 +88,44 @@ $newSuccessMsgArr=array(
 }
 
 }else{
+   
 
+   if (isset($_POST['reason'])) {
 
-   $paidQuery='UPDATE paid_ads SET status_play_pause="'.$_POST['btn'].'"
+   
+   $paidQuery='UPDATE paid_ads SET ad_status="'.$_POST['btn'].'",
+               ad_sus_reason="'.$_POST['reason'].'"
               	 WHERE paid_id="'.$_POST['p_id'].'"';
 
-				$result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
+        include '../../methods/send-notification.php';
+
+        insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Ad Suspended","Ad for ".$_POST['list_name']." has been suspended",date("F j, Y, g:i a"),"#","paid_ads","vendor");
+   }else{
+     
+     $paidQuery='UPDATE paid_ads SET ad_status="'.$_POST['btn'].'",
+               ad_sus_reason="'.null.'"
+                 WHERE paid_id="'.$_POST['p_id'].'"';
+
+        include '../../methods/send-notification.php';
+
+        insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Ad Approved","Ad for ".$_POST['list_name']." has been approved",date("F j, Y, g:i a"),"#","paid_ads","vendor");
+
+      }
+
+
+$result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
+
+if ($result==1) {
+   
+    $res_Array=array(
+            'status'=>$_POST['btn']
+
+      );
+     echo json_encode($res_Array);
+}
+      
+
+
 
 }
 ?>

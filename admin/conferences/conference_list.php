@@ -48,15 +48,7 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 
 					if (mysqli_num_rows($conference_resp) > 0) { ?>
 
-					<div class="row">
-						<div class="col s1"></div>
-						<div class="col s8  ">	
-							<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-						</div>
-						<div class="">
-							<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-						</div>
-					</div>
+					<?php include '../../common-ftns/filter-sus-app-pen.php'; ?>
 
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
@@ -65,7 +57,8 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 									<th>Hall Name</th>
 									<th>Capacity</th>
 									<th>City</th>
-									<th>Status</th>
+									<th>Status 1</th>
+									<th>Status 2</th>
 									
 								</tr>
 							</thead>
@@ -81,8 +74,8 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 
                                    	?>
 
-                                   <tr>
-									<td class="td-name capitalize"><?php echo $result['conference_name'];   ?></td>
+                                   <tr class="tr-1">
+									<td class="td-name capitalize listing_name"><?php echo $result['conference_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['conference_space'];   ?></td>
 
 									<?php 
@@ -105,12 +98,21 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 										    <td class="capitalize"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="capitalize"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class="capitalize"><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
 									
-									<!-- <td><a href="#" class="db-success">Success</a>
-									</td> -->
-									<td class="tdwrap">
+									<?php if ($result['conference_status']=="Approved") { ?>
+
+										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['conference_status']; ?></span></td>
+										<?php }elseif ($result['conference_status']=="Suspended") {?>
+
+										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['conference_status']; ?></span></td>
+										
+										<?php }else{ ?>
+
+										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['conference_status']; ?></span></td>
+										<?php } ?>
+									<td class="tdwrap sus_appr">
 								<div class="buttonsWrap_vendors">
 
 										<?php if ($result['conference_independ']=='no') { ?>
@@ -123,7 +125,7 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 										                </div>										      
 										      <?php }else{ ?>
 
-										                <div class="row sus_appr veiw_sus_appr">
+										                <div class="row">
 															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>
@@ -160,7 +162,7 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 										      
 										      <?php }else{ ?>
 												         
-												        <div class="row sus_appr veiw_sus_appr">
+												        <div class="row">
 															<a class="waves-effect waves-light btn" href="showsingle_conferencerecord.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 															<a class="waves-effect waves-light btn" href="edit_conference.php?id=<?php echo $result['conference_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 															<a class="waves-effect waves-light btn" href="#">Delete</a>

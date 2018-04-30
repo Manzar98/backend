@@ -30,10 +30,10 @@ function reason_submit() {
 	function show_suspend(event) {
       
         var text_area=$('#textarea_susp').val();
-        var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+        var sus=$(event.currentTarget).parents('tr');
         console.log(sus);
         var sus_btn=$(event.currentTarget).parents('.sus_appr');
-        console.log(sus_btn)
+        // console.log(sus_btn)
 	    var btn=$(event.currentTarget).attr('value');
        
         
@@ -70,37 +70,24 @@ function reason_submit() {
       var id_col=$(event.currentTarget).attr('id-col');
       var reason_col=$(event.currentTarget).attr('col-name-reason');
       var l_url=$(event.currentTarget).attr('l-url');
+      var listing_name= sus.find('.listing_name').text();
 
-      // debugger;
 	   $.ajax({
              
              type:"POST",
              url:"../update-list_status.php",
-              data:{'btn':btn,'u_id':u_id,'h_id':h_id,'col_name':col_name,'tbl_name':tbl_name,'list_id':list_id,'id_col':id_col,'u_col':u_col,'h_col':h_col,'reason_col':reason_col,'l_url':l_url,'reason':text_area},
+              data:{'btn':btn,'u_id':u_id,'h_id':h_id,'col_name':col_name,'tbl_name':tbl_name,'list_id':list_id,'id_col':id_col,'u_col':u_col,'h_col':h_col,'reason_col':reason_col,'l_url':l_url,'reason':text_area,'list_name':listing_name},
              success:function(res){
                    
                    var data=JSON.parse(res);
 
                    if (data.status=="Suspended") {
 
-                      
-                          var st_val= $(sus_btn).find('.sus').text();
-                    
-                         $('#registor-form').find('.res_sup').text(text_area);
-                         $(event.currentTarget).hide();
-                        $(event.currentTarget).parents('.sus_appr').find('.approve').show();
-                      console.log($(sus_btn).parents('.sus_appr'));
                           sus.find('.suspend').hide();
                           sus.find('.approve').show();
-                      console.log($(event.currentTarget));
-                      
-                           
-                   }else{
-
-                         
-                         
+                          sus.find(".appr").html('');
+                          sus.find(".appr").html('<span class="db-not-success">Suspended</span>');     
                    }
-                 console.log(data);
              }    
 
 	   });

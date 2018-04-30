@@ -30,7 +30,7 @@ function reason_submit() {
 	function show_suspend(event) {
      
         var text_area=$('#textarea_susp').val();
-        var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+        var sus=$(event.currentTarget).parents('tr');
         var btn=$(event.currentTarget).attr('value');
         var u_id=$(event.currentTarget).attr('u_id');
         var h_id=$(event.currentTarget).attr('id');
@@ -47,21 +47,14 @@ function reason_submit() {
                    if (data.status=="Suspended") {
 
                          
-                          sus.find('.appr').hide();
-                          sus.find('.sus').show();
                           sus.find('.suspend').hide();
                           sus.find('.approve').show();
-                          $('#registor-form').find('.res_sup').text(text_area);
+                          sus.find(".appr").html('');
+                          sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
                       
-                    
-                   }else{
-
-                         
                    }
-                 console.log(data);
              }    
 
 	   });
-	 
-	 // debugger;
+
 } 

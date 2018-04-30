@@ -1,26 +1,11 @@
-<?php 
-  
-   include '../../common-sql.php';
-  
-   // $roomQuery=select("room",array("user_id"=>2));
-
-
-   
-
+<?php   
+   include '../../common-sql.php';  
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
 	<title>List Of Rooms</title>
-
 
 <?php  include '../header_inner_folder.php'; 
 
@@ -28,14 +13,11 @@
           $room_resp =mysqli_query($conn,$roomQuery)  or die(mysqli_error($conn));
 ?>
 
-
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
-
 						<div class="row">
 						<div class="db-title col s9">
 							<h3><img src="../../images/icon/dbc5.png" alt=""/> <?php echo $_GET['name']; ?> Rooms</h3>
-							<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 						</div>
 						<div class="col s3" style="margin-top: 10px;">
 							<span >Status:</span>
@@ -49,22 +31,12 @@
 							<?php } ?>
 						</div>
 						
-						</div>
-						
-						
+						</div>	
 				<?php
 
 								if (mysqli_num_rows($room_resp) > 0) { 	?>
 
-								<div class="row">
-									<div class="col s1"></div>
-									<div class="col s8  ">	
-										<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-									</div>
-									<div class="">
-										<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-									</div>
-								</div>	
+								<?php include '../../common-ftns/filter-sus-app-pen.php'; ?>
 						<table class="bordered responsive-table" id="h_table">
 							<thead>
 								<tr>
@@ -72,7 +44,8 @@
 									<th>Hotel</th>
 									<th>Number of Rooms</th>
 									<th>Charges per Night</th>
-									<th>Status</th>
+									<th>Status 1</th>
+									<th>Status 2</th>
 									
 								</tr>
 							</thead>
@@ -82,8 +55,8 @@
 								
                                <?php    while ($result=mysqli_fetch_assoc($room_resp)) { ?>
 
-                                   <tr>
-                                   	<td class="td-name capitalize"><?php echo $result['room_name'];   ?></td>
+                                   <tr class="tr-1">
+                                   	<td class="td-name capitalize listing_name"><?php echo $result['room_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['hotel_name'];   ?></td>
 									<td class="capitalize "><?php echo $result['room_nosroom'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['room_perni8'];   ?></td>
@@ -92,11 +65,22 @@
 										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
-									<td  class="tdwrap">
+									<?php if ($result['room_status']=="Approved") { ?>
+
+										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['room_status']; ?></span></td>
+										<?php }elseif ($result['room_status']=="Suspended") {?>
+
+										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['room_status']; ?></span></td>
+										
+										<?php }else{ ?>
+
+										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['room_status']; ?></span></td>
+										<?php } ?>
+									<td  class="tdwrap sus_appr">
 									<div class="buttonsWrap_vendors">
-										<div class="row sus_appr veiw_sus_appr">
+										<div class="row">
 											<?php if ($_GET['status']=="Suspended") {?>
 
 													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Veiw</a>

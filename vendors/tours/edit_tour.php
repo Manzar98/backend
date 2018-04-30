@@ -850,7 +850,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 										<input type="hidden" name="destination_id[]" value="<?php echo $result_D['destination_id']; ?>" class="edit-D_id">
 										<div class="common-top">
 
-											<label>Destination Name <a class="close_D" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
+											<label>Stopover Name <a class="close_D" ><i class="fa fa-times" aria-hidden="true"></i></a></label>
 											<div class="input-field col s8">
 												<input type="text" name="destination_name[]" value="<?php echo $result_D['destination_name']; ?>">
 
@@ -858,7 +858,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 										</div>
 										<div >
-											<label>Destination Description</label>
+											<label>Stopover Description</label>
 											<div class="input-field col s8">
 												<textarea class="materialize-textarea" name="destination_descrp[]"><?php echo $result_D['destination_descrp']; ?></textarea> 
 											</div>
@@ -908,7 +908,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 									<div class="destination new_Destination" id="destination-1">
 
 										<div class="common-top">
-											<label>Destination Name</label>
+											<label>Stopover Name</label>
 											<div class="input-field col s8">
 												<input type="text" name="destination_name[]" required>
 
@@ -916,7 +916,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 										</div>
 										<div >
-											<label>Destination Description</label>
+											<label>Stopover Description</label>
 											<div class="input-field col s8">
 												<textarea class="materialize-textarea" name="destination_descrp[]" required></textarea> 
 											</div>
@@ -954,7 +954,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 						
 
 						<div class="col s8 common-top clearfix">
-                        	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Destinations</a>
+                        	<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Stopover</a>
                         </div>
 
                         <div class="row" >
@@ -991,76 +991,9 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 				</div>
 			</div>
 
-             
-			<!-- Modal Structure -->
-			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
-				<div class="modal-content">
-					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="../up_load_singleimg.php?p=edit&t=tour&t_id=<?php echo  $global_tour_id; ?>" id="photo_iframe"></iframe>
-                   <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
-				</div>
-		   </div>
-		   </div>
-
-
-
-
-<!-- Modal Structure -->
-  <div id="loader" class="modal">
-    <div class="modal-content">
-      <div class="col-md-5"></div>
-         <div class="preloader-wrapper big active" style="top: 90px;">
-      <div class="spinner-layer spinner-blue">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-yellow">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-green">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-    </div>
-    <div style="text-align: center; padding-top: 170px;">
-    <span>Submitting.....</span>
-    </div>
-    </div>
-</div>
-
-
+     <?php include '../../common-ftns/upload-img-modal.php'; ?>
+   	 <?php include '../../common-ftns/submitting-modal.php'; ?>         
      <?php include '../footer.php'; ?>
-
 
 <script src="../../js/tour-js/tour.js"></script>
  

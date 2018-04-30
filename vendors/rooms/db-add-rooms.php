@@ -223,74 +223,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 			</div>
 		</div>  
 
-		<!-- Modal Structure -->
-		<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
-			<div class="modal-content">
-				<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="../up_load_singleimg.php" id="photo_iframe"></iframe>
-				<div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
-				</div>
-			</div>
-		</div>
-
-
-		
-		   <!-- Modal Structure -->
-  <div id="loader" class="modal">
-    <div class="modal-content">
-    	<div class="col-md-5"></div>
-    	   <div class="preloader-wrapper big active" style="top: 90px;">
-      <div class="spinner-layer spinner-blue">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-yellow">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-green">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-    </div>
-    <div style="text-align: center; padding-top: 170px;">
-    <span>Submitting.....</span>
-    </div>
-		</div>
-    
-  </div>
-
-
-
+   <?php include '../../common-ftns/upload-img-modal.php'; ?>
+   <?php include '../../common-ftns/submitting-modal.php'; ?>
    <?php include '../footer.php'; ?>
 	<script src="../../js/room-js/room.js"></script>	
 

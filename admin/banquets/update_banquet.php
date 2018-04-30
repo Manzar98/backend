@@ -477,7 +477,7 @@ if ($is_check==true) {
 
   if ($banupdate_assoc['banquet_inactive']== $inactive) {
   
-  $notify_title="Your Listing has updated.";
+  $notify_title="Listing Updated.";
   $notify_descrip="".$name." in ".$_POST['hotel_name']." has been updated";
 
     
@@ -486,13 +486,13 @@ if ($is_check==true) {
 
       if ($inactive=="off") {
 
-         $notify_title="Your Listing has activated";
-         $notify_descrip="".$name." has been reactivated";
+         $notify_title="Listing Activated";
+         $notify_descrip="".$name." has been activated";
 
        }else{
           
-         $notify_title="Your Listing has inactivated ";
-         $notify_descrip="".$name." has been inactivated ";
+         $notify_title="Listing Deactivated";
+         $notify_descrip="".$name." has been deactivated ";
 
        } 
    
@@ -519,7 +519,7 @@ if ($is_check==true) {
 
   if ($banupdate_assoc['banquet_inactive']== $inactive) {
   
-  $notify_title="Your Listing has updated.";
+  $notify_title="Listing Updated.";
   $notify_descrip="".$name." has been updated";
 
     
@@ -528,13 +528,13 @@ if ($is_check==true) {
 
       if ($inactive=="off") {
 
-         $notify_title="Your Listing has activated";
-         $notify_descrip="".$name." has been reactivated";
+         $notify_title="Listing Activated";
+         $notify_descrip="".$name." has been activated";
 
        }else{
           
-         $notify_title="Your Listing has inactivated ";
-         $notify_descrip="".$name." has been inactivated ";
+         $notify_title="Listing Deactivated";
+         $notify_descrip="".$name." has been deactivated ";
 
        } 
    

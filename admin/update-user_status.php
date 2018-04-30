@@ -31,7 +31,7 @@ if (isset($_POST['reason'])) {
     
      include '../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Your account has been suspended","Sorry ",date("F j, Y, g:i a"),"#", "vendor","vendor");
+     insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Account deactivated","Sorry",date("F j, Y, g:i a"),"#", "vendor","vendor");
 
 }else{
 
@@ -59,7 +59,7 @@ if (isset($_POST['reason'])) {
 
      include '../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Your registration has been approved","Now you can manage your account",date("F j, Y, g:i a"),"db-profile.php?id=".$_POST['u_id'], "vendor","vendor");
+     insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Account activated","Congratulations! Your account has been approved.",date("F j, Y, g:i a"),"db-profile.php?id=".$_POST['u_id'], "vendor","vendor");
      
 
 
