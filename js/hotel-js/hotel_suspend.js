@@ -28,30 +28,40 @@ function reason_submit() {
  }
 	
 	function show_suspend(event) {
-     
+        
+        var crntevent=$(event.currentTarget).attr('veiw');
         var text_area=$('#textarea_susp').val();
-        var sus=$(event.currentTarget).parents('tr');
+        var sus=$(event.currentTarget).parents('.veiw_sus_appr');   
         var btn=$(event.currentTarget).attr('value');
         var u_id=$(event.currentTarget).attr('u_id');
         var h_id=$(event.currentTarget).attr('id');
+        var listing_name= sus.find('.listing_name').text();
      
 	   $.ajax({
              
              type:"POST",
              url:"update_app_sus.php",
-              data:{'btn':btn,'u_id':u_id,'h_id':h_id,'reason':text_area},
+              data:{'btn':btn,'u_id':u_id,'h_id':h_id,'reason':text_area,'list_name':listing_name},
              success:function(res){
                    
                    var data=JSON.parse(res);
 
                    if (data.status=="Suspended") {
 
-                         
                           sus.find('.suspend').hide();
                           sus.find('.approve').show();
-                          sus.find(".appr").html('');
-                          sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
-                      
+
+                          if (crntevent) {
+
+                                sus.find('.sus').show();
+                                sus.find('.appr').hide();
+                               
+                          }else{
+                            
+                               sus.find(".appr").html('');
+                               sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
+                            
+                          }
                    }
              }    
 

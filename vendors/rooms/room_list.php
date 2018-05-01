@@ -1,22 +1,9 @@
 <?php 
   
    include '../../common-sql.php';
-  
-   // $roomQuery=select("room",array("user_id"=>2));
-
-
-   
-
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
 	<title>List Of Rooms</title>
@@ -76,7 +63,7 @@
 										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
 									<td  class="tdwrap">
 									<div class="buttonsWrap">

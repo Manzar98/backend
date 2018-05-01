@@ -24,7 +24,7 @@ if (isset($_POST['reason'])) {
   
     include '../../methods/send-notification.php';
 
-          insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Your listing has been suspended","sorry",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$_POST['h_id']."","hotel","vendor");
+          insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Listing Suspended","".$_POST['list_name']." has been suspended",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$_POST['h_id']."","hotel","vendor");
 }else{
 
 $hotel='UPDATE hotel SET hotel_status="'.$_POST['btn'].'",
@@ -47,7 +47,7 @@ $hotel='UPDATE hotel SET hotel_status="'.$_POST['btn'].'",
 
    include '../../methods/send-notification.php';
 
-          insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Your listing has been approved","Now you can manage your listing",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$_POST['h_id']."","hotel","vendor");
+          insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Listing Approved","You can manage ".$_POST['list_name']." now",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$_POST['h_id']."","hotel","vendor");
 
 }
 

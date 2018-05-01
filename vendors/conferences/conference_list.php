@@ -96,7 +96,7 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_SESSION['user_id']
 										    <td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class=""><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                             <td class=""><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
 									
 									<!-- <td><a href="#" class="db-success">Success</a>

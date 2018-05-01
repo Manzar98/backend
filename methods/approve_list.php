@@ -1,7 +1,7 @@
 <script type="text/javascript">
   function show_approve(event) {
        
-      var sus=$(event.currentTarget).parents('tr');
+      var sus=$(event.currentTarget).parents('.veiw_sus_appr');
 
       var btn=$(event.currentTarget).attr('value'); 
       
@@ -31,7 +31,7 @@
       }else{
         var u_col="";
       }
-
+      var crntevent=$(event.currentTarget).attr('veiw');
       var list_id=$(event.currentTarget).attr('id');
       var col_name=$(event.currentTarget).attr('col-name');
       var tbl_name=$(event.currentTarget).attr('tbl-name');
@@ -68,10 +68,21 @@
 
                    if (data.status=="Approved") {
 
-                          sus.find('.approve').hide();
-                          sus.find('.suspend').show();
-                          sus.find(".appr").html('');
-                          sus.find(".appr").html('<span class="db-success">Approved</span>');
+                         sus.find('.approve').hide();
+                         sus.find('.suspend').show();
+
+                         if(crntevent){
+                            
+                          sus.find('.sus').hide();
+                          sus.find('.appr').show();
+                          sus.find('.pend').removeClass('sus');
+
+                      }else{
+                           
+                           sus.find(".appr").html('');
+                           sus.find(".appr").html('<span class="db-success">Approved</span>');
+
+                      }  
     
                    }
              }   

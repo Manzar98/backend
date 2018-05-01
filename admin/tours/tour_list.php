@@ -58,7 +58,7 @@ $tour_resp =mysqli_query($conn,$tourQuery)  or die(mysqli_error($conn));
 								
                                  <?php  while ($result=mysqli_fetch_assoc($tour_resp)) { ?>
 
-                                   <tr class="tr-1">
+                                   <tr class="tr-1 veiw_sus_appr">
 									<td class="td-name capitalize listing_name"><?php echo $result['tour_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['tour_destinationname'];   ?></td>
 									<td class="capitalize"><?php echo $result['tour_stayday']."/".$result['tour_stayni8'];  ?></td>

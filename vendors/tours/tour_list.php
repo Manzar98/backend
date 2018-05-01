@@ -1,18 +1,8 @@
 <?php 
    
    include '../../common-sql.php';
-  
-   // $tourQuery=select("tour",array("user_id"=>2));
-
-   
-
-   
-
-
+ 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,7 +70,7 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_SESSION['user_id'].'" ORDE
 										    <td class="text-center"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 									<?php }else{ ?>
 
-                                             <td class="text-center"><span class="db-not-success"><?php echo "Pending";  ?></span></td>
+                                            <td class=""><span class="db-success"><?php echo "Active";  ?></span></td>
 									<?php } ?>
 									
 									<td class="tdwrap">

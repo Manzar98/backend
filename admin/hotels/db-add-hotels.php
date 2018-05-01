@@ -24,13 +24,6 @@ $userId=$_GET['user_id'];
 
 ?>
 
-   
-
-
-
-
-
-
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">

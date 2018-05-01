@@ -74,7 +74,7 @@
 								
                                 <?php   while ($result=mysqli_fetch_assoc($event_resp)) { ?>
 
-                                   <tr class="tr-1">
+                                   <tr class="tr-1 veiw_sus_appr">
 									<td class="td-name capitalize listing_name"><?php echo $result['event_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['event_venue']; ?></td>
 									<td class="td-name capitalize"><?php echo $result['event_recurrence'];   ?></td>

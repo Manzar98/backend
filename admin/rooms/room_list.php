@@ -55,7 +55,7 @@
 								
                                <?php    while ($result=mysqli_fetch_assoc($room_resp)) { ?>
 
-                                   <tr class="tr-1">
+                                   <tr class="tr-1 veiw_sus_appr">
                                    	<td class="td-name capitalize listing_name"><?php echo $result['room_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['hotel_name'];   ?></td>
 									<td class="capitalize "><?php echo $result['room_nosroom'];   ?></td>

@@ -48,7 +48,7 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
 					<div class="db-cent-table db-com-table">
 
                     <div class="veiw_sus_appr">
-                       <?php if ($_GET['status']=="Approved") { ?>
+                       <?php if ($_GET['status']=="Approved" || $_GET['status']=="Pending") { ?>
                       <div class="row" style="margin-top: 20px;">
                         <div class="col s11">
                 
@@ -58,17 +58,17 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
 
                                         <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" col-name-reason="room_sus_reason" id-col="room_id" h-col="hotel_id" l-url="rooms/showsingle_roomrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" col-name-reason="room_sus_reason" id-col="room_id" h-col="hotel_id" l-url="rooms/showsingle_roomrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" id-col="room_id" h-col="hotel_id" col-name-reason="room_sus_reason" l-url="rooms/showsingle_roomrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" id-col="room_id" h-col="hotel_id" col-name-reason="room_sus_reason" l-url="rooms/showsingle_roomrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw">Approve</a>
                                       
                                    <?php  }else{ ?>
 
                                          <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" col-name-reason="room_sus_reason" id-col="room_id" h-col="hotel_id" l-url="rooms/showsingle_roomrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" col-name-reason="room_sus_reason" id-col="room_id" h-col="hotel_id" l-url="rooms/showsingle_roomrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" id-col="room_id" h-col="hotel_id" col-name-reason="room_sus_reason" l-url="rooms/showsingle_roomrecord.php" class="approve btn" value="Approved" >Approve</a>
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $RoomResult['hotel_id'] ?>" u_id="<?php echo $RoomResult['user_id'] ?>" id="<?php echo $RoomResult['room_id']; ?>" tbl-name="room" col-name="room_status" id-col="room_id" h-col="hotel_id" col-name-reason="room_sus_reason" l-url="rooms/showsingle_roomrecord.php" class="approve btn" value="Approved" veiw="veiw">Approve</a>
  
                                              
                                  <?php   } ?>

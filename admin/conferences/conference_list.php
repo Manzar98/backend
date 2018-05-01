@@ -74,7 +74,7 @@ $conferenceQuery='SELECT * FROM conference where user_id="'.$_GET['id'].'" ORDER
 
                                    	?>
 
-                                   <tr class="tr-1">
+                                   <tr class="tr-1 veiw_sus_appr">
 									<td class="td-name capitalize listing_name"><?php echo $result['conference_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['conference_space'];   ?></td>
 

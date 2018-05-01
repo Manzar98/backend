@@ -48,7 +48,7 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
                                             <div class="veiw_sus_appr">
-                       <?php if ($_GET['status']=="Approved") { ?>
+                       <?php if ($_GET['status']=="Approved" || $_GET['status']=="Pending") { ?>
                       <div class="row" style="margin-top: 20px;">
                         <div class="col s11">
                 
@@ -56,19 +56,19 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
                              <?php if (isset($_GET['h_id'])) { ?>
                                       <?php if ($TourResult['tour_status']=="Approved") { ?>
 
-                                        <a  href="#susp" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+                                        <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw">Approve</a>
                                       
                                    <?php  }else{ ?>
 
-                                        <a href="#susp"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" class="suspend waves-effect waves-light btn modal-trigger" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" style="display: none;">Suspend</a>
+                                        <a href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" >Approve</a>
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw">Approve</a>
  
                                              
                                  <?php   } ?>
@@ -81,19 +81,19 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
 
                                <?php if ($TourResult['tour_status']=="Approved") { ?>
 
-                                        <a  href="#susp" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+                                        <a  href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw">Approve</a>
                                       
                                    <?php  }else{ ?>
 
-                                        <a href="#susp"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="suspend waves-effect waves-light btn modal-trigger"  style="display: none;">Suspend</a>
+                                        <a href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" >Approve</a>
+                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw">Approve</a>
  
                                              
                                  <?php   } ?>

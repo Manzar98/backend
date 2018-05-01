@@ -3,12 +3,6 @@
   include '../../common-sql.php';
  
 ?>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +18,8 @@
 $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY hotel_id DESC ';
           $hotel_resp =mysqli_query($conn,$hotelQuery)  or die(mysqli_error($conn));
 
-
-
-
 ?>
-
-
-             <!--  <input type="text"  id="row_count" name=""> -->
+          <!--  <input type="text"  id="row_count" name=""> -->
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 
@@ -84,8 +73,8 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 
                                  	?>
 
-                                   <tr class="tr-1">
-									<td class="td-name capitalize"><?php echo $result['hotel_name'];   ?></td>
+                                   <tr class="tr-1 veiw_sus_appr">
+									<td class="td-name capitalize listing_name"><?php echo $result['hotel_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['hotel_city'];  ?></td>
                              <?php if (mysqli_num_rows($roomquery_inact)> 0) {
                              	        $cnt=mysqli_fetch_assoc($roomquery_inact);

@@ -75,7 +75,7 @@
                                      // print_r($hotelQuery);
                                       ?>
 
-                                   <tr class="tr-1">
+                                   <tr class="tr-1 veiw_sus_appr">
 									<td class="td-name capitalize listing_name"><?php echo $result['banquet_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['banquet_space'];   ?></td>
 									<?php 

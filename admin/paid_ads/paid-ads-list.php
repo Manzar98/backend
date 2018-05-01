@@ -54,7 +54,7 @@
 								
                                 <?php   while ($result=mysqli_fetch_assoc($ads_resp)) { ?>
 
-                                   <tr class="tr-wrap">
+                                   <tr class="tr-wrap veiw_sus_appr">
                                    	<td class="td-name capitalize"><?php echo $result['ad_name'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['select_any'];   ?></td>
 									<td class="td-name capitalize listing_name"><?php echo $result['list_of_any']; ?></td>

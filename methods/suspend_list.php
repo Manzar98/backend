@@ -30,10 +30,9 @@ function reason_submit() {
 	function show_suspend(event) {
       
         var text_area=$('#textarea_susp').val();
-        var sus=$(event.currentTarget).parents('tr');
-        console.log(sus);
-        var sus_btn=$(event.currentTarget).parents('.sus_appr');
-        // console.log(sus_btn)
+        var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+      
+       
 	    var btn=$(event.currentTarget).attr('value');
        
         
@@ -63,7 +62,8 @@ function reason_submit() {
       }else{
         var u_col="";
       }
-
+      
+      var crntevent=$(event.currentTarget).attr('veiw');
       var list_id=$(event.currentTarget).attr('id');
       var col_name=$(event.currentTarget).attr('col-name');
       var tbl_name=$(event.currentTarget).attr('tbl-name');
@@ -85,8 +85,18 @@ function reason_submit() {
 
                           sus.find('.suspend').hide();
                           sus.find('.approve').show();
-                          sus.find(".appr").html('');
-                          sus.find(".appr").html('<span class="db-not-success">Suspended</span>');     
+
+                           if (crntevent) {
+
+                                sus.find('.sus').show();
+                                sus.find('.appr').hide();
+                               
+                          }else{
+                          
+                               sus.find(".appr").html('');
+                               sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
+                            
+                          }     
                    }
              }    
 
