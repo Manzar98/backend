@@ -92,6 +92,20 @@ $newSuccessMsgArr=array(
 
 				$result=mysqli_query($conn,$paidQuery) or die(mysqli_error($conn));
 
+        if ($_POST['btn']=="off") {
+           
+           $title="Ad Play";
+           $desc="Testing";
+        }else{
+            $title="Ad Pause";
+           $desc="Testing ";
+
+        }
+
+        include '../methods/send-notification.php';
+   
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$title,$desc,date("F j, Y, g:i a"),"#","paid-ads","admin" );
+
 }
 ?>
 

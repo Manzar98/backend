@@ -661,7 +661,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
  include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$user_id  ,"admin","true","false","Created","New tour created under your account.","".$tourname." in ".$hotelname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid,"tour","tour" );
+     insert_notification($conn,$user_id  ,"admin","true","false","Created","New Tour Created","".$tourname." in ".$hotelname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid,"tour","tour" );
 
 }else{
 	$query= 'INSERT INTO tour(user_id,tour_name,tour_destinationname,tour_foodinclude,tour_brkfast,tour_lunch,tour_dinner,tour_drink,tour_aloholic,tour_nonaloholic,tour_stayday,tour_stayni8,tour_depdate,tour_deptime,tour_arrdate,tour_arrtime,tour_hotelstr,tour_camping,tour_campday,tour_entrytik,tour_plan,tour_pkgprice,tour_capacitypeople,tour_nosofbag,tour_extrachrbag,tour_childallow,tour_undr5allow,tour_halftikchild,tour_undr5free,tour_undr5price,tour_strtloc,tour_pikoffer,tour_pikair,tour_pikbus,tour_pikspecific,tour_drpoffer,tour_drpair,tour_drpbus,tour_drpspecific,tour_inactive,tour_independ,hotel_name,tour_status)VALUES("'.$user_id.'","'.$tourname.'","'.$nameofdesti.'","'.$fodinclude.'","'.$brkfast.'","'.$lunch.'","'.$dinner.'","'.$drnkinclude.'","'.$aloholic.'","'.$nonalohlic.'","'.$stayday.'","'.$stayni8.'","'.$depDate.'","'.$depTime.'","'.$arrDate.'","'.$arrTime.'","'.$hotelstr.'","'.$camping.'","'.$campday.'","'.$entrytik.'","'.$plan.'","'.$pkgprice.'","'.$capcipeople.'","'.$nosbag.'","'.$extrachrbag.'","'.$childallow.'","'.$undr5allow.'","'.$halftikchild.'","'.$undr5free.'","'.$undr5price.'","'.$strtloc.'","'.$pikoffer.'","'.$pikair.'","'.$pikbus.'","'.$pikspecific.'","'.$drpoffer.'","'.$drpair.'","'.$drpbus.'","'.$drpspecific.'","'.$inactive.'","'.$independ.'","'.$hotelname.'","Pending")';
@@ -726,7 +726,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
   include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$user_id,"admin","true","false","Created","New tour created under your account.","".$tourname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id,"tour","vendor" );
+     insert_notification($conn,$user_id,"admin","true","false","Created","New Tour Created","".$tourname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id,"tour","vendor" );
 
 }
 

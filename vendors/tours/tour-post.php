@@ -661,7 +661,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
      include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$user_id  ,"vendor","true","false","Created","New Listing has been posted for review.","".$tourname." in ".$hotelname." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$user_id,"tour","admin" );
+     insert_notification($conn,$user_id  ,"vendor","true","false","Created","New Tour Created","".$tourname." in ".$hotelname." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$user_id,"tour","admin" );
 
     
 }else{
@@ -721,9 +721,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
   	 tour_id="'.$tour_id.'" WHERE destination_id="'.$D_idArray[$i].'"' ;
 
               mysqli_query($conn,$Desti_UpdateQuery) or die(mysqli_error($conn));
-  
-
-
+ 
  }
 
 
@@ -731,7 +729,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
    include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$user_id,"vendor","true","false","Created","New Listing has been posted for review.","".$tourname." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$user_id ,"tour","admin" );
+     insert_notification($conn,$user_id,"vendor","true","false","Created","New Tour Created","".$tourname." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$user_id ,"tour","admin" );
 }
 
 

@@ -38,8 +38,8 @@
       var id_col=$(event.currentTarget).attr('id-col');
       var reason_col=$(event.currentTarget).attr('col-name-reason');
       var l_url=$(event.currentTarget).attr('l-url');
-      var listing_name= sus.find('.listing_name').text();
-
+      var listing_name= $(event.currentTarget).attr('list-name');
+          
            swal({
 
         title: "Are you sure you want to approve this user?",
@@ -74,6 +74,7 @@
                          if(crntevent){
                             
                           sus.find('.sus').hide();
+                          sus.find('.pend').hide();
                           sus.find('.appr').show();
                           sus.find('.pend').removeClass('sus');
 

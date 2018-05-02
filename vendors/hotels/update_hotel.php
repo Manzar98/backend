@@ -143,7 +143,7 @@ if (empty($_POST['hotel_pickup'])) {
     array_push($responseArray,"Check atleast one from pickup offered");
   }else{
 
-    if ($_POST['hotel_isair']=="on") {
+    if (isset($_POST['hotel_isair']) && $_POST['hotel_isair']=="on") {
 
       $is_air= $_POST['hotel_isair'];
       if (empty($_POST['hotel_pikcharge'])) {
@@ -159,7 +159,7 @@ if (empty($_POST['hotel_pickup'])) {
      $is_air= 'off';
    }
 
-   if ($_POST['hotel_isbus']=='on') {
+   if (isset($_POST['hotel_isbus']) && $_POST['hotel_isbus']=='on') {
 
     $is_bus= $_POST['hotel_isbus'];
     if (empty($_POST['hotel_buscharge'])) {
@@ -289,9 +289,9 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
 
   if ($hotlupdate_assoc['hotel_inactive']== $inactive) {
   
-  $notify_title="Listing has been updated for review.";
+  $notify_title="Listing Updated";
 
-  $notify_descrip="".$name." has been updated for review by ".$_SESSION['reg_name']."";
+  $notify_descrip="".$name." hotel has been updated by ".$_SESSION['reg_name']."";
 
     
   }else{
@@ -299,13 +299,13 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
 
       if ($inactive=="off") {
 
-         $notify_title="".$_SESSION['reg_name']. " has activated ".$name;
-         $notify_descrip="".$name." has been reactivated and ready for review";
+         $notify_title="Listing Activated"
+         $notify_descrip="".$name." has been activated by ".$_SESSION['reg_name']."";
 
        }else{
           
-         $notify_title="".$_SESSION['reg_name']." has inactivated ".$name;
-         $notify_descrip="".$name." has been inactivated ";
+         $notify_title="Listing Deactivated";
+         $notify_descrip="".$name." has been deactivated by ".$_SESSION['reg_name']."";
 
        } 
    

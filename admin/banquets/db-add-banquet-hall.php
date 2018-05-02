@@ -80,8 +80,8 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
               <input  type="text" name="banquet_address" class="input-field validate ind_address"  >
             </div>
             <div class="col-md-6">
-              <label>City</label>
-              <input  type="text" name="banquet_city" class="input-field validate ind_city"  >
+                <label>Phone Number</label>
+                <input  type="number" name="banquet_phone" class="input-field validate ind_phone"  >
             </div>
 
           </div>
@@ -89,11 +89,17 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
           <div class="row">
            <div class="col-md-6">
             <label>Province</label>
-            <input  type="text" name="banquet_province" class="input-field validate ind_province"   >
+            <select class="" name="banquet_province">
+                <option value="">Select One</option>
+                <option value="Sindh">Sindh</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Balochistan">Balochistan</option>
+                <option value="KPK">khyber pakhtunkhwa</option>
+              </select>
           </div>
           <div class="col-md-6">
-            <label>Phone Number</label>
-            <input  type="number" name="banquet_phone" class="input-field validate ind_phone"  >
+             <label>City</label>
+              <input  type="text" name="banquet_city" class="input-field validate ind_city"  >
           </div>
 
         </div>

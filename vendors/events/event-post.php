@@ -514,7 +514,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
     include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"vendor","true","false","Created","New Listing has been posted for review.","".$name." in ".$hotelname." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"event","admin" );
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Event Created","".$name." in ".$hotelname." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"event","admin" );
 
  
 
@@ -574,7 +574,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
    include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"vendor","true","false","Created","New Listing has been posted for review.","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"event","admin" );
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Event Created","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"event","admin" );
 
 
 }

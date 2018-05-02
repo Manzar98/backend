@@ -394,7 +394,7 @@ if ($is_check==true) {
 if ($con_independ=='no') {
 
      
-$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive,status_conference)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'","Pending")';
+$query='INSERT INTO conference(user_id,hotel_id,conference_name,conference_space,conference_serve,conference_other,conference_offerdiscount,conference_expireoffer,conference_charges,conference_independ,hotel_name,conference_address,conference_city,conference_province,conference_phone,conference_email,conference_fcbok,conference_twiter,conference_utube,conference_inactive,conference_status)VALUES("'.$userid.'","'.$hotelid.'","'.$name.'","'.$space.'","'.$serve.'","'.$other.'","'.$discuntofer.'","'.$discountexpire.'","'.$charges.'","'.$con_independ.'","'.$con_hotelName.'","'.$con_addres.'","'.$con_city.'","'.$con_province.'","'.$con_phone.'","'.$con_email.'","'.$con_fcbok.'","'.$con_twter.'","'.$con_utube.'","'.$inactive.'","Pending")';
 
    if ($conn->query($query)== TRUE) {
  	# code...
@@ -455,7 +455,7 @@ if (isset($_POST['common_video'])) {
      include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"vendor","true","false","Created","New Listing has been posted for review.","".$name." in ".$con_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin" );
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Conference Created","".$name." in ".$con_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin" );
 
 
 }else{
@@ -522,7 +522,7 @@ if (isset($_POST['common_video'])) {
    include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"vendor","true","false","Created","New Listing has been posted for review.","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin" );
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Conference Created","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin" );
 
 
 

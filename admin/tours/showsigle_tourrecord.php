@@ -58,17 +58,17 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
 
                                         <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw">Suspend</a>
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw">Approve</a>
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
                                       
                                    <?php  }else{ ?>
 
                                         <a href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw">Suspend</a>
+                                        <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw">Approve</a>
+                                        <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
  
                                              
                                  <?php   } ?>
@@ -83,17 +83,17 @@ $showdiscountQuery=select('common_nosofpeople',array('tour_id'=>$TourResult['tou
 
                                         <a  href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw">Suspend</a>
+                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw">Approve</a>
+                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
                                       
                                    <?php  }else{ ?>
 
                                         <a href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw">Suspend</a>
+                                        <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw">Approve</a>
+                                        <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
  
                                              
                                  <?php   } ?>

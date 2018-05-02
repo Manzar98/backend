@@ -142,7 +142,7 @@ if (empty($_POST['hotel_pickup'])) {
     array_push($responseArray,"Check atleast one from pickup offered");
   }else{
 
-    if ($_POST['hotel_isair']=="on") {
+    if (isset($_POST['hotel_isair']) && $_POST['hotel_isair']=="on") {
 
       $is_air= $_POST['hotel_isair'];
       if (empty($_POST['hotel_pikcharge'])) {
@@ -158,7 +158,7 @@ if (empty($_POST['hotel_pickup'])) {
      $is_air= 'off';
    }
 
-   if ($_POST['hotel_isbus']=='on') {
+   if (isset($_POST['hotel_isbus']) && $_POST['hotel_isbus']=='on') {
 
     $is_bus= $_POST['hotel_isbus'];
     if (empty($_POST['hotel_buscharge'])) {
@@ -345,7 +345,7 @@ if ($is_check==true) {
 
   include '../../methods/send-notification.php';
 
-     insert_notification($conn,$user_id,"vendor","true","false","Created","New listing has been created for yours.","".$name." has been created for yours",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id."&status=Pending&name=".$_SESSION['reg_name'],"hotel","admin" );
+     insert_notification($conn,$user_id,"vendor","true","false","Created","New Hotel Created","".$name." hotel has been posted for review by ".$_SESSION['reg_name']." ",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id."&status=Pending&name=".$_SESSION['reg_name'],"hotel","admin" );
 
   echo json_encode($newSuccessMsgArr);
 }else{

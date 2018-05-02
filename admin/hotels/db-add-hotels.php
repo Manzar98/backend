@@ -69,8 +69,13 @@ $userId=$_GET['user_id'];
 
 							<div  class="col-md-6">
 								<label>Province</label>
-								<input id="last_name" type="text" name="hotel_province" class="input-field validate is_validate" data-error=".errorTxt4" required>
-								<div class="errorTxt4"></div>
+								 <select class="" name="hotel_province">
+					                <option value="">Select One</option>
+					                <option value="Sindh">Sindh</option>
+					                <option value="Punjab">Punjab</option>
+					                <option value="Balochistan">Balochistan</option>
+					                <option value="KPK">khyber pakhtunkhwa</option>
+					             </select>
 							</div>
 						</div>
 

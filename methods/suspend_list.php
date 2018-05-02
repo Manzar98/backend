@@ -70,7 +70,7 @@ function reason_submit() {
       var id_col=$(event.currentTarget).attr('id-col');
       var reason_col=$(event.currentTarget).attr('col-name-reason');
       var l_url=$(event.currentTarget).attr('l-url');
-      var listing_name= sus.find('.listing_name').text();
+      var listing_name= $(event.currentTarget).attr('list-name');
 
 	   $.ajax({
              

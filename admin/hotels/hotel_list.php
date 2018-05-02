@@ -129,16 +129,16 @@ $hotelQuery=    'SELECT * FROM hotel where user_id="'.$_GET['id'].'" ORDER BY ho
 									     	
 									     <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-									     <a  onclick="show_suspend(event)" id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+									     <a  onclick="show_suspend(event)" id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" list-name="<?php echo $result['hotel_name']; ?>">Suspend</a>
 
-									     <a  onclick="show_approve(event)"  id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
+									     <a  onclick="show_approve(event)"  id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;" list-name="<?php echo $result['hotel_name']; ?>">Approve</a>
 									     <?php  }else{ ?>
 
-									     <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+									     <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;"  >Suspend</a>
 
-									     <a  onclick="show_suspend(event)" id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+									     <a  onclick="show_suspend(event)" id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" list-name="<?php echo $result['hotel_name']; ?>">Suspend</a>
 
-									     <a  onclick="show_approve(event)"  id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" >Approve</a>
+									     <a  onclick="show_approve(event)"  id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" list-name="<?php echo $result['hotel_name']; ?>">Approve</a>
 									     <?php  } ?>
 											
 										</div>

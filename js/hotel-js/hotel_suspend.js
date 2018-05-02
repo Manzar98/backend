@@ -35,7 +35,7 @@ function reason_submit() {
         var btn=$(event.currentTarget).attr('value');
         var u_id=$(event.currentTarget).attr('u_id');
         var h_id=$(event.currentTarget).attr('id');
-        var listing_name= sus.find('.listing_name').text();
+        var listing_name= $(event.currentTarget).attr('list-name');
      
 	   $.ajax({
              

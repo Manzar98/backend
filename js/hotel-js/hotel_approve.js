@@ -6,7 +6,7 @@
       var btn=$(event.currentTarget).attr('value'); 
       var h_id=$(event.currentTarget).attr('id');
       var u_id=$(event.currentTarget).attr('u_id');
-      var listing_name= sus.find('.listing_name').text();
+      var listing_name= $(event.currentTarget).attr('list-name');
    
     swal({
 
@@ -42,6 +42,7 @@
                       if(crntevent){
                             
                           sus.find('.sus').hide();
+                          sus.find('.pend').hide();
                           sus.find('.appr').show();
                           sus.find('.pend').removeClass('sus');
 

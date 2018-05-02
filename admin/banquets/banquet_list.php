@@ -135,17 +135,17 @@
 
 														<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-														<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+														<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" list-name="<?php echo $result['banquet_name']; ?>">Suspend</a>
 
-														<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+														<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;" list-name="<?php echo $result['banquet_name']; ?>">Approve</a>
 
 														<?php  }else{ ?>
 
 														<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
 
-														<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+														<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" list-name="<?php echo $result['banquet_name']; ?>">Suspend</a>
 
-														<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" >Approve</a>
+														<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" list-name="<?php echo $result['banquet_name']; ?>">Approve</a>
 
 
 														<?php   } ?>
@@ -178,17 +178,17 @@
 
 														<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
 
-														<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+														<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" list-name="<?php echo $result['banquet_name']; ?>">Suspend</a>
 
-														<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;">Approve</a>
+														<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;" list-name="<?php echo $result['banquet_name']; ?>">Approve</a>
 
 														<?php  }else{ ?>
 
 														<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
 
-														<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
+														<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" list-name="<?php echo $result['banquet_name']; ?>">Suspend</a>
 
-														<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" >Approve</a>
+														<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" list-name="<?php echo $result['banquet_name']; ?>">Approve</a>
 
 
 														<?php   } ?>

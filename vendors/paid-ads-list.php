@@ -63,19 +63,19 @@
  
                                      <?php if ($result['status_play_pause']=="on") { ?>
 
-                                     		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off"><i class="fa fa-pause" aria-hidden="true" ></i></a>
-                                     		<a  onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on" style="display: none;"><i class="fa fa-play" aria-hidden="true"></i></a>
+                                     		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off" userId="<?php echo $result['user_id']; ?>"><i class="fa fa-pause" aria-hidden="true" ></i></a>
+                                     		<a  onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on" style="display: none;" userId="<?php echo $result['user_id']; ?>"><i class="fa fa-play" aria-hidden="true" ></i></a>
                                      	
                                    <?php  }else{ ?>
 
-                                    		<a onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                    		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off" style="display: none;"><i class="fa fa-pause" aria-hidden="true" ></i></a>
+                                    		<a onclick="show_pause(event)" id="play_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="play" value="on" userId="<?php echo $result['user_id']; ?>"><i class="fa fa-play" aria-hidden="true"></i></a>
+                                    		<a onclick="show_play()" id="pause_<?php echo $i ?>" p_id="<?php echo $result['paid_id'] ?>" class="pause" value="off" style="display: none;" userId="<?php echo $result['user_id']; ?>"><i class="fa fa-pause" aria-hidden="true" ></i></a>
  
                                    	         
                                  <?php   } ?>
 										</td>
 										
-								 <td class="tdwrap tdwrap_ads">
+								 <td class="tdwrap tdwrap_ads tdwrap_ads_vendor">
 									<div class="buttonsWrap buttonsWrap_ads">
 										<div class="row">
 											<a class="waves-effect waves-light btn" href="edit_paid_ad.php?id=<?php echo $_SESSION['user_id'];  ?>&p_id=<?php echo $result['paid_id'] ?>">Edit</a>
@@ -434,6 +434,7 @@ function show_pause(event) {
 
 	  var btn=$(event.currentTarget).attr('value');
       var p_id=$(event.currentTarget).attr('p_id');
+      var u_id=$(event.currentTarget).attr('userId');
         var eve=$(event.currentTarget);
 
         swal({
@@ -456,7 +457,7 @@ function show_pause(event) {
              
              type:"POST",
              url:"paid-ads-update.php",
-             data:{'btn':btn,'p_id':p_id},
+             data:{'btn':btn,'p_id':p_id,'user_id':u_id},
              success:function(data){
                  
                  $(eve).hide();
@@ -477,6 +478,7 @@ function show_play() {
 	var btn=$(event.currentTarget).attr('value');
       var p_id=$(event.currentTarget).attr('p_id');
         var eve=$(event.currentTarget);
+        var u_id=$(event.currentTarget).attr('userId');
        swal({
 
         title: "Are you sure you want to play this ad?",
@@ -497,7 +499,7 @@ function show_play() {
              
              type:"POST",
              url:"paid-ads-update.php",
-             data:{'btn':btn,'p_id':p_id},
+             data:{'btn':btn,'p_id':p_id,'user_id':u_id},
              success:function(data){
                  
                 $(eve).hide();

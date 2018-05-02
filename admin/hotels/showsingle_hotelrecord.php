@@ -52,16 +52,16 @@
 
                                         <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-                                        <a  onclick="show_suspend(event)" id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" veiw="veiw" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
+                                        <a  onclick="show_suspend(event)" id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" veiw="veiw" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" list-name="<?php echo $hotelResult['hotel_name']; ?>">Suspend</a>
 
-                                        <a  onclick="show_approve(event)"  id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" veiw="veiw" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                        <a  onclick="show_approve(event)"  id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" veiw="veiw" class="approve btn" value="Approved" style="display: none;" list-name="<?php echo $hotelResult['hotel_name']; ?>">Approve</a>
                                <?php  }else{ ?>
 
-                                          <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+                                          <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" list-name="<?php echo $hotelResult['hotel_name']; ?>">Suspend</a>
 
-                                          <a  onclick="show_suspend(event)" id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" class=" btn org_susp" value="Suspended" veiw="veiw" style="visibility: hidden; position: fixed;">Suspend</a>
+                                          <a  onclick="show_suspend(event)" id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" class=" btn org_susp" value="Suspended" veiw="veiw" style="visibility: hidden; position: fixed;" list-name="<?php echo $hotelResult['hotel_name']; ?>">Suspend</a>
 
-                                          <a  onclick="show_approve(event)"  id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" veiw="veiw" class="approve btn" value="Approved" >Approve</a>
+                                          <a  onclick="show_approve(event)"  id="<?php echo $hotelResult['hotel_id'] ?>" u_id="<?php echo $hotelResult['user_id'] ?>" veiw="veiw" class="approve btn" value="Approved" list-name="<?php echo $hotelResult['hotel_name']; ?>">Approve</a>
                              <?php  } ?>
                             </div>
                           </div>
