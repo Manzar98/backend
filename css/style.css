@@ -1831,12 +1831,16 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
 }
 .db-righ ul {
     margin-bottom: 0px;
-    padding: 20px;
-    padding-left: 20px !important;
+    /*padding: 20px;*/
+    /*padding-left: 20px !important;*/
 }
 .db-righ ul li {
     border-bottom: 1px solid #dcdcdc;
-    padding: 12px 0px;
+    -webkit-transition: all .2s ease-in-out; /* For Safari 3.1 to 6.0 */
+    transition: all .2s ease-in-out;
+    
+    /*padding: 12px 0px;*/
+     padding: 20px 15px;
 }
 .db-righ ul li a {} .db-righ ul li a img {
     float: left;
@@ -5107,6 +5111,14 @@ width:100%!important;
     float: right;
     font-size: 10px;
     cursor: pointer;
+    display: none;
+}
+li.li-wrap:hover {
+    box-shadow: 1px 1px 15px 1px #4d333b;
+     transform: scale(1.0);
+}
+li.li-wrap:hover .noti_x_icon {
+    display: block;
 }
 .db-righ ul li a h5{
 

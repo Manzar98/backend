@@ -1,5 +1,5 @@
 <?php   
-   include '../../common-sql.php';  
+   include '../../common-apis/reg-api.php';  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,16 @@
 								
 
 								
-                               <?php    while ($result=mysqli_fetch_assoc($room_resp)) { ?>
+                               <?php    while ($result=mysqli_fetch_assoc($room_resp)) { 
+                                   
+	                                $hotelQuery=select("hotel",array('hotel_id'=>$result['hotel_id']));
+
+									   while ($hotelStatus=mysqli_fetch_assoc($hotelQuery)) {
+
+									  $GLOBALS['h_status']= $hotelStatus['hotel_status'];
+									  
+									} 
+                               	?>
 
                                    <tr class="tr-1 veiw_sus_appr">
                                    	<td class="td-name capitalize listing_name"><?php echo $result['room_name'];   ?></td>
@@ -90,11 +99,13 @@
 											<?php }else{ ?>
 
 													<a class="waves-effect waves-light btn" href="showsingle_roomrecord.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Veiw</a>
-													<a class="waves-effect waves-light btn" href="edit_room.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Edit</a>
+													
 													<a class="waves-effect waves-light btn" href="#">Delete</a>
-
+                                                  <?php if ($h_status=="Approved") { ?>
+                                                      
+                                                      <a class="waves-effect waves-light btn" href="edit_room.php?id=<?php echo $result['room_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['id'] ?>">Edit</a>
 													<?php if ($result['room_status']=="Approved") { ?>
-
+                 
 													<a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
 
 													<a  onclick="show_suspend(event)" h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['room_id']; ?>" tbl-name="room" col-name="room_status" col-name-reason="room_sus_reason" id-col="room_id" h-col="hotel_id" l-url="rooms/showsingle_roomrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" list-name="<?php echo $result['room_name']; ?>">Suspend</a>
@@ -110,7 +121,10 @@
 													<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['room_id']; ?>" tbl-name="room" col-name="room_status" id-col="room_id" h-col="hotel_id" col-name-reason="room_sus_reason" l-url="rooms/showsingle_roomrecord.php" class="approve btn" value="Approved" list-name="<?php echo $result['room_name']; ?>">Approve</a>
 
 
-													<?php   } ?>
+													<?php   } 
+
+														# code...
+                                                  } ?>
 											<?php } ?>
 											
 										</div>

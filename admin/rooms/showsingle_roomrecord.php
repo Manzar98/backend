@@ -4,17 +4,13 @@
  
  $showRoomQuery=select('room',array('hotel_id'=>$_GET['h_id'],'room_id'=>$_GET['id']));
 
- 
+$hotelQuery=select("hotel",array('hotel_id'=>$_GET['h_id']));
 
- 	// print_r($hotelResult);
- 	# code...
- 
+  while ($hotelStatus=mysqli_fetch_assoc($hotelQuery)) {
 
-
- 
-
-
-
+    $GLOBALS['h_status']= $hotelStatus['hotel_status'];
+    
+  } 
 ?>
 
 
@@ -54,7 +50,13 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                 
                         <div class="pull-right sus_appr" style="margin-left: 10px;">
                              <?php if (isset($_GET['h_id'])) { ?>
-                                      <?php if ($RoomResult['room_status']=="Approved") { ?>
+
+                                      <?php 
+
+                                         if ($h_status=="Approved") {
+                                           # code...
+                                         
+                                      if ($RoomResult['room_status']=="Approved") { ?>
 
                                         <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
 
@@ -77,7 +79,11 @@ $showRoomDateQuery=select('common_bookdates',array('room_id'=>$RoomResult['room_
                         <div class="pull-right" >
 
                              <a class="waves-effect waves-light btn" href="edit_room.php?id=<?php echo $RoomResult['room_id'];  ?>&h_id=<?php echo  $RoomResult['hotel_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name']; ?>&user_id=<?php echo $_GET['user_id'] ?>">Edit</a>
-                       <?php  }?>
+                       <?php  }
+                           }
+
+
+                       ?>
                            
                         </div>
                         </div>

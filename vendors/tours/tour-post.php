@@ -23,16 +23,13 @@ if (empty($_POST['tour_destinationname'])) {
    
    $nameofdesti      =$_POST['tour_destinationname'];
 }
-
-
-
 if (empty($_POST['tour_foodinclude'])) {
 
      $is_check=false;
      array_push($responseArray,"Food include field is required");
 }elseif ($_POST['tour_foodinclude']=='yes') {
 	$fodinclude       =$_POST['tour_foodinclude'];
-	if (empty($_POST['tour_brkfast']) || empty($_POST['tour_lunch']) || empty($_POST['tour_dinner'])) {
+	if (empty($_POST['tour_brkfast']) && empty($_POST['tour_lunch']) && empty($_POST['tour_dinner'])) {
 		$is_check=false;
 		array_push($responseArray,"Check at least one from Food included");
 	}else{
@@ -72,7 +69,7 @@ if (empty($_POST['tour_drink'])) {
 
 }elseif ($_POST['tour_drink']=='yes') {
 	$drnkinclude      =$_POST['tour_drink'];
-     if (empty($_POST['tour_aloholic']) || empty($_POST['tour_nonaloholic'])) {
+     if (empty($_POST['tour_aloholic']) && empty($_POST['tour_nonaloholic'])) {
      	 $is_check=false;
      	 array_push($responseArray,"Check at least one from Drink included");
      }else{
