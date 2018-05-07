@@ -5201,3 +5201,6 @@ li.li-wrap:hover .noti_x_icon {
 .tdwrap_ads_vendor{
     width: 85%;
 }
+.dropdown-content{
+    max-height: 250px;
+}

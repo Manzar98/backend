@@ -23,7 +23,7 @@ include '../../common-apis/reg-api.php';
 <head>
 	<title>List Of Banquet Hall's</title>
 
-	<?php  include '../header_inner_folder.php'; 
+	<?php  include '../header_inner_folder.php';
 	$banquetQuery='SELECT * FROM banquet where user_id="'.$_GET['id'].'" ORDER BY banquet_id DESC ';
 	$banquet_resp =mysqli_query($conn,$banquetQuery)  or die(mysqli_error($conn)); ?>
 
@@ -47,13 +47,13 @@ include '../../common-apis/reg-api.php';
 
 					<?php } ?>
 				</div>
-				
+
 			</div>
 
 
 
 			<?php
-			
+
 			if (mysqli_num_rows($banquet_resp) > 0) { ?>
 
 			<?php include '../../common-ftns/filter-sus-app-pen.php'; ?>
@@ -65,16 +65,16 @@ include '../../common-apis/reg-api.php';
 						<th>City</th>
 						<th>Status 1</th>
 						<th>Status 2</th>
-						
-						
-						
+
+
+
 					</tr>
 				</thead>
 				<tbody class="wrap-td">
-					
 
-					
-					<?php  while ($result=mysqli_fetch_assoc($banquet_resp)) { 
+
+
+					<?php  while ($result=mysqli_fetch_assoc($banquet_resp)) {
 
 						$hotelQuery=select("hotel",array('hotel_id'=>$result['hotel_id']));
                                      // print_r($hotelQuery);
@@ -83,23 +83,23 @@ include '../../common-apis/reg-api.php';
 						<tr class="tr-1 veiw_sus_appr">
 							<td class="td-name capitalize listing_name"><?php echo $result['banquet_name'];   ?></td>
 							<td class="td-name capitalize"><?php echo $result['banquet_space'];   ?></td>
-							<?php 
+							<?php
 							if ($result['banquet_independ']=='yes') {?>
-							
+
 							<td class="td-name capitalize"><?php echo $result['banquet_city'];   ?></td>
-							<?php   }else{ 
+							<?php   }else{
 
 								while ($hotelCity=mysqli_fetch_assoc($hotelQuery)) { ?>
 
-								<td class="td-name capitalize"><?php echo $hotelCity['hotel_city'];   ?></td> 
+								<td class="td-name capitalize"><?php echo $hotelCity['hotel_city'];   ?></td>
 
 								<?php 	$GLOBALS['h_status']= $hotelCity['hotel_status']; ?>
-								<?php 
-							}  
-							
+								<?php
+							}
+
 						} ?>
 						<?php if ($result['banquet_inactive']== "on") { ?>
-						
+
 						<td class="capitalize"><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
 						<?php }else{ ?>
 
@@ -111,7 +111,7 @@ include '../../common-apis/reg-api.php';
 						<?php }elseif ($result['banquet_status']=="Suspended") {?>
 
 						<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['banquet_status']; ?></span></td>
-						
+
 						<?php }else{ ?>
 
 						<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['banquet_status']; ?></span></td>
@@ -135,9 +135,9 @@ include '../../common-apis/reg-api.php';
 								<div class="row">
 									<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>" >Veiw</a>
 									<a class="waves-effect waves-light btn" href="#">Delete</a>
-									<?php 
+									<?php
 									if ($h_status=="Approved") { ?>
-									
+
 									<a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $result['banquet_id'];  ?>&h_id=<?php echo $result['hotel_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Edit</a>
 
 									<?php if ($result['banquet_status']=="Approved") { ?>
@@ -157,23 +157,23 @@ include '../../common-apis/reg-api.php';
 									<a  onclick="show_approve(event)"  h_id="<?php echo $result['hotel_id'] ?>" u_id="<?php echo $result['user_id'] ?>" id="<?php echo $result['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" list-name="<?php echo $result['banquet_name']; ?>">Approve</a>
 
 
-									<?php   } 
+									<?php   }
 
 								}
 								?>
 
-								
+
 							</div>
 
 							<?php } ?>
 
-							
-							
-							
-							<?php	}else{ ?> 
+
+
+
+							<?php	}else{ ?>
 
 							<?php if($_GET['status']=="Suspended"){ ?>
-							
+
 							<div class="row">
 								<a class="waves-effect waves-light btn" href="showsingle_banquetrecord.php?id=<?php echo $result['banquet_id'];  ?>&u_id=<?php echo $result['user_id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['id']; ?>">Veiw</a>
 								<a class="waves-effect waves-light btn" href="#">Delete</a>
@@ -209,29 +209,29 @@ include '../../common-apis/reg-api.php';
 							<?php } ?>
 
 
-							
+
 
 
 
 							<?php }   ?>
-							
+
 						</div>
 					</td>
-					
-					
+
+
 									<!-- <td><a href="#" class="db-success">Success</a>
 									</td> -->
 								</tr>
 
 
 
-								
-								<?php    
+
+								<?php
  // print_r($result);
 							} ?>
-							
-							
-							
+
+
+
 						</tbody>
 					</table>
 					<?php	}else{ ?>
@@ -245,26 +245,26 @@ include '../../common-apis/reg-api.php';
 								<span >Listings cannot be added under the suspended users. Approve the user first to add listings under their name.</span>
 							</div>
 						</div>
-						
+
 					</div>
 					<?php  }elseif ($_GET['status']=='Pending') { ?>
 					<h3  style="color: red;"><?php echo $_GET['name']; ?> is Pending<b>!</b></h3>
 					<span>The user’s status is pending; first approve the user to add listings under his name</span>
-					
+
 					<?php }else{ ?>
 
 					<div class="text-center"><span><?php echo $_GET['name']; ?> has no Banquet Halls</span></div>
 					<div class="row common-top text-center">
 						<div class="">
-							
+
 							<a class="waves-effect waves-light btn modal-trigger spc-modal" href="db-add-banquet-hall.php?user_id=<?php echo $_GET['id']; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>">Add New Banquet</a>
-							
+
 						</div>
 					</div>
 
 					<?php } ?>
 
-					
+
 
 					<?php	}?>
 				</div>
