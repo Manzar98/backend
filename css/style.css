@@ -4835,6 +4835,7 @@ label{
     display: none;
     border: 1px solid #a7a4a4;
     box-shadow: 1px 0px 1px 1px;
+    height: 53px;
 
 }
 
@@ -4887,7 +4888,7 @@ table#h_table tr:hover td.tdwrap_vendors {
 #pro-sub-btn_hotel, #pro-sub-btn_room, #pro-sub-btn_banquet, 
 #pro-sub-btn_conference, #pro-sub-btn_tour, #pro-sub-btn_event, 
 #pro-sub-btn_registor, #pro-sub-btn_registor_update,
- #pro-sub-btn_password_update, #pro-sub-btn_paid, #pro-sub-btn_paid_edit{
+ #pro-sub-btn_password_update, #pro-sub-btn_paid, #pro-sub-btn_paid_edit, #pro-sub-btn_page{
     
     background: #f4364f;
     padding: 7px 25px;

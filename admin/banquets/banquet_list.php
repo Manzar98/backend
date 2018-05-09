@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include '../../common-apis/reg-api.php';
 
@@ -274,7 +274,7 @@ include '../../common-apis/reg-api.php';
 
 
 		<?php include"../footer_inner_folder.php"; ?>
-		<?php include '../../common-ftns/suspend_reason_modal.php'; ?>
+		<?php include'../../common-ftns/suspend_reason_modal.php'; ?>
 
 		<?php  include"../../methods/approve_list.php";  ?>
 		<?php  include"../../methods/suspend_list.php";  ?>

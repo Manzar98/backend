@@ -16,7 +16,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 <!-- META TAGS -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- FAV ICON(BROWSER TAB ICON) -->
 	<link rel="shortcut icon" href="../images/fav.ico" type="image/x-icon">
 	<!-- GOOGLE FONT -->
@@ -383,8 +383,8 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 		<!--TOP SECTION-->
 		<!--DASHBOARD SECTION-->
 		<?php while ($user_result=mysqli_fetch_assoc($user_con)) {?>
-			
-		
+
+
 		<div class="dashboard">
 			<div class="db-left">
 				<?php
@@ -416,8 +416,11 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="list-of-vendor_manage_add.php?act=feature_ad"><img src="../images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
 						<li>
-							<a href="db-event.html"><img src="../images/icon/db4.png" alt="" /> Event</a>
+							<a href="pages/addNewPage.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db4.png" alt="" /> Add Page</a>
 						</li>
+            <li>
+              <a href="pages/pageListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db4.png" alt="" /> Page Listing</a>
+            </li>
 						<li>
 							<a href="edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 						</li>
@@ -432,7 +435,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 			</div>
 			<div class="db-cent">
 				<div class="db-cent-1" style="background-image:url('<?php echo $cover; ?>') !important;">
-					
+
 					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
 					<h4>Welcome to your dashboard</h4>
 					 </div>

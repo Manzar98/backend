@@ -1,10 +1,6 @@
 <?php
  include '../../common-apis/reg-api.php';
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -317,7 +313,6 @@
 						</div>
                         
                         <div class="row" >
-                         	
 						           <p class="pTAG inactive_checkbox">
 						           		<input type="hidden" name="room_inactive" id="hidden_checkbox">
 						            	<?php if ($resultRoom['room_inactive']=='on') { ?>
@@ -331,8 +326,7 @@
 						             <label for="filled-in-inactive">Inactive</label>
 						          <?php  }  ?>
 						             
-						            </p>
-						             
+						            </p>     
          						</div>
 
 

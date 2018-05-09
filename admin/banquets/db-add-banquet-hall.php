@@ -15,7 +15,7 @@
 <head>
 	<title>Add a Banquet Hall</title>
 
-  <?php include '../header_inner_folder.php'; 
+  <?php include '../header_inner_folder.php';
     $userId= $_GET["user_id"];
 
    $selectHotel = 'SELECT `hotel_name`,`hotel_id`  FROM `hotel` WHERE `user_id`="'.$userId.'" ';
@@ -34,8 +34,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
        </div>
 
        <div class="db-profile-edit">
-         <form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="banquet-post.php" method="POST" enctype="multipart/form-data"> 
-          
+         <form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="banquet-post.php" method="POST" enctype="multipart/form-data">
+
           <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
  <label class="col s12">Independent Hall?</label>
@@ -133,14 +133,14 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
             <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
             <label class="col s12">Banquet Hall name </label>
             <div class="input-field col s12">
-             <input type="text"   value="" name="banquet_name" class="validate is_validate_input" required> 
+             <input type="text"   value="" name="banquet_name" class="validate is_validate_input" required>
            </div>
          </div>
 
          <div>
            <label class="col s12">Capacity</label>
            <div class="input-field col s12">
-            <input type="number" name="banquet_space"   class="validate is_validate_input" required> 
+            <input type="number" name="banquet_space"   class="validate is_validate_input" required>
           </div>
         </div>
 
@@ -149,13 +149,13 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
          <div class="common-top">
 
           <label>Base Booking Charges</label>
-          <input type="number" value="" name="banquet_charges" class="input-field validate " required> 
+          <input type="number" value="" name="banquet_charges" class="input-field validate " required>
 
         </div>
         <div class="common-top">
           <label >Hall Booking Charges :</label>
         </div>
-        <div class="row"> 
+        <div class="row">
 
           <div class="col-md-6 with_aricon" >
            <p class="pTAG">
@@ -166,11 +166,11 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
          <div class=" col-md-6" >
           <div class="with_ari" style="display: none;">
            <label >Charges</label>
-           <input type="number" value="" name="banquet_aricon" class="input-field validate  airconChrges"> 
+           <input type="number" value="" name="banquet_aricon" class="input-field validate  airconChrges">
          </div>
        </div>
 
-     </div>                  
+     </div>
    </div>
 
 
@@ -212,7 +212,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
  <ul class="collapsible def-show-menu" data-collapsible="accordion">
    <li>
     <div class="collapsible-header  active">Menu</div>
-    <div class="collapsible-body"> 
+    <div class="collapsible-body">
      <div class="row">
      <div class="col-md-6">
        <label>Package Name</label>
@@ -221,20 +221,20 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
      <div class="col-md-6">
      <label>Package Price</label>
      <input type="number" value="" class="input-field validate pkg_price" name="foodpkg_price[]">
-   </div> 
+   </div>
    </div>
 
    <div class="row">
     <div class="col-md-6">
      <label >Discount Percentage</label>
      <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
-   </div>   
+   </div>
    <div class="col-md-6">
      <label>Package Items</label>
   <div class="input-field ">
    <div class="chips-packageitem chips-package" id="chips-packageitem"  name=""> </div>
    <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem" class="menupkg-id"> </div>
-   </div>						
+   </div>
  </div>
 
 </div>
@@ -244,7 +244,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div  class=" ">
  <a class="waves-effect waves-light btn " onclick="gen_menupackage_input(event)">Add More Package</a>
 </div>
-</div> 
+</div>
 
 
 
@@ -272,12 +272,12 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
    <label>Expires on</label>
    <input type="text" id="expireDate" class="input-field offer_expire" name="banquet_expireoffer">
  </div>
-</div> 
+</div>
 
 <div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
 
   <div class="row int_title"><label>Photos :</label></div>
-               
+
 </div>
 
 
@@ -291,8 +291,8 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 </div>
 
 <div class="common-top clearfix">
-                 
-                  
+
+
                 <label class="col s4">Hall's Promotional Video (url)</label>
                 <div class="input-field col s8">
                   <input type="text"  class="" name="common_video"  ></div>
@@ -316,7 +316,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
   <ul class="collapsible def-show-date" data-collapsible="accordion">
    <li>
     <div class="collapsible-header  active">Date</div>
-    <div class="collapsible-body"> 
+    <div class="collapsible-body">
       <div class="row">
        <div class="col-md-6">
         <label>From</label>
@@ -324,7 +324,7 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
       </div>
       <div class="col-md-6">
         <label>To</label>
-        <input type="text" id="to" class="input-field to" name="book_todate[]"> 
+        <input type="text" id="to" class="input-field to" name="book_todate[]">
       </div>
     </div>
   </div>
@@ -339,14 +339,14 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 
   <div class="row" >
-                          
+
                         <p class="pTAG">
                          <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="banquet_inactive" />
                          <label for="filled-in-inactive">Inactive</label>
                         </p>
-                         
+
                     </div>
-  
+
   <div>
    <div class="input-field col s8">
     <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_banquet"> </div>
@@ -359,9 +359,9 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 </div>
 </div>
 
-<?php include '../../common-ftns/upload-img-modal.php'; ?>
-<?php include '../../common-ftns/submitting-modal.php'; ?>
-<?php include '../footer_inner_folder.php';?>
+<?php include'../../common-ftns/upload-img-modal.php'; ?>
+<?php include'../../common-ftns/submitting-modal.php'; ?>
+<?php include'../footer_inner_folder.php';?>
 <script src="../../js/banquet-js/banquet.js"></script>
 
 <script type="text/javascript">

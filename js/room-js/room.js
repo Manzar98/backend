@@ -17,12 +17,10 @@ $("#pro-sub-btn").click(function(){
 
    if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
         
-
             $('#hidden_checkbox').val('on');
 
-        
    }else{
-               $('#hidden_checkbox').val('off');
+            $('#hidden_checkbox').val('off');
 
    }
 
