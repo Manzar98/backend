@@ -409,12 +409,15 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 						<li>
 							<a href="../list-of-vendor_manage_add.php?act=feature_ad"><img src="../../images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
-            <li>
-              <a href="../pages/addNewPage.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db4.png" alt="" /> Add Page</a>
-            </li>
-            <li>
-              <a href="../pages/pageListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db4.png" alt="" /> Page Listing</a>
-            </li>
+						<li>
+							<a href="../pages/addNewPage.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db4.png" alt="" /> Add Page</a>
+						</li>
+						<li>
+							<a href="../pages/pageListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db4.png" alt="" /> Page Listing</a>
+						</li>
+						<li>
+							<a href="../faqs/faqListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db6.png" alt="" /> FAQ Lisitng</a>
+						</li>
 						<li>
 							<a href="../edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db7.png" alt="" /> Profile</a>
 						</li>

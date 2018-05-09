@@ -1,9 +1,9 @@
 /*======================
    Creation/Updation Time
    ========================*/
-   $('#pro-sub-btn_page').click(function(){
+   $('#pro-sub-btn_faq').click(function(){
       // debugger;
-   	vali('../pages/pagePostUpdate.php');
+   	vali('../faqs/faqPostUpdate.php');
    	
    });
 
@@ -22,21 +22,12 @@
 
    }
 
-   	var validator=$('#page-form').validate({
+   	var validator=$('#faq-form').validate({
    		rules:{
-   			page_name:{
+   			faq_ques:{
    				required:true
    			},
-   			page_alias:{
-   				required:true
-   			},
-   			page_content:{
-   				required:true
-   			},
-   			page_metadata:{
-   				required:true
-   			},
-   			page_metakeyword:{
+   			faq_ans:{
    				required:true
    			},
    		},
@@ -59,7 +50,7 @@
    	if (validator.form()== false) {
 
    		var body = $("html, body");
-   		$.each($('#page-form').find(".error"),function(key,value)
+   		$.each($('#faq-form').find(".error"),function(key,value)
    		{
 
    			if($(value).css('display')!="none")
@@ -79,9 +70,9 @@
                                  setTimeout(function(){
                                   $('#loader').modal('close');
                                   if (data.w_time=="create") {
-                                         tit="Page successfully submitted";
+                                         tit="Question successfully submitted";
                                   }else{
-                                       tit="Page successfully updated";
+                                       tit="Question successfully updated";
                                   }
                                   swal({
                                     title: tit, 
@@ -91,7 +82,7 @@
                                              closeOnConfirm: true,
                                              html: false
                                            }, function(){
-                                            window.location = "../pages/pageListing.php?id="+data.id;
+                                            window.location = "../faqs/faqListing.php?id="+data.id;
                                           });
                                 },3000)});
 

@@ -18,21 +18,7 @@
 				</div>
 			</div>
 			<?php if (mysqli_num_rows($p_resp) > 0) { ?>
-			<div class="row">
-				<div class="col s4 search_flter">
-					<select onchange="myFunction(event)" id="yourole"  name="">
-						<option value="" selected="" >View all</option>
-						<option value="Activated">Activate</option>
-						<option value="Deactivated">Deactivate</option>
-					</select>
-				</div>
-				<div class="col s6 search_field">	
-					<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-				</div>
-				<div class="search_field_btn">
-					<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-				</div>
-			</div>
+			<?php include '../../common-ftns/filter-active-inactive.php'; ?>
 			<table class="bordered responsive-table" id="h_table">
 				<thead>
 					<tr>
@@ -59,11 +45,11 @@
 									<a class="waves-effect waves-light btn" href="editPage.php?p_id=<?php echo $result['page_id'];  ?>&id=<?php echo $result['user_id']; ?>">Edit</a>
 									<a class="waves-effect waves-light btn" href="#">Delete</a>
 									<?php if ($result['page_inactive']=="on") { ?>
-										    <a onclick="active(event)" class="waves-effect waves-light btn active" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['page_id']; ?>" value="off">Activate</a>
-										    <a onclick="inactive(event)" class="waves-effect waves-light btn inactive" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['page_id']; ?>" value="on" style="display: none;">Deactivate</a>
+										    <a onclick="active(event)" class="waves-effect waves-light btn active" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['page_id']; ?>" value="off" tbl-name="pages" col-name="page_inactive" id-col="page_id">Activate</a>
+										    <a onclick="inactive(event)" class="waves-effect waves-light btn inactive" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['page_id']; ?>" value="on" style="display: none;" ttbl-name="pages" col-name="page_inactive" id-col="page_id">Deactivate</a>
 									<?php }else{ ?>
-                                            <a onclick="inactive(event)" class="waves-effect waves-light btn inactive" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['page_id']; ?>" value="on">Deactivate</a>
-                                            <a onclick="active(event)" class="waves-effect waves-light btn active" id="<?php echo $result['user_id']; ?>" p_id="<?php echo $result['page_id']; ?>" value="off" style="display: none;">Activate</a>
+                                            <a onclick="inactive(event)" class="waves-effect waves-light btn inactive" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['page_id']; ?>" value="on" tbl-name="pages" col-name="page_inactive" id-col="page_id">Deactivate</a>
+                                            <a onclick="active(event)" class="waves-effect waves-light btn active" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['page_id']; ?>" value="off" style="display: none;" tbl-name="pages" col-name="page_inactive" id-col="page_id">Activate</a>
 
 									<?php } ?>
 								</div>
@@ -86,96 +72,9 @@
 	</div>
 </div>
 <?php include"../footer_inner_folder.php"; ?>
+<?php include"../../methods/active-inactive_list.php"; ?>
 <script type="text/javascript">
-	function active(event) {
-
-		var sus=$(event.currentTarget).parents('.veiw_sus_appr');
-		var btn=$(event.currentTarget).attr('value');
-		var p_id=$(event.currentTarget).attr('p_id');
-		var u_id=$(event.currentTarget).attr('id');
-
-		swal({
-			title: "Are you sure you want to activate this page?",
-			type: "warning",
-            // confirmButtonColor: "#DD6B55",
-            showCancelButton: true,
-            confirmButtonText: "ok",
-            closeOnConfirm: true,
-            confirmButtonText: "Yes",
-            cancelButtonText: "cancel",
-            closeOnConfirm: true,
-            closeOnCancel: true
-        },function (isconfirm) {
-
-        	if (isconfirm) {
-
-        		$.ajax({
-
-        			type:"POST",
-        			url:"updatePageStatus.php",
-        			data:{'btn':btn,'p_id':p_id,'u_id':u_id},
-        			success:function(res){
-
-        				var data=JSON.parse(res);
-
-        				if (data.status=="off") {
-
-        					sus.find('.active').hide();
-        					sus.find('.inactive').show();
-        					sus.find(".appr").html('');
-        					sus.find(".appr").html('<span class="db-success">Activated</span>');
-        				}
-        			}   
-        		});
-        	}         
-        });
-
-	}
-
-	function inactive(event) {
-
-		var sus=$(event.currentTarget).parents('.veiw_sus_appr');
-		var btn=$(event.currentTarget).attr('value');
-		var p_id=$(event.currentTarget).attr('p_id');
-		var u_id=$(event.currentTarget).attr('id');
-
-		swal({
-			title: "Are you sure you want to deactivate this page?",
-			type: "warning",
-            // confirmButtonColor: "#DD6B55",
-            showCancelButton: true,
-            confirmButtonText: "ok",
-            closeOnConfirm: true,
-            confirmButtonText: "Yes",
-            cancelButtonText: "cancel",
-            closeOnConfirm: true,
-            closeOnCancel: true
-        },function (isconfirm) {
-
-        	if (isconfirm) {
-
-        		$.ajax({
-
-        			type:"POST",
-        			url:"updatePageStatus.php",
-        			data:{'btn':btn,'p_id':p_id,'u_id':u_id},
-        			success:function(res){
-
-        				var data=JSON.parse(res);
-
-        				if (data.status=="on") {
-
-        					sus.find('.inactive').hide();
-        					sus.find('.active').show();
-        					sus.find(".appr").html('');
-        					sus.find(".appr").html('<span class="db-not-success">Deactivated</span>');
-        				}
-        			}   
-        		});
-        	}         
-        });
-
-	}
+	
 </script>
 </body>
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:50 GMT -->
