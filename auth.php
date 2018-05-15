@@ -55,6 +55,13 @@ if ($crntresult['user_status']!="Suspended" && $crntresult['user_status']!="Pend
            "u_type"=> $crntresult['user_type']
         );
 
+  }elseif($crntresult['user_type']=='blogger'){
+
+         $res_Array=array(
+          "status"=>"Success",
+           "id"=> $crntresult['user_id'],
+           "u_type"=> $crntresult['user_type']
+        );
   }
        echo json_encode($res_Array);
         // header('Location: dashboard.php?id='.$crntresult['user_id']);//to send the id for 

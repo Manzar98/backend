@@ -37,6 +37,10 @@ function authentication(){
            }else if(data.u_type=="admin"){
 
                    window.location = "admin/dashboard.php?id="+data.id;
+
+           }else if(data.u_type=="blogger"){
+
+                   window.location = "bloggers/dashboard.php?id="+data.id;
            }
 
           

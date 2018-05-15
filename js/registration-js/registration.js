@@ -218,11 +218,14 @@
                                }else{
 
 
-
-                                $('#loader').modal('close');
-                                swal({
+                                 var responseArray = "";
+                                 $.each(data.message.split(','),function(k,val){
+                                  responseArray += " <li  style='color:red;list-style-type: circle;margin-left: 10px;'><i class='fa fa-times errordialog_x' aria-hidden='true'></i>"+val+"</li>";
+                                })
+                                 $('#loader').modal('close');
+                                 swal({
                                   title: "Something went wrong!",
-                                  
+                                  text: "<ul class='responseDialog'>"+responseArray+"</ul>",
                                   type: "error",
                                              //confirmButtonColor: "#DD6B55",
                                              confirmButtonText: "ok",

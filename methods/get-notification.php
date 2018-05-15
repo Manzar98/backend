@@ -10,18 +10,13 @@ include '../common-sql.php';
     // echo $noti_Query;
      }else if (isset($_GET['gen_for']) && $_GET['gen_for'] =="vendor" && isset($_GET['id'])) {
         
-        $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="vendor" ORDER BY noti_id DESC';
+        $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="vendor" AND `notifications`.user_id="'.$_GET['id'].'"  ORDER BY noti_id DESC';
+   
+     }else if (isset($_GET['gen_for']) && $_GET['gen_for'] =="blogger" && isset($_GET['id'])) {
+        
+        $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="blogger" AND `notifications`.user_id="'.$_GET['id'].'" ORDER BY noti_id DESC';
    
      }
-// echo $noti_Query;
-
-      // if(isset($_GET['id'])){
-      //    
-      // }else{
-        
-      // }
-   
-    // echo $noti_Query;
 
     $noti_sqli=mysqli_query($conn,$noti_Query) or die(mysqli_error($conn));
 

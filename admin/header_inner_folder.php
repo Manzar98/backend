@@ -398,7 +398,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="../dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db1.png" alt="" />Dashboard</a>
 						</li>
 						<li>
-							<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Manage Vendors</a>
+							<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Manage Users</a>
 						</li>
 						<li>
 							<a href="../list-of-vendor_manage_add.php?act=add"><img src="../../images/icon/db2.png" alt="" />Add Listing</a>

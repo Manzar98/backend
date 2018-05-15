@@ -431,8 +431,7 @@ function compareInputs(event) {
 
   
   var foo=allInputs.slice(0, -1);
-
- 
+  
   for (var i = 0; i < foo.length; i++) {
 
 
@@ -1213,6 +1212,8 @@ function hall_alone(that) {
 
 function myFunction(event) {
 
+ if ($('#user_Type').val()=="-1") {
+
   var input=document.getElementById("mysearch");
 
  var filter=input.value;
@@ -1241,7 +1242,7 @@ $.each($('.appr'),function(k,value){
     
   if(value.innerHTML.indexOf(filter) > -1){
 
-    $(value).parent('.tr-1').show();
+    $(value).parents('.tr-1').show();
   }
 });
 
@@ -1257,6 +1258,25 @@ $.each($('.appr'),function(k,value){
 });
  
 }
+
+}else{
+  
+  childfilter();
+}
+
+}
+function childfilter(){
+
+    $('.'+$('#user_Type').val()+'_Approved').hide();
+    $('.'+$('#user_Type').val()+'_Suspended').hide(); 
+    $('.'+$('#user_Type').val()+'_Pending').hide();
+    $('.'+$('#user_Type').val()+'_'+$('#yourole').val()).show();
+
+   if ($('#yourole').val()=="-1") {
+     $('.'+$('#user_Type').val()+'_Approved').show();
+     $('.'+$('#user_Type').val()+'_Suspended').show(); 
+     $('.'+$('#user_Type').val()+'_Pending').show();
+   }
 
 }
 
