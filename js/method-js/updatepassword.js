@@ -76,7 +76,7 @@ $("#pro-sub-btn_password_update").click(function(){
       $.ajax({
 
         type:"POST",
-        url:"methods/updatepassword.php",
+        url:"../methods/updatepassword.php",
         data:$('#password-wrap').serialize(),
         success:function(res){
                    
@@ -92,7 +92,7 @@ $("#pro-sub-btn_password_update").click(function(){
                       closeOnConfirm: true,
                       html: false
                       }, function(){
-                       window.location = "index.php";
+                       window.location = "../index.php";
                     });
                    
         }

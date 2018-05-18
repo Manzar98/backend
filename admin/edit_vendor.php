@@ -304,12 +304,12 @@
 
 			<?php } ?>
 
-		<?php include 'footer.php'; ?>;
-		<script src="../js/croppie.js"></script>
- <script src="../js/registration-js/registration.js"></script>
-    <script src="../js/method-js/updatepassword.js"></script>
-    <script src="../js/method-js/email-validation.js"></script>
-    <script type="text/javascript">
+	 <?php include 'footer.php'; ?>;
+	 <script src="../js/croppie.js"></script>
+     <script src="../js/registration-js/registration.js"></script>
+     <script src="../js/method-js/updatepassword.js"></script>
+     <script src="../js/method-js/email-validation.js"></script>
+     <script type="text/javascript">
     	$('#modal-reset').modal({dismissible: false});
 		
 /*=======================

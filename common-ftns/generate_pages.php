@@ -10,12 +10,25 @@ function gen_page($asso_array){
   foreach ($asso_array as $key => $value) {
       
     if(isset($value[0]) && is_array($value[0])){
+
     	 $input.='<div class="row common-top">';
     	 foreach ($value as $key => $val){
-    	 	 $input.='<div class="'.$val['2col'].'">
-						<label>'.$val['label'].'</label>
-						<textarea id="'.$val['id'].'" name="'.$val['name'].'" class="materialize-textarea is_validate">'.$val['value'].'</textarea>
-						</div> ';
+
+          if ($val['tag']=="textarea") { 
+
+            $input.='<div class="'.$val['2col'].'">
+            <label>'.$val['label'].'</label>
+            <textarea id="'.$val['id'].'" name="'.$val['name'].'" class="materialize-textarea is_validate">'.$val['value'].'</textarea>
+            </div> ';
+    
+           }elseif ($val['tag']=="input") {
+            
+             $input.='<div class="'.$val['2col'].'">
+            <label>'.$val['label'].'</label>
+            <input id="'.$val['id'].'" name="'.$val['name'].'" class="input-field validate is_validate" value="'.$val['value'].'"/>
+            </div> ';
+           }    
+    	 	 
     	 }
     	  $input.="</div>";
     }   

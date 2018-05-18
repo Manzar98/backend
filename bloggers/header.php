@@ -404,7 +404,7 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 								<a href="dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
 							</li>
 							<li>
-								<a href="edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
+								<a href="edit-blogger.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 							</li>
 							<li>
 								<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>

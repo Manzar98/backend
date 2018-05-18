@@ -25,15 +25,7 @@
 					<p><?php echo $reg_Result['reg_postal']; ?></p>
 				</div>
 				<div class="db-profile-view">
-					<?php 
-                          $userDob = $reg_Result['reg_birth'];
-                          $dob = new DateTime($userDob);
-                          $now = new DateTime();
-                          $difference = $now->diff($dob);
-                          $age = $difference->y;
-
-                         $lastlogin=date_create($reg_Result['reg_lastlogin']);
-					?>
+					<?php $lastlogin=date_create($reg_Result['reg_lastlogin']); ?>	
 					<table class="last-lgon_tbl">
 						<thead>
 							<th>Last Login</th>
@@ -41,9 +33,7 @@
 						<tbody>
 							<td><?php echo date_format($lastlogin, 'd-m-Y '); ?></td>
 						</tbody>
-					</table>
-
-					
+					</table>	
 				</div>
 				 	<div class="db-profile-edit">
 
@@ -515,7 +505,6 @@
 	<script src="../js/jquery-validation.js"></script>
 	<script src="../js/additional-methods.js"></script>
 	<script src="../js/sweetalert.min.js"></script>
-   <!--  <script src="../js/registration-js/registration.js"></script> -->
     <script src="../js/method-js/updatepassword.js"></script>
     <script src="../js/method-js/email-validation.js"></script>
     <script type="text/javascript">

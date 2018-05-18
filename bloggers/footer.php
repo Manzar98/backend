@@ -261,8 +261,7 @@
 	<script src="../js/materialize.min.js" type="text/javascript"></script>
 	<script src="../js/jquery.mixitup.min.js" type="text/javascript"></script>
 	<script src="../js/custom.js"></script>
-	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script> -->
+	<script src="../js/tinymce/tinymce.min.js"></script>
 	<script src="../js/jquery-validation.js"></script>
 	<script src="../js/additional-methods.js"></script>
 	<script src="../js/sweetalert.min.js"></script>

@@ -1212,7 +1212,6 @@ function hall_alone(that) {
 
 function myFunction(event) {
 
- if ($('#user_Type').val()=="-1") {
 
   var input=document.getElementById("mysearch");
 
@@ -1235,7 +1234,7 @@ $.each(trObj,function(k,value){
        
            filter=$('#yourole').val();
            console.log(filter);
-        // debugger;
+        
 $.each($('.appr'),function(k,value){
 
    console.log(value);
@@ -1246,12 +1245,10 @@ $.each($('.appr'),function(k,value){
   }
 });
 
-
-
-
 }else{
-
+   /*loop for search input  field */
   $.each(trObj,function(k,value){
+    debugger
   if(value.innerHTML.toLowerCase().indexOf(filter) > -1){
  $(value).show();
   }
@@ -1259,26 +1256,8 @@ $.each($('.appr'),function(k,value){
  
 }
 
-}else{
-  
-  childfilter();
 }
 
-}
-function childfilter(){
-
-    $('.'+$('#user_Type').val()+'_Approved').hide();
-    $('.'+$('#user_Type').val()+'_Suspended').hide(); 
-    $('.'+$('#user_Type').val()+'_Pending').hide();
-    $('.'+$('#user_Type').val()+'_'+$('#yourole').val()).show();
-
-   if ($('#yourole').val()=="-1") {
-     $('.'+$('#user_Type').val()+'_Approved').show();
-     $('.'+$('#user_Type').val()+'_Suspended').show(); 
-     $('.'+$('#user_Type').val()+'_Pending').show();
-   }
-
-}
 
 /*=============Departure & Arrival Date in tour================*/
 

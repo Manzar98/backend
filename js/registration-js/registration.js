@@ -398,7 +398,7 @@
                                    var data=JSON.parse(res);
 
                                    if (data.status=="Success") {
-                                  
+                                   
                                     $("#btn-loader").hide();
                                     setTimeout(function(){
                                      $('#loader').modal('close');
@@ -429,6 +429,27 @@
                                                 html: false
                                               }, function(){
                                                window.location = "edit_vendor.php?id="+data.id;
+                                             });
+                                   },3000)
+
+
+
+
+                                  }else if(data.status=="Blogger_success"){
+
+                                          $("#btn-loader").hide();
+                                    setTimeout(function(){
+                                     $('#loader').modal('close');
+                                     swal({
+                                       title: "Registration successfully updated for review!",
+                                       text: "Thank you for your updation! You will be notified once your changes have been approved!",
+                                       type: "success",
+                                                //confirmButtonColor: "#DD6B55",
+                                                confirmButtonText: "ok",
+                                                closeOnConfirm: true,
+                                                html: false
+                                              }, function(){
+                                               window.location = "edit-blogger.php?id="+data.id;
                                              });
                                    },3000)
 
@@ -500,6 +521,27 @@
                                                 html: false
                                               }, function(){
                                                window.location = "edit_vendor.php?id="+data.id;
+                                             });
+                                   },3000)
+
+
+
+
+                                  }else if(data.status=="Blogger_success"){
+
+                                          $("#btn-loader").hide();
+                                    setTimeout(function(){
+                                     $('#loader').modal('close');
+                                     swal({
+                                       title: "Registration successfully updated for review!",
+                                       text: "Thank you for your updation! You will be notified once your changes have been approved!",
+                                       type: "success",
+                                                //confirmButtonColor: "#DD6B55",
+                                                confirmButtonText: "ok",
+                                                closeOnConfirm: true,
+                                                html: false
+                                              }, function(){
+                                               window.location = "edit-blogger.php?id="+data.id;
                                              });
                                    },3000)
 
