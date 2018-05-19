@@ -52,7 +52,7 @@ include '../../common-apis/reg-api.php';
          						</div>
 						<div>
 							<div class="input-field col s8">
-								<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_faq"> 
+								<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_faq"> 
 							</div>
 						</div>
 					</form>

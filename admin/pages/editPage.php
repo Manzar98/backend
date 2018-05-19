@@ -30,16 +30,22 @@ include '../../common-apis/reg-api.php';
 						<?php
 						$asso_array= array();
 						$asso_array[]= array("tag"=>"input", "type"=>"text", "id"=>"page_name", "name"=>"page_name","label"=>"Page Name","classDiv"=>"input-field col s8 web","value"=>$result_P['page_name']);
-
-						$asso_array[]= array("tag"=>"input", "type"=>"text", "id"=>"page_alias", "name"=>"page_alias","label"=>"Page Alias","classDiv"=>"input-field col s8 web","value"=>$result_P['page_alias']);
 						$asso_array[]= array("tag"=>"textarea", "id"=>"page_content", "name"=>"page_content","label"=>"Page Content","value"=>$result_P['page_content']);
 						$asso_array[]=array(
 
 							array("tag"=>"textarea", "id"=>"page_metadata", "name"=>"page_metadata", "label"=>"Meta Data", "classDiv"=>"row", "2col"=>"col s6","value"=>$result_P['page_metadata']),
 							array("tag"=>"textarea", "id" =>"page_metakeyword", "name"=>"page_metakeyword", "label"=>"Meta keywords", "classDiv"=>"row", "2col"=>"col s6","value"=>$result_P['page_metakeyword'])
 						); 
-						$result= gen_page($asso_array);
-						echo $result;
+						$result= gen_page($asso_array); ?>
+
+						<div>
+						<label class="col s4">Page Alias</label>
+						<div class="input-field col s8">
+							<input type="text" id="page_alias" onblur="checkalias(this.value)" name="page_alias" class="validate" url-ajax="../../methods/aliasValidation.php" tbl="pages" sql-connect="../common-sql.php" value="<?php echo$result_P['page_alias']; ?>">
+							<span id="msg" class="hi-red"></span>
+						</div>
+					</div> 
+				<?php 	echo $result;
 						?>
 						 <div class="row" >
 						           <p class="pTAG inactive_checkbox">
@@ -59,7 +65,7 @@ include '../../common-apis/reg-api.php';
          						</div>
 						<div>
 							<div class="input-field col s8">
-								<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_page"> 
+								<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_page"> 
 							</div>
 						</div>
 					</form>
@@ -71,6 +77,7 @@ include '../../common-apis/reg-api.php';
 	<?php include '../../common-ftns/submitting-modal.php'; ?>
 	<?php  include"../footer_inner_folder.php";  ?>
 	<script src="../../js/page-js/page.js"></script>
+	<script src="../../js/method-js/alias.js"></script>
 	<script>
 		jQuery(document).ready(function () {
 			tinymce.init({ selector:'#page_content' });

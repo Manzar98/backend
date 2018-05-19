@@ -1319,7 +1319,7 @@ Remove imges when click on done in modal
  ===================*/
   $('#reg_birth').datepicker({
          
-            
+    
             
  });
 

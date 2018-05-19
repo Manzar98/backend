@@ -411,11 +411,15 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
+                                                if (data.usertype=="vendor") {
                                                window.location = "db-profile.php?id="+data.id;
+                                             }else if(data.usertype=="blogger"){
+                                                window.location = "edit-blogger.php?id="+data.id;
+                                             }
                                              });
                                    },3000)
-                                  }else if(data.status=="vendor_success"){
-
+                                  }else if(data.status=="user_success"){
+                                       
                                           $("#btn-loader").hide();
                                     setTimeout(function(){
                                      $('#loader').modal('close');
@@ -428,28 +432,12 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
-                                               window.location = "edit_vendor.php?id="+data.id;
-                                             });
-                                   },3000)
-
-
-
-
-                                  }else if(data.status=="Blogger_success"){
-
-                                          $("#btn-loader").hide();
-                                    setTimeout(function(){
-                                     $('#loader').modal('close');
-                                     swal({
-                                       title: "Registration successfully updated for review!",
-                                       text: "Thank you for your updation! You will be notified once your changes have been approved!",
-                                       type: "success",
-                                                //confirmButtonColor: "#DD6B55",
-                                                confirmButtonText: "ok",
-                                                closeOnConfirm: true,
-                                                html: false
-                                              }, function(){
-                                               window.location = "edit-blogger.php?id="+data.id;
+                                                if (data.usertype=="admin") {
+                                                   window.location = "edit_admin.php?id="+data.id;
+                                                }else{
+                                                   window.location = "edit_vendor.php?id="+data.id;
+                                                }
+                                               
                                              });
                                    },3000)
 
@@ -503,10 +491,14 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
+                                              if (data.usertype=="vendor") {
                                                window.location = "db-profile.php?id="+data.id;
+                                             }else if(data.usertype=="blogger"){
+                                                window.location = "edit-blogger.php?id="+data.id;
+                                             }
                                              });
                                    },3000)
-                                  }else if(data.status=="vendor_success"){
+                                  }else if(data.status=="user_success"){
 
                                           $("#btn-loader").hide();
                                     setTimeout(function(){
@@ -520,28 +512,11 @@
                                                 closeOnConfirm: true,
                                                 html: false
                                               }, function(){
-                                               window.location = "edit_vendor.php?id="+data.id;
-                                             });
-                                   },3000)
-
-
-
-
-                                  }else if(data.status=="Blogger_success"){
-
-                                          $("#btn-loader").hide();
-                                    setTimeout(function(){
-                                     $('#loader').modal('close');
-                                     swal({
-                                       title: "Registration successfully updated for review!",
-                                       text: "Thank you for your updation! You will be notified once your changes have been approved!",
-                                       type: "success",
-                                                //confirmButtonColor: "#DD6B55",
-                                                confirmButtonText: "ok",
-                                                closeOnConfirm: true,
-                                                html: false
-                                              }, function(){
-                                               window.location = "edit-blogger.php?id="+data.id;
+                                              if (data.usertype=="admin") {
+                                                   window.location = "edit_admin.php?id="+data.id;
+                                                }else{
+                                                   window.location = "edit_vendor.php?id="+data.id+"&u_type="+data.usertype;
+                                                }
                                              });
                                    },3000)
 

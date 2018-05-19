@@ -299,7 +299,7 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
 
       if ($inactive=="off") {
 
-         $notify_title="Listing Activated"
+         $notify_title="Listing Activated";
          $notify_descrip="".$name." has been activated by ".$_SESSION['reg_name']."";
 
        }else{

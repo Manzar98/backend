@@ -97,8 +97,8 @@
                                     <td class="tdwrap sus_appr">
 									<div class="buttonsWrap_vendors">
 										<div class="row">
-											<a class="waves-effect waves-light btn" href="veiw_vendors.php?id=<?php echo $result['user_id'];  ?>">Veiw</a>
-											<a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $result['user_id'];  ?>">Edit</a>
+											<a class="waves-effect waves-light btn" href="veiw_vendors.php?id=<?php echo $result['user_id'];  ?>&u_type=<?php echo $result['user_type']; ?>">Veiw</a>
+											<a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $result['user_id'];  ?>&u_type=<?php echo $result['user_type']; ?>">Edit</a>
 											<a class="waves-effect waves-light btn" href="#">Delete</a>
 											<?php if ($result['user_status']=="Approved") { ?>
 

@@ -62,16 +62,14 @@ reg_lstname="'.$_POST['reg_lstname'].'",
 
      include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated","Updated own record","".$_POST['reg_name']." has been updated their record",date("F j, Y, g:i a"),"veiw_vendors.php?id=".$_POST['user_id']."","vendor","admin");
-
-   
-  
-      
+     insert_notification($conn,$_POST['user_id'],"blogger","true","false","Updated","Updated own record","".$_POST['reg_name']." has been updated their record",date("F j, Y, g:i a"),"veiw_vendors.php?id=".$_POST['user_id']."&u_type=".$_POST['user_type'],"blogger","admin");
+    
     $responseArray=array(
 
-        "status"=> "Blogger_success",
+        "status"=> "Success",
          "message"=> "Registration updated successfully",
-         "id"=> $_POST['user_id']
+         "id"=> $_POST['user_id'],
+         "usertype"=>$_POST['user_type']
     );
      echo json_encode($responseArray);
   }else{

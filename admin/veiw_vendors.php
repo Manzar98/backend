@@ -4,14 +4,14 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
-	<title>Vendor-Profile</title>
+	<title>User-Profile</title>
 <?php include 'header.php'; 
    
    include"../common-apis/api.php";
 
 
     $reg_Query= select('credentials',array("user_id"=>$_GET['id']));
-
+if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
     $reg_hotel=select('hotel',array("user_id"=>$_GET['id']));
     $reg_room=select('room',array("user_id"=>$_GET['id']));
     $reg_banquet=select('banquet',array("user_id"=>$_GET['id']));
@@ -19,7 +19,7 @@
     $reg_tour=select('tour',array("user_id"=>$_GET['id']));
     $reg_event=select('event',array("user_id"=>$_GET['id']));
 
-
+}
 
 ?>
 				<?php   
@@ -49,7 +49,7 @@
                                    
                         </div>
                         <div class="pull-right" >
-                            <a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $reg_Result['user_id'];  ?>">Edit</a>
+                            <a class="waves-effect waves-light btn" href="edit_vendor.php?id=<?php echo $reg_Result['user_id'];  ?>&u_type=<?php echo $reg_Result['user_type']; ?>">Edit</a>
                         </div>
                         </div>
 					   </div>
@@ -105,7 +105,8 @@
 							<td><?php echo date_format($lastlogin, 'd-m-Y '); ?></td>
 						</tbody>
 					</table>
-					<table class="responsive-table profle-forms-reocrds-tbl" >
+					<table class="responsive-table profle-forms-reocrds-tbl" > 
+					<?php	if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") { ?>
 						<thead>
 							
 							<tr>
@@ -159,11 +160,23 @@
 								<?php }else{ ?>
 								<td class="TT ev-1" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_event); ?></td>
 								<?php } ?>
-
 								<td><?php echo $reg_Result['reg_joinD']; ?></td>
-								
 							</tr>
 						</tbody>
+						<?php }else{ ?>
+							<thead>
+								<tr>
+									<th>Age</th>
+									<th>Join Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><?php echo $age; ?></td>
+									<td><?php echo $reg_Result['reg_joinD']; ?></td>
+								</tr>
+							</tbody>
+						<?php } ?>
 					</table>
 					
 				</div>

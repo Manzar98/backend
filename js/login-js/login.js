@@ -40,7 +40,7 @@ function authentication(){
 
            }else if(data.u_type=="blogger"){
 
-                   window.location = "bloggers/dashboard.php?id="+data.id;
+                   window.location = "blogger/dashboard.php?id="+data.id;
            }
 
           

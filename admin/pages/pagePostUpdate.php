@@ -31,7 +31,7 @@ if ($is_check==true) {
 	
 	if ($_POST['is_time']=="create") {
 
-		$query='INSERT INTO pages(user_id,page_name,page_alias,page_content,page_metadata,page_metakeyword,"page_inactive")VALUES("'.$_POST['user_id'].'","'.$_POST['page_name'].'","'.$_POST['page_alias'].'","'.$p_content.'","'.$_POST['page_metadata'].'","'.$_POST['page_metakeyword'].'","'.$inactive.'")';      
+		$query='INSERT INTO pages(user_id,page_name,page_alias,page_content,page_metadata,page_metakeyword,page_inactive)VALUES("'.$_POST['user_id'].'","'.$_POST['page_name'].'","'.$_POST['page_alias'].'","'.$p_content.'","'.$_POST['page_metadata'].'","'.$_POST['page_metakeyword'].'","'.$inactive.'")';      
 
 	}else{
 

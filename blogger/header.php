@@ -407,6 +407,12 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 								<a href="edit-blogger.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 							</li>
 							<li>
+								<a href="addNewBlog.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db2.png" alt="" /> Add Blog</a>
+							</li>
+							<li>
+								<a href="blogListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db5.png" alt="" /> Blog Listing</a>
+							</li>
+							<li>
 								<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>
 							</li>
 							<li>

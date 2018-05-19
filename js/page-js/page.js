@@ -22,13 +22,29 @@
 
    }
 
+   if ($("#msg").hasClass("email_error")) {
+       
+      swal({
+
+        title: "This alias already exists",
+        
+        type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+          });
+      return;
+    }
+
    	var validator=$('#page-form').validate({
    		rules:{
    			page_name:{
    				required:true
    			},
    			page_alias:{
-   				required:true
+   				required:true,
+          lettersonly: true
    			},
    			page_content:{
    				required:true

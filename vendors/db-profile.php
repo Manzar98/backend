@@ -101,9 +101,7 @@
 								<?php }else{ ?>
 								<td class="TT" onClick="document.location.href='events/event_list.php?id=<?php echo $_SESSION['user_id']; ?>'"><?php echo mysqli_num_rows($reg_event); ?></td>
 								<?php } ?>
-
 								<td><?php echo $reg_Result['reg_joinD']; ?></td>
-								
 							</tr>
 						</tbody>
 					</table>
@@ -113,6 +111,7 @@
 
 					<form class="col s12" action="registration-update.php" method="post" role="form" id="registor-form">
 						<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+						<input type="hidden" name="user_type" value="<?php echo $reg_Result['user_type']; ?>">
 						<div class="row">
 						<div class="col-md-6">
 							<label >First Name</label>
@@ -272,7 +271,7 @@
    </div>
  </div>
 </div>
-   <?php include '../../common-ftns/submitting-modal.php'; ?>
+   <?php include '../common-ftns/submitting-modal.php'; ?>
 		</div>
 
 			<?php } ?>

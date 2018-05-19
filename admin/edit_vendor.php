@@ -4,13 +4,16 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
-	<title>Edit-Vendor</title>
+	<title>Edit-User's</title>
 <?php include 'header.php'; 
    
    include"../common-apis/api.php";
 
 
     $reg_Query= select('credentials',array("user_id"=>$_GET['id']));
+
+if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
+	# code...
 
     $reg_hotel=select('hotel',array("user_id"=>$_GET['id']));
     $reg_room=select('room',array("user_id"=>$_GET['id']));
@@ -19,7 +22,7 @@
     $reg_tour=select('tour',array("user_id"=>$_GET['id']));
     $reg_event=select('event',array("user_id"=>$_GET['id']));
 
-
+}
 
 ?>
 				<?php   
@@ -48,7 +51,9 @@
 							<td><?php echo date_format($lastlogin, 'd-m-Y '); ?></td>
 						</tbody>
 					</table>
+
 					<table class="responsive-table profle-forms-reocrds-tbl" >
+						<?php if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") { ?>
 						<thead>
 							<tr>
 								<th>Age</th>
@@ -61,7 +66,6 @@
 								<th>Join Date</th>
 
 							</tr>
-						</thead>
 						</thead>
 						<tbody>
 							<tr>
@@ -107,6 +111,20 @@
 								
 							</tr>
 						</tbody>
+						<?php }else{ ?>
+							<thead>
+								<tr>
+									<th>Age</th>
+									<th>Join Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><?php echo $age; ?></td>
+									<td><?php echo $reg_Result['reg_joinD']; ?></td>
+								</tr>
+							</tbody>
+					<?php 	} ?>
 					</table>
 					
 				</div>
@@ -114,6 +132,7 @@
 
 					<form class="col s12" action="registration-update.php" method="post" role="form" id="registor-form">
 						<input type="hidden" name="user_id" value="<?php echo $_GET['id']; ?>">
+						<input type="hidden" name="user_type" value="<?php echo $reg_Result['user_type']; ?>">
 						<div class="row">
 						<div class="col-md-6">
 							<label >First Name</label>

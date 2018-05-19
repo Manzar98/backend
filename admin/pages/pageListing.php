@@ -18,6 +18,11 @@
 				</div>
 			</div>
 			<?php if (mysqli_num_rows($p_resp) > 0) { ?>
+				<div class="row common-top ">
+				<div class="featured_btn">
+					<a class="waves-effect waves-light btn" href="addNewPage.php?id=<?php echo $_GET['id']; ?>">Add New Page</a>
+				</div>
+			</div>
 			<?php include '../../common-ftns/filter-active-inactive.php'; ?>
 			<table class="bordered responsive-table" id="h_table">
 				<thead>

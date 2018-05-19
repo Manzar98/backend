@@ -29,6 +29,7 @@
 		<div class="db-profile-edit">
 			<form class="col s12" action="blogger-update.php" method="post" role="form" id="registor-form">
 				<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+				<input type="hidden" name="user_type" value="<?php echo $reg_Result['user_type']; ?>">
 				<?php	$asso_array= array();
 				$asso_array[]=array(
 
