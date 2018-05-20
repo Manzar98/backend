@@ -7,13 +7,7 @@
 
      $showBnqQuery=select('banquet',array('banquet_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
  }
-
-
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 

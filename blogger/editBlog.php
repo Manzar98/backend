@@ -6,11 +6,11 @@
 <head>
 	<title>Edit-Blog's</title>
 <?php 
-include '../common-apis/reg-api.php';
+include '../common-apis/api.php';
 include 'header.php'; 
 include'../common-ftns/generate_pages.php'; 
-	$userId=$_GET['id'];
-	$blogId=$_GET['p_id'];
+	$userId=$_GET['u_id'];
+	$blogId=$_GET['id'];
 	$b_Query=select('blog',array('blog_id'=>$blogId,'user_id'=>$userId));
 while ($result_B=mysqli_fetch_assoc($b_Query)){
 ?>
@@ -22,10 +22,11 @@ while ($result_B=mysqli_fetch_assoc($b_Query)){
 				<p>Fill out the form below to update a blog.</p>
 			</div>
 			<div class="db-profile-edit">
-				<form class="col s12"  data-toggle="validator" id="page-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
+				<form class="col s12"  data-toggle="validator" id="blog-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
 
 					<input type="hidden" name="user_id" value="<?php echo $userId; ?>">
 					<input type="hidden" name="is_time" value="edit">
+					<input type="hidden" name="blog_id" value="<?php echo $result_B['blog_id']; ?>">
 					<?php
 					$asso_array= array();
 					$asso_array[]= array("tag"=>"input", "type"=>"text", "id"=>"blog_title", "name"=>"blog_title","label"=>"Blog Title","classDiv"=>"input-field col s8","value"=>$result_B['blog_title']);
@@ -36,7 +37,7 @@ while ($result_B=mysqli_fetch_assoc($b_Query)){
 					<div>
 						<label class="col s4">Blog Alias</label>
 						<div class="input-field col s8">
-							<input type="text" id="blog_alias" onblur="checkalias(this.value)" name="blog_alias" class="validate" url-ajax="../../methods/aliasValidation.php" tbl="blog" sql-connect="../common-sql.php" value="<?php echo $result_B['blog_alias']; ?>">
+							<input type="text" id="blog_alias" onblur="checkalias(this.value)" name="blog_alias" class="validate" url-ajax="../methods/aliasValidation.php" tbl="blog" sql-connect="../common-sql.php" value="<?php echo $result_B['blog_alias']; ?>">
 							<span id="msg" class="hi-red"></span>
 						</div>
 					</div> 
@@ -62,9 +63,10 @@ while ($result_B=mysqli_fetch_assoc($b_Query)){
 <?php include '../common-ftns/submitting-modal.php'; ?>
 <?php  include"footer.php";  ?>
 <script src="../js/blogger-js/blogger.js"></script>
+<script src="../js/method-js/alias.js"></script>
 <script>
 	jQuery(document).ready(function () {
-		tinymce.init({ selector:'#page_content' });
+		tinymce.init({ selector:'#blog_content' });
 
 
 	})

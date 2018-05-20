@@ -94,6 +94,7 @@
           ajax(p_url,$("form").serialize(),function(data){$("#btn-loader").hide();
                                  setTimeout(function(){
                                   $('#loader').modal('close');
+                                   var tit;
                                   if (data.w_time=="create") {
                                          tit="Page successfully submitted";
                                   }else{

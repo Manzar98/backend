@@ -36,7 +36,7 @@ if ($is_check==true) {
    $noti_type="blogger";
  }
  include '../../methods/send-notification.php';
- date_default_timezone_set("Asia/Karachi");
+ 
  insert_notification($conn,$user_id,$userType,"true","false","Created",$title,$decs,date("F j, Y, g:i a"),$url,$noti_type,"admin");
 
 
