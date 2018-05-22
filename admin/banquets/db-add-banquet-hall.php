@@ -280,7 +280,6 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 </div>
 
-
 <div class="row common-top">
  <div class="">
   <!-- Modal Trigger -->

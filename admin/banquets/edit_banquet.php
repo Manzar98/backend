@@ -2,7 +2,6 @@
  include '../../common-apis/reg-api.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,8 +29,6 @@ if (isset($_GET['h_id'])) {
 
   $editbnqQuery=select('banquet',array('banquet_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
 }
-  
-
 
    $global_banquet_id="";
 
@@ -412,29 +409,20 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 </div> 
 
 <div class="imgVeiwinline row" id="hotel_img_wrap">
-   <div class="row int_title"><label>Photos :</label></div>
-       <?php
-              
-                        while ($imgResult=mysqli_fetch_assoc($editbnqImgQuery)) {
+ <div class="row int_title"><label>Photos :</label></div>
+ <?php
 
-                    
+ while ($imgResult=mysqli_fetch_assoc($editbnqImgQuery)) {
 
-                          if (!empty($imgResult['common_image'])) {?>
-                          <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
-                            <a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
-                            <img src="../<?php echo $imgResult['common_image']  ?>" style="width: 150px; height: 100px;" class="materialboxed">
-                          </div>&nbsp;&nbsp;
+  if (!empty($imgResult['common_image'])) {?>
+    <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
+      <a class="deletIMG" onclick="deletIMG(event)"  data-value="<?php echo $imgResult['common_imgvideo_id']?>" data-img="<?php echo $imgResult['common_image'] ?>" ><i class="fa fa-times" aria-hidden="true"></i></a>
+      <img src="../<?php echo $imgResult['common_image']  ?>" style="width: 150px; height: 100px;" class="materialboxed">
+    </div>&nbsp;&nbsp;
+    <?php } ?>
 
-
-                          <?php } ?>
-
-
-
-
-                          <?php }
-
-                          ?>
-</div>
+    <?php } ?>
+  </div>
 
 
 <div class="row common-top">
@@ -569,8 +557,17 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
 </div>
 </div>
+<!-- Modal Structure -->
+<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
+  <div class="modal-content">
+   <div class="modal-header"><h2>Upload  Photos</h2></div>
+   <iframe src="../up_load_singleimg.php?p=edit&t=banquet&b_id=<?php echo $global_banquet_id; ?>" id="photo_iframe"></iframe>
+   <div class="modal-footer">
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
+   </div>
+ </div>
+</div>
 
-<?php include '../../common-ftns/upload-img-modal.php'; ?>
 <?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php include '../footer_inner_folder.php';?>
 

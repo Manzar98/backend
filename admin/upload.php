@@ -1,5 +1,6 @@
 <?php
-
+/*(Creation Time) Images save into database independently(azaad) and condition goes to last else*/
+/*(Edition Time) Images save images save against list id*/
 include '../common-sql.php';
    // print_r($_POST);
 
@@ -114,6 +115,7 @@ $img_video_type='hotel';
     	  $imgQuery='INSERT INTO common_imagevideo(hotel_coverimg,hotel_id)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['hotel_id'].'")';
             // echo $imgQuery;
   	  }elseif(isset($_POST['room_id'])){
+
  		  
   		  $imgQuery= 'INSERT INTO common_imagevideo(common_image,room_id,img_video_type)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['room_id'].'","room")';
 
@@ -133,7 +135,11 @@ $img_video_type='hotel';
 
   		$imgQuery= 'INSERT INTO common_imagevideo(common_image,event_id,img_video_type)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['event_id'].'","event")'; 
 
-  	  }else {
+  	  }elseif (isset($_POST['blog_id'])) {
+
+      $imgQuery= 'INSERT INTO common_imagevideo(common_image,blog_id,img_video_type)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['blog_id'].'","blog")'; 
+
+      }else {
 
   	   $imgQuery='INSERT INTO common_imagevideo(common_image)Values("'.'../images/uploads/'.$compfilename.'")';
        

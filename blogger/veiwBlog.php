@@ -9,13 +9,15 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
   <script src="../js/jquery.min.js"></script>
-  <?php  while ($B_Result=mysqli_fetch_assoc($showB_Query)) {   ?>
+  <?php  while ($B_Result=mysqli_fetch_assoc($showB_Query)) {   
+   $showBnqImgQuery=select('common_imagevideo',array('blog_id'=>$B_Result['blog_id']));
+   ?>
 
-    <title>Detail of <?php echo $B_Result['blog_title']; ?> </title>
+   <title>Detail of <?php echo $B_Result['blog_title']; ?> </title>
 
-    <?php include 'header.php'; ?>
+   <?php include 'header.php'; ?>
 
-    <div class="db-cent-3">
+   <div class="db-cent-3">
      <div class="db-cent-table db-com-table">
       <div class="row">
         <div class="pull-right">
@@ -23,7 +25,7 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
        </div>
      </div>
      <div class="db-profile"> 
-      <!-- <img src="" id="cover_photo_common" alt="">  -->
+      <img src="" id="cover_photo_common" alt=""> 
       <h4><?php echo $B_Result['blog_title'];  ?> </h4>
     </div>
     <div class="hotelVeiw">
@@ -43,18 +45,21 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
       </div>
     </div> 
   </div>
-
+<?php } ?>
 </div>
 <div class="row" style="padding-left: 15px;">
  <span><b>Blog Images :</b></span>
 </div>
 <div class="imgVeiwinline row" id="hotel_img_wrap" style="padding-left: 15px;">
 
- <?php 
+  <?php
 
-   /* if (!empty($imgResult['common_image'])) {?>
+  while ($imgResult=mysqli_fetch_assoc($showBnqImgQuery)) {
+
+
+    if (!empty($imgResult['common_image'])) {?>
       <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
-        <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
+        <img src="<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
       </div>&nbsp;&nbsp;
       <script type="text/javascript">
         $(document).ready(function(){
@@ -66,16 +71,14 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
 
         })
 
-        </script>*/
-        ?>
-
-        <?php } ?>
-
-      </div>
-
+      </script>
+      <?php } ?>
+      <?php  }?>
     </div>
+
   </div>
-  <?php  include"footer.php";  ?>
+</div>
+<?php  include"footer.php";  ?>
 </body>
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 </html>

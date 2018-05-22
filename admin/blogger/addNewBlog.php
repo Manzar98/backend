@@ -5,10 +5,10 @@
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
 	<title>Add-New Blog's</title>
-<?php include '../header_inner_folder.php'; 
-include'../../common-ftns/generate_pages.php'; 
+	<?php include '../header_inner_folder.php'; 
+	include'../../common-ftns/generate_pages.php'; 
 	$userId=$_GET['id'];
-?>
+	?>
 
 	<div class="db-cent-3">
 		<div class="db-cent-table db-com-table">
@@ -35,8 +35,21 @@ include'../../common-ftns/generate_pages.php';
 							<span id="msg" class="hi-red"></span>
 						</div>
 					</div> 
-				<?php	echo $result;
+					<?php	echo $result;
 					?>
+					<div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
+
+						<div class="row int_title"><label>Photos :</label></div>
+
+					</div>
+					<div class="row common-top">
+						<div class="">
+							<!-- Modal Trigger -->
+							<div class="col s1"></div>
+							<a class="waves-effect waves-light btn modal-trigger spc-modal col s10" href="#modal-images" >Blog Photos</a>
+							<input type="hidden" name="common_image" id="img_ids">
+						</div>
+					</div>
 					<div class="row common-top" >
 						<p class="pTAG">
 							<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="blog_inactive" />
@@ -53,6 +66,7 @@ include'../../common-ftns/generate_pages.php';
 		</div>
 	</div>
 </div>
+<?php include'../../common-ftns/upload-img-modal.php'; ?>
 <?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php  include"../footer_inner_folder.php";  ?>
 <script src="../../js/blogger-js/blogger.js"></script>
@@ -68,4 +82,4 @@ include'../../common-ftns/generate_pages.php';
 </body>
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 </html>
-   
+

@@ -1134,7 +1134,16 @@ function deletIMG(event){
 
   var file_ID=event.currentTarget.getAttribute("data-value");
   var file_Name=event.currentTarget.getAttribute("data-img");
+  if (event.currentTarget.getAttribute("data-form")) {
+  var data_form=event.currentTarget.getAttribute("data-form");
+  }
   var removeDIV =event.currentTarget.parentElement;
+  
+  if (data_form=="blog") {
+     var url="delete_img.php";
+  }else{
+    var url="../delete_img.php";
+  }
 swal({
   title: "Are you sure?",
   text: "You will not be able to recover this photo!",
@@ -1151,7 +1160,7 @@ function(isConfirm){
   
   if (isConfirm) {
         
-        $.post("../delete_img.php",{
+        $.post(url,{
                                          fileId   : file_ID,
                                          fileName : file_Name
                                              })

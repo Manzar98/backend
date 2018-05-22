@@ -38,6 +38,19 @@ include'../common-ftns/generate_pages.php';
 					</div> 
 				<?php	echo $result;
 					?>
+					<div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
+
+						<div class="row int_title"><label>Photos :</label></div>
+
+					</div>
+					<div class="row common-top">
+						<div class="">
+							<!-- Modal Trigger -->
+							<div class="col s1"></div>
+							<a class="waves-effect waves-light btn modal-trigger spc-modal col s10" href="#modal-images" >Blog Photos</a>
+							<input type="hidden" name="common_image" id="img_ids">
+						</div>
+					</div>
 					<div class="row common-top" >
 						<p class="pTAG">
 							<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="blog_inactive" />
@@ -54,6 +67,7 @@ include'../common-ftns/generate_pages.php';
 		</div>
 	</div>
 </div>
+<?php include'../common-ftns/upload-img-modal.php'; ?>
 <?php include '../common-ftns/submitting-modal.php'; ?>
 <?php  include"footer.php";  ?>
 <script src="../js/blogger-js/blogger.js"></script>

@@ -16,6 +16,9 @@ if (isset($_POST['blog_inactive']) && $_POST['blog_inactive']=="on") {
 }else{
 	$inactive="off";
 }
+$img          = $_POST['common_image'];
+$imgarray= explode(",",$img);
+$formtype="blog";
 $errorMsgs=implode(",",$responseArray);
 $newErrorMsgArr=array(
 	"status"=> "error",
@@ -35,12 +38,22 @@ if ($is_check==true) {
 		$query='INSERT INTO blog(user_id,blog_title,blog_alias,blog_content,blog_inactive,blog_status)VALUES("'.$_POST['user_id'].'","'.$_POST['blog_title'].'","'.$_POST['blog_alias'].'","'.$content.'","'.$inactive.'","Pending")';  
 
 		if ($conn->query($query)== TRUE) {
-  
+			
 			$blog_id =$conn->insert_id;
 
 		}else{
 			echo "Error: " . $query . "<br>" . $conn->error;
-		}   
+		}  
+
+		for ($i=0; $i<count($imgarray); $i++) {
+
+			$img_UpdateQuery='UPDATE common_imagevideo SET
+			blog_id="'.$blog_id.'",
+			img_video_type = "'.$formtype.'" WHERE common_imgvideo_id="'.$imgarray[$i].'"' ;
+
+			mysqli_query($conn,$img_UpdateQuery) or die(mysqli_error($conn));
+		}
+		
 
 		include '../methods/send-notification.php';
 
