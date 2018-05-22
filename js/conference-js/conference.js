@@ -169,20 +169,17 @@ if (validator.form()== false) {
 
                              var data =JSON.parse(res);
                              console.log(data);
-
+                       
                              if (data.status=='success') {
 
 
-
+                                  $("#btn-loader").hide();
                                   var url=window.location.href;
 
                               if (url.indexOf('status') > -1) {
 
                                 var url_split=url.split('&');
                                 console.log(url_split[1]);
-
-
-                                $("#btn-loader").hide();
                                 setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({
@@ -205,7 +202,7 @@ if (validator.form()== false) {
                               }else{
 
 
-                              $("#btn-loader").hide();
+                             
                               setTimeout(function(){
                                  $('#loader').modal('close');
                                  swal({

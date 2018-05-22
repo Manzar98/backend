@@ -6,11 +6,11 @@
 <head>
 	<?php if ($_GET['act'] && $_GET['act']=="manage") { ?>
 
-	<title>Manage a Listing against vendors</title>
+	<title>Manage a Listing against users</title>
 
 	<?php }else if ($_GET['act'] && $_GET['act']=="add") { ?>
 
-	<title>Add a Listing against vendors</title>
+	<title>Add a Listing against users</title>
 
 	<?php }else{ ?>
 
@@ -20,7 +20,7 @@
 	<?php  include 'header.php'; 
 
 	include '../common-sql.php';
-	$vendorQuery=    'SELECT * FROM credentials where user_type="vendor" ORDER BY user_id DESC ';
+	$vendorQuery=    'SELECT * FROM credentials where (user_type="vendor" OR user_type="blogger") ORDER BY user_id DESC ';
 	 
           $vendor_resp =mysqli_query($conn,$vendorQuery)  or die(mysqli_error($conn));
 
@@ -49,7 +49,7 @@
 
 						</div>
 
-				     <?php include '../common-ftns/filter-sus-app-pen.php'; ?>
+				     <?php include '../common-ftns/admin_filteration.php'; ?>
 
 						
 						<?php
@@ -65,45 +65,52 @@
 									<th>City</th>
 									<th>Email Address</th>
 									<th>Status</th>
-									
-									
-									
 								</tr>
 							</thead>
 							<tbody class="wrap-td">
 								
                                 <?php   while ($result=mysqli_fetch_assoc($vendor_resp)) { ?>
                                 
-                                <?php if ($_GET['act'] && $_GET['act']=="manage") { ?>
+                                <?php if ($_GET['act'] && $_GET['act']=="manage") {  ?>
 
-                                        <tr class="tr-1 v-lsting-cursor" onClick="document.location.href='manage-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>'" >
+                                     <?php if ($result['user_type']=="blogger") { ?>
 
+                                     	      <tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?>" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+                                      	
+                                     <?php  }elseif ($result['user_type']=="vendor") { ?>
+
+                                     	       <tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?>" onClick="document.location.href='manage-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+                                     <?php  } ?>
+                                	
                                 <?php }else if ($_GET['act'] && $_GET['act']=="add"){ ?>
-                                         
-                                          <tr class="tr-1 v-lsting-cursor" onClick="document.location.href='add-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>'" >
 
-                                <?php }else{ ?>
-                                       
-                                        <tr class="tr-1 v-lsting-cursor" onClick="document.location.href='paid_ads/paid-ads-list.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>'" >
+                                	 <?php if ($result['user_type']=="blogger") { ?>
+
+                                     	      <tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?>" onClick="document.location.href='blogger/addNewBlog.php?id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+                                      	
+                                     <?php  }elseif ($result['user_type']=="vendor") { ?>
+
+                                     	       <tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?>"" onClick="document.location.href='add-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+                                     <?php  } ?>
+                                         
+                                         
+
                                 <?php } ?>
                                    
 									<td class="td-name capitalize"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['reg_postal']; ?></td>
 									<td class="td-name capitalize"><?php echo $result['reg_city'];   ?></td>
 									<td class="td-name capitalize"><?php echo $result['reg_email'];   ?></td>
-									
-										<?php if ($result['user_status']=="Approved") { ?>
+									<td class="userType" style="display: none;"><?php echo $result['user_type']; ?></td>
+									<?php if ($result['user_status']=="Approved") { ?>
 
 										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['user_status']; ?></span></td>
 
-										<!-- <td class="status_wrap sus" style="display: none;"><span class="db-not-success">Suspended</span></td> -->
-
-										<?php }elseif ($result['user_status']=="Suspended") {?>
+								    <?php }elseif ($result['user_status']=="Suspended") {?>
 
 										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
-										<!-- <td class="status_wrap appr" style="display: none;"><span class="db-success">Approved</span></td> -->
 
-										<?php }else{ ?>
+								    <?php }else{ ?>
 
 										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
 										<?php } ?>
@@ -128,9 +135,8 @@
   </div>
 
 <?php include'footer.php'; ?>
-
-
-    
+<script src="../js/admin-js/admin.js"></script>
+  
 </body>
 
 

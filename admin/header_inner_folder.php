@@ -395,19 +395,19 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
              <div class="db-left-2">
 					<ul>
 						<li>
-							<a href="../dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db1.png" alt="" />Dashboard</a>
+							<a href="../dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db1.png" alt="" /> Dashboard</a>
 						</li>
 						<li>
 							<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Manage Users</a>
 						</li>
 						<li>
-							<a href="../list-of-vendor_manage_add.php?act=add"><img src="../../images/icon/db2.png" alt="" />Add Listing</a>
+							<a href="../list-of-vendor_manage_add.php?act=add"><img src="../../images/icon/db2.png" alt="" /> Add Listing</a>
 						</li>
 						<li>
-							<a href="../list-of-vendor_manage_add.php?act=manage"><img src="../../images/icon/db3.png" alt="" />Manage Listing</a>
+							<a href="../list-of-vendor_manage_add.php?act=manage"><img src="../../images/icon/db3.png" alt="" /> Manage Listing</a>
 						</li>
 						<li>
-							<a href="../list-of-vendor_manage_add.php?act=feature_ad"><img src="../../images/icon/db5.png" alt="" /> Featured Ads</a>
+							<a href="../add-manage-ads_vendor.php"><img src="../../images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
 						<li>
 							<a href="../pages/pageListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db4.png" alt="" /> Pages</a>

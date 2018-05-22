@@ -2,19 +2,7 @@
 
 include '../../common-apis/reg-api.php';
 
-   // $banquetQuery=select("banquet",array("user_id"=>2));
-
-// function manzarNoman(){
-
-// 	$ap_btn=`<a href="">Chikna</a>`;
-
-// 	return $ap_btn;
-// }
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 

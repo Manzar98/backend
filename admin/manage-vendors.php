@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
 	<title>List of Users</title>
@@ -23,32 +21,7 @@
 
 						</div>
 
-				      <!--  <?php include '../common-ftns/filter-sus-app-pen.php'; ?> -->
-                        <div class="row">
-                        	<div class="col s3 search_flter">
-						 		 <select onchange="filter_userType(event)" id="user_Type"  name="">
-						 		 	  <option value="-1" selected="" >View all</option>
-								      <option value="vendor">Vendor</option>
-								      <option value="blogger">Blogger</option>
-                                 </select>
-						 	</div>
-						 	<div class="col s3 search_flter">
-
-						 		 <select onchange="myFunction_manage(event)" id="yourole"  name="">
-						 		 	  <option value="" selected="" >View all</option>
-								      <option value="Approved">Approved</option>
-								      <option value="Suspended">Suspended</option>
-								      <option value="Pending">Waiting Approval</option>
-                                 </select>
-						 	</div>
-						 	<div class="col s4 search_field">	
-						 		<input  type="text" class="input-field" id="mysearch" onkeyup="myFunction(event)" placeholder="Search">
-						 	</div>
-						 	<div class="search_field_btn">
-						 		<input class="waves-effect waves-light btn" id="inptbtn" type="button"  onclick="myFunction(event)" value="Search"> 
-						 	</div>
-				   </div>
-						
+				       <?php include '../common-ftns/admin_filteration.php'; ?>
 						<?php
 
 								if (mysqli_num_rows($vendor_resp) > 0) { ?>
@@ -81,13 +54,10 @@
 
 										<td class="status_wrap appr" ><span class="db-success"><?php echo $result['user_status']; ?></span></td>
 
-										<!-- <td class="status_wrap sus" style="display: none;"><span class="db-not-success">Suspended</span></td> -->
-
 										<?php }elseif ($result['user_status']=="Suspended") {?>
 
 										<td class="status_wrap appr"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
-										<!-- <td class="status_wrap appr" style="display: none;"><span class="db-success">Approved</span></td> -->
-
+										
 										<?php }else{ ?>
 
 										<td class="status_wrap appr"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
@@ -103,14 +73,14 @@
 											<?php if ($result['user_status']=="Approved") { ?>
 
                                      		<a  href="#susp" u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
-                                     		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
-                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                     		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" u_type="<?php echo $result['user_type']; ?>">Suspend</a>
+                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;" u_type="<?php echo $result['user_type']; ?>">Approve</a>
                                      	
                                    <?php  }else{ ?>
 
-                                    		<a href="#susp"  u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" style="display: none;">Suspend</a>
-                                    		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
-                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" >Approve</a>
+                                    		<a href="#susp"  u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" style="display: none;" >Suspend</a>
+                                    		<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" u_type="<?php echo $result['user_type']; ?>">Suspend</a>
+                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" u_type="<?php echo $result['user_type']; ?>" class="approve btn" value="Approved" >Approve</a>
  
                                    	         
                                  <?php   } ?>
@@ -174,11 +144,12 @@ function reason_submit() {
       var sus=$(event.currentTarget).parents('tr');
 	  var btn=$(event.currentTarget).attr('value');
       var u_id=$(event.currentTarget).attr('u_id');
+      var u_type=$(event.currentTarget).attr('u_type');
 	   $.ajax({
              
              type:"POST",
              url:"update-user_status.php",
-             data:{'btn':btn,'u_id':u_id,'reason':text_area},
+             data:{'btn':btn,'u_id':u_id,'reason':text_area,'u_type':u_type},
              success:function(res){
                    
                    var data=JSON.parse(res);
@@ -200,9 +171,10 @@ function reason_submit() {
 function show_approve(event) {
       
       var sus=$(event.currentTarget).parents('tr');
-
-	var btn=$(event.currentTarget).attr('value');
+	  var btn=$(event.currentTarget).attr('value');
       var u_id=$(event.currentTarget).attr('u_id');
+      var u_type=$(event.currentTarget).attr('u_type');
+
 
        swal({
 
@@ -226,7 +198,7 @@ function show_approve(event) {
              
              type:"POST",
              url:"update-user_status.php",
-             data:{'btn':btn,'u_id':u_id},
+             data:{'btn':btn,'u_id':u_id,'u_type':u_type},
              success:function(res){
                    
                    var data=JSON.parse(res);
@@ -253,115 +225,9 @@ function show_approve(event) {
  	 
 }
 
-/*Search filteration in manage vendor only against multiple users*/
-function myFunction_manage(event) {
 
-	if ($('#user_Type').val()=="-1") {
-
-		var input=document.getElementById("mysearch");
-
-		var filter=input.value;
-
-		var trObj = $('#h_table tbody tr');
-		$('#h_table tbody tr').hide();
-
-		if (event.which==13 || event.type=="click" ) {
-
-			$.each(trObj,function(k,value){
-
-				if(value.innerHTML.toLowerCase().indexOf(filter) > -1){
-					$(value).show();
-				}
-			});
-// debugger;
-}else if(event.type=="change"){
-
-
-	filter=$('#yourole').val();
-	
-	$.each($('.appr'),function(k,value){
-
-		console.log(value);
-
-		if(value.innerHTML.indexOf(filter) > -1){
-
-			$(value).parents('.tr-1').show();
-		}
-	});
-
-}else{
-
-	$.each(trObj,function(k,value){
-		if(value.innerHTML.toLowerCase().indexOf(filter) > -1){
-			$(value).show();
-		}
-	});
-
-}
-
-}else{
-
-	childfilter();
-}
-
-}
-function childfilter(){
-
-	$('.'+$('#user_Type').val()+'_Approved').hide();
-	$('.'+$('#user_Type').val()+'_Suspended').hide(); 
-	$('.'+$('#user_Type').val()+'_Pending').hide();
-	$('.'+$('#user_Type').val()+'_'+$('#yourole').val()).show();
-
-	if ($('#yourole').val()=="") {
-
-		$('.'+$('#user_Type').val()+'_Approved').show();
-		$('.'+$('#user_Type').val()+'_Suspended').show(); 
-		$('.'+$('#user_Type').val()+'_Pending').show();
-	}
-
-}
-
-function filter_userType(event) {
-
-	$('#h_table tbody tr').hide();
-	var trObj = $('#h_table tbody tr');
-	if(event.type=="change"){
-
-   var filter=$('#user_Type').val(); 
-   $.each($('.userType'),function(k,value){
-
-   	if(value.innerHTML.indexOf(filter) > -1){
-
-   		if ($(value).parents('.vendor')) {
-
-   			$(value).parents('.vendor').show();
-   		}
-   		if($(value).parents('.blogger')){
-
-   			$(value).parents('.blogger').show();	
-   		}
-
-   	}
-
-   });
-
-
-   if (filter=="-1") {
-
-   	  $('.blogger_Approved').show();
-	  $('.blogger_Suspended').show(); 
-	  $('.blogger_Pending').show();
-	  $('.vendor_Approved').show();
-	  $('.vendor_Suspended').show(); 
-	  $('.vendor_Pending').show();
-   }
-
- 
-}
-}
-/*------End search filteration-------*/
 </script>
-    
+  <script src="../js/admin-js/admin.js"></script>  
 </body>
 
 

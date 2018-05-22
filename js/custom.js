@@ -1318,9 +1318,10 @@ Remove imges when click on done in modal
    Date of birth when registration
  ===================*/
   $('#reg_birth').datepicker({
-         
-    
-            
+    changeMonth:true,     
+    changeYear: true,
+    yearRange: '1970:2018'
+       
  });
 
 /*===========

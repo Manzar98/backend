@@ -1955,6 +1955,7 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
     overflow: hidden;
     padding: 40px;
     border-top: 1px solid #eaedef;
+    min-height: 460px;
 }
 .db-cent-table {} .db-com-table {} .db-com-table table {} .db-com-table table tr {
     line-height: 50px;
@@ -5206,4 +5207,11 @@ li.li-wrap:hover .noti_x_icon {
 }
 .dropdown-content{
     max-height: 250px;
+}
+.ui-datepicker-month{
+    display: block;
+    float: left;
+}
+.ui-datepicker-year{
+    display: block;
 }

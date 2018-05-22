@@ -19,6 +19,9 @@ if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
     $reg_tour=select('tour',array("user_id"=>$_GET['id']));
     $reg_event=select('event',array("user_id"=>$_GET['id']));
 
+}else if (isset($_GET['u_type']) && $_GET['u_type']=="blogger") {
+	
+	$reg_blog=select('blog',array("user_id"=>$_GET['id']));
 }
 
 ?>
@@ -35,14 +38,14 @@ if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
                                     	<?php if ($reg_Result['user_status']=="Approved") { ?>
 
                                      		<a  href="#susp" u_id="<?php echo $reg_Result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
-                                     		<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;">Suspend</a>
-                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;">Approve</a>
+                                     		<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" u_type="<?php echo $reg_Result['user_type']; ?>">Suspend</a>
+                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;" u_type="<?php echo $reg_Result['user_type']; ?>">Approve</a>
                                      	
                                    <?php  }else{ ?>
 
                                     		<a href="#susp"  u_id="<?php echo $reg_Result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" style="display: none;">Suspend</a>
-                                    		<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;">Suspend</a>
-                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" >Approve</a>
+                                    		<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" u_type="<?php echo $reg_Result['user_type']; ?>">Suspend</a>
+                                     		<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" u_type="<?php echo $reg_Result['user_type']; ?>">Approve</a>
  
                                    	         
                                  <?php   } ?>
@@ -167,12 +170,18 @@ if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
 							<thead>
 								<tr>
 									<th>Age</th>
+									<th class="TT bo-1" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">No of Blogs</th>
 									<th>Join Date</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td><?php echo $age; ?></td>
+									<?php if (mysqli_num_rows($reg_blog)< 1) { ?>
+								<td class="TT  bo-1" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+								<?php }else{ ?>
+								<td class="TT bo-1" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_blog); ?></td>
+								<?php } ?>
 									<td><?php echo $reg_Result['reg_joinD']; ?></td>
 								</tr>
 							</tbody>
@@ -322,14 +331,14 @@ function reason_submit() {
         var sus=$(event.currentTarget).parents('.veiw_sus_appr');
 	    var btn=$(event.currentTarget).attr('value');
         var u_id=$(event.currentTarget).attr('u_id');
-        
         var id_val= $('#hidden-id_val').val();
         var name_val=$('#hidden-name_val').val();
+        var u_type=$(event.currentTarget).attr('u_type');
 	   $.ajax({
              
              type:"POST",
              url:"update-user_status.php",
-             data:{'btn':btn,'u_id':u_id,'reason':text_area},
+             data:{'btn':btn,'u_id':u_id,'reason':text_area,'u_type':u_type},
              success:function(res){
                    
                    var data=JSON.parse(res);
@@ -348,6 +357,7 @@ function reason_submit() {
                           $('.con-1').attr('onclick',"document.location.href='conferences/conference_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                           $('.tor-1').attr('onclick',"document.location.href='tours/tour_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                           $('.ev-1').attr('onclick',"document.location.href='events/event_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.bo-1').attr('onclick',"document.location.href='blogger/blogListing.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                         
                            
                    }else{
@@ -367,12 +377,12 @@ function reason_submit() {
 
 function show_approve(event) {
        
-      var sus=$(event.currentTarget).parents('.veiw_sus_appr');
-
-	var btn=$(event.currentTarget).attr('value');
-      var u_id=$(event.currentTarget).attr('u_id');
+        var sus=$(event.currentTarget).parents('.veiw_sus_appr');
+	    var btn=$(event.currentTarget).attr('value');
+        var u_id=$(event.currentTarget).attr('u_id');
         var id_val= $('#hidden-id_val').val();
         var name_val=$('#hidden-name_val').val();
+        var u_type=$(event.currentTarget).attr('u_type');
 
            swal({
 
@@ -395,7 +405,7 @@ function show_approve(event) {
              
              type:"POST",
              url:"update-user_status.php",
-             data:{'btn':btn,'u_id':u_id},
+             data:{'btn':btn,'u_id':u_id,'u_type':u_type},
              success:function(res){
                    
                    var data=JSON.parse(res);
@@ -418,6 +428,7 @@ function show_approve(event) {
                           $('.con-1').attr('onclick',"document.location.href='conferences/conference_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                           $('.tor-1').attr('onclick',"document.location.href='tours/tour_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                           $('.ev-1').attr('onclick',"document.location.href='events/event_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
+                          $('.bo-1').attr('onclick',"document.location.href='blogger/blogListing.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                          
 
 
