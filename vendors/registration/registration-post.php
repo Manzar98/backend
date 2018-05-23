@@ -32,7 +32,7 @@ if ($is_check==true) {
  }elseif ($_POST['user_type']=="blogger") {
    $title="New blogger registered";
    $decs=$_POST['reg_name']." has been registered as new blogger";
-   $url="veiw_blogger.php?id=".$user_id."";
+   $url="veiw_vendors.php?id=".$user_id."";
    $noti_type="blogger";
  }
  include '../../methods/send-notification.php';

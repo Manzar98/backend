@@ -2,7 +2,6 @@
 include '../common-apis/api.php';
 
 $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +20,7 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
      <div class="db-cent-table db-com-table">
       <div class="row">
         <div class="pull-right">
-         <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $B_Result['blog_id'];  ?>&u_id=<?php echo  $B_Result['user_id']  ?>">Edit</a>
+         <a class="waves-effect waves-light btn" href="editBlog.php?id=<?php echo $B_Result['blog_id'];  ?>&u_id=<?php echo  $B_Result['user_id']  ?>">Edit</a>
        </div>
      </div>
      <div class="db-profile"> 

@@ -82,7 +82,7 @@
 
                                           var coma_id=parent.document.getElementById('img_ids').value= storedId+','+updatedResponse.id;
                                         }
-                                        var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:15px; padding-top: 19px;""><a class="deletIMG" onclick="deletIMG(event)" style="position: relative; bottom: 17px; right: 14px;" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="../'+updatedResponse.filename+'" class="materialboxed" style="width: 150px; height: 100px;"></div>');
+                                        var singleImg = $('<div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:15px; padding-top: 19px;""><a class="deletIMG" onclick="deletIMG(event)" style="position: relative; bottom: 17px; right: 14px;" data-value="'+updatedResponse.id+'" data-img="'+updatedResponse.filename+'"><i class="fa fa-times" aria-hidden="true"></i></a><img src="'+updatedResponse.filename+'" class="materialboxed" style="width: 150px; height: 100px;"></div>');
                                         parent.$('#hotel_img_wrap').append(singleImg[0]);
                                         parent.$('#hotel_img_wrap').show();
                                         parent.$(".int_title").show();

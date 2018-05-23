@@ -15,6 +15,21 @@ $('#pro-sub-btn_blog').click(function () {
 		return;
 	}
 
+	if ($('#hotel_img_wrap .imgeWrap').length==0) {
+ 
+    swal({
+
+          title: "At least one photo is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+
 	var validator= $("#blog-form").validate({
 		rules:{
 

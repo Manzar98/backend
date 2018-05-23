@@ -5,11 +5,11 @@
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
 	<title>Add-New Blog's</title>
-<?php include 'header.php'; 
-include'../common-ftns/generate_pages.php'; 
+	<?php include 'header.php'; 
+	include'../common-ftns/generate_pages.php'; 
 	$userId=$_GET['id'];
 
-?>
+	?>
 
 	<div class="db-cent-3">
 		<div class="db-cent-table db-com-table">
@@ -36,7 +36,7 @@ include'../common-ftns/generate_pages.php';
 							<span id="msg" class="hi-red"></span>
 						</div>
 					</div> 
-				<?php	echo $result;
+					<?php	echo $result;
 					?>
 					<div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
 
@@ -67,7 +67,16 @@ include'../common-ftns/generate_pages.php';
 		</div>
 	</div>
 </div>
-<?php include'../common-ftns/upload-img-modal.php'; ?>
+<!-- Modal Structure -->
+<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
+	<div class="modal-content">
+		<div class="modal-header"><h2>Upload  Photos</h2></div>
+		<iframe src="up_load_singleimg.php" id="photo_iframe"></iframe>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
+		</div>
+	</div>
+</div>
 <?php include '../common-ftns/submitting-modal.php'; ?>
 <?php  include"footer.php";  ?>
 <script src="../js/blogger-js/blogger.js"></script>
@@ -83,4 +92,4 @@ include'../common-ftns/generate_pages.php';
 </body>
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 </html>
-   
+

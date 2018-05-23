@@ -69,7 +69,7 @@ if ($is_check==true) {
 		WHERE blog_id="'.$_POST['blog_id'].'" AND user_id="'.$_POST['user_id'].'"';
 
 		include '../methods/send-notification.php';
-		insert_notification($conn,$_POST['user_id'],"blogger","true","false","Created","Blog Updated","".$_POST['blog_title']." has been updated for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"blogger/showBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin" );
+		insert_notification($conn,$_POST['user_id'],"blogger","true","false","Created","Blog Updated","".$_POST['blog_title']." has been updated for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin" );
 
 		$result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 	}
