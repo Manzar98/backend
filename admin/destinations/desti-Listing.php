@@ -46,6 +46,7 @@
 							<div class="">
 								<div class="row">
 									<a class="waves-effect waves-light btn" href="editDesti.php?d_id=<?php echo $result['desti_id'];  ?>&id=<?php echo $result['user_id']; ?>">Edit</a>
+									<a class="waves-effect waves-light btn" href="veiwDesti.php?d_id=<?php echo $result['desti_id'];  ?>&id=<?php echo $result['user_id']; ?>">Veiw</a>
 									<a class="waves-effect waves-light btn" href="#">Delete</a>
 									<?php if ($result['desti_inactive']=="on") { ?>
 										    <a onclick="active(event)" class="waves-effect waves-light btn active" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['desti_id']; ?>" value="off" tbl-name="destinations" col-name="desti_inactive" id-col="desti_id">Activate</a>
