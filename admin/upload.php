@@ -110,7 +110,16 @@ $img_video_type='hotel';
           $imgQuery='INSERT INTO common_imagevideo(hotel_coverimg)Values("'.'../images/uploads/'.$compfilename.'")';
           // echo $imgQuery;
 
-  	  }elseif (isset($_POST['hotel_id']) && isset($_POST['hotelCover'])) {
+  	  }elseif(isset($_POST['cover_type_desti'])){
+
+          $imgQuery='INSERT INTO common_imagevideo(desti_coverimg)Values("'.'../images/uploads/'.$compfilename.'")';
+          // echo $imgQuery;
+
+      }elseif (isset($_POST['desti_id']) && isset($_POST['destiCover'])) {
+
+        $imgQuery='INSERT INTO common_imagevideo(desti_coverimg,desti_id)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['desti_id'].'")';
+            // echo $imgQuery;
+      }elseif (isset($_POST['hotel_id']) && isset($_POST['hotelCover'])) {
 
     	  $imgQuery='INSERT INTO common_imagevideo(hotel_coverimg,hotel_id)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['hotel_id'].'")';
             // echo $imgQuery;
@@ -138,6 +147,10 @@ $img_video_type='hotel';
   	  }elseif (isset($_POST['blog_id'])) {
 
       $imgQuery= 'INSERT INTO common_imagevideo(common_image,blog_id,img_video_type)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['blog_id'].'","blog")'; 
+
+      }elseif (isset($_POST['desti_id'])) {
+
+      $imgQuery= 'INSERT INTO common_imagevideo(common_image,desti_id,img_video_type)Values("'.'../images/uploads/'.$compfilename.'","'.$_POST['desti_id'].'","destination")'; 
 
       }else {
 

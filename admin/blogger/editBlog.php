@@ -37,15 +37,15 @@
 
 
 						$result= gen_page($asso_array); ?>
-						<div>
+						<?php	echo $result;
+						?>
+						<div class="common-top">
 							<label class="col s4">Blog Alias</label>
 							<div class="input-field col s8">
 								<input type="text" id="blog_alias" onblur="checkalias(this.value)" name="blog_alias" class="validate" url-ajax="../../methods/aliasValidation.php" tbl="blog" sql-connect="../common-sql.php" value="<?php echo $result_B['blog_alias']; ?>">
 								<span id="msg" class="hi-red"></span>
 							</div>
 						</div> 
-						<?php	echo $result;
-						?>
 						<div class="imgVeiwinline row" id="hotel_img_wrap">
 							<div class="row int_title"><label>Photos :</label></div>
 							<?php

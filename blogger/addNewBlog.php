@@ -29,6 +29,8 @@
 
 					
 					$result= gen_page($asso_array); ?>
+					<?php	echo $result;
+					?>
 					<div>
 						<label class="col s4">Blog Alias</label>
 						<div class="input-field col s8">
@@ -36,8 +38,6 @@
 							<span id="msg" class="hi-red"></span>
 						</div>
 					</div> 
-					<?php	echo $result;
-					?>
 					<div class="imgVeiwinline row" id="hotel_img_wrap" style="display: none;">
 
 						<div class="row int_title"><label>Photos :</label></div>

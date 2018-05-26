@@ -425,6 +425,12 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 						</li>
 						<li>
+							<a href="destinations/desti-Listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db9.png" alt="" /> Destinations</a>
+						</li>
+						<li>
+							<a href="amenities/amenityListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Amenities</a>
+						</li>
+						<li>
 							<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>
 						</li>
 						<li>

@@ -17,21 +17,15 @@ $("#pro-sub-btn").click(function(event){
 
    if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
         
-
             $('#hidden_checkbox').val('on');
-
         
    }else{
                $('#hidden_checkbox').val('off');
-
    }
 
    if ($(".with_generator input:checkbox:checked").length > 0) {
         
-
-            $('#banquet_isgen').val('on');
-
-        
+            $('#banquet_isgen').val('on');      
    }else{
                $('#banquet_isgen').val('off');
 

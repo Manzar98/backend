@@ -1329,7 +1329,7 @@ Remove imges when click on done in modal
   $('#reg_birth').datepicker({
     changeMonth:true,     
     changeYear: true,
-    yearRange: '1970:2018'
+    yearRange: '1950:2018'
        
  });
 

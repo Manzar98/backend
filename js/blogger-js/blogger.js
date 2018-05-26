@@ -30,6 +30,14 @@ $('#pro-sub-btn_blog').click(function () {
      return;
    }
 
+   if ($(".inactive_checkbox input:checkbox:checked").length > 0) {
+        
+            $('#hidden_checkbox').val('on');
+        
+   }else{
+               $('#hidden_checkbox').val('off');
+   }
+
 	var validator= $("#blog-form").validate({
 		rules:{
 

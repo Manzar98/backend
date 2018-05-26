@@ -26,12 +26,12 @@ if ($is_check==true) {
 
   if ($_POST['user_type']=="vendor") {
    $title="New vendor registered";
-   $decs=$_POST['reg_name']." has been registered as new vendor";
+   $decs=$_POST['reg_name']." has registered as new vendor";
    $url ="veiw_vendors.php?id=".$user_id."";
    $noti_type="vendor";
  }elseif ($_POST['user_type']=="blogger") {
    $title="New blogger registered";
-   $decs=$_POST['reg_name']." has been registered as new blogger";
+   $decs=$_POST['reg_name']." has registered as new blogger";
    $url="veiw_vendors.php?id=".$user_id."";
    $noti_type="blogger";
  }

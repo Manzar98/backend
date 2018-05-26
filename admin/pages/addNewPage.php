@@ -29,15 +29,16 @@
 						array("tag"=>"textarea", "id" =>"page_metakeyword", "name"=>"page_metakeyword", "label"=>"Meta keywords", "classDiv"=>"row", "2col"=>"col s6","value"=>"")
 					); 
 					$result= gen_page($asso_array); ?>
-					<div>
+					
+				<?php	echo $result;
+					?>
+					<div class="common-top">
 						<label class="col s4">Page Alias</label>
 						<div class="input-field col s8">
 							<input type="text" id="page_alias" onblur="checkalias(this.value)" name="page_alias" class="validate" url-ajax="../../methods/aliasValidation.php" tbl="pages" sql-connect="../common-sql.php">
 							<span id="msg" class="hi-red"></span>
 						</div>
 					</div> 
-				<?php	echo $result;
-					?>
 					<div class="row" >
 						<p class="pTAG">
 							<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="page_inactive" />

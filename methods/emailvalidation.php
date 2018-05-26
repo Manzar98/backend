@@ -16,7 +16,7 @@
    // print_r(mysqli_fetch_assoc($result));
  	$res_array=array(
  		"status"=> "Error",
- 	     "message"=> "Email is already exist");
+ 	     "message"=> "Email already exists");
     echo json_encode($res_array);
     return false;
 
@@ -24,7 +24,7 @@
 
    $res_array=array(
  		"status"=> "Success",
- 	     "message"=> "Email is not already exist");
+ 	     "message"=> "Email  not already exist");
    
     echo json_encode($res_array);
     

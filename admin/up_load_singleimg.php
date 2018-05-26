@@ -27,6 +27,10 @@
 
                                 <input type="hidden" value="<?php echo $_GET['blg_id'];?>" name="blog_id" />
                                 <input value="blog" type="hidden" name="img_video_type" />  
+                                <?php  }elseif ($_GET['t']=="desti") { ?>
+
+                                <input type="hidden" value="<?php echo $_GET['desti_id'];?>" name="desti_id" />
+                                <input value="destination" type="hidden" name="img_video_type" />  
                                 <?php  } ?>
 
 
@@ -37,11 +41,6 @@
 
                             </form>
                           </div>
-
-
-
-
-
                           <script src="../js/jquery.min.js"></script>
                           <script src="../js/dropzone.js"></script>
                           <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">

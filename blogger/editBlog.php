@@ -17,7 +17,7 @@
 
 		$editblogImgQuery=select('common_imagevideo',array('blog_id'=>$result_B['blog_id']));
 		?>
-<?php $global_blog_id=$result_B['blog_id']; ?>
+		<?php $global_blog_id=$result_B['blog_id']; ?>
 		<div class="db-cent-3">
 			<div class="db-cent-table db-com-table">
 				<div class="db-title">
@@ -37,6 +37,8 @@
 
 						
 						$result= gen_page($asso_array); ?>
+						<?php	echo $result;
+						?>
 						<div>
 							<label class="col s4">Blog Alias</label>
 							<div class="input-field col s8">
@@ -44,8 +46,6 @@
 								<span id="msg" class="hi-red"></span>
 							</div>
 						</div> 
-						<?php	echo $result;
-						?>
 						<div class="imgVeiwinline row" id="hotel_img_wrap">
 							<div class="row int_title"><label>Photos :</label></div>
 							<?php
@@ -69,46 +69,58 @@
 										<input type="hidden" name="common_image" id="img_ids">
 									</div>
 								</div>
-								<div class="row common-top" >
+								<div class="row inactive_checkbox" >
+
 									<p class="pTAG">
-										<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="blog_inactive" />
-										<label for="filled-in-inactive">Inactive</label>
-									</p>
+										<input type="hidden" name="blog_inactive" id="hidden_checkbox">
+										<?php if ($result_B['blog_inactive']=='on' || $result_B['blog_inactive']=='Pending') { ?>
+
+											<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
+											<label for="filled-in-inactive">Inactive</label>
+
+											<?php   }else{ ?>
+
+												<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
+												<label for="filled-in-inactive">Inactive</label>
+												<?php  }  ?>
+											</p>
+
+										</div>
+
+										<div>
+											<div class="input-field col s8">
+												<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_blog"> 
+											</div>
+										</div>
+									</form>
 								</div>
-								<div>
-									<div class="input-field col s8">
-										<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_blog"> 
-									</div>
-								</div>
-							</form>
+							</div>
+						</div>
+						<?php } ?>
+					</div>
+					<!-- Modal Structure -->
+					<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
+						<div class="modal-content">
+							<div class="modal-header"><h2>Upload  Photos</h2></div>
+							<iframe src="up_load_singleimg.php?p=edit&t=blog&blg_id=<?php echo  $global_blog_id; ?>" id="photo_iframe"></iframe>
+							<div class="modal-footer">
+								<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
+							</div>
 						</div>
 					</div>
-				</div>
-				<?php } ?>
-			</div>
-			<!-- Modal Structure -->
-			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
-				<div class="modal-content">
-					<div class="modal-header"><h2>Upload  Photos</h2></div>
-				<iframe src="up_load_singleimg.php?p=edit&t=blog&blg_id=<?php echo  $global_blog_id; ?>" id="photo_iframe"></iframe>
-                   <div class="modal-footer">
-					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
-				</div>
-		   </div>
-		</div>
-			<?php include '../common-ftns/submitting-modal.php'; ?>
-			<?php  include"footer.php";  ?>
-			<script src="../js/blogger-js/blogger.js"></script>
-			<script src="../js/method-js/alias.js"></script>
-			<script>
-				jQuery(document).ready(function () {
-					tinymce.init({ selector:'#blog_content' });
+					<?php include '../common-ftns/submitting-modal.php'; ?>
+					<?php  include"footer.php";  ?>
+					<script src="../js/blogger-js/blogger.js"></script>
+					<script src="../js/method-js/alias.js"></script>
+					<script>
+						jQuery(document).ready(function () {
+							tinymce.init({ selector:'#blog_content' });
 
 
-				})
+						})
 
-			</script>	
-		</body>
-		<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-		</html>
-		
+					</script>	
+				</body>
+				<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+				</html>
+

@@ -57,6 +57,8 @@ include '../common-sql.php';
 								<?php if ($result['blog_inactive']== "on") { ?>
 
 									<td class=""><span class="db-not-success"><?php echo "Inactive";  ?></span></td>
+									<?php }elseif ($result['blog_inactive']== "Pending") { ?>
+										    <td class=""><span class="db-not-success"><?php echo $result['blog_inactive'];  ?></span></td>
 									<?php }else{ ?>
 
 										<td class=""><span class="db-success"><?php echo "Active";  ?></span></td>
