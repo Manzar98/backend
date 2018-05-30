@@ -30,6 +30,7 @@
 						<input type="hidden" name="user_id" value="<?php echo $userId; ?>">
 						<input type="hidden" name="is_time" value="edit">
 						<input type="hidden" name="blog_id" value="<?php echo $result_B['blog_id']; ?>">
+						<input type="hidden" id="b_alias" value="<?php echo $result_B['blog_alias']; ?>">
 						<?php
 						$asso_array= array();
 						$asso_array[]= array("tag"=>"input", "type"=>"text", "id"=>"blog_title", "name"=>"blog_title","label"=>"Blog Title","classDiv"=>"input-field col s8","value"=>$result_B['blog_title']);

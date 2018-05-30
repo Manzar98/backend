@@ -26,7 +26,8 @@ include '../../common-apis/reg-api.php';
 
 						<input type="hidden" name="user_id" value="<?php echo $result_P['user_id']; ?>">
 						<input type="hidden" name="is_time" value="update">
-						<input type="hidden" name="page_id" value="<?php echo $result_P['page_id']; ?>">
+						<input type="hidden" name="page_id" id="p_id" value="<?php echo $result_P['page_id']; ?>">
+						<input type="hidden"  id="p_alias" value="<?php echo$result_P['page_alias']; ?>">
 						<?php
 						$asso_array= array();
 						$asso_array[]= array("tag"=>"input", "type"=>"text", "id"=>"page_name", "name"=>"page_name","label"=>"Page Name","classDiv"=>"input-field col s8 web","value"=>$result_P['page_name']);
@@ -37,52 +38,55 @@ include '../../common-apis/reg-api.php';
 							array("tag"=>"textarea", "id" =>"page_metakeyword", "name"=>"page_metakeyword", "label"=>"Meta keywords", "classDiv"=>"row", "2col"=>"col s6","value"=>$result_P['page_metakeyword'])
 						); 
 						$result= gen_page($asso_array); ?>
-                        <?php 	echo $result;
+						<?php 	echo $result;
 						?>
 						<div class="common-top">
-						<label class="col s4">Page Alias</label>
-						<div class="input-field col s8">
-							<input type="text" id="page_alias" onblur="checkalias(this.value)" name="page_alias" class="validate" url-ajax="../../methods/aliasValidation.php" tbl="pages" sql-connect="../common-sql.php" value="<?php echo$result_P['page_alias']; ?>">
-							<span id="msg" class="hi-red"></span>
-						</div>
-					</div> 
-						 <div class="row" >
-						           <p class="pTAG inactive_checkbox">
-						           		<input type="hidden" name="page_inactive" id="hidden_checkbox">
-						            	<?php if ($result_P['page_inactive']=='on') { ?>
-
-						            	 <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
-						             <label for="filled-in-inactive">Inactive</label>
-						             
-						            <?php 	}else{ ?>
-
-						            <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
-						             <label for="filled-in-inactive">Inactive</label>
-						          <?php  }  ?>
-						             
-						            </p>     
-         						</div>
-						<div>
+							<label class="col s4">Page Alias</label>
 							<div class="input-field col s8">
-								<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_page"> 
+								<input type="text" id="page_alias" onchange="checkalias(this.value)" name="page_alias" class="validate" url-ajax="../../methods/aliasValidation.php" tbl="pages" sql-connect="../common-sql.php" value="<?php echo$result_P['page_alias']; ?>">
+								<span id="msg" class="hi-red"></span>
 							</div>
+						</div> 
+						<div class="row" >
+							<p class="pTAG inactive_checkbox">
+								<input type="hidden" name="page_inactive" id="hidden_checkbox">
+								<?php if ($result_P['page_inactive']=='on') { ?>
+
+									<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
+									<label for="filled-in-inactive">Inactive</label>
+
+									<?php 	}else{ ?>
+
+										<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
+										<label for="filled-in-inactive">Inactive</label>
+										<?php  }  ?>
+
+									</p>     
+								</div>
+								<div>
+									<div class="input-field col s8">
+										<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_page"> 
+									</div>
+								</div>
+							</form>
 						</div>
-					</form>
+					</div>
 				</div>
+				<?php  } ?>
 			</div>
-		</div>
-		<?php  } ?>
-	</div>
-	<?php include '../../common-ftns/submitting-modal.php'; ?>
-	<?php  include"../footer_inner_folder.php";  ?>
-	<script src="../../js/page-js/page.js"></script>
-	<script src="../../js/method-js/alias.js"></script>
-	<script>
-		jQuery(document).ready(function () {
-			tinymce.init({ selector:'#page_content' });
-		})
-		
-	</script>	
-</body>
-<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-</html>
+			<?php include '../../common-ftns/submitting-modal.php'; ?>
+			<?php  include"../footer_inner_folder.php";  ?>
+			<script src="../../js/page-js/page.js"></script>
+			<script src="../../js/method-js/alias.js"></script>
+
+			<script>
+
+				jQuery(document).ready(function () {
+					tinymce.init({ selector:'#page_content' });
+
+				})
+
+			</script>	
+		</body>
+		<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+		</html>

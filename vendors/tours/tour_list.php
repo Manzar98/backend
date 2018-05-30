@@ -9,7 +9,7 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
-	<title>List Of Tour Pacakages</title>
+	<title>List Of Tour Packages</title>
 
 
 <?php  include '../header.php';  
@@ -23,7 +23,7 @@ $tourQuery=    'SELECT * FROM tour where user_id="'.$_SESSION['user_id'].'" ORDE
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
-							<h3><img src="../../images/icon/dbc5.png" alt=""/>My Tour Pacakages</h3>
+							<h3><img src="../../images/icon/dbc5.png" alt=""/>My Tour Packages</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 						</div>
 						

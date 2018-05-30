@@ -5,7 +5,7 @@ include '../../common-apis/reg-api.php';
 <html lang="en">
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 <head>
-	<title>Edit Page</title>
+	<title>Edit Destination</title>
 	<?php 
 	include '../header_inner_folder.php'; 
 	$userId=$_GET['id'];

@@ -1,43 +1,44 @@
 <?php
 
-   session_start();
+session_start();
    // print_r($_SESSION);
-   if(!$_SESSION['login']){
-   header("location: ../index.php");
-   die;
+if(!$_SESSION['login']){
+	header("location: ../index.php");
+	die;
 }
 
 include '../common-sql.php';
 
 $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 
- $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
+$user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
+
 ?>
 
 <!-- META TAGS -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- FAV ICON(BROWSER TAB ICON) -->
-	<link rel="shortcut icon" href="../images/fav.ico" type="image/x-icon">
-	<!-- GOOGLE FONT -->
-	<link href="https://fonts.googleapis.com/css?family=Poppins%7CQuicksand:500,700" rel="stylesheet">
-	<!-- FONTAWESOME ICONS -->
-	<link rel="stylesheet" href="../css/font-awesome.min.css">
-	<!-- ALL CSS FILES -->
-	<link href="../css/materialize.css" rel="stylesheet">
-	<link href="../css/style.css" rel="stylesheet">
-	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
-	<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
-	<link href="../css/responsive.css" rel="stylesheet">
-	<link href="../css/sweetalert.css" rel="stylesheet">
-	<link href="../css/croppie.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- FAV ICON(BROWSER TAB ICON) -->
+<link rel="shortcut icon" href="../images/fav.ico" type="image/x-icon">
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css?family=Poppins%7CQuicksand:500,700" rel="stylesheet">
+<!-- FONTAWESOME ICONS -->
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<!-- ALL CSS FILES -->
+<link href="../css/materialize.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+<!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
+<link href="../css/responsive.css" rel="stylesheet">
+<link href="../css/sweetalert.css" rel="stylesheet">
+<link href="../css/croppie.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
+<![endif]-->
 </head>
 
 <body data-ng-app="">
@@ -382,51 +383,68 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 		</div>
 		<!--TOP SECTION-->
 		<!--DASHBOARD SECTION-->
-		<?php while ($user_result=mysqli_fetch_assoc($user_con)) {?>
-		<div class="dashboard">
-			<div class="db-left">
-				<?php
+		<?php while ($user_result=mysqli_fetch_assoc($user_con)) {
 
-				   $cover=substr($user_result['reg_cover'],3) ;
-				   $img=substr($user_result['reg_photo'], 3);
-				?>
-				<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo  $img;?>'),url('<?php echo $cover; ?>');background-size: 95px,cover;">
-					<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
-					<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
+			if($user_result['user_status']=="Suspended"){ 
+				
+				// Unset all of the session variables
+				$_SESSION = array();
+
+				// Destroy the session.
+				session_destroy();
+
+				// Redirect to login page
+				echo "<script>
+				window.location ='../logout.php';
+				</script>";
+				exit;
+			} ?>
+			<div class="dashboard">
+				<div class="db-left">
+					<?php
+
+					$cover=substr($user_result['reg_cover'],3) ;
+					$img=substr($user_result['reg_photo'], 3);
+					?>
+					<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo  $img;?>'),url('<?php echo $cover; ?>');background-size: 95px,cover;">
+						<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
+						<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
+					</div>
+					<div class="db-left-2">
+						<ul>
+							<li>
+								<a href="dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
+							</li>
+							<li>
+								<a href="add-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db2.png" alt="" />Add Listing</a>
+							</li>
+							<li>
+								<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db3.png" alt="" />Manage Listing</a>
+							</li>
+							<li>
+								<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../images/icon/db5.png" alt="" /> Featured Ads</a>
+							</li>
+							<li>
+								<a href="db-event.html"><img src="../images/icon/db4.png" alt="" /> Event</a>
+							</li>
+							<li>
+								<a href="db-profile.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
+							</li>
+							<li>
+								<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>
+							</li>
+							<li>
+								<a href="../logout.php" id="logout"><img src="../images/icon/db8.png" alt="" /> Logout</a>
+							</li>
+						</ul>
+					</div>
 				</div>
-              <div class="db-left-2">
-					<ul>
-						<li>
-							<a href="dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db1.png" alt="" />Dashboard</a>
-						</li>
-						<li>
-							<a href="add-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db2.png" alt="" />Add Listing</a>
-						</li>
-						<li>
-							<a href="manage-listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db3.png" alt="" />Manage Listing</a>
-						</li>
-						<li>
-							<a href="paid-ads-list.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../images/icon/db5.png" alt="" /> Featured Ads</a>
-						</li>
-						<li>
-							<a href="db-event.html"><img src="../images/icon/db4.png" alt="" /> Event</a>
-						</li>
-						<li>
-							<a href="db-profile.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
-						</li>
-						<li>
-							<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>
-						</li>
-						<li>
-							<a href="../logout.php"><img src="../images/icon/db8.png" alt="" /> Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="db-cent">
-				<div class="db-cent-1" style="background-image:url('<?php echo $cover; ?>') !important;">
-					
-					<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
-					<h4>Welcome to your dashboard</h4>
-					 </div>
-					 <?php } ?>
+				<div class="db-cent">
+					<div class="db-cent-1" style="background-image:url('<?php echo $cover; ?>') !important;">
+
+						<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
+						<h4>Welcome to your dashboard</h4>
+					</div>
+
+
+					<?php	} ?>

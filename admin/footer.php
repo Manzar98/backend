@@ -253,6 +253,7 @@
 			</div>
 		</div>
 </section>
+
 	<!--ALL SCRIPT FILES-->
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery-ui.js"></script>

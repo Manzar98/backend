@@ -30,6 +30,7 @@
 			<form class="col s12" action="blogger-update.php" method="post" role="form" id="registor-form">
 				<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 				<input type="hidden" name="user_type" value="<?php echo $reg_Result['user_type']; ?>">
+				<input type="hidden" id="u_email" value="<?php echo $reg_Result['reg_email']; ?>">
 				<?php	$asso_array= array();
 				$asso_array[]=array(
 
@@ -160,6 +161,7 @@
 			<script src="../js/croppie.js"></script>
 			<script src="../js/registration-js/registration.js"></script>
 			<script src="../js/method-js/updatepassword.js"></script>
+			<script src="../js/method-js/email-validation.js"></script>
 			 <script type="text/javascript">
     	$('#modal-reset').modal({dismissible: false});
 		

@@ -100,7 +100,7 @@
 									<div class="col-md-6">
 										<label style="padding-bottom: 10px;">Email Address</label>
 										<div class="input-field">
-											<input type="email" onblur="checkemail(this.value)" value="" id="reg_email" name="reg_email" class="validate" > 
+											<input type="email" onblur="checkemail_registor(this.value)" value="" id="reg_email" name="reg_email" class="validate" > 
 											<span id="msg" class="hi-red"></span>
 										</div>
 									</div>

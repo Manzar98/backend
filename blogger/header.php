@@ -383,7 +383,21 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 		</div>
 		<!--TOP SECTION-->
 		<!--DASHBOARD SECTION-->
-		<?php while ($user_result=mysqli_fetch_assoc($user_con)) {?>
+		<?php while ($user_result=mysqli_fetch_assoc($user_con)) {
+			if($user_result['user_status']=="Suspended"){ 
+				
+				// Unset all of the session variables
+				$_SESSION = array();
+
+				// Destroy the session.
+				session_destroy();
+
+				// Redirect to login page
+				echo "<script>
+				window.location ='../logout.php';
+				</script>";
+				exit;
+			} ?>
 
 
 			<div class="dashboard">

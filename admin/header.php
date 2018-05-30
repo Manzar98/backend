@@ -10,6 +10,7 @@ include '../common-sql.php';
 
 $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 
+
  $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 ?>
 
@@ -425,7 +426,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 						</li>
 						<li>
-							<a href="destinations/desti-Listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db9.png" alt="" /> Destinations</a>
+							<a href="destinations/desti-Listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db4.png" alt="" /> Destinations</a>
 						</li>
 						<li>
 							<a href="amenities/amenityListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Amenities</a>
@@ -434,7 +435,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="#"><img src="../images/icon/db6.png" alt="" /> Payments</a>
 						</li>
 						<li>
-							<a href="../logout.php"><img src="../images/icon/db8.png" alt="" /> Logout</a>
+							<a href="../logout.php" id="logout"><img src="../images/icon/db8.png" alt="" /> Logout</a>
 						</li>
 					</ul>
 				</div>

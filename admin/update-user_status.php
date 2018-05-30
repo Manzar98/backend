@@ -40,7 +40,7 @@ if (isset($_POST['reason'])) {
    $tour_query=mysqli_query($conn,$tour) or die(mysqli_error($conn));
    include '../methods/send-notification.php';
 
-   insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Account deactivated","Sorry",date("F j, Y, g:i a"),"#", "vendor","vendor");
+   insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Account deactivated","Your account has been suspended by the admin.",date("F j, Y, g:i a"),"#", "vendor","vendor");
  }else{
 
    $blog='UPDATE blog SET blog_status="'.$_POST['btn'].'",
@@ -50,7 +50,7 @@ if (isset($_POST['reason'])) {
 
    include '../methods/send-notification.php';
 
-   insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Account deactivated","Sorry",date("F j, Y, g:i a"),"#", "blogger","blogger");
+   insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Account deactivated","Your account has been suspended by the admin.",date("F j, Y, g:i a"),"#", "blogger","blogger");
  }
 
  

@@ -43,14 +43,11 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
   <option value="">Select One</option>
   <option value="yes">Yes</option>
   <option value="no">No</option>
-
 </select>
+<span id="msg" class="hi-red"></span>
 </div>
-
-<?php
-
-if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
+<?php if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
   <label class="col s12">Select Hotel</label>
   <select  class="hotelNames" name="hotel_name" >
    <option value="null" selected="" disabled="">Select One</option>
@@ -65,10 +62,14 @@ if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
                 <?php # code...
               }  ?>
             </select>
-          </div>
-          <?php  }  ?>
+         
+          <?php  }else{ ?>
+              
+              <a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php">Add Hotel</a>
 
+              <?php    }  ?>
 
+ </div>
 
 
 

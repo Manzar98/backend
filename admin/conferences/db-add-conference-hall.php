@@ -35,8 +35,8 @@ include '../../common-apis/reg-api.php';
    
    <div class="db-profile-edit">
      <form class="col s12"  data-toggle="validator" id="conference-form" role="form" action="conference-post.php" method="POST" enctype="multipart/form-data">
-      
-      
+
+
       <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
        <label class="col s12">Independent Hall?</label>
@@ -44,68 +44,65 @@ include '../../common-apis/reg-api.php';
         <option value="-1">Select One</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
-
       </select>
+      <span id="msg" class="hi-red"></span>
     </div>
-
-    <?php
-
-    if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
     <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
-      <label class="col s12">Select Hotel</label>
-      <select  class="hotelNames" name="hotel_name" >
-       <option value="null" selected="" disabled="">Select One</option>
-       <?php
+      <?php if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
-       while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
+        <label class="col s12">Select Hotel</label>
+        <select  class="hotelNames" name="hotel_name" >
+         <option value="null" selected="" disabled="">Select One</option>
+         <?php
+
+         while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
 
-       <option name="" value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id'];  ?>"><?php echo $result['hotel_name'] ?></option>
+           <option name="" value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id'];  ?>"><?php echo $result['hotel_name'] ?></option>
 
 
                 <?php # code...
               }  ?>
             </select>
-          </div>
-          <?php  }  ?>
 
+            <?php  }else{ ?>
 
+             <a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php?id=<?php echo $_GET['user_id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Add Hotel</a>
 
-
-
-
-          <div id="hall_alone" style="display: none;">
+             <?php  }  ?>
+           </div>
+           <div id="hall_alone" style="display: none;">
             <div class="row common-top">
              <div class="col-md-6">
               <label>Address</label>
               <input  type="text" name="conference_address" class="input-field validate ind_address"  >
             </div>
             <div class="col-md-6">
-               <label>Phone Number</label>
-               <input  type="number" name="conference_phone" class="input-field validate ind_phone"  >
-            </div>
+             <label>Phone Number</label>
+             <input  type="number" name="conference_phone" class="input-field validate ind_phone"  >
+           </div>
 
-          </div>
+         </div>
 
-          <div class="row">
+         <div class="row">
            <div class="col-md-6">
             <label>Province</label>
             <select class="" name="conference_province">
-                <option value="">Select One</option>
-                <option value="Sindh">Sindh</option>
-                <option value="Punjab">Punjab</option>
-                <option value="Balochistan">Balochistan</option>
-                <option value="KPK">khyber pakhtunkhwa</option>
-             </select>
+              <option value="">Select One</option>
+              <option value="Sindh">Sindh</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Balochistan">Balochistan</option>
+              <option value="KPK">khyber pakhtunkhwa</option>
+            </select>
           </div>
           <div class="col-md-6">
-             <label>City</label>
-              <input  type="text" name="conference_city" class="input-field validate ind_city"  >
-          </div>
+           <label>City</label>
+           <input  type="text" name="conference_city" class="input-field validate ind_city"  >
+         </div>
 
-        </div>
+       </div>
 
-        <div class="row">
+       <div class="row">
          <div class="col-md-6">
           <label>Email Address</label>
           <input  type="email" name="conference_email" class="input-field validate ind_email"  >
@@ -173,7 +170,7 @@ include '../../common-apis/reg-api.php';
     </div>
     
     <div id="menupackage-wrap" style="display: none;" class="common-top">
-      
+
      <ul class="collapsible def-show-menu" data-collapsible="accordion">
        <li>
         <div class="collapsible-header  active">Menu Packages</div>
@@ -190,7 +187,7 @@ include '../../common-apis/reg-api.php';
       </div>
 
       <div class="row">
-       
+
         <div class="col-md-6">
          <label >Discount Percentage</label>
          <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
@@ -227,8 +224,8 @@ include '../../common-apis/reg-api.php';
 </div>
 
 <div class="common-top clearfix">
- 
-  
+
+
   <label class="col s4">Hall's Promotional Video (url)</label>
   <div class="input-field col s8">
     <input type="text"  class="" name="common_video"  ></div>
@@ -268,7 +265,7 @@ include '../../common-apis/reg-api.php';
 </div>
 
 <div class="row" >
-  
+
   <p class="pTAG">
    <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="conference_inactive" />
    <label for="filled-in-inactive">Inactive</label>
