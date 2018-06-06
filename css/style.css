@@ -4892,7 +4892,7 @@ table#h_table tr:hover td.tdwrap_vendors {
  #pro-sub-btn_password_update, #pro-sub-btn_paid, 
  #pro-sub-btn_paid_edit, #pro-sub-btn_page, #pro-sub-btn_faq, 
  #pro-sub-btn_blogger_update, #pro-sub-btn_blog, #pro-sub-btn_desti, 
- #pro-sub-btn_amenity{
+ #pro-sub-btn_amenity, #pro-sub-btn_fee{
     
     background: #f4364f;
     padding: 7px 25px;

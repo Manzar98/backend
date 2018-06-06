@@ -1,4 +1,4 @@
-zzz<?php 
+<?php 
 include '../../common-apis/reg-api.php';
 ?>
 <!DOCTYPE html>
