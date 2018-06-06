@@ -34,7 +34,7 @@ function checkalias(val) {
 
 
 function ajax_checkalias(url,data) {
-  debugger
+//  debugger
   $.ajax({
    type:"POST",
    url:url,

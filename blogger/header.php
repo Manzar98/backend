@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-date_default_timezone_set("Asia/Karachi");
+
    // print_r($_SESSION);
 if(!$_SESSION['login']){
 	header("location: ../index.php");

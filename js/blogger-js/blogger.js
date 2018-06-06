@@ -37,6 +37,13 @@ $('#pro-sub-btn_blog').click(function () {
    }else{
                $('#hidden_checkbox').val('off');
    }
+   
+   $.validator.addMethod("loginRegex", function(value, element) {
+   
+     return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
+
+    }, "Alias must contain only letters, numbers, or dashes.");
+
 
 	var validator= $("#blog-form").validate({
 		rules:{
@@ -46,9 +53,9 @@ $('#pro-sub-btn_blog').click(function () {
 			},
 			blog_alias:{
 				required:true,
-				lettersonly: true
+                loginRegex:true
+			},
 
-			}
 
 		},
 		errorElement : 'div',
@@ -203,7 +210,7 @@ function admin_blogger_ajax_ftn(){
 			if (data.status=='success') {
 				var url=window.location.href;
 
-				debugger
+				// debugger
 				$("#btn-loader").hide();
 				setTimeout(function(){
 					$('#loader').modal('close');

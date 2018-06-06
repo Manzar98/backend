@@ -36,7 +36,11 @@
           });
       return;
     }
+ $.validator.addMethod("loginRegex", function(value, element) {
+   
+     return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
 
+    }, "Alias must contain only letters, numbers, or dashes.");
    	var validator=$('#page-form').validate({
    		rules:{
    			page_name:{
@@ -44,7 +48,7 @@
    			},
    			page_alias:{
    				required:true,
-          lettersonly: true
+          loginRegex: true
    			},
    			page_content:{
    				required:true

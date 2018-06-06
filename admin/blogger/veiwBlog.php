@@ -20,7 +20,14 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
       <div class="veiw_sus_appr">
        <?php if ($_GET['status']=="Approved" || $_GET['status']=="Pending") { ?>
          <div class="row" style="margin-top: 20px;">
-          <div class="col s11">
+          <div class="col s2">
+           <?php if (isset($_GET['blog_status']) && $_GET['blog_status']=="Pending") { ?>
+
+            <a class="waves-effect waves-light btn" onclick="approval_request()" value="on" b_id="<?php echo $B_Result['blog_id'];?>" userId="<?php echo $B_Result['user_id'];?>">Inactive Approval</a>
+            <input type="hidden" value="<?php echo $B_Result['blog_inactive_reason']; ?>" id="reason_text">
+            <?php  } ?>
+          </div>
+          <div class="col s10">
 
             <div class="pull-right sus_appr" style="margin-left: 10px;">
 
@@ -43,7 +50,6 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
                   <?php   } ?>
 
                   <a class="waves-effect waves-light btn" href="editBlog.php?id=<?php echo $B_Result['blog_id'];  ?>&u_id=<?php echo  $B_Result['user_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
-
                 </div>
               </div>
             </div>
@@ -77,10 +83,10 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
                   <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
                 </div>
                 <div class="db-profile"> 
-                   <img src="" id="cover_photo_common" alt=""> 
-                  <h4><?php echo $B_Result['blog_title'];  ?> </h4>
-                </div>
-                <div class="hotelVeiw">
+                 <img src="" id="cover_photo_common" alt=""> 
+                 <h4><?php echo $B_Result['blog_title'];  ?> </h4>
+               </div>
+               <div class="hotelVeiw">
 
                  <div class="row">
                   <span><b>Blog Title :</b></span>
@@ -97,7 +103,7 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
                   </div>
                 </div> 
               </div>
-<?php } ?>
+              <?php } ?>
             </div>
             <div class="row" style="padding-left: 15px;">
              <span><b>Blog Images :</b></span>
@@ -135,7 +141,51 @@ $showB_Query=select('blog',array('blog_id'=>$_GET['id'],'user_id'=>$_GET['u_id']
           <?php include'../../common-ftns/suspend_reason_modal.php'; ?>
           <?php  include"../../methods/approve_list.php";  ?>
           <?php  include"../../methods/suspend_list.php";  ?>
+          <script type="text/javascript">
+            function approval_request() {
 
+              var action=$(event.currentTarget).attr('value');
+              var b_id=$(event.currentTarget).attr('b_id');
+              var eve=$(event.currentTarget);
+              var u_id=$(event.currentTarget).attr('userId');
+              var response=$('#reason_text').val();
+              swal({
+
+                title: "Are you sure you want to inactive this blog?",
+                text: response,
+                type: "warning",
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: true,
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "cancel",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          },function (isconfirm) {
+
+            if (isconfirm) {
+             $.ajax({
+               
+               type:"POST",
+               url:"blogPostUpdate.php",
+               data:{'action':action,'blog_id':b_id,'user_id':u_id},
+               success:function(data){  
+                
+                var url=window.location.href;
+                var update_split=url.split('&');
+                var updateUrl=update_split[0]+'&'+update_split[1]+'&'+update_split[2]+'&'+update_split[3]+'&'+update_split[4];
+                console.log(updateUrl);
+                window.location.href= updateUrl;
+                $(eve).hide();
+              }   
+
+            });
+           }
+         });
+              
+            }
+          </script>
 
         </body>
         <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->

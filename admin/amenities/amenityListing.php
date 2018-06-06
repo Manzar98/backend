@@ -20,7 +20,7 @@
 			<?php if (mysqli_num_rows($d_resp) > 0) { ?>
 				<div class="row common-top ">
 				<div class="featured_btn">
-					<a class="waves-effect waves-light btn" href="addAmentiy.php?id=<?php echo $_GET['id']; ?>">Add New Amenity</a>
+					<a class="waves-effect waves-light btn" href="addAmenity.php?id=<?php echo $_GET['id']; ?>">Add New Amenity</a>
 				</div>
 			</div>
 			<?php include '../../common-ftns/filter-active-inactive.php'; ?>

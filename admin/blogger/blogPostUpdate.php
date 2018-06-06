@@ -1,6 +1,8 @@
 <?php 
 
 include '../../common-sql.php';
+date_default_timezone_set("Asia/Karachi");
+if (!isset($_POST['action'])) {
 $is_check= true;
 $responseArray=[];
 if (empty($_POST['blog_content'])) {
@@ -115,6 +117,20 @@ if ($is_check==true) {
 
 	echo json_encode($newErrorMsgArr);
 	return false;
+}
+
+}else{
+
+       $blogQuery='UPDATE blog SET blog_inactive="'.$_POST['action'].'"
+              	 WHERE blog_id="'.$_POST['blog_id'].'" AND user_id="'.$_POST['user_id'].'"';
+
+	   $blog_result=mysqli_query($conn,$blogQuery) or die(mysqli_error($conn));
+
+        include '../../methods/send-notification.php';
+   
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Deactivation Approved","Your deactivation request has been approved",date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id'],"blog","blogger" );
+
+
 }
 
 ?>

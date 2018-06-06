@@ -91,7 +91,6 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
              <option value="yes">Yes</option>
              <option value="no" >No</option>
              <?php }  ?>
-             <span id="msg" class="hi-red"></span>
            </select>
          </div>
          <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
@@ -114,7 +113,7 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
             </select>
 
             <?php  }else{ ?>
-              
+              <div class="row"><span id="msg" class="hi-red">No hotel exists</span></div>
               <a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php">Add Hotel</a>
 
               <?php    }  ?>

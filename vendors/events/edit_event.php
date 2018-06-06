@@ -93,9 +93,7 @@ $global_event_id="";
 												<option value="no" >No</option>
 
 												<?php	}  ?>
-
 											</select>
-											<span id="msg" class="hi-red"></span>
 										</div>
 										<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="showhotelList" style="display: none;"  >
 											<?php if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
@@ -117,7 +115,7 @@ $global_event_id="";
 					</select>					
 
 					<?php  } else{ ?>
-
+                        <div class="row"><span id="msg" class="hi-red">No hotel exists</span></div>
 						<a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php">Add Hotel</a>
 
 

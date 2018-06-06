@@ -10,7 +10,7 @@ include $_POST['connection'];
    // print_r(mysqli_fetch_assoc($result));
 		$res_array=array(
 			"status"=> "Error",
-			"message"=> "Alias already exist");
+			"message"=> "Alias already exists");
 		echo json_encode($res_array);
 		return false;
 
@@ -18,7 +18,7 @@ include $_POST['connection'];
 
 		$res_array=array(
 			"status"=> "Success",
-			"message"=> "Alias is not already exist");
+			"message"=> "Alias is not already exists");
 
 		echo json_encode($res_array);
 

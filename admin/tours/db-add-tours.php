@@ -41,7 +41,6 @@
 							<option value="yes">Yes</option>
 							<option value="no">No</option>
 						</select>
-						<span id="msg" class="hi-red"></span>
 					</div>
 					<div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select"  id="showhotelList" style="display: none;" >
 						<?php if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
@@ -63,7 +62,7 @@
 	</select>
 
 	<?php  }else{ ?>
-
+		<div class="row"><span id="msg" class="hi-red">No hotel exists</span></div>
 		<a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php?id=<?php echo $_GET['user_id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Add Hotel</a>
 
 		<?php  }  ?>

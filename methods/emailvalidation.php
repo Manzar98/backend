@@ -24,7 +24,7 @@
 
    $res_array=array(
  		"status"=> "Success",
- 	     "message"=> "Email  not already exist");
+ 	     "message"=> "Email  not already exists");
    
     echo json_encode($res_array);
     

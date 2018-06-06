@@ -14,7 +14,6 @@
 	$global_blog_id="";
 	$b_Query=select('blog',array('blog_id'=>$blogId,'user_id'=>$userId));
 	while ($result_B=mysqli_fetch_assoc($b_Query)){
-
 		$editblogImgQuery=select('common_imagevideo',array('blog_id'=>$result_B['blog_id']));
 		?>
 		<?php $global_blog_id=$result_B['blog_id']; ?>
@@ -43,7 +42,7 @@
 						<div>
 							<label class="col s4">Blog Alias</label>
 							<div class="input-field col s8">
-								<input type="text" id="blog_alias" onblur="checkalias(this.value)" name="blog_alias" class="validate" url-ajax="../methods/aliasValidation.php" tbl="blog" sql-connect="../common-sql.php" value="<?php echo $result_B['blog_alias']; ?>">
+								<input type="text" id="blog_alias" onblur="checkalias(this.value)" name="blog_alias" class="validate" url-ajax="../methods/aliasValidation.php" tbl="blog" sql-connect="../common-sql.php" value="<?php echo $result_B['blog_alias']; ?>" validate="alpha_num_dash">
 								<span id="msg" class="hi-red"></span>
 							</div>
 						</div> 
@@ -71,57 +70,66 @@
 									</div>
 								</div>
 								<div class="row inactive_checkbox" >
-
-									<p class="pTAG">
+									<p class="pTAG col s3" >
 										<input type="hidden" name="blog_inactive" id="hidden_checkbox">
-										<?php if ($result_B['blog_inactive']=='on' || $result_B['blog_inactive']=='Pending') { ?>
-
-											<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
-											<label for="filled-in-inactive">Inactive</label>
-
-											<?php   }else{ ?>
-
-												<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
-												<label for="filled-in-inactive">Inactive</label>
-												<?php  }  ?>
-											</p>
-
+										<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"   />
+										<label for="filled-in-inactive">Inactive</label>
+										<div class="col s4" id="inact_reason">
+											<label>Inactive Reason</label>
+											<textarea name="blog_inactive_reason" id="blog_inactive_reason" class="materialize-textarea" data-value="<?php echo $result_B['blog_inactive_reason']; ?>"></textarea>
 										</div>
-
-										<div>
-											<div class="input-field col s8">
-												<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_blog"> 
-											</div>
-										</div>
-									</form>
+									</p>	
 								</div>
-							</div>
-						</div>
-						<?php } ?>
-					</div>
-					<!-- Modal Structure -->
-					<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
-						<div class="modal-content">
-							<div class="modal-header"><h2>Upload  Photos</h2></div>
-							<iframe src="up_load_singleimg.php?p=edit&t=blog&blg_id=<?php echo  $global_blog_id; ?>" id="photo_iframe"></iframe>
-							<div class="modal-footer">
-								<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
-							</div>
+								<div>
+									<div class="input-field col s8">
+										<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_blog"> 
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
-					<?php include '../common-ftns/submitting-modal.php'; ?>
-					<?php  include"footer.php";  ?>
-					<script src="../js/blogger-js/blogger.js"></script>
-					<script src="../js/method-js/alias.js"></script>
-					<script>
-						jQuery(document).ready(function () {
-							tinymce.init({ selector:'#blog_content' });
+				</div>
+				<?php } ?>
+			</div>
+			<!-- Modal Structure -->
+			<div id="modal-images" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
+				<div class="modal-content">
+					<div class="modal-header"><h2>Upload  Photos</h2></div>
+					<iframe src="up_load_singleimg.php?p=edit&t=blog&blg_id=<?php echo  $global_blog_id; ?>" id="photo_iframe"></iframe>
+					<div class="modal-footer">
+						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat photo_done">Done</a>
+					</div>
+				</div>
+			</div>
+			<?php include '../common-ftns/submitting-modal.php'; ?>
+			<?php  include"footer.php";  ?>
+			<script src="../js/blogger-js/blogger.js"></script>
+			<script src="../js/method-js/alias.js"></script>
+			<script>
+				$('#inact_reason').hide();
+				jQuery(document).ready(function () {
+					tinymce.init({ selector:'#blog_content' });
 
+					if ($('#blog_inactive_reason').attr('data-value')) {
+						$('#filled-in-inactive').trigger('click');
+						$('#blog_inactive_reason').val($('#blog_inactive_reason').attr('data-value'));
+						$('#inact_reason').show();
+					}
+					$('#filled-in-inactive').click(function(){
+						if ($(this).is(':checked')) {
+							$('#inact_reason').show();
+							$('#blog_inactive_reason').prop('required',true);
+						}else{
 
-						})
+							$('#inact_reason').hide();
+							$('#blog_inactive_reason').prop('required',false);
+							$('#blog_inactive_reason').val('');
+						}
+					})
+				})
 
-					</script>	
-				</body>
-				<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-				</html>
+			</script>	
+		</body>
+		<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+		</html>
 

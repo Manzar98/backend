@@ -45,7 +45,6 @@ include '../../common-apis/reg-api.php';
         <option value="yes">Yes</option>
         <option value="no">No</option>
       </select>
-      <span id="msg" class="hi-red"></span>
     </div>
     <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
       <?php if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
@@ -66,147 +65,147 @@ include '../../common-apis/reg-api.php';
             </select>
 
             <?php  }else{ ?>
+              <div class="row"><span id="msg" class="hi-red">No hotel exists</span></div>
+              <a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php?id=<?php echo $_GET['user_id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Add Hotel</a>
 
-             <a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php?id=<?php echo $_GET['user_id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Add Hotel</a>
+              <?php  }  ?>
+            </div>
+            <div id="hall_alone" style="display: none;">
+              <div class="row common-top">
+               <div class="col-md-6">
+                <label>Address</label>
+                <input  type="text" name="conference_address" class="input-field validate ind_address"  >
+              </div>
+              <div class="col-md-6">
+               <label>Phone Number</label>
+               <input  type="number" name="conference_phone" class="input-field validate ind_phone"  >
+             </div>
 
-             <?php  }  ?>
            </div>
-           <div id="hall_alone" style="display: none;">
-            <div class="row common-top">
+
+           <div class="row">
              <div class="col-md-6">
-              <label>Address</label>
-              <input  type="text" name="conference_address" class="input-field validate ind_address"  >
+              <label>Province</label>
+              <select class="" name="conference_province">
+                <option value="">Select One</option>
+                <option value="Sindh">Sindh</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Balochistan">Balochistan</option>
+                <option value="KPK">khyber pakhtunkhwa</option>
+              </select>
             </div>
             <div class="col-md-6">
-             <label>Phone Number</label>
-             <input  type="number" name="conference_phone" class="input-field validate ind_phone"  >
+             <label>City</label>
+             <input  type="text" name="conference_city" class="input-field validate ind_city"  >
            </div>
 
          </div>
 
          <div class="row">
            <div class="col-md-6">
-            <label>Province</label>
-            <select class="" name="conference_province">
-              <option value="">Select One</option>
-              <option value="Sindh">Sindh</option>
-              <option value="Punjab">Punjab</option>
-              <option value="Balochistan">Balochistan</option>
-              <option value="KPK">khyber pakhtunkhwa</option>
-            </select>
+            <label>Email Address</label>
+            <input  type="email" name="conference_email" class="input-field validate ind_email"  >
           </div>
           <div class="col-md-6">
-           <label>City</label>
-           <input  type="text" name="conference_city" class="input-field validate ind_city"  >
-         </div>
+            <label>Facebook</label>
+            <input  type="text" name="conference_fcbok" class="input-field validate"  >
+          </div>
 
-       </div>
+        </div>
 
-       <div class="row">
+        <div class="row">
          <div class="col-md-6">
-          <label>Email Address</label>
-          <input  type="email" name="conference_email" class="input-field validate ind_email"  >
+          <label>Twitter</label>
+          <input  type="text" name="conference_twiter" class="input-field validate"  >
         </div>
         <div class="col-md-6">
-          <label>Facebook</label>
-          <input  type="text" name="conference_fcbok" class="input-field validate"  >
+          <label>Youtube</label>
+          <input  type="text" name="conference_utube" class="input-field validate"  >
         </div>
 
       </div>
-
-      <div class="row">
-       <div class="col-md-6">
-        <label>Twitter</label>
-        <input  type="text" name="conference_twiter" class="input-field validate"  >
-      </div>
-      <div class="col-md-6">
-        <label>Youtube</label>
-        <input  type="text" name="conference_utube" class="input-field validate"  >
-      </div>
-
-    </div>
-  </div>	
-  <div>
-    <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
-    <input type="hidden" name="hotel_id" value="" id="hotelId">
-    <label class="col s4">Name of Hall </label>
-    <div class="input-field col s8">
-      <input type="text" value="" class="validate" name="conference_name" required="" aria-required="true"> </div>
-    </div>
+    </div>	
     <div>
-     <label class="col s4">Capacity</label>
-     <div class="input-field col s8">
-      <input type="number"   class="validate" name="conference_space" required="" aria-required="true"> </div>
-    </div>
-
-    <div>
-      <label class="col s4">Hall Charges</label>
+      <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
+      <input type="hidden" name="hotel_id" value="" id="hotelId">
+      <label class="col s4">Name of Hall </label>
       <div class="input-field col s8">
-        <input type="number"   class="validate" name="conference_charges" required="" aria-required="true"> </div>
+        <input type="text" value="" class="validate" name="conference_name" required="" aria-required="true"> </div>
+      </div>
+      <div>
+       <label class="col s4">Capacity</label>
+       <div class="input-field col s8">
+        <input type="number"   class="validate" name="conference_space" required="" aria-required="true"> </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-         <label>Offer Discount (%)</label>
-         <input type="number" name="conference_offerdiscount" class="input-field validate offer_discount">
-       </div>
-       <div class="col-md-6">
-         <label>Expires on</label>
-         <input type="text" id="expireDate" class="input-field from offer_expire" name="conference_expireoffer">
-       </div>
-     </div> 
+      <div>
+        <label class="col s4">Hall Charges</label>
+        <div class="input-field col s8">
+          <input type="number"   class="validate" name="conference_charges" required="" aria-required="true"> </div>
+        </div>
 
-
-
-     <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="bn-serv"  >
-
-       <label class="col s12">Serve Food ?</label>
-       <select onchange="chk_food(this)"  class="" name="conference_serve" required="" aria-required="true">
-        <option value=""  disabled selected>Select One</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-
-      </select>
-    </div>
-    
-    <div id="menupackage-wrap" style="display: none;" class="common-top">
-
-     <ul class="collapsible def-show-menu" data-collapsible="accordion">
-       <li>
-        <div class="collapsible-header  active">Menu Packages</div>
-        <div class="collapsible-body"> 
-         <div class="row">
+        <div class="row">
           <div class="col-md-6">
-           <label>Package Name</label>
-           <input type="text" value="" class="input-field validate pkg_name" name="foodpkg_name[]">
+           <label>Offer Discount (%)</label>
+           <input type="number" name="conference_offerdiscount" class="input-field validate offer_discount">
          </div>
          <div class="col-md-6">
-          <label>Package Price</label>
-          <input type="number" value="" class="input-field validate pkg_price" name="foodpkg_price[]">
-        </div>  
+           <label>Expires on</label>
+           <input type="text" id="expireDate" class="input-field from offer_expire" name="conference_expireoffer">
+         </div>
+       </div> 
+
+
+
+       <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" id="bn-serv"  >
+
+         <label class="col s12">Serve Food ?</label>
+         <select onchange="chk_food(this)"  class="" name="conference_serve" required="" aria-required="true">
+          <option value=""  disabled selected>Select One</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+
+        </select>
       </div>
+      
+      <div id="menupackage-wrap" style="display: none;" class="common-top">
 
-      <div class="row">
+       <ul class="collapsible def-show-menu" data-collapsible="accordion">
+         <li>
+          <div class="collapsible-header  active">Menu Packages</div>
+          <div class="collapsible-body"> 
+           <div class="row">
+            <div class="col-md-6">
+             <label>Package Name</label>
+             <input type="text" value="" class="input-field validate pkg_name" name="foodpkg_name[]">
+           </div>
+           <div class="col-md-6">
+            <label>Package Price</label>
+            <input type="number" value="" class="input-field validate pkg_price" name="foodpkg_price[]">
+          </div>  
+        </div>
 
-        <div class="col-md-6">
-         <label >Discount Percentage</label>
-         <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
-       </div>
-       <div class="col-md-6">
-        <label>Package Items</label>
-        <div class="input-field ">
-          <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
-          <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
-        </div>						
+        <div class="row">
+
+          <div class="col-md-6">
+           <label >Discount Percentage</label>
+           <input type="number" value="" class="input-field validate" name="foodpkg_discount[]" style="padding-top: 18px;">
+         </div>
+         <div class="col-md-6">
+          <label>Package Items</label>
+          <div class="input-field ">
+            <div class="chips-packageitem chips-package" id="chips-packageitem-1"  name=""> </div>
+            <input type="hidden" name="foodpkg_item[]" id="input_chips-packageitem-1" class="menupkg-id"> </div>
+          </div>						
+        </div>
+
       </div>
+    </li>
+  </ul>
 
-    </div>
-  </li>
-</ul>
-
-<div  class=" ">
- <a class="waves-effect waves-light btn " onclick="gen_menupackage_input(event)">Add More Package</a>
-</div>
+  <div  class=" ">
+   <a class="waves-effect waves-light btn " onclick="gen_menupackage_input(event)">Add More Package</a>
+ </div>
 </div> 
 
 <div class="imgVeiwinline" id="hotel_img_wrap" style="display: none;">

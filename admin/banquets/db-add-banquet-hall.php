@@ -2,11 +2,6 @@
 include '../../common-apis/reg-api.php';
 
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +40,7 @@ include '../../common-apis/reg-api.php';
         <option value="no">No</option>
 
       </select>
-      <span id="msg" class="hi-red"></span>
+      
     </div>
 
 
@@ -66,7 +61,7 @@ include '../../common-apis/reg-api.php';
             </select>
 
             <?php  }else{ ?>
-
+                <div class="row"><span id="msg" class="hi-red">No hotel exists</span></div>
                <a class="waves-effect waves-light btn" href="../hotels/db-add-hotels.php?id=<?php echo $_GET['user_id']; ?>&name=<?php echo $_GET['name']; ?>&status=<?php echo $_GET['status']; ?>">Add Hotel</a>
 
 
