@@ -11,6 +11,7 @@ include '../../common-apis/reg-api.php';
 
 
   <?php include '../header.php'; 
+  include '../../common-ftns/adminAmenities.php';
   $userId= $_SESSION["user_id"];
 
   $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`= "'.$userId.'" ';
@@ -226,7 +227,9 @@ include '../../common-apis/reg-api.php';
   <div class="input-field col s8">
     <input type="text"  class="" name="common_video"  ></div>
   </div>
-
+ <div class="row common-top">
+  <?php callingAmenity_admin("conference"); ?>
+</div>
   <div class="common-top">
    <label class="col s4">Amenities</label>
    <div class="chips chips-autocomplete chips_amenities"></div>
@@ -289,7 +292,7 @@ include '../../common-apis/reg-api.php';
 
 <?php include '../footer.php';  ?>
 <script src="../../js/conference-js/conference.js"></script>
-
+<script src="../../js/method-js/adminAmenity.js"></script>
 
 
 <script type="text/javascript">

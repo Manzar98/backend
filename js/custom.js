@@ -1035,23 +1035,32 @@ function childrnfree(that) {
 
  $('.chips-autocomplete').on('chip.add', function(e, chip){
 
-    // you have the added chip here
-    var chip_string= $('.chips-autocomplete').material_chip('data')
-  // console.log($('.chips-autocomplete').material_chip('data'));
+  // you have the added chip here
+  var chip_string= $('.chips-autocomplete').material_chip('data')
+  console.log($('.chips-autocomplete').material_chip('data'));
 
-  // var str = JSON.stringify(chip_string);
+    // var str = JSON.stringify(chip_string);
     // console.log(str);
+
     var array_amenity=[];
-    for (var i = 0; i < chip_string.length; i++) {
 
-   // console.log(chip_string[i].tag);
-   array_amenity.push(chip_string[i].tag);
+    if ($('#amenities-id').val()) {
+     
+        array_amenity = $('#amenities-id').val().split(',');
+    }
 
+  for (var i = 0; i < chip_string.length; i++) {
+
+   console.log(chip_string[i].tag);
+   if (array_amenity.indexOf(chip_string[i].tag) == -1) {
+    
+       array_amenity.push(chip_string[i].tag);
+   }
+   
  }
-
  // console.log(array_amenity.toString());
-
- document.getElementById('amenities-id').value = array_amenity.toString();
+  document.getElementById('amenities-id').value = array_amenity.toString();
+ 
 });
 
  $('.chips').on('chip.delete', function(e, chip){
@@ -1059,7 +1068,7 @@ function childrnfree(that) {
    var deletechip=$('#amenities-id').val();
    var chipsplit=deletechip.split(",");
    var index = chipsplit.indexOf(chip.tag);
-
+    
    if (index > -1) {
     var splicevalue=chipsplit.splice(index, 1);
     console.log(chipsplit);
@@ -1283,19 +1292,6 @@ $('#departureTime').pickatime();
 
 $('#arrivalTime').pickatime();
 
-/*=================================*/
-
- // if ($('.offer_expire').val()) {
- //   debugger;
- //   $('.offer_discount').prop('required',true);
- // }else if ($('.offer_discount').val()) {
- //   $('.offer_expire').prop('required',true);
- // }else{
- //  debugger;
- //     $('.offer_discount').prop('required',false);
- //     $('.offer_expire').prop('required',false);
- // }
-
  /*===========================
 Remove imges when click on done in modal
 =============================*/
@@ -1321,8 +1317,6 @@ $('.photo_done').click(function () {
    // body...
  }
 }
-
-
  /*===================
    Date of birth when registration
    ===================*/

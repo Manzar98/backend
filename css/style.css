@@ -4950,7 +4950,10 @@ label.freeLbl {
 .common-bottom{
     padding-bottom: 21px;
 }
-
+[type="checkbox"].inactive.filled-in:not(:checked) + label::before {
+    top: 1px;
+    left: 74px;
+}
 [type="checkbox"].inactive.filled-in:not(:checked) + label::after {
     top: 1px;
     left: 74px;
@@ -5215,4 +5218,22 @@ li.li-wrap:hover .noti_x_icon {
 }
 .ui-datepicker-year{
     display: block;
+}
+[type="checkbox"].admin_amenity.filled-in:not(:checked) + label::after {
+    top: 40px;
+    left: 15px;
+}
+[type="checkbox"].admin_amenity.filled-in:not(:checked) + label::before {
+    top: 40px;
+    left: 15px;
+}
+[type="checkbox"].admin_amenity.filled-in:checked + label::before {
+    
+   top: 40px;
+    left: 15px;
+}
+[type="checkbox"].admin_amenity.filled-in:checked + label::after {
+    
+    top: 40px;
+    left: 15px;
 }

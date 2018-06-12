@@ -11,8 +11,9 @@ include '../../common-apis/reg-api.php';
 	<title>Add a Banquet Hall</title>
 
   <?php include '../header_inner_folder.php';
+  include '../../common-ftns/adminAmenities.php';
   $userId= $_GET["user_id"];
-
+  
   $selectHotel = 'SELECT `hotel_name`,`hotel_id`  FROM `hotel` WHERE `user_id`="'.$userId.'" ';
 
 
@@ -301,10 +302,11 @@ include '../../common-apis/reg-api.php';
    <label class="col s4">Hall Description</label>
    <textarea name="banquet_descrip" class="input-field validate is_validate_input" required></textarea>
  </div>
-
- <div class="common-top">
+<div class="row common-top">
+  <?php callingAmenity_admin("banquet"); ?>
+</div>
+ <div class="">
    <label class="col s4">Amenities:</label>
-
    <div class="chips chips-autocomplete chips_amenities"></div>
    <input type="hidden"  name="banquet_other" id="amenities-id">
  </div><br><br>
@@ -363,6 +365,8 @@ include '../../common-apis/reg-api.php';
 <?php include'../../common-ftns/submitting-modal.php'; ?>
 <?php include'../footer_inner_folder.php';?>
 <script src="../../js/banquet-js/banquet.js"></script>
+<script src="../../js/method-js/adminAmenity.js"></script>
+
 
 <script type="text/javascript">
   jQuery(document).ready(function(){

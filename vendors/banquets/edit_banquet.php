@@ -16,6 +16,7 @@ include '../../common-apis/reg-api.php';
  <title>Edit Banquet Hall</title>
 
  <?php include '../header.php'; 
+ include '../../common-ftns/adminAmenities.php';
  $userId= $_SESSION["user_id"];
 
  $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'" ';
@@ -458,7 +459,9 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
                  <label class="col s4">Hall Description</label>
                  <textarea name="banquet_descrip" class="input-field validate is_validate_input" required><?php echo $resultbnq['banquet_descrip']; ?></textarea>
                </div>
-
+               <div class="row common-top">
+                <?php callingAmenity_admin("banquet"); ?>
+              </div>
                <div class="common-top">
                  <label class="col s4">Amenities:</label>
 
@@ -583,6 +586,7 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
  <?php include '../../common-ftns/submitting-modal.php'; ?>
  <?php include '../footer.php';?>
  <script src="../../js/banquet-js/banquet.js"></script>
+ <script src="../../js/method-js/adminAmenity.js"></script>
  <script type="text/javascript">
 
   jQuery(document).ready(function(){
@@ -649,12 +653,21 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
 
 		// $('#modal-images').modal();
 
+    var updated_amLst=[];
     var ameinty_obj=[];
     var amenity= $('#amenities-id').val().split(",");
+    var amenityLst_admin=$('#amenityLst_admin').val().split(",");
 
     for (var i = 0; i < amenity.length; i++) {
         // console.log(amenity[i]);
-        ameinty_obj.push({"tag":amenity[i]});
+        if ($('#amenityLst_admin').val().indexOf(amenity[i])== -1) {
+
+           ameinty_obj.push({"tag":amenity[i]});
+
+        }else{
+             updated_amLst.push(amenity[i])
+             $('#updatedAmenityLst_admin').val(updated_amLst.toString());
+        }
       }
 
 
@@ -792,7 +805,12 @@ if($('#independ-select :selected').text()=="Yes"){
   //     $('#dependent_wrap').hide();
   // }
 
+        var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+        $.each(updatedSplitAm,function(k,v){
 
+             $('.admin_amenity[value="'+v+'"]').prop('checked', true);
+             
+        })
 
 
 

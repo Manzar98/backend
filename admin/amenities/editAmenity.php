@@ -34,37 +34,83 @@ include '../../common-apis/reg-api.php';
 						$result= gen_page($asso_array); ?>
 						<?php 	echo $result;
 						?>
-					<div class="row" >
-									<p class="pTAG inactive_checkbox">
-										<input type="hidden" name="amenity_inactive" id="hidden_checkbox">
-										<?php if ($result_D['amenity_inactive']=='on') { ?>
+						<div class="col s12 common-top">
+							<label>In Which Page</label>
+							<select name="amenity_page" id="amenity_page">
+								<?php if ($result_D['amenity_page']=="hotel") { ?>
 
-											<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
-											<label for="filled-in-inactive">Inactive</label>
+									<option value="" disabled="">Select One</option>
+									<option value="hotel" selected="">Hotel</option>
+									<option value="room">Room</option>
+									<option value="banquet">Banquet</option>
+									<option value="conference">Conference</option>
 
-											<?php 	}else{ ?>
+								<?php }else if($result_D['amenity_page']=="room"){ ?>
 
-												<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
-												<label for="filled-in-inactive">Inactive</label>
-												<?php  }  ?>
+									<option value="" disabled="">Select One</option>
+									<option value="hotel">Hotel</option>
+									<option value="room" selected="">Room</option>
+									<option value="banquet">Banquet</option>
+									<option value="conference">Conference</option>
 
-											</p>     
-										</div>
-										<div>
-											<div class="input-field col s8">
-												<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_amenity"> 
-											</div>
-										</div>
-									</form>
-								</div>
+								<?php }else if($result_D['amenity_page']=="banquet"){ ?>
+
+									<option value="" disabled="">Select One</option>
+									<option value="hotel">Hotel</option>
+									<option value="room">Room</option>
+									<option value="banquet" selected="">Banquet</option>
+									<option value="conference">Conference</option>
+
+								<?php }else if($result_D['amenity_page']=="conference"){ ?>
+
+									<option value="" disabled="">Select One</option>
+									<option value="hotel">Hotel</option>
+									<option value="room">Room</option>
+									<option value="banquet">Banquet</option>
+									<option value="conference" selected="">Conference</option>
+
+								<?php }else{ ?>
+
+									<option value="" disabled="" selected="">Select One</option>
+									<option value="hotel">Hotel</option>
+									<option value="room">Room</option>
+									<option value="banquet">Banquet</option>
+									<option value="conference">Conference</option>
+								<?php } ?>
+
+							</select>
+						</div>
+						<div class="row" >
+							<p class="pTAG inactive_checkbox">
+								<input type="hidden" name="amenity_inactive" id="hidden_checkbox">
+								<?php if ($result_D['amenity_inactive']=='on') { ?>
+
+									<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
+									<label for="filled-in-inactive">Inactive</label>
+
+								<?php 	}else{ ?>
+
+									<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
+									<label for="filled-in-inactive">Inactive</label>
+								<?php  }  ?>
+
+							</p>     
+						</div>
+						<div>
+							<div class="input-field col s8">
+								<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_amenity"> 
 							</div>
 						</div>
-						<?php  } ?>
-					</div>
-					<?php include '../../common-ftns/submitting-modal.php'; ?>
-					<?php  include"../footer_inner_folder.php";  ?>
-					<script src="../../js/amenity-js/amenity.js"></script>
-					
-				</body>
-				<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
-				</html>
+					</form>
+				</div>
+			</div>
+		</div>
+	<?php  } ?>
+</div>
+<?php include '../../common-ftns/submitting-modal.php'; ?>
+<?php  include"../footer_inner_folder.php";  ?>
+<script src="../../js/amenity-js/amenity.js"></script>
+
+</body>
+<!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
+</html>

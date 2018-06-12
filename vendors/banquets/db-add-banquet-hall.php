@@ -16,6 +16,7 @@
 	<title>Add a Banquet Hall</title>
 
   <?php include '../header.php'; 
+  include '../../common-ftns/adminAmenities.php';
     $userId= $_SESSION["user_id"];
 
    $selectHotel = 'SELECT `hotel_name`,`hotel_id`  FROM `hotel` WHERE `user_id`="'.$userId.'" ';
@@ -299,7 +300,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
  <label class="col s4">Hall Description</label>
  <textarea name="banquet_descrip" class="input-field validate is_validate_input" required></textarea>
 </div>
-
+<div class="row common-top">
+  <?php callingAmenity_admin("banquet"); ?>
+</div>
 <div class="common-top">
  <label class="col s4">Amenities:</label>
 
@@ -361,6 +364,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php include '../footer.php';?>
 <script src="../../js/banquet-js/banquet.js"></script>
+<script src="../../js/method-js/adminAmenity.js"></script>
 
 
 <script type="text/javascript">

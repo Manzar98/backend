@@ -238,7 +238,9 @@
 							<label class="col s4" style="margin-bottom: 10px;">Room Description</label>
 							<textarea name="room_descrip" required><?php echo $resultRoom['room_descrip']  ?></textarea>
 						</div><br>
-
+						<div class="row common-top">
+							<?php callingAmenity_admin("room"); ?>
+						</div>
 
 						<div class="common-top">
 							<label class="col s4">Amenities:</label>
@@ -369,8 +371,8 @@
 
 <?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php  include"../footer_inner_folder.php";  ?>
-
 <script src="../../js/room-js/room.js"></script>
+<script src="../../js/method-js/adminAmenity.js"></script>
 		   <script type="text/javascript">
 
 $('#selecthour').pickatime();
@@ -481,13 +483,25 @@ $('#ajaxbtn').click(function(){
 	});
 /*==============End Ajax Function Defination==============*/
 
-var ameinty_obj=[];
-var amenity= $('#amenities-id').val().split(",");
+    var updated_amLst=[];
+    var ameinty_obj=[];
+    var amenity= $('#amenities-id').val().split(",");
+    var amenityLst_admin=$('#amenityLst_admin').val().split(",");
 
-for (var i = 0; i < amenity.length; i++) {
-	      // console.log(amenity[i]);
-	      ameinty_obj.push({"tag":amenity[i]});
-}
+    for (var i = 0; i < amenity.length; i++) {
+        // console.log(amenity[i]);
+        if ($('#amenityLst_admin').val().indexOf(amenity[i])== -1) {
+
+           ameinty_obj.push({"tag":amenity[i]});
+
+        }else{
+             updated_amLst.push(amenity[i])
+             $('#updatedAmenityLst_admin').val(updated_amLst.toString());
+        }
+        // var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+        //  $('.admin_amenity[value='+updatedSplitAm+']').prop('checked', true);
+ 
+      }
 
 
 $('.chips-autocomplete').material_chip({

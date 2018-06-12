@@ -25,8 +25,18 @@
 					$asso_array[]= array("tag"=>"textarea", "id"=>"amenity_description", "name"=>"amenity_description","label"=>"Amenity Description","value"=>"");
 					$result= gen_page($asso_array); ?>
 					
-				<?php	echo $result;
+					<?php	echo $result;
 					?>
+					<div class="col s12 common-top">
+						<label>In Which Page</label>
+						<select name="amenity_page" id="amenity_page">
+							<option value="" disabled="">Select One</option>
+							<option value="hotel">Hotel</option>
+							<option value="room">Room</option>
+							<option value="banquet">Banquet</option>
+							<option value="conference">Conference</option>
+						</select>
+					</div>
 					<div class="row" >
 						<p class="pTAG">
 							<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="desti_inactive" />

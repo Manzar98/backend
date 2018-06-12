@@ -9,7 +9,8 @@
 	
 	<?php 
 	include '../../common-sql.php';
-	include '../header.php'; 
+	include '../header.php';
+	include '../../common-ftns/adminAmenities.php';
     $userId= $_SESSION["user_id"];
 
 $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'" ';
@@ -163,7 +164,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<textarea name="room_descrip" required></textarea>
 						</div><br>
 
-
+						<div class="row common-top">
+							<?php callingAmenity_admin("room"); ?>
+						</div>
 						<div class="common-top">
 							<label class="col s4">Amenities:</label>
 
@@ -226,7 +229,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
    <?php include '../../common-ftns/upload-img-modal.php'; ?>
    <?php include '../../common-ftns/submitting-modal.php'; ?>
    <?php include '../footer.php'; ?>
-	<script src="../../js/room-js/room.js"></script>	
+	<script src="../../js/room-js/room.js"></script>
+	<script src="../../js/method-js/adminAmenity.js"></script>	
 
 <script type="text/javascript">
 

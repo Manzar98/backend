@@ -12,8 +12,9 @@
  
   
 include '../header.php'; 
-
+include '../../common-ftns/adminAmenities.php';
 include'../../methods/general_amenities.php'; ?>
+
 
    
 
@@ -244,6 +245,9 @@ include'../../methods/general_amenities.php'; ?>
                         		                       
                         </div>
 
+                        <div class="row common-top">
+                        	<?php callingAmenity_admin("hotel"); ?>
+                        </div>
                        
 					      
 						 <div class="common-top">
@@ -362,6 +366,7 @@ include'../../methods/general_amenities.php'; ?>
    		   <?php include '../../common-ftns/submitting-modal.php'; ?>
 		   <?php  include"../footer.php";  ?>
            <script src="../../js/hotel-js/hotel.js"></script>
+           <script src="../../js/method-js/adminAmenity.js"></script>
 
 
 <script>

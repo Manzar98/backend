@@ -43,6 +43,10 @@ $showB_Query=select('amenities',array('amenity_id'=>$_GET['a_id'],'user_id'=>$_G
           <span><b>Amenity Name :</b></span>
           <span><?php echo $result['amenity_name']."."; ?></span>
         </div>
+         <div class="row">
+          <span><b>Amenity Page :</b></span>
+          <span><?php echo $result['amenity_page']."."; ?></span>
+        </div>
         <div>
           <span><b>Amenity Description :</b></span>
           <div class="listing-desc sp_top">

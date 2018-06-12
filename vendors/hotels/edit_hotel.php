@@ -31,7 +31,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 
 <?php include '../header.php'; 
-
+include '../../common-ftns/adminAmenities.php';
 include'../../methods/general_amenities.php'; ?>
 
 
@@ -331,7 +331,9 @@ include'../../methods/general_amenities.php'; ?>
 			</div>
 
 
-
+			<div class="row common-top">
+				<?php callingAmenity_admin("hotel"); ?>
+			</div>
 			<div class="common-top">
 
 				<label class="col s4">Amenities:</label>
@@ -486,6 +488,7 @@ include'../../methods/general_amenities.php'; ?>
 
 <script src="../../js/hotel-js/hotel.js"></script>
 <script src="../../js/hotel-js/images.js"></script>
+<script src="../../js/method-js/adminAmenity.js"></script>
 <script>
  Materialize.toast('Loading images')
 tinymce.init({ selector:'textarea' });
@@ -598,13 +601,24 @@ $('#filled-in-airport').click(function () {
 
 jQuery(document).ready(function(){
 
-var ameinty_obj=[];
-var amenity= $('#amenities-id').val().split(",");
+    var updated_amLst=[];
+    var ameinty_obj=[];
+    var amenity= $('#amenities-id').val().split(",");
+    var amenityLst_admin=$('#amenityLst_admin').val().split(",");
 
-for (var i = 0; i < amenity.length; i++) {
-	      // console.log(amenity[i]);
-	      ameinty_obj.push({"tag":amenity[i]});
-}
+    for (var i = 0; i < amenity.length; i++) {
+        // console.log(amenity[i]);
+        if ($('#amenityLst_admin').val().indexOf(amenity[i])== -1) {
+
+           ameinty_obj.push({"tag":amenity[i]});
+
+        }else{
+             updated_amLst.push(amenity[i])
+             $('#updatedAmenityLst_admin').val(updated_amLst.toString());
+        }
+        
+ 
+      }
 
  var am_obj=[];
    var am_data=$('#amenities-input_wrap').val().split(',');
@@ -717,6 +731,12 @@ if ($('#pik_select :selected').text() == "Yes") {
  	   
  }
 
+        var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+        $.each(updatedSplitAm,function(k,v){
+
+             $('.admin_amenity[value="'+v+'"]').prop('checked', true);
+             
+        })
 
 });
 

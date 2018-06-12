@@ -170,7 +170,9 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 							<label class="col s4" style="margin-bottom: 10px;">Room Description</label>
 							<textarea name="room_descrip" required></textarea>
 						</div><br>
-
+                        <div class="row common-top">
+							<?php callingAmenity_admin("room"); ?>
+						</div>
 
 						<div class="common-top">
 							<label class="col s4">Amenities:</label>
@@ -245,6 +247,7 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 <?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php include '../footer_inner_folder.php'; ?>
 <script src="../../js/room-js/room.js"></script>	
+<script src="../../js/method-js/adminAmenity.js"></script>
 <script type="text/javascript">
 
 $('#selecthour').pickatime();

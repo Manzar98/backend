@@ -13,6 +13,7 @@ include '../../common-apis/reg-api.php';
 
 
  <?php include '../header.php'; 
+ include '../../common-ftns/adminAmenities.php';
  $userId= $_SESSION["user_id"];
 
  $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'"';
@@ -355,7 +356,9 @@ while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
     <div class="input-field col s8">
       <input type="text"  class="" name="common_video"  ></div>
     </div>
-
+    <div class="row common-top">
+      <?php callingAmenity_admin("conference"); ?>
+    </div>
     <div class="common-top">
      <label class="col s4">Amenities</label>
      <div class="chips chips-autocomplete chips_amenities"></div>
@@ -473,7 +476,7 @@ while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
 <?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php include '../footer.php';  ?>
 <script src="../../js/conference-js/conference.js"></script>
-
+<script src="../../js/method-js/adminAmenity.js"></script>
 <script type="text/javascript">
   jQuery(document).ready(function(){
    /*==============Ajax Function Defination (For Dates)==============*/
@@ -519,12 +522,23 @@ while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
    /*==============End Ajax Function Defination==============*/
 
 
-   var ameinty_obj=[];
-   var amenity= $('#amenities-id').val().split(",");
+    var updated_amLst=[];
+    var ameinty_obj=[];
+    var amenity= $('#amenities-id').val().split(",");
+    var amenityLst_admin=$('#amenityLst_admin').val().split(",");
 
-   for (var i = 0; i < amenity.length; i++) {
+    for (var i = 0; i < amenity.length; i++) {
         // console.log(amenity[i]);
-        ameinty_obj.push({"tag":amenity[i]});
+        if ($('#amenityLst_admin').val().indexOf(amenity[i])== -1) {
+
+           ameinty_obj.push({"tag":amenity[i]});
+
+        }else{
+             updated_amLst.push(amenity[i])
+             $('#updatedAmenityLst_admin').val(updated_amLst.toString());
+        }
+        
+ 
       }
 
 
@@ -636,7 +650,12 @@ if ($('#conferenceFood :selected').text()=="Yes") {
   }
 
 
+        var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+        $.each(updatedSplitAm,function(k,v){
 
+             $('.admin_amenity[value="'+v+'"]').prop('checked', true);
+             
+        })
 
   
 
