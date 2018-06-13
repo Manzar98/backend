@@ -6,7 +6,7 @@
 	<title>List Of Amenities</title>
 	
 	<?php  include '../header_inner_folder.php';
-	$d_Query='SELECT * FROM amenities where user_id="'.$_GET['id'].'" ORDER BY amenity_id DESC ';
+	$d_Query='SELECT * FROM amenities where user_id="'.$_GET['id'].'" GROUP BY amenity_name ORDER BY amenity_id DESC';
 	$d_resp =mysqli_query($conn,$d_Query)  or die(mysqli_error($conn)); ?>
 	
 	<div class="db-cent-3">
@@ -42,11 +42,13 @@
 						<?php }else{ ?>
 						<td class="status_wrap appr"><span class="db-success">Activated</span></td>
 						<?php } ?>
+						<?php 
+						$new = urlencode($result['amenity_name']); ?>
 						<td class="tdwrap tdwrap_ads sus_appr">
 							<div class="">
 								<div class="row">
-									<a class="waves-effect waves-light btn" href="editAmenity.php?a_id=<?php echo $result['amenity_id'];  ?>&id=<?php echo $result['user_id']; ?>">Edit</a>
-									<a class="waves-effect waves-light btn" href="veiwAmenity.php?a_id=<?php echo $result['amenity_id'];  ?>&id=<?php echo $result['user_id']; ?>">Veiw</a>
+									<a class="waves-effect waves-light btn" href="editAmenity.php?a_id=<?php echo $result['amenity_id'];  ?>&id=<?php echo $result['user_id']; ?>&a_name=<?php echo urlencode($result['amenity_name']); ?>">Edit</a>
+									<a class="waves-effect waves-light btn" href="veiwAmenity.php?a_id=<?php echo $result['amenity_id'];  ?>&id=<?php echo $result['user_id']; ?>&a_name=<?php echo urlencode($result['amenity_name']); ?>">Veiw</a>
 									<a class="waves-effect waves-light btn" href="#">Delete</a>
 									<?php if ($result['amenity_inactive']=="on") { ?>
 										    <a onclick="active(event)" class="waves-effect waves-light btn active" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['amenity_id']; ?>" value="off" tbl-name="amenities" col-name="amenity_inactive" id-col="amenity_id">Activate</a>

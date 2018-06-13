@@ -10,6 +10,7 @@
 	<?php 
 	include '../../common-sql.php';
 	include '../header_inner_folder.php';
+	include '../../common-ftns/adminAmenities.php';
 if (isset($_GET["user_id"])) {
 	$userId= $_GET["user_id"];
 }else{

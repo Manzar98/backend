@@ -7,11 +7,14 @@ function callingAmenity_admin($page){
 	$m=0;
 	$am_Result= "";
 	$str_array=[];
-	while ($am_Result=mysqli_fetch_assoc($a_sqli)) { ?>
+	?>   
+
+<?php	while ($am_Result=mysqli_fetch_assoc($a_sqli)) { ?>
+	<div class="col s1"></div>
 		<div class="col s3">
 			<p class="pTAG">
 				<input type="checkbox" name="" class="filled-in admin_amenity" id="filled-in-<?php echo $m+1; ?>" value="<?php echo $am_Result['amenity_name']; ?>">
-				<label for="filled-in-<?php echo $m+1; ?>" ><?php echo $am_Result['amenity_name']; ?></label>
+				<label for="filled-in-<?php echo $m+1; ?>" class="amenity_labal" ><?php echo $am_Result['amenity_name']; ?></label>
 			</p>
 		</div>
     <?php  array_push($str_array, $am_Result['amenity_name']); ?>

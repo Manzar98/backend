@@ -12,7 +12,8 @@
 	<title>Edit Room</title>
 
 
-<?php include '../header_inner_folder.php'; 
+<?php include '../header_inner_folder.php';
+  include '../../common-ftns/adminAmenities.php'; 
      $userId= $_GET["user_id"];
      $RoomID=  $_GET['id'];
      $HotelID= $_GET['h_id'];
@@ -498,9 +499,7 @@ $('#ajaxbtn').click(function(){
              updated_amLst.push(amenity[i])
              $('#updatedAmenityLst_admin').val(updated_amLst.toString());
         }
-        // var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
-        //  $('.admin_amenity[value='+updatedSplitAm+']').prop('checked', true);
- 
+       
       }
 
 
@@ -519,7 +518,12 @@ $('.chips-autocomplete').material_chip({
 	}
 });
 
+ var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+        $.each(updatedSplitAm,function(k,v){
 
+             $('.admin_amenity[value="'+v+'"]').prop('checked', true);
+             
+        })
 
 });
 </script>

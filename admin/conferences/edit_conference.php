@@ -651,7 +651,12 @@ if ($('#conferenceFood :selected').text()=="Yes") {
   }
 
 
+var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+        $.each(updatedSplitAm,function(k,v){
 
+             $('.admin_amenity[value="'+v+'"]').prop('checked', true);
+             
+        })
 
 
 

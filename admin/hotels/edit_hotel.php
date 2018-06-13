@@ -1,6 +1,6 @@
 <?php
 include '../../common-apis/reg-api.php';
-include '../../common-ftns/adminAmenities.php';
+
 
 $editHotelQuery=select('hotel',array('hotel_id'=>$_GET['id']));
 
@@ -32,7 +32,7 @@ while ($hotelResult=mysqli_fetch_assoc($editHotelQuery)) {
 
 
 <?php include '../header_inner_folder.php'; 
-
+include '../../common-ftns/adminAmenities.php';
 include'../../methods/general_amenities.php'; ?>
 
 
@@ -732,7 +732,12 @@ if ($('#pik_select :selected').text() == "Yes") {
  	   
  }
 
+var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+        $.each(updatedSplitAm,function(k,v){
 
+             $('.admin_amenity[value="'+v+'"]').prop('checked', true);
+             
+        })
 });
 
 

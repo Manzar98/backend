@@ -5237,3 +5237,8 @@ li.li-wrap:hover .noti_x_icon {
     top: 40px;
     left: 15px;
 }
+.amenity_labal{
+    font-size: 12px !important;
+    font-weight: 100 !important;
+
+}

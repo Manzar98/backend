@@ -54,7 +54,18 @@ $('#pro-sub-btn_amenity').click(function(){
 	}else{ 
 		$('#loader').modal({dismissible: false});
 		$('#loader').modal('open');
-        ajax("../amenities/amenityPostUpdate.php",$("form").serialize(),function(data){$("#btn-loader").hide();
+    var formData=$("form").serialize();
+    if ($('#amP_id').val()) {
+      var ids=$('#amP_id').val().split(',');
+
+      $.each(ids,function(key,val){
+
+        formData += encodeURI('&page_amenity_id[]='+val);
+
+      })
+
+    }
+        ajax("../amenities/amenityPostUpdate.php",formData,function(data){$("#btn-loader").hide();
         	setTimeout(function(){
                                   $('#loader').modal('close');
                                    var tit;
@@ -116,3 +127,7 @@ function ajax(url,formdata,callback){
 
  	   })
  }
+
+
+
+

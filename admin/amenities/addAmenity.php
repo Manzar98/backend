@@ -28,8 +28,8 @@
 					<?php	echo $result;
 					?>
 					<div class="col s12 common-top">
-						<label>In Which Page</label>
-						<select name="amenity_page" id="amenity_page">
+						<label>Applies to</label>
+						<select name="amenity_page[]" id="amenity_page" multiple>
 							<option value="" disabled="">Select One</option>
 							<option value="hotel">Hotel</option>
 							<option value="room">Room</option>
