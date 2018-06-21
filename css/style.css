@@ -4688,6 +4688,10 @@ right: 40px;
     padding-left: 0;
     }
 
+[type="checkbox"].filled-in:not(:checked) + label::before{
+    top: 50px;
+    left: 20px;
+}
 [type="checkbox"].filled-in:not(:checked) + label::after{
     top: 50px;
     left: 20px;
@@ -5237,8 +5241,24 @@ li.li-wrap:hover .noti_x_icon {
     top: 40px;
     left: 15px;
 }
-.amenity_labal{
+.amenity_labal, .canManage-label, .applyTo-label{
     font-size: 12px !important;
     font-weight: 100 !important;
 
+}
+[type="checkbox"].canManage.filled-in:not(:checked) + label::after {
+    top: 40px;
+    left: 15px;
+}
+[type="checkbox"].canManage.filled-in:not(:checked) + label::before {
+    top: 40px;
+    left: 15px;
+}
+[type="checkbox"].canManage.filled-in:checked + label::after {
+    top: 40px;
+    left: 15px;
+}
+[type="checkbox"].canManage.filled-in:checked + label::before {
+    top: 40px;
+    left: 15px;
 }

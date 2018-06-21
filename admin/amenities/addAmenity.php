@@ -27,16 +27,39 @@
 					
 					<?php	echo $result;
 					?>
-					<div class="col s12 common-top">
-						<label>Applies to</label>
-						<select name="amenity_page[]" id="amenity_page" multiple>
-							<option value="" disabled="">Select One</option>
-							<option value="hotel">Hotel</option>
-							<option value="room">Room</option>
-							<option value="banquet">Banquet</option>
-							<option value="conference">Conference</option>
-						</select>
-					</div>
+					<div class="row common-top">
+						<div>
+							<label>Applies to :</label>
+						</div>
+						<input type="text" name="amenity_page[]" id="amenity_page">
+							<div class="common-top">
+							<div  class="col s3">
+								<p class="pTAG"> 
+									<input type="checkbox" class="filled-in applyTo" id="filled-in-hotel" value="hotel" />
+									<label for="filled-in-hotel" class="applyTo-label" style="padding-left: 12px !important">Hotel</label>
+								</p>
+							</div>
+							<div  class="col s3">
+								<p class="pTAG"> 
+									<input type="checkbox" class="filled-in applyTo" id="filled-in-room" value="room"/>
+									<label for="filled-in-room" class="applyTo-label" style="padding-left: 12px !important">Room</label>
+								</p>
+							</div>
+							<div  class="col s3">
+								<p class="pTAG"> 
+									<input type="checkbox" class="filled-in applyTo" id="filled-in-banquet" value="banquet"/>
+									<label for="filled-in-banquet" class="applyTo-label">Banquet</label>
+								</p>
+							</div>
+							<div  class="col s3">
+								<p class="pTAG"> 
+									<input type="checkbox" class="filled-in applyTo" id="filled-in-conference" value="conference" />
+									<label for="filled-in-conference" class="applyTo-label">Conerence</label>
+								</p>
+							</div>
+							</div>
+						</div>
+
 					<div class="row" >
 						<p class="pTAG">
 							<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="desti_inactive" />
@@ -56,6 +79,7 @@
 <?php include '../../common-ftns/submitting-modal.php'; ?>
 <?php  include"../footer_inner_folder.php";  ?>
 <script src="../../js/amenity-js/amenity.js"></script>
+<script src="../../js/method-js/adminAmenity.js"></script>
 </body>
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:01:35 GMT -->
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 <head>
-	<title>List of Users</title>
+	<title>List of Contributors</title>
 	<?php  include 'header.php'; 
 
 	include '../common-sql.php';
@@ -16,7 +16,7 @@
 				<div class="db-cent-3">
 					<div class="db-cent-table db-com-table">
 						<div class="db-title">
-							<h3><img src="../images/icon/dbc5.png" alt=""/>Users</h3>
+							<h3><img src="../images/icon/dbc5.png" alt=""/> Contributors</h3>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
 
 						</div>

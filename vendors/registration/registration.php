@@ -172,7 +172,6 @@
 												<input type="password" value="" id="reg_Conpassword"  minlength="8" class="validate" name="reg_Conpassword"> 
 											</div>
 										</div>
-
 									</div>
 									
 									<input type="hidden" name="profile_img" id="profile_img">

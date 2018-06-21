@@ -398,13 +398,10 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="../dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db1.png" alt="" /> Dashboard</a>
 						</li>
 						<li>
-							<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Manage Users</a>
+							<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Contributors</a>
 						</li>
 						<li>
-							<a href="../list-of-vendor_manage_add.php?act=add"><img src="../../images/icon/db2.png" alt="" /> Add Listing</a>
-						</li>
-						<li>
-							<a href="../list-of-vendor_manage_add.php?act=manage"><img src="../../images/icon/db3.png" alt="" /> Manage Listing</a>
+							<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
 						</li>
 						<li>
 							<a href="../add-manage-ads_vendor.php"><img src="../../images/icon/db5.png" alt="" /> Featured Ads</a>
@@ -413,7 +410,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="../pages/pageListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db4.png" alt="" /> Pages</a>
 						</li>
 						<li>
-							<a href="../faqs/faqListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db6.png" alt="" /> FAQ Lisitng</a>
+							<a href="../faqs/faqListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db6.png" alt="" /> FAQs</a>
 						</li>
 						<li>
 							<a href="../edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db7.png" alt="" /> Profile</a>
@@ -428,7 +425,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="../service_fee/listOfServiceFee.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Service Fee</a>
 						</li>
 						<li>
-							<a href="#"><img src="../../images/icon/db6.png" alt="" /> Payments</a>
+							<a href="../listOfAdmins.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../../images/icon/db6.png" alt="" /> Admins</a>
 						</li>
 						<li>
 							<a href="../../logout.php"><img src="../../images/icon/db8.png" alt="" /> Logout</a>

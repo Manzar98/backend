@@ -8,6 +8,20 @@ $('#pro-sub-btn_amenity').click(function(){
    }else{
                $('#hidden_checkbox').val('off');
    }
+      if ($('#amenity_page').val()=="") {
+    swal({
+
+          title: "Applies field is required",
+          
+          type: "error",
+            //confirmButtonColor: "#DD6B55",
+            confirmButtonText: "ok",
+            closeOnConfirm: true,
+            html: false
+            });
+     return;
+   }
+
 
    var validator= $("#amenity-form").validate({
 		rules:{
@@ -57,15 +71,13 @@ $('#pro-sub-btn_amenity').click(function(){
     var formData=$("form").serialize();
     if ($('#amP_id').val()) {
       var ids=$('#amP_id').val().split(',');
-
       $.each(ids,function(key,val){
 
         formData += encodeURI('&page_amenity_id[]='+val);
-
       })
 
     }
-        ajax("../amenities/amenityPostUpdate.php",formData,function(data){$("#btn-loader").hide();
+        ajaxFtn("../amenities/amenityPostUpdate.php",formData,function(data){$("#btn-loader").hide();
         	setTimeout(function(){
                                   $('#loader').modal('close');
                                    var tit;
@@ -89,7 +101,7 @@ $('#pro-sub-btn_amenity').click(function(){
 })
 
 
-function ajax(url,formdata,callback){
+function ajaxFtn(url,formdata,callback){
     // debugger;
  	   $.ajax({
 
