@@ -9,7 +9,7 @@
 	
 	<div class="db-cent-2">
 		
-		<?php if ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="on") { ?>
+		<?php if ($_SESSION['vendors']=="on" || $_SESSION['bloggers']=="on") { ?>
 
 			<div class="db-2-main-1">
 				<a href="list-of-vendor_manage_add.php?act=add">
@@ -20,10 +20,10 @@
 					</div>
 				</a>
 			</div>
-		<?php }elseif ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="off") { ?>
+		<?php }elseif ($_SESSION['bloggers']=="off" && $_SESSION['vendors']=="off") { ?>
 
-			<div class="db-2-main-1">
-				<a href="list-of-vendor_manage_add.php?act=add" class="AD_vendors">
+			<div class="db-2-main-1 AD_bloggers AD_vendors">
+				<a href="list-of-vendor_manage_add.php?act=add">
 					<div class="db-2-main-2"> 
 						<img src="../images/icon/dbc5.png" alt=""> 
 						<span>Add Listing</span>
@@ -31,21 +31,10 @@
 					</div>
 				</a>
 			</div>
-		<?php }elseif ($_SESSION['bloggers']=="on" && $_SESSION['vendors']=="off") { ?>
+		<?php }else { ?>
 
 			<div class="db-2-main-1">
-				<a href="list-of-vendor_manage_add.php?act=add" class="AD_bloggers">
-					<div class="db-2-main-2"> 
-						<img src="../images/icon/dbc5.png" alt=""> 
-						<span>Add Listing</span>
-						<h2 style="visibility: hidden;">12</h2> 
-					</div>
-				</a>
-			</div>
-		<?php }else{ ?>
-
-			<div class="db-2-main-1">
-				<a href="list-of-vendor_manage_add.php?act=add" class="AD_vendors AD_bloggers">
+				<a href="list-of-vendor_manage_add.php?act=add">
 					<div class="db-2-main-2"> 
 						<img src="../images/icon/dbc5.png" alt=""> 
 						<span>Add Listing</span>
@@ -55,7 +44,7 @@
 			</div>
 		<?php } ?>
 		
-		<?php if ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="on") { ?>
+		<?php if ($_SESSION['vendors']=="on" || $_SESSION['bloggers']=="on") { ?>
 
 			<div class="db-2-main-1">
 				<a href="list-of-vendor_manage_add.php?act=manage">
@@ -67,20 +56,9 @@
 					</div>
 				</a>
 			</div>
-		<?php }elseif ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="off") { ?>
+		<?php }elseif ($_SESSION['bloggers']=="off" && $_SESSION['vendors']=="off") { ?>
 
-			<div class="db-2-main-1 AD_vendors">
-				<a href="list-of-vendor_manage_add.php?act=manage">
-					<div class="db-2-main-2"> 
-						<img src="../images/icon/dbc6.png" alt=""> 
-						<span>Manage Listing</span>
-						<h2 style="visibility: hidden;">04</h2> 
-					</div>
-				</a>
-			</div>
-		<?php }elseif ($_SESSION['bloggers']=="on" && $_SESSION['vendors']=="off") { ?>
-
-			<div class="db-2-main-1 AD_bloggers">
+			<div class="db-2-main-1 AD_bloggers AD_vendors">
 				<a href="list-of-vendor_manage_add.php?act=manage">
 					<div class="db-2-main-2"> 
 						<img src="../images/icon/dbc6.png" alt="">
@@ -91,7 +69,7 @@
 			</div>
 		<?php }else{ ?>
 
-			<div class="db-2-main-1 AD_bloggers AD_vendors">
+			<div class="db-2-main-1">
 				<a href="list-of-vendor_manage_add.php?act=manage">
 					<div class="db-2-main-2"> 
 						<img src="../images/icon/dbc6.png" alt=""> 

@@ -44,6 +44,22 @@ if (isset($_POST['destinations']) && $_POST['destinations']=="on") {
  
 	$destination="off";
 }
+if (isset($_POST['servicefee']) && $_POST['servicefee']=="on") {
+
+  $service=$_POST['servicefee'];
+
+}else{
+ 
+  $service="off";
+}
+if (isset($_POST['amenities']) && $_POST['amenities']=="on") {
+
+  $amenity=$_POST['amenities'];
+
+}else{
+ 
+  $amenity="off";
+}
 
 if ($is_check==true) {
 
@@ -54,9 +70,7 @@ if ($conn->query($query)== TRUE) {
      # code...
    $user_id =$conn->insert_id;
  
-// echo $user_id;
-// echo "Manzae";
- $subQuery='INSERT INTO authorities(user_id,pages,bloggers,admins,vendors,faqs,destinations)VALUES("'.$user_id.'","'.$page.'","'.$blogger.'","'.$admin.'","'.$vendor.'","'.$faq.'","'.$destination.'")';
+ $subQuery='INSERT INTO authorities(user_id,pages,bloggers,admins,vendors,faqs,destinations,servicefee,amenities)VALUES("'.$user_id.'","'.$page.'","'.$blogger.'","'.$admin.'","'.$vendor.'","'.$faq.'","'.$destination.'","'.$service.'","'.$amenity.'")';
   $result=mysqli_query($conn,$subQuery) or die(mysqli_error($conn));
 
   $title="New admin registered";

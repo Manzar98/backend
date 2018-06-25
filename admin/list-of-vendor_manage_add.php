@@ -75,7 +75,7 @@
 
 								<?php if ($result['user_type']=="blogger") { ?>
 
-									<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_bloggers" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+									<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_blogs" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
 										<td class="td-name capitalize"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
 										<td class="td-name capitalize"><?php echo $result['reg_postal']; ?></td>
 										<td class="td-name capitalize"><?php echo $result['reg_city'];   ?></td>
@@ -96,7 +96,7 @@
 
 									<?php  }elseif ($result['user_type']=="vendor") { ?>
 
-										<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_vendors" onClick="document.location.href='manage-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+										<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_lisiting" onClick="document.location.href='manage-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
 											<td class="td-name capitalize"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
 											<td class="td-name capitalize"><?php echo $result['reg_postal']; ?></td>
 											<td class="td-name capitalize"><?php echo $result['reg_city'];   ?></td>
@@ -120,7 +120,7 @@
 
 										<?php if ($result['user_type']=="blogger") { ?>
 
-											<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_bloggers" onClick="document.location.href='blogger/addNewBlog.php?id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+											<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_blogs" onClick="document.location.href='blogger/addNewBlog.php?id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
 
 												<td class="td-name capitalize"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
 												<td class="td-name capitalize"><?php echo $result['reg_postal']; ?></td>
@@ -142,7 +142,7 @@
 
 											<?php  }elseif ($result['user_type']=="vendor") { ?>
 
-												<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_vendors" onClick="document.location.href='add-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
+												<tr class="tr-1 v-lsting-cursor <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?> AD_listing" onClick="document.location.href='add-listing.php?user_id=<?php echo $result['user_id']; ?>&name=<?php echo $result['reg_name']; ?>&status=<?php echo $result['user_status']; ?>&u_type=<?php echo $result['user_type']; ?>'" >
 													<td class="td-name capitalize"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
 													<td class="td-name capitalize"><?php echo $result['reg_postal']; ?></td>
 													<td class="td-name capitalize"><?php echo $result['reg_city'];   ?></td>

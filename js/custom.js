@@ -1345,13 +1345,24 @@ $('.pages_off li.AD_pages').remove();
 $('.bloggers_off li.AD_bloggers').remove();
 $('.admins_off li.AD_admins').remove();
 $('.vendors_off li.AD_vendors').remove();
+$('.amenities_off li.AD_amenities').remove();
+$('.servicefee_off li.AD_fees').remove();
 $('.faqs_off li.AD_faqs').remove();
 $('.destinations_off li.AD_destinations').remove();
 
-if ('.vendors_off') {
+if ($('.vendors_off').length > 0) {
   $('body').find('.AD_vendors').remove();
 }
-if ('.bloggers_off') {
-   
+
+if ($('.bloggers_off').length > 0) {
   $('body').find('.AD_bloggers').remove();
+}
+
+if ($('.listing_off').length > 0) {
+ $('body').find('.AD_listing').remove();
+ // debugger
+}
+if ($('.blogs_off').length > 0) {
+ $('body').find('.AD_blogs').remove();
+ // debugger
 }

@@ -103,6 +103,21 @@
 									</p>
 								</div>
 							</div>
+							<div class="row">
+								<div class="col s2"></div>
+								<div class="col s3">
+									<p class="pTAG">
+										<input type="checkbox" name="amenities" class="filled-in canManage" id="filled-in-amenity" value="on">
+										<label for="filled-in-amenity" class="canManage-label">Amenities</label>
+									</p>
+								</div>
+								<div class="col s3">
+									<p class="pTAG">
+										<input type="checkbox" name="servicefee" class="filled-in canManage" id="filled-in-service" value="on">
+										<label for="filled-in-service" class="canManage-label" style="padding-left: 7px !important;">Service Fee</label>
+									</p>
+								</div>
+							</div>
 							<div class="row" >
 
 								<p class="pTAG">
@@ -112,64 +127,64 @@
 							</div>
 							
 							<input type="hidden" name="profile_img" id="profile_img">
-									<input type="hidden" name="coverimg" id="coverimg">
+							<input type="hidden" name="coverimg" id="coverimg">
 						</form>
-														<div class="row">
-									<form>
-										<div class="col-md-6">
-											<div class="file-field input-field">
-												<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
-													<input type="file" id="sortpicture" name="sortpic" onchange="readcover(this);"> </div>
-													<div class="file-path-wrapper" >
-														<input class="file-path validate" type="hidden" id="check_cover" >
-													</div>
-												</div>
+						<div class="row">
+							<form>
+								<div class="col-md-6">
+									<div class="file-field input-field">
+										<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
+											<input type="file" id="sortpicture" name="sortpic" onchange="readcover(this);"> </div>
+											<div class="file-path-wrapper" >
+												<input class="file-path validate" type="hidden" id="check_cover" >
 											</div>
-											<div class="col-md-6" >
-												<img id="cover" src="#" alt="your image" style="display: none;"/>
-											</div>
-										</form>
+										</div>
 									</div>
-									<div class="row">
-										<form>
-											<div class="col-md-6">
-												<div class="file-field input-field">
-													<div class="btn" id="pro-file-upload"> <span>Profile photo</span>
-														<input type="file" id="upload">	
-
-													</div>
-
-												</div>
-											</div>
-											<div class="col-md-6" >
-												<div id="upload-demo" style="width:350px">
-													
-												</div>
-												<button id="upload-demo-btn"  class="btn upload-result">Crop Image</button>
-												
-												<div id="upload-demo-i">
-													
-												</div>
-											</div>
-										</form>
+									<div class="col-md-6" >
+										<img id="cover" src="#" alt="your image" style="display: none;"/>
 									</div>
-									<div>
+								</form>
+							</div>
+							<div class="row">
+								<form>
+									<div class="col-md-6">
+										<div class="file-field input-field">
+											<div class="btn" id="pro-file-upload"> <span>Profile photo</span>
+												<input type="file" id="upload">	
+
+											</div>
+
+										</div>
+									</div>
+									<div class="col-md-6" >
+										<div id="upload-demo" style="width:350px">
+
+										</div>
+										<button id="upload-demo-btn"  class="btn upload-result">Crop Image</button>
+
+										<div id="upload-demo-i">
+
+										</div>
+									</div>
+								</form>
+							</div>
+							<div>
 								<div class="input-field col s8">
 									<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_admins"> 
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-</div>
-<?php include '../common-ftns/submitting-modal.php'; ?>
-<?php  include"footer.php";  ?>
-<script src="../js/croppie.js"></script>
-<script src="../js/method-js/email-validation.js"></script>
-<script src="../js/admin-js/admin.js"></script>
-								<script type="text/javascript">
+			<?php include '../common-ftns/submitting-modal.php'; ?>
+			<?php  include"footer.php";  ?>
+			<script src="../js/croppie.js"></script>
+			<script src="../js/method-js/email-validation.js"></script>
+			<script src="../js/admin-js/admin.js"></script>
+			<script type="text/javascript">
 
-									
+
 /*=======================
   Profile image reader
   =========================*/  

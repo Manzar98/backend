@@ -46,7 +46,7 @@
 
 							<tr class="tr-1 <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?>">
 								<?php if ($result['user_type']=="blogger") { ?>
-
+                                        
 										<td class="td-name AD_bloggers"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
 										<td class="text-center td-name AD_bloggers"><?php echo $result['reg_postal']; ?></td>
 										<td class="text-center AD_bloggers"><?php echo $result['reg_city'];   ?></td>

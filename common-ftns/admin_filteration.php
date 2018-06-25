@@ -1,8 +1,16 @@
 <div class="row">
 	<div class="col s3 search_flter ">						 		 <select onchange="filter_userType(event)" id="user_Type"  name="" class="">
 		<option value="-1" selected="" >View all</option>
-		<option class="AD_vendors" value="vendor">Vendor</option>
-		<option class="AD_bloggers" value="blogger">Blogger</option>
+		<?php if (($_SESSION['vendors']=="on") || ($_SESSION['listing']=="on")) { ?>
+            <option class="" value="vendor">Vendor</option>
+		<?php }else if(($_SESSION['bloggers']=="on") || ($_SESSION['blogs']=="on")){ ?>
+            <option class="" value="blogger">Blogger</option>
+		<?php }else{ ?>
+                <option class="" value="vendor">Vendor</option>
+                <option class="" value="blogger">Blogger</option>
+		<?php } ?>
+		
+		
 	</select>
 </div>
 <div class="col s3 search_flter">

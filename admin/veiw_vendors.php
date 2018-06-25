@@ -114,12 +114,12 @@ if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
 							
 							<tr>
 								<th>Age</th>
-								<th class="TT ho-1" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name'];?>&status=<?php echo $reg_Result['user_status'];?>'">Hotels</th>
-								<th class="TT ro-1" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Rooms</th>
-								<th class="TT ban-1" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Banquets</th>
-								<th class="TT con-1" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Conferences</th>
-								<th class="TT tor-1" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Tours</th>
-								<th class="TT ev-1" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Events</th>
+								<th class="TT ho-1 AD_listing" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name'];?>&status=<?php echo $reg_Result['user_status'];?>'">Hotels</th>
+								<th class="TT ro-1 AD_listing" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Rooms</th>
+								<th class="TT ban-1 AD_listing" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Banquets</th>
+								<th class="TT con-1 AD_listing" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Conferences</th>
+								<th class="TT tor-1 AD_listing" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Tours</th>
+								<th class="TT ev-1 AD_listing" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">Events</th>
 								<th>Join Date</th>
 
 							</tr>
@@ -129,39 +129,39 @@ if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
 								<td><?php echo $age; ?></td>
 								
 								<?php if (mysqli_num_rows($reg_hotel)< 1) { ?>
-							     <td class="TT ho-1" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+							     <td class="TT ho-1 AD_listing" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								   <td class="TT ho-1" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_hotel); ?></td>
+								   <td class="TT ho-1 AD_listing" onClick="document.location.href='hotels/hotel_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_hotel); ?></td>
 								<?php } ?>
 								
 								<?php if (mysqli_num_rows($reg_room)< 1) { ?>
-								<td class="TT ro-1" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+								<td class="TT ro-1 AD_listing" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT ro-1" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_room); ?></td>
+								<td class="TT ro-1 AD_listing" onClick="document.location.href='rooms/room_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_room); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_banquet)< 1) { ?>
-								<td class="TT ban-1" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+								<td class="TT ban-1 AD_listing" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT ban-1" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_banquet); ?></td>
+								<td class="TT ban-1 AD_listing" onClick="document.location.href='banquets/banquet_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_banquet); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_conference)< 1) { ?>
-								<td class="TT con-1" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+								<td class="TT con-1 AD_listing" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT con-1" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_conference); ?></td>
+								<td class="TT con-1 AD_listing" onClick="document.location.href='conferences/conference_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_conference); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_tour)< 1) { ?>
-								<td class="TT tor-1" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+								<td class="TT tor-1 AD_listing" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT tor-1" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_tour); ?></td>
+								<td class="TT tor-1 AD_listing" onClick="document.location.href='tours/tour_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_tour); ?></td>
 								<?php } ?>
 
 								<?php if (mysqli_num_rows($reg_event)< 1) { ?>
-								<td class="TT ev-1" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+								<td class="TT ev-1 AD_listing" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT ev-1" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_event); ?></td>
+								<td class="TT ev-1 AD_listing" onClick="document.location.href='events/event_list.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_event); ?></td>
 								<?php } ?>
 								<td><?php echo $reg_Result['reg_joinD']; ?></td>
 							</tr>
@@ -170,7 +170,7 @@ if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
 							<thead>
 								<tr>
 									<th>Age</th>
-									<th class="TT bo-1" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">No of Blogs</th>
+									<th class="TT bo-1 AD_blogs" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">No of Blogs</th>
 									<th>Join Date</th>
 								</tr>
 							</thead>
@@ -178,9 +178,9 @@ if (isset($_GET['u_type']) && $_GET['u_type']=="vendor") {
 								<tr>
 									<td><?php echo $age; ?></td>
 									<?php if (mysqli_num_rows($reg_blog)< 1) { ?>
-								<td class="TT  bo-1" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
+								<td class="TT bo-1 AD_blogs" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'">0</td>
 								<?php }else{ ?>
-								<td class="TT bo-1" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_blog); ?></td>
+								<td class="TT bo-1 AD_blogs" onClick="document.location.href='blogger/blogListing.php?id=<?php echo $_GET['id']; ?>&name=<?php echo $reg_Result['reg_name']; ?>&status=<?php echo $reg_Result['user_status'];?>'"><?php echo mysqli_num_rows($reg_blog); ?></td>
 								<?php } ?>
 									<td><?php echo $reg_Result['reg_joinD']; ?></td>
 								</tr>
