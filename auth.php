@@ -8,6 +8,7 @@ $password = $_POST['password'];
 
 $query = 'SELECT * FROM credentials WHERE reg_email="'.$email.'" AND reg_password="'.md5($password).'" ';
 
+
 $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
 
 
@@ -21,8 +22,10 @@ if ($crntresult['user_status']!="Suspended" && $crntresult['user_status']!="Pend
     $queryup= 'UPDATE `credentials` SET reg_lastlogin=now() Where reg_email="'.$email.'"';
  
  mysqli_query($conn,$queryup)or die(mysqli_error($conn));
+$subQuery='SELECT * FROM authorities WHERE user_id="'.$crntresult['user_id'].'"';
+$subResult=mysqli_query($conn,$subQuery) or die(mysqli_error($conn));
+$subData=mysqli_fetch_assoc($subResult);
 
-  
    session_start();
 
         $_SESSION['login'] = true;
@@ -35,7 +38,12 @@ if ($crntresult['user_status']!="Suspended" && $crntresult['user_status']!="Pend
         $_SESSION['reg_city']=$crntresult['reg_city'];
         $_SESSION['reg_country']=$crntresult['reg_country'];
         $_SESSION['reg_photo']=$crntresult['reg_photo'];
-
+        $_SESSION['pages']=$subData['pages'];
+        $_SESSION['bloggers']=$subData['bloggers'];
+        $_SESSION['admins']=$subData['admins'];
+        $_SESSION['vendors']=$subData['vendors'];
+        $_SESSION['faqs']=$subData['faqs'];
+        $_SESSION['destinations']=$subData['destinations'];
         $res_Array=array(
           "status"=>"Success",
            "id"=> $crntresult['user_id']

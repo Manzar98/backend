@@ -14,7 +14,7 @@
 				<p>Fill out the form below to add a new admin.</p>
 			</div>
 			<div class="db-profile-edit">
-				<form class="col s12"  data-toggle="validator" id="amenity-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
+				<form class="col s12"  data-toggle="validator" id="admins-form" role="form" action="" method="POST" enctype="multipart/form-data">
 
 					<input type="hidden" name="user_id" value="<?php echo $userId; ?>">
 					<input type="hidden" name="is_time" value="create">
@@ -34,7 +34,7 @@
 								<div class="col-md-6">
 									<label style="padding-bottom: 10px;">Email Address</label>
 									<div class="input-field">
-										<input type="email" onblur="checkemail_registor(this.value)" value="" id="reg_email" name="reg_email" class="validate" > 
+										<input type="email" onblur="checkemail_main(this.value)" value="" id="reg_email" name="reg_email" class="validate" > 
 										<span id="msg" class="hi-red"></span>
 									</div>
 								</div>
@@ -65,19 +65,19 @@
 								<div class="col s2"></div>
 								<div class="col s3">
 									<p class="pTAG">
-										<input type="checkbox" name="" class="filled-in canManage" id="filled-in-vendor" >
+										<input type="checkbox" name="vendors" class="filled-in canManage" id="filled-in-vendor" value="on">
 										<label for="filled-in-vendor" class="canManage-label">Vendor</label>
 									</p>
 								</div>
 								<div class="col s3">
 									<p class="pTAG">
-										<input type="checkbox" name="" class="filled-in canManage" id="filled-in-user" >
+										<input type="checkbox" name="admins" class="filled-in canManage" id="filled-in-user" value="on">
 										<label for="filled-in-user" class="canManage-label" style="padding-left: 7px !important;">Users</label>
 									</p>
 								</div>
 								<div class="col s3">
 									<p class="pTAG">
-										<input type="checkbox" name="" class="filled-in canManage" id="filled-in-page" >
+										<input type="checkbox" name="pages" class="filled-in canManage" id="filled-in-page" value="on">
 										<label for="filled-in-page" class="canManage-label" style="padding-left: 7px !important;">Pages</label>
 									</p>
 								</div>
@@ -86,19 +86,19 @@
 								<div class="col s2"></div>
 								<div class="col s3">
 									<p class="pTAG">
-										<input type="checkbox" name="" class="filled-in canManage" id="filled-in-destination" >
+										<input type="checkbox" name="destinations" class="filled-in canManage" id="filled-in-destination" value="on">
 										<label for="filled-in-destination" class="canManage-label">Destinations</label>
 									</p>
 								</div>
 								<div class="col s3">
 									<p class="pTAG">
-										<input type="checkbox" name="" class="filled-in canManage" id="filled-in-faq" >
+										<input type="checkbox" name="faqs" class="filled-in canManage" id="filled-in-faq" value="on">
 										<label for="filled-in-faq" class="canManage-label" style="padding-left: 7px !important;">FAQs</label>
 									</p>
 								</div>
 								<div class="col s3">
 									<p class="pTAG">
-										<input type="checkbox" name="" class="filled-in canManage" id="filled-in-blogger" >
+										<input type="checkbox" name="bloggers" class="filled-in canManage" id="filled-in-blogger" value="on">
 										<label for="filled-in-blogger" class="canManage-label">Bloggers</label>
 									</p>
 								</div>
@@ -155,7 +155,7 @@
 									</div>
 									<div>
 								<div class="input-field col s8">
-									<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_amenity"> 
+									<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_admins"> 
 								</div>
 							</div>
 			</div>
@@ -166,6 +166,7 @@
 <?php  include"footer.php";  ?>
 <script src="../js/croppie.js"></script>
 <script src="../js/method-js/email-validation.js"></script>
+<script src="../js/admin-js/admin.js"></script>
 								<script type="text/javascript">
 
 									
@@ -215,7 +216,7 @@
   		$.ajax({
 
   			type: "POST",
-  			url: "profile_img_post.php",     
+  			url: "registration/profile_img_post.php",     
   			data: {"image":resp},
   			success: function (data) {
   				

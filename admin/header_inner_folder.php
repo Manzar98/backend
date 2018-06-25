@@ -40,7 +40,7 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 <![endif]-->
 </head>
 
-<body data-ng-app="">
+<body data-ng-app="" class="pages_<?php echo $_SESSION['pages']; ?> bloggers_<?php echo $_SESSION['bloggers']; ?> admins_<?php echo $_SESSION['admins']; ?> vendors_<?php echo $_SESSION['vendors']; ?> faqs_<?php echo $_SESSION['faqs']; ?> destinations_<?php echo $_SESSION['destinations']; ?>">
 	<!--MOBILE MENU-->
 	<section>
 		<div class="mm">
@@ -398,33 +398,49 @@ $userQ='SELECT * FROM credentials where user_id="'.$_SESSION['user_id'].'"';
 							<a href="../dashboard.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db1.png" alt="" /> Dashboard</a>
 						</li>
 						<li>
-							<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Contributors</a>
+							<?php if ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="on") { ?>
+								<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Contributors</a>
+							<?php }elseif ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="off") { ?>
+								<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>" class="AD_vendors"><img src="../../images/icon/db3.png" alt="" /> Contributors</a>
+							<?php }elseif ($_SESSION['bloggers']=="on" && $_SESSION['vendors']=="off") { ?>
+								<a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>" class="AD_bloggers"><img src="../../images/icon/db3.png" alt="" /> Contributors</a>
+							<?php }else{ ?>
+                                    <a href="../manage-vendors.php?id=<?php echo $_SESSION['user_id'] ?>" class="AD_bloggers AD_vendors"><img src="../../images/icon/db3.png" alt="" /> Contributors</a>
+							<?php } ?>
 						</li>
 						<li>
-							<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+							<?php if ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="on") { ?>
+								<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+							<?php }elseif ($_SESSION['vendors']=="on" && $_SESSION['bloggers']=="off") { ?>
+								<a href="../listing.php"  class="AD_vendors"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+							<?php }elseif ($_SESSION['bloggers']=="on" && $_SESSION['vendors']=="off") { ?>
+								<a href="../listing.php" class="AD_bloggers"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+							<?php }else{ ?>
+                                    <a href="../listing.php" class="AD_bloggers AD_vendors"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+							<?php } ?>
 						</li>
-						<li>
+						<li class="AD_vendors">
 							<a href="../add-manage-ads_vendor.php"><img src="../../images/icon/db5.png" alt="" /> Featured Ads</a>
 						</li>
-						<li>
+						<li class="AD_pages">
 							<a href="../pages/pageListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db4.png" alt="" /> Pages</a>
 						</li>
-						<li>
+						<li class="AD_faqs">
 							<a href="../faqs/faqListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db6.png" alt="" /> FAQs</a>
 						</li>
 						<li>
 							<a href="../edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db7.png" alt="" /> Profile</a>
 						</li>
-						<li>
+						<li class="AD_destinations">
 							<a href="../destinations/desti-Listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Destinations</a>
 						</li>
-						<li>
+						<li class="AD_amenities">
 							<a href="../amenities/amenityListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Amenities</a>
 						</li>
-						<li>
+						<li class="AD_fees">
 							<a href="../service_fee/listOfServiceFee.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../../images/icon/db3.png" alt="" /> Service Fee</a>
 						</li>
-						<li>
+						<li class="AD_admins">
 							<a href="../listOfAdmins.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="../../images/icon/db6.png" alt="" /> Admins</a>
 						</li>
 						<li>
