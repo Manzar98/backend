@@ -111,6 +111,18 @@
 										<label for="filled-in-amenity" class="canManage-label">Amenities</label>
 									</p>
 								</div>
+								<div class="col s3">
+									<p class="pTAG">
+										<input type="checkbox" name="listing" class="filled-in canManage" id="filled-in-listing" value="on">
+										<label for="filled-in-listing" class="canManage-label" style="padding-left: 7px !important;">Listing</label>
+									</p>
+								</div>
+								<div class="col s3">
+									<p class="pTAG">
+										<input type="checkbox" name="blogs" class="filled-in canManage" id="filled-in-blogs" value="on">
+										<label for="filled-in-blogs" class="canManage-label" style="padding-left: 7px !important;">Blogs</label>
+									</p>
+								</div>
 								<div class="col s3" style="display: none;">
 									<p class="pTAG">
 										<input type="checkbox" name="servicefee" class="filled-in canManage" id="filled-in-service" value="on">

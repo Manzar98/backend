@@ -61,17 +61,33 @@ if (isset($_POST['amenities']) && $_POST['amenities']=="on") {
  
   $amenity="off";
 }
+if (isset($_POST['listing']) && $_POST['listing']=="on") {
+
+  $listing=$_POST['listing'];
+
+}else{
+ 
+  $listing="off";
+}
+if (isset($_POST['blogs']) && $_POST['blogs']=="on") {
+
+  $blog=$_POST['blogs'];
+
+}else{
+ 
+  $blog="off";
+}
 
 if ($is_check==true) {
 
- $query='INSERT INTO credentials(reg_name,reg_lstname,reg_email,reg_birth,reg_password,reg_photo,reg_cover,reg_joinD,user_status,user_type)VALUES("'.$_POST['reg_name'].'","'.$_POST['reg_lstname'].'","'.$_POST['reg_email'].'","'.$_POST['reg_birth'].'","'.md5($_POST['reg_password']).'","'.$_POST['profile_img'].'","'.$_POST['coverimg'].'","'.$joinDate.'","Approved","admin")';
+ $query='INSERT INTO credentials(reg_name,reg_lstname,reg_email,reg_phone,reg_postal,reg_city,reg_province,reg_country,reg_birth,reg_password,reg_photo,reg_cover,reg_joinD,user_status,user_type)VALUES("'.$_POST['reg_name'].'","'.$_POST['reg_lstname'].'","'.$_POST['reg_email'].'","'.$_POST['reg_phone'].'","'.$_POST['reg_postal'].'","'.$_POST['reg_city'].'","'.$_POST['reg_province'].'","'.$_POST['reg_country'].'","'.$_POST['reg_birth'].'","'.md5($_POST['reg_password']).'","'.$_POST['profile_img'].'","'.$_POST['coverimg'].'","'.$joinDate.'","Approved","admin")';
 
  global $conn;
 if ($conn->query($query)== TRUE) {
      # code...
    $user_id =$conn->insert_id;
  
- $subQuery='INSERT INTO authorities(user_id,pages,bloggers,admins,vendors,faqs,destinations,servicefee,amenities)VALUES("'.$user_id.'","'.$page.'","'.$blogger.'","'.$admin.'","'.$vendor.'","'.$faq.'","'.$destination.'","'.$service.'","'.$amenity.'")';
+ $subQuery='INSERT INTO authorities(user_id,pages,bloggers,admins,vendors,faqs,destinations,servicefee,amenities,listing,blogs)VALUES("'.$user_id.'","'.$page.'","'.$blogger.'","'.$admin.'","'.$vendor.'","'.$faq.'","'.$destination.'","'.$service.'","'.$amenity.'","'.$listing.'","'.$blog.'")';
   $result=mysqli_query($conn,$subQuery) or die(mysqli_error($conn));
 
   $title="New admin registered";
