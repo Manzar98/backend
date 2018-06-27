@@ -6,7 +6,7 @@
 	<title>List Of Destination</title>
 	
 	<?php  include '../header_inner_folder.php';
-	$d_Query='SELECT * FROM destinations where user_id="'.$_GET['id'].'" ORDER BY desti_id DESC ';
+	$d_Query='SELECT * FROM destinations ORDER BY desti_id DESC ';
 	$d_resp =mysqli_query($conn,$d_Query)  or die(mysqli_error($conn)); ?>
 	
 	<div class="db-cent-3">

@@ -31,7 +31,7 @@
 
 			<form class="col s12" action="registration-update.php" method="post" role="form" id="registor-form">
 				<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-				<input type="hidden" name="type_Of" value="admin">
+				<input type="hidden" name="user_type" value="admin">
 				<input type="hidden" id="u_email" value="<?php echo $reg_Result['reg_email']; ?>">
 				<div class="row">
 					<div class="col-md-6">
@@ -53,198 +53,172 @@
 							</div>
 						</div>
 						<div class="row">
-							<label>Can Manage:</label>
-							<div class="col s2"></div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="vendors" class="filled-in canManage" id="filled-in-vendor" value="on">
-									<label for="filled-in-vendor" class="canManage-label">Vendor</label>
-								</p>
-							</div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="admins" class="filled-in canManage" id="filled-in-user" value="on">
-									<label for="filled-in-user" class="canManage-label" style="padding-left: 7px !important;">Users</label>
-								</p>
-							</div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="pages" class="filled-in canManage" id="filled-in-page" value="on">
-									<label for="filled-in-page" class="canManage-label" style="padding-left: 7px !important;">Pages</label>
-								</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col s2"></div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="destinations" class="filled-in canManage" id="filled-in-destination" value="on">
-									<label for="filled-in-destination" class="canManage-label">Destinations</label>
-								</p>
-							</div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="faqs" class="filled-in canManage" id="filled-in-faq" value="on">
-									<label for="filled-in-faq" class="canManage-label" style="padding-left: 7px !important;">FAQs</label>
-								</p>
-							</div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="bloggers" class="filled-in canManage" id="filled-in-blogger" value="on">
-									<label for="filled-in-blogger" class="canManage-label">Bloggers</label>
-								</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col s2"></div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="amenities" class="filled-in canManage" id="filled-in-amenity" value="on">
-									<label for="filled-in-amenity" class="canManage-label">Amenities</label>
-								</p>
-							</div>
-							<div class="col s3">
-								<p class="pTAG">
-									<input type="checkbox" name="servicefee" class="filled-in canManage" id="filled-in-service" value="on">
-									<label for="filled-in-service" class="canManage-label" style="padding-left: 7px !important;">Service Fee</label>
-								</p>
-							</div>
-						</div>
-
-						<div>
-							<a class="waves-effect waves-light btn modal-trigger spc-modal " href="#modal-reset" >Reset Password</a>
-
-						</div>
-
-
-						<input type="hidden" name="profile_img" id="profile_img">
-						<input type="hidden" name="coverimg" id="coverimg">
-					</form>
-					<div class="row">
-						<form>
 							<div class="col-md-6">
-								<div class="file-field input-field">
-									<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
-										<input type="file" id="sortpicture" name="sortpic" onchange="readcover(this);"> </div>
-										<div class="file-path-wrapper" >
-											<input class="file-path validate" type="hidden" id="check_cover">
-										</div>
-									</div>
+								<label>Mobile Number</label>
+								<div class="input-field ">
+									<input type="number" id="reg_phone" name="reg_phone" class="validate" value="<?php echo $reg_Result['reg_phone'];  ?>">
+								</div>   
+							</div>
+							<div class="col-md-6">
+								<label>Postal Address</label>
+								<div class="input-field ">
+									<input type="text" id="reg_postal" name="reg_postal" class="validate" value="<?php echo $reg_Result['reg_postal'];  ?>">
 								</div>
-								<?php 
-								$cover=substr($reg_Result['reg_cover'],3) ;
-
-								?>
-								<div class="col-md-6" >
-									<img id="preveiw_cover"  src="<?php echo $cover; ?>" alt="your image" style="width: 150px;height: 70px; margin-top: 10px;"/>
-									<img id="cover" src="#" alt="your image" style="display: none;"/>
-								</div>
-							</form>
+							</div>
 						</div>
-
-
 						<div class="row">
-							<form >
+							<div class="col-md-6">
+								<label>City</label>
+								<div class="input-field ">
+									<input type="text" name="reg_city" id="reg_city" class="validate" value="<?php echo $reg_Result['reg_city'];  ?>">
+								</div>   
+							</div>
+							<div class="col-md-6">
+								<label>Province</label>
+								<div class="input-field ">
+									<input type="text" name="reg_province" id="reg_province" class="validate" value="<?php echo $reg_Result['reg_province'];  ?>">
+								</div> 
+							</div>
+						</div>
+						<div>
+							<label class="col s4">Country</label>
+							<div class="input-field col s8">
+								<input type="text" value="<?php echo $reg_Result['reg_country'];  ?>" name="reg_country" id="reg_country" class="validate"> </div>
+							</div>
+							<div>
+								<a class="waves-effect waves-light btn modal-trigger spc-modal " href="#modal-reset" >Reset Password</a>
+
+							</div>
+
+
+							<input type="hidden" name="profile_img" id="profile_img">
+							<input type="hidden" name="coverimg" id="coverimg">
+						</form>
+						<div class="row">
+							<form>
 								<div class="col-md-6">
 									<div class="file-field input-field">
-										<div class="btn" id="pro-file-upload"> <span>Profile photo</span>
-											<input type="file" id="upload">	
-
+										<div class="btn" id="pro-file-upload"> <span>Cover photo</span>
+											<input type="file" id="sortpicture" name="sortpic" onchange="readcover(this);"> </div>
+											<div class="file-path-wrapper" >
+												<input class="file-path validate" type="hidden" id="check_cover">
+											</div>
 										</div>
-
 									</div>
-								</div>
-								<div class="col-md-6" >
-									<img src="<?php echo $pro_img; ?>" id="preveiw_image" width="50%" alt="">
-									<div id="upload-demo" style="width:350px">
+									<?php 
+									$cover=substr($reg_Result['reg_cover'],3) ;
 
+									?>
+									<div class="col-md-6" >
+										<img id="preveiw_cover"  src="<?php echo $cover; ?>" alt="your image" style="width: 150px;height: 70px; margin-top: 10px;"/>
+										<img id="cover" src="#" alt="your image" style="display: none;"/>
 									</div>
-									<button id="upload-demo-btn"  class="btn upload-result">Crop Image</button>
-
-									<div id="upload-demo-i">
-
-									</div>
-								</div>
-							</form>
-						</div>
-						<div>
-							<div class="input-field col s8">
-								<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor_update"> </div>
+								</form>
 							</div>
 
+
+							<div class="row">
+								<form >
+									<div class="col-md-6">
+										<div class="file-field input-field">
+											<div class="btn" id="pro-file-upload"> <span>Profile photo</span>
+												<input type="file" id="upload">	
+
+											</div>
+
+										</div>
+									</div>
+									<div class="col-md-6" >
+										<img src="<?php echo $pro_img; ?>" id="preveiw_image" width="50%" alt="">
+										<div id="upload-demo" style="width:350px">
+
+										</div>
+										<button id="upload-demo-btn"  class="btn upload-result">Crop Image</button>
+
+										<div id="upload-demo-i">
+
+										</div>
+									</div>
+								</form>
+							</div>
+							<div>
+								<div class="input-field col s8">
+									<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_registor_update"> </div>
+								</div>
+
+							</div>
+
+
 						</div>
 
+						<div class="db-righ">
+							<h4>Notifications(18)</h4>
+							<ul class="notify_wrap">
 
-					</div>
+							</ul>
+						</div>
 
-					<div class="db-righ">
-						<h4>Notifications(18)</h4>
-						<ul class="notify_wrap">
+						<!-- Modal Structure -->
+						<div id="modal-reset" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
+							<div class="modal-content">
+								<div class="modal-header"><h2>Reset Password</h2></div>
+								<form id="password-wrap" action="updatepassword.php" method="post" role="form">
+									<div>
+										<label class="col s4">Old Password</label>
+										<div class="input-field col s6">
+											<input type="password" id="old-passcode" name="old-password" class="validate"> </div>
+										</div>
+										<div>
+											<label class="col s4">New Password</label>
+											<div class="input-field col s6">
+												<input type="password"  id="new-passcode" name="new_password" class="validate"> </div>
+											</div>
+											<div>
+												<label class="col s4">Confrom Password</label>
+												<div class="input-field col s6">
+													<input type="password"  id="reg_conpassword" name="reg_conpassword" class="validate"> </div>
+												</div>
+												<input type="hidden"  id="check_Oldpass" value="<?php echo $_SESSION['reg_password']; ?>" class="validate">
+												<div class="input-field col s8">
+													<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_password_update"> </div>
+												</form>
+												<div class="modal-footer">
+													<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat password_done">Done</a>
+												</div>
+											</div>
+										</div>
 
-						</ul>
-					</div>
+										<?php include '../common-ftns/submitting-modal.php'; ?>
+									</div>
 
-<!-- Modal Structure -->
-<div id="modal-reset" class="modal modal-fixed-footer image_drop_down_modal_body common-img_wrap">
-<div class="modal-content">
-<div class="modal-header"><h2>Reset Password</h2></div>
-<form id="password-wrap" action="updatepassword.php" method="post" role="form" id="registor-form">
-<div>
-<label class="col s4">Old Password</label>
-<div class="input-field col s6">
-<input type="password" id="old-passcode" name="old-password" class="validate"> </div>
-</div>
-<div>
-<label class="col s4">New Password</label>
-<div class="input-field col s6">
-<input type="password"  id="new-passcode" name="new_password" class="validate"> </div>
-</div>
-<div>
-<label class="col s4">Confrom Password</label>
-<div class="input-field col s6">
-<input type="password"  id="reg_conpassword" name="reg_conpassword" class="validate"> </div>
-</div>
-<input type="hidden"  id="check_Oldpass" value="<?php echo $_SESSION['reg_password']; ?>" class="validate">
-<div class="input-field col s8">
-<input type="button" value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_password_update"> </div>
-</form>
-<div class="modal-footer">
-<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat password_done">Done</a>
-</div>
-</div>
-</div>
-
-<?php include '../common-ftns/submitting-modal.php'; ?>
-</div>
-
-<?php } ?>
-<!--END DASHBOARD SECTION-->
-<!--TOP SECTION-->
-<div class="hom-footer-section">
-<div class="container">
-<div class="row">
-<div class="foot-com foot-1">
-<ul>
-<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-</li>
-<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-</li>
-<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-</li>
-</ul>
-</div>
-<div class="foot-com foot-2">
-<h5>Phone: (+404) 142 21 23 78</h5> </div>
-<div class="foot-com foot-3">
-<!--<a class="waves-effect waves-light" href="#">online room booking</a>--><a class="waves-effect waves-light" href="booking.html">room reservation</a> </div>
-<div class="foot-com foot-4">
-<a href="#"><img src="images/card.png" alt="" />
-</a>
-</div>
-</div>
-</div>
-</div>
-</section>
+								<?php } ?>
+								<!--END DASHBOARD SECTION-->
+								<!--TOP SECTION-->
+								<div class="hom-footer-section">
+									<div class="container">
+										<div class="row">
+											<div class="foot-com foot-1">
+												<ul>
+													<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+													</li>
+													<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+													</li>
+													<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+													</li>
+												</ul>
+											</div>
+											<div class="foot-com foot-2">
+												<h5>Phone: (+404) 142 21 23 78</h5> </div>
+												<div class="foot-com foot-3">
+													<!--<a class="waves-effect waves-light" href="#">online room booking</a>--><a class="waves-effect waves-light" href="booking.html">room reservation</a> </div>
+													<div class="foot-com foot-4">
+														<a href="#"><img src="images/card.png" alt="" />
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
 <!--END HEADER SECTION-->
 <footer class="site-footer clearfix">
 <div class="sidebar-container">
@@ -524,466 +498,426 @@
 $('#modal-reset').modal({dismissible: false});
 
 /*=======================
-  Profile image reader
-  =========================*/  
+Profile image reader
+=========================*/  
 
-  $('#upload-demo').hide();
-  $('#upload-demo-i').hide();
-  $('#upload-demo-btn').hide();
-  $uploadCrop = $('#upload-demo').croppie({
-  	enableExif: true,
-  	viewport: {
-  		width: 200,
-  		height: 200,
-  		type: 'circle'
-  	},
-  	boundary: {
-  		width: 300,
-  		height: 300
-  	}
-  });
-
-
-  $('#upload').on('change', function () { 
-  	$('#upload-demo').show();
-  	$('#upload-demo-btn').show();
-  	var reader = new FileReader();
-  	reader.onload = function (e) {
-  		$uploadCrop.croppie('bind', {
-  			url: e.target.result
-  		}).then(function(){
-  			$('#preveiw_image').remove();
-  			console.log('jQuery bind complete');
-  		});
-
-  	}
-  	reader.readAsDataURL(this.files[0]);
-  });
-
-  $('.upload-result').on('click', function (ev) {
-  	$uploadCrop.croppie('result', {
-  		type: 'canvas',
-  		size: 'viewport'
-  	}) .then(function (resp) {
-
-
-  		$.ajax({
-
-  			type: "POST",
-  			url: "registration/profile_img_post.php",     
-  			data: {"image":resp},
-  			success: function (data) {
-
-  				$('#upload-demo').hide();
-  				$('#upload-demo-btn').hide();
-  				$("#upload-demo-i").show();
-  				html = '<img src="' + resp + '" />';
-  				$("#upload-demo-i").html(html);
-  				$('#profile_img').val(data);
-
-
-
-        // debugger;
-    }
+$('#upload-demo').hide();
+$('#upload-demo-i').hide();
+$('#upload-demo-btn').hide();
+$uploadCrop = $('#upload-demo').croppie({
+	enableExif: true,
+	viewport: {
+		width: 200,
+		height: 200,
+		type: 'circle'
+	},
+	boundary: {
+		width: 300,
+		height: 300
+	}
 });
-  	});
-  });
+
+
+$('#upload').on('change', function () { 
+	$('#upload-demo').show();
+	$('#upload-demo-btn').show();
+	var reader = new FileReader();
+	reader.onload = function (e) {
+		$uploadCrop.croppie('bind', {
+			url: e.target.result
+		}).then(function(){
+			$('#preveiw_image').remove();
+			console.log('jQuery bind complete');
+		});
+
+	}
+	reader.readAsDataURL(this.files[0]);
+});
+
+$('.upload-result').on('click', function (ev) {
+	$uploadCrop.croppie('result', {
+		type: 'canvas',
+		size: 'viewport'
+	}) .then(function (resp) {
+
+
+		$.ajax({
+
+			type: "POST",
+			url: "registration/profile_img_post.php",     
+			data: {"image":resp},
+			success: function (data) {
+
+				$('#upload-demo').hide();
+				$('#upload-demo-btn').hide();
+				$("#upload-demo-i").show();
+				html = '<img src="' + resp + '" />';
+				$("#upload-demo-i").html(html);
+				$('#profile_img').val(data);
 
 
 
- /*=======================================
-    Edition Time of Registration form
-    =========================================*/ 
-
-    $('#pro-sub-btn_registor_update').click(function(){
-
-    	if ($("#msg").hasClass("email_error")) {
-
-    		swal({
-
-    			title: "This email address already exists",
-
-    			type: "error",
-            //confirmButtonColor: "#DD6B55",
-            confirmButtonText: "ok",
-            closeOnConfirm: true,
-            html: false
-        });
-    		return;
-    	}
-
-    	var validator= $("#registor-form").validate({
-
-    		rules:{
-
-    			reg_name:{
-    				required:true
-    			},
-    			reg_lstname:{
-    				required:true
-    			},
-    			reg_email:{
-    				required:true,
-    				email:true
-    			},
-    			// reg_phone:{
-    			// 	required:true,
-    			// 	number:true
-    			// },
-    			// reg_postal:{
-    			// 	required:true
-    			// },
-    			// reg_city:{
-    			// 	required:true
-    			// },
-    			// reg_province:{
-    			// 	required:true
-    			// },
-    			// reg_country:{
-    			// 	required:true
-    			// },
-    			// reg_birth:{
-    			// 	required:true,
-    			// 	date: true
-    			// },
-    			reg_password:{
-    				required:true,
-    				minlength:8
-    			}
-
-
-
-
-    		},
-    		messages: {
-
-    			reg_email:{
-    				email: 'Please enter the valid email address'  
-    			} ,
-    			reg_phone:{
-    				number:'Mobile number should only contain numbers'
-    			},
-    			reg_password:{
-    				minlength:'Minimum length of password is 8 digits'
-    			},
-    			reg_birth:{
-    				date:'Please enter the valid date format'
-    			},
-
-    		},
-
-    		errorElement : 'div',
-    		errorPlacement: function(error, element) {
-
-    			console.log(element);
-    			var placement = $(element).data('error');
-
-    			console.log(placement);
-    			console.log(error);
-    			if (placement) {
-    				$(placement).append(error)
-    			} else {
-    				error.insertAfter(element);
-    			}
-    		}
-    	});
-
-    	validator.form();
-
-    	if (validator.form()== false) {
-
-    		var body = $("html, body");
-    		$.each($('#registor-form').find(".error"),function(key,value)
-    		{
-
-    			if($(value).css('display')!="none")
-    			{
-    				body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
-    				return false; 
-    			}
-    		});
-
-    	}else{
-    	  // debugger;
-    	  $('#loader').modal({dismissible: false});
-    	  $('#loader').modal('open');
-
-    	  var file_data = $('#sortpicture').prop('files')[0];   
-    	  var form_data = new FormData();                  
-    	  form_data.append('file', file_data);
-     // alert(form_data);  
-
-     if ($('#check_cover').val()!="") {                          
-     	$.ajax({
-                 url: 'registration/upload-ajax-cover.php', // point to server-side PHP script 
-                 dataType: 'text',  // what to expect back from the PHP script, if anything
-                 cache: false,
-                 contentType: false,
-                 processData: false,
-                 data: form_data,                         
-                 type: 'post',
-                 success: function(cover_data){
-                 	$('#coverimg').val(cover_data);
-
-                 	$.ajax({
-
-                 		type: "POST",
-                 		url: "registration/registration-update.php",
-                 		data: $("form").serialize(),
-                 		success:function(res){
-
-                 			var data=JSON.parse(res);
-
-                 			if (data.status=="vendor_success") {
-
-                 				$("#btn-loader").hide();
-                 				setTimeout(function(){
-                 					$('#loader').modal('close');
-                 					swal({
-                 						title: "Edits successfully updated",
-
-                 						type: "success",
-                                                 //confirmButtonColor: "#DD6B55",
-                                                 confirmButtonText: "ok",
-                                                 closeOnConfirm: true,
-                                                 html: false
-                                             }, function(){
-                                             	window.location = "edit_admin.php?id="+data.id;
-                                             });
-                 				},3000)
-                 			}else{
-
-
-
-                 				$('#loader').modal('close');
-                 				swal({
-                 					title: "Something went wrong!",
-
-                 					type: "error",
-                                                 //confirmButtonColor: "#DD6B55",
-                                                 confirmButtonText: "ok",
-                                                 closeOnConfirm: true,
-                                                 html: true
-                                             }, function(){
-
-                                             });
-                 			}
-
-                 		}
-                 	})
-
-                 }
-             });
-     }else{
-
-     	$.ajax({
-
-     		type: "POST",
-     		url: "registration/registration-update.php",
-     		data: $("form").serialize(),
-     		success:function(res){
-
-     			var data=JSON.parse(res);
-     			if (data.status=="vendor_success") {
-
-     				$("#btn-loader").hide();
-     				setTimeout(function(){
-     					$('#loader').modal('close');
-     					swal({
-     						title: "Edits successfully updated",
-
-     						type: "success",
-                                                 //confirmButtonColor: "#DD6B55",
-                                                 confirmButtonText: "ok",
-                                                 closeOnConfirm: true,
-                                                 html: false
-                                             }, function(){
-                                             	window.location = "edit_admin.php?id="+data.id;
-                                             });
-     				},3000)
-     			}else{
-
-
-
-     				$('#loader').modal('close');
-     				swal({
-     					title: "Something went wrong!",
-
-     					type: "error",
-                                                 //confirmButtonColor: "#DD6B55",
-                                                 confirmButtonText: "ok",
-                                                 closeOnConfirm: true,
-                                                 html: true
-                                             }, function(){
-
-                                             });
-     			}
-
-     		}
-     	})
-
-
-
-
-     }
-
-
-
-
-
-
- }
-
+// debugger;
+}
+});
+	});
 });
 
 
 
+/*=======================================
+Edition Time of Registration form
+=========================================*/ 
 
+$('#pro-sub-btn_registor_update').click(function(){
+	debugger
+	if ($("#msg").hasClass("email_error")) {
 
+		swal({
 
- /*=================
- cover image reader
- ===================*/
- function readcover(input){
- 	$('#cover').show();
- 	if (input.files && input.files[0]) {
- 		var reader = new FileReader();
+			title: "This email address already exists",
 
- 		reader.onload = function (e) {
- 			$('#cover')
- 			.attr('src', e.target.result)
- 			.width(150)
- 			.height(100);
- 		};
- 		$('#preveiw_cover').remove();
- 		reader.readAsDataURL(input.files[0]);
- 	}
+			type: "error",
+//confirmButtonColor: "#DD6B55",
+confirmButtonText: "ok",
+closeOnConfirm: true,
+html: false
+});
+		return;
+	}
 
+	var validator= $("#registor-form").validate({
 
- }
+		rules:{
 
-
- $( document ).ready(function(){
-
- 	var isLoadNotify = true;
- 	function generateNotifications(){
-
- 		var requestAjax = $.ajax({
-
- 			type:'GET',
- 			url:'../methods/get-notification.php?gen_for=admin',
- 			success:function (res) {
-            	 // console.log(res);
-            	 if (res) {
-            	 	var data= JSON.parse(res);
-
-            	  // console.log(data);
-            	  $('ul.notify_wrap').html('');
-            	  $.each(data,function(k,val){
-                       // console.log(val);
-                          // debugger;
-                          isLoadNotify = true;
-                          var li_Wraps= $(`<li class="li-wrap"><i class="fa fa-times noti_x_icon"  aria-hidden="true"></i>
-                          	<a href="#" data-href="`+val.url+`" class="x_icon"> <img src="`+val.photo.slice(3)+`" alt="">
-                          	<h5 alt="`+val.title+`" title="`+val.title+`">`+val.title+`</h5>
-                          	<p alt="`+val.desc+`" title="`+val.desc+`">`+val.desc+`</p> <span>`+val.time+`</span>
-                          	</a><input type="hidden" id="noti_id" value="`+val.notify_id+`"/>
-                          	</li>`);
-
-
-                          $('ul.notify_wrap').append(li_Wraps);
-                          attachNotiyFunction();
-                          redirectNotiyFunction();
-                      })
-            	}else{
-            		isLoadNotify=true;
-            	} 
-            }
-
-
-        });
- 	}
-    // if(!)
-    function callNotifyFunction(){
-    	if(isLoadNotify){
-    		isLoadNotify=false;
-    		generateNotifications()
-    		callNotifyFunction();
-    	}else{
-    		setTimeout(function(){	
-    			callNotifyFunction();
-    		},5000);
-    	}
-
-    }
-    callNotifyFunction()
-
-
-    function attachNotiyFunction(){
-    	$('.noti_x_icon').click(function(){
-
-    		var li= $(event.currentTarget).parents('.li-wrap'); 
-    		var noti_id=li.find('#noti_id').val();
-              // debugger;
-              $.ajax({
-
-              	type:"POST",
-              	url: '../methods/update-notification.php',
-              	data :{"id":noti_id},
-              	success:function(data){
-
-              		if (data=="success") {
-
-              			li.hide();
-               			// debugger;
-               		}else{
-
-               			li.show();
-               		}
-
-
-               	}
-               })
+			reg_name:{
+				required:true
+			},
+			reg_lstname:{
+				required:true
+			},
+			reg_email:{
+				required:true,
+				email:true
+			},
+			reg_phone:{
+				required:true,
+				number:true
+			},
+			reg_postal:{
+				required:true
+			},
+			reg_city:{
+				required:true
+			},
+			reg_province:{
+				required:true
+			},
+			reg_country:{
+				required:true
+			},
+			reg_birth:{
+				required:true,
+				date: true
+			},
+			reg_password:{
+				required:true,
+				minlength:8
+			}
 
 
 
 
+		},
+		messages: {
+
+			reg_email:{
+				email: 'Please enter the valid email address'  
+			} ,
+			reg_phone:{
+				number:'Mobile number should only contain numbers'
+			},
+			reg_password:{
+				minlength:'Minimum length of password is 8 digits'
+			},
+			reg_birth:{
+				date:'Please enter the valid date format'
+			},
+
+		},
+
+		errorElement : 'div',
+		errorPlacement: function(error, element) {
+
+			console.log(element);
+			var placement = $(element).data('error');
+
+			console.log(placement);
+			console.log(error);
+			if (placement) {
+				$(placement).append(error)
+			} else {
+				error.insertAfter(element);
+			}
+		}
+	});
+
+	validator.form();
+
+	if (validator.form()== false) {
+
+		var body = $("html, body");
+		$.each($('#registor-form').find(".error"),function(key,value)
+		{
+
+			if($(value).css('display')!="none")
+			{
+				body.stop().animate({scrollTop:($(value).offset().top - 150)},1000, 'swing', function() { });
+				return false; 
+			}
+		});
+
+	}else{
+// debugger;
+$('#loader').modal({dismissible: false});
+$('#loader').modal('open');
+
+var file_data = $('#sortpicture').prop('files')[0];   
+var form_data = new FormData();                  
+form_data.append('file', file_data);
+// alert(form_data);  
+
+if ($('#check_cover').val()!="") {                          
+	$.ajax({
+url: 'registration/upload-ajax-cover.php', // point to server-side PHP script 
+dataType: 'text',  // what to expect back from the PHP script, if anything
+cache: false,
+contentType: false,
+processData: false,
+data: form_data,                         
+type: 'post',
+success: function(cover_data){
+	$('#coverimg').val(cover_data);
+
+	$.ajax({
+
+		type: "POST",
+		url: "registration/registration-update.php",
+		data: $("form").serialize(),
+		success:function(res){
+
+			var data=JSON.parse(res);
+			debugger;
+			if (data.status=="admin_success") {
+
+				$("#btn-loader").hide();
+				setTimeout(function(){
+					$('#loader').modal('close');
+					swal({
+						title: "Profile successfully updated",
+
+						type: "success",
+//confirmButtonColor: "#DD6B55",
+confirmButtonText: "ok",
+closeOnConfirm: true,
+html: false
+}, function(){
+	window.location = "edit_admin.php?id="+data.id;
+});
+				},3000)
+			}else{
 
 
-          });
-    }
+
+				$('#loader').modal('close');
+				swal({
+					title: "Something went wrong!",
+
+					type: "error",
+//confirmButtonColor: "#DD6B55",
+confirmButtonText: "ok",
+closeOnConfirm: true,
+html: true
+}, function(){
+
+});
+			}
+
+		}
+	})
+
+}
+});
+}else{
+
+	$.ajax({
+
+		type: "POST",
+		url: "registration/registration-update.php",
+		data: $("form").serialize(),
+		success:function(res){
+
+			var data=JSON.parse(res);
+			if (data.status=="admin_success") {
+
+				$("#btn-loader").hide();
+				setTimeout(function(){
+					$('#loader').modal('close');
+					swal({
+						title: "Profile successfully updated",
+
+						type: "success",
+//confirmButtonColor: "#DD6B55",
+confirmButtonText: "ok",
+closeOnConfirm: true,
+html: false
+}, function(){
+	window.location = "edit_admin.php?id="+data.id;
+});
+				},3000)
+			}else{
 
 
 
-    function redirectNotiyFunction(){
-    	$('.x_icon').click(function(){
+				$('#loader').modal('close');
+				swal({
+					title: "Something went wrong!",
 
-    		var loc =$(this).attr('data-href');
+					type: "error",
+//confirmButtonColor: "#DD6B55",
+confirmButtonText: "ok",
+closeOnConfirm: true,
+html: true
+}, function(){
 
-    		var li= $(event.currentTarget).parents('.li-wrap'); 
+});
+			}
 
-    		var noti_id=li.find('#noti_id').val();
- // debugger;
- $.ajax({
-
- 	type:"POST",
- 	url: '../methods/update-notification.php',
- 	data :{"id":noti_id},
- 	success:function(data){
-
- 		if (data=="success") {
-
- 			li.hide();
- 			window.location= loc;
-               			 // debugger;
-               			}else{
-
-               				li.show();
-               			}
+		}
+	})
 
 
-               		}
-               	})
+
+
+}
+
+
+
+
+
+
+}
+
+});
+
+
+
+
+
+
+/*=================
+cover image reader
+===================*/
+function readcover(input){
+	$('#cover').show();
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('#cover')
+			.attr('src', e.target.result)
+			.width(150)
+			.height(100);
+		};
+		$('#preveiw_cover').remove();
+		reader.readAsDataURL(input.files[0]);
+	}
+
+
+}
+
+
+$( document ).ready(function(){
+
+	var isLoadNotify = true;
+	function generateNotifications(){
+
+		var requestAjax = $.ajax({
+
+			type:'GET',
+			url:'../methods/get-notification.php?gen_for=admin',
+			success:function (res) {
+// console.log(res);
+if (res) {
+	var data= JSON.parse(res);
+
+// console.log(data);
+$('ul.notify_wrap').html('');
+$.each(data,function(k,val){
+// console.log(val);
+// debugger;
+isLoadNotify = true;
+var li_Wraps= $(`<li class="li-wrap"><i class="fa fa-times noti_x_icon"  aria-hidden="true"></i>
+	<a href="#" data-href="`+val.url+`" class="x_icon"> <img src="`+val.photo.slice(3)+`" alt="">
+	<h5 alt="`+val.title+`" title="`+val.title+`">`+val.title+`</h5>
+	<p alt="`+val.desc+`" title="`+val.desc+`">`+val.desc+`</p> <span>`+val.time+`</span>
+	</a><input type="hidden" id="noti_id" value="`+val.notify_id+`"/>
+	</li>`);
+
+
+$('ul.notify_wrap').append(li_Wraps);
+attachNotiyFunction();
+redirectNotiyFunction();
+})
+}else{
+	isLoadNotify=true;
+} 
+}
+
+
+});
+	}
+// if(!)
+function callNotifyFunction(){
+	if(isLoadNotify){
+		isLoadNotify=false;
+		generateNotifications()
+		callNotifyFunction();
+	}else{
+		setTimeout(function(){	
+			callNotifyFunction();
+		},5000);
+	}
+
+}
+callNotifyFunction()
+
+
+function attachNotiyFunction(){
+	$('.noti_x_icon').click(function(){
+
+		var li= $(event.currentTarget).parents('.li-wrap'); 
+		var noti_id=li.find('#noti_id').val();
+// debugger;
+$.ajax({
+
+	type:"POST",
+	url: '../methods/update-notification.php',
+	data :{"id":noti_id},
+	success:function(data){
+
+		if (data=="success") {
+
+			li.hide();
+// debugger;
+}else{
+
+	li.show();
+}
+
+
+}
+})
 
 
 
@@ -991,7 +925,47 @@ $('#modal-reset').modal({dismissible: false});
 
 
 });
-    }
+}
+
+
+
+function redirectNotiyFunction(){
+	$('.x_icon').click(function(){
+
+		var loc =$(this).attr('data-href');
+
+		var li= $(event.currentTarget).parents('.li-wrap'); 
+
+		var noti_id=li.find('#noti_id').val();
+// debugger;
+$.ajax({
+
+	type:"POST",
+	url: '../methods/update-notification.php',
+	data :{"id":noti_id},
+	success:function(data){
+
+		if (data=="success") {
+
+			li.hide();
+			window.location= loc;
+// debugger;
+}else{
+
+	li.show();
+}
+
+
+}
+})
+
+
+
+
+
+
+});
+}
 
 })
 

@@ -56,27 +56,45 @@ if (!empty($_POST['profile_img']) && !empty($_POST['coverimg'])) {
 $result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 
 if ($result==1) {
-  if ($_POST['user_type']=="vendor") {
+  if (isset($_POST['user_type']) && $_POST['user_type']=="vendor") {
 
     include '../../methods/send-notification.php';
     date_default_timezone_set("Asia/Karachi");
     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","User record updated","Admin has updated your record",date("F j, Y, g:i a"),"db-profile.php?id=".$_POST['user_id'],"vendor","vendor" );
-  }else if ($_POST['user_type']=="blogger") {
 
-    include '../../methods/send-notification.php';
-    date_default_timezone_set("Asia/Karachi");
-    insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","User record updated","Admin has updated your record",date("F j, Y, g:i a"),"blogger/edit-blogger.php?id=".$_POST['user_id'],"blogger","blogger" );
-  }
-
-
-
-  $responseArray=array(
+     $responseArray=array(
 
     "status"=> "user_success",
     "message"=> "Registration updated successfully",
     "id"=> $_POST['user_id'],
     "usertype"=>$_POST['user_type']
   );
+  }else if (isset($_POST['user_type']) && $_POST['user_type']=="blogger") {
+
+    include '../../methods/send-notification.php';
+    date_default_timezone_set("Asia/Karachi");
+    insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","User record updated","Admin has updated your record",date("F j, Y, g:i a"),"blogger/edit-blogger.php?id=".$_POST['user_id'],"blogger","blogger" );
+
+     $responseArray=array(
+
+    "status"=> "user_success",
+    "message"=> "Registration updated successfully",
+    "id"=> $_POST['user_id'],
+    "usertype"=>$_POST['user_type']
+  );
+  }else{
+
+     $responseArray=array(
+
+    "status"=> "admin_success",
+    "message"=> "Registration updated successfully",
+    "id"=> $_POST['user_id']
+  );
+  }
+
+
+
+ 
   echo json_encode($responseArray);
 }else{
 

@@ -1,5 +1,6 @@
 <?php 
 include"../common-sql.php";
+session_start();
 
 $is_check=true;
 $responseArray=[];
@@ -63,7 +64,7 @@ if (isset($_POST['amenities']) && $_POST['amenities']=="on") {
 
 if ($is_check==true) {
 
- $query='INSERT INTO credentials(reg_name,reg_lstname,reg_email,reg_birth,reg_password,reg_photo,reg_cover,reg_joinD,user_status,user_type)VALUES("'.$_POST['reg_name'].'","'.$_POST['reg_lstname'].'","'.$_POST['reg_email'].'","'.$_POST['reg_birth'].'","'.md5($_POST['reg_password']).'","'.$_POST['profile_img'].'","'.$_POST['coverimg'].'","'.$joinDate.'","Pending","admin")';
+ $query='INSERT INTO credentials(reg_name,reg_lstname,reg_email,reg_birth,reg_password,reg_photo,reg_cover,reg_joinD,user_status,user_type)VALUES("'.$_POST['reg_name'].'","'.$_POST['reg_lstname'].'","'.$_POST['reg_email'].'","'.$_POST['reg_birth'].'","'.md5($_POST['reg_password']).'","'.$_POST['profile_img'].'","'.$_POST['coverimg'].'","'.$joinDate.'","Approved","admin")';
 
  global $conn;
 if ($conn->query($query)== TRUE) {
@@ -84,7 +85,8 @@ if ($conn->query($query)== TRUE) {
 
  $newSuccessMsgArr=array(
    "status"=> "Success",
-   "message"=> "Registration inserted successfully"
+   "message"=> "Registration inserted successfully",
+    "id"=> $_SESSION['user_id']
  );
  echo json_encode($newSuccessMsgArr);
 

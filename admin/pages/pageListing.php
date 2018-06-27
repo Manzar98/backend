@@ -6,7 +6,7 @@
 	<title>List Of Pages</title>
 	
 	<?php  include '../header_inner_folder.php';
-	$p_Query='SELECT * FROM pages where user_id="'.$_GET['id'].'" ORDER BY page_id DESC ';
+	$p_Query='SELECT * FROM pages ORDER BY page_id DESC ';
 	$p_resp =mysqli_query($conn,$p_Query)  or die(mysqli_error($conn)); ?>
 	
 	<div class="db-cent-3">

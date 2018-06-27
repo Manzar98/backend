@@ -359,7 +359,7 @@ function reason_submit() {
                           $('.ev-1').attr('onclick',"document.location.href='events/event_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                           $('.bo-1').attr('onclick',"document.location.href='blogger/blogListing.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                         
-                           
+                            
                    }else{
 
                          
@@ -429,38 +429,23 @@ function show_approve(event) {
                           $('.tor-1').attr('onclick',"document.location.href='tours/tour_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                           $('.ev-1').attr('onclick',"document.location.href='events/event_list.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
                           $('.bo-1').attr('onclick',"document.location.href='blogger/blogListing.php?id="+id_val+"&name="+name_val+"&status="+st_val+"'");
-                         
-
-
-                             
+                        
+                         $('.realtime_reason').hide(); //in veiw time it works only                             
                         
                    }else{
-                      
-                      
-                      
+                     
+                       console.log(data);
                    }
-                 console.log(data);
+                
              }   
 
 	   });
-           
-
-          	}
-
-          	
-          });
-   
-
-
-
-	
-	
 }
-
-	</script>
+ });
+  		
+}
+</script>
 </body>
-
-
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/db-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 10:03:00 GMT -->
 </html>
 

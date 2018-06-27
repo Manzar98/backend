@@ -6,7 +6,7 @@
 	<title>List Of Amenities</title>
 	
 	<?php  include '../header_inner_folder.php';
-	$d_Query='SELECT * FROM amenities where user_id="'.$_GET['id'].'" GROUP BY amenity_name ORDER BY amenity_id DESC';
+	$d_Query='SELECT * FROM amenities GROUP BY amenity_name ORDER BY amenity_id DESC';
 	$d_resp =mysqli_query($conn,$d_Query)  or die(mysqli_error($conn)); ?>
 	
 	<div class="db-cent-3">

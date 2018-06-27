@@ -6,7 +6,7 @@
 	<title>List Of FAQ's</title>
 	
 	<?php  include '../header_inner_folder.php';
-	$f_Query='SELECT * FROM faq where user_id="'.$_GET['id'].'" ORDER BY faq_id DESC ';
+	$f_Query='SELECT * FROM faq ORDER BY faq_id DESC ';
 	$f_resp =mysqli_query($conn,$f_Query)  or die(mysqli_error($conn)); ?>
 	
 	<div class="db-cent-3">

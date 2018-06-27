@@ -1,14 +1,5 @@
-<?php 
-
-// session_start();
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
 	<title>PVC-Registration</title>

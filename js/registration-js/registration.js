@@ -389,7 +389,7 @@
                                    var data=JSON.parse(res);
 
                                    if (data.status=="Success") {
-                                   
+
                                     $("#btn-loader").hide();
                                     setTimeout(function(){
                                      $('#loader').modal('close');
@@ -410,7 +410,7 @@
                                              });
                                    },3000)
                                   }else if(data.status=="user_success"){
-                                       
+                                        debugger
                                           $("#btn-loader").hide();
                                     setTimeout(function(){
                                      $('#loader').modal('close');

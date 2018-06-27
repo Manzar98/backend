@@ -111,7 +111,7 @@
 										<label for="filled-in-amenity" class="canManage-label">Amenities</label>
 									</p>
 								</div>
-								<div class="col s3">
+								<div class="col s3" style="display: none;">
 									<p class="pTAG">
 										<input type="checkbox" name="servicefee" class="filled-in canManage" id="filled-in-service" value="on">
 										<label for="filled-in-service" class="canManage-label" style="padding-left: 7px !important;">Service Fee</label>
