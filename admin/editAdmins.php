@@ -10,7 +10,7 @@
 
 		$reg_Query= select('credentials',array("user_id"=>$_GET['id']));
 
-	
+		$reg_authority=select('authorities',array("user_id"=>$_GET['id']));
 	
 	
 	?>
@@ -38,6 +38,7 @@
 			<form class="col s12" action="registration-update.php" method="post" role="form" id="registor-form">
 				<input type="hidden" name="user_id" value="<?php echo $reg_Result['user_id']; ?>">
 				<input type="hidden" name="user_type" id="u_type" value="<?php echo $reg_Result['user_type']; ?>">
+				<input type="hidden" name="isTime" value="update">
 				<input type="hidden" id="u_email" value="<?php echo $reg_Result['reg_email']; ?>">
 				<input type="hidden"  id="check_Oldpass" value="<?php echo $_SESSION['reg_password']; ?>" class="validate">
 				<div class="row">
@@ -92,6 +93,82 @@
 							<div class="input-field col s8">
 								<input type="text" value="<?php echo $reg_Result['reg_country'];  ?>" name="reg_country" id="reg_country" class="validate"> </div>
 							</div>
+							<?php if (isset($_GET['u_type']) && $_GET['u_type']=="admin") {?>
+								<div class="veiwCheckbox">
+									<?php while ($authQuery=mysqli_fetch_assoc($reg_authority)) {?>
+										<div class="row">
+											<label>Can Manage:</label>
+											<div class="col s2"></div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="vendors" class="filled-in canManage" id="filled-in-vendor" value="<?php echo $authQuery['vendors']; ?>">
+													<label for="filled-in-vendor" class="canManage-label">Vendor</label>
+												</p>
+											</div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="admins" class="filled-in canManage" id="filled-in-user" value="<?php echo $authQuery['admins']; ?>">
+													<label for="filled-in-user" class="canManage-label" style="padding-left: 7px !important;">Users</label>
+												</p>
+											</div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="pages" class="filled-in canManage" id="filled-in-page" value="<?php echo $authQuery['pages']; ?>">
+													<label for="filled-in-page" class="canManage-label" style="padding-left: 7px !important;">Pages</label>
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col s2"></div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="destinations" class="filled-in canManage" id="filled-in-destination" value="<?php echo $authQuery['destinations']; ?>">
+													<label for="filled-in-destination" class="canManage-label">Destinations</label>
+												</p>
+											</div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="faqs" class="filled-in canManage" id="filled-in-faq" value="<?php echo $authQuery['faqs']; ?>">
+													<label for="filled-in-faq" class="canManage-label" style="padding-left: 7px !important;">FAQs</label>
+												</p>
+											</div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="bloggers" class="filled-in canManage" id="filled-in-blogger" value="<?php echo $authQuery['bloggers']; ?>">
+													<label for="filled-in-blogger" class="canManage-label">Bloggers</label>
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col s2"></div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="amenities" class="filled-in canManage" id="filled-in-amenity" value="<?php echo $authQuery['amenities']; ?>">
+													<label for="filled-in-amenity" class="canManage-label">Amenities</label>
+												</p>
+											</div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="listing" class="filled-in canManage" id="filled-in-listing" value="<?php echo $authQuery['listing']; ?>">
+													<label for="filled-in-listing" class="canManage-label" style="padding-left: 7px !important;">Listing</label>
+												</p>
+											</div>
+											<div class="col s3">
+												<p class="pTAG">
+													<input type="checkbox" name="blogs" class="filled-in canManage" id="filled-in-blogs" value="<?php echo $authQuery['blogs']; ?>">
+													<label for="filled-in-blogs" class="canManage-label" style="padding-left: 7px !important;">Blogs</label>
+												</p>
+											</div>
+											<div class="col s3" style="display: none;">
+												<p class="pTAG">
+													<input type="checkbox" name="servicefee" class="filled-in canManage" id="filled-in-service" value="on">
+													<label for="filled-in-service" class="canManage-label" style="padding-left: 7px !important;">Service Fee</label>
+												</p>
+											</div>
+										</div>
+									<?php } ?>
+								</div>
+							<?php } ?>
 							<div>
 								<a class="waves-effect waves-light btn modal-trigger spc-modal " href="#modal-reset" >Reset Password</a>
 
@@ -573,7 +650,7 @@ $('.upload-result').on('click', function (ev) {
 
 
 /*=======================================
-Edition Time of Registration form
+Edition Time of Registration form (multiple admins in edit time)
 =========================================*/ 
 
 $('#pro-sub-btn_registor_update').click(function(){
@@ -591,6 +668,71 @@ closeOnConfirm: true,
 html: false
 });
 		return;
+	}
+
+	if ($("#filled-in-vendor:checkbox:checked").length > 0) {
+
+		$('#filled-in-vendor').val('on');
+
+	}else{
+		$('#filled-in-vendor').val('off');
+	}
+
+	if ($("#filled-in-blogger:checkbox:checked").length > 0) {
+
+		$('#filled-in-blogger').val('on');
+
+	}else{
+		$('#filled-in-blogger').val('off');
+	}
+	if ($("#filled-in-user:checkbox:checked").length > 0) {
+
+		$('#filled-in-user').val('on');
+
+	}else{
+		$('#filled-in-user').val('off');
+	}
+	if ($("#filled-in-destination:checkbox:checked").length > 0) {
+
+		$('#filled-in-destination').val('on');
+
+	}else{
+		$('#filled-in-destination').val('off');
+	}
+	if ($("#filled-in-listing:checkbox:checked").length > 0) {
+
+		$('#filled-in-listing').val('on');
+
+	}else{
+		$('#filled-in-listing').val('off');
+	}
+	if ($("#filled-in-page:checkbox:checked").length > 0) {
+
+		$('#filled-in-page').val('on');
+
+	}else{
+		$('#filled-in-page').val('off');
+	}
+	if ($("#filled-in-blogs:checkbox:checked").length > 0) {
+
+		$('#filled-in-blogs').val('on');
+
+	}else{
+		$('#filled-in-blogs').val('off');
+	}
+	if ($("#filled-in-amenity:checkbox:checked").length > 0) {
+
+		$('#filled-in-amenity').val('on');
+
+	}else{
+		$('#filled-in-amenity').val('off');
+	}
+	if ($("#filled-in-faq:checkbox:checked").length > 0) {
+
+		$('#filled-in-faq').val('on');
+
+	}else{
+		$('#filled-in-faq').val('off');
 	}
 
 	var validator= $("#registor-form").validate({
@@ -710,18 +852,18 @@ success: function(cover_data){
 	$.ajax({
 
 		type: "POST",
-		url: "registration/registration-update.php",
+		url: "adminsPostUpdate.php",
 		data: $("form").serialize(),
 		success:function(res){
 
 			var data=JSON.parse(res);
-			if (data.status=="admin_success") {
+			if (data.status=="Success") {
 
 				$("#btn-loader").hide();
 				setTimeout(function(){
 					$('#loader').modal('close');
 					swal({
-						title: "Profile successfully updated",
+						title: "Admin registration successfully updated",
 
 						type: "success",
 //confirmButtonColor: "#DD6B55",
@@ -730,7 +872,7 @@ closeOnConfirm: true,
 html: false
 }, function(){
 
-	window.location = "edit_admin.php?id="+data.id;
+	window.location = "listOfAdmins.php?id="+data.id;
 });
 				},3000)
 			}else{
@@ -761,18 +903,18 @@ html: true
 	$.ajax({
 
 		type: "POST",
-		url: "registration/registration-update.php",
+		url: "adminsPostUpdate.php",
 		data: $("form").serialize(),
 		success:function(res){
 
 			var data=JSON.parse(res);
-			if (data.status=="admin_success") {
+			if (data.status=="Success") {
 
 				$("#btn-loader").hide();
 				setTimeout(function(){
 					$('#loader').modal('close');
 					swal({
-						title: "Profile successfully updated",
+						title: "Admin registration successfully updated",
 
 						type: "success",
 //confirmButtonColor: "#DD6B55",
@@ -780,7 +922,8 @@ confirmButtonText: "ok",
 closeOnConfirm: true,
 html: false
 }, function(){
-	window.location = "edit_admin.php?id="+data.id;
+
+	window.location = "listOfAdmins.php?id="+data.id;
 });
 				},3000)
 			}else{
@@ -967,6 +1110,45 @@ $.ajax({
 }
 
 })
+
+
+// debugger
+// debugger
+if ($('#filled-in-vendor').val()=="on") {
+	$('#filled-in-vendor').prop('checked', true)
+}
+
+if ($('#filled-in-blogger').val()=="on") {
+	$('#filled-in-blogger').prop('checked', true)
+}
+
+if ($('#filled-in-user').val()=="on") {
+	$('#filled-in-user').prop('checked', true)
+}
+
+if ($('#filled-in-destination').val()=="on") {
+	$('#filled-in-destination').prop('checked', true)
+}
+
+if ($('#filled-in-listing').val()=="on") {
+	$('#filled-in-listing').prop('checked', true)
+}
+
+if ($('#filled-in-page').val()=="on") {
+	$('#filled-in-page').prop('checked', true)
+}
+
+if ($('#filled-in-blogs').val()=="on") {
+	$('#filled-in-blogs').prop('checked', true)
+}
+
+if ($('#filled-in-amenity').val()=="on") {
+	$('#filled-in-amenity').prop('checked', true)
+}
+
+if ($('#filled-in-faq').val()=="on") {
+	$('#filled-in-faq').prop('checked', true)
+}
 
 </script>
 </body>

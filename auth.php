@@ -38,6 +38,7 @@ $subData=mysqli_fetch_assoc($subResult);
         $_SESSION['reg_city']=$crntresult['reg_city'];
         $_SESSION['reg_country']=$crntresult['reg_country'];
         $_SESSION['reg_photo']=$crntresult['reg_photo'];
+        $_SESSION['user_type']=$crntresult['user_type'];
         $_SESSION['pages']=$subData['pages'];
         $_SESSION['bloggers']=$subData['bloggers'];
         $_SESSION['admins']=$subData['admins'];
@@ -48,6 +49,7 @@ $subData=mysqli_fetch_assoc($subResult);
         $_SESSION['servicefee']=$subData['servicefee'];
         $_SESSION['listing']=$subData['listing'];
         $_SESSION['blogs']=$subData['blogs'];
+       
         $res_Array=array(
           "status"=>"Success",
            "id"=> $crntresult['user_id']
@@ -59,7 +61,7 @@ $subData=mysqli_fetch_assoc($subResult);
            "id"=> $crntresult['user_id'],
            "u_type"=> $crntresult['user_type']
         );
-  }elseif ($crntresult['user_type']=='admin'){
+  }elseif ($crntresult['user_type']=='admin' || $crntresult['user_type']=='s_admin'){
          
          $res_Array=array(
           "status"=>"Success",

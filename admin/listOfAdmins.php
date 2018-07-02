@@ -50,18 +50,30 @@
 								<div class="buttonsWrap_vendors">
 									<div class="row">
 										<a class="waves-effect waves-light btn" href="veiwAdmins.php?id=<?php echo $result['user_id'];  ?>&u_type=<?php echo $result['user_type']; ?>">Veiw</a>
-										<?php if ($result['user_status']=="Approved") { ?>
+										<?php if ($_SESSION['user_type']=="s_admin") { ?>
+											<a class="waves-effect waves-light btn" href="editAdmins.php?id=<?php echo $result['user_id'];  ?>&u_type=<?php echo $result['user_type']; ?>">Edit</a>
+										<?php } ?>
+										<?php if ($result['user_status']=="Approved") { 
 
-											<a  href="#susp" u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Deactivate</a>
-											<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" u_type="<?php echo $result['user_type']; ?>">Deactivate</a>
+
+											if ($_SESSION['user_id']!=$result['user_id']) { ?>
+												<a  href="#susp" u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Deactivate</a>
+												<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" u_type="<?php echo $result['user_type']; ?>">Deactivate</a>
+
+											<?php } ?>
+
 											<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;" u_type="<?php echo $result['user_type']; ?>">Activate</a>
+										<?php }else{
 
-										<?php  }else{ ?>
+											if ($_SESSION['user_id']!=$result['user_id']) { ?>
+
+
+												<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" u_type="<?php echo $result['user_type']; ?>" class="approve btn" value="Approved" >Activate</a>
+											<?php  } ?>
 
 											<a href="#susp"  u_id="<?php echo $result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" style="display: none;" >Deactivate</a>
 											<a  onclick="show_suspend(event)" u_id="<?php echo $result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" u_type="<?php echo $result['user_type']; ?>">Deactivate</a>
-											<a  onclick="show_approve(event)"  u_id="<?php echo $result['user_id'] ?>" u_type="<?php echo $result['user_type']; ?>" class="approve btn" value="Approved" >Activate</a>
-										<?php   } ?>
+										<?php	} ?>
 									</div>
 
 								</div>

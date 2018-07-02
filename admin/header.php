@@ -449,7 +449,7 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 								<a href="faqs/faqListing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db6.png" alt="" /> FAQs</a>
 							</li>
 							<li>
-								<a href="edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
+								<a href="edit_admin.php?id=<?php echo $_SESSION['user_id'] ?>&u_type=<?php echo $_SESSION['user_type']; ?>"><img src="../images/icon/db7.png" alt="" /> Profile</a>
 							</li>
 							<li class="AD_destinations">
 								<a href="destinations/desti-Listing.php?id=<?php echo $_SESSION['user_id'] ?>"><img src="../images/icon/db4.png" alt="" /> Destinations</a>

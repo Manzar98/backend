@@ -34,7 +34,7 @@ function authentication(){
 
                    window.location = "vendors/dashboard.php?id="+data.id;
 
-           }else if(data.u_type=="admin"){
+           }else if(data.u_type=="admin" || data.u_type=="s_admin"){
 
                    window.location = "admin/dashboard.php?id="+data.id;
 

@@ -31,20 +31,60 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col s12">
 									<label style="padding-bottom: 10px;">Email Address</label>
 									<div class="input-field">
 										<input type="email" onblur="checkemail_main(this.value)" value="" id="reg_email" name="reg_email" class="validate" > 
 										<span id="msg" class="hi-red"></span>
 									</div>
 								</div>
-								<div class="col-md-6">
-									<label>Date of Birth</label>
-									<div class="input-field ">
-										<input type="text" value="" id="reg_birth" name="reg_birth" class="validate"> 
-									</div>
-								</div>
 							</div>
+
+								<div class="row">
+
+									<div class="col-md-6">
+										<label>Mobile Number</label>
+										<div class="input-field ">
+											<input type="number" id="reg_phone" name="reg_phone" class="validate">
+										</div>   
+									</div>
+									<div class="col-md-6">
+										<label>Postal Address</label>
+										<div class="input-field ">
+											<input type="text" id="reg_postal" name="reg_postal" class="validate">
+										</div>
+									</div>
+									
+								</div>
+								<div class="row">
+									
+									<div class="col-md-6">
+										<label>City</label>
+										<div class="input-field ">
+											<input type="text" name="reg_city" id="reg_city" class="validate">
+										</div>   
+									</div>
+									<div class="col-md-6">
+										<label>Province</label>
+										<div class="input-field ">
+											<input type="text" name="reg_province" id="reg_province" class="validate">
+										</div> 
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<label>Country</label>
+										<div class="input-field ">
+											<input type="text" value="" name="reg_country" id="reg_country" class="validate"> </div>
+										</div>
+										<div class="col-md-6">
+											<label>Date of Birth</label>
+											<div class="input-field ">
+												<input type="text" value="" id="reg_birth" name="reg_birth" class="validate"> 
+											</div>
+										</div>
+									</div>
 							<div class="row">
 								<div class="col-md-6">
 									<label>Password</label>
