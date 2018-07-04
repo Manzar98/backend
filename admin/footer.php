@@ -280,7 +280,8 @@
     		var requestAjax = $.ajax({
 
 			type:'GET',
-			url:'../methods/get-notification.php?gen_for=admin',
+			url:'../methods/get-notification.php?gen_for=admin&'+
+$('#authorities_form').serialize(),
             success:function (res) {
             	 // console.log(res);
                  if (res) {
@@ -298,9 +299,13 @@
 										   <p alt="`+val.desc+`" title="`+val.desc+`">`+val.desc+`</p> <span>`+val.time+`</span>
 									  </a><input type="hidden" id="noti_id" value="`+val.notify_id+`"/>
 								   </li>`);
+			        
+        if ($('.blogs_on').length > 0) {
+          debugger;
+        	$('ul.notify_wrap').append(li_Wraps);
+        }
 
-
-			        $('ul.notify_wrap').append(li_Wraps);
+			        
 			        attachNotiyFunction();
 			        redirectNotiyFunction();
             	  })

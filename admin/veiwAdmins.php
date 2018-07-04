@@ -17,12 +17,13 @@
 		<input type="hidden" id="veiwAdmin_id" value="<?php echo $_GET['id']; ?>">
 		<div class="veiw_sus_appr">
 			<div class="row" style="margin-top: 20px;">
+
 				<div class="col s11">
-
+                     
 					<div class="pull-right sus_appr" style="margin-left: 10px;">
-
+                         
 						<?php if ($reg_Result['user_status']=="Approved") { ?>
-
+                            
 							<a  href="#susp" u_id="<?php echo $reg_Result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Deactivate</a>
 							<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" u_type="<?php echo $reg_Result['user_type']; ?>">Deactivate</a>
 							<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;" u_type="<?php echo $reg_Result['user_type']; ?>">Activate</a>
@@ -37,6 +38,11 @@
 						<?php   } ?>
 
 					</div>
+					 <div class="pull-right" >
+                          <?php if ($_SESSION['user_type']=="s_admin") { ?>
+											<a class="waves-effect waves-light btn" href="editAdmins.php?id=<?php echo $reg_Result['user_id'];  ?>&u_type=<?php echo $reg_Result['user_type']; ?>">Edit</a>
+										<?php } ?>
+                        </div>
 				</div>
 			</div>
 

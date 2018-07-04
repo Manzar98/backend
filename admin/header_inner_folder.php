@@ -418,17 +418,17 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 							<?php if ($_SESSION['listing']=="on" || $_SESSION['blogs']=="on") { ?>
 
 								<li>
-									<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+									<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listings</a>
 								</li>
 							<?php }else if ($_SESSION['listing']=="off" && $_SESSION['blogs']=="off"){ ?>
 								
 								<li class="AD_blogs AD_listing">
-									<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+									<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listings</a>
 								</li>
 							<?php }else{ ?>
 
 								<li>
-									<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listing</a>
+									<a href="../listing.php"><img src="../../images/icon/db2.png" alt="" /> Listings</a>
 								</li>
 							<?php } ?>
 							

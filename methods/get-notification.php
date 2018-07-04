@@ -5,9 +5,18 @@ include '../common-sql.php';
     
     // echo $_GET['gen_for'];
     if (isset($_GET['gen_for']) && $_GET['gen_for']=="admin") {
+      $authoArray = $_GET['autho'];
+      //$str = implode (" OR ", $authoArray);
+      //echo $str;
+      $str = '';
+      foreach ($authoArray as $key => $value) {
+        $str.='`noti_to_show`="'. $value . '" OR ';
+      }
+      $stripString = substr($str, 0, -4);
 
-       $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="admin" ORDER BY noti_id DESC';
-    // echo $noti_Query;
+       $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="admin" AND ('.$stripString.') ORDER BY noti_id DESC';
+     //echo $noti_Query;
+     //return false;
      }else if (isset($_GET['gen_for']) && $_GET['gen_for'] =="vendor" && isset($_GET['id'])) {
         
         $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND `notifications`.`noti_generate_for`="vendor" AND `notifications`.user_id="'.$_GET['id'].'"  ORDER BY noti_id DESC';

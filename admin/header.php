@@ -42,6 +42,17 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 </head>
 
 <body data-ng-app="" class="pages_<?php echo $_SESSION['pages']; ?> bloggers_<?php echo $_SESSION['bloggers']; ?> admins_<?php echo $_SESSION['admins']; ?> vendors_<?php echo $_SESSION['vendors']; ?> faqs_<?php echo $_SESSION['faqs']; ?> destinations_<?php echo $_SESSION['destinations']; ?> amenities_<?php echo $_SESSION['amenities']; ?> servicefee_<?php echo $_SESSION['servicefee']; ?> listing_<?php echo $_SESSION['listing']; ?> blogs_<?php echo $_SESSION['blogs']; ?>">
+<form id="authorities_form" style="display: none;">
+	<?php
+		$autharray = ['pages','bloggers','admins','vendors','faqs','destinations','amenities','servicefee','listing','blogs'];
+		for ($i=0; $i < count($autharray); $i++) { 
+			if($_SESSION[ $autharray[$i] ]=="on"){
+				echo '<input name="autho[]" value="'.$autharray[$i].'_'.$_SESSION[ $autharray[$i] ].'" />' ;
+			}
+			
+		}
+	 ?>
+	 </form>
 	<!--MOBILE MENU-->
 	<section>
 		<div class="mm">
@@ -425,17 +436,17 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 							<?php if ($_SESSION['listing']=="on" || $_SESSION['blogs']=="on") { ?>
 
 								<li>
-									<a href="listing.php"><img src="../images/icon/db2.png" alt="" /> Listing</a>
+									<a href="listing.php"><img src="../images/icon/db2.png" alt="" /> Listings</a>
 								</li>
 							<?php }else if ($_SESSION['listing']=="off" && $_SESSION['blogs']=="off"){ ?>
 
 								<li  class="AD_blogs AD_listing">
-									<a href="listing.php"><img src="../images/icon/db2.png" alt="" /> Listing</a>
+									<a href="listing.php"><img src="../images/icon/db2.png" alt="" /> Listings</a>
 								</li>
 							<?php }else{ ?>
 
 								<li>
-									<a href="listing.php"><img src="../images/icon/db2.png" alt="" /> Listing</a>
+									<a href="listing.php"><img src="../images/icon/db2.png" alt="" /> Listings</a>
 								</li>
 							<?php } ?>
 

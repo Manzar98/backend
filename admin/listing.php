@@ -2,13 +2,13 @@
 <html lang="en">
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2017 09:57:37 GMT -->
 <head>
-	<title>Listing</title>	
+	<title>Listings</title>	
 	<?php  include 'header.php'; ?>
 	<div class="db-cent-3">
 		<div class="db-cent-table db-com-table">
 			<div class="row">
 				<div class="db-title col s9">
-					<h3><img src="../images/icon/dbc5.png" alt=""/> Listing</h3>
+					<h3><img src="../images/icon/dbc5.png" alt=""/> Listings</h3>
 					<!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> -->
 				</div>
 			</div>
