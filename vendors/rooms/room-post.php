@@ -358,7 +358,7 @@ if (isset($_POST['common_video'])) {
 
    include '../../methods/send-notification.php';
 
-     insert_notification($conn,$user_id,"vendor","true","false","Created","New Room Created","".$name." in ".$hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$room_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$user_id,"room","admin" );
+     insert_notification($conn,$user_id,"vendor","true","false","Created","New Room Created","".$name." in ".$hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$room_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$user_id,"room","admin","listing_on" );
 
 
   echo json_encode($newSuccessMsgArr);

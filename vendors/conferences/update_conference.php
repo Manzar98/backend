@@ -404,7 +404,7 @@ if ($is_check==true) {
 
      include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"conference","admin" );
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"conference","admin","listing_on" );
  
 
 
@@ -450,7 +450,7 @@ if ($is_check==true) {
 
      include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"conference","admin" );
+     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"conference","admin","listing_on" );
   }
 
   

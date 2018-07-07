@@ -515,7 +515,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
  include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." in ".$hotelname." has been created under your account.",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid,"event","vendor" );
+     insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." in ".$hotelname." has been created under your account.",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid,"event","vendor","" );
 
 }else{
 
@@ -570,7 +570,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
 include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." has been created under your account",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid,"event","vendor" );
+     insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." has been created under your account",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid,"event","vendor","" );
 }
 
 

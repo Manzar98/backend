@@ -76,7 +76,7 @@ $newSuccessMsgArr=array(
 
    include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Featured ad has been updated","Featured ad has been updated under your account",date("F j, Y, g:i a"),"#","paid-ads","vendor" );
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Featured ad has been updated","Featured ad has been updated under your account",date("F j, Y, g:i a"),"#","paid-ads","vendor","" );
 
 
 
@@ -99,7 +99,7 @@ $newSuccessMsgArr=array(
 
         include '../../methods/send-notification.php';
 
-        insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Ad Suspended","Ad for ".$_POST['list_name']." has been suspended",date("F j, Y, g:i a"),"#","paid_ads","vendor");
+        insert_notification($conn,$_POST['u_id'],"admin","true","false","Suspended","Ad Suspended","Ad for ".$_POST['list_name']." has been suspended",date("F j, Y, g:i a"),"#","paid_ads","vendor","");
    }else{
      
      $paidQuery='UPDATE paid_ads SET ad_status="'.$_POST['btn'].'",
@@ -108,7 +108,7 @@ $newSuccessMsgArr=array(
 
         include '../../methods/send-notification.php';
 
-        insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Ad Approved","Ad for ".$_POST['list_name']." has been approved",date("F j, Y, g:i a"),"#","paid_ads","vendor");
+        insert_notification($conn,$_POST['u_id'],"admin","true","false","Approved","Ad Approved","Ad for ".$_POST['list_name']." has been approved",date("F j, Y, g:i a"),"#","paid_ads","vendor","");
 
       }
 

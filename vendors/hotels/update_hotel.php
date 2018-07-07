@@ -320,7 +320,7 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
      
      include '../../methods/send-notification.php';
 
-     insert_notification($conn,$user_id,"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=Approved&name=".$_SESSION['reg_name'],"hotel","admin" );
+     insert_notification($conn,$user_id,"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=Approved&name=".$_SESSION['reg_name'],"hotel","admin","listing_on" );
 
   getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));
  echo json_encode($newSuccessMsgArr);

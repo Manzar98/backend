@@ -37,7 +37,7 @@ if ($is_check==true) {
  }
  include '../../methods/send-notification.php';
  
- insert_notification($conn,$user_id,$userType,"true","false","Created",$title,$decs,date("F j, Y, g:i a"),$url,$noti_type,"admin");
+ insert_notification($conn,$user_id,$userType,"true","false","Created",$title,$decs,date("F j, Y, g:i a"),$url,$noti_type,"admin","");
 
 
  $newSuccessMsgArr=array(

@@ -612,7 +612,7 @@ if ($is_check==true) {
 
     include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"vendor","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"tour","admin" );
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"tour","vendor","" );
 
 
   }else{
@@ -655,7 +655,7 @@ if ($is_check==true) {
 
     include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id'],"tour","vendor" );
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id'],"tour","vendor","" );
   }
   
    echo json_encode($newSuccessMsgArr);

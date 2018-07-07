@@ -316,7 +316,7 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
      
   include '../../methods/send-notification.php';
 
-  insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id,"hotel","vendor" );
+  insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id,"hotel","vendor","" );
 
   getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));
 

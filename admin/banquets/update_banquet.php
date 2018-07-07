@@ -504,7 +504,7 @@ if ($is_check==true) {
 
     include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id'],"banquet","vendor" );
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id'],"banquet","vendor","" );
 
   }else{
 

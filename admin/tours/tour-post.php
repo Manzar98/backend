@@ -724,7 +724,7 @@ if (count($_POST['common_nopeople']) > 0 && !empty($_POST['common_nopeople'][0])
   include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$user_id,"admin","true","false","Created","New Tour Created","".$tourname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id,"tour","vendor" );
+     insert_notification($conn,$user_id,"admin","true","false","Created","New Tour Created","".$tourname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id,"tour","vendor","" );
 
 }
 
