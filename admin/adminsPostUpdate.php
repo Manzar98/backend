@@ -80,7 +80,7 @@ if (isset($_POST['blogs']) && $_POST['blogs']=="on") {
 $u_id=$_POST['user_id'];
 if ($is_check==true) {
 
-  if (isset($_POST['isTime']) && $_POST['isTime']!="update") {
+  if (isset($_POST['is_time']) && $_POST['is_time']=="create") {
     
    $query='INSERT INTO credentials(reg_name,reg_lstname,reg_email,reg_phone,reg_postal,reg_city,reg_province,reg_country,reg_birth,reg_password,reg_photo,reg_cover,reg_joinD,user_status,user_type)VALUES("'.$_POST['reg_name'].'","'.$_POST['reg_lstname'].'","'.$_POST['reg_email'].'","'.$_POST['reg_phone'].'","'.$_POST['reg_postal'].'","'.$_POST['reg_city'].'","'.$_POST['reg_province'].'","'.$_POST['reg_country'].'","'.$_POST['reg_birth'].'","'.md5($_POST['reg_password']).'","'.$_POST['profile_img'].'","'.$_POST['coverimg'].'","'.$joinDate.'","Approved","admin")';
 
@@ -92,13 +92,6 @@ if ($is_check==true) {
      $subQuery='INSERT INTO authorities(user_id,pages,bloggers,admins,vendors,faqs,destinations,servicefee,amenities,listing,blogs)VALUES("'.$user_id.'","'.$page.'","'.$blogger.'","'.$admin.'","'.$vendor.'","'.$faq.'","'.$destination.'","'.$service.'","'.$amenity.'","'.$listing.'","'.$blog.'")';
      $result=mysqli_query($conn,$subQuery) or die(mysqli_error($conn));
 
-     $title="New admin registered";
- //   $url ="veiwAdmin.php?id=".$user_id."";
- //   $noti_type="admin";
-
- // include '../../methods/send-notification.php';
-     
- // insert_notification($conn,$user_id,$userType,"true","false","Created",$title,"",date("F j, Y, g:i a"),$url,$noti_type,"admin");
      
 
    }
@@ -169,8 +162,6 @@ if ($is_check==true) {
 // echo $query;
 
   $result=mysqli_query($conn,$query) or die(mysqli_error($conn));
-
-
   $resultChild=mysqli_query($conn,$childQuery) or die(mysqli_error($conn));
 }
 
@@ -179,6 +170,15 @@ $newSuccessMsgArr=array(
  "message"=> "Registration inserted successfully",
  "id"=> $_SESSION['user_id']
 );
+if (isset($_SESSION['user_type']) && $_SESSION['user_type']=="admin") {
+
+    $notify_istime="Created";
+    $notify_title="New Admin Created";
+    $notify_descrip="".$_POST['reg_name']." has been created";
+
+  include '../methods/send-notification.php';
+  insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"veiwAdmins.php?id=".$user_id."&u_type=".$_SESSION['user_type'],"faq","s_admin","" );
+}
 echo json_encode($newSuccessMsgArr);
 
 }else{

@@ -31,7 +31,7 @@
 						<div>
 							<label>Applies to :</label>
 						</div>
-						<input type="text" name="amenity_page[]" id="amenity_page">
+						<input type="hidden" name="amenity_page[]" id="amenity_page">
 							<div class="common-top">
 							<div  class="col s3">
 								<p class="pTAG"> 

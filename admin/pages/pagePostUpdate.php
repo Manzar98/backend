@@ -1,6 +1,8 @@
 <?php 
 include'../../common-sql.php';
  // print_r($_POST);
+
+session_start();
 $is_check= true;
 $responseArray=[];
 if (empty($_POST['page_content'])) {
@@ -28,10 +30,16 @@ $newSuccessMsgArr=array(
 	"w_time"=>$_POST['is_time']
 );
 if ($is_check==true) {
-	
-	if ($_POST['is_time']=="create") {
+	$notify_istime="";
+	$notify_title="";
+	$notify_descrip="";
+	if ($_POST['is_time']=="create") { 
 
-		$query='INSERT INTO pages(user_id,page_name,page_alias,page_content,page_metadata,page_metakeyword,page_inactive)VALUES("'.$_POST['user_id'].'","'.$_POST['page_name'].'","'.$_POST['page_alias'].'","'.$p_content.'","'.$_POST['page_metadata'].'","'.$_POST['page_metakeyword'].'","'.$inactive.'")';      
+		$query='INSERT INTO pages(user_id,page_name,page_alias,page_content,page_metadata,page_metakeyword,page_inactive)VALUES("'.$_POST['user_id'].'","'.$_POST['page_name'].'","'.$_POST['page_alias'].'","'.$p_content.'","'.$_POST['page_metadata'].'","'.$_POST['page_metakeyword'].'","'.$inactive.'")';
+
+		$notify_istime="Created";
+		$notify_title="New Page Created";
+		$notify_descrip="".$_POST['page_name']." has been created";       
 
 	}else{
 
@@ -44,6 +52,37 @@ if ($is_check==true) {
 		page_inactive="'.$inactive.'"
 		WHERE page_id="'.$_POST['page_id'].'" AND user_id="'.$_POST['user_id'].'"';
 
+		$notify_istime="Updated";
+		$Adminupdate='SELECT `pages`.`page_inactive` FROM `pages` WHERE page_id="'.$_POST['page_id'].'"';
+		$Adminupdate_result=mysqli_query($conn,$Adminupdate) or die(mysqli_error($conn));
+		$Adminupdate_assoc=mysqli_fetch_assoc($Adminupdate_result);
+
+		if ($Adminupdate_assoc['page_inactive']== $inactive) {
+
+			$notify_title="Page Updated";
+			$notify_descrip="".$_POST['page_name']." has been updated";
+
+		}else{
+
+			if ($inactive=="off") {
+
+				$notify_title="Page Activated";
+				$notify_descrip="".$_POST['page_name']." has been reactivated";
+
+			}else{
+
+				$notify_title="Page Deactivated";
+				$notify_descrip="".$_POST['page_name']." has been deactivated ";
+			} 
+
+		}
+
+	}
+
+	if (isset($_SESSION['user_type']) && $_SESSION['user_type']=="admin") {
+
+		include '../../methods/send-notification.php';
+		insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"pages/veiwPage.php?p_id=".$_POST['page_id']."&id=".$_POST['user_id'],"pages","s_admin","" );
 	}
 	$result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 

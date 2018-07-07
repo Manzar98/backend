@@ -552,7 +552,7 @@ if (isset($_POST['common_video'])) {
    include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"admin","true","false","Created","New Banquet Created","".$name." in ".$banquet_hotelName." has been created under your account",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&h_id=".$hotelid,"banquet","vendor" );
+     insert_notification($conn,$userid ,"admin","true","false","Created","New Banquet Created","".$name." in ".$banquet_hotelName." has been created under your account",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&h_id=".$hotelid,"banquet","vendor","" );
  
 
 }else{

@@ -37,7 +37,7 @@ include '../../common-apis/reg-api.php';
 						<input type="hidden" name="" id="amP_id" value="<?php echo implode(',', $idStr_array); ?>">
 						<input type="hidden" name="user_id" value="<?php echo $result_D['user_id']; ?>" id="userId">
 						<input type="hidden" name="is_time" value="update">
-						<!-- <input type="text" name="A_Name" value="<?php echo $result_D['amenity_name']; ?>"> -->
+						 <input type="text" name="crnt_a_id" value="<?php echo $amenityiId; ?>">
 						<!-- <input type="text" name="P_Name" value="<?php echo $result_D['amenity_page']; ?>"> -->
 						
 						<?php

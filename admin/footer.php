@@ -21,7 +21,9 @@
 					</ul>
 				</div>
 				<div class="foot-com foot-2">
-					<h5>Phone: (+404) 142 21 23 78</h5> </div>
+					<h5>Phone: (+404) 142 21 23 78</h5> 
+					<input type="hidden" id="userType" name="" value="<?php echo $_SESSION['user_type']; ?>">
+				</div>
 					<div class="foot-com foot-3">
 						<!--<a class="waves-effect waves-light" href="#">online room booking</a>--><a class="waves-effect waves-light" href="../booking.html">room reservation</a> </div>
 						<div class="foot-com foot-4">
@@ -273,15 +275,23 @@
 		
 
  $( document ).ready(function(){
+    var postUrl="";
+ 	if ($('#userType').val()=="s_admin") {
 
+      postUrl="../methods/get-notification.php?gen_for=s_admin"
+ 	}else{
+
+      postUrl='../methods/get-notification.php?gen_for=admin&'+
+$('#authorities_form').serialize()
+ 	}
+// debugger
  	var isLoadNotify = true;
     function generateNotifications(){
 
     		var requestAjax = $.ajax({
 
 			type:'GET',
-			url:'../methods/get-notification.php?gen_for=admin&'+
-$('#authorities_form').serialize(),
+			url:postUrl,
             success:function (res) {
             	 // console.log(res);
                  if (res) {
@@ -299,11 +309,9 @@ $('#authorities_form').serialize(),
 										   <p alt="`+val.desc+`" title="`+val.desc+`">`+val.desc+`</p> <span>`+val.time+`</span>
 									  </a><input type="hidden" id="noti_id" value="`+val.notify_id+`"/>
 								   </li>`);
-			        
-        if ($('.blogs_on').length > 0) {
-          debugger;
+		
         	$('ul.notify_wrap').append(li_Wraps);
-        }
+       
 
 			        
 			        attachNotiyFunction();
