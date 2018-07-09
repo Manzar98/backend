@@ -82,7 +82,7 @@ if ($is_check==true) {
 	if (isset($_SESSION['user_type']) && $_SESSION['user_type']=="admin") {
 		
 		include '../../methods/send-notification.php';
-		insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"amenities/amenityListing.php?id=".$_POST['user_id'],"amenities","s_admin","" );
+		insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"amenities/amenityListing.php?a_id=".$_POST['crnt_a_id']."&id=".$_POST['user_id']."&a_name=".$_POST['amenity_name'],"amenities","s_admin","" );
 	}
 
 	echo json_encode($newSuccessMsgArr);

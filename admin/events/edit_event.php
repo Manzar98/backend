@@ -39,7 +39,8 @@ $editeventnoofpeopleQuery=select('common_nosofpeople', array('event_id'=>$result
 
 <?php  include"../header_inner_folder.php"; 
 $userId= $_GET["user_id"];
-
+$vendorName=$_GET['name'];
+$vendorStatus=$_GET['status'];
 $selectHotel = 'SELECT `hotel_name`,`hotel_id`  FROM `hotel` WHERE `user_id`="'.$userId.'" ';
 
 
@@ -57,7 +58,8 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 
 <div class="db-profile-edit">
 <form class="col s12"  data-toggle="validator" id="event-form" role="form" action="" method="POST" enctype="multipart/form-data">
-
+<input type="hidden" name="vendorStatus" value="<?php echo $vendorStatus;  ?>">
+<input type="hidden" name="vendorName" value="<?php echo $vendorName;  ?>">
 <input type="hidden" name="event_id" value="<?php echo $resultevent['event_id']; ?>">
 <input type="hidden" name="hotel_id" value="<?php echo $resultevent['hotel_id']; ?>" id="hotelId">
 <input type="hidden" name="user_id" value="<?php echo $resultevent['user_id'];  ?>">

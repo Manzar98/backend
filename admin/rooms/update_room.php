@@ -1,6 +1,7 @@
 <?php 
 include '../../common-sql.php';
   // print_r($_POST);
+session_start();
 $is_check=true;
 $responseArray=[];
 
@@ -317,11 +318,13 @@ if ($is_check==true) {
 
   $notify_title="";
   $notify_descrip = "";
+  $notify_desc_admin="";
 
   if ($romupdate_assoc['room_inactive']== $inactive) {
   
   $notify_title="Listing Updated";
   $notify_descrip="".$name." in ".$hotelName." has been updated";
+  $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name." in ".$hotelName."";
 
     
   }else{
@@ -331,12 +334,12 @@ if ($is_check==true) {
 
          $notify_title="Listing Activated";
          $notify_descrip="".$name." has been activated";
-
+         $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$name." in ".$hotelName."";
        }else{
           
          $notify_title="Listing Deactivated";
          $notify_descrip="".$name." has been deactivated ";
-
+         $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$name." in ".$hotelName."";
        } 
    
 
@@ -351,6 +354,11 @@ getUpdatequery('room',$_POST,array('hotel_id'=>$_POST['hotel_id'],'room_id'=>$_P
 include '../../methods/send-notification.php';
 
      insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id'],"room","vendor","" );
+
+          if ($_SESSION['user_type']=="admin") {
+
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"room","s_admin","" );
+}
      
   echo json_encode($newSuccessMsgArr);
 

@@ -3,7 +3,7 @@
  include '../../common-sql.php';
 
 // print_r($_POST);
-
+session_start();
 $is_check= true;
 $responseArray=[];
 
@@ -455,6 +455,11 @@ if (isset($_POST['common_video'])) {
 
      insert_notification($conn,$userid ,"admin","true","false","Created","New Conference Created","".$name." in ".$con_hotelName." has been created under your account",date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&h_id=".$hotelid,"conference","vendor","" );
 
+  if ($_SESSION['user_type']=="admin") {
+
+   insert_notification($conn,$userid ,"admin","true","false","Created","New Conference Created","".$_SESSION['reg_name']." has been created ".$name." in ".$con_hotelName."",date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"conference","s_admin","" );
+ }
+
 
 }else{
 
@@ -522,6 +527,11 @@ if (isset($_POST['common_video'])) {
 
 
      insert_notification($conn,$userid ,"admin","true","false","Created","New Conference Created","".$name." has been created under your account",date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&u_id=".$userid ,"conference","vendor","" );
+
+       if ($_SESSION['user_type']=="admin") {
+
+   insert_notification($conn,$userid ,"admin","true","false","Created","New Conference Created","".$_SESSION['reg_name']." has been created ".$name."",date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&u_id=".$userid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"conference","s_admin","" );
+ }
 
 }
 

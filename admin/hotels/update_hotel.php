@@ -1,6 +1,7 @@
 <?php 
 include '../../common-sql.php';
      // print_r($_POST);
+session_start();
 $h_id = $_POST['hotel_id'];
 // $user_status=$_POST['user_status'];
 // global $user_status;
@@ -155,10 +156,10 @@ if (empty($_POST['hotel_pickup'])) {
      }
    }else{
     $charges=null;
-     $is_air= 'off';
-   }
+    $is_air= 'off';
+  }
 
-   if ($_POST['hotel_isbus']=='on') {
+  if ($_POST['hotel_isbus']=='on') {
 
     $is_bus= $_POST['hotel_isbus'];
     if (empty($_POST['hotel_buscharge'])) {
@@ -188,20 +189,20 @@ if (!empty($_POST['hotel_nobag']) ) {
 
   $nobag=$_POST['hotel_nobag'];
 
-   if ($_POST['hotel_nobag'] > 0) {
+  if ($_POST['hotel_nobag'] > 0) {
 
-      if (empty($_POST['hotel_bagprice'])) {
-        
-        $is_check= false;
-        array_push($responseArray,"Bag charges field is required");
-  }elseif (!empty($_POST['hotel_bagprice']) && !is_numeric($_POST['hotel_bagprice'])) {
-       $is_check= false;
-       array_push($responseArray,"Bag charges field should only contain numbers.");
-  }else{
+    if (empty($_POST['hotel_bagprice'])) {
+      
+      $is_check= false;
+      array_push($responseArray,"Bag charges field is required");
+    }elseif (!empty($_POST['hotel_bagprice']) && !is_numeric($_POST['hotel_bagprice'])) {
+     $is_check= false;
+     array_push($responseArray,"Bag charges field should only contain numbers.");
+   }else{
 
-       $bagprice=$_POST['hotel_bagprice'];
-  }
+     $bagprice=$_POST['hotel_bagprice'];
    }
+ }
 
  
 }
@@ -246,11 +247,11 @@ if (empty($_POST['hotel_checkout'])) {
 }
 else{
 
-$checkOut=$_POST['hotel_checkout'];
+  $checkOut=$_POST['hotel_checkout'];
 
 }
 $formtype='hotel';
- $user_id=$_POST['user_id'];
+$user_id=$_POST['user_id'];
 if (isset($_POST['hotel_inactive'])) {
   $inactive=$_POST['hotel_inactive'];
 }else{
@@ -263,22 +264,22 @@ if (isset($_POST['hotel_inactive'])) {
 $errorMsgs=implode(",",$responseArray);
 
 $newErrorMsgArr=array(
-    "status"=> "error",
-    "message"=> $errorMsgs
+  "status"=> "error",
+  "message"=> $errorMsgs
 );
 
 $newSuccessMsgArr=array(
-    "status"=> "success",
-     "id"=>$user_id
-    
-    
+  "status"=> "success",
+  "id"=>$user_id
+  
+  
 );
 
 
 
 if ($is_check==true) {
 
-$hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_id.'"';
+  $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_id.'"';
 
   $hotlupdate_result=mysqli_query($conn,$hotlupdate) or die(mysqli_error($conn));
 
@@ -286,43 +287,50 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
 
   $notify_title="";
   $notify_descrip = "";
+  $notify_desc_admin="";
 
   if ($hotlupdate_assoc['hotel_inactive']== $inactive) {
-  
-  $notify_title="Listing Updated";
-
-  $notify_descrip="".$name." has been updated";
-
+    
+    $notify_title="Listing Updated";
+    $notify_descrip="".$name." has been updated";
+    $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name."";
     
   }else{
 
 
-      if ($inactive=="off") {
+    if ($inactive=="off") {
 
-         $notify_title="Listing Activated";
-         $notify_descrip="".$name." has been activated";
+     $notify_title="Listing Activated";
+     $notify_descrip="".$name." has been activated";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$name."";
 
-       }else{
-          
-         $notify_title="Listing Deactivated";
-         $notify_descrip="".$name." has been deactivated";
+   }else{
+    
+     $notify_title="Listing Deactivated";
+     $notify_descrip="".$name." has been deactivated";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$name."";
 
-       } 
+   } 
    
 
 
-  }
+ }
 
-     
-  include '../../methods/send-notification.php';
+ 
+ include '../../methods/send-notification.php';
 
-  insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id,"hotel","vendor","" );
+ insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id,"hotel","vendor","" );
 
-  getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));
+ if ($_SESSION['user_type']=="admin") {
+
+   insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName'],"hotel","s_admin","" );
+ }
+
+ getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));
 
 
-  
-  echo json_encode($newSuccessMsgArr);
+ 
+ echo json_encode($newSuccessMsgArr);
 }else{
   echo json_encode($newErrorMsgArr);
   return false;
@@ -336,7 +344,7 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
   // echo gettype($_POST['hotel_other'][0]);
 /*----------------------------
     Function for dynamic Update Query for Hotels
- ------------------------------*/
+    ------------------------------*/
     function   getUpdatequery($tableName,$updateObject,$where){
 
      $whereClauseArray = array();
@@ -344,7 +352,7 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
 
      if (!empty($_POST['hotel_id'])) {
        # code...
-   
+       
 
       foreach ($updateObject as $key => $value) {
         if($key!='common_image' && $key!='hotel_coverimage' && $key!='common_video'){
@@ -355,39 +363,39 @@ $hotlupdate='SELECT `hotel`.`hotel_inactive` FROM `hotel` WHERE hotel_id="'.$h_i
         //array_push($updtevalues,"user_type='".$updateObject['inforole']."'");    
           //print_r($updtevalues);
 
-       /*Where clause generation*/
-       foreach ($where as $key => $value) {	
-       			
-				$whereClauseArray[]="$key='$value'";
-     	}
-     	
-     	if (count($whereClauseArray)==1) {
+      /*Where clause generation*/
+      foreach ($where as $key => $value) {	
+        
+        $whereClauseArray[]="$key='$value'";
+      }
+      
+      if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
-       			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
+        $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
        			// echo $updatequery;
-        }else if(count($whereClauseArray) > 1) {
-        		$condString='';
-				for ($i=0; $i < count($whereClauseArray); $i++) { 
-					if ($condString=="") {
-					    $condString = $whereClauseArray[$i]." AND ";    
-					}else{
-					    $condString .= $whereClauseArray[$i]." AND ";
-					}
-				}
-				$condString = substr($condString,0,-4);
-				$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
-        }
-       
-       
-        global $conn;
-        $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
+      }else if(count($whereClauseArray) > 1) {
+        $condString='';
+        for ($i=0; $i < count($whereClauseArray); $i++) { 
+         if ($condString=="") {
+           $condString = $whereClauseArray[$i]." AND ";    
+         }else{
+           $condString .= $whereClauseArray[$i]." AND ";
+         }
+       }
+       $condString = substr($condString,0,-4);
+       $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
+     }
+     
+     
+     global $conn;
+     $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
           // echo"manzar";
-         
-       
-  }
+     
+     
+   }
 
 
 
  }
 
-?>
+ ?>

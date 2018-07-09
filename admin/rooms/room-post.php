@@ -3,7 +3,7 @@
 include '../../common-sql.php';
 
  // print_r($_POST);
-
+session_start();
 $is_check=true;
 $responseArray=[];
 
@@ -359,6 +359,11 @@ if (isset($_POST['common_video'])) {
   include '../../methods/send-notification.php';
 
      insert_notification($conn,$user_id,"admin","true","false","Created","New Room Created","".$name." in ".$hotelName." has been created under your account",date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$room_id."&h_id=".$hotelid,"room","vendor","" );
+
+     if ($_SESSION['user_type']=="admin") {
+
+ insert_notification($conn,$user_id ,"admin","true","false","Created","New Room Created","".$_SESSION['reg_name']." has been created ".$name." in ".$hotelName."",date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$room_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$user_id,"room","s_admin","" );
+}
 
 
   echo json_encode($newSuccessMsgArr);

@@ -1,6 +1,7 @@
 <?php  
 include '../../common-sql.php';
   // print_r($_POST);
+session_start();
 $is_check=true;
 $responseArray=[];
 
@@ -20,7 +21,7 @@ if (empty($_POST['event_venue'])) {
   array_push($responseArray,"Venue field is required");
 
 }else{
-  
+
   $venue        = $_POST['event_venue'];
 }
 
@@ -30,20 +31,20 @@ if (empty($_POST['event_recurrence'])) {
   array_push($responseArray,"Recurrence field is required");
 
 }else{
-  
+
   $recurrence   = $_POST['event_recurrence'];
 }
 
- if (empty($_POST['event_descrip'])) {
+if (empty($_POST['event_descrip'])) {
 
   $is_check=false;
   array_push($responseArray,"Event description field is required");
 
- }else{
-  
+}else{
+
   $descrip      = $_POST['event_descrip'];
 
- }
+}
 if (empty($_POST['event_entry'])) {
 
   $is_check=false;
@@ -51,108 +52,108 @@ if (empty($_POST['event_entry'])) {
 
 }elseif ($_POST['event_entry']=='yes') {
 
-         $evententry   = $_POST['event_entry'];
-         
-         if(empty($_POST['event_entryfee'])){
+ $evententry   = $_POST['event_entry'];
 
-        $is_check= false;
-        array_push($responseArray,"Event price field is required");
+ if(empty($_POST['event_entryfee'])){
 
-        }elseif(!empty($_POST['event_entryfee']) && !is_numeric($_POST['event_entryfee'])){
+  $is_check= false;
+  array_push($responseArray,"Event price field is required");
 
-                     $is_check=false;
-                     array_push($responseArray,"Event price field should only contain numbers.");       
+}elseif(!empty($_POST['event_entryfee']) && !is_numeric($_POST['event_entryfee'])){
 
-        }else{
+ $is_check=false;
+ array_push($responseArray,"Event price field should only contain numbers.");       
 
-                    $entryfee      = $_POST['event_entryfee'];
-        } 
 }else{
-  
+
+  $entryfee      = $_POST['event_entryfee'];
+} 
+}else{
+
   $evententry   = $_POST['event_entry'];
   $entryfee = null;
 
 }
 
 if (empty($_POST['event_childallow'])) {
-  
+
   $is_check=false;
   array_push($responseArray,"Children allow field is required");
-     
+
 }elseif ($_POST['event_childallow']=='yes') {
 
-        $childallow       =$_POST['event_childallow'];
-        if (empty($_POST['event_undr5allow'])) {
+  $childallow       =$_POST['event_childallow'];
+  if (empty($_POST['event_undr5allow'])) {
 
-          $is_check=false;
-          array_push($responseArray,"Under 5 allowed field is required");
+    $is_check=false;
+    array_push($responseArray,"Under 5 allowed field is required");
 
-        }elseif ($_POST['event_undr5allow']=="yes") {
-          $undr5allow       =$_POST['event_undr5allow'];
+  }elseif ($_POST['event_undr5allow']=="yes") {
+    $undr5allow       =$_POST['event_undr5allow'];
 
-          if (($_POST['event_undr5free']=="off") && empty($_POST['event_undr5price'])) {
+    if (($_POST['event_undr5free']=="off") && empty($_POST['event_undr5price'])) {
 
-          $is_check=false;
-          array_push($responseArray,"Filled atleast one field in Under 5 allowed");
+      $is_check=false;
+      array_push($responseArray,"Filled atleast one field in Under 5 allowed");
 
-        }else{
+    }else{
 
-          if(!empty($_POST['event_undr5price']) && !is_numeric($_POST['event_undr5price'])){
+      if(!empty($_POST['event_undr5price']) && !is_numeric($_POST['event_undr5price'])){
 
-            $is_check= false;
-              array_push($responseArray,"Half price field should only contain numbers.");
+        $is_check= false;
+        array_push($responseArray,"Half price field should only contain numbers.");
 
-          }elseif(!empty($_POST['event_undr5price']) && is_numeric($_POST['event_undr5price'])){
+      }elseif(!empty($_POST['event_undr5price']) && is_numeric($_POST['event_undr5price'])){
 
-            $undr5price      = $_POST['event_undr5price'];
+        $undr5price      = $_POST['event_undr5price'];
 
-          }else{
+      }else{
 
-            $undr5price = null;
-          }
+        $undr5price = null;
+      }
 
-          if (isset($_POST['event_undr5free'])) {
+      if (isset($_POST['event_undr5free'])) {
 
-            $undr5free          =$_POST['event_undr5free'];
+        $undr5free          =$_POST['event_undr5free'];
 
-          }else{
+      }else{
 
-            $undr5free          ='off';
-          }
+        $undr5free          ='off';
+      }
 
-        }
+    }
 
-        }else{
+  }else{
 
-          $undr5allow       =$_POST['event_undr5allow'];
-          $undr5price  = null;
-          $undr5free   ='off';
-        }
+    $undr5allow       =$_POST['event_undr5allow'];
+    $undr5price  = null;
+    $undr5free   ='off';
+  }
 
-        
 
-        if (empty($_POST['event_halftikchild'])) {
 
-             $is_check= false;
-             array_push($responseArray,"Children price field is required");
-  
-        }elseif (!empty($_POST['event_halftikchild'] && !is_numeric($_POST['event_halftikchild']))) {
+  if (empty($_POST['event_halftikchild'])) {
 
-           $is_check= false;
-           array_push($responseArray,"Children price field should only contain numbers.");
+   $is_check= false;
+   array_push($responseArray,"Children price field is required");
 
-        }else{
+ }elseif (!empty($_POST['event_halftikchild'] && !is_numeric($_POST['event_halftikchild']))) {
 
-           $halftikchild     =$_POST['event_halftikchild'];
-        }
-  
+   $is_check= false;
+   array_push($responseArray,"Children price field should only contain numbers.");
+
+ }else{
+
+   $halftikchild     =$_POST['event_halftikchild'];
+ }
+
 }
 
 else{
 
   $childallow  =$_POST['event_childallow'];
   $undr5price  = null;
-    $undr5allow  = null;
+  $undr5allow  = null;
   $undr5free   ='off';
   $halftikchild= null;
 
@@ -160,13 +161,13 @@ else{
 
 
 foreach($_POST['common_nopeople'] as $noofpeop) { 
-  
-  
+
+
   if (!empty($noofpeop) && !is_numeric($noofpeop)) {
 
     $is_check=false;
     array_push($responseArray,"Number of people field should only contain numbers.");
-                    
+
   }elseif(is_numeric($noofpeop)){
 
     $nospeople     = $noofpeop;
@@ -180,13 +181,13 @@ foreach($_POST['common_nopeople'] as $noofpeop) {
 
 
 foreach($_POST['common_discount'] as $discountpercent) { 
-  
-  
+
+
   if (!empty($discountpercent) && !is_numeric($discountpercent)) {
 
     $is_check=false;
     array_push($responseArray,"Discount field should only contain numbers.");
-                    
+
   }elseif(is_numeric($discountpercent)){
 
     $discountx     = $discountpercent;
@@ -199,7 +200,7 @@ foreach($_POST['common_discount'] as $discountpercent) {
 }
 
 if (empty($_POST['event_pikoffer'])) {
-  
+
   $is_check=false;
   array_push($responseArray,"Pickup offered field is required");
 
@@ -213,54 +214,54 @@ if (empty($_POST['event_pikoffer'])) {
     array_push($responseArray,"Filled atleast one field from pickup offered");
 
   }else{
-         
-         if(!empty($_POST['event_pikair']) && !is_numeric($_POST['event_pikair'])){
 
-      $is_check= false;
-      array_push($responseArray,"From airport pickup field should only contain numbers.");
-        
-    }elseif(!empty($_POST['event_pikair']) && is_numeric($_POST['event_pikair'])){
+   if(!empty($_POST['event_pikair']) && !is_numeric($_POST['event_pikair'])){
 
-      $pikair      = $_POST['event_pikair'];
+    $is_check= false;
+    array_push($responseArray,"From airport pickup field should only contain numbers.");
 
-    }else{
+  }elseif(!empty($_POST['event_pikair']) && is_numeric($_POST['event_pikair'])){
 
-      $pikair = null;
-        }
+    $pikair      = $_POST['event_pikair'];
 
-        if(!empty($_POST['event_pikbus']) && !is_numeric($_POST['event_pikbus'])){
+  }else{
 
-      $is_check= false;
-      array_push($responseArray,"From bus pickup field should only contain numbers.");
+    $pikair = null;
+  }
 
-    }elseif(!empty($_POST['event_pikbus']) && is_numeric($_POST['event_pikbus'])){
+  if(!empty($_POST['event_pikbus']) && !is_numeric($_POST['event_pikbus'])){
 
-      $pikbus      = $_POST['event_pikbus'];
+    $is_check= false;
+    array_push($responseArray,"From bus pickup field should only contain numbers.");
 
-    }else{
+  }elseif(!empty($_POST['event_pikbus']) && is_numeric($_POST['event_pikbus'])){
 
-      $pikbus = null;
+    $pikbus      = $_POST['event_pikbus'];
 
-    }
+  }else{
 
-    if(!empty($_POST['event_pikspecific']) && !is_numeric($_POST['event_pikspecific'])){
-
-      $is_check= false;
-      array_push($responseArray,"From specific location pickup field field should only contain numbers.");
-
-    }elseif(!empty($_POST['event_pikspecific']) && is_numeric($_POST['event_pikspecific'])){
-
-      $pikspecific      = $_POST['event_pikspecific'];
-
-    }else{
-
-      $pikspecific = null;
-
-    }
-
-
+    $pikbus = null;
 
   }
+
+  if(!empty($_POST['event_pikspecific']) && !is_numeric($_POST['event_pikspecific'])){
+
+    $is_check= false;
+    array_push($responseArray,"From specific location pickup field field should only contain numbers.");
+
+  }elseif(!empty($_POST['event_pikspecific']) && is_numeric($_POST['event_pikspecific'])){
+
+    $pikspecific      = $_POST['event_pikspecific'];
+
+  }else{
+
+    $pikspecific = null;
+
+  }
+
+
+
+}
 }
 
 
@@ -275,64 +276,64 @@ else{
 
 
 if (empty($_POST['event_drpoffer'])) {
-  
+
   $is_check=false;
   array_push($responseArray,"Dropoff offered field is required");
 
 }elseif ($_POST['event_drpoffer']=='yes') {
-     $drpoffer         =$_POST['event_drpoffer'];
-  if (empty($_POST['event_drpair']) && empty($_POST['event_drpbus']) && empty($_POST['event_drpspecific'])) {
-         
-     $is_check=false;
-     array_push($responseArray,"Filled atleast one field from dropoff offered");
+ $drpoffer         =$_POST['event_drpoffer'];
+ if (empty($_POST['event_drpair']) && empty($_POST['event_drpbus']) && empty($_POST['event_drpspecific'])) {
 
-   }else{
+   $is_check=false;
+   array_push($responseArray,"Filled atleast one field from dropoff offered");
 
-        if(!empty($_POST['event_drpair']) && !is_numeric($_POST['event_drpair'])){
+ }else{
 
-          $is_check= false;
-          array_push($responseArray,"From air dropoff field should only contain numbers.");
+  if(!empty($_POST['event_drpair']) && !is_numeric($_POST['event_drpair'])){
 
-        }elseif(!empty($_POST['event_drpair']) && is_numeric($_POST['event_drpair'])){
+    $is_check= false;
+    array_push($responseArray,"From air dropoff field should only contain numbers.");
 
-          $drpair      = $_POST['event_drpair'];
+  }elseif(!empty($_POST['event_drpair']) && is_numeric($_POST['event_drpair'])){
 
-        }else{
+    $drpair      = $_POST['event_drpair'];
 
-          $drpair = null;
-        }
+  }else{
 
-        if(!empty($_POST['event_drpbus']) && !is_numeric($_POST['event_drpbus'])){
+    $drpair = null;
+  }
 
-          $is_check= false;
-          array_push($responseArray,"From bus dropoff field should only contain numbers.");
+  if(!empty($_POST['event_drpbus']) && !is_numeric($_POST['event_drpbus'])){
 
-        }elseif(!empty($_POST['event_drpbus']) && is_numeric($_POST['event_drpbus'])){
+    $is_check= false;
+    array_push($responseArray,"From bus dropoff field should only contain numbers.");
 
-          $drpbus      = $_POST['event_drpbus'];
+  }elseif(!empty($_POST['event_drpbus']) && is_numeric($_POST['event_drpbus'])){
 
-        }else{
+    $drpbus      = $_POST['event_drpbus'];
 
-          $drpbus = null;
-        }
+  }else{
 
-        if(!empty($_POST['event_drpspecific']) && !is_numeric($_POST['event_drpspecific'])){
+    $drpbus = null;
+  }
 
-          $is_check= false;
-          array_push($responseArray,"From specific location dropoff field should only contain numbers.");
+  if(!empty($_POST['event_drpspecific']) && !is_numeric($_POST['event_drpspecific'])){
 
-        }elseif(!empty($_POST['event_drpspecific']) && is_numeric($_POST['event_drpspecific'])){
+    $is_check= false;
+    array_push($responseArray,"From specific location dropoff field should only contain numbers.");
 
-          $drpspecific      = $_POST['event_drpspecific'];
+  }elseif(!empty($_POST['event_drpspecific']) && is_numeric($_POST['event_drpspecific'])){
 
-        }else{
+    $drpspecific      = $_POST['event_drpspecific'];
 
-          $drpspecific = null;
-        }
+  }else{
+
+    $drpspecific = null;
+  }
 
 
-   }
-  
+}
+
 }else{
 
   $drpoffer         =$_POST['event_drpoffer'];
@@ -352,49 +353,49 @@ if (empty($_POST['event_serve'])) {
 
 }elseif ($_POST['event_serve']=="yes") {
 
-       $serveFood=$_POST['event_serve'];
-     if(($_POST['event_eatFree']=="off") && ($_POST['event_eatAll']=="off") && ($_POST['event_eatNeed']=="off")){
+ $serveFood=$_POST['event_serve'];
+ if(($_POST['event_eatFree']=="off") && ($_POST['event_eatAll']=="off") && ($_POST['event_eatNeed']=="off")){
 
-           $is_check=false;
-           array_push($responseArray,"checked the one field from serve food");
+   $is_check=false;
+   array_push($responseArray,"checked the one field from serve food");
 
-     }else{
-             
-             if (isset($_POST['event_eatFree'])) {
-        $eatFree    = $_POST['event_eatFree'];
-      }else{
-        $eatFree    = 'off';
-      }
-      if ($_POST['event_eatAll']=="on") {
-         $eatAll    = $_POST['event_eatAll'];
-         if (empty($_POST['event_eatAllChrges'])) {
+ }else{
 
-          $is_check=false;
-          array_push($responseArray,"All you can eat charges  field is required");
-          
-         }elseif (!empty($_POST['event_eatAllChrges']) && !is_numeric($_POST['event_eatAllChrges'])) {
+   if (isset($_POST['event_eatFree'])) {
+    $eatFree    = $_POST['event_eatFree'];
+  }else{
+    $eatFree    = 'off';
+  }
+  if ($_POST['event_eatAll']=="on") {
+   $eatAll    = $_POST['event_eatAll'];
+   if (empty($_POST['event_eatAllChrges'])) {
 
-          $is_check= false;
-          array_push($responseArray,"All you can eat charges field should only contain numbers.");
+    $is_check=false;
+    array_push($responseArray,"All you can eat charges  field is required");
 
-         }else{
+  }elseif (!empty($_POST['event_eatAllChrges']) && !is_numeric($_POST['event_eatAllChrges'])) {
 
-          $eatAllChrges      = $_POST['event_eatAllChrges'];
-         }
+    $is_check= false;
+    array_push($responseArray,"All you can eat charges field should only contain numbers.");
 
-      }else{
-        $eatAll="off";
-        $eatAllChrges=null;
-      }
-      if (isset($_POST['event_eatNeed'])) {
+  }else{
 
-          $eatNeed    = $_POST['event_eatNeed'];
-        }else{
-          $eatNeed    = 'off';
-        }
+    $eatAllChrges      = $_POST['event_eatAllChrges'];
+  }
 
-     }
-  
+}else{
+  $eatAll="off";
+  $eatAllChrges=null;
+}
+if (isset($_POST['event_eatNeed'])) {
+
+  $eatNeed    = $_POST['event_eatNeed'];
+}else{
+  $eatNeed    = 'off';
+}
+
+}
+
 }
 else{
   $serveFood=$_POST['event_serve'];
@@ -410,11 +411,11 @@ if (empty($_POST['event_independ'])) {
   array_push($responseArray,"Independent field is required");
 
 }elseif ($_POST['event_independ']=='no') {
-    $independ=$_POST['event_independ'];
+  $independ=$_POST['event_independ'];
   if (empty($_POST['hotel_name'])) {
 
     $is_check=false;
-      array_push($responseArray,"Name of hotel is required");
+    array_push($responseArray,"Name of hotel is required");
   }else{
     $hotelname=$_POST['hotel_name'];
   }
@@ -437,206 +438,224 @@ if (isset($_POST['event_inactive'])) {
 $errorMsgs=implode(",",$responseArray);
 
 $newErrorMsgArr=array(
-    "status"=> "error",
-    "message"=> $errorMsgs
+  "status"=> "error",
+  "message"=> $errorMsgs
 );
 
 $newSuccessMsgArr=array(
-    "status"=> "success",
-    "id"=>$_POST['user_id']
-    
+  "status"=> "success",
+  "id"=>$_POST['user_id']
+
 );
 
 if ($is_check==true) {
 
-   if (!empty($_POST['hotel_id']) && $_POST['event_independ']!='no') {
+ if (!empty($_POST['hotel_id']) && $_POST['event_independ']!='no') {
 
-     $evupdate='SELECT `event`.`event_inactive` FROM `event` WHERE event_id="'.$_POST['event_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+   $evupdate='SELECT `event`.`event_inactive` FROM `event` WHERE event_id="'.$_POST['event_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
 
-  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+   $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
 
-  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+   $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
 
-  $notify_title="";
-  $notify_descrip = "";
+   $notify_title="";
+   $notify_descrip = "";
+   $notify_desc_admin="";
 
-  if ($evupdate_assoc['event_inactive']== $inactive) {
-  
-  $notify_title="Listing Updated";
-  $notify_descrip="".$name." in ".$_POST['hotel_name']." has been updated";
+   if ($evupdate_assoc['event_inactive']== $inactive) {
 
+    $notify_title="Listing Updated";
+    $notify_descrip="".$name." in ".$_POST['hotel_name']." has been updated";
+    $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name." in ".$_POST['hotel_name']."";
     
   }else{
 
 
-      if ($inactive=="off") {
+    if ($inactive=="off") {
 
-         $notify_title="Listing Activated";
-         $notify_descrip="".$name." has been activated";
+     $notify_title="Listing Activated";
+     $notify_descrip="".$name." has been activated";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$name." in ".$_POST['hotel_name']."";
 
-       }else{
-          
-         $notify_title="Listing Deactivated";
-         $notify_descrip="".$name." has been inactivated";
+   }else{
 
-       } 
+     $notify_title="Listing Deactivated";
+     $notify_descrip="".$name." has been inactivated";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$name." in ".$_POST['hotel_name']."";
+
+   } 
    
 
 
-  }
+ }
 
 
-    getUpdatequery('event',$_POST,array('hotel_id'=>$_POST['hotel_id'],'event_id'=>$_POST['event_id']));
+ getUpdatequery('event',$_POST,array('hotel_id'=>$_POST['hotel_id'],'event_id'=>$_POST['event_id']));
 
-     include '../../methods/send-notification.php';
+ include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id'],"event","vendor","" );
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id'],"event","vendor","" );
+ 
+ if ($_SESSION['user_type']=="admin") {
 
-  }else{
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"event","s_admin","" );
+ }
 
-       $evupdate='SELECT `event`.`event_inactive` FROM `event` WHERE event_id="'.$_POST['event_id'].'" AND user_id="'.$_POST['user_id'].'"';
+}else{
 
-  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+ $evupdate='SELECT `event`.`event_inactive` FROM `event` WHERE event_id="'.$_POST['event_id'].'" AND user_id="'.$_POST['user_id'].'"';
 
-  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+ $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
 
-  $notify_title="";
-  $notify_descrip = "";
+ $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
 
-  if ($evupdate_assoc['event_inactive']== $inactive) {
-  
+ $notify_title="";
+ $notify_descrip = "";
+ $notify_desc_admin="";
+
+ if ($evupdate_assoc['event_inactive']== $inactive) {
+
   $notify_title="Listing Updated";
   $notify_descrip="".$name." has been updated";
-
-    
-  }else{
+  $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name."";
 
 
-      if ($inactive=="off") {
-
-         $notify_title="Listing Activated";
-         $notify_descrip="".$name." has been reactivated";
-
-       }else{
-          
-         $notify_title="Listing Deactivated";
-         $notify_descrip="".$name." has been deactivated ";
-
-       } 
-   
+}else{
 
 
-  }
-    
-    getUpdatequery('event',$_POST,array('user_id'=>$_POST['user_id'],'event_id'=>$_POST['event_id']));
+  if ($inactive=="off") {
 
-     include '../../methods/send-notification.php';
+   $notify_title="Listing Activated";
+   $notify_descrip="".$name." has been reactivated";
+   $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$name."";
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id'],"event","vendor","" );
-  }
+ }else{
 
- 
-  echo json_encode($newSuccessMsgArr);
+   $notify_title="Listing Deactivated";
+   $notify_descrip="".$name." has been deactivated ";
+   $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$name."";
+
+ } 
+
+
+
+}
+
+getUpdatequery('event',$_POST,array('user_id'=>$_POST['user_id'],'event_id'=>$_POST['event_id']));
+
+include '../../methods/send-notification.php';
+
+insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id'],"event","vendor","" );
+
+if ($_SESSION['user_type']=="admin") {
+
+ insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"event","s_admin","" );
+}
+
+}
+
+
+echo json_encode($newSuccessMsgArr);
 }
 else{
-   echo json_encode($newErrorMsgArr);
-     return false;
-  
+ echo json_encode($newErrorMsgArr);
+ return false;
+
 }
 
 
 /*----------------------------
     Function for dynamic Update Query for Hotels
- ------------------------------*/
+    ------------------------------*/
     function   getUpdatequery($tableName,$updateObject,$where){
 
 
 
-global $conn;
-     $whereClauseArray = array();
-     $updtevalues      = array();
+      global $conn;
+      $whereClauseArray = array();
+      $updtevalues      = array();
 
       if ((!empty($_POST['hotel_id']) || !empty($_POST['user_id'])) && !empty($_POST['event_id'])) {
        # code...
-    
 
-      foreach ($updateObject as $key => $value) {
+
+        foreach ($updateObject as $key => $value) {
 
       // echo 	gettype($value);
-        if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
+          if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
 
-        	if ($key=='hotel_id' && empty($value)) {
-             
+           if ($key=='hotel_id' && empty($value)) {
+
              $updtevalues[] = "$key =  null";
 
            }else{
 
             $updtevalues[] = "$key = '$value'";
-           }
+          }
         }elseif (gettype($value)=="array") {
-                
+
                  // print_r($value) ;
         	foreach ($value as $k => $v) {
 				   // echo $v;
-         if (isset($updateObject['common_people_id'][$k])) {
+           if (isset($updateObject['common_people_id'][$k])) {
            # code...
-         
-				    $updatequerydates= "UPDATE common_nosofpeople SET "."common_nopeople='".$updateObject['common_nopeople'][$k]."',common_discount='".$updateObject['common_discount'][$k]."' WHERE common_people_id=".$updateObject['common_people_id'][$k];
+
+            $updatequerydates= "UPDATE common_nosofpeople SET "."common_nopeople='".$updateObject['common_nopeople'][$k]."',common_discount='".$updateObject['common_discount'][$k]."' WHERE common_people_id=".$updateObject['common_people_id'][$k];
 
 
-				    mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
-         }
-				    
+            mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
+          }
+
 				  //echo $updatequery;
         		 // echo 'Book value : '.$updateObject['book_fromdate'][$k];
 
         		  // echo 'Menu Value : '.$updateObject['common_menupkg_id'][$k];
 
-        	}
-        	# code...
         }
-        
+        	# code...
       }
+
+    }
         //array_push($updtevalues,"user_type='".$updateObject['inforole']."'");    
           // print_r($updtevalues);
 
-       /*Where clause generation*/
-       foreach ($where as $key => $value) {	
-       			
-				$whereClauseArray[]="$key='$value'";
-     	}
-     	
-     	if (count($whereClauseArray)==1) {
+    /*Where clause generation*/
+    foreach ($where as $key => $value) {	
+
+      $whereClauseArray[]="$key='$value'";
+    }
+
+    if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
-       			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
-       			 echo $updatequery;
-        }else if(count($whereClauseArray) > 1) {
-        		$condString='';
-				for ($i=0; $i < count($whereClauseArray); $i++) { 
-					if ($condString=="") {
-					    $condString = $whereClauseArray[$i]." AND ";    
-					}else{
-					    $condString .= $whereClauseArray[$i]." AND ";
-					}
-				}
-				$condString = substr($condString,0,-4);
-         
-				$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
-        // echo $updatequery;
-        }
-       
-       
-        global $conn;
-        $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
-          // echo"manzar";
-      
+      $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
+      echo $updatequery;
+    }else if(count($whereClauseArray) > 1) {
+      $condString='';
+      for ($i=0; $i < count($whereClauseArray); $i++) { 
+       if ($condString=="") {
+         $condString = $whereClauseArray[$i]." AND ";    
+       }else{
+         $condString .= $whereClauseArray[$i]." AND ";
+       }
      }
+     $condString = substr($condString,0,-4);
+
+     $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
+        // echo $updatequery;
+   }
 
 
-      
+   global $conn;
+   $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
+          // echo"manzar";
+
+ }
+
+
+
 }
 
- 
+
 
 
 

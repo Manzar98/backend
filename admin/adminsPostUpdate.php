@@ -170,15 +170,7 @@ $newSuccessMsgArr=array(
  "message"=> "Registration inserted successfully",
  "id"=> $_SESSION['user_id']
 );
-if (isset($_SESSION['user_type']) && $_SESSION['user_type']=="admin") {
 
-    $notify_istime="Created";
-    $notify_title="New Admin Created";
-    $notify_descrip="".$_POST['reg_name']." has been created";
-
-  include '../methods/send-notification.php';
-  insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"veiwAdmins.php?id=".$user_id."&u_type=".$_SESSION['user_type'],"faq","s_admin","" );
-}
 echo json_encode($newSuccessMsgArr);
 
 }else{

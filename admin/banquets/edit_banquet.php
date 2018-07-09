@@ -17,6 +17,8 @@ include '../../common-apis/reg-api.php';
  <?php include '../header_inner_folder.php'; 
  include '../../common-ftns/adminAmenities.php';
  $userId= $_GET["user_id"];
+ $vendorName=$_GET['name'];
+ $vendorStatus=$_GET['status'];
 
  $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`="'.$userId.'" ';
 
@@ -55,6 +57,8 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
      <form class="col s12"  data-toggle="validator" id="banquet-form" role="form" action="" method="POST" enctype="multipart/form-data"> 
 
        <input type="hidden" name="user_id" value="<?php echo $resultbnq['user_id'];  ?>">
+       <input type="hidden" name="vendorStatus" value="<?php echo $vendorStatus;  ?>">
+       <input type="hidden" name="vendorName" value="<?php echo $vendorName;  ?>">
        <input type="hidden" name="banquet_id" value="<?php echo $resultbnq['banquet_id'];  ?>">
        <input type="hidden" name="hotel_id" id="hotelId" value="<?php echo $resultbnq['hotel_id']; ?>">
        <?php   $global_banquet_id= $resultbnq['banquet_id']; ?>

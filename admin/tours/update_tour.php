@@ -1,6 +1,7 @@
 <?php  
 include '../../common-sql.php';
   // print_r($_POST);
+session_start();
 $is_check=true;
  $responseArray=[];
 
@@ -582,11 +583,13 @@ if ($is_check==true) {
 
   $notify_title="";
   $notify_descrip = "";
+  $notify_desc_admin="";
 
   if ($evupdate_assoc['tour_inactive']== $inactive) {
   
   $notify_title="Listing Updated";
   $notify_descrip="". $tourname." in ".$_POST['hotel_name']." has been updated";
+  $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name." in ".$_POST['hotel_name']."";
 
     
   }else{
@@ -596,12 +599,13 @@ if ($is_check==true) {
 
          $notify_title="Listing Activated";
          $notify_descrip="". $tourname." has been activated";
+         $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$tourname." in ".$_POST['hotel_name']."";
 
        }else{
           
          $notify_title="Listing Deactivated";
          $notify_descrip="". $tourname." has been deactivated";
-
+         $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$tourname." in ".$_POST['hotel_name']."";
        } 
    
 
@@ -614,6 +618,10 @@ if ($is_check==true) {
 
      insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"tour","vendor","" );
 
+ if ($_SESSION['user_type']=="admin") {
+
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"tour","s_admin","" );
+ }
 
   }else{
 
@@ -625,11 +633,13 @@ if ($is_check==true) {
 
   $notify_title="";
   $notify_descrip = "";
+  $notify_desc_admin="";
 
   if ($evupdate_assoc['tour_inactive']== $inactive) {
   
   $notify_title="Listing Updated";
   $notify_descrip="". $tourname." has been updated";
+  $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$tourname."";
 
     
   }else{
@@ -639,11 +649,13 @@ if ($is_check==true) {
 
          $notify_title="Listing Activated";
          $notify_descrip="". $tourname." has been activated";
+         $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$tourname."";
 
        }else{
           
          $notify_title="Listing Deactivated";
          $notify_descrip="". $tourname." has been deactivated";
+         $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$tourname."";
 
        } 
    
@@ -656,6 +668,12 @@ if ($is_check==true) {
     include '../../methods/send-notification.php';
 
      insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id'],"tour","vendor","" );
+
+if ($_SESSION['user_type']=="admin") {
+
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"tour","s_admin","" );
+ }
+
   }
   
    echo json_encode($newSuccessMsgArr);

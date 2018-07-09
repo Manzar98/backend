@@ -18,6 +18,8 @@ include '../../common-apis/reg-api.php';
   <?php include '../header_inner_folder.php'; 
   include '../../common-ftns/adminAmenities.php';
   $userId= $_GET["user_id"];
+ $vendorName=$_GET['name'];
+ $vendorStatus=$_GET['status'];
 
   $selectHotel = 'SELECT `hotel_name`,`hotel_id` FROM `hotel` WHERE `user_id`= "'.$userId.'" ';
 
@@ -37,7 +39,8 @@ include '../../common-apis/reg-api.php';
    <div class="db-profile-edit">
      <form class="col s12"  data-toggle="validator" id="conference-form" role="form" action="conference-post.php" method="POST" enctype="multipart/form-data">
 
-
+       <input type="hidden" name="vendorStatus" value="<?php echo $vendorStatus;  ?>">
+       <input type="hidden" name="vendorName" value="<?php echo $vendorName;  ?>">
       <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
        <label class="col s12">Independent Hall?</label>

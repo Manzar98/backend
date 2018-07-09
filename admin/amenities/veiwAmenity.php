@@ -20,7 +20,7 @@ $showB_Query=select('amenities',array('amenity_id'=>$_GET['a_id'],'user_id'=>$_G
        <div class="row" style="margin-top: 20px;">
         <div class="col s11">
           <div class="pull-right sus_appr" style="margin-left: 10px;">
-            <a class="waves-effect waves-light btn" href="editAmenity.php?a_id=<?php echo $result['amenity_id'];  ?>&id=<?php echo $result['user_id']; ?>">Edit</a>
+            <a class="waves-effect waves-light btn" href="editAmenity.php?a_id=<?php echo $result['amenity_id'];  ?>&id=<?php echo $result['user_id']; ?>&a_name=<?php echo $_GET['a_name']; ?>">Edit</a>
             <?php if ($result['amenity_inactive']=="on") { ?>
               <a onclick="active(event)" class="waves-effect waves-light btn active" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['amenity_id']; ?>" value="off" tbl-name="amenities" col-name="amenity_inactive" id-col="amenity_id">Activate</a>
               <a onclick="inactive(event)" class="waves-effect waves-light btn inactive" u_id="<?php echo $result['user_id']; ?>" id="<?php echo $result['amenity_id']; ?>" value="on" style="display: none;" ttbl-name="amenities" col-name="amenity_inactive" id-col="amenity_id">Deactivate</a>

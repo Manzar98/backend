@@ -1,6 +1,7 @@
 <?php 
 
 include '../../common-sql.php';
+session_start();
 date_default_timezone_set("Asia/Karachi");
 if (!isset($_POST['action'])) {
 $is_check= true;
@@ -57,7 +58,13 @@ if ($is_check==true) {
 
 		
 		include '../../methods/send-notification.php';
-		insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Blog Created",$_POST['blog_title']." has been created under your account",date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id'],"blog","blogger","" ); 
+		insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Blog Created",$_POST['blog_title']." has been created under your account",date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id'],"blog","blogger","" );
+
+		if ($_SESSION['user_type']=="admin") {
+
+			insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Blog Created",$_SESSION['reg_name']." has been created new  blog" .$_POST['blog_title'],date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id']."&status=Pending&name=".$_POST['bloggerName']."&user_id=".$_POST['user_id'],"blog","s_admin","" );
+		}
+		
 
 	}else{
 
@@ -78,11 +85,13 @@ if ($is_check==true) {
 
 		$notify_title="";
 		$notify_descrip = "";
+		$notify_desc_admin="";
 
 		if ($b_update_assoc['blog_inactive']== $inactive) {
 
 			$notify_title="Listing Updated.";
 			$notify_descrip="".$_POST['blog_title']." has been updated";
+			$notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$_POST['blog_title']."";
 
 
 		}else{
@@ -92,11 +101,12 @@ if ($is_check==true) {
 
 				$notify_title="Listing Activated";
 				$notify_descrip="".$_POST['blog_title']." has been activated";
-
+                $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$_POST['blog_title']."";
 			}else{
 
 				$notify_title="Listing Deactivated";
 				$notify_descrip="".$_POST['blog_title']." has been deactivated ";
+				$notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$_POST['blog_title']."";
 
 			} 
 
@@ -106,6 +116,11 @@ if ($is_check==true) {
 		include '../../methods/send-notification.php';
 
 		insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id'],"blog","blogger","" );
+
+		if ($_SESSION['user_type']=="admin") {
+
+			insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=".$_POST['bloggerStatus']."&name=".$_POST['bloggerName']."&user_id=".$_POST['user_id'],"blog","s_admin","" );
+		}
 
 		$result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 	}

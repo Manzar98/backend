@@ -22,7 +22,8 @@
 
 		$userId=$_GET['user_id'];
 	}
-
+	$vendorName=$_GET['name'];
+	$vendorStatus=$_GET['status'];
 	?>
 
 	<div class="db-cent-3">
@@ -34,7 +35,8 @@
 
 			<div class="db-profile-edit">
 				<form class="col s12"  data-toggle="validator" id="hotel-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
-
+					<input type="hidden" name="vendorStatus" value="<?php echo $vendorStatus;  ?>">
+					<input type="hidden" name="vendorName" value="<?php echo $vendorName;  ?>">
 					<input type="hidden" name="user_id" value="<?php echo $userId; ?>">
 					<div>
 

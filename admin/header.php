@@ -406,8 +406,8 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 					?>
 					<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo  $img;?>'),url('<?php echo $cover; ?>');background-size: 95px,cover;">
 						<div style="width: 105px; margin: 0 auto;">
-							<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
-							<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
+							<h4><?php echo $user_result['reg_name'];  ?> <?php echo $user_result['reg_lstname']; ?></h4>
+							<p><?php echo $user_result['reg_city']; ?>, <?php echo $user_result['reg_country']; ?></p>
 						</div>
 					</div>
 					<div class="db-left-2">
@@ -483,7 +483,7 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 				<div class="db-cent">
 					<div class="db-cent-1" style="background-image:url('<?php echo $cover; ?>') !important;">
 
-						<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
+						<p>Hi <?php echo $user_result['reg_name']; ?>,</p>
 						<h4>Welcome to your dashboard</h4>
 					</div>
 				<?php } ?>

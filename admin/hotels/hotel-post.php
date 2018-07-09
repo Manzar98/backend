@@ -2,7 +2,7 @@
 
 include '../../common-sql.php';
  // print_r($_POST);
-
+session_start();
 $is_check= true;
 $responseArray=[];
 
@@ -346,7 +346,10 @@ if ($is_check==true) {
 
   insert_notification($conn,$user_id,"admin","true","false","Created","New Hotel Created",$name. " hotel has been created under your account",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id,"hotel","vendor","" );
 
-  
+  if ($_SESSION['user_type']=="admin") {
+
+ insert_notification($conn,$user_id ,"admin","true","false","Created","New Hotel Created","".$_SESSION['reg_name']." has been created ".$name."",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName'],"hotel","s_admin","" );
+}
 
   echo json_encode($newSuccessMsgArr);
 }else{

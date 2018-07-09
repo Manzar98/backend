@@ -12,6 +12,8 @@
 	$userId=$_GET['u_id'];
 	$blogId=$_GET['id'];
 	$global_blog_id="";
+	$bloggerName=$_GET['name'];
+	$bloggerStatus=$_GET['status'];
 	$b_Query=select('blog',array('blog_id'=>$blogId,'user_id'=>$userId));
 	while ($result_B=mysqli_fetch_assoc($b_Query)){
 
@@ -28,6 +30,8 @@
 					<form class="col s12"  data-toggle="validator" id="blog-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
 
 						<input type="hidden" name="user_id" value="<?php echo $userId; ?>">
+						<input type="hidden" name="bloggerName" value="<?php echo $bloggerName; ?>">
+						<input type="hidden" name="bloggerStatus" value="<?php echo $bloggerStatus; ?>">
 						<input type="hidden" name="is_time" value="edit">
 						<input type="hidden" name="blog_id" value="<?php echo $result_B['blog_id']; ?>">
 						<input type="hidden" id="b_alias" value="<?php echo $result_B['blog_alias']; ?>">

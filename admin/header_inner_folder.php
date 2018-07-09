@@ -41,6 +41,17 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 </head>
 
 <body data-ng-app="" class="pages_<?php echo $_SESSION['pages']; ?> bloggers_<?php echo $_SESSION['bloggers']; ?> admins_<?php echo $_SESSION['admins']; ?> vendors_<?php echo $_SESSION['vendors']; ?> faqs_<?php echo $_SESSION['faqs']; ?> destinations_<?php echo $_SESSION['destinations']; ?> amenities_<?php echo $_SESSION['amenities']; ?> servicefee_<?php echo $_SESSION['servicefee']; ?> listing_<?php echo $_SESSION['listing']; ?> blogs_<?php echo $_SESSION['blogs']; ?>">
+	<form id="authorities_form" style="display: none;">
+	<?php
+		$autharray = ['pages','bloggers','admins','vendors','faqs','destinations','amenities','servicefee','listing','blogs'];
+		for ($i=0; $i < count($autharray); $i++) { 
+			if($_SESSION[ $autharray[$i] ]=="on"){
+				echo '<input name="autho[]" value="'.$autharray[$i].'_'.$_SESSION[ $autharray[$i] ].'" />' ;
+			}
+			
+		}
+	 ?>
+	 </form>
 	<!--MOBILE MENU-->
 	<section>
 		<div class="mm">
@@ -388,8 +399,8 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 				<div class="db-left">
 					<div class="db-left-1" style="max-height: 193px; background-image:url('<?php echo $user_result['reg_photo'];?>'),url('<?php echo $user_result['reg_cover'] ?>');background-size: 95px,cover;">
 						<div style="width: 105px; margin: 0 auto;">
-							<h4><?php echo $_SESSION['reg_name'];  ?> <?php echo $_SESSION['reg_lstname']; ?></h4>
-							<p><?php echo $_SESSION['reg_city']; ?>, <?php echo $_SESSION['reg_country']; ?></p>
+							<h4><?php echo $user_result['reg_name'];  ?> <?php echo $user_result['reg_lstname']; ?></h4>
+							<p><?php echo $user_result['reg_city']; ?>, <?php echo $user_result['reg_country']; ?></p>
 						</div>
 					</div>
 					<div class="db-left-2">
@@ -466,7 +477,7 @@ $user_con=mysqli_query($conn,$userQ) or die(my_sqli_error($conn));
 				<div class="db-cent">
 					<div class="db-cent-1" style="background-image:url('<?php echo $user_result['reg_cover']; ?>') !important;">
 
-						<p>Hi <?php echo $_SESSION['reg_name']; ?>,</p>
+						<p>Hi <?php echo $user_result['reg_name']; ?>,</p>
 						<h4>Welcome to your dashboard</h4>
 					</div>
 				<?php } ?>

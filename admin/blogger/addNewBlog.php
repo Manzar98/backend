@@ -8,6 +8,8 @@
 	<?php include '../header_inner_folder.php'; 
 	include'../../common-ftns/generate_pages.php'; 
 	$userId=$_GET['id'];
+	$bloggerName=$_GET['name'];
+	$bloggerStatus=$_GET['status'];
 	?>
 
 	<div class="db-cent-3">
@@ -18,7 +20,8 @@
 			</div>
 			<div class="db-profile-edit">
 				<form class="col s12"  data-toggle="validator" id="blog-form" role="form" action="hotel-post.php" method="POST" enctype="multipart/form-data">
-
+                    <input type="hidden" name="bloggerName" value="<?php echo $bloggerName; ?>">
+					<input type="hidden" name="bloggerStatus" value="<?php echo $bloggerStatus; ?>">
 					<input type="hidden" name="user_id" value="<?php echo $userId; ?>">
 					<input type="hidden" name="is_time" value="create">
 					<?php
