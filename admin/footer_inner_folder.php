@@ -273,14 +273,16 @@
 		
 $( document ).ready(function(){
 	var postUrl="";
-	// debugger
+	var updateurl="";
  	if ($('#userType').val()=="s_admin") {
 
-      postUrl="../../methods/get-notification.php?gen_for=s_admin";
+    postUrl="../../methods/get-notification-for-admin.php?gen_for=s_admin";
+    updateurl="../../methods/update-notification-for-admin.php";
  	}else{
 
       postUrl='../../methods/get-notification.php?gen_for=admin&'+
-$('#authorities_form').serialize()
+$('#authorities_form').serialize();
+ updateurl="../../methods/update-notification.php";
  	}
 // debugger
  	var isLoadNotify = true;
@@ -352,7 +354,7 @@ $('#authorities_form').serialize()
  			$.ajax({
 
                type:"POST",
-               url: '../../methods/update-notification.php',
+               url: updateurl,
                data :{"id":noti_id},
                success:function(data){
 
@@ -390,7 +392,7 @@ $('#authorities_form').serialize()
  			$.ajax({
 
                type:"POST",
-               url: '../../methods/update-notification.php',
+               url: updateurl,
                data :{"id":noti_id},
                success:function(data){
 

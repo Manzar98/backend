@@ -494,11 +494,11 @@ if ($is_check==true) {
 
  include '../../methods/send-notification.php';
 
- insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id'],"event","vendor","" );
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id'],"event","vendor","","");
  
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"event","s_admin","" );
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"event","s_admin","","true");
  }
 
 }else{
@@ -545,11 +545,11 @@ getUpdatequery('event',$_POST,array('user_id'=>$_POST['user_id'],'event_id'=>$_P
 
 include '../../methods/send-notification.php';
 
-insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id'],"event","vendor","" );
+insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id'],"event","vendor","","");
 
 if ($_SESSION['user_type']=="admin") {
 
- insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"event","s_admin","" );
+ insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$_POST['event_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"event","s_admin","","true");
 }
 
 }

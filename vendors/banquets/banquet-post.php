@@ -552,8 +552,7 @@ if (isset($_POST['common_video'])) {
   include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"vendor","true","false","Created","New Banquet Created","".$name." in ".$banquet_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"banquet","admin","listing_on" );
- 
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Banquet Created","".$name." in ".$banquet_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"banquet","admin","listing_on","true" );
 
 }else{
 
@@ -620,7 +619,8 @@ if (isset($_POST['common_video'])) {
 
   include '../../methods/send-notification.php';
 
-     insert_notification($conn,$userid,"vendor","true","false","Created","New Banquet Created","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid,"banquet","admin","listing_on" );
+     insert_notification($conn,$userid,"vendor","true","false","Created","New Banquet Created","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid,"banquet","admin","listing_on","true" );
+
 
 
 }

@@ -455,7 +455,7 @@ if (isset($_POST['common_video'])) {
      include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"vendor","true","false","Created","New Conference Created","".$name." in ".$con_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin","listing_on" );
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Conference Created","".$name." in ".$con_hotelName." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&h_id=".$hotelid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin","listing_on","true" );
 
 
 }else{
@@ -522,10 +522,7 @@ if (isset($_POST['common_video'])) {
    include '../../methods/send-notification.php';
 
 
-     insert_notification($conn,$userid ,"vendor","true","false","Created","New Conference Created","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin","listing_on" );
-
-
-
+     insert_notification($conn,$userid ,"vendor","true","false","Created","New Conference Created","".$name." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$conference_id."&u_id=".$userid."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$userid ,"conference","admin","listing_on","true" );
 
 }
 

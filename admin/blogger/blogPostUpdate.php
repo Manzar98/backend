@@ -58,11 +58,11 @@ if ($is_check==true) {
 
 		
 		include '../../methods/send-notification.php';
-		insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Blog Created",$_POST['blog_title']." has been created under your account",date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id'],"blog","blogger","" );
+		insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Blog Created",$_POST['blog_title']." has been created under your account",date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id'],"blog","blogger","","");
 
 		if ($_SESSION['user_type']=="admin") {
 
-			insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Blog Created",$_SESSION['reg_name']." has been created new  blog" .$_POST['blog_title'],date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id']."&status=Pending&name=".$_POST['bloggerName']."&user_id=".$_POST['user_id'],"blog","s_admin","" );
+			insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Blog Created",$_SESSION['reg_name']." has been created new  blog" .$_POST['blog_title'],date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id']."&status=Pending&name=".$_POST['bloggerName']."&user_id=".$_POST['user_id'],"blog","s_admin","","true");
 		}
 		
 
@@ -90,8 +90,8 @@ if ($is_check==true) {
 		if ($b_update_assoc['blog_inactive']== $inactive) {
 
 			$notify_title="Listing Updated.";
-			$notify_descrip="".$_POST['blog_title']." has been updated";
-			$notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$_POST['blog_title']."";
+			$notify_descrip="".$_POST['blog_title']." has been updated by the admin";
+			$notify_desc_admin="".$_SESSION['reg_name']." has updated ".$_POST['blog_title']."";
 
 
 		}else{
@@ -115,11 +115,11 @@ if ($is_check==true) {
 		}
 		include '../../methods/send-notification.php';
 
-		insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id'],"blog","blogger","" );
+		insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id'],"blog","blogger","","");
 
 		if ($_SESSION['user_type']=="admin") {
 
-			insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=".$_POST['bloggerStatus']."&name=".$_POST['bloggerName']."&user_id=".$_POST['user_id'],"blog","s_admin","" );
+			insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=".$_POST['bloggerStatus']."&name=".$_POST['bloggerName']."&user_id=".$_POST['user_id'],"blog","s_admin","","true");
 		}
 
 		$result=mysqli_query($conn,$query) or die(mysqli_error($conn));
@@ -134,18 +134,22 @@ if ($is_check==true) {
 	return false;
 }
 
-}else{
-
-       $blogQuery='UPDATE blog SET blog_inactive="'.$_POST['action'].'"
-              	 WHERE blog_id="'.$_POST['blog_id'].'" AND user_id="'.$_POST['user_id'].'"';
-
-	   $blog_result=mysqli_query($conn,$blogQuery) or die(mysqli_error($conn));
-
-        include '../../methods/send-notification.php';
-   
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Deactivation Approved","Your deactivation request has been approved",date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id'],"blog","blogger","" );
-
-
 }
+
+// else{
+//    // echo "Manzar";
+//        $blogQuery='UPDATE blog SET blog_inactive="'.$_POST['action'].'"
+//               	 WHERE blog_id="'.$_POST['blog_id'].'" AND user_id="'.$_POST['user_id'].'"';
+
+// 	   $blog_result=mysqli_query($conn,$blogQuery) or die(mysqli_error($conn));
+
+//         include '../../methods/send-notification.php';
+   
+//      insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Deactivation Approved","Your deactivation request has been approved",date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id'],"blog","blogger","","");
+
+  
+
+
+// }
 
 ?>

@@ -73,11 +73,11 @@ $newSuccessMsgArr=array(
 
    include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Ad featured","Ad for ".$lst_any." has been featured",date("F j, Y, g:i a"),"#","paid-ads","vendor","" );
+     insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Ad featured","Ad for ".$lst_any." has been featured",date("F j, Y, g:i a"),"#","paid-ads","vendor","","");
 
     if ($_SESSION['user_type']=="admin") {
 
-      insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Ad featured","".$_SESSION['reg_name']." has been featured ".$lst_any."",date("F j, Y, g:i a"),"#","paid-ads","s_admin","" );
+      insert_notification($conn,$_POST['user_id'],"admin","true","false","Created","New Ad featured","".$_SESSION['reg_name']." has been featured ".$lst_any."",date("F j, Y, g:i a"),"#","paid-ads","s_admin","","true");
     }
 
 

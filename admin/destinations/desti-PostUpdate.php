@@ -98,7 +98,7 @@ $notify_istime="";
 if (isset($_SESSION['user_type']) && $_SESSION['user_type']=="admin") {
 		
 		include '../../methods/send-notification.php';
-		insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"destinations/veiwDesti.php?d_id=".$desti_id."&id=".$_POST['user_id'],"destinations","s_admin","" );
+		insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"destinations/veiwDesti.php?d_id=".$desti_id."&id=".$_POST['user_id'],"destinations","s_admin","","true");
 	}
 	echo json_encode($newSuccessMsgArr);
 

@@ -45,23 +45,23 @@ if (empty($_POST['room_service'])) {
 
   }elseif (!empty($_POST['room_24hour'])) {
 
-       $choosehour =$_POST['room_24hour'];
-       $selecthour= null;
+   $choosehour =$_POST['room_24hour'];
+   $selecthour= null;
 
-  }elseif (!empty($_POST['room_selecthour'])) {
+ }elseif (!empty($_POST['room_selecthour'])) {
 
-        if (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['room_selecthour'])) {
+  if (!preg_match("/^(?:0[1-9]|1[0-2]):[0-5][0-9](am|pm|AM|PM)$/", $_POST['room_selecthour'])) {
 
-         $is_check=false;
-         array_push($responseArray,"Select time format is invalid");
-         
-        }else{
+   $is_check=false;
+   array_push($responseArray,"Select time format is invalid");
+   
+ }else{
 
-           $choosehour = null;
-                 $selecthour= $_POST['room_selecthour'];
-        }      
-    }
-  
+   $choosehour = null;
+   $selecthour= $_POST['room_selecthour'];
+ }      
+}
+
 }else{
 
   $service=$_POST['room_service'];
@@ -152,7 +152,7 @@ if (empty($_POST['room_descrip'])) {
 }else{
 
   $descrip=$_POST['room_descrip'];
- }
+}
 
 if (empty($_POST['room_other'])) {
 
@@ -174,62 +174,62 @@ if (empty($_POST['hotel_name'])) {
   $hotelName=$_POST['hotel_name'];  
 }
 
- 
- if (isset($_POST['book_fromdate'])) {
 
-      foreach($_POST['book_fromdate'] as $bokFROM) { 
-                   
-     if (!empty($bokFROM)) {
-          
-           
+if (isset($_POST['book_fromdate'])) {
+
+  foreach($_POST['book_fromdate'] as $bokFROM) { 
+   
+   if (!empty($bokFROM)) {
+    
+     
         // $resultfrom = DateTime::createFromFormat("m/d/Y", $_POST['book_fromdate']);
-       if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokFROM)) {
+     if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokFROM)) {
 
-           $from= $bokFROM;
+       $from= $bokFROM;
 
-       }else{
+     }else{
 
-          $is_check=false;
-          array_push($responseArray,"From date field is invalid");
-       }
-  
-     }
- }
+      $is_check=false;
+      array_push($responseArray,"From date field is invalid");
+    }
+    
+  }
+}
 
- }else{
+}else{
 
-     $from=null;
+ $from=null;
 
- }
+}
 
 if (isset($_POST['book_todate'])) {
 
   foreach($_POST['book_todate'] as $bokTO) { 
-               
-     if (!empty($bokTO)) {
-                       
+   
+   if (!empty($bokTO)) {
+     
          // $resultto = $_POST['book_todate']->format("m/d/Y");
-       if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokTO)) {
+     if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $bokTO)) {
 
-           $to= $bokTO;
+       $to= $bokTO;
 
-         }else{
+     }else{
 
-           $is_check=false;
-            array_push($responseArray,"To date field is invalid");
+       $is_check=false;
+       array_push($responseArray,"To date field is invalid");
 
-         }
-    
-      }
+     }
+     
    }
-  
+ }
+ 
 }else{
 
-       $to=null;
- }
+ $to=null;
+}
 
 
-   
+
 
 if (!empty($_POST['room_offerdiscount']) && !is_numeric($_POST['room_offerdiscount'])) {
 
@@ -268,13 +268,13 @@ if (!empty($_POST['room_expireoffer'])) {
 
       $discountexpire=$_POST['room_expireoffer'];
 
-      }else{
+    }else{
 
-         $is_check=false;
-       array_push($responseArray,"Expire offer field is invalid");
-    }
-  
-  }
+     $is_check=false;
+     array_push($responseArray,"Expire offer field is invalid");
+   }
+   
+ }
 }else{
   $discountexpire=null;
 }
@@ -294,14 +294,14 @@ if (isset($_POST['room_inactive'])) {
 $errorMsgs=implode(",",$responseArray);
 
 $newErrorMsgArr=array(
-    "status"=> "error",
-    "message"=> $errorMsgs
+  "status"=> "error",
+  "message"=> $errorMsgs
 );
 
 $newSuccessMsgArr=array(
-    "status"=> "success",
-    "id" => $_POST['user_id']
-    
+  "status"=> "success",
+  "id" => $_POST['user_id']
+  
 );
 
 
@@ -321,51 +321,51 @@ if ($is_check==true) {
   $notify_desc_admin="";
 
   if ($romupdate_assoc['room_inactive']== $inactive) {
-  
-  $notify_title="Listing Updated";
-  $notify_descrip="".$name." in ".$hotelName." has been updated";
-  $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name." in ".$hotelName."";
+    
+    $notify_title="Listing Updated";
+    $notify_descrip="".$name." in ".$hotelName." has been updated";
+    $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name." in ".$hotelName."";
 
     
   }else{
 
 
-      if ($inactive=="off") {
+    if ($inactive=="off") {
 
-         $notify_title="Listing Activated";
-         $notify_descrip="".$name." has been activated";
-         $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$name." in ".$hotelName."";
-       }else{
-          
-         $notify_title="Listing Deactivated";
-         $notify_descrip="".$name." has been deactivated ";
-         $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$name." in ".$hotelName."";
-       } 
+     $notify_title="Listing Activated";
+     $notify_descrip="".$name." has been activated";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$name." in ".$hotelName."";
+   }else{
+    
+     $notify_title="Listing Deactivated";
+     $notify_descrip="".$name." has been deactivated ";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$name." in ".$hotelName."";
+   } 
    
 
 
-  }
+ }
 
 
 
 
-getUpdatequery('room',$_POST,array('hotel_id'=>$_POST['hotel_id'],'room_id'=>$_POST['room_id']));
+ getUpdatequery('room',$_POST,array('hotel_id'=>$_POST['hotel_id'],'room_id'=>$_POST['room_id']));
 
-include '../../methods/send-notification.php';
+ include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id'],"room","vendor","" );
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id'],"room","vendor","","");
 
-          if ($_SESSION['user_type']=="admin") {
+ if ($_SESSION['user_type']=="admin") {
 
- insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"room","s_admin","" );
-}
-     
-  echo json_encode($newSuccessMsgArr);
+   insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"rooms/showsingle_roomrecord.php?id=".$_POST['room_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"room","s_admin","","true");
+ }
+ 
+ echo json_encode($newSuccessMsgArr);
 
 }else{
 
   echo json_encode($newErrorMsgArr);
-    return false;
+  return false;
 }
 
 
@@ -375,44 +375,44 @@ include '../../methods/send-notification.php';
 
 /*----------------------------
     Function for dynamic Update Query for Hotels
- ------------------------------*/
+    ------------------------------*/
     function   getUpdatequery($tableName,$updateObject,$where){
 
 
 
-global $conn;
-     $whereClauseArray = array();
-     $updtevalues      = array();
+      global $conn;
+      $whereClauseArray = array();
+      $updtevalues      = array();
 
-     if (!empty($_POST['hotel_id']) && !empty($_POST['room_id'])) {
+      if (!empty($_POST['hotel_id']) && !empty($_POST['room_id'])) {
        # code...
-    
+        
 
-      foreach ($updateObject as $key => $value) {
+        foreach ($updateObject as $key => $value) {
 
      // echo 	gettype($value);
-        if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
+          if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
 
-        	$updtevalues[] = "$key = '$value'";
+           $updtevalues[] = "$key = '$value'";
           // echo "manzae111";
-        }elseif (gettype($value)=="array") {
-                
+         }elseif (gettype($value)=="array") {
+          
                  // print_r($value) ;
-        	foreach ($value as $k => $v) {
-				 
-      if (isset($updateObject['common_bokdate_id'][$k]) && !empty($updateObject['common_bokdate_id'][$k])) {
+           foreach ($value as $k => $v) {
+             
+            if (isset($updateObject['common_bokdate_id'][$k]) && !empty($updateObject['common_bokdate_id'][$k])) {
         # code...
-            
-				  $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
-				  mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
+              
+              $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
+              mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
 				  // echo $updatequery;
           // echo "manzae111";
         		 // echo 'Book value : '.$updateObject['book_fromdate'][$k];
         		 // echo 'Book Key : '.$k;
 
-        	}
-        }
-        
+            }
+          }
+          
         }
         
       }
@@ -420,39 +420,39 @@ global $conn;
         //array_push($updtevalues,"user_type='".$updateObject['inforole']."'");    
           // print_r($updtevalues);
 
-       /*Where clause generation*/
-       foreach ($where as $key => $value) {	
-       			
-				$whereClauseArray[]="$key='$value'";
-     	}
+      /*Where clause generation*/
+      foreach ($where as $key => $value) {	
+        
+        $whereClauseArray[]="$key='$value'";
+      }
      	// echo "manzae";
-     	if (count($whereClauseArray)==1) {
+      if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
-       			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
+        $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
        			 // echo $updatequery;
-        }else if(count($whereClauseArray) > 1) {
-        		$condString='';
-				for ($i=0; $i < count($whereClauseArray); $i++) { 
-					if ($condString=="") {
-					    $condString = $whereClauseArray[$i]." AND ";    
-					}else{
-					    $condString .= $whereClauseArray[$i]." AND ";
-					}
-				}
-				$condString = substr($condString,0,-4);
-         
-				$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
+      }else if(count($whereClauseArray) > 1) {
+        $condString='';
+        for ($i=0; $i < count($whereClauseArray); $i++) { 
+         if ($condString=="") {
+           $condString = $whereClauseArray[$i]." AND ";    
+         }else{
+           $condString .= $whereClauseArray[$i]." AND ";
+         }
+       }
+       $condString = substr($condString,0,-4);
+       
+       $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
           // echo $updatequery;
-        }
-       
-       
-        global $conn;
-        $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
+     }
+     
+     
+     global $conn;
+     $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
           // echo"manzar";
-      
+     
+   }
+
  }
 
-}
-
  
-?>
+ ?>

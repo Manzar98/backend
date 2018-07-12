@@ -1,14 +1,33 @@
 <?php 
 
 include '../common-sql.php';
-
+session_start();
+/*======To get the page info for notifications========*/
+$select='SELECT * FROM pages WHERE page_id="'.$_POST['id'].'"';
+$s_Query=mysqli_query($conn,$select) or die(mysqli_error($conn));
+$s_Result=mysqli_fetch_assoc($s_Query);
+$action="";
+$title="";
+$descp="";
 if ($_POST['btn']=="on") {
 	
 	$query='UPDATE '.$_POST['tbl_name'].' SET '.$_POST['col_name'].'="'.$_POST['btn'].'" WHERE '.$_POST['id_col'].'="'.$_POST['id'].'" AND user_id="'.$_POST['u_id'].'"';
+	$action="Suspended";
+	$title="Page Deactivated";
+	$descp="".$_SESSION['reg_name']." has been deactivated ".$s_Result['page_name']." page.";
 }else{
    
    $query='UPDATE '.$_POST['tbl_name'].' SET '.$_POST['col_name'].'="'.$_POST['btn'].'" WHERE '.$_POST['id_col'].'="'.$_POST['id'].'" AND user_id="'.$_POST['u_id'].'"';
+
+   $action="Approved";
+   $title="Page Activated";
+   $descp="".$_SESSION['reg_name']." has been reactivated ".$s_Result['page_name']." page.";
   
+}
+
+if ($_SESSION['user_type']=="admin") {
+  include '../methods/send-notification.php';
+  insert_notification($conn,$_POST['u_id'],"admin","true","false",$action,$title,$descp,date("F j, Y, g:i a"),"pages/veiwPage.php?p_id=".$_POST['id']."&id=".$_POST['u_id'],"pages","s_admin","","true");
 }
 
  $result=mysqli_query($conn,$query) or die(mysqli_error($conn));

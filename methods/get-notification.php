@@ -4,11 +4,7 @@ include '../common-sql.php';
       $dataArray=array();
     
     // echo $_GET['gen_for'];
-    if (isset($_GET['gen_for']) && $_GET['gen_for']=="s_admin") {
-      
-      $noti_Query='SELECT `notifications`.*, `credentials`.`reg_name`, `credentials`.`reg_lstname`, `credentials`.`reg_city`, `credentials`.`reg_photo` FROM `credentials` LEFT JOIN `notifications` ON `notifications`.`user_id` = `credentials`.`user_id` WHERE `notifications`.`noti_shown`= "true" AND `notifications`.`noti_read`= "false" AND (`notifications`.`noti_generate_for`="admin" OR `notifications`.`noti_generate_for`="s_admin") ORDER BY noti_id DESC';
-
-    }else if (isset($_GET['gen_for']) && $_GET['gen_for']=="admin") {
+  if (isset($_GET['gen_for']) && $_GET['gen_for']=="admin") {
       $authoArray = $_GET['autho'];
       //$str = implode (" OR ", $authoArray);
       //echo $str;

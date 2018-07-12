@@ -2,10 +2,10 @@
  // include '../../common-sql.php';
 
 
-function insert_notification($conn,$userid,$usertype,$shown,$read,$action,$title,$desc,$time,$url,$type,$noti_generate_for,$noti_to_show){
+function insert_notification($conn,$userid,$usertype,$shown,$read,$action,$title,$desc,$time,$url,$type,$noti_generate_for,$noti_to_show,$noti_shown_byadmin){
 
 
-$query='INSERT INTO notifications(user_id,user_type,noti_shown,noti_read,noti_action,noti_title,noti_desc,noti_time,noti_url,noti_type,noti_generate_for,noti_to_show)VALUES("'.$userid.'","'.$usertype.'","'.$shown.'","'.$read.'","'.$action.'","'.$title.'","'.$desc.'","'.$time.'","'.$url.'","'.$type.'","'.$noti_generate_for.'","'.$noti_to_show.'")';
+$query='INSERT INTO notifications(user_id,user_type,noti_shown,noti_read,noti_action,noti_title,noti_desc,noti_time,noti_url,noti_type,noti_generate_for,noti_to_show,noti_shown_byadmin)VALUES("'.$userid.'","'.$usertype.'","'.$shown.'","'.$read.'","'.$action.'","'.$title.'","'.$desc.'","'.$time.'","'.$url.'","'.$type.'","'.$noti_generate_for.'","'.$noti_to_show.'","'.$noti_shown_byadmin.'")';
 
 $result_query=mysqli_query($conn,$query) or die(mysqli_error($conn));
 

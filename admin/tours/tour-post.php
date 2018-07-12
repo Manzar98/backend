@@ -659,11 +659,11 @@ if ($is_check==true) {
 		include '../../methods/send-notification.php';
 
 
-		insert_notification($conn,$user_id  ,"admin","true","false","Created","New Tour Created","".$tourname." in ".$hotelname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid,"tour","vendor","" );
+		insert_notification($conn,$user_id  ,"admin","true","false","Created","New Tour Created","".$tourname." in ".$hotelname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid,"tour","vendor","","");
 
 		if ($_SESSION['user_type']=="admin") {
 
-			insert_notification($conn,$user_id ,"admin","true","false","Created","New Tour Created","".$_SESSION['reg_name']." has been created ".$tourname." in ".$hotelname."",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$user_id,"tour","s_admin","" );
+			insert_notification($conn,$user_id ,"admin","true","false","Created","New Tour Created","".$_SESSION['reg_name']." has been created ".$tourname." in ".$hotelname."",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$user_id,"tour","s_admin","","true");
 		}
 
 	}else{
@@ -729,11 +729,11 @@ if ($is_check==true) {
 		include '../../methods/send-notification.php';
 
 
-		insert_notification($conn,$user_id,"admin","true","false","Created","New Tour Created","".$tourname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id,"tour","vendor","" );
+		insert_notification($conn,$user_id,"admin","true","false","Created","New Tour Created","".$tourname." has been created under your account",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id,"tour","vendor","","");
 
 		if ($_SESSION['user_type']=="admin") {
 
-			insert_notification($conn,$user_id ,"admin","true","false","Created","New Tour Created","".$_SESSION['reg_name']." has been created ".$tourname."",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$user_id,"tour","s_admin","" );
+			insert_notification($conn,$user_id ,"admin","true","false","Created","New Tour Created","".$_SESSION['reg_name']." has been created ".$tourname."",date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$tour_id."&u_id=".$user_id."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$user_id,"tour","s_admin","","true");
 		} 
 
 	}

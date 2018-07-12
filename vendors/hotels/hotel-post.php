@@ -345,7 +345,7 @@ if ($is_check==true) {
 
   include '../../methods/send-notification.php';
 
-     insert_notification($conn,$user_id,"vendor","true","false","Created","New Hotel Created","".$name." hotel has been posted for review by ".$_SESSION['reg_name']." ",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id."&status=Pending&name=".$_SESSION['reg_name'],"hotel","admin","listing_on" );
+     insert_notification($conn,$user_id,"vendor","true","false","Created","New Hotel Created","".$name." hotel has been posted for review by ".$_SESSION['reg_name']." ",date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$hotel_id."&status=Pending&name=".$_SESSION['reg_name'],"hotel","admin","listing_on","true" );
 
   echo json_encode($newSuccessMsgArr);
 }else{

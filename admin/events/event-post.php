@@ -515,11 +515,11 @@ if ($is_check==true) {
 		include '../../methods/send-notification.php';
 
 
-		insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." in ".$hotelname." has been created under your account.",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid,"event","vendor","" );
+		insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." in ".$hotelname." has been created under your account.",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid,"event","vendor","","");
 
 		if ($_SESSION['user_type']=="admin") {
 
-			insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$_SESSION['reg_name']." has been created ".$name." in ".$hotelname."",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"event","s_admin","" );
+			insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$_SESSION['reg_name']." has been created ".$name." in ".$hotelname."",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"event","s_admin","","true");
 		}
 
 	}else{
@@ -575,11 +575,11 @@ if ($is_check==true) {
 		include '../../methods/send-notification.php';
 
 
-		insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." has been created under your account",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid,"event","vendor","" );
+		insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$name." has been created under your account",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid,"event","vendor","","");
 
 		if ($_SESSION['user_type']=="admin") {
 
-			insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$_SESSION['reg_name']." has been created ".$name."",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"banquet","s_admin","" );
+			insert_notification($conn,$userid ,"admin","true","false","Created","New Event Created","".$_SESSION['reg_name']." has been created ".$name."",date("F j, Y, g:i a"),"events/showsingle_eventrecord.php?id=".$event_id."&u_id=".$userid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"banquet","s_admin","","true");
 		}
 	}
 

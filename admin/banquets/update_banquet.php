@@ -507,11 +507,11 @@ if ($is_check==true) {
 
  include '../../methods/send-notification.php';
 
- insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id'],"banquet","vendor","" );
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id'],"banquet","vendor","","");
 
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","" );
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","","");
  }
 
 }else{
@@ -557,11 +557,11 @@ if ($is_check==true) {
 
  include '../../methods/send-notification.php';
 
- insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&u_id=".$_POST['user_id'],"banquet","vendor","");
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&u_id=".$_POST['user_id'],"banquet","vendor","","");
 
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","" );
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","","");
  }
 }
 

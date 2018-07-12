@@ -60,7 +60,7 @@ if ($is_check==true) {
 
 		include '../methods/send-notification.php';
 
-		insert_notification($conn,$_POST['user_id'],"blogger","true","false","Created","New Blog Created","".$_POST['blog_title']." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id']."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin","blogs_on" ); 
+		insert_notification($conn,$_POST['user_id'],"blogger","true","false","Created","New Blog Created","".$_POST['blog_title']." has been posted for review by ".$_SESSION['reg_name'],date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$blog_id."&u_id=".$_POST['user_id']."&status=Pending&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin","blogs_on","true" );
 
 	}else{
 
@@ -86,7 +86,7 @@ if ($is_check==true) {
 			$notify_title="Blog Updated.";
 			$notify_descrip="".$_POST['blog_title']." has been updated for review by ".$_SESSION['reg_name'];
 
-			insert_notification($conn,$_POST['user_id'],"blogger","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin","blogs_on" );
+			insert_notification($conn,$_POST['user_id'],"blogger","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin","blogs_on","true" );
 		}else{
 
 
@@ -96,14 +96,14 @@ if ($is_check==true) {
 				$notify_descrip="".$_POST['blog_title']." has been activated by ".$_SESSION['reg_name'];
 
 
-				insert_notification($conn,$_POST['user_id'],"blogger","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin","blogs_on" );
+				insert_notification($conn,$_POST['user_id'],"blogger","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'] ,"blog","admin","blogs_on","true" );
 
 			}else{
 
 				$notify_title="Deactivation Approval";
 				$notify_descrip="".$_SESSION['reg_name']." want to deactivate their blog ";
 
-				insert_notification($conn,$_POST['user_id'],"blogger","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id']."&blog_status=".$inactive ,"blog","admin","blogs_on" );
+				insert_notification($conn,$_POST['user_id'],"blogger","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"blogger/veiwBlog.php?id=".$_POST['blog_id']."&u_id=".$_POST['user_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id']."&blog_status=".$inactive ,"blog","admin","blogs_on","true");
 			} 
 
 		}

@@ -402,11 +402,11 @@ if ($is_check==true) {
    
    getUpdatequery('conference',$_POST,array('hotel_id'=>$_POST['hotel_id'],'conference_id'=>$_POST['conference_id']));
    
-   insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id'],"conference","vendor","" );
+   insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id'],"conference","vendor","","");
 
    if ($_SESSION['user_type']=="admin") {
 
-     insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","" );
+     insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","","");
    }
 
 
@@ -456,11 +456,11 @@ if ($is_check==true) {
 
  include '../../methods/send-notification.php';
 
- insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id'],"conference","vendor","" );
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id'],"conference","vendor","","");
  
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","" );
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","","");
  }
 
 }

@@ -82,7 +82,7 @@ if ($is_check==true) {
 	if (isset($_SESSION['user_type']) && $_SESSION['user_type']=="admin") {
 
 		include '../../methods/send-notification.php';
-		insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"pages/veiwPage.php?p_id=".$_POST['page_id']."&id=".$_POST['user_id'],"pages","s_admin","" );
+		insert_notification($conn,$_POST['user_id'] ,"admin","true","false",$notify_istime,$notify_title,$notify_descrip,date("F j, Y, g:i a"),"pages/veiwPage.php?p_id=".$_POST['page_id']."&id=".$_POST['user_id'],"pages","s_admin","","true");
 	}
 	$result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 

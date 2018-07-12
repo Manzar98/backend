@@ -319,11 +319,11 @@ if ($is_check==true) {
  
  include '../../methods/send-notification.php';
 
- insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id,"hotel","vendor","" );
+ insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id,"hotel","vendor","","");
 
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName'],"hotel","s_admin","" );
+   insert_notification($conn,$user_id,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"hotels/showsingle_hotelrecord.php?id=".$h_id."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName'],"hotel","s_admin","","true");
  }
 
  getUpdatequery('hotel',$_POST,array('hotel_id'=>$h_id));

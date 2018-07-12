@@ -77,7 +77,7 @@ if (isset($_POST['blogs']) && $_POST['blogs']=="on") {
  
   $blog="off";
 }
-$u_id=$_POST['user_id'];
+
 if ($is_check==true) {
 
   if (isset($_POST['is_time']) && $_POST['is_time']=="create") {
@@ -92,6 +92,13 @@ if ($is_check==true) {
      $subQuery='INSERT INTO authorities(user_id,pages,bloggers,admins,vendors,faqs,destinations,servicefee,amenities,listing,blogs)VALUES("'.$user_id.'","'.$page.'","'.$blogger.'","'.$admin.'","'.$vendor.'","'.$faq.'","'.$destination.'","'.$service.'","'.$amenity.'","'.$listing.'","'.$blog.'")';
      $result=mysqli_query($conn,$subQuery) or die(mysqli_error($conn));
 
+
+if ($_SESSION['user_type']=="admin") {
+
+include '../methods/send-notification.php';
+
+  insert_notification($conn,$user_id,"admin","true","false","Created","Account Created","".$_SESSION['reg_name']." has created the admin account named ".$_POST['reg_name'].".",date("F j, Y, g:i a"),"veiwAdmins.php?id=".$user_id."&u_type=admin","admins","s_admin","","");
+}
      
 
    }

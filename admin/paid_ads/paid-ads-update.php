@@ -76,11 +76,11 @@ if (!isset($_POST['btn'])) {
 
   include '../../methods/send-notification.php';
 
-  insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Featured Ad Updated","Featured ad has been updated under your account",date("F j, Y, g:i a"),"#","paid-ads","vendor","" );
+  insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Featured Ad Updated","Featured ad has been updated under your account",date("F j, Y, g:i a"),"#","paid-ads","vendor","","");
 
   if ($_SESSION['user_type']=="admin") {
 
-    insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Ad Updated","".$_SESSION['reg_name']." has been updated featured ".$lst_any." ad",date("F j, Y, g:i a"),"#","paid-ads","s_admin","" );
+    insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","Ad Updated","".$_SESSION['reg_name']." has been updated featured ".$lst_any." ad",date("F j, Y, g:i a"),"#","paid-ads","s_admin","","true");
   }
 
   echo json_encode($newSuccessMsgArr);
