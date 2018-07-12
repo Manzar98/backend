@@ -53,12 +53,6 @@
 							<input type="hidden" name="common_image" id="img_ids">
 						</div>
 					</div>
-					<div class="row common-top" >
-						<p class="pTAG">
-							<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="blog_inactive" />
-							<label for="filled-in-inactive">Inactive</label>
-						</p>
-					</div>
 					<div>
 						<div class="input-field col s8">
 							<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_blog"> 

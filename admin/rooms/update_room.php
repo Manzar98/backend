@@ -391,7 +391,7 @@ if ($is_check==true) {
         foreach ($updateObject as $key => $value) {
 
      // echo 	gettype($value);
-          if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
+          if($key!='common_image' && $key!='common_video' && $key !='vendorStatus' && $key!='vendorName' && gettype($value)=="string"){
 
            $updtevalues[] = "$key = '$value'";
           // echo "manzae111";

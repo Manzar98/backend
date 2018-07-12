@@ -308,16 +308,6 @@
 
 										</div>
 									</div> 
-									<div class="row" >
-
-										<p class="pTAG">
-											<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="hotel_inactive" />
-											<label for="filled-in-inactive">Inactive</label>
-										</p>
-
-									</div>
-
-
 									<div>
 										<div class="input-field col s8">
 											<input type="button"  value="Add" class="waves-effect waves-light pro-sub-btn pro-sub-btn" id="pro-sub-btn_hotel"> </div>

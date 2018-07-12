@@ -430,26 +430,6 @@ while ($resultConference=mysqli_fetch_assoc($editconferenceQuery)) {
   <div  class=" ">
    <a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
  </div>
-
- <div class="row" >
-
-   <p class="pTAG inactive_checkbox">
-    <input type="hidden" name="conference_inactive" id="hidden_checkbox">
-    <?php if ($resultConference['conference_inactive']=='on') { ?>
-
-     <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" checked="" />
-     <label for="filled-in-inactive">Inactive</label>
-
-     <?php   }else{ ?>
-
-      <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" />
-      <label for="filled-in-inactive">Inactive</label>
-      <?php  }  ?>
-
-    </p>
-
-  </div>
-
   <?php   } ?>
 
   <div  class=" ">

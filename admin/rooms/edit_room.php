@@ -306,29 +306,6 @@ include '../../common-apis/reg-api.php';
 												<div  class=" ">
 													<a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
 												</div>
-
-												<div class="row" >
-													<p class="pTAG inactive_checkbox">
-														<input type="hidden" name="room_inactive" id="hidden_checkbox">
-														<?php if ($resultRoom['room_inactive']=='on') { ?>
-
-															<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
-															<label for="filled-in-inactive">Inactive</label>
-
-														<?php 	}else{ ?>
-
-															<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
-															<label for="filled-in-inactive">Inactive</label>
-														<?php  }  ?>
-
-													</p>     
-												</div>
-
-
-
-
-
-
 												<?php   
                        // print_r($resultRoom);
 											} ?>

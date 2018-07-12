@@ -556,7 +556,7 @@ if ($is_check==true) {
 
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$userid ,"admin","true","false","Created","New Banquet Created","".$_SESSION['reg_name']." has been created ".$name." in ".$banquet_hotelName."",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"banquet","s_admin","","");
+   insert_notification($conn,$userid ,"admin","true","false","Created","New Banquet Created","".$_SESSION['reg_name']." has been created ".$name." in ".$banquet_hotelName."",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&h_id=".$hotelid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"banquet","s_admin","","true");
  }
  
 
@@ -629,7 +629,7 @@ insert_notification($conn,$userid,"admin","true","false","Created","New Banquet 
 
 if ($_SESSION['user_type']=="admin") {
 
- insert_notification($conn,$userid ,"admin","true","false","Created","New Banquet Created","".$_SESSION['reg_name']." has been created ".$name."",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&u_id=".$userid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"banquet","s_admin","","" );
+ insert_notification($conn,$userid ,"admin","true","false","Created","New Banquet Created","".$_SESSION['reg_name']." has been created ".$name."",date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$banquet_id."&u_id=".$userid."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$userid,"banquet","s_admin","","true" );
 }
 
 

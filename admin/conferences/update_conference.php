@@ -406,7 +406,7 @@ if ($is_check==true) {
 
    if ($_SESSION['user_type']=="admin") {
 
-     insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","","");
+     insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","","true");
    }
 
 
@@ -460,7 +460,7 @@ if ($is_check==true) {
  
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","","");
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"conferences/showsingle_conferencerecord.php?id=".$_POST['conference_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"conference","s_admin","","true");
  }
 
 }
@@ -503,11 +503,12 @@ echo json_encode($newSuccessMsgArr);
              $updtevalues[] = "$key =  null";
 
            }else{
-
-            $updtevalues[] = "$key = '$value'";
-          }
-          
-        }elseif (gettype($value)=="array") {
+             if($key !='vendorStatus' && $key!='vendorName'){
+               $updtevalues[] = "$key = '$value'";
+             }
+           }
+           
+         }elseif (gettype($value)=="array") {
           
                  // print_r($value) ;
           foreach ($value as $k => $v) {

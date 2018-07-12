@@ -3,32 +3,32 @@ include '../../common-sql.php';
   // print_r($_POST);
 session_start();
 $is_check=true;
- $responseArray=[];
+$responseArray=[];
 
 if (empty($_POST['tour_name'])) {
 
-     $is_check=false;
-     array_push($responseArray,"Tour name is required");
-     
+ $is_check=false;
+ array_push($responseArray,"Tour name is required");
+ 
 }else{
-   
-   $tourname      =$_POST['tour_name'];
+ 
+ $tourname      =$_POST['tour_name'];
 }
 if (empty($_POST['tour_destinationname'])) {
 
-     $is_check=false;
-     array_push($responseArray,"Name of Destination is required");
+ $is_check=false;
+ array_push($responseArray,"Name of Destination is required");
 }else{
-   
-   $nameofdesti      =$_POST['tour_destinationname'];
+ 
+ $nameofdesti      =$_POST['tour_destinationname'];
 }
 
 
 
 if (empty($_POST['tour_foodinclude'])) {
 
-     $is_check=false;
-     array_push($responseArray,"Food include field is required");
+ $is_check=false;
+ array_push($responseArray,"Food include field is required");
 }elseif ($_POST['tour_foodinclude']=='yes') {
   $fodinclude       =$_POST['tour_foodinclude'];
   if (($_POST['tour_brkfast']=="off") || ($_POST['tour_lunch']=="off") || ($_POST['tour_dinner']=="off")) {
@@ -38,27 +38,27 @@ if (empty($_POST['tour_foodinclude'])) {
     if (isset($_POST['tour_brkfast'])) {
       $brkfast      =$_POST['tour_brkfast'];
     }else{
-               $brkfast      ='off';
-    }
-    if (isset($_POST['tour_lunch'])) {
-      $lunch        =$_POST['tour_lunch'];
-    }else{
+     $brkfast      ='off';
+   }
+   if (isset($_POST['tour_lunch'])) {
+    $lunch        =$_POST['tour_lunch'];
+  }else{
 
-              $lunch        ='off';
-    }
-    if (isset($_POST['tour_dinner'])) {
-      $dinner         =$_POST['tour_dinner'];
-    }else{
-            $dinner        ='off';
-    }   
+    $lunch        ='off';
   }
+  if (isset($_POST['tour_dinner'])) {
+    $dinner         =$_POST['tour_dinner'];
+  }else{
+    $dinner        ='off';
+  }   
+}
   # code...
 }else{
-   
-   $fodinclude       =$_POST['tour_foodinclude'];
-   $brkfast      ='off';
-   $lunch        ='off';
-   $dinner        ='off';
+ 
+ $fodinclude       =$_POST['tour_foodinclude'];
+ $brkfast      ='off';
+ $lunch        ='off';
+ $dinner        ='off';
 }
 
 
@@ -67,26 +67,26 @@ if (empty($_POST['tour_foodinclude'])) {
 if (empty($_POST['tour_drink'])) {
 
   $is_check=false;
-     array_push($responseArray,"Drink include field is required");
+  array_push($responseArray,"Drink include field is required");
 
 }elseif ($_POST['tour_drink']=='yes') {
   $drnkinclude      =$_POST['tour_drink'];
-     if (($_POST['tour_aloholic']=="off") || ($_POST['tour_nonaloholic']=="off")) {
-       $is_check=false;
-       array_push($responseArray,"Check at least one from Drink included");
-     }else{
+  if (($_POST['tour_aloholic']=="off") || ($_POST['tour_nonaloholic']=="off")) {
+   $is_check=false;
+   array_push($responseArray,"Check at least one from Drink included");
+ }else{
 
-      if (isset($_POST['tour_aloholic'])) {
-        $aloholic           =$_POST['tour_aloholic'];
-      }else{
-        $aloholic        ='off';
-      }
-      if (isset($_POST['tour_nonaloholic'])) {
-        $nonalohlic         =$_POST['tour_nonaloholic'];
-      }else{
-        $nonalohlic      ='off';
-      }
-     }
+  if (isset($_POST['tour_aloholic'])) {
+    $aloholic           =$_POST['tour_aloholic'];
+  }else{
+    $aloholic        ='off';
+  }
+  if (isset($_POST['tour_nonaloholic'])) {
+    $nonalohlic         =$_POST['tour_nonaloholic'];
+  }else{
+    $nonalohlic      ='off';
+  }
+}
 
 }else{
 
@@ -99,7 +99,7 @@ if (empty($_POST['tour_drink'])) {
 if (empty($_POST['tour_stayday'])) {
 
   $is_check=false;
-     array_push($responseArray,"Number of days field is required");
+  array_push($responseArray,"Number of days field is required");
 }elseif (!is_numeric($_POST['tour_stayday'])) {
   $is_check=false;
   array_push($responseArray,"Number of days field should only contain numbers.");
@@ -110,35 +110,35 @@ if (empty($_POST['tour_stayday'])) {
 if (empty($_POST['tour_stayni8'])) {
   
   $is_check=false;
-    array_push($responseArray,"Number of nights field is required");
+  array_push($responseArray,"Number of nights field is required");
 
- }elseif (!is_numeric($_POST['tour_stayni8'])) {
+}elseif (!is_numeric($_POST['tour_stayni8'])) {
 
   $is_check=false;
   array_push($responseArray,"Number of nights field should only contain numbers.");
 }else{
 
   $stayni8     =$_POST['tour_stayni8'];
- }
+}
 
 $hotelstr         =$_POST['tour_hotelstr'];
 
 
 if ($_POST['tour_camping']=="on") {
 
-   $camping          =$_POST['tour_camping'];
-     if (empty($_POST['tour_campday'])) {
+ $camping          =$_POST['tour_camping'];
+ if (empty($_POST['tour_campday'])) {
 
-      $is_check=false;
-    array_push($responseArray,"Number of camping days field is required.");
+  $is_check=false;
+  array_push($responseArray,"Number of camping days field is required.");
 
-     }elseif (!empty($_POST['tour_campday']) && !is_numeric($_POST['tour_campday'])) {
-      $is_check=false;
-    array_push($responseArray,"Number of camping days fiel should only contain numbers.");
-     }else{
+}elseif (!empty($_POST['tour_campday']) && !is_numeric($_POST['tour_campday'])) {
+  $is_check=false;
+  array_push($responseArray,"Number of camping days fiel should only contain numbers.");
+}else{
 
-        $campday=$_POST['tour_campday'];
-     }
+  $campday=$_POST['tour_campday'];
+}
 
 }else{
   $camping          ='off';
@@ -149,23 +149,23 @@ if ($_POST['tour_camping']=="on") {
 if (empty($_POST['tour_entrytik'])) {
   
   $is_check=false;
-    array_push($responseArray,"Entry tickets included in the package price field is required");
+  array_push($responseArray,"Entry tickets included in the package price field is required");
 }else{
 
   $entrytik         =$_POST['tour_entrytik'];
 }
- if (empty($_POST['tour_plan'])) {
+if (empty($_POST['tour_plan'])) {
   
   $is_check=false;
-    array_push($responseArray,"Whole Plan field is required");
- }else{
+  array_push($responseArray,"Whole Plan field is required");
+}else{
 
   $plan             =$_POST['tour_plan'];
- }
+}
 if (empty($_POST['tour_pkgprice'])) {
   
   $is_check=false;
-     array_push($responseArray,"Package price field is required");
+  array_push($responseArray,"Package price field is required");
 }elseif (!is_numeric($_POST['tour_pkgprice'])) {
   $is_check=false;
   array_push($responseArray,"Package price field should only contain numbers.");
@@ -177,7 +177,7 @@ if (empty($_POST['tour_pkgprice'])) {
 if (empty($_POST['tour_capacitypeople'])) {
   
   $is_check=false;
-   array_push($responseArray,"Number of people field is required");
+  array_push($responseArray,"Number of people field is required");
 }elseif (!is_numeric($_POST['tour_capacitypeople'])) {
   $is_check=false;
   array_push($responseArray,"Number of people field should only contain numbers.");
@@ -204,66 +204,66 @@ if (empty($_POST['tour_childallow'])) {
   
   $is_check=false;
   array_push($responseArray,"Children allow field is required");
-     
-}elseif ($_POST['tour_childallow']=='yes') {
-        $childallow       =$_POST['tour_childallow'];
-        if (empty($_POST['tour_undr5allow'])) {
-          $is_check=false;
-                  array_push($responseArray,"Under 5 allowed field is required"); 
-        }elseif ($_POST['tour_undr5allow']=="yes") {
-          $undr5allow       =$_POST['tour_undr5allow'];
-
-              if (($_POST['tour_undr5free']=="off") && empty($_POST['tour_undr5price'])) {
-          $is_check=false;
-                  array_push($responseArray,"Filled atleast one field in Under 5 allowed"); 
-        }else{
-
-          if(!empty($_POST['tour_undr5price']) && !is_numeric($_POST['tour_undr5price'])){
-            $is_check= false;
-             
-              array_push($responseArray,"Half price field should only contain numbers.");
-          }elseif(!empty($_POST['tour_undr5price']) && is_numeric($_POST['tour_undr5price'])){
-            $undr5price      = $_POST['tour_undr5price'];
-          }else{
-            $undr5price = null;
-
-          }
-
-          if (isset($_POST['tour_undr5free'])) {
-
-            $undr5free          =$_POST['tour_undr5free'];
-
-          }else{
-            $undr5free          ='off';
-
-          }
-
-        }
-          
-        }else{
-          $undr5allow       =$_POST['tour_undr5allow'];
-          $undr5free   ='off';
-          $undr5price  = null;
-        }
-    
-
-        if (empty($_POST['tour_halftikchild'])) {
-             $is_check= false;
-             array_push($responseArray,"Children price field is required");
-        }elseif (!empty($_POST['tour_halftikchild'] && !is_numeric($_POST['tour_halftikchild']))) {
-           $is_check= false;
-           array_push($responseArray,"Children price field should only contain numbers.");
-        }else{
-           $halftikchild     =$_POST['tour_halftikchild'];
-        }
   
+}elseif ($_POST['tour_childallow']=='yes') {
+  $childallow       =$_POST['tour_childallow'];
+  if (empty($_POST['tour_undr5allow'])) {
+    $is_check=false;
+    array_push($responseArray,"Under 5 allowed field is required"); 
+  }elseif ($_POST['tour_undr5allow']=="yes") {
+    $undr5allow       =$_POST['tour_undr5allow'];
+
+    if (($_POST['tour_undr5free']=="off") && empty($_POST['tour_undr5price'])) {
+      $is_check=false;
+      array_push($responseArray,"Filled atleast one field in Under 5 allowed"); 
+    }else{
+
+      if(!empty($_POST['tour_undr5price']) && !is_numeric($_POST['tour_undr5price'])){
+        $is_check= false;
+        
+        array_push($responseArray,"Half price field should only contain numbers.");
+      }elseif(!empty($_POST['tour_undr5price']) && is_numeric($_POST['tour_undr5price'])){
+        $undr5price      = $_POST['tour_undr5price'];
+      }else{
+        $undr5price = null;
+
+      }
+
+      if (isset($_POST['tour_undr5free'])) {
+
+        $undr5free          =$_POST['tour_undr5free'];
+
+      }else{
+        $undr5free          ='off';
+
+      }
+
+    }
+    
+  }else{
+    $undr5allow       =$_POST['tour_undr5allow'];
+    $undr5free   ='off';
+    $undr5price  = null;
+  }
+  
+
+  if (empty($_POST['tour_halftikchild'])) {
+   $is_check= false;
+   array_push($responseArray,"Children price field is required");
+ }elseif (!empty($_POST['tour_halftikchild'] && !is_numeric($_POST['tour_halftikchild']))) {
+   $is_check= false;
+   array_push($responseArray,"Children price field should only contain numbers.");
+ }else{
+   $halftikchild     =$_POST['tour_halftikchild'];
+ }
+ 
 }
 
 else{
 
   $childallow  =$_POST['tour_childallow'];
   $undr5price  = null;
-    $undr5allow  = null;
+  $undr5allow  = null;
   $undr5free   ='off';
   $halftikchild= null;
 
@@ -280,7 +280,7 @@ $extrachrbag      =$_POST['tour_extrachrbag'];
 if (empty($_POST['tour_strtloc'])) {
   
   $is_check=false;
-     array_push($responseArray,"Trip start location field is required");
+  array_push($responseArray,"Trip start location field is required");
 }else{
 
   $strtloc          =$_POST['tour_strtloc'];
@@ -290,59 +290,59 @@ if (empty($_POST['tour_strtloc'])) {
 if (empty($_POST['tour_pikoffer'])) {
   
   $is_check=false;
-      array_push($responseArray,"Pickup offered field is required");
+  array_push($responseArray,"Pickup offered field is required");
 }elseif ($_POST['tour_pikoffer']=='yes') {
   $pikoffer         =$_POST['tour_pikoffer'];
   if (empty($_POST['tour_pikair']) && empty($_POST['tour_pikbus']) && empty($_POST['tour_pikspecific'])) {
     $is_check=false;
     array_push($responseArray,"Filled atleast one field from pickup offered ");
   }else{
-         
-         if(!empty($_POST['tour_pikair']) && !is_numeric($_POST['tour_pikair'])){
+   
+   if(!empty($_POST['tour_pikair']) && !is_numeric($_POST['tour_pikair'])){
 
-      $is_check= false;
-         array_push($responseArray,"From airport pickup field should only contain numbers.");
-    }elseif(!empty($_POST['tour_pikair']) && is_numeric($_POST['tour_pikair'])){
+    $is_check= false;
+    array_push($responseArray,"From airport pickup field should only contain numbers.");
+  }elseif(!empty($_POST['tour_pikair']) && is_numeric($_POST['tour_pikair'])){
 
-      $pikair      = $_POST['tour_pikair'];
+    $pikair      = $_POST['tour_pikair'];
 
-    }else{
+  }else{
 
-      $pikair = null;
-
-        }
-
-        if(!empty($_POST['tour_pikbus']) && !is_numeric($_POST['tour_pikbus'])){
-
-      $is_check= false;
-        array_push($responseArray,"From bus pickup field should only contain numbers.");
-    }elseif(!empty($_POST['tour_pikbus']) && is_numeric($_POST['tour_pikbus'])){
-
-      $pikbus      = $_POST['tour_pikbus'];
-
-    }else{
-
-      $pikbus = null;
-
-    }
-
-    if(!empty($_POST['tour_pikspecific']) && !is_numeric($_POST['tour_pikspecific'])){
-
-      $is_check= false;
-        array_push($responseArray,"From specific location pickup field should only contain numbers.");
-    }elseif(!empty($_POST['tour_pikspecific']) && is_numeric($_POST['tour_pikspecific'])){
-
-      $pikspecific      = $_POST['tour_pikspecific'];
-
-    }else{
-
-      $pikspecific = null;
-
-    }
-
-
+    $pikair = null;
 
   }
+
+  if(!empty($_POST['tour_pikbus']) && !is_numeric($_POST['tour_pikbus'])){
+
+    $is_check= false;
+    array_push($responseArray,"From bus pickup field should only contain numbers.");
+  }elseif(!empty($_POST['tour_pikbus']) && is_numeric($_POST['tour_pikbus'])){
+
+    $pikbus      = $_POST['tour_pikbus'];
+
+  }else{
+
+    $pikbus = null;
+
+  }
+
+  if(!empty($_POST['tour_pikspecific']) && !is_numeric($_POST['tour_pikspecific'])){
+
+    $is_check= false;
+    array_push($responseArray,"From specific location pickup field should only contain numbers.");
+  }elseif(!empty($_POST['tour_pikspecific']) && is_numeric($_POST['tour_pikspecific'])){
+
+    $pikspecific      = $_POST['tour_pikspecific'];
+
+  }else{
+
+    $pikspecific = null;
+
+  }
+
+
+
+}
 }
 
 
@@ -359,61 +359,61 @@ else{
 if (empty($_POST['tour_drpoffer'])) {
   
   $is_check=false;
-    array_push($responseArray,"Dropoff offered field is required");
-    
-}elseif ($_POST['tour_drpoffer']=='yes') {
-     $drpoffer         =$_POST['tour_drpoffer'];
-  if (empty($_POST['tour_drpair']) && empty($_POST['tour_drpbus']) && empty($_POST['tour_drpspecific'])) {
-         
-     $is_check=false;
-     array_push($responseArray,"Filled atleast one field from dropoff offered ");
-   }else{
-
-        if(!empty($_POST['tour_drpair']) && !is_numeric($_POST['tour_drpair'])){
-
-          $is_check= false;
-            array_push($responseArray,"From  air dropoff field should only contain numbers.");
-        }elseif(!empty($_POST['tour_drpair']) && is_numeric($_POST['tour_drpair'])){
-
-          $drpair      = $_POST['tour_drpair'];
-
-        }else{
-
-          $drpair = null;
-
-        }
-
-        if(!empty($_POST['tour_drpbus']) && !is_numeric($_POST['tour_drpbus'])){
-
-          $is_check= false;
-             array_push($responseArray,"From bus dropoff field should only contain numbers.");
-        }elseif(!empty($_POST['tour_drpbus']) && is_numeric($_POST['tour_drpbus'])){
-
-          $drpbus      = $_POST['tour_drpbus'];
-
-        }else{
-
-          $drpbus = null;
-
-        }
-
-        if(!empty($_POST['tour_drpspecific']) && !is_numeric($_POST['tour_drpspecific'])){
-
-          $is_check= false;
-            array_push($responseArray,"From specific location dropoff field should only contain numbers.");
-        }elseif(!empty($_POST['tour_drpspecific']) && is_numeric($_POST['tour_drpspecific'])){
-
-          $drpspecific      = $_POST['tour_drpspecific'];
-
-        }else{
-
-          $drpspecific = null;
-
-        }
-
-
-   }
+  array_push($responseArray,"Dropoff offered field is required");
   
+}elseif ($_POST['tour_drpoffer']=='yes') {
+ $drpoffer         =$_POST['tour_drpoffer'];
+ if (empty($_POST['tour_drpair']) && empty($_POST['tour_drpbus']) && empty($_POST['tour_drpspecific'])) {
+   
+   $is_check=false;
+   array_push($responseArray,"Filled atleast one field from dropoff offered ");
+ }else{
+
+  if(!empty($_POST['tour_drpair']) && !is_numeric($_POST['tour_drpair'])){
+
+    $is_check= false;
+    array_push($responseArray,"From  air dropoff field should only contain numbers.");
+  }elseif(!empty($_POST['tour_drpair']) && is_numeric($_POST['tour_drpair'])){
+
+    $drpair      = $_POST['tour_drpair'];
+
+  }else{
+
+    $drpair = null;
+
+  }
+
+  if(!empty($_POST['tour_drpbus']) && !is_numeric($_POST['tour_drpbus'])){
+
+    $is_check= false;
+    array_push($responseArray,"From bus dropoff field should only contain numbers.");
+  }elseif(!empty($_POST['tour_drpbus']) && is_numeric($_POST['tour_drpbus'])){
+
+    $drpbus      = $_POST['tour_drpbus'];
+
+  }else{
+
+    $drpbus = null;
+
+  }
+
+  if(!empty($_POST['tour_drpspecific']) && !is_numeric($_POST['tour_drpspecific'])){
+
+    $is_check= false;
+    array_push($responseArray,"From specific location dropoff field should only contain numbers.");
+  }elseif(!empty($_POST['tour_drpspecific']) && is_numeric($_POST['tour_drpspecific'])){
+
+    $drpspecific      = $_POST['tour_drpspecific'];
+
+  }else{
+
+    $drpspecific = null;
+
+  }
+
+
+}
+
 }else{
 
   $drpoffer         =$_POST['tour_drpoffer'];
@@ -430,7 +430,7 @@ foreach($_POST['common_nopeople'] as $noofpeop) {
 
     $is_check=false;
     array_push($responseArray,"Number of people field should only contain numbers.");
-                    
+    
   }elseif(is_numeric($noofpeop)){
 
     $noofpeople     = $noofpeop;
@@ -450,7 +450,7 @@ foreach($_POST['common_discount'] as $discountpercent) {
 
     $is_check=false;
     array_push($responseArray,"Discount field should only contain numbers.");
-                    
+    
   }elseif(is_numeric($discountpercent)){
 
     $discountpeople     = $discountpercent;
@@ -474,18 +474,18 @@ if (empty($_POST['tour_depdate'])) {
 
     // $datedepr = date_create($_POST['tour_depdate']);
         // $resultdepr = date_format($datedepr,"m/d/Y");
-      if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $_POST['tour_depdate'])) {
+  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $_POST['tour_depdate'])) {
 
-           $depDate= $_POST['tour_depdate'];
+   $depDate= $_POST['tour_depdate'];
 
-      }else{
-         $is_check=false;
-         array_push($responseArray,"Departure date field is invalid");
-         
-      }
+ }else{
+   $is_check=false;
+   array_push($responseArray,"Departure date field is invalid");
+   
+ }
 
 
-  
+ 
 }
 
 if (empty($_POST['tour_deptime'])) {
@@ -507,16 +507,16 @@ if (empty($_POST['tour_arrdate'])) {
 
      // $datearr = date_create($_POST['tour_arrdate']);
         // $resultarr = date_format($datearr,"m/d/Y");
-      if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $_POST['tour_arrdate'])) {
+  if (preg_match('%\A(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d\z%', $_POST['tour_arrdate'])) {
 
-           $arrDate=$_POST['tour_arrdate'];
+   $arrDate=$_POST['tour_arrdate'];
 
-      }else{
-         $is_check=false;
-         array_push($responseArray,"Arrival date field is invalid");
-         
-      }
-  
+ }else{
+   $is_check=false;
+   array_push($responseArray,"Arrival date field is invalid");
+   
+ }
+ 
 }
 
 if (empty($_POST['tour_arrtime'])) {
@@ -537,11 +537,11 @@ if (empty($_POST['tour_independ'])) {
   array_push($responseArray,"Independent field is required");
 
 }elseif ($_POST['tour_independ']=='no') {
-    $independ=$_POST['tour_independ'];
+  $independ=$_POST['tour_independ'];
   if (empty($_POST['hotel_name'])) {
 
     $is_check=false;
-      array_push($responseArray,"Name of hotel is required");
+    array_push($responseArray,"Name of hotel is required");
   }else{
     $hotelname=$_POST['hotel_name'];
   }
@@ -561,122 +561,122 @@ if (isset($_POST['tour_inactive'])) {
 $errorMsgs=implode(",",$responseArray);
 
 $newErrorMsgArr=array(
-    "status"=> "error",
-    "message"=> $errorMsgs
+  "status"=> "error",
+  "message"=> $errorMsgs
 );
 $newSuccessMsgArr=array(
-    "status"=> "success",
-    "id"=>$_POST['user_id']
-    
+  "status"=> "success",
+  "id"=>$_POST['user_id']
+  
 );
 
 if ($is_check==true) {
 
-    if (!empty($_POST['hotel_id']) && $_POST['tour_independ']!='no') {
+  if (!empty($_POST['hotel_id']) && $_POST['tour_independ']!='no') {
 
 
-       $evupdate='SELECT `tour`.`tour_inactive` FROM `tour` WHERE tour_id="'.$_POST['tour_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
+   $evupdate='SELECT `tour`.`tour_inactive` FROM `tour` WHERE tour_id="'.$_POST['tour_id'].'" AND hotel_id="'.$_POST['hotel_id'].'"';
 
-  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+   $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
 
-  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+   $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
 
-  $notify_title="";
-  $notify_descrip = "";
-  $notify_desc_admin="";
+   $notify_title="";
+   $notify_descrip = "";
+   $notify_desc_admin="";
 
-  if ($evupdate_assoc['tour_inactive']== $inactive) {
-  
-  $notify_title="Listing Updated";
-  $notify_descrip="". $tourname." in ".$_POST['hotel_name']." has been updated";
-  $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name." in ".$_POST['hotel_name']."";
+   if ($evupdate_assoc['tour_inactive']== $inactive) {
+    
+    $notify_title="Listing Updated";
+    $notify_descrip="". $tourname." in ".$_POST['hotel_name']." has been updated";
+    $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$name." in ".$_POST['hotel_name']."";
 
     
   }else{
 
 
-      if ($inactive=="off") {
+    if ($inactive=="off") {
 
-         $notify_title="Listing Activated";
-         $notify_descrip="". $tourname." has been activated";
-         $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$tourname." in ".$_POST['hotel_name']."";
+     $notify_title="Listing Activated";
+     $notify_descrip="". $tourname." has been activated";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$tourname." in ".$_POST['hotel_name']."";
 
-       }else{
-          
-         $notify_title="Listing Deactivated";
-         $notify_descrip="". $tourname." has been deactivated";
-         $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$tourname." in ".$_POST['hotel_name']."";
-       } 
+   }else{
+    
+     $notify_title="Listing Deactivated";
+     $notify_descrip="". $tourname." has been deactivated";
+     $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$tourname." in ".$_POST['hotel_name']."";
+   } 
    
 
 
-  }
+ }
 
-   getUpdatequery('tour',$_POST,array('hotel_id'=>$_POST['hotel_id'],'tour_id'=>$_POST['tour_id']));
+ getUpdatequery('tour',$_POST,array('hotel_id'=>$_POST['hotel_id'],'tour_id'=>$_POST['tour_id']));
 
-    include '../../methods/send-notification.php';
+ include '../../methods/send-notification.php';
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"tour","vendor","","");
+ insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=Approved&name=".$_SESSION['reg_name']."&user_id=".$_POST['user_id'],"tour","vendor","","");
 
  if ($_SESSION['user_type']=="admin") {
 
    insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"tour","s_admin","","true");
  }
 
-  }else{
+}else{
 
-     $evupdate='SELECT `tour`.`tour_inactive` FROM `tour` WHERE tour_id="'.$_POST['tour_id'].'" AND user_id="'.$_POST['user_id'].'"';
+ $evupdate='SELECT `tour`.`tour_inactive` FROM `tour` WHERE tour_id="'.$_POST['tour_id'].'" AND user_id="'.$_POST['user_id'].'"';
 
-  $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
+ $evupdate_result=mysqli_query($conn,$evupdate) or die(mysqli_error($conn));
 
-  $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
+ $evupdate_assoc=mysqli_fetch_assoc($evupdate_result);
 
-  $notify_title="";
-  $notify_descrip = "";
-  $notify_desc_admin="";
+ $notify_title="";
+ $notify_descrip = "";
+ $notify_desc_admin="";
 
-  if ($evupdate_assoc['tour_inactive']== $inactive) {
+ if ($evupdate_assoc['tour_inactive']== $inactive) {
   
   $notify_title="Listing Updated";
   $notify_descrip="". $tourname." has been updated";
   $notify_desc_admin="".$_SESSION['reg_name']." has been updated ".$tourname."";
 
-    
-  }else{
+  
+}else{
 
 
-      if ($inactive=="off") {
+  if ($inactive=="off") {
 
-         $notify_title="Listing Activated";
-         $notify_descrip="". $tourname." has been activated";
-         $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$tourname."";
+   $notify_title="Listing Activated";
+   $notify_descrip="". $tourname." has been activated";
+   $notify_desc_admin="".$_SESSION['reg_name']." has been activated ".$tourname."";
 
-       }else{
-          
-         $notify_title="Listing Deactivated";
-         $notify_descrip="". $tourname." has been deactivated";
-         $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$tourname."";
+ }else{
+  
+   $notify_title="Listing Deactivated";
+   $notify_descrip="". $tourname." has been deactivated";
+   $notify_desc_admin="".$_SESSION['reg_name']." has been deactivated ".$tourname."";
 
-       } 
-   
+ } 
+ 
 
 
-  }
-    
-   getUpdatequery('tour',$_POST,array('user_id'=>$_POST['user_id'],'tour_id'=>$_POST['tour_id']));
+}
 
-    include '../../methods/send-notification.php';
+getUpdatequery('tour',$_POST,array('user_id'=>$_POST['user_id'],'tour_id'=>$_POST['tour_id']));
 
-     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id'],"tour","vendor","","");
+include '../../methods/send-notification.php';
+
+insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated",$notify_title,$notify_descrip,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id'],"tour","vendor","","");
 
 if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"tour","s_admin","","true");
- }
+ insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"tours/showsigle_tourrecord.php?id=".$_POST['tour_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"tour","s_admin","","true");
+}
 
-  }
-  
-   echo json_encode($newSuccessMsgArr);
+}
+
+echo json_encode($newSuccessMsgArr);
 }else{
   echo json_encode($newErrorMsgArr);
   return false;
@@ -689,51 +689,53 @@ if ($_SESSION['user_type']=="admin") {
 
 /*----------------------------
     Function for dynamic Update Query for Hotels
- ------------------------------*/
+    ------------------------------*/
     function   getUpdatequery($tableName,$updateObject,$where){
 
 
 
-global $conn;
-     $whereClauseArray = array();
-     $updtevalues      = array();
+      global $conn;
+      $whereClauseArray = array();
+      $updtevalues      = array();
 
       if ((!empty($_POST['hotel_id']) || !empty($_POST['user_id'])) && !empty($_POST['tour_id'])) {
        # code...
-    
+        
 
-      foreach ($updateObject as $key => $value) {
+        foreach ($updateObject as $key => $value) {
 
       // echo 	gettype($value);
-        if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
+          if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
 
-        	 if ($key=='hotel_id' && empty($value)) {
+            if ($key=='hotel_id' && empty($value)) {
              
              $updtevalues[] = "$key =  null";
 
            }else{
-
-            $updtevalues[] = "$key = '$value'";
+             
+             if($key !='vendorStatus' && $key!='vendorName'){
+               $updtevalues[] = "$key = '$value'";
+             }
            }
-        }elseif (gettype($value)=="array") {
-                
+         }elseif (gettype($value)=="array") {
+          
                  // print_r($value) ;
-        	foreach ($value as $k => $v) {
+           foreach ($value as $k => $v) {
 				   // echo $v;
-      if (isset($updateObject['common_people_id'][$k])) {
+            if (isset($updateObject['common_people_id'][$k])) {
            # code...
-         
-            $updatequerydates= "UPDATE common_nosofpeople SET "."common_nopeople='".$updateObject['common_nopeople'][$k]."',common_discount='".$updateObject['common_discount'][$k]."' WHERE common_people_id=".$updateObject['common_people_id'][$k];
+             
+              $updatequerydates= "UPDATE common_nosofpeople SET "."common_nopeople='".$updateObject['common_nopeople'][$k]."',common_discount='".$updateObject['common_discount'][$k]."' WHERE common_people_id=".$updateObject['common_people_id'][$k];
 
 
-            mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
-         }
+              mysqli_query($conn,$updatequerydates) or die(mysqli_error($conn));
+            }
 				  //echo $updatequery;
         		 // echo 'Book value : '.$updateObject['book_fromdate'][$k];
 
         		  // echo 'Menu Value : '.$updateObject['common_menupkg_id'][$k];
 
-        	}
+          }
         	# code...
         }
         
@@ -741,40 +743,40 @@ global $conn;
         //array_push($updtevalues,"user_type='".$updateObject['inforole']."'");    
           // print_r($updtevalues);
 
-       /*Where clause generation*/
-       foreach ($where as $key => $value) {	
-       			
-				$whereClauseArray[]="$key='$value'";
-     	}
-     	
-     	if (count($whereClauseArray)==1) {
-       			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
-       			$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
-       			  // echo $updatequery;
-        }else if(count($whereClauseArray) > 1) {
-        		$condString='';
-				for ($i=0; $i < count($whereClauseArray); $i++) { 
-					if ($condString=="") {
-					    $condString = $whereClauseArray[$i]." AND ";    
-					}else{
-					    $condString .= $whereClauseArray[$i]." AND ";
-					}
-				}
-				$condString = substr($condString,0,-4);
-         
-				$updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
-         // echo $updatequery;
-        }
-       
-       
-        global $conn;
-        $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
-          // echo"manzar";
-       
-     }
-
+      /*Where clause generation*/
+      foreach ($where as $key => $value) {	
+        
+        $whereClauseArray[]="$key='$value'";
+      }
       
-}
+      if (count($whereClauseArray)==1) {
+       			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
+        $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
+       			  // echo $updatequery;
+      }else if(count($whereClauseArray) > 1) {
+        $condString='';
+        for ($i=0; $i < count($whereClauseArray); $i++) { 
+         if ($condString=="") {
+           $condString = $whereClauseArray[$i]." AND ";    
+         }else{
+           $condString .= $whereClauseArray[$i]." AND ";
+         }
+       }
+       $condString = substr($condString,0,-4);
+       
+       $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
+         // echo $updatequery;
+     }
+     
+     
+     global $conn;
+     $resultup=mysqli_query($conn,$updatequery) or die(mysqli_error($conn));
+          // echo"manzar";
+     
+   }
+
+   
+ }
 
 
-?>
+ ?>

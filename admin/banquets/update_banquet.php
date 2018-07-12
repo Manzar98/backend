@@ -1,6 +1,6 @@
 <?php  
 include '../../common-sql.php';
-     // print_r($_POST['foodpkg_item']);
+// print_r($_POST);
 session_start();
 $is_check=true;
 $responseArray=[];
@@ -511,7 +511,7 @@ if ($is_check==true) {
 
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","","");
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&h_id=".$_POST['hotel_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","","true");
  }
 
 }else{
@@ -561,7 +561,7 @@ if ($is_check==true) {
 
  if ($_SESSION['user_type']=="admin") {
 
-   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","","");
+   insert_notification($conn,$_POST['user_id'] ,"admin","true","false","Updated",$notify_title,$notify_desc_admin,date("F j, Y, g:i a"),"banquets/showsingle_banquetrecord.php?id=".$_POST['banquet_id']."&u_id=".$_POST['user_id']."&status=".$_POST['vendorStatus']."&name=".$_POST['vendorName']."&user_id=".$_POST['user_id'],"banquet","s_admin","","true");
  }
 }
 
@@ -581,7 +581,7 @@ echo json_encode($newSuccessMsgArr);
     ------------------------------*/
     function   getUpdatequery($tableName,$updateObject,$where){
 
-
+        // print_r($updateObject);
 
       global $conn;
       $whereClauseArray = array();
@@ -592,10 +592,8 @@ echo json_encode($newSuccessMsgArr);
        if (!empty($_POST['hotel_id']) || !empty($_POST['user_id'])) {
          # code...
          
-
         foreach ($updateObject as $key => $value) {
 
-      // echo 	gettype($value);
           if($key!='common_image' && $key!='common_video' && gettype($value)=="string"){
            
            if ($key=='hotel_id' && empty($value)) {
@@ -603,22 +601,25 @@ echo json_encode($newSuccessMsgArr);
              $updtevalues[] = "$key =  null";
 
            }else{
+             // print_r($updtevalues);
+             if($key !='vendorStatus' && $key!='vendorName'){
+               $updtevalues[] = "$key = '$value'";
+             }
+             
+           }
+           
 
-            $updtevalues[] = "$key = '$value'";
-          }
-          
-
-        }elseif (gettype($value)=="array") {
+         }elseif (gettype($value)=="array") {
           
                  // print_r($value) ;
-        	foreach ($value as $k => $v) {
+           foreach ($value as $k => $v) {
 				   // echo $v;
             if ((isset($updateObject['common_bokdate_id'][$k]) && !empty($updateObject['common_bokdate_id'][$k])) || (isset($updateObject['common_menupkg_id'][$k]) && !empty($updateObject['common_menupkg_id'][$k]))) {
         # code...
               
               $updatequerydates= "UPDATE common_bookdates SET "."book_fromdate='".$updateObject['book_fromdate'][$k]."',book_todate='".$updateObject['book_todate'][$k]."' WHERE common_bokdate_id=".$updateObject['common_bokdate_id'][$k];
 
-          // echo $updatequerydates;
+         // echo $updatequerydates;
               mysqli_query($conn,$updatequerydates);
               error_reporting(E_ALL ^ E_NOTICE);
 
@@ -648,7 +649,7 @@ echo json_encode($newSuccessMsgArr);
       if (count($whereClauseArray)==1) {
        			//$query='SELECT * From '.$tableName.' WHERE '.$slct[0] ;
         $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$whereClauseArray[0];
-       			 // echo $updatequery;
+       			   // echo $updatequery;
       }else if(count($whereClauseArray) > 1) {
         $condString='';
         for ($i=0; $i < count($whereClauseArray); $i++) { 
@@ -659,9 +660,9 @@ echo json_encode($newSuccessMsgArr);
          }
        }
        $condString = substr($condString,0,-4);
-       
+       // print_r($updtevalues);
        $updatequery= "UPDATE ".$tableName." SET ". implode(',', $updtevalues). " WHERE ".$condString;
-         // echo $updatequery;
+          // echo $updatequery;
      }
      
      

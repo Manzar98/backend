@@ -503,17 +503,6 @@
 						<div class="col s8 common-top clearfix">
 							<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Stopover</a>
 						</div>
-
-						<div class="row" >
-							
-							<p class="pTAG">
-								<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="tour_inactive" />
-								<label for="filled-in-inactive">Inactive</label>
-							</p>
-							
-						</div>
-						
-						
 						<div>
 							<div class="input-field col s8">
 								<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_tour"> </div>

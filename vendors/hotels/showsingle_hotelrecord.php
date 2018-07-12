@@ -279,10 +279,6 @@
             </div>
 
 
-		
-</div>
-
-
 		   <?php  include"../footer.php";  ?>
             <script src="../../js/hotel-js/images.js"></script>
 

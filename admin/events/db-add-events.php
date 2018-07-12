@@ -350,19 +350,6 @@
 												<div class="input-field col s8">
 													<input type="text"  class="" name="common_video"  ></div>
 												</div>
-
-
-
-
-												<div class="row" >
-
-													<p class="pTAG">
-														<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="event_inactive" />
-														<label for="filled-in-inactive">Inactive</label>
-													</p>
-
-												</div>
-
 												<div>
 													<div class="input-field col s8">
 														<input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_event"> </div>

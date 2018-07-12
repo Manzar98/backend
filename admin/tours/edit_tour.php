@@ -961,27 +961,6 @@ $global_tour_id="";
 								<div class="col s8 common-top clearfix">
 									<a class="waves-effect waves-light btn " onclick="gen_destination(event)">Add More Stopover</a>
 								</div>
-
-								<div class="row" >
-
-									<p class="pTAG inactive_checkbox">
-										<input type="hidden" name="tour_inactive" id="hidden_checkbox">
-										<?php if ($resulttour['tour_inactive']=='on') { ?>
-
-											<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" checked="" />
-											<label for="filled-in-inactive">Inactive</label>
-
-										<?php 	}else{ ?>
-
-											<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" />
-											<label for="filled-in-inactive">Inactive</label>
-										<?php  }  ?>
-
-									</p>
-
-								</div>
-
-
 							<?php } ?>
 
 							<div>

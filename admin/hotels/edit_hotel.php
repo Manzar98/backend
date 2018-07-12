@@ -397,26 +397,6 @@ $global_hotel_id="";
 
 													</div>
 												</div> 
-
-												<div class="row" >
-													
-													<p class="pTAG inactive_checkbox">
-														<input type="hidden" name="hotel_inactive" id="hidden_checkbox">
-														<?php if ($hotelResult['hotel_inactive']=='on') { ?>
-
-															<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="" checked=""  />
-															<label for="filled-in-inactive">Inactive</label>
-															
-														<?php 	}else{ ?>
-
-															<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="" />
-															<label for="filled-in-inactive">Inactive</label>
-														<?php  }  ?>
-														
-													</p>
-													
-												</div>
-
 												<div>
 													<div class="input-field col s8">
 														<input type="button"  value="Update" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>

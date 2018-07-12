@@ -527,28 +527,6 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
 <div  class=" ">
  <a class="waves-effect waves-light btn " onclick="gen_dates_input(event,'edit')">Add More Dates</a>
 </div>
-
-
-
-<div class="row inactive_checkbox" >
-
- <p class="pTAG">
-  <input type="hidden" name="banquet_inactive" id="hidden_checkbox">
-  <?php if ($resultbnq['banquet_inactive']=='on') { ?>
-
-    <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  checked="" />
-    <label for="filled-in-inactive">Inactive</label>
-
-  <?php   }else{ ?>
-
-    <input type="checkbox" class="filled-in inactive" id="filled-in-inactive"  />
-    <label for="filled-in-inactive">Inactive</label>
-  <?php  }  ?>
-
-</p>
-
-</div>
-
 <?php   } ?>
 
 <div  class=" ">

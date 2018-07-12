@@ -342,17 +342,6 @@ include '../../common-apis/reg-api.php';
 <div  class=" ">
  <a class="waves-effect waves-light btn " onclick="gen_dates_input(event)">Add More Dates</a>
 </div>
-
-
-<div class="row" >
-
-  <p class="pTAG">
-   <input type="checkbox" class="filled-in inactive" id="filled-in-inactive" name="banquet_inactive" />
-   <label for="filled-in-inactive">Inactive</label>
- </p>
-
-</div>
-
 <div>
  <div class="input-field col s8">
   <input type="button" value="ADD" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn_banquet"> </div>

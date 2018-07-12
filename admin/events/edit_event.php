@@ -648,29 +648,6 @@ while ($imgResult=mysqli_fetch_assoc($editeventImgQuery)) {
 		<div class="input-field col s8">
 			<input type="text"  class="" name="common_video"  ></div>
 		</div>
-
-		<div class="row" >
-			
-			<p class="pTAG inactive_checkbox">
-				<input type="hidden" name="event_inactive" id="hidden_checkbox">
-				<?php if ($resultevent['event_inactive']=='on') { ?>
-
-					<input type="checkbox" class="filled-in inactive" id="filled-in-inactive" checked="" />
-					<label for="filled-in-inactive">Inactive</label>
-					
-					<?php 	}else{ ?>
-
-						<input type="checkbox" class="filled-in inactive" id="filled-in-inactive"/>
-						<label for="filled-in-inactive">Inactive</label>
-						<?php  }  ?>
-						
-					</p>
-					
-				</div>
-
-
-
-
 				<?php   } ?>
 				<div>
 					<div class="input-field col s8">
