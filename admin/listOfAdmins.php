@@ -134,6 +134,8 @@
 
 					sus.find(".appr").html('');
 					sus.find(".appr").html('<span class="db-not-success">Deactivated</span>');
+					sus.find(".descp").html('');
+                    sus.find(".descp").html('<p>'+data.description+'</p>');
 
 				}
 			}    
@@ -185,6 +187,8 @@
         					sus.find(".appr").html('<span class="db-success">Activated</span>');
         					sus.find('.approve').hide();
         					sus.find('.suspend').show();
+        					sus.find(".descp").html('');
+                            sus.find(".descp").html('<p>'+data.description+'</p>');
 
         				}
         			}   

@@ -46,42 +46,42 @@
 
 							<tr class="tr-1 <?php echo $result['user_type']; ?> <?php echo $result['user_type']; ?>_<?php echo $result['user_status']?>">
 								<?php if ($result['user_type']=="blogger") { ?>
-                                        
-										<td class="td-name AD_bloggers"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
-										<td class="text-center td-name AD_bloggers"><?php echo $result['reg_postal']; ?></td>
-										<td class="text-center AD_bloggers"><?php echo $result['reg_city'];   ?></td>
-										<td class="text-center AD_bloggers"><?php echo $result['reg_email'];   ?></td>
-										<?php if ($result['user_status']=="Approved") { ?>
+									
+									<td class="td-name AD_bloggers"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
+									<td class="text-center td-name AD_bloggers"><?php echo $result['reg_postal']; ?></td>
+									<td class="text-center AD_bloggers"><?php echo $result['reg_city'];   ?></td>
+									<td class="text-center AD_bloggers"><?php echo $result['reg_email'];   ?></td>
+									<?php if ($result['user_status']=="Approved") { ?>
 
-											<td class="status_wrap appr AD_bloggers" ><span class="db-success"><?php echo $result['user_status']; ?></span></td>
+										<td class="status_wrap appr AD_bloggers" ><span class="db-success"><?php echo $result['user_status']; ?></span></td>
 
-										<?php }elseif ($result['user_status']=="Suspended") {?>
+									<?php }elseif ($result['user_status']=="Suspended") {?>
 
-											<td class="status_wrap appr AD_bloggers"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
+										<td class="status_wrap appr AD_bloggers"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
 
-										<?php }else{ ?>
+									<?php }else{ ?>
 
-											<td class="status_wrap appr AD_bloggers"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
-										<?php } ?>
-										
+										<td class="status_wrap appr AD_bloggers"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
+									<?php } ?>
+									
 								<?php }else if($result['user_type']=="vendor"){ ?>
 
-										<td class="td-name AD_vendors"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
-										<td class="text-center td-name AD_vendors"><?php echo $result['reg_postal']; ?></td>
-										<td class="text-center AD_vendors"><?php echo $result['reg_city'];   ?></td>
-										<td class="text-center AD_vendors"><?php echo $result['reg_email'];   ?></td>
-										<?php if ($result['user_status']=="Approved") { ?>
+									<td class="td-name AD_vendors"><?php echo $result['reg_name'];   ?> <?php echo $result['reg_lstname'];   ?></td>
+									<td class="text-center td-name AD_vendors"><?php echo $result['reg_postal']; ?></td>
+									<td class="text-center AD_vendors"><?php echo $result['reg_city'];   ?></td>
+									<td class="text-center AD_vendors"><?php echo $result['reg_email'];   ?></td>
+									<?php if ($result['user_status']=="Approved") { ?>
 
-											<td class="status_wrap appr AD_vendors" ><span class="db-success"><?php echo $result['user_status']; ?></span></td>
+										<td class="status_wrap appr AD_vendors" ><span class="db-success"><?php echo $result['user_status']; ?></span></td>
 
-										<?php }elseif ($result['user_status']=="Suspended") {?>
+									<?php }elseif ($result['user_status']=="Suspended") {?>
 
-											<td class="status_wrap appr AD_vendors"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
+										<td class="status_wrap appr AD_vendors"><span class="db-not-success"><?php echo $result['user_status']; ?></span></td>
 
-										<?php }else{ ?>
+									<?php }else{ ?>
 
-											<td class="status_wrap appr AD_vendors"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
-										<?php } ?>
+										<td class="status_wrap appr AD_vendors"><span class="db-not-success vendor-pending"><?php echo $result['user_status']; ?></span></td>
+									<?php } ?>
 
 								<?php  } ?>
 								<td class="userType" style="display: none;"><?php echo $result['user_type']; ?></td>
@@ -179,6 +179,23 @@
 
 					sus.find(".appr").html('');
 					sus.find(".appr").html('<span class="db-not-success">Suspended</span>');
+					sus.find(".descp").html('');
+					if (data.description==null) {
+
+						$.ajax({
+
+							type : "POST",
+							url  : "../methods/getDescriptionForVeiw.php",
+							data : {"id":data.action_id},
+							success:function(descp){
+								
+								sus.find(".descp").html('<p>'+descp+'</p>');
+							}
+						})
+					}else{
+
+						sus.find(".descp").html('<p>'+data.description+'</p>');
+					} 
 
 				}
 			}    
@@ -230,6 +247,23 @@
         					sus.find(".appr").html('<span class="db-success">Approved</span>');
         					sus.find('.approve').hide();
         					sus.find('.suspend').show();
+        					sus.find(".descp").html('');
+        					if (data.description==null) {
+
+        						$.ajax({
+
+        							type : "POST",
+        							url  : "../methods/getDescriptionForVeiw.php",
+        							data : {"id":data.action_id},
+        							success:function(descp){
+        								
+        								sus.find(".descp").html('<p>'+descp+'</p>');
+        							}
+        						})
+        					}else{
+
+        						sus.find(".descp").html('<p>'+data.description+'</p>');
+        					} 
 
         				}
         			}   

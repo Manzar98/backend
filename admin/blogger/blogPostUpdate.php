@@ -2,7 +2,7 @@
 
 include '../../common-sql.php';
 session_start();
-date_default_timezone_set("Asia/Karachi");
+
 if (!isset($_POST['action'])) {
 $is_check= true;
 $responseArray=[];

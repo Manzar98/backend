@@ -1,15 +1,40 @@
 <?php
 
 include '../common-sql.php';
- 
+
 session_start();
 $admin_id=$_SESSION['user_id'];
-
+$realtimeResult="";
 /*======To get the user info for notifications========*/
 $select='SELECT * FROM credentials WHERE user_id="'.$_POST['u_id'].'"';
 $s_Query=mysqli_query($conn,$select) or die(mysqli_error($conn));
 $s_Result=mysqli_fetch_assoc($s_Query);
 
+$showmsgQuery='SELECT * FROM action_listing WHERE action_listing_id="'.$_POST['u_id'].'" AND action_taken_by="'.$_SESSION['user_id'].'" AND action_listing_type="credentials"';
+$showmsgSql=mysqli_query($conn,$showmsgQuery) or die(mysqli_error($conn));
+$showmsgResult=mysqli_fetch_assoc($showmsgSql);
+if (count($showmsgResult)< 1) {
+
+ $msgQuery='INSERT INTO action_listing(action_listing_id,action_taken_by,action_time,action_descprition,action_listing_type)VALUES("'.$_POST['u_id'].'","'.$_SESSION['user_id'].'","'.date("F j, Y, g:i a").'","This '.$_POST['u_type'].' '.$_POST['btn'].' by '.$_SESSION['reg_name'].' on '.date("F j, Y, g:i a").'","credentials")';
+ if ($conn->query($msgQuery)== TRUE) {
+    # code...
+   $action_id =$conn->insert_id;
+ }
+
+
+}else{
+  
+  $msgQuery='UPDATE action_listing SET 
+  action_taken_by="'.$_SESSION['user_id'].'",
+  action_time="'.date("F j, Y, g:i a").'",
+  action_descprition="This '.$_POST['u_type'].' '.$_POST['btn'].' by '.$_SESSION['reg_name'].' on '.date("F j, Y, g:i a").'"
+  WHERE action_listing_id="'.$_POST['u_id'].'" AND action_listing_type="credentials"';
+  $msgRes=mysqli_query($conn,$msgQuery) or die(mysqli_error($conn));
+
+  $realtimeQuery='SELECT * FROM action_listing WHERE action_listing_id="'.$_POST['u_id'].'"';
+  $realtimeSql=mysqli_query($conn,$realtimeQuery) or die(mysqli_error($conn));
+  $realtimeResult=mysqli_fetch_assoc($realtimeSql);
+}
 
 if (isset($_POST['reason'])) {
 
@@ -169,12 +194,25 @@ $result=mysqli_query($conn,$query) or die(mysqli_error($conn));
 
 if ($result==1) {
   
-  $res_Array=array(
-    'status'=>$_POST['btn']
+  if (isset($action_id) && $action_id > 0) {
+
+    $res_Array=array(
+      'status'=>$_POST['btn'],
+      'description'=>null,
+      'action_id' => $action_id
+
+    );
+  }else{
+
+   $res_Array=array(
+    'status'=>$_POST['btn'],
+    'description'=>$realtimeResult['action_descprition']
 
   );
+ }
+ 
 
-  echo json_encode($res_Array);
+ echo json_encode($res_Array);
 }
 
 

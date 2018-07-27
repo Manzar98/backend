@@ -1,6 +1,9 @@
 <?php
 include '../../common-apis/reg-api.php';
 $showB_Query=select('destinations',array('desti_id'=>$_GET['d_id'],'user_id'=>$_GET['id']));
+  $showmsgQuery='SELECT * FROM action_listing WHERE action_listing_id="'.$_GET['d_id'].'" AND action_listing_type="destinations"';
+  $showmsgSql=mysqli_query($conn,$showmsgQuery) or die(mysqli_error($conn));
+  $showmsgResult=mysqli_fetch_assoc($showmsgSql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +22,10 @@ $showB_Query=select('destinations',array('desti_id'=>$_GET['d_id'],'user_id'=>$_
      <div class="db-cent-table db-com-table">
       <div class="veiw_sus_appr">
        <div class="row" style="margin-top: 20px;">
-        <div class="col s11">
+        <div class="col s7">
+            <p class="descp" style="line-height: 3;"><?php echo $showmsgResult['action_descprition']; ?></p>
+          </div>
+        <div class="">
           <div class="pull-right sus_appr" style="margin-left: 10px;">
             <a class="waves-effect waves-light btn" href="editDesti.php?d_id=<?php echo $result['desti_id'];  ?>&id=<?php echo $result['user_id']; ?>">Edit</a>
             <?php if ($result['desti_inactive']=="on") { ?>

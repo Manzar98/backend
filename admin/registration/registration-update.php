@@ -59,7 +59,6 @@ if ($result==1) {
   if (isset($_POST['user_type']) && $_POST['user_type']=="vendor") {
 
     include '../../methods/send-notification.php';
-    date_default_timezone_set("Asia/Karachi");
     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","User record updated","Admin has updated your record",date("F j, Y, g:i a"),"db-profile.php?id=".$_POST['user_id'],"vendor","vendor","","" );
 
      $responseArray=array(
@@ -72,7 +71,7 @@ if ($result==1) {
   }else if (isset($_POST['user_type']) && $_POST['user_type']=="blogger") {
 
     include '../../methods/send-notification.php';
-    date_default_timezone_set("Asia/Karachi");
+
     insert_notification($conn,$_POST['user_id'],"admin","true","false","Updated","User record updated","Admin has updated your record",date("F j, Y, g:i a"),"blogger/edit-blogger.php?id=".$_POST['user_id'],"blogger","blogger","","" );
 
      $responseArray=array(

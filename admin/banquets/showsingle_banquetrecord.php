@@ -14,7 +14,9 @@ if (isset($_GET['h_id'])) {
  $showBnqQuery=select('banquet',array('banquet_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
 }
 
-
+$showmsgQuery='SELECT * FROM action_listing WHERE action_listing_id="'.$_GET['id'].'" AND action_listing_type="banquet"';
+$showmsgSql=mysqli_query($conn,$showmsgQuery) or die(mysqli_error($conn));
+$showmsgResult=mysqli_fetch_assoc($showmsgSql);
 
 ?>
 
@@ -52,173 +54,176 @@ if (isset($_GET['h_id'])) {
        
       <div class="veiw_sus_appr">
        <?php if ($_GET['status']=="Approved" || $_GET['status']=="Pending") { ?>
-       <div class="row" style="margin-top: 20px;">
-        <div class="col s11">
-         
-          <div class="pull-right sus_appr" style="margin-left: 10px;">
-           <?php if (isset($_GET['h_id'])) { ?>
-           
-           <?php 
-           if ($h_status=="Approved") {
-            
-            if ($BnqResult['banquet_status']=="Approved") { ?>
-
-            <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
-
-            <a  onclick="show_suspend(event)" h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
-
-            <a  onclick="show_approve(event)"  h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
-            
-            <?php  }else{ ?>
-
-            <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
-
-            <a  onclick="show_suspend(event)" h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
-
-            <a  onclick="show_approve(event)"  h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
-            
-            
-            <?php   } ?>
-            
+         <div class="row" style="margin-top: 20px;">
+           <div class="col s8">
+            <p class="descp" style="line-height: 3;"><?php echo $showmsgResult['action_descprition']; ?></p>
           </div>
-          <div class="pull-right" >
+          <div class="">
 
-            <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $BnqResult['banquet_id'];  ?>&h_id=<?php echo  $BnqResult['hotel_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
+            <div class="pull-right sus_appr" style="margin-left: 10px;">
+             <?php if (isset($_GET['h_id'])) { ?>
+               
+               <?php 
+               if ($h_status=="Approved") {
+                
+                if ($BnqResult['banquet_status']=="Approved") { ?>
 
-            <?php } ?>
+                  <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+
+                  <a  onclick="show_suspend(event)" h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
+
+                  <a  onclick="show_approve(event)"  h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
+                  
+                <?php  }else{ ?>
+
+                  <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+
+                  <a  onclick="show_suspend(event)" h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" h-col="hotel_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
+
+                  <a  onclick="show_approve(event)"  h_id="<?php echo $BnqResult['hotel_id'] ?>" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" h-col="hotel_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
+                  
+                  
+                <?php   } ?>
+                
+              </div>
+              <div class="pull-right" >
+
+                <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $BnqResult['banquet_id'];  ?>&h_id=<?php echo  $BnqResult['hotel_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
+
+              <?php } ?>
             <?php  }else{ ?>
-            
-            <?php if ($BnqResult['banquet_status']=="Approved") { ?>
+              
+              <?php if ($BnqResult['banquet_status']=="Approved") { ?>
 
-            <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
+                <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended">Suspend</a>
 
-            <a  onclick="show_suspend(event)" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
+                <a  onclick="show_suspend(event)" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
 
-            <a  onclick="show_approve(event)"  u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
-            
-            <?php  }else{ ?>
+                <a  onclick="show_approve(event)"  u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
+                
+              <?php  }else{ ?>
 
-            <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
+                <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;" >Suspend</a>
 
-            <a  onclick="show_suspend(event)" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
+                <a  onclick="show_suspend(event)" u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" id-col="banquet_id" u-col="user_id" col-name-reason="banquet_sus_reason" l-url="banquets/showsingle_banquetrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Suspend</a>
 
-            <a  onclick="show_approve(event)"  u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
-            
-            
-            <?php   } ?>
+                <a  onclick="show_approve(event)"  u_id="<?php echo $BnqResult['user_id'] ?>" id="<?php echo $BnqResult['banquet_id']; ?>" tbl-name="banquet" col-name="banquet_status" col-name-reason="banquet_sus_reason" id-col="banquet_id" u-col="user_id" l-url="banquets/showsingle_banquetrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $BnqResult['banquet_name']; ?>">Approve</a>
+                
+                
+              <?php   } ?>
 
-            <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $BnqResult['banquet_id'];  ?>&u_id=<?php echo  $BnqResult['user_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
+              <a class="waves-effect waves-light btn" href="edit_banquet.php?id=<?php echo $BnqResult['banquet_id'];  ?>&u_id=<?php echo  $BnqResult['user_id']  ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
             <?php } ?>
             
           </div>
         </div>
       </div>
-      <?php   } ?> 
-      <div class="text-center " >
-        <span style="margin-left: 10px;">Status:</span>
-        <?php if ($BnqResult['banquet_status']=="Approved") { ?>
+    <?php   } ?> 
+    <div class="text-center " >
+      <span style="margin-left: 10px;">Status:</span>
+      <?php if ($BnqResult['banquet_status']=="Approved") { ?>
         
         <span class="appr" style="color: green; "><b><?php echo $BnqResult['banquet_status']; ?></b></span>
         <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
 
 
 
-        <?php   }else if($BnqResult['banquet_status']=="Suspended"){ ?>
+      <?php   }else if($BnqResult['banquet_status']=="Suspended"){ ?>
         
         <span class="sus" style="color: red;"><b><?php echo $BnqResult['banquet_status']; ?></b></span>
         <span class="appr" style="color: green; display: none;"><b>Approved</b></span>
         
-        <?php   }else{ ?>
+      <?php   }else{ ?>
 
         <span class="appr" style="color: green;  display: none;"><b>Approved</b></span>
         <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
         <span class="pend" style="color: red;"><b><?php echo $BnqResult['banquet_status']; ?></b></span>
 
-        <?php } ?>
-      </div>
-      
-    </div>
-    <div class="text-center ">
-      <span style="padding-right: 7px;">Name:</span>
-      <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
-    </div>
-    <div class="db-profile"> 
-
-      <img src="" id="cover_photo_common" alt=""> 
-      <h4><?php echo $BnqResult['banquet_name'];  ?> </h4>
-      <p><?php  ?></p>
+      <?php } ?>
     </div>
     
-    <div class="hotelVeiw">
-      
-     <div class="row">
-      <span><b>Banquet Name :</b></span>
-      <span><?php echo $BnqResult['banquet_name']."."; ?></span>
-    </div>
-    <div class="row">
-      <span><b>Capacity :</b></span>
-      <span><?php echo $BnqResult['banquet_space']."."; ?></span>
-    </div>
-    <div class="row">
-      <span><b>Base Booking Charges :</b></span>
-      <span><?php echo $BnqResult['banquet_charges']."."; ?></span>
-    </div>
+  </div>
+  <div class="text-center ">
+    <span style="padding-right: 7px;">Name:</span>
+    <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
+  </div>
+  <div class="db-profile"> 
 
-    <div class="db-profile-view">
-      <table class="responsive-table profle-forms-reocrds-tbl" >
-        <thead>
-          
-          <tr>
-            <th>Capacity</th>
-            <th>Base Booking Charges</th>
-            <th>Serve Food?</th>
-            
-          </tr>
+    <img src="" id="cover_photo_common" alt=""> 
+    <h4><?php echo $BnqResult['banquet_name'];  ?> </h4>
+    <p><?php  ?></p>
+  </div>
+  
+  <div class="hotelVeiw">
+    
+   <div class="row">
+    <span><b>Banquet Name :</b></span>
+    <span><?php echo $BnqResult['banquet_name']."."; ?></span>
+  </div>
+  <div class="row">
+    <span><b>Capacity :</b></span>
+    <span><?php echo $BnqResult['banquet_space']."."; ?></span>
+  </div>
+  <div class="row">
+    <span><b>Base Booking Charges :</b></span>
+    <span><?php echo $BnqResult['banquet_charges']."."; ?></span>
+  </div>
 
-        </thead>
-        <tbody>
-
-          <tr>
-            <td><?php echo $BnqResult['banquet_space']; ?></td>
-            <td><?php echo $BnqResult['banquet_charges']; ?></td>
-            <td class="capitalize"><?php echo $BnqResult['banquet_serve']; ?></td>
-            
-          </tr>
-
-        </tbody>
-      </table>
-    </div> 
-    <div class="row sp_top">
-      <span><b>Hall Booking Charges :</b></span>
-    </div>
-    <div>
-     <table class="listing-tbl sp_top tbl_social">
-       <thead>
+  <div class="db-profile-view">
+    <table class="responsive-table profle-forms-reocrds-tbl" >
+      <thead>
+        
         <tr>
-         <th>With Aircon?</th>
-         <th>With Generator?</th>
-         
-         
-       </tr>
-     </thead>
-     <tbody>
-      <?php if (!empty($BnqResult['banquet_aricon'])) {?>
+          <th>Capacity</th>
+          <th>Base Booking Charges</th>
+          <th>Serve Food?</th>
+          
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><?php echo $BnqResult['banquet_space']; ?></td>
+          <td><?php echo $BnqResult['banquet_charges']; ?></td>
+          <td class="capitalize"><?php echo $BnqResult['banquet_serve']; ?></td>
+          
+        </tr>
+
+      </tbody>
+    </table>
+  </div> 
+  <div class="row sp_top">
+    <span><b>Hall Booking Charges :</b></span>
+  </div>
+  <div>
+   <table class="listing-tbl sp_top tbl_social">
+     <thead>
+      <tr>
+       <th>With Aircon?</th>
+       <th>With Generator?</th>
+       
+       
+     </tr>
+   </thead>
+   <tbody>
+    <?php if (!empty($BnqResult['banquet_aricon'])) {?>
       <td><?php  echo $BnqResult['banquet_aricon'];  ?></td>
-      <?php  }else{ ?>
+    <?php  }else{ ?>
 
       <td>N/A</td>
 
-      <?php } ?>
-      <?php if (!empty($BnqResult['banquet_generator'])) {?>
+    <?php } ?>
+    <?php if (!empty($BnqResult['banquet_generator'])) {?>
       <td><?php  echo $BnqResult['banquet_generator'];  ?></td>
-      <?php  }else{ ?>
+    <?php  }else{ ?>
 
       <td>N/A</td>
 
-      <?php } ?>
-      
-    </tbody>
-  </table>
+    <?php } ?>
+    
+  </tbody>
+</table>
 </div>
 
 <div class="row sp_top">
@@ -229,33 +234,33 @@ if (isset($_GET['h_id'])) {
 
 
 <?php   if ($BnqResult['banquet_serve']=="yes") {?>
-<div class="row">
- <span><b>Menu Packages :</b></span>
+  <div class="row">
+   <span><b>Menu Packages :</b></span>
 
-</div>
+ </div>
 
-<div>
- <table class="listing-tbl sp_top tbl_social">
-   <thead>
-    <tr>
-     <th>Package Name</th>
-     <th>Package Price</th>
-     <th>Discount Percentage</th>
-     <th>Package Items</th>
-     
-   </tr>
- </thead>
- <?php  while ($menuResult=mysqli_fetch_assoc($showBnqMenuQuery)) { ?>
- <tbody>
-   
-   <td><?php  echo $menuResult['foodpkg_name'];  ?></td>
-   <td><?php  echo $menuResult['foodpkg_price'];  ?></td>
-   <td><?php  echo $menuResult['foodpkg_discount'];  ?></td>
-   <td><?php  echo $menuResult['foodpkg_item'];  ?></td>
-   
- </tbody>
- <?php  } ?>
-</table>
+ <div>
+   <table class="listing-tbl sp_top tbl_social">
+     <thead>
+      <tr>
+       <th>Package Name</th>
+       <th>Package Price</th>
+       <th>Discount Percentage</th>
+       <th>Package Items</th>
+       
+     </tr>
+   </thead>
+   <?php  while ($menuResult=mysqli_fetch_assoc($showBnqMenuQuery)) { ?>
+     <tbody>
+       
+       <td><?php  echo $menuResult['foodpkg_name'];  ?></td>
+       <td><?php  echo $menuResult['foodpkg_price'];  ?></td>
+       <td><?php  echo $menuResult['foodpkg_discount'];  ?></td>
+       <td><?php  echo $menuResult['foodpkg_item'];  ?></td>
+       
+     </tbody>
+   <?php  } ?>
+ </table>
 </div>
 
 <?php }   
@@ -273,14 +278,14 @@ if (isset($_GET['h_id'])) {
 <?php if (!empty($BnqResult['banquet_offerdiscount'])) { ?>
 
 
-<div class="row">
-  <span><b>Offer Discount (%) :</b></span>
-  <span><?php echo $BnqResult['banquet_offerdiscount']."."; ?></span>
-</div>
-<div class="row">
-  <span><b>Expires on :</b></span>
-  <span><?php echo $BnqResult['banquet_expireoffer']."."; ?></span>
-</div>
+  <div class="row">
+    <span><b>Offer Discount (%) :</b></span>
+    <span><?php echo $BnqResult['banquet_offerdiscount']."."; ?></span>
+  </div>
+  <div class="row">
+    <span><b>Expires on :</b></span>
+    <span><?php echo $BnqResult['banquet_expireoffer']."."; ?></span>
+  </div>
 <?php  } ?>
 <div>
   <span><b>Room Description :</b></span>
@@ -297,10 +302,10 @@ if (isset($_GET['h_id'])) {
     <?php 
     
     foreach ($amenity as $k => $v) {?>
-    
-    <div class="amenity_div">
-     <span><?php echo $v."<br/>"; ?></span>
-   </div>
+      
+      <div class="amenity_div">
+       <span><?php echo $v."<br/>"; ?></span>
+     </div>
    <?php  }
 
    ?>
@@ -325,12 +330,12 @@ if (isset($_GET['h_id'])) {
    </tr>
  </thead>
  <?php  while ($dateResult=mysqli_fetch_assoc($showBnqDateQuery)) { ?>
- <tbody>
-   
-   <td><?php  echo $dateResult['book_fromdate'];  ?></td>
-   <td><?php  echo $dateResult['book_todate'];  ?></td>
-   
- </tbody>
+   <tbody>
+     
+     <td><?php  echo $dateResult['book_fromdate'];  ?></td>
+     <td><?php  echo $dateResult['book_todate'];  ?></td>
+     
+   </tbody>
  <?php } ?>
 </table>
 </div>
@@ -344,52 +349,52 @@ if (isset($_GET['h_id'])) {
 
 <?php if($BnqResult['banquet_independ']=="yes") { ?>
 
-<div>
- <table class="listing-tbl sp_top tbl_social">
-   <thead>
-    <tr>
-     <th>Address</th>
-     <th>City</th>
-     <th>Province</th>
-     <th>Phone</th>
-     <th>Email</th>
+  <div>
+   <table class="listing-tbl sp_top tbl_social">
+     <thead>
+      <tr>
+       <th>Address</th>
+       <th>City</th>
+       <th>Province</th>
+       <th>Phone</th>
+       <th>Email</th>
+       
+       
+     </tr>
+   </thead>
+   <tbody>
+     
+     <td><?php  echo $BnqResult['banquet_address'];  ?></td>
+     <td><?php  echo $BnqResult['banquet_city'];  ?></td>
+     <td><?php  echo $BnqResult['banquet_province'];  ?></td>
+     <td><?php  echo $BnqResult['banquet_phone'];  ?></td>
+     <td><?php  echo $BnqResult['banquet_email'];  ?></td>
      
      
-   </tr>
- </thead>
- <tbody>
-   
-   <td><?php  echo $BnqResult['banquet_address'];  ?></td>
-   <td><?php  echo $BnqResult['banquet_city'];  ?></td>
-   <td><?php  echo $BnqResult['banquet_province'];  ?></td>
-   <td><?php  echo $BnqResult['banquet_phone'];  ?></td>
-   <td><?php  echo $BnqResult['banquet_email'];  ?></td>
-   
-   
- </tbody>
-</table>
+   </tbody>
+ </table>
 </div>
 
 <?php if (!empty($BnqResult['banquet_fcbok']) || !empty($BnqResult['banquet_twiter']) || !empty($BnqResult['banquet_utube'])) { ?>
 
-<div>
- <table class="listing-tbl sp_top tbl_social">
-   <thead>
-    <tr>
-     <th>Facebook</th>
-     <th>Twitter</th>
-     <th>Youtube</th>
+  <div>
+   <table class="listing-tbl sp_top tbl_social">
+     <thead>
+      <tr>
+       <th>Facebook</th>
+       <th>Twitter</th>
+       <th>Youtube</th>
+       
+       
+     </tr>
+   </thead>
+   <tbody>
      
-     
-   </tr>
- </thead>
- <tbody>
-   
-   <td><span class="fb_icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_fcbok'];  ?></td>
-   <td><span class="tw_icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_twiter'];  ?></td>
-   <td><span class="you_icon"><i class="fa fa-youtube-play" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_utube'];  ?></td>  
- </tbody>
-</table>
+     <td><span class="fb_icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_fcbok'];  ?></td>
+     <td><span class="tw_icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_twiter'];  ?></td>
+     <td><span class="you_icon"><i class="fa fa-youtube-play" aria-hidden="true"></i></span><?php  echo $BnqResult['banquet_utube'];  ?></td>  
+   </tbody>
+ </table>
 </div>
 <?php } ?>
 
@@ -399,10 +404,10 @@ if (isset($_GET['h_id'])) {
 
 <?php }else{ ?>
 
-<div class="row sp_top">
-  <span><b>Under Which Hotel? :</b></span>
-  <span class="capitalize"><?php echo $BnqResult['hotel_name']; ?></span>
-</div>
+  <div class="row sp_top">
+    <span><b>Under Which Hotel? :</b></span>
+    <span class="capitalize"><?php echo $BnqResult['hotel_name']; ?></span>
+  </div>
 
 
 
@@ -431,22 +436,22 @@ if (isset($_GET['h_id'])) {
 
    
     if (!empty($imgResult['common_image'])) {?>
-    <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
-      <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
-    </div>&nbsp;&nbsp;
-    <script type="text/javascript">
-      $(document).ready(function(){
+      <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
+        <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
+      </div>&nbsp;&nbsp;
+      <script type="text/javascript">
+        $(document).ready(function(){
+          
+          setTimeout(function(){
+
+            $('#cover_photo_common').attr('src',$('#hotel_img_wrap img').eq(0).attr('src'));
+          },2000);
+
+        })
         
-        setTimeout(function(){
-
-          $('#cover_photo_common').attr('src',$('#hotel_img_wrap img').eq(0).attr('src'));
-        },2000);
-
-      })
+      </script>
       
-    </script>
-    
-    
+      
     <?php } ?>
 
     

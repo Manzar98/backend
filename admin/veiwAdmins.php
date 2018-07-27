@@ -9,21 +9,29 @@
 	$reg_Query= select('credentials',array("user_id"=>$_GET['id']));
 	if (isset($_GET['u_type']) && $_GET['u_type']=="admin") {
 		$reg_authority=select('authorities',array("user_id"=>$_GET['id']));
-       
-	}?>
+		
+	}
+	$showmsgQuery='SELECT * FROM action_listing WHERE action_listing_id="'.$_GET['id'].'" AND action_listing_type="credentials"';
+	$showmsgSql=mysqli_query($conn,$showmsgQuery) or die(mysqli_error($conn));
+	$showmsgResult=mysqli_fetch_assoc($showmsgSql);
+
+	?>
 	<?php   while ($reg_Result=mysqli_fetch_assoc($reg_Query)) { 
 		$pro_img=substr($reg_Result['reg_photo'],3) ;  ?>
 		<input type="hidden" id="crntAdmin_id" value="<?php echo $_SESSION['user_id']; ?>">
 		<input type="hidden" id="veiwAdmin_id" value="<?php echo $_GET['id']; ?>">
 		<div class="veiw_sus_appr">
 			<div class="row" style="margin-top: 20px;">
-
-				<div class="col s11">
-                     
+				<div class="col s1"></div>
+				<div class="col s7">
+					<p class="descp" style="line-height: 3;"><?php echo $showmsgResult['action_descprition']; ?></p>
+				</div>
+				<div class="col s3">
+					
 					<div class="pull-right sus_appr" style="margin-left: 10px;">
-                         
+						
 						<?php if ($reg_Result['user_status']=="Approved") { ?>
-                            
+							
 							<a  href="#susp" u_id="<?php echo $reg_Result['user_id'] ?>" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Deactivate</a>
 							<a  onclick="show_suspend(event)" u_id="<?php echo $reg_Result['user_id'] ?>" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" u_type="<?php echo $reg_Result['user_type']; ?>">Deactivate</a>
 							<a  onclick="show_approve(event)"  u_id="<?php echo $reg_Result['user_id'] ?>" class="approve btn" value="Approved" style="display: none;" u_type="<?php echo $reg_Result['user_type']; ?>">Activate</a>
@@ -38,11 +46,11 @@
 						<?php   } ?>
 
 					</div>
-					 <div class="pull-right" >
-                          <?php if ($_SESSION['user_type']=="s_admin") { ?>
-											<a class="waves-effect waves-light btn" href="editAdmins.php?id=<?php echo $reg_Result['user_id'];  ?>&u_type=<?php echo $reg_Result['user_type']; ?>">Edit</a>
-										<?php } ?>
-                        </div>
+					<div class="pull-right" >
+						<?php if ($_SESSION['user_type']=="s_admin") { ?>
+							<a class="waves-effect waves-light btn" href="editAdmins.php?id=<?php echo $reg_Result['user_id'];  ?>&u_type=<?php echo $reg_Result['user_type']; ?>">Edit</a>
+						<?php } ?>
+					</div>
 				</div>
 			</div>
 
@@ -107,80 +115,80 @@
 		<div class="db-profile-edit">
 
 			<form class="col s12" action="" method="post" role="form" id="registor-form">
-               <div class="veiwCheckbox">
-               	<?php while ($authQuery=mysqli_fetch_assoc($reg_authority)) {?>
-				<div class="row">
-					<label>Can Manage:</label>
-					<div class="col s2"></div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="vendors" class="filled-in canManage" id="filled-in-vendor" value="<?php echo $authQuery['vendors']; ?>">
-							<label for="filled-in-vendor" class="canManage-label">Vendor</label>
-						</p>
-					</div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="admins" class="filled-in canManage" id="filled-in-user" value="<?php echo $authQuery['admins']; ?>">
-							<label for="filled-in-user" class="canManage-label" style="padding-left: 7px !important;">Users</label>
-						</p>
-					</div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="pages" class="filled-in canManage" id="filled-in-page" value="<?php echo $authQuery['pages']; ?>">
-							<label for="filled-in-page" class="canManage-label" style="padding-left: 7px !important;">Pages</label>
-						</p>
-					</div>
+				<div class="veiwCheckbox">
+					<?php while ($authQuery=mysqli_fetch_assoc($reg_authority)) {?>
+						<div class="row">
+							<label>Can Manage:</label>
+							<div class="col s2"></div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="vendors" class="filled-in canManage" id="filled-in-vendor" value="<?php echo $authQuery['vendors']; ?>">
+									<label for="filled-in-vendor" class="canManage-label">Vendor</label>
+								</p>
+							</div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="admins" class="filled-in canManage" id="filled-in-user" value="<?php echo $authQuery['admins']; ?>">
+									<label for="filled-in-user" class="canManage-label" style="padding-left: 7px !important;">Users</label>
+								</p>
+							</div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="pages" class="filled-in canManage" id="filled-in-page" value="<?php echo $authQuery['pages']; ?>">
+									<label for="filled-in-page" class="canManage-label" style="padding-left: 7px !important;">Pages</label>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s2"></div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="destinations" class="filled-in canManage" id="filled-in-destination" value="<?php echo $authQuery['destinations']; ?>">
+									<label for="filled-in-destination" class="canManage-label">Destinations</label>
+								</p>
+							</div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="faqs" class="filled-in canManage" id="filled-in-faq" value="<?php echo $authQuery['faqs']; ?>">
+									<label for="filled-in-faq" class="canManage-label" style="padding-left: 7px !important;">FAQs</label>
+								</p>
+							</div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="bloggers" class="filled-in canManage" id="filled-in-blogger" value="<?php echo $authQuery['bloggers']; ?>">
+									<label for="filled-in-blogger" class="canManage-label">Bloggers</label>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s2"></div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="amenities" class="filled-in canManage" id="filled-in-amenity" value="<?php echo $authQuery['amenities']; ?>">
+									<label for="filled-in-amenity" class="canManage-label">Amenities</label>
+								</p>
+							</div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="listing" class="filled-in canManage" id="filled-in-listing" value="<?php echo $authQuery['listing']; ?>">
+									<label for="filled-in-listing" class="canManage-label" style="padding-left: 7px !important;">Listing</label>
+								</p>
+							</div>
+							<div class="col s3">
+								<p class="pTAG">
+									<input type="checkbox" name="blogs" class="filled-in canManage" id="filled-in-blogs" value="<?php echo $authQuery['blogs']; ?>">
+									<label for="filled-in-blogs" class="canManage-label" style="padding-left: 7px !important;">Blogs</label>
+								</p>
+							</div>
+							<div class="col s3" style="display: none;">
+								<p class="pTAG">
+									<input type="checkbox" name="servicefee" class="filled-in canManage" id="filled-in-service" value="on">
+									<label for="filled-in-service" class="canManage-label" style="padding-left: 7px !important;">Service Fee</label>
+								</p>
+							</div>
+						</div>
+					<?php } ?>
 				</div>
-				<div class="row">
-					<div class="col s2"></div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="destinations" class="filled-in canManage" id="filled-in-destination" value="<?php echo $authQuery['destinations']; ?>">
-							<label for="filled-in-destination" class="canManage-label">Destinations</label>
-						</p>
-					</div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="faqs" class="filled-in canManage" id="filled-in-faq" value="<?php echo $authQuery['faqs']; ?>">
-							<label for="filled-in-faq" class="canManage-label" style="padding-left: 7px !important;">FAQs</label>
-						</p>
-					</div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="bloggers" class="filled-in canManage" id="filled-in-blogger" value="<?php echo $authQuery['bloggers']; ?>">
-							<label for="filled-in-blogger" class="canManage-label">Bloggers</label>
-						</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s2"></div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="amenities" class="filled-in canManage" id="filled-in-amenity" value="<?php echo $authQuery['amenities']; ?>">
-							<label for="filled-in-amenity" class="canManage-label">Amenities</label>
-						</p>
-					</div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="listing" class="filled-in canManage" id="filled-in-listing" value="<?php echo $authQuery['listing']; ?>">
-							<label for="filled-in-listing" class="canManage-label" style="padding-left: 7px !important;">Listing</label>
-						</p>
-					</div>
-					<div class="col s3">
-						<p class="pTAG">
-							<input type="checkbox" name="blogs" class="filled-in canManage" id="filled-in-blogs" value="<?php echo $authQuery['blogs']; ?>">
-							<label for="filled-in-blogs" class="canManage-label" style="padding-left: 7px !important;">Blogs</label>
-						</p>
-					</div>
-					<div class="col s3" style="display: none;">
-						<p class="pTAG">
-							<input type="checkbox" name="servicefee" class="filled-in canManage" id="filled-in-service" value="on">
-							<label for="filled-in-service" class="canManage-label" style="padding-left: 7px !important;">Service Fee</label>
-						</p>
-					</div>
-				</div>
-			<?php } ?>
-			</div>
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-10 ">
@@ -323,7 +331,23 @@
 							sus.find('.sus').show();
 							sus.find('.appr').hide();
 							var st_val= sus.find('.sus').text();
+							sus.find(".descp").html('');
+							if (data.description==null) {
 
+								$.ajax({
+
+									type : "POST",
+									url  : "../methods/getDescriptionForVeiw.php",
+									data : {"id":data.action_id},
+									success:function(descp){
+										
+										sus.find(".descp").html('<p>'+descp+'</p>');
+									}
+								})
+							}else{
+
+								sus.find(".descp").html('<p>'+data.description+'</p>');
+							} 
 							$('#registor-form').find('.res_sup').text(text_area);    
 						}else{
 
@@ -384,6 +408,23 @@
         					sus.find('.suspend').show();
         					var st_val= sus.find('.appr').text();
 					      $('.realtime_reason').hide(); //in veiw time it works only
+					      sus.find(".descp").html('');
+					      if (data.description==null) {
+
+					      	$.ajax({
+
+					      		type : "POST",
+					      		url  : "../methods/getDescriptionForVeiw.php",
+					      		data : {"id":data.action_id},
+					      		success:function(descp){
+					      			
+					      			sus.find(".descp").html('<p>'+descp+'</p>');
+					      		}
+					      	})
+					      }else{
+
+					      	sus.find(".descp").html('<p>'+data.description+'</p>');
+					      } 
 					  }else{
 
 					  	console.log(data);
@@ -398,10 +439,10 @@
 
 	}
 
- $(".veiwCheckbox input").attr("disabled", true);
- if ($('#crntAdmin_id').val()==$('#veiwAdmin_id').val()) {
- 	 $('.sus_appr').remove();
- }
+	$(".veiwCheckbox input").attr("disabled", true);
+	if ($('#crntAdmin_id').val()==$('#veiwAdmin_id').val()) {
+		$('.sus_appr').remove();
+	}
 // debugger
 if ($('#filled-in-vendor').val()=="on") {
 	$('#filled-in-vendor').prop('checked', true)

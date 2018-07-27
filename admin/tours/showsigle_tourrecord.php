@@ -16,7 +16,9 @@ if (isset($_GET['h_id'])) {
 
  $showTourQuery=select('tour',array('tour_id'=>$_GET['id'],'user_id'=>$_GET['u_id']));
 }
-
+$showmsgQuery='SELECT * FROM action_listing WHERE action_listing_id="'.$_GET['id'].'" AND action_listing_type="tour"';
+$showmsgSql=mysqli_query($conn,$showmsgQuery) or die(mysqli_error($conn));
+$showmsgResult=mysqli_fetch_assoc($showmsgSql);
 
 ?>
 
@@ -57,118 +59,121 @@ if (isset($_GET['h_id'])) {
      <div class="db-cent-table db-com-table">
       <div class="veiw_sus_appr">
        <?php if ($_GET['status']=="Approved" || $_GET['status']=="Pending") { ?>
-       <div class="row" style="margin-top: 20px;">
-        <div class="col s11">
-          
-          <div class="pull-right sus_appr" style="margin-left: 10px;">
-           <?php if (isset($_GET['h_id'])) { 
-
-            if ($h_status=="Approved") {?>
-            <?php if ($TourResult['tour_status']=="Approved") { ?>
-
-            <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
-
-            <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
-
-            <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
-            
-            <?php  }else{ ?>
-
-            <a href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
-
-            <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
-
-            <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
-            
-            
-            <?php   } ?>
-            
+         <div class="row" style="margin-top: 20px;">
+          <div class="col s8">
+            <p class="descp" style="line-height: 3;"><?php echo $showmsgResult['action_descprition']; ?></p>
           </div>
-          <div class="pull-right" >
+          <div class="">
+            
+            <div class="pull-right sus_appr" style="margin-left: 10px;">
+             <?php if (isset($_GET['h_id'])) { 
 
-           <a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $TourResult['tour_id'];  ?>&h_id=<?php echo  $TourResult['hotel_id'] ; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
-           <?php } ?>
+              if ($h_status=="Approved") {?>
+                <?php if ($TourResult['tour_status']=="Approved") { ?>
+
+                  <a  href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+
+                  <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
+
+                  <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
+                  
+                <?php  }else{ ?>
+
+                  <a href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
+
+                  <a  onclick="show_suspend(event)" h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" h-col="hotel_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
+
+                  <a  onclick="show_approve(event)"  h_id="<?php echo $TourResult['hotel_id'] ?>" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" h-col="hotel_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
+                  
+                  
+                <?php   } ?>
+                
+              </div>
+              <div class="pull-right" >
+
+               <a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $TourResult['tour_id'];  ?>&h_id=<?php echo  $TourResult['hotel_id'] ; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
+             <?php } ?>
            <?php  }else{ ?>
 
-           <?php if ($TourResult['tour_status']=="Approved") { ?>
+             <?php if ($TourResult['tour_status']=="Approved") { ?>
 
-           <a  href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
+               <a  href="#susp"  class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" >Suspend</a>
 
-           <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
+               <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility:hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
 
-           <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
-           
-           <?php  }else{ ?>
+               <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" style="display: none;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
+               
+             <?php  }else{ ?>
 
-           <a href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
+               <a href="#susp" class="suspend waves-effect waves-light btn modal-trigger" value="Suspended" style="display: none;">Suspend</a>
 
-           <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
+               <a  onclick="show_suspend(event)" u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" id-col="tour_id" u-col="user_id" col-name-reason="tour_sus_reason" l-url="tours/showsigle_tourrecord.php" class=" btn org_susp" value="Suspended" style="visibility: hidden; position: fixed;" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Suspend</a>
 
-           <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
-           
-           
-           <?php   } ?>
+               <a  onclick="show_approve(event)"  u_id="<?php echo $TourResult['user_id'] ?>" id="<?php echo $TourResult['tour_id']; ?>" tbl-name="tour" col-name="tour_status" col-name-reason="tour_sus_reason" id-col="tour_id" u-col="user_id" l-url="tours/showsigle_tourrecord.php" class="approve btn" value="Approved" veiw="veiw" list-name="<?php echo $TourResult['tour_name']; ?>">Approve</a>
+               
+               
+             <?php   } ?>
 
-           <a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $TourResult['tour_id'];  ?>&u_id=<?php echo  $TourResult['user_id'] ; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
+             <a class="waves-effect waves-light btn" href="edit_tour.php?id=<?php echo $TourResult['tour_id'];  ?>&u_id=<?php echo  $TourResult['user_id'] ; ?>&status=<?php echo $_GET['status'] ?>&name=<?php echo $_GET['name'] ?>&user_id=<?php echo $_GET['user_id']; ?>">Edit</a>
            <?php } ?>
            
          </div>
        </div>
      </div>
-     <?php   } ?> 
-     <div class="text-center " >
-      <span style="margin-left: 10px;">Status:</span>
-      <?php if ($TourResult['tour_status']=="Approved") { ?>
+   <?php   } ?> 
+   <div class="text-center " >
+    <span style="margin-left: 10px;">Status:</span>
+    <?php if ($TourResult['tour_status']=="Approved") { ?>
       
       <span class="appr" style="color: green; "><b><?php echo $TourResult['tour_status']; ?></b></span>
       <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
 
 
 
-      <?php   }else if($TourResult['tour_status']=="Suspended"){ ?>
+    <?php   }else if($TourResult['tour_status']=="Suspended"){ ?>
       
       <span class="sus" style="color: red;"><b><?php echo $TourResult['tour_status']; ?></b></span>
       <span class="appr" style="color: green; display: none;"><b>Approved</b></span>
       
 
 
-      <?php   }else{ ?>
+    <?php   }else{ ?>
       
       <span class="appr" style="color: green;  display: none;"><b>Approved</b></span>
       <span class="sus" style="color: red; display: none;"><b>Suspended</b></span>
       <span class="pend" style="color: red;"><b><?php echo $TourResult['tour_status']; ?></b></span>
 
-      <?php  } ?>
-    </div>
-    
-  </div>
-
-  <div class="text-center ">
-    <span style="padding-right: 7px;">Name:</span>
-    <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
-  </div>
-  <div class="db-profile"> 
-
-    <img src="" id="cover_photo_common" alt="">
-    <h4><?php echo $TourResult['tour_name'];  ?> </h4>
-    <p><?php echo $TourResult['tour_destinationname']; ?></p>
+    <?php  } ?>
   </div>
   
-  <div class="hotelVeiw">
-    
-   <div class="row">
-    <span><b>Package Name :</b></span>
-    <span><?php echo $TourResult['tour_name']."."; ?></span>
-  </div>
-  <div class="row">
-    <span><b>Name of Destinations :</b></span>
-    <span><?php echo $TourResult['tour_destinationname']."."; ?></span>
-  </div>
-  <div class="row">
-    <span><b>Food Included ? :</b></span>
-    <span class="capitalize"><?php echo $TourResult['tour_foodinclude']."."; ?></span>
-  </div>
-  <?php if ($TourResult['tour_foodinclude']=='yes') { ?>
+</div>
+
+<div class="text-center ">
+  <span style="padding-right: 7px;">Name:</span>
+  <span style="color: green;"><b><?php echo $_GET['name']; ?></b></span>
+</div>
+<div class="db-profile"> 
+
+  <img src="" id="cover_photo_common" alt="">
+  <h4><?php echo $TourResult['tour_name'];  ?> </h4>
+  <p><?php echo $TourResult['tour_destinationname']; ?></p>
+</div>
+
+<div class="hotelVeiw">
+  
+ <div class="row">
+  <span><b>Package Name :</b></span>
+  <span><?php echo $TourResult['tour_name']."."; ?></span>
+</div>
+<div class="row">
+  <span><b>Name of Destinations :</b></span>
+  <span><?php echo $TourResult['tour_destinationname']."."; ?></span>
+</div>
+<div class="row">
+  <span><b>Food Included ? :</b></span>
+  <span class="capitalize"><?php echo $TourResult['tour_foodinclude']."."; ?></span>
+</div>
+<?php if ($TourResult['tour_foodinclude']=='yes') { ?>
 
   <div>
     <table class="listing-tbl sp_top tbl_social">
@@ -183,24 +188,24 @@ if (isset($_GET['h_id'])) {
      <tbody>
        <?php if ($TourResult['tour_brkfast']=="on") {?>
 
-       <td>Yes</td>
+         <td>Yes</td>
        <?php  }else{ ?>
 
-       <td>No</td>
+         <td>No</td>
        <?php  } ?>
        <?php if ($TourResult['tour_lunch']=="on") {?>
 
-       <td>Yes</td>
+         <td>Yes</td>
        <?php  }else{ ?>
 
-       <td>No</td>
+         <td>No</td>
        <?php  } ?>
        <?php if ($TourResult['tour_dinner']=="on") {?>
 
-       <td>Yes</td>
+         <td>Yes</td>
        <?php  }else{ ?>
 
-       <td>No</td>
+         <td>No</td>
        <?php  } ?>
 
      </tbody>
@@ -208,45 +213,45 @@ if (isset($_GET['h_id'])) {
    </table>
  </div>
 
- <?php } ?>
+<?php } ?>
 
 
- <div class="row sp_top">
+<div class="row sp_top">
   <span><b>Drink Included ? :</b></span>
   <span class="capitalize"><?php echo $TourResult['tour_drink']."."; ?></span>
 </div>
 <?php if ($TourResult['tour_drink']=='yes') { ?>
 
-<div>
-  <table class="listing-tbl sp_top tbl_social">
-    <thead>
-     <tr>
-       <th>Alcoholic</th>
-       <th>Non Alcoholic</th>
-       
-     </tr>
-   </thead>
-   
-   <tbody>
-     <?php if ($TourResult['tour_aloholic']=="on") {?>
-
-     <td>Yes</td>
-     <?php  }else{ ?>
-
-     <td>No</td>
-     <?php  } ?>
-     <?php if ($TourResult['tour_nonaloholic']=="on") {?>
-
-     <td>Yes</td>
-     <?php  }else{ ?>
-
-     <td>No</td>
-     <?php  } ?>
+  <div>
+    <table class="listing-tbl sp_top tbl_social">
+      <thead>
+       <tr>
+         <th>Alcoholic</th>
+         <th>Non Alcoholic</th>
+         
+       </tr>
+     </thead>
      
-   </tbody>
-   
- </table>
-</div>
+     <tbody>
+       <?php if ($TourResult['tour_aloholic']=="on") {?>
+
+         <td>Yes</td>
+       <?php  }else{ ?>
+
+         <td>No</td>
+       <?php  } ?>
+       <?php if ($TourResult['tour_nonaloholic']=="on") {?>
+
+         <td>Yes</td>
+       <?php  }else{ ?>
+
+         <td>No</td>
+       <?php  } ?>
+       
+     </tbody>
+     
+   </table>
+ </div>
 
 <?php    }  ?>
 
@@ -274,11 +279,11 @@ if (isset($_GET['h_id'])) {
     <td><?php echo $TourResult['tour_hotelstr']; ?></td>
     
     <?php if (!empty($TourResult['tour_camping'])) {?>
-    <td>Yes</td>
-    <td><?php echo $TourResult['tour_campday']; ?></td>
+      <td>Yes</td>
+      <td><?php echo $TourResult['tour_campday']; ?></td>
     <?php }else{ ?>
-    <td>No</td>
-    <td>N/A</td>
+      <td>No</td>
+      <td>N/A</td>
     <?php } ?>
     
 
@@ -324,43 +329,43 @@ if (isset($_GET['h_id'])) {
 </div>
 <?php if ($TourResult['tour_childallow']=='yes') { ?>
 
-<div>
- <table class="listing-tbl sp_top tbl_social">
-   <thead>
-    <tr>
-     <th>Charges For Children</th>
-     <th>Under 5 allowed?</th>
-     <th>Price/Free</th>
+  <div>
+   <table class="listing-tbl sp_top tbl_social">
+     <thead>
+      <tr>
+       <th>Charges For Children</th>
+       <th>Under 5 allowed?</th>
+       <th>Price/Free</th>
+       
+     </tr>
+   </thead>
+   
+   <tbody>
      
-   </tr>
- </thead>
- 
- <tbody>
-   
-   <td><?php  echo $TourResult['tour_halftikchild'];  ?></td>
-   <td class="capitalize"><?php  echo $TourResult['tour_undr5allow'];  ?></td>
-   <?php if ($TourResult['tour_undr5allow']=="yes") { ?>
-   
-   
-   <?php if (!empty($TourResult['tour_undr5price'])) { ?>
-   <td><?php  echo $TourResult['tour_undr5price'];  ?></td>
-   
-   <?php  }else{ ?>
+     <td><?php  echo $TourResult['tour_halftikchild'];  ?></td>
+     <td class="capitalize"><?php  echo $TourResult['tour_undr5allow'];  ?></td>
+     <?php if ($TourResult['tour_undr5allow']=="yes") { ?>
+       
+       
+       <?php if (!empty($TourResult['tour_undr5price'])) { ?>
+         <td><?php  echo $TourResult['tour_undr5price'];  ?></td>
+         
+       <?php  }else{ ?>
 
-   
-   <td>Free</td>
+         
+         <td>Free</td>
 
-   <?php  } ?>
-   <?php   }else{ ?>
+       <?php  } ?>
+     <?php   }else{ ?>
 
-   <td>N/A</td>
+       <td>N/A</td>
 
-   <?php  } ?>
+     <?php  } ?>
+     
+     
+   </tbody>
    
-   
- </tbody>
- 
-</table>
+ </table>
 </div>
 
 
@@ -381,12 +386,12 @@ if (isset($_GET['h_id'])) {
    </tr>
  </thead>
  <?php  while ($discountResult=mysqli_fetch_assoc($showdiscountQuery)) { ?>
- <tbody>
+   <tbody>
 
-  <td><?php  echo $discountResult['common_nopeople'];  ?></td>
-  <td><?php  echo $discountResult['common_discount'];  ?></td>
-  
-</tbody>
+    <td><?php  echo $discountResult['common_nopeople'];  ?></td>
+    <td><?php  echo $discountResult['common_discount'];  ?></td>
+    
+  </tbody>
 <?php } ?>
 </table>
 </div>
@@ -422,42 +427,42 @@ if (isset($_GET['h_id'])) {
 <?php if ($TourResult['tour_pikoffer']=="yes") { ?>
 
 
-<div class="row">
-  <span><b>Charges From :</b></span>
-</div>
-<div>
- <table class="listing-tbl sp_top tbl_social">
-   <thead>
-    <tr>
-     <th>Airport</th>
-     <th>Bus Terminal</th>
-     <th>Specific Location</th>
+  <div class="row">
+    <span><b>Charges From :</b></span>
+  </div>
+  <div>
+   <table class="listing-tbl sp_top tbl_social">
+     <thead>
+      <tr>
+       <th>Airport</th>
+       <th>Bus Terminal</th>
+       <th>Specific Location</th>
+       
+     </tr>
+   </thead>
+   
+   <tbody>
+     <?php if (!empty($TourResult['tour_pikair'])) { ?>
+       <td><?php  echo $TourResult['tour_pikair'];  ?></td>
+     <?php }else{ ?>
+       <td>N/A</td>
+     <?php  } ?>
+     <?php if (!empty($TourResult['tour_pikbus'])) { ?>
+       <td><?php  echo $TourResult['tour_pikbus'];  ?></td>
+     <?php }else{ ?>
+       <td>N/A</td>
+     <?php  } ?>
+     <?php if (!empty($TourResult['tour_pikspecific'])) { ?>
+       <td><?php  echo $TourResult['tour_pikspecific'];  ?></td>
+     <?php }else{ ?>
+       <td>N/A</td>
+     <?php  } ?>
      
-   </tr>
- </thead>
- 
- <tbody>
-   <?php if (!empty($TourResult['tour_pikair'])) { ?>
-   <td><?php  echo $TourResult['tour_pikair'];  ?></td>
-   <?php }else{ ?>
-   <td>N/A</td>
-   <?php  } ?>
-   <?php if (!empty($TourResult['tour_pikbus'])) { ?>
-   <td><?php  echo $TourResult['tour_pikbus'];  ?></td>
-   <?php }else{ ?>
-   <td>N/A</td>
-   <?php  } ?>
-   <?php if (!empty($TourResult['tour_pikspecific'])) { ?>
-   <td><?php  echo $TourResult['tour_pikspecific'];  ?></td>
-   <?php }else{ ?>
-   <td>N/A</td>
-   <?php  } ?>
+     
+     
+   </tbody>
    
-   
-   
- </tbody>
- 
-</table>
+ </table>
 </div>
 
 <?php  } ?>
@@ -468,42 +473,42 @@ if (isset($_GET['h_id'])) {
 </div>
 
 <?php if ($TourResult['tour_drpoffer']=='yes') { ?>
-<div class="row">
-  <span><b>Charges From :</b></span>
-</div>
-<div>
- <table class="listing-tbl sp_top tbl_social">
-   <thead>
-    <tr>
-     <th>Airport</th>
-     <th>Bus Terminal</th>
-     <th>Specific Location</th>
+  <div class="row">
+    <span><b>Charges From :</b></span>
+  </div>
+  <div>
+   <table class="listing-tbl sp_top tbl_social">
+     <thead>
+      <tr>
+       <th>Airport</th>
+       <th>Bus Terminal</th>
+       <th>Specific Location</th>
+       
+     </tr>
+   </thead>
+   
+   <tbody>
+     <?php if (!empty($TourResult['tour_drpair'])) { ?>
+       <td><?php  echo $TourResult['tour_drpair'];  ?></td>
+     <?php }else{ ?>
+       <td>N/A</td>
+     <?php  } ?>
+     <?php if (!empty($TourResult['tour_drpbus'])) { ?>
+       <td><?php  echo $TourResult['tour_drpbus'];  ?></td>
+     <?php }else{ ?>
+       <td>N/A</td>
+     <?php  } ?>
+     <?php if (!empty($TourResult['tour_drpspecific'])) { ?>
+       <td><?php  echo $TourResult['tour_drpspecific'];  ?></td>
+     <?php }else{ ?>
+       <td>N/A</td>
+     <?php  } ?>
      
-   </tr>
- </thead>
- 
- <tbody>
-   <?php if (!empty($TourResult['tour_drpair'])) { ?>
-   <td><?php  echo $TourResult['tour_drpair'];  ?></td>
-   <?php }else{ ?>
-   <td>N/A</td>
-   <?php  } ?>
-   <?php if (!empty($TourResult['tour_drpbus'])) { ?>
-   <td><?php  echo $TourResult['tour_drpbus'];  ?></td>
-   <?php }else{ ?>
-   <td>N/A</td>
-   <?php  } ?>
-   <?php if (!empty($TourResult['tour_drpspecific'])) { ?>
-   <td><?php  echo $TourResult['tour_drpspecific'];  ?></td>
-   <?php }else{ ?>
-   <td>N/A</td>
-   <?php  } ?>
+     
+     
+   </tbody>
    
-   
-   
- </tbody>
- 
-</table>
+ </table>
 </div>
 <?php } ?>
 
@@ -533,22 +538,22 @@ if (isset($_GET['h_id'])) {
 
    
     if (!empty($imgResult['common_image'])) {?>
-    <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
-      <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
-    </div>&nbsp;&nbsp;
-    <script type="text/javascript">
-      $(document).ready(function(){
+      <div class="imgeWrap" style="float: left; padding-right:5px; padding-bottom:5px;">
+        <img src="../<?php echo $imgResult['common_image']  ?>" style="height: 100px; width: 150px;" class="materialboxed">
+      </div>&nbsp;&nbsp;
+      <script type="text/javascript">
+        $(document).ready(function(){
+          
+          setTimeout(function(){
+
+            $('#cover_photo_common').attr('src',$('#hotel_img_wrap img').eq(0).attr('src'));
+          },2000);
+
+        })
         
-        setTimeout(function(){
-
-          $('#cover_photo_common').attr('src',$('#hotel_img_wrap img').eq(0).attr('src'));
-        },2000);
-
-      })
+      </script>
       
-    </script>
-    
-    
+      
     <?php } ?>
 
     

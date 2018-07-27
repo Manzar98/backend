@@ -39,9 +39,28 @@
                             sus.find('.inactive').show();
                             sus.find(".appr").html('');
                             sus.find(".appr").html('<span class="db-success">Activated</span>');
-                        }
-                    }   
-                });
+                            sus.find(".descp").html('');
+                            debugger
+                            if (data.description==null) {
+
+                                $.ajax({
+
+                                    type : "POST",
+                                    url  : "../../methods/getDescriptionForVeiw.php",
+                                    data : {"id":data.action_id},
+                                    success:function(descp){
+
+                                        sus.find(".descp").html('<p>'+descp+'</p>');
+                                    }
+                                })
+                            }else{
+
+                              sus.find(".descp").html('<p>'+data.description+'</p>');
+                          } 
+
+                      }
+                  }   
+              });
             }         
         });
 
@@ -81,14 +100,33 @@
                         var data=JSON.parse(res);
 
                         if (data.status=="on") {
+                              debugger;
 
                             sus.find('.inactive').hide();
                             sus.find('.active').show();
                             sus.find(".appr").html('');
                             sus.find(".appr").html('<span class="db-not-success">Deactivated</span>');
-                        }
-                    }   
-                });
+                            sus.find(".descp").html('');
+                            if (data.description==null) {
+                                $.ajax({
+
+                                    type : "POST",
+                                    url  : "../../methods/getDescriptionForVeiw.php",
+                                    data : {"id":data.action_id},
+                                    success:function(descp){
+
+                                        sus.find(".descp").html('<p>'+descp+'</p>');
+                                    }
+                                })
+                            }else{
+
+                              sus.find(".descp").html('<p>'+data.description+'</p>');
+                          } 
+
+
+                      }
+                  }   
+              });
             }         
         });
 
