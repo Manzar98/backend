@@ -1,7 +1,8 @@
 <?php 
 function callingAmenity_admin($page){
 	include '../../common-sql.php';
-	$a_Query='SELECT * From amenities where amenity_page="'.$page.'"';
+	$a_Query='SELECT * From amenities where amenity_page="'.$page.'" AND amenity_inactive="off"';
+	//echo $a_Query;
 	$a_sqli=mysqli_query($conn,$a_Query) or die(mysqli_error($conn));
 
 	$m=0;

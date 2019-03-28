@@ -39,7 +39,7 @@
                             sus.find('.inactive').show();
                             sus.find(".appr").html('');
                             sus.find(".appr").html('<span class="db-success">Activated</span>');
-                            sus.find(".descp").html('');
+                            // sus.find(".descp").html('');
                             debugger
                             if (data.description==null) {
 
@@ -50,14 +50,12 @@
                                     data : {"id":data.action_id},
                                     success:function(descp){
 
-                                        sus.find(".descp").html('<p>'+descp+'</p>');
+                                        sus.find(".descpWrap").html('<p>'+descp+'</p>');
+                                        debugger
                                     }
+
                                 })
-                            }else{
-
-                              sus.find(".descp").html('<p>'+data.description+'</p>');
-                          } 
-
+                            }
                       }
                   }   
               });
@@ -106,7 +104,7 @@
                             sus.find('.active').show();
                             sus.find(".appr").html('');
                             sus.find(".appr").html('<span class="db-not-success">Deactivated</span>');
-                            sus.find(".descp").html('');
+                            // sus.find(".descp").html('');
                             if (data.description==null) {
                                 $.ajax({
 
@@ -115,13 +113,11 @@
                                     data : {"id":data.action_id},
                                     success:function(descp){
 
-                                        sus.find(".descp").html('<p>'+descp+'</p>');
+                                        sus.find(".descpWrap").html('<p>'+descp+'</p>');
+                                        debugger
                                     }
                                 })
-                            }else{
-
-                              sus.find(".descp").html('<p>'+data.description+'</p>');
-                          } 
+                            }
 
 
                       }

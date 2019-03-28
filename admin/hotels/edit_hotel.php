@@ -77,12 +77,17 @@ $global_hotel_id="";
 								<div class="row">
 									<div  class="col-md-6">
 										<label>City</label>
-										<input id="first_name" type="text" name="hotel_city" class="input-field validate is_validate" required value="<?php  echo $hotelResult['hotel_city'];  ?>">
+										<input id="first_name" type="text" name="hotel_city" class="input-field validate is_validate mb-city" required value="<?php  echo $hotelResult['hotel_city'];  ?>">
 									</div>
-
 									<div  class="col-md-6">
 										<label>Province</label>
-										<input id="last_name" type="text" name="hotel_province" class="input-field validate is_validate" required value="<?php  echo $hotelResult['hotel_province'];  ?>">
+										<select class="ind_province" name="hotel_province">
+											<option value="" disabled="">Select One</option>
+											<option value="Sindh" <?php if ($hotelResult['hotel_province']=="Sindh") { ?>selected=""<?php }; ?>>Sindh</option>
+											<option value="Punjab" <?php if ($hotelResult['hotel_province']=="Punjab") { ?>selected=""<?php }; ?>>Punjab</option>
+											<option value="Balochistan" <?php if ($hotelResult['hotel_province']=="Balochistan") { ?>selected=""<?php }; ?>>Balochistan</option>
+											<option value="KPK" <?php if ($hotelResult['hotel_province']=="KPK") { ?>selected=""<?php }; ?>>khyber pakhtunkhwa</option>
+										</select>
 									</div>
 								</div>
 

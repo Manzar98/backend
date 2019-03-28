@@ -4,7 +4,7 @@ $showB_Query=select('amenities',array('amenity_id'=>$_GET['a_id'],'user_id'=>$_G
 
 $showmsgQuery='SELECT * FROM action_listing WHERE action_listing_id="'.$_GET['a_id'].'" AND action_listing_type="amenities"';
 $showmsgSql=mysqli_query($conn,$showmsgQuery) or die(mysqli_error($conn));
-$showmsgResult=mysqli_fetch_assoc($showmsgSql);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,12 @@ $showmsgResult=mysqli_fetch_assoc($showmsgSql);
       <div class="veiw_sus_appr">
        <div class="row" style="margin-top: 20px;">
         <div class="col s7">
-          <p class="descp" style="line-height: 3;"><?php echo $showmsgResult['action_descprition']; ?></p>
+          <div class="descpWrap">
+            <?php while ($showmsgResult=mysqli_fetch_assoc($showmsgSql)) { ?>
+               <p class="descp" style="line-height: 3;"><?php echo $showmsgResult['action_descprition']; ?></p>
+            <?php } ?>
+           
+          </div>
         </div>
         <div class="">
           <div class="pull-right sus_appr" style="margin-left: 10px;">

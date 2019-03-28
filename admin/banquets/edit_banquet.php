@@ -65,50 +65,50 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
 
        <?php if (!empty($resultbnq['hotel_id'])) {?>
         <style type="text/css">
-        #dependent_wrap{
-         display: none;
-       }
-     </style>
-   <?php } ?>
-   <div id="dependent_wrap">
-    <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
+          #dependent_wrap{
+           display: none;
+         }
+       </style>
+     <?php } ?>
+     <div id="dependent_wrap">
+      <div class="col s12 common-wrapper comon_dropdown_botom_line" id="bn-serv common-top"  >
 
-     <label class="col s12">Independent Hall?</label>
-     <select onchange="hall_alone(this)"  class="" name="banquet_independ" id="independ-select">
+       <label class="col s12">Independent Hall?</label>
+       <select onchange="hall_alone(this)"  class="" name="banquet_independ" id="independ-select">
 
-      <?php if ($resultbnq['banquet_independ']== "yes") { ?>
+        <?php if ($resultbnq['banquet_independ']== "yes") { ?>
 
-       <option value=""  disabled="">Select One</option>
-       <option value="yes" selected="">Yes</option>
-       <option value="no">No</option>
+         <option value=""  disabled="">Select One</option>
+         <option value="yes" selected="">Yes</option>
+         <option value="no">No</option>
 
-     <?php  }elseif ($resultbnq['banquet_independ']== "no") {?>
+       <?php  }elseif ($resultbnq['banquet_independ']== "no") {?>
 
-       <option value="" disabled="">Select One</option>
-       <option value="yes" >Yes</option>
-       <option value="no" selected="">No</option>
+         <option value="" disabled="">Select One</option>
+         <option value="yes" >Yes</option>
+         <option value="no" selected="">No</option>
 
-     <?php }else {?>
+       <?php }else {?>
 
-       <option value="" disabled="" selected="">Select One</option>
-       <option value="yes">Yes</option>
-       <option value="no" >No</option>
-     <?php }  ?>
-   </select>
- </div>
- <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
-  <?php if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
+         <option value="" disabled="" selected="">Select One</option>
+         <option value="yes">Yes</option>
+         <option value="no" >No</option>
+       <?php }  ?>
+     </select>
+   </div>
+   <div class="col s12 common-wrapper comon_dropdown_botom_line is_validate_select" style="display: none;" id="show_hotelName" >
+    <?php if (mysqli_num_rows($selectHotelQuery) > 0) { ?>
 
-    <label class="col s12">Select Hotel</label>
-    <select  class="hotelNames" name="hotel_name" >
-     <option value="null" disabled="">Select One</option>
-     <option selected="" value="<?php echo $resultbnq['hotel_name'] ?>"><?php echo $resultbnq['hotel_name'] ?></option>
-     <?php
+      <label class="col s12">Select Hotel</label>
+      <select  class="hotelNames" name="hotel_name" >
+       <option value="null" disabled="">Select One</option>
+       <option selected="" value="<?php echo $resultbnq['hotel_name'] ?>"><?php echo $resultbnq['hotel_name'] ?></option>
+       <?php
 
-     while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
+       while ($result=mysqli_fetch_assoc($selectHotelQuery)) { ?>
 
 
-       <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
+         <option value="<?php echo $result['hotel_name'] ?>" data-id="<?php echo $result['hotel_id']; ?>"><?php echo $result['hotel_name'] ?></option>
 
 
                 <?php # code...
@@ -142,11 +142,17 @@ while ($resultbnq=mysqli_fetch_assoc($editbnqQuery)){
       <div class="row">
        <div class="col-md-6">
         <label>Province</label>
-        <input  type="text" name="banquet_province" class="input-field validate ind_province" value="<?php echo $resultbnq['banquet_province']; ?>" >
+        <select class="ind_province" name="banquet_province">
+          <option value="" disabled="">Select One</option>
+          <option value="Sindh" <?php if ($resultbnq['banquet_province']=="Sindh") { ?>selected=""<?php }; ?>>Sindh</option>
+          <option value="Punjab" <?php if ($resultbnq['banquet_province']=="Punjab") { ?>selected=""<?php }; ?>>Punjab</option>
+          <option value="Balochistan" <?php if ($resultbnq['banquet_province']=="Balochistan") { ?>selected=""<?php }; ?>>Balochistan</option>
+          <option value="KPK" <?php if ($resultbnq['banquet_province']=="KPK") { ?>selected=""<?php }; ?>>khyber pakhtunkhwa</option>
+        </select>
       </div>
       <div class="col-md-6">
         <label>Phone Number</label>
-        <input  type="number" name="banquet_phone" class="input-field validate ind_phone" value="<?php echo $resultbnq['banquet_phone']; ?>" >
+        <input  type="number" name="banquet_phone" class="input-field validate ind_phone mb-phone" value="<?php echo $resultbnq['banquet_phone']; ?>" >
       </div>
 
     </div>
@@ -617,7 +623,7 @@ jQuery(document).ready(function(){
   /*==============End Ajax Function Defination==============*/
 
 
- tinymce.init({ selector:'textarea' });
+  tinymce.init({ selector:'textarea' });
 
 		// $('#modal-images').modal();
     var updated_amLst=[];
@@ -629,53 +635,53 @@ jQuery(document).ready(function(){
         // console.log(amenity[i]);
         if ($('#amenityLst_admin').val().indexOf(amenity[i])== -1) {
 
-           ameinty_obj.push({"tag":amenity[i]});
+         ameinty_obj.push({"tag":amenity[i]});
 
-        }else{
-             updated_amLst.push(amenity[i])
-             $('#updatedAmenityLst_admin').val(updated_amLst.toString());
-        }
-        
- 
-      }
+       }else{
+         updated_amLst.push(amenity[i])
+         $('#updatedAmenityLst_admin').val(updated_amLst.toString());
+       }
+
+
+     }
      
 
-      $('.chips-autocomplete').material_chip({
-        data:ameinty_obj,
-        autocompleteOptions: {
-          data: {
-            'Wifi': null,
-            'Swimming Pool': null,
-            'Room service': null,
-            'Restaurant': null
-          },
-          limit: Infinity,
-          minLength: 1
-        }
-      });
+     $('.chips-autocomplete').material_chip({
+      data:ameinty_obj,
+      autocompleteOptions: {
+        data: {
+          'Wifi': null,
+          'Swimming Pool': null,
+          'Room service': null,
+          'Restaurant': null
+        },
+        limit: Infinity,
+        minLength: 1
+      }
+    });
 
 
 
-      $('.chips-packageitem').material_chip({
-        autocompleteOptions: {
-          data: {
-            'Naan': null,
-            'Thai': null,
-            'Meat': null,
-            'drinks': null
-          },
-          limit: Infinity,
-          minLength: 1
-        }
-      });
+     $('.chips-packageitem').material_chip({
+      autocompleteOptions: {
+        data: {
+          'Naan': null,
+          'Thai': null,
+          'Meat': null,
+          'drinks': null
+        },
+        limit: Infinity,
+        minLength: 1
+      }
+    });
 
 
 
 
-      var packageitem= $('.menupkg-id');
-      console.log(packageitem);
+     var packageitem= $('.menupkg-id');
+     console.log(packageitem);
 
-      $.each(packageitem,function(key,item){
+     $.each(packageitem,function(key,item){
   // debugger;
   var packageitem_obj=[];
   var id= item.id.split('_')[1];
@@ -773,15 +779,15 @@ if($('#independ-select :selected').text()=="Yes"){
 
   //     $('#dependent_wrap').hide();
   // }
-        var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
-        $.each(updatedSplitAm,function(k,v){
+  var updatedSplitAm=$('#updatedAmenityLst_admin').val().split(',');
+  $.each(updatedSplitAm,function(k,v){
 
-             $('.admin_amenity[value="'+v+'"]').prop('checked', true);
-             
-        })
+   $('.admin_amenity[value="'+v+'"]').prop('checked', true);
 
-       
-        
+ })
+
+
+
 
 
 });

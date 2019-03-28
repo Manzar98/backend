@@ -62,7 +62,7 @@ include'../../methods/general_amenities.php'; ?>
 						<div class="row">
 							<div  class="col-md-6">
 								<label>City</label>
-								<input id="first_name" type="text" name="hotel_city" class="input-field validate is_validate" data-error=".errorTxt3" required>
+								<input id="first_name" type="text" name="hotel_city" class="input-field validate is_validate mb-city" data-error=".errorTxt3" required>
 								<div class="errorTxt3"></div>
 							</div>
 

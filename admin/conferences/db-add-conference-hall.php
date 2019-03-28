@@ -100,7 +100,7 @@ include '../../common-apis/reg-api.php';
             </div>
             <div class="col-md-6">
              <label>City</label>
-             <input  type="text" name="conference_city" class="input-field validate ind_city"  >
+             <input  type="text" name="conference_city" class="input-field validate ind_city mb-city"  >
            </div>
 
          </div>

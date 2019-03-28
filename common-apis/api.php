@@ -41,7 +41,8 @@
    }
   
    global $conn;
-    $result =mysqli_query($conn,$query);
+   $result =mysqli_query($conn,$query);
+   
    return $result;
 
   };

@@ -191,19 +191,14 @@
 												<div class="file-field input-field">
 													<div class="btn" id="pro-file-upload"> <span>Profile photo</span>
 														<input type="file" id="upload">	
-
 													</div>
-
 												</div>
 											</div>
 											<div class="col-md-6" >
 												<div id="upload-demo" style="width:350px">
-													
 												</div>
 												<button id="upload-demo-btn"  class="btn upload-result">Crop Image</button>
-												
-												<div id="upload-demo-i">
-													
+												<div id="upload-demo-i">	
 												</div>
 											</div>
 										</form>

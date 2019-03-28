@@ -74,12 +74,6 @@ include '../../common-apis/reg-api.php';
 
 
             </div>
-
-
-
-
-
-
             <div id="hall_alone" style="display: none;">
               <div class="row common-top">
                <div class="col-md-6">
@@ -106,7 +100,7 @@ include '../../common-apis/reg-api.php';
             </div>
             <div class="col-md-6">
              <label>City</label>
-             <input  type="text" name="banquet_city" class="input-field validate ind_city"  >
+             <input  type="text" name="banquet_city" class="input-field validate ind_city mb-city"  >
            </div>
 
          </div>

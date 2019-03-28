@@ -53,10 +53,6 @@ $selectHotelQuery=mysqli_query($conn,$selectHotel) or die(mysqli_error($conn));
 				</div>
 				<?php  }  ?>
 
-
-
-
-
 				<div class="common-top">
 					<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 					<input type="hidden" name="hotel_id" id="hotelId"> 

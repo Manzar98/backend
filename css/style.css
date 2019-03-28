@@ -5263,3 +5263,9 @@ li.li-wrap:hover .noti_x_icon {
     left: 15px;
 }
 
+/*======================
+ Styling by Manzar 
+========================*/
+.mb-city, .mb-phone{
+    margin-top: 14px !important;
+}
