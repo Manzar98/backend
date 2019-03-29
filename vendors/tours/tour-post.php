@@ -3,7 +3,7 @@
      // print_r($_POST);
 session_start();
 // return false;
-$is_check=true;
+ $is_check=true;
  $responseArray=[];
 
 if (empty($_POST['tour_name'])) {
@@ -68,7 +68,9 @@ if (empty($_POST['tour_drink'])) {
      array_push($responseArray,"Drink include field is required");
 
 }elseif ($_POST['tour_drink']=='yes') {
+
 	$drnkinclude      =$_POST['tour_drink'];
+	
      if (empty($_POST['tour_aloholic']) && empty($_POST['tour_nonaloholic'])) {
      	 $is_check=false;
      	 array_push($responseArray,"Check at least one from Drink included");

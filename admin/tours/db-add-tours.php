@@ -133,7 +133,7 @@
 			<div id="drink-wrap">
 				<div class="col-md-2 c-drink">
 					<p>
-						<input type="checkbox" class="filled-in" id="filled-in-alcholic"   name="tour_dinner" />
+						<input type="checkbox" class="filled-in" id="filled-in-alcholic"   name="tour_aloholic" />
 						<label for="filled-in-alcholic">Alcoholic</label>
 					</p>
 					
